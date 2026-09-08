@@ -99,3 +99,31 @@
 
 ## COMPLIANCE
 On-screen disclaimer, 0:00–0:04, small but legible: **"Educational only. Not financial advice."**
+
+---
+
+## IMAGERY LAYER (v2 rebuild — house style)
+
+Rebuilt to `STYLE-GUIDE.md`: cinematic imagery as the base layer, graphics and type over it.
+The original v1 render was typography on abstract backgrounds and is off-style.
+
+**Hero shot:** extreme macro of a seatbelt buckle clicking into its latch, slow-mo.
+**Bookend:** a steel barrier gate — the video opens on it closed, and ends on it standing
+open with a sheer drop into darkness behind it. That image is the thesis: the gate is gone,
+the floor never existed.
+
+| Beat | Shot |
+|---|---|
+| "$25,000 … is dead" | Massive steel barrier gate, low angle, cold light, camera pushing in |
+| "June 4th / FINRA killed it" | Institutional stone facade; heavy official stamp striking paper |
+| "three day trades every five days" | Macro of a mechanical turnstile counter clicking over |
+| "restricted for ninety days" | Steel security shutter slamming down, padlock closing |
+| "$2,000 … no counter" | The same gate swinging open, cold light flooding the gap |
+| **"It was a seatbelt"** | **HERO** — macro, seatbelt buckle clicking into its latch, slow-mo |
+| "tracks your exposure live" | Dark server room, racks of blinking hardware, long lens |
+| "frozen for ninety days" | Frost creeping across a metal surface |
+| "October 2027 to switch on" | Split-flap departure board flipping through dates |
+| "The gate's open. The floor isn't." | Return to the gate, open, camera pulls back to a sheer drop |
+
+Match-cut chain: turnstile counter → margin meter → calendar.
+Impact-frame words: "DEAD", "SEATBELT", "THE FLOOR ISN'T".
