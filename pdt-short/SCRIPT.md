@@ -32,8 +32,8 @@
 **[0:41–0:47] THE CATCH**
 > And brokers have until October 2027 to switch on. Yours might not have.
 
-**[0:47–0:51] CTA**
-> The gate's open. The floor isn't. Follow for what your broker won't email you.
+**[0:47–0:51] CLOSE**
+> The gate's open. The floor isn't. Check with your broker before you plan around it.
 
 ---
 
@@ -68,7 +68,7 @@
 | 5 | 0:24 | seatbelt icon → clicks shut → shatters | vignette pulses red | speed ramp |
 | 6 | 0:31 | live margin meter filling toward red | `5 BUSINESS DAYS` countdown | glitch cut |
 | 7 | 0:41 | `OCT 2027` calendar, broker logos blurred | `CHECK YOUR BROKER` blink | whip pan R |
-| 8 | 0:47 | text: `THE GATE'S OPEN. THE FLOOR ISN'T.` | subscribe arrow | slow push-in |
+| 8 | 0:47 | text: `THE GATE'S OPEN. THE FLOOR ISN'T.` | "CHECK YOUR BROKER" tag | slow push-in |
 
 **Beat rule:** cut or punch-in every 1.2–1.8s. No shot holds past 2s.
 
