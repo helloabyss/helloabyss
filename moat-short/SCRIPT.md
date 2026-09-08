@@ -147,3 +147,42 @@ The default agent output is too static. This spec is the fix; carry it into ever
 - Captions stay readable at all times; flashes and blur never obscure them.
 - No human faces, no real corporate logos, no subscribe animations.
 - Analytical newsroom tone. Dramatic, not childish.
+
+---
+
+## IMAGERY LAYER SPEC (v2 — the important correction)
+
+**Lesson:** "kinetic typography" briefs produce text on abstract backgrounds. That reads
+flat and cheap. Real imagery must be the FOUNDATION layer, with graphics and type over it.
+
+**Revised layer stack**
+1. **BASE** — cinematic photographic/rendered imagery filling the frame. The foundation of
+   every scene, not a texture.
+2. **MID** — motion graphics (castle diagram, counters, charts, name-tag grid) over the imagery.
+3. **TOP** — hero typography and burned-in captions.
+
+Apply the 3D camera moves and parallax to the IMAGERY too, not only to text.
+
+**Imagery by beat**
+| Beat | Shot |
+|---|---|
+| Buffett / "moat" | Real stone castle ringed by water, drone, dawn mist. Camera pushes across water toward the walls |
+| "too expensive to copy" | Base of a massive fortress wall, low angle, imposing scale |
+| "products get copied" | Assembly line of identical objects receding to vanishing point |
+| **"it's the plug"** | **Hero shot** — extreme macro of a charging connector locking into a port, slow-mo, shallow DoF, light on the metal contacts |
+| "built its own network" | Wide aerial, charging station at dusk, stalls lit, cars plugged in |
+| "nearly every automaker" | Many different EVs charging side by side, low and wide |
+| "twenty-eight thousand" | Night aerial, highway light trails, dissolving into a map of glowing pins |
+| "a hundred billion dollars" | Utility-scale battery installation at scale, drone wide |
+| **"moats erode"** | Stone and rock visibly weathering and crumbling into sand |
+| "a position you defend" | Return to the castle at dusk, camera pulls back to full scale |
+
+**Constraints the imagery must not break**
+- No human faces, no identifiable people. Vehicles, machinery, architecture, landscape,
+  hardware only. Frame people out, or distant silhouettes.
+- No real corporate logos or badges — keep vehicles and chargers generic.
+- Grade imagery dark and desaturated toward near-black/white; reserve the single red accent
+  for graphics and type. Photography must not turn the piece into a colourful stock reel.
+- Captions legible over imagery at all times — dark scrim or gradient behind text wherever
+  the underlying plate is busy.
+- Cinematic, not a car commercial.
