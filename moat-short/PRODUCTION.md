@@ -1,15 +1,19 @@
 # Production Record — Moat Short
 
-## FINAL VIDEO ✅
-- **Watch / download:** https://app.heygen.com/videos/70349e55ad40413798a1843f171db31f
-- **video_id:** `70349e55ad40413798a1843f171db31f`
+## FINAL VIDEO ✅ (v2 — imagery-first)
+- **Watch / download:** https://app.heygen.com/videos/4d1d60abce84414db2bda689260b688a
+- **video_id:** `4d1d60abce84414db2bda689260b688a`
 - **Duration:** 71.6s · 9:16 portrait
 - **Session (revisable):** https://app.heygen.com/video-agent/b486935581894f8683bc890cc10929cd
 
-Also produced: burned-in-caption cut, .srt, thumbnail, preview gif — all on the video page.
+This is the version to publish. Cinematic imagery is the base layer, motion graphics and
+type composited over it, per `STYLE-GUIDE.md`.
 
-> HeyGen auto-titled it "Tesla's Moat: The Power of No", which does not match the script.
-> Ignore it — use a title from SCRIPT.md when uploading.
+### v1 — superseded (text-heavy)
+- `70349e55ad40413798a1843f171db31f` — typography on abstract backgrounds. Kept only for
+  comparison; do not publish.
+
+Both are 71.6s — the narration is identical, only the visual treatment changed.
 
 ## Build settings
 - **Style:** Economist — `e7f9a12679ec426099db7646b70a4639` (matches PDT short)
@@ -28,8 +32,8 @@ the market-share line. That loses one data point, not the argument.
 ## NOT VERIFIED — needs your eyes
 Egress policy blocks both HeyGen CDN hosts, so the MP4 could not be downloaded here and
 **this render has not been watched**. Check on first view:
-1. **Motion actually escalated** — 3D camera pushes, parallax, per-letter type, match-cut
-   morphs. This was the whole point of the revision; confirm it is not still flat cards.
+1. **Imagery is the base layer** — real cinematic plates under the graphics, not abstract textures. This was the point of v2.
+   Confirm the castle, connector macro and charging-station plates are actually present.
 2. **Palette held** — near-black / white / one red. No neon, gradients, or sparkles creeping
    in under the "more dramatic" instruction.
 3. **Captions still readable** through the flashes, blur and shake.
@@ -43,3 +47,10 @@ Egress policy blocks both HeyGen CDN hosts, so the MP4 could not be downloaded h
 - No detached VO stem (HeyGen `create_speech` needs separate `api` credits).
 - vidIQ down to **1 credit** after the PDT thumbnail (generation costs 22), so no thumbnail
   was generated for this video. Needs a top-up.
+
+## v2-specific checks
+- **Imagery graded dark/desaturated** — it must not read as a colourful stock-footage reel.
+- **Hero shot present** — the macro of the connector locking into the port.
+- **Bookend** — castle opens the video and returns at the close.
+- **Captions legible over the photographic plates** (scrim where the plate is busy).
+- **No identifiable people** anywhere in the footage, and no badges on the vehicles.
