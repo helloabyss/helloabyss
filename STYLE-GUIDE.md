@@ -117,3 +117,20 @@ object so it has a spine.
 
 Settings: `mode: chat`, `orientation: portrait`,
 style `e7f9a12679ec426099db7646b70a4639`, voice `0db3abd83c74452fb2460b0dd113daad`.
+
+---
+
+## 7. Notes from production
+
+- **Brand kits are session-internal.** The video agent builds an on-brand kit per session
+  but does not persist it to the workspace (`list_brand_kits` shows only the HeyGen demo
+  kit). There is no reusable `brandKitId` to pin — the style must be specified in the brief
+  every time. The template above is the mechanism.
+- **HeyGen generates a thumbnail** alongside the blueprint in chat mode, visible on the
+  session page. That is a free route to a thumbnail when vidIQ credits are exhausted, though
+  the asset is session-internal and cannot be fetched through the API.
+- **HeyGen auto-titles renders off-script.** Ignore the returned `title`; use one from the
+  video's `SCRIPT.md` when uploading.
+- **Approve the blueprint with the constraints restated.** The agent pauses for approval in
+  chat mode; repeating the grade, bookend and hero-shot rules at that point is what keeps
+  them through generation.

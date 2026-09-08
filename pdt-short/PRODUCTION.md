@@ -1,17 +1,18 @@
-# Production Record
+# Production Record — PDT Short
 
-## FINAL VIDEO ✅
-- **Watch / download:** https://app.heygen.com/videos/d37845190b50444b92e86e953444f53c
-- **Title on HeyGen:** "The $25K Rule is Dead"
-- **video_id:** `d37845190b50444b92e86e953444f53c`
-- **Duration:** 55.4s · 9:16 portrait
-- **Session (revisable):** https://app.heygen.com/video-agent/fa5ccb1b99894aaebce888736e4f1df5
+## FINAL VIDEO ✅ (v2 — imagery-first, house style)
+- **Watch / download:** https://app.heygen.com/videos/b4c4ca4267144b938110dcf84c4a7a3a
+- **HeyGen title:** "The Pattern Day Trader Rule is Dead"
+- **video_id:** `b4c4ca4267144b938110dcf84c4a7a3a`
+- **Duration:** 55.8s · 9:16 portrait
+- **Session (revisable):** https://app.heygen.com/video-agent/71d5eedc10cf48a49e21ba04c4e4a99c
 
-Also produced by the render: a burned-in-caption cut, an .srt subtitle file, a thumbnail,
-and a preview gif — all reachable from the video page above.
+Rebuilt to `STYLE-GUIDE.md`. Publish this one — it matches the moat short.
+HeyGen also generated a **thumbnail** in this session (visible on the session page); the
+asset is session-internal and cannot be pulled via the API.
 
-> The direct CDN links (`files2.heygen.ai`, `resource2.heygen.ai`) are signed and expire
-> ~2026-09-15. Use the `app.heygen.com` page URL as the durable reference.
+### v1 — superseded (text-heavy, off-style)
+- `d37845190b50444b92e86e953444f53c` — typography on abstract backgrounds. Do not publish.
 
 ## Build settings
 - **Style:** Economist — `e7f9a12679ec426099db7646b70a4639` (9:16, print/editorial typography)
