@@ -106,3 +106,44 @@ a moat in a way that a self-reported mileage number is not.
 
 ## COMPLIANCE
 On-screen 0:00–0:04: **"Educational only. Not financial advice."**
+
+---
+
+## MOTION GRAPHICS SPEC (escalated — reuse this on future videos)
+
+The default agent output is too static. This spec is the fix; carry it into every brief.
+
+**Camera & depth**
+- Treat scenes as 3D space, not flat cards. Push the camera THROUGH elements — the castle
+  archway, a gap in a chart, the space between letters.
+- Hard parallax: background / mid-ground / foreground must move at visibly different speeds
+  in every shot.
+- Foreground elements streak past the lens in blur on camera moves.
+
+**Type animation**
+- Hero words scale past the frame edges until the camera is inside the letterforms.
+- Letters arrive individually with overshoot and settle — never a whole-word fade.
+- 1–2 frame white impact flash + subtle screen shake on the biggest landings.
+- Light sweep rakes across heavy type after it settles.
+
+**Transitions — no plain cuts**
+- Match-cut morphs: moat ring → counter dial → charger-pin map → line chart.
+- Type-as-mask reveals: a giant word wipes off, revealing the next scene through its counters.
+- Roll/whip transitions with directional motion blur.
+
+**Data motion**
+- Numbers physically count up (0 → 28,000; 0 → $100B). Never just appear.
+- The line chart draws itself, then cracks and drops on the fall to 44%, with debris.
+- On "moats erode", a solid wall crumbles away particle by particle.
+- On "standardized on Tesla's technology", rival name-tags snap and lock into a grid on impact.
+
+**Energy**
+- Continuous motion in every frame. Nothing ever fully at rest.
+- Speed ramps: slow-mo into a key word, snap to full speed on the cut.
+
+**Constraints the drama must NOT break**
+- Strict three-colour editorial palette (near-black, white, one red). No rainbow gradients,
+  neon glows, sparkles, or emoji — the drama comes from motion, not decoration.
+- Captions stay readable at all times; flashes and blur never obscure them.
+- No human faces, no real corporate logos, no subscribe animations.
+- Analytical newsroom tone. Dramatic, not childish.
