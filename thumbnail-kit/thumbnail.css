@@ -15,12 +15,12 @@ body::after{
   background:radial-gradient(115% 65% at 50% 26%,rgba(255,255,255,.06),transparent 60%);
 }
 .frame{
-  position:absolute;inset:0;padding:76px 56px 78px;
+  position:absolute;inset:0;padding:76px 56px 120px;
   display:flex;flex-direction:column;
 }
 .head{flex:0 0 auto}
-.mid{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center}
-.foot{flex:0 0 auto}
+.mid{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+
 .rule{width:92px;height:7px;background:var(--red)}
 .kicker{
   margin-top:24px;font-size:25px;font-weight:700;letter-spacing:.19em;
@@ -38,8 +38,9 @@ body::after{
   color:var(--mute);text-transform:uppercase;white-space:nowrap;
 }
 .foot{
+  position:absolute;left:56px;right:56px;bottom:56px;
   display:flex;align-items:center;justify-content:space-between;
-  font-size:23px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   color:var(--mute);white-space:nowrap;
 }
 .foot .tag{color:var(--red)}
