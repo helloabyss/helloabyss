@@ -109,3 +109,70 @@ HeyGen CDN egress is blocked; the render will be **complete, not verified**. Che
   and the three-state money-flow diagram, the two shots most likely to be approximated badly.
 - vidIQ ~1 credit — use HeyGen's session thumbnail.
 - News and filing domains egress-blocked — see fact-checking above.
+
+---
+
+## RENDER COMPLETE — one script defect, one repeat defect
+
+- **Watch:** https://app.heygen.com/videos/687c8bf4b72e4420ab0bbc619c34c674
+- **video_id:** `687c8bf4b72e4420ab0bbc619c34c674`
+- **Duration:** 95.3s · 9:16 · 1080p · 19 scenes
+- **HeyGen auto-title:** "Qualcomm vs Amazon: The AI Silicon Stakes" — **do not use it.** Beyond
+  being off-script per `STYLE-GUIDE.md` §7, the "vs" framing works against the whole point of
+  this video, which takes no side. Upload under a title from `SCRIPT.md`.
+
+### Verified from scene data (not from watching — CDN egress is blocked)
+| Check | Result |
+|---|---|
+| VO script verbatim | **FAIL — one duplicated line**, see below |
+| The counter-evidence section survived | **PASS** — scenes 13–17 carry it complete |
+| No-winner close intact | **PASS** — scenes 18–19 verbatim |
+| Series voice (`0db3abd8…`) on every scene | **PASS** |
+| 9:16 portrait, 1080p | **PASS** |
+| **Burned-in captions** | **FAIL — `caption.enabled: false`** (3 for 3 on generate mode) |
+| Imagery-first base layer / palette / logos | **UNKNOWN** — needs human eyes |
+
+### DEFECT 1 — "Roughly four billion dollars" is spoken twice
+Scene 8 ends `"at a hundred sixty-one twenty-six. Roughly four billion dollars."`
+Scene 9 opens `"Roughly four billion dollars. The supplier is paying the customer to become a
+customer."`
+
+The agent split the script across scenes and **repeated the sentence at the seam**. In the
+finished audio the narrator says the line, then says it again. Everything else in the VO is
+verbatim — this is the only duplication in 19 scenes.
+
+**Recommended fix: trim it in an editor, do not re-run.** It is roughly two seconds at a
+single scene boundary, the surrounding audio is clean, and the rest of the render is correct.
+A fresh generate-mode run costs credits and would re-roll every other constraint — including
+the three that currently pass — for one bad seam. If you would rather re-run, the mitigation
+is to remove the sentence-level repetition risk by not ending a sentence and beginning the
+next scene on the same clause.
+
+### DEFECT 2 — captions disabled again
+Third consecutive generate-mode render with `caption.enabled: false`, despite the instruction
+being constraint #5 at the top of the prompt in capitals. **This is now established behaviour,
+not variance.** Publish the captioned cut instead:
+`captioned_video_url` → `caption_687c8bf4b72e4420ab0bbc619c34c674.mp4`, linked from the video
+page. An `.srt` is also exposed if you would rather burn captions in an editor with control
+over the word-by-word highlight — which, given Defect 1 needs an editor pass anyway, is
+probably the efficient route: fix the seam and burn the captions in the same session.
+
+### Pacing — the bigger concern on this one
+19 scenes across 95.3s averages **~5.0s per scene**, against a house rule of a cut or punch-in
+every 1.2–1.8s and nothing past 2s. The ETF render came in at ~3.3s per scene; this is
+noticeably slower. Scenes can contain internal cuts, so this is not proof — but two renders
+now trend the same direction, and this one is the worst. **Watch specifically for static
+holds.** If the piece drags, that is a re-run with the cut rhythm made the single loudest
+instruction in the prompt, above even the imagery rule.
+
+### Still unresolved: the white-background reading
+Same as every prior render — every scene reports `background: {color: '#ffffff'}` with one
+`motion_graphics` element, which `get_video_scenes` does not describe. Cannot be resolved
+without watching. Check first whether the server-hall and wafer plates are actually there.
+
+### Highest-risk thing to check by eye on this video specifically
+**Hallucinated logos.** The script names Qualcomm, Amazon, AWS, Apple, Trainium, Graviton and
+Nitro. That is seven real brands in 95 seconds — far more brand surface than any previous
+video in this repo. The prompt bans marks explicitly and in three separate places, but this is
+the render most likely to have produced a mangled near-miss logo anyway. Check the two
+"monolith" structures and the phone logic board first.
