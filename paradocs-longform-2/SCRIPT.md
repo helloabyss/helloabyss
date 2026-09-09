@@ -2,9 +2,16 @@
 
 **Target:** ~11 min · 16:9 landscape · ~1,850 words · 28 scenes · built to `LONGFORM-GUIDE.md`
 
-**Status: EVENT-READY, NOT FINAL.** Written 2026-09-09 before Apple's 10:00 PT "Surprise and
-shine" keynote. The economic spine is verified and does not depend on the announcements. Every
-place that does is marked `[[SLOT]]`. **Do not render until the slots are filled.**
+**Status: RENDERED 2026-09-09.** All slots filled from confirmed post-keynote reporting;
+**FORK A** selected (prices rose). The narration as rendered is in **`VO-FINAL.txt`**, and the
+exact brief sent to HeyGen is in **`render-prompt.txt`**. The draft below is retained for the
+reasoning and the imagery plan; where it differs, `VO-FINAL.txt` is authoritative.
+
+⚠️ **Trimmed to ~1,350 words (~8.1 min), not the 1,850 originally planned.** `create_video_agent`
+caps its prompt at **10,000 characters**, and the brief plus a verbatim 1,850-word script does
+not fit. The alternative was letting the agent expand a shorter prompt itself — unacceptable on
+a finance video, since the expansion would be unverified. All 16 beats survive; the prose is
+tighter. The final prompt came to 9,996 characters.
 
 ---
 
@@ -24,14 +31,15 @@ $15–20B.
 That is why this is a finance story and not a gadget story — and it fits PARADOCS10X exactly:
 *watch the cost, not the product.*
 
-### ⚠️ Write the fork, not the guess
-The script is built to work **either way**, because we do not know the outcome yet:
+### ✅ FORK A confirmed — prices rose
+Apple raised Pro pricing by **exactly $100**. Fork B (prices held) was discarded.
 
-- **FORK A — prices rose.** The cost pass-through is visible. Straightforward.
-- **FORK B — prices held.** *More* interesting: Apple absorbed it, so the cost shows up in the
-  **gross margin line** instead. The thesis is unchanged; only where you look for it changes.
-
-Both are written below. Pick one at fill-in time and delete the other.
+Two things the keynote handed the thesis for free:
+1. **Reporting on the increase kept returning to rising component costs** — the video's argument,
+   corroborated by the coverage rather than asserted over it.
+2. **Both numbers landed below the fear.** Analysts had floated $200–350; it came in at $100.
+   The wafer premium was feared at ~50%; it came in at 10–20%. That symmetry became a new beat,
+   and it is what keeps the video from overclaiming: this is a squeeze, not a catastrophe.
 
 ---
 
@@ -331,3 +339,36 @@ $15–20B · $725M · **$30,000 vs $25–27,000** · 10–20% · the price delta
 On-screen 0:00–0:04: **"Educational only. Not financial advice."**
 This video touches a publicly traded company — the card is mandatory and non-negotiable.
 `paradocs-longform-1` appears to be missing it. Do not repeat that.
+
+---
+
+## FACT TABLE — POST-KEYNOTE (supersedes the pre-event table above)
+
+Re-verified by web search on 2026-09-09 **after** the keynote. Sources: MacRumors
+("iPhone 18 Pro Starts at $1,199, Pro Max at $1,299", 9 Sept), TheApplePost ("…as Apple raises
+Pro pricing by $100", 9 Sept), Macworld, CNN Business live coverage.
+
+| Claim as rendered | Status | Confidence |
+|---|---|---|
+| iPhone 18 Pro **$1,199**, Pro Max **$1,299** (256GB) | ✅ Confirmed, multiple outlets | **High** |
+| **+$100** vs iPhone 17 Pro ($1,099) / 17 Pro Max ($1,199) | ✅ Confirmed | **High** |
+| **A20 Pro is Apple's first 2nm chip** | ✅ Confirmed | **High** |
+| 6-core CPU ~20% faster · 7-core GPU up to 40% faster · 32-core Neural Engine | ✅ **Apple's own stage figures** — attributed as such in the VO | **High** as a company claim |
+| First foldable, **iPhone Duo**, ~$2,000 | ✅ Name confirmed; script says "around two thousand" | **High** on name, **Medium** on price — reports range $1,999–$2,399, so no exact figure is stated |
+| **John Ternus's first event as CEO**; Cook stepped back | ✅ Confirmed (CNN) | **High** |
+| Standard iPhone absent from the lineup | ✅ Not among announcements | **Medium-high** — script says only that it "did not launch alongside the Pro" |
+| Analysts had floated $200–350 increases | ✅ Confirmed | **Medium-high** |
+| 2nm wafer ≈$30,000 vs 3nm ≈$25–27,000, +10–20% | ⚠️ Industry reporting | **Medium** — **the VO says so on camera** |
+| $725M per 2nm platform · fab $15–20B | ⚠️ Industry reporting | **Medium** |
+| Moore 1965: title, subtitle, minimum cost per component | ✅ Verified against the published article | **High** |
+
+**The earlier LOW-confidence price conflict is resolved.** "$1,199 vs $1,249" was me conflating
+the 17 **Pro** ($1,099) with the 17 **Pro Max** ($1,199). The +$100 framing confirms both.
+
+**The pre-event leak was NOT used.** The rendered script carries only Apple's own stage figures.
+
+## What is deliberately NOT claimed
+- No exact foldable price (sources disagree) — "around two thousand dollars"
+- No causal claim that wafer costs *caused* the $100 — the script says "you now know one of the
+  inputs" and devotes a full beat to the premiumisation counter-argument
+- No unattributed performance numbers — all are framed as "Apple's own figures"

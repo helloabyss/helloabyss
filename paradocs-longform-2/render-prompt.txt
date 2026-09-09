@@ -1,0 +1,67 @@
+~8-min LANDSCAPE (16:9) explainer for a FACELESS finance channel. NO avatar, NO presenter, NO human face anywhere. Voiceover only. Use this script VERBATIM - do not rewrite, shorten or add:
+
+"On September ninth, twenty twenty-six, a new chief executive walked onto a stage at Apple Park. John Ternus, weeks into the job Tim Cook held for fifteen years, introducing his first iPhone. And the headline wrote itself: the Pro costs a hundred dollars more than last year. That is a real number. It is also the least interesting thing that happened today.
+
+Because the price of the phone is downstream of something else. The price of the wafer it was cut from. And that number has quietly broken a promise this industry has lived on since nineteen sixty-five.
+
+So this isn't a review. We're going to look at what Apple actually bought this year: space on a two-nanometre production line, and what that space now costs. Then who else is queuing for it, and what happens when the cheapest part of a computer stops getting cheaper.
+
+This isn't only an Apple story. It's every chip, every laptop, and every artificial-intelligence data centre being built right now. Apple is just where most people see the bill first. It starts with a magazine article.
+
+April nineteen sixty-five. An engineer named Gordon Moore published a piece in Electronics magazine called Cramming more components onto integrated circuits. He had five data points, from fifty-nine to sixty-four, and drew a line through them. It became the most famous prediction in technology. Almost everyone remembers it wrong.
+
+Moore did not predict that chips get faster. Read his own subtitle: with unit cost falling as the number of components per circuit rises. What he plotted was how many components you could fit on a chip at minimum cost per component. Moore's Law was never physics. It was economics.
+
+And it bundled two promises. One: transistor counts keep doubling. Two: each transistor gets cheaper. For fifty years both were true at once, and that combination is arguably the most powerful economic force of the twentieth century.
+
+Think about what that paid for. Every generation you got more computer for less money, automatically. Companies added features and held prices. Personal computers, mobile phones, the internet itself were built assuming the hardware underneath would keep getting cheaper on its own. Nobody planned for the alternative.
+
+Then, over the last decade, the second promise started to fail. Transistors kept shrinking. They stopped getting cheaper. And the reason isn't mysterious. It's the cost of the machine that makes them.
+
+A leading-edge chip factory now costs fifteen to twenty billion dollars. The lithography tools inside it, printing circuits with extreme ultraviolet light, are among the most expensive manufacturing objects ever built. Those are fixed costs, and they have been rising faster than the transistors they produce.
+
+And it isn't just the factory. Designing a single chip platform on a two-nanometre process runs to roughly seven hundred and twenty-five million dollars, and that is for a family of chips, not one part. That number is a wall. The list of companies that can even attempt it is now a handful, worldwide.
+
+Which brings us to the number this video is about. A two-nanometre wafer from TSMC, the company that manufactures Apple's processors, reportedly costs around thirty thousand dollars. The three-nanometre wafer it replaces runs about twenty-five to twenty-seven. Ten to twenty percent more, for the same disc of silicon, one generation on.
+
+Do you see the break yet? For fifty years the next node meant cheaper. Moore drew his line through minimum cost. Now the next node means more expensive, and today you watched a company decide who pays for that. The transistor count still doubles. The dividend is gone.
+
+So, precisely what happened. Apple announced the iPhone eighteen Pro and Pro Max, built on the A20 Pro, its first two-nanometre chip. Apple's own figures: a six-core processor about twenty percent faster, a seven-core graphics processor up to forty percent faster, and a thirty-two-core neural engine. Alongside them, the company's first foldable, the iPhone Duo, at around two thousand dollars.
+
+And the prices. The iPhone eighteen Pro starts at one thousand one hundred and ninety-nine dollars, the Pro Max at twelve ninety-nine. Both exactly one hundred dollars above last year. Apple will not tell you why, and doesn't have to. But you now know one of the inputs. The silicon underneath got ten to twenty percent more expensive per wafer.
+
+Here's the detail I would point at. Analysts had floated increases of two to three hundred dollars. It came in at one hundred. And the wafer premium itself came in at ten to twenty percent, when the industry had feared fifty. Both landed below the fear. That is the strongest evidence that this is a squeeze, not a catastrophe.
+
+Now a caveat that matters. The thirty-thousand-dollar figure is industry reporting, not an audited disclosure. Neither company publishes what Apple actually pays, and Apple, as TSMC's largest customer booking capacity years ahead, almost certainly doesn't pay list. Treat it as the shape of the number, not the number.
+
+Because Apple isn't the only buyer. The same two-nanometre lines are being fought over by everyone building artificial-intelligence hardware. Every graphics processor in every data centre under construction comes off the same handful of lines, from the same company, in the same country. Apple is bidding against the entire AI build-out for the same silicon.
+
+Here's the strongest argument against everything I've said. Apple has enormous pricing power and always has. This could be simple premiumisation, charging more because customers pay it, wearing physics as a costume. A folding phone is a new category, and new categories carry new margins for reasons that have nothing to do with wafers.
+
+But notice what the reporting around today's increase kept returning to. Rising component costs. And notice which phone wasn't on stage. The cheaper, standard iPhone did not launch alongside the Pro. If the economics of the low end were comfortable, you would not need to move it away from the expensive one.
+
+There are real objections. Wafer price is one input among many. Memory, displays, assembly and tariffs all move, and some of them move more. Yields improve across a node's life, so today's cost is the worst it will ever be. And a hundred dollars on a twelve-hundred-dollar phone is eight percent, which is not a crisis.
+
+But none of those restore the old promise. The best case is that transistors get more expensive slowly. For fifty years this industry got a discount every generation and built its business model on it. The argument now is only about how fast the bill grows.
+
+So, three signals to watch instead of headlines. One: Apple's gross margin in the next quarterly report. Prices rose, so if margin holds, the cost was passed to you. If margin still falls, the increase didn't even cover it. Two: the price of the standard iPhone when it arrives. The Pro can absorb anything. The cheap phone can't. Three: whether anyone outside Apple and the AI companies ships a two-nanometre product at all. If not, the node stopped being mass-market.
+
+What does it mean for you? Three things. If you're buying, the upgrade cycle is lengthening for a structural reason. The gap between generations shrinks while the price gap grows. If you're investing here, the winners own the manufacturing or can pass costs through, not the ones in the middle. And if you build anything on computing, stop assuming the hardware underneath gets cheaper by itself. That assumption held for fifty years. Today it expired.
+
+So is the new iPhone expensive? A hundred dollars more than last year's. But that was never the interesting question. What happened today is that a company decided who absorbs the end of the cheapest deal in industrial history. It decided, for now, that it's you.
+
+Sixty years. One line on a graph. Two promises inside it, and only one still holds. The transistors keep doubling. They just stopped getting cheaper. Watch the cost. Not the phone.
+
+Next: what happens to artificial intelligence when the chips stop getting cheaper. The same expired assumption, at a hundred times the scale. This is Paradocs 10X. Think ten times further."
+
+PACING: ~20 scenes, each holding 20-30s of narration. Long-form - do NOT cut every 2s. Keep continuous motion WITHIN each scene: slow push, parallax drift, no locked-off stills.
+
+LAYERS: (1) BASE cinematic photographic imagery filling the frame, always moving - NEVER typography on flat colour or abstract texture. (2) MID motion graphics over it: EVERY number must be visualised and COUNT UP physically - $15-20B, $725M, $30,000 vs $25-27,000, 10-20%, $1,199, $1,299, +$100. (3) TOP hero typography on the biggest lines, plus BURNED-IN word-by-word captions. CAPTIONS MUST BE ENABLED.
+
+IMAGERY: hero shot is a 300mm silicon wafer under clean-room light, camera pushing into the die grid. Bookend on an empty lit stage, same camera position at open and close. Also: a 1965 magazine page under lamplight; an EUV tool interior; a cost line falling for decades then turning up in red.
+
+LOOK: near-black, white, ONE red accent only. Imagery graded dark and desaturated; red only for graphics and type. Dark scrim behind captions.
+
+HARD: No faces or identifiable people - no Moore portrait, no executives, no audience. NO real corporate logos - no Apple or TSMC mark, no device resembling a real product; text name-tags only. No neon, gradients, sparkles, flare, emoji, subscribe animations or clickbait arrows. Show "Educational only. Not financial advice." in the first 4 seconds. Small on-screen footnote where wafer prices are spoken: "Wafer prices: industry reporting, not audited disclosure."
+
+TONE: dry, confident, analytical newsroom. Cinematic, not a commercial. Neutral explainer, includes the negative data.
