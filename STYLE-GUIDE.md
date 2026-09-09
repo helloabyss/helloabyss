@@ -134,3 +134,10 @@ style `e7f9a12679ec426099db7646b70a4639`, voice `0db3abd83c74452fb2460b0dd113daa
 - **Approve the blueprint with the constraints restated.** The agent pauses for approval in
   chat mode; repeating the grade, bookend and hero-shot rules at that point is what keeps
   them through generation.
+- **If chat mode 404s, fall back to `mode: generate`.** Sessions can be accepted, appear in
+  `list_video_agent_sessions`, then 404 on `get_video_agent_session` and never produce a
+  video — check `get_current_user` for credits and try an older session id to confirm the
+  endpoint is healthy before blaming the request. `generate` mode returns a real `video_id`
+  immediately and is trackable via `get_video`, but it skips blueprint approval, so the
+  constraints get one shot in the initial prompt and cannot be restated.
+

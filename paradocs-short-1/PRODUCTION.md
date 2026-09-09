@@ -1,7 +1,8 @@
 # Production Record — PARADOCS10X Short 1 rebuild
 
-- **Session:** https://app.heygen.com/video-agent/eae1d23393a14cac9a261206d182b653
-- **Mode:** chat (revisable)
+- **Session:** https://app.heygen.com/video-agent/f3aaa6333ec94c54944814620404ecbb
+- **video_id:** `5f10618bb45c4c5cb74669aa40ba5dee`
+- **Mode:** generate (chat mode was failing — see below)
 - **Style:** Economist — `e7f9a12679ec426099db7646b70a4639`
 - **Voice:** Alex Wright – Informative — `0db3abd83c74452fb2460b0dd113daad`
 
@@ -44,3 +45,24 @@ Before finding the existing PARADOCS10X series, a standalone manure short was sc
 sent to session `34e1666e89274d309417fac5667fda54`. That session now returns 404 and no video
 from it appears in the account, so it produced nothing. Its directory was removed; the useful
 research carried into this rebuild.
+
+## HeyGen chat mode was failing — workaround used
+Two chat-mode sessions created after a container restart were accepted, appeared in
+`list_video_agent_sessions`, but then **404'd on `get_video_agent_session` and produced no
+video at all**:
+- `34e1666e89274d309417fac5667fda54` (dead 7.5+ hours, no video)
+- `eae1d23393a14cac9a261206d182b653` (dead, no video)
+
+Diagnostics that ruled out the obvious causes:
+- The same endpoint returns full detail for **older** sessions (`b48693558189…` reads fine),
+  so the endpoint itself is healthy.
+- Credits are fine — 330 premium remaining.
+- Same tool, same parameters that worked earlier in the day.
+
+**Workaround: use `mode: generate`.** It returned `status: generating` with a real `video_id`
+immediately, and the video record is trackable via `get_video`.
+
+**Cost of the workaround:** generate mode is fire-and-forget. There is no blueprint approval
+step, so the constraints cannot be restated at approval — which `STYLE-GUIDE.md` notes is
+what makes them survive generation. Expect this render to hold the brief less tightly than
+the PDT and moat rebuilds did. If chat mode recovers, prefer it.
