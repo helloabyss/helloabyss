@@ -68,6 +68,22 @@ Long-form 1 ran **~166 words per minute** with the house voice. Use it to size a
 
 Roughly **66 words per scene**. Write scenes as paragraphs, not sentences.
 
+### ⚠️ The 10,000-character prompt cap
+`create_video_agent` accepts a prompt of **1–10,000 characters**, and the brief has to fit in
+there alongside the script. A verbatim 1,850-word script is ~10,500 characters on its own.
+
+**Practical ceiling for a single-call verbatim long-form: ~1,350–1,400 words, about 8 minutes**
+(a ~1,350-word script plus a tight brief lands near 9,950). `paradocs-longform-2` was trimmed
+to 1,348 words for exactly this reason.
+
+**Never solve it by sending a shorter prompt and letting the agent expand it.** Anything it
+writes is unverified, and this channel publishes finance content — an invented figure is a
+fact-check failure, not a style one.
+
+For genuinely longer pieces (`paradocs-longform-1` ran 11 minutes) the single-call route will
+not work. Options: build it in the HeyGen app rather than the API, or render in two parts and
+join them. Neither has been tested from here — **test before promising a runtime over 8 minutes.**
+
 ---
 
 ## 3. The three-layer stack at long-form length
