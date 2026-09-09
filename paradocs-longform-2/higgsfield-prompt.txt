@@ -1,0 +1,39 @@
+3-minute 16:9 EXPLAINER, faceless finance channel. No presenter, no characters, no faces. External narrator only.
+
+NARRATION — use verbatim, every figure is fact-checked:
+"Today a new chief executive introduced a phone costing a hundred dollars more than last year. That is a real number. It is also the least interesting thing that happened.
+
+Because the price of the phone is downstream of the price of the wafer it was cut from. And that number has broken a promise this industry has lived on since nineteen sixty-five.
+
+April, nineteen sixty-five. An engineer named Gordon Moore published an article called Cramming more components onto integrated circuits. Read his own subtitle: with unit cost falling as the number of components per circuit rises. What he plotted was how many components you could fit on a chip at minimum cost per component. Moore's Law was never physics. It was economics.
+
+And it bundled two promises. Transistor counts keep doubling. And each transistor gets cheaper. For fifty years both were true at once. Every generation you got more computer for less money, automatically. Whole industries were built on that assumption.
+
+Then the second promise failed. Transistors kept shrinking. They stopped getting cheaper. A leading-edge chip factory now costs fifteen to twenty billion dollars. Designing a single chip platform on a two-nanometre process runs to roughly seven hundred and twenty-five million.
+
+And a two-nanometre wafer reportedly costs around thirty thousand dollars. The three-nanometre wafer it replaces runs about twenty-five to twenty-seven. Ten to twenty percent more, for the same disc of silicon, one generation on.
+
+For fifty years the next node meant cheaper. Now it means more expensive. The transistor count still doubles. The dividend is gone.
+
+So: Apple's new Pro phones run its first two-nanometre processor, and they start at one thousand one hundred and ninety-nine dollars, and twelve ninety-nine for the larger one. Both exactly one hundred dollars above last year.
+
+Now the honest part. That thirty-thousand-dollar figure is industry reporting, not an audited disclosure, and the largest customer never pays list. A wafer is one input among many; memory, displays, assembly and tariffs all move too. Analysts had floated increases of two to three hundred dollars, and it came in at one hundred, just as the wafer premium came in at ten to twenty percent when the industry had feared fifty. Both landed below the fear. This is a squeeze, not a catastrophe. And it could still be simple premiumisation wearing physics as a costume.
+
+So watch three things instead of headlines. The gross margin line in the next quarterly report: if prices rose and margin held, you paid for it. The price of the cheaper phone when it arrives. And whether anyone outside the phone makers and the AI companies ships a two-nanometre product at all.
+
+Sixty years. One line on a graph. Two promises, and only one still holds. The transistors keep doubling. They just stopped getting cheaper. Watch the cost, not the phone. This is Paradocs 10X. Think ten times further."
+
+STRUCTURE: ~18 blocks of 10s, each five hard-cut staged shots of ~2s. No shot over 2.5s. Every frame is a staged scene, never an object on a blank background.
+
+HERO SHOT: a 300mm silicon wafer under clean-room light, pushing in until the die grid fills frame.
+BOOKEND: an empty lit stage, no people. Open and close on it, same camera position.
+
+KEY VISUALS: a 1965 magazine page under lamplight, camera pushing into dense type; five data points plotting themselves, a line drawn through them; two rising lines, one flattening and turning up in red; the interior of an extreme-ultraviolet lithography tool; figures counting up over dark schematics; two wafers with price bars building beneath; two gauges, a feared number beside a much lower actual; a cost-stack diagram with one block lit; server racks and a phone on one conveyor into a factory door; three checklist cards.
+
+MOTION: scenes are 3D space - push the camera through elements, hard parallax. Figures count up physically, never simply appear; charts draw themselves.
+
+LOOK: strict three-colour palette - near-black, white, one red accent, nothing else. Imagery graded dark and desaturated; red only for graphics and type. Heavy condensed sans headlines.
+
+HARD: No faces or identifiable people - no Moore portrait, no executives, no audience. Machinery, architecture, silicon and landscape only. No company logos, wordmarks or badges in any frame, and no device resembling a specific real product - use generic forms. No neon, gradients, sparkles, flare, emoji or exclamation marks. Show "Educational only. Not financial advice." on screen within the first 4 seconds. Small legible footnote wherever wafer prices are spoken: "Wafer prices: industry reporting, not audited disclosure."
+
+TONE: dry, confident, analytical newsroom. Cinematic, not a commercial. A neutral explainer that includes the data working against its thesis.
