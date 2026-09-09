@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="thumbnail.css">
+<style>
+  .chart{margin-top:54px;width:608px}
+  .caps{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+  .caps .short{color:var(--red);font-size:27px;font-weight:700;letter-spacing:.02em}
+  .track{position:relative;height:56px}
+  .ghost{position:absolute;right:0;top:-8px;bottom:-8px;border-right:3px dashed var(--ghost)}
+  .bar{position:absolute;left:0;top:0;height:56px;display:flex}
+  .seg{height:100%}
+  .seg.a{width:516.8px;background:var(--paper);border-radius:3px 0 0 3px}
+  .seg.gap{width:2px;background:var(--ink)}
+  .seg.b{width:56.8px;background:var(--red);border-radius:0 3px 3px 0}
+  .miss{
+    position:absolute;right:0;top:0;width:30.4px;height:56px;
+    background:repeating-linear-gradient(135deg,rgba(227,18,11,.5) 0 5px,transparent 5px 10px);
+    border-left:2px solid var(--red);
+  }
+</style>
+<div class="frame">
+  <div class="head">
+    <div class="rule"></div>
+    <div class="kicker">Distribution &ne; Total Return</div>
+  </div>
+
+  <div class="mid">
+    <span class="line">PAID $100.</span>
+    <span class="line red">DOWN $50.</span>
+    <div class="sub">$850 left &nbsp;+&nbsp; $100 paid &nbsp;=&nbsp; $950</div>
+
+    <div class="chart">
+      <div class="caps"><span class="glab">What you actually have</span><span class="short">&minus;$50</span></div>
+      <div class="track">
+        <div class="bar"><div class="seg a"></div><div class="seg gap"></div><div class="seg b"></div></div>
+        <div class="miss"></div>
+        <div class="ghost"></div>
+      </div>
+      <div class="caps" style="margin:14px 0 0"><span class="glab">You started here</span><span class="glab">$1,000</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Educational only</span><span class="tag">Read total return</span></div>
+</div>

@@ -176,3 +176,12 @@ Nitro. That is seven real brands in 95 seconds — far more brand surface than a
 video in this repo. The prompt bans marks explicitly and in three separate places, but this is
 the render most likely to have produced a mangled near-miss logo anyway. Check the two
 "monolith" structures and the phone logic board first.
+
+## Thumbnail
+`thumbnail-amazon-qualcomm.png` — 720x1280, built from `thumbnail-kit/amazon-qualcomm.html`.
+Hero reads **$60B OUT. / $4B BACK.** over the two-way flow: a thick white arrow running Amazon
+to Qualcomm, a shorter red one running back. It is the same reversal the video is built on,
+compressed to one frame.
+Company names are **plain text**, consistent with the videos — no marks, so the thumbnail
+carries no trademark risk on a video that scrutinises both companies.
+Built locally with Chromium; see `thumbnail-kit/README.md`.

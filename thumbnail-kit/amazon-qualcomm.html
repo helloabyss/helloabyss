@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="thumbnail.css">
+<style>
+  .flow{margin-top:54px;width:608px}
+  .band + .band{margin-top:30px}
+  .arrow{position:relative;height:24px}
+  .arrow.out{width:540px;height:24px;background:var(--paper)}
+  .arrow.out::after{
+    content:"";position:absolute;right:-34px;top:50%;transform:translateY(-50%);
+    border-left:34px solid var(--paper);
+    border-top:25px solid transparent;border-bottom:25px solid transparent;
+  }
+  .arrow.back{width:196px;height:13px;background:var(--red);margin-left:378px}
+  .arrow.back::before{
+    content:"";position:absolute;left:-30px;top:50%;transform:translateY(-50%);
+    border-right:30px solid var(--red);
+    border-top:19px solid transparent;border-bottom:19px solid transparent;
+  }
+  .ends{
+    margin-top:30px;display:flex;justify-content:space-between;
+    font-size:25px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);
+  }
+</style>
+<div class="frame">
+  <div class="head">
+    <div class="rule"></div>
+    <div class="kicker">Amazon &middot; Qualcomm</div>
+  </div>
+
+  <div class="mid">
+    <span class="line">$60B OUT.</span>
+    <span class="line red">$4B BACK.</span>
+    <div class="sub">The supplier pays the customer</div>
+
+    <div class="flow">
+      <div class="band">
+        <div class="glab" style="margin-bottom:10px">Purchases &rarr;</div>
+        <div class="arrow out"></div>
+      </div>
+      <div class="band">
+        <div class="glab" style="margin-bottom:10px;color:var(--red);text-align:right">&larr; Warrant</div>
+        <div class="arrow back"></div>
+      </div>
+      <div class="ends"><span>Amazon</span><span>Qualcomm</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Educational only</span><span class="tag">Follow the money</span></div>
+</div>

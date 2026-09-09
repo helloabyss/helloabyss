@@ -166,3 +166,11 @@ control over the word-by-word highlight.
    seen. **Identical ambiguity to the PARADOCS10X render — still cannot be resolved without
    watching it.** If the video reads white and flat, the imagery instruction did not land and
    it needs a re-run.
+
+## Thumbnail
+`thumbnail-etf-distributions.png` — 720x1280, built from `thumbnail-kit/etf-distributions.html`.
+Hero reads **PAID $100. / DOWN $50.** over the video's own shortfall bar: the white 850 block
+plus the red 100 block stopping visibly short of a dashed $1,000 line, with the gap hatched in
+red. The graphic is the argument, not decoration.
+Built locally with Chromium rather than vidIQ (22 credits needed, 1 available) or Higgsfield
+(0 credits). Reproducible — edit the HTML and re-screenshot.
