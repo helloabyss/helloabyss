@@ -28,12 +28,12 @@ STRUCTURE: ~18 blocks of 10s, each five hard-cut staged shots of ~2s. No shot ov
 HERO SHOT: a 300mm silicon wafer under clean-room light, pushing in until the die grid fills frame.
 BOOKEND: an empty lit stage, no people. Open and close on it, same camera position.
 
-KEY VISUALS: a 1965 magazine page under lamplight, camera pushing into dense type; five data points plotting themselves, a line drawn through them; two rising lines, one flattening and turning up in red; the interior of an extreme-ultraviolet lithography tool; figures counting up over dark schematics; two wafers with price bars building beneath; two gauges, a feared number beside a much lower actual; a cost-stack diagram with one block lit; server racks and a phone on one conveyor into a factory door; three checklist cards.
+KEY VISUALS: a 1965 magazine page under lamplight, camera pushing into dense type; five data points plotting themselves, a line drawn through them; two rising lines, one flattening and turning up in red; the interior of an extreme-ultraviolet lithography tool; figures counting up over dark schematics; two wafers with price bars building beneath; two gauges, a feared number beside a much lower actual; server racks and a phone on one conveyor into a factory door; three checklist cards.
 
-MOTION: scenes are 3D space - push the camera through elements, hard parallax. Figures count up physically, never simply appear; charts draw themselves.
+MOTION: scenes are 3D space - push the camera through elements, hard parallax. Figures count up physically; charts draw themselves.
 
 LOOK: strict three-colour palette - near-black, white, one red accent, nothing else. Imagery graded dark and desaturated; red only for graphics and type. Heavy condensed sans headlines.
 
 HARD: No faces or identifiable people - no Moore portrait, no executives, no audience. Machinery, architecture, silicon and landscape only. No company logos, wordmarks or badges in any frame, and no device resembling a specific real product - use generic forms. No neon, gradients, sparkles, flare, emoji or exclamation marks. Show "Educational only. Not financial advice." on screen within the first 4 seconds. Small legible footnote wherever wafer prices are spoken: "Wafer prices: industry reporting, not audited disclosure."
 
-TONE: dry, confident, analytical newsroom. Cinematic, not a commercial. A neutral explainer that includes the data working against its thesis.
+TONE: dry, confident, analytical newsroom. Cinematic, not a commercial. A neutral explainer including the data against its own thesis.
