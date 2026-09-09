@@ -1,0 +1,51 @@
+:root{
+  --ink:#0a0b0c; --paper:#ffffff; --red:#E3120B;
+  --mute:rgba(255,255,255,.46);
+  --ghost:rgba(255,255,255,.26);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:720px;height:1280px}
+body{
+  background:var(--ink);
+  font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif;
+  color:var(--paper); overflow:hidden; position:relative;
+}
+body::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(115% 65% at 50% 26%,rgba(255,255,255,.06),transparent 60%);
+}
+.frame{
+  position:absolute;inset:0;padding:76px 56px 120px;
+  display:flex;flex-direction:column;
+}
+.head{flex:0 0 auto}
+.mid{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+
+.rule{width:92px;height:7px;background:var(--red)}
+.kicker{
+  margin-top:24px;font-size:25px;font-weight:700;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--mute);white-space:nowrap;
+}
+/* heavy sans, geometrically compressed to read as condensed */
+.line{
+  display:block;font-weight:700;font-size:118px;line-height:1.0;
+  letter-spacing:-.02em;white-space:nowrap;
+  transform:scaleX(.74);transform-origin:left center;
+}
+.line.red{color:var(--red)}
+.sub{
+  margin-top:26px;font-size:27px;font-weight:700;letter-spacing:.05em;
+  color:var(--mute);text-transform:uppercase;white-space:nowrap;
+}
+.foot{
+  position:absolute;left:56px;right:56px;bottom:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--mute);white-space:nowrap;
+}
+.foot .tag{color:var(--red)}
+/* shared small label above a graphic */
+.glab{
+  font-size:22px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);white-space:nowrap;
+}
