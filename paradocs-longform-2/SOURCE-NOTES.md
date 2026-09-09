@@ -1,7 +1,21 @@
 # Long-Form 2 — Source Capture
 
-**Status: BLOCKED — awaiting source access.** Nothing has been written about this video's
-content, because nothing about its content is known. This file is the capture shell.
+**SUPERSEDED — see `EVENT-RUNSHEET.md`.**
+
+The source has since been identified as **Apple's "Surprise and shine" event, 2026-09-09,
+10:00 PT** (confirmed by multiple outlets and by the user's own "starts at 10"). The event had
+not yet happened when this file was written, so there was nothing to transcribe — the job
+became *prepare for a live event*, not *mine an existing video*.
+
+Live capture list: **`EVENT-RUNSHEET.md`**. Scripts: `SCRIPT.md` (long-form),
+`../paradocs-short-3/`, `../paradocs-short-4/`.
+
+The access findings below still stand and still apply: **no media can be fetched or downloaded
+from this environment by any route.**
+
+---
+
+## Original capture shell (retained for the access record)
 
 ---
 
