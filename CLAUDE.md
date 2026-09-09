@@ -93,6 +93,12 @@ One directory per video: `SCRIPT.md` (VO, fact table, shot list, packaging) and
 Shorts: `moat-short`, `pdt-short`, `paradocs-short-1`, `paradocs-short-3` ("The $30,000
 Wafer"), `paradocs-short-4` ("Moore's Law Was Never About Speed").
 Long-form: `paradocs-longform-1` (the 11m07s Cybercab video — format precedent, with its
-defects listed), `paradocs-longform-2` (Apple/2nm; scripted and fact-checked, **not rendered** —
-blocked on confirming what the keynote actually announced; see `EVENT-RUNSHEET.md` for the
-fill-in list and `EDIT-SHEET.md` for the CapCut assembly plan).
+defects listed), `paradocs-longform-2` (Apple/2nm; **scripted, fact-checked against confirmed
+post-keynote reporting, thumbnails built — but the API render FAILED**. Build it in the HeyGen
+app: see **`HEYGEN-APP-BUILD.md`** and paste `app-prompt.txt`. `EDIT-SHEET.md` covers CapCut
+assembly if event clips are cut in).
+
+**Lesson recorded:** the API's `generate` mode cannot reach blueprint approval, so constraints
+get one shot and a failure costs ~45 credits with no error message. For long-form, prefer the
+HeyGen app — the blueprint step lets you approve before it spends, and captions are a toggle
+there rather than a defect on every render.
