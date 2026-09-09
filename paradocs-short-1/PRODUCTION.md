@@ -66,3 +66,42 @@ immediately, and the video record is trackable via `get_video`.
 step, so the constraints cannot be restated at approval — which `STYLE-GUIDE.md` notes is
 what makes them survive generation. Expect this render to hold the brief less tightly than
 the PDT and moat rebuilds did. If chat mode recovers, prefer it.
+
+---
+
+## RENDER COMPLETE — with one confirmed defect
+
+- **Watch:** https://app.heygen.com/videos/5f10618bb45c4c5cb74669aa40ba5dee
+- **video_id:** `5f10618bb45c4c5cb74669aa40ba5dee`
+- **Duration:** 45.6s (original was 42.5s) · 9:16 · 1080p
+
+### Verified from scene data (not from watching — CDN egress is blocked)
+| Check | Result |
+|---|---|
+| VO script verbatim across all 10 scenes | **PASS** |
+| Series voice (`0db3abd8…`) | **PASS** |
+| 9:16 portrait, 1080p | **PASS** |
+| **Burned-in captions** | **FAIL — `caption.enabled: false`** |
+| Imagery-first base layer | **UNKNOWN** — see below |
+| Palette / grade | **UNKNOWN** — needs human eyes |
+
+### The caption defect and its fix
+House style requires burned-in word-by-word captions; this render has them disabled, the
+same gap the original had. **No re-render is needed** — HeyGen produced a separate captioned
+cut. Publish that one:
+
+`captioned_video_url` → `caption_5f10618bb45c4c5cb74669aa40ba5dee.mp4` (linked from the video
+page above). Check its caption styling matches house style before publishing.
+
+### Why the imagery is UNKNOWN, not FAIL
+Every scene reports `background: {color: '#ffffff'}` with a single element of type
+`motion_graphics`, id-prefixed `b_roll_*`. Read literally that is a white background, which
+would fail both the imagery-first rule and the near-black palette. But `get_video_scenes`
+only describes `avatar`, `image` and `video` elements in full — a `motion_graphics` element
+carries just an id and a type, so a full-frame b-roll plate would be invisible to this API
+and the white background never seen. **Cannot be resolved without watching it.** If the video
+does read white and flat, the imagery instruction did not land and it needs a re-run.
+
+### Conclusion
+Generate mode preserved the script perfectly and lost at least one style constraint. Prefer
+chat mode once it recovers, so the brief can be restated at blueprint approval.
