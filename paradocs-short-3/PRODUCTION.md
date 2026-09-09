@@ -61,3 +61,33 @@ carries no event dependency and no unaudited number in its hook.
 - HeyGen CDN egress blocked → **complete, not verified**
 - `get_video_agent_session` 404 account-wide → generate mode, no blueprint approval
 - Higgsfield 0 credits, vidIQ 1 credit → no B-roll, no thumbnail, no scoring
+
+---
+
+## RENDER COMPLETE — 2026-09-09
+
+- **Watch:** https://app.heygen.com/videos/c9ac94a803bd4b37b8f9d885c4e797d2
+- **HeyGen auto-title:** "Paradocs 10X: The $30,000 Chip Wafer" — **ignore it**, upload as
+  *"The $30,000 Wafer"* per `SCRIPT.md`
+- **Duration:** 55.8s (target ~52s) · 9:16 · 1080p · 9 scenes
+
+### Verified from scene data (not from watching — CDN egress blocked)
+| Check | Result |
+|---|---|
+| VO script **verbatim** across all 9 scenes | ✅ **PASS** — matches `SCRIPT.md` word for word |
+| Series voice `0db3abd8…` on every scene | ✅ **PASS** |
+| 9:16 portrait, 1080p | ✅ **PASS** |
+| The audited-disclosure caveat survived into the VO | ✅ **PASS** — scenes 6 and 7 carry it intact |
+| **Burned-in captions** | ❌ **FAIL — `caption.enabled: false`** |
+| Imagery / palette / no Apple or TSMC logo | ❓ **UNKNOWN** — needs human eyes |
+
+The caveat surviving matters: it is what keeps an unaudited number on a finance channel
+compliant. Confirm the **on-screen footnote** is present too — that was in the brief but
+cannot be verified from scene data.
+
+### The caption defect — no re-render needed
+`captioned_video_url` → `caption_c9ac94a803bd4b37b8f9d885c4e797d2.mp4`
+
+### Same imagery ambiguity as Short 4
+All scenes report `background: {color: '#ffffff'}` plus one `motion_graphics` b-roll element.
+See `../paradocs-short-4/PRODUCTION.md` for why this is UNKNOWN rather than FAIL.

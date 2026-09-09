@@ -72,3 +72,39 @@ verified**. Check each of these by watching it:
 - `get_video_agent_session` 404 account-wide → chat mode unusable, no blueprint approval
 - Higgsfield 0 credits, vidIQ 1 credit → no B-roll, no thumbnail generation, no scoring
 - HeyGen thumbnail: check the session page for the auto-generated one
+
+---
+
+## RENDER COMPLETE — 2026-09-09
+
+- **Watch:** https://app.heygen.com/videos/25c732d0e2c642e88d83921b22e3b626
+- **HeyGen auto-title:** "Paradocs 10X: The Moore's Law Myth" — **ignore it**, upload as
+  *"Moore's Law Was Never About Speed"* per `SCRIPT.md`
+- **Duration:** 55.8s (target ~50s) · 9:16 · 1080p · 10 scenes
+
+### Verified from scene data (not from watching — CDN egress blocked)
+| Check | Result |
+|---|---|
+| VO script **verbatim** across all 10 scenes | ✅ **PASS** — matches `SCRIPT.md` word for word |
+| Series voice `0db3abd8…` on every scene | ✅ **PASS** |
+| 9:16 portrait, 1080p | ✅ **PASS** |
+| **Burned-in captions** | ❌ **FAIL — `caption.enabled: false`** (5th consecutive render) |
+| Imagery-first base layer | ❓ **UNKNOWN** — see below |
+| Palette / grade / no faces / no logos | ❓ **UNKNOWN** — needs human eyes |
+
+### The caption defect — no re-render needed
+Publish the separate captioned cut instead of the bare render:
+`captioned_video_url` → `caption_25c732d0e2c642e88d83921b22e3b626.mp4`
+Check its styling against house style before publishing.
+
+### Why imagery is UNKNOWN, not FAIL
+Every scene reports `background: {color: '#ffffff'}` with a single `motion_graphics` element
+id-prefixed `b_roll_*`. Read literally that is a **white** background — which would fail both
+the imagery-first rule and the near-black palette. But `get_video_scenes` only describes
+`avatar`, `image` and `video` elements in full; a `motion_graphics` element returns just an id
+and a type, so a full-frame b-roll plate is invisible to this API and the white background is
+never seen.
+
+**This is the identical signature to `paradocs-longform-1`.** It cannot be resolved without
+watching. If the video reads white and flat, the imagery instruction did not land and it needs
+a re-run — that would then be a confirmed generate-mode failure worth recording.
