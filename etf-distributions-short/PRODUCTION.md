@@ -118,3 +118,51 @@ for the chat; it cannot be connected from inside a session. Worth doing for one 
 reason: `STYLE-GUIDE.md` §7 notes HeyGen brand kits do not persist to the workspace, so the
 palette is re-specified in prose in every brief. An Adobe brand record would be a durable home
 for it. It would **not** unblock the HeyGen CDN or top up Higgsfield/vidIQ.
+
+---
+
+## RENDER COMPLETE — one confirmed defect, one workaround
+
+- **Watch:** https://app.heygen.com/videos/b7a129ec80da4064876a9ff0077e50d1
+- **video_id:** `b7a129ec80da4064876a9ff0077e50d1`
+- **Duration:** 82.8s · 9:16 · 1080p · 25 scenes
+- **HeyGen auto-title:** "The Power of No: Total Return vs. Yield" — **ignore it**, it is off-script
+  in the way `STYLE-GUIDE.md` §7 documents. Upload under a title from `SCRIPT.md`.
+
+### Verified from scene data (not from watching — CDN egress is blocked)
+| Check | Result |
+|---|---|
+| VO script **verbatim** across all 25 scenes | **PASS** — every beat present, in order, unaltered |
+| The counter-evidence beat survived into the cut | **PASS** — scenes 20–22 carry it in full |
+| Series voice (`0db3abd8…`) on every scene | **PASS** |
+| 9:16 portrait, 1080p | **PASS** |
+| **Burned-in captions** | **FAIL — `caption.enabled: false`** |
+| Imagery-first base layer | **UNKNOWN** — see below |
+| Palette / grade / no-logos / compliance card | **UNKNOWN** — needs human eyes |
+
+### The caption defect is now systematic, not bad luck
+This is **2 for 2 on generate mode**. The instruction was hoisted to the top of the prompt as
+constraint #5 in a numbered "hold these through generation" block, in capitals, and it was
+still ignored. Conclusion: **generate mode does not honour a captions instruction from the
+prompt.** Stop trying to fix it by rewording the brief.
+
+**Workaround, same as PARADOCS10X — publish the captioned cut, not the base render:**
+`captioned_video_url` → `caption_b7a129ec80da4064876a9ff0077e50d1.mp4`, linked from the video
+page above. Check its caption styling against house style before publishing. An `.srt` is also
+exposed (`subtitle_url`) if you would rather burn captions yourself in an editor with full
+control over the word-by-word highlight.
+
+### Two things to look at with your own eyes
+1. **Scene pacing.** 25 scenes across 82.8s averages ~3.3s per scene, against a house rule of a
+   cut or punch-in every 1.2–1.8s and nothing past 2s. A scene can legitimately contain several
+   internal cuts, so this is not proof of a violation — but it is the first place to look. If
+   scenes are holding static for 3s each, the piece will feel slow and needs a re-run with the
+   cut rhythm restated even harder.
+2. **The white-background question, unresolved again.** Every scene reports
+   `background: {color: '#ffffff'}` with a single `motion_graphics` element. Read literally that
+   is a white background, failing both the imagery-first rule and the near-black palette. But
+   `get_video_scenes` does not describe `motion_graphics` elements beyond an id and a type, so a
+   full-frame photographic plate would be invisible to this API and the white would never be
+   seen. **Identical ambiguity to the PARADOCS10X render — still cannot be resolved without
+   watching it.** If the video reads white and flat, the imagery instruction did not land and
+   it needs a re-run.
