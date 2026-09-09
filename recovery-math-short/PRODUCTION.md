@@ -89,3 +89,69 @@ HeyGen CDN egress is blocked; the render will be **complete, not verified**. Che
 - HeyGen CDN egress blocked — complete, not verified.
 - Higgsfield 0 credits, vidIQ 1 credit — no generative B-roll, no generated thumbnail.
 - No detached VO stem on the Creator plan, so any wording change means a full re-render.
+
+---
+
+## RENDER COMPLETE — script perfect, pacing worst yet
+
+- **Watch:** https://app.heygen.com/videos/6ec2edbe28814f31958210898e4c61f9
+- **video_id:** `6ec2edbe28814f31958210898e4c61f9`
+- **Duration:** 74.0s · 9:16 · 1080p · **10 scenes**
+- **HeyGen auto-title:** "The Meticulous Investor: The Math of Loss" — off-script as always, but
+  notable in that the channel name reached the agent.
+
+### Verified from scene data (not from watching — CDN egress is blocked)
+| Check | Result |
+|---|---|
+| VO script **verbatim** across all 10 scenes | **PASS** — no duplication, no drift, no trims |
+| Counter-evidence beat survived | **PASS** — scene 9 carries it complete |
+| **Sign-off exact** — "This is The Meticulous Investor." | **PASS** — scene 10, verbatim |
+| Series voice (`0db3abd8…`) | **PASS** |
+| 9:16 portrait, 1080p | **PASS** |
+| Runtime inside the 68–75s target | **PASS** — 74.0s |
+| **Burned-in captions** | **FAIL — `caption.enabled: false`** (4 for 4 on generate mode) |
+| **Scene density** | **WORST OF THE SERIES — see below** |
+
+### The finding: scene count tracks SENTENCE LENGTH, not the density instruction
+
+This was the build that asked hardest for animation — constraint #4 was
+"THIS VIDEO SHOULD BE THE MOST ANIMATION-DENSE OF THE SERIES", in capitals, at the top of the
+prompt. It produced **the fewest scenes of any build.**
+
+| Video | Words | Scenes | Runtime | Words/scene | Secs/scene |
+|---|---|---|---|---|---|
+| ETF distributions | 191 | **25** | 82.8s | 7.6 | **3.3** |
+| Amazon–Qualcomm | 203 | 19 | 95.3s | 10.7 | 5.0 |
+| Recovery math (this) | 188 | **10** | 74.0s | 18.8 | **7.4** |
+
+Near-identical word counts, wildly different scene counts. The instruction did not move it.
+**Sentence length did.** The agent appears to chunk the VO into scenes by grouping whole
+sentences, so the script's punctuation — not the brief's adjectives — sets the cut rhythm.
+
+The ETF script was written in short declaratives ("You feel paid." / "That gap has a name." /
+"Only one of those is your result.") and got 25 scenes. This script leans on longer compound
+sentences — scene 7 swallowed the entire S&P beat, three sentences and 30 words, as one scene —
+and got 10.
+
+**The actionable lever for every future build: to get more cuts, write shorter sentences.**
+Split compound sentences at the full stop even when the prose reads better joined. Asking the
+brief for "more animation" is not a control surface; the script is.
+
+Worth adding to `STYLE-GUIDE.md` §2 alongside the existing 1.2–1.8s cut rule, since that rule
+currently has no stated mechanism for achieving it. Not edited here — it is the locked channel
+document.
+
+**Caveat, stated honestly:** a scene can contain internal cuts and punch-ins, so 7.4s per scene
+is not proof of 7.4s static holds. But three builds now trend the same direction, and this is
+the first hypothesis that explains all three.
+
+### What to do about this render
+**Watch it before deciding.** If the scenes carry internal motion, it is fine and the metric is
+misleading. If it visibly drags, the fix is not a re-prompt — it is a **rewrite of the VO into
+shorter sentences**, then a re-render. The argument, facts and sign-off are all correct and
+would carry over unchanged; only the punctuation changes.
+
+### Captions — 4 for 4
+Disabled again. Publish the captioned cut:
+`captioned_video_url` → `caption_6ec2edbe28814f31958210898e4c61f9.mp4`, or burn from the
+provided `.srt`. This is now a fixed, known cost of generate mode.
