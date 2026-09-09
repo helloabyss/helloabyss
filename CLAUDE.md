@@ -65,6 +65,15 @@ Keep style and voice constant across videos so the channel reads as one series.
   Transcript costs 5, video-watch 25, thumbnail 22, scoring 5 — **all currently unaffordable**.
 - **HeyGen: 129 premium credits**, resets 2026-10-06. An 11-minute long-form render is
   affordable on this balance.
+- **HeyGen chat mode is currently unusable** — verified 2026-09-09. Sessions are accepted and
+  appear in `list_video_agent_sessions`, but `get_video_agent_session` returns 404 for **every**
+  session, new and old alike, so the blueprint-approval step cannot be reached. Credits are not
+  the cause. **Fall back to `mode: generate`**, which returns a real `video_id` immediately and
+  is trackable via `get_video`. Note `bulk_video_statuses` reports `not_found` for a freshly
+  created video while `get_video` correctly reports `pending` — trust `get_video`.
+  Generate mode skips blueprint approval, so **harden the prompt before firing**: state the
+  caption requirement on its own line, ban typography over flat colour explicitly, and make the
+  palette absolute.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
 
@@ -73,6 +82,9 @@ Keep style and voice constant across videos so the channel reads as one series.
 One directory per video: `SCRIPT.md` (VO, fact table, shot list, packaging) and
 `PRODUCTION.md` (session IDs, settings, verification checklist, constraints hit).
 
-Shorts: `moat-short`, `pdt-short`, `paradocs-short-1`.
+Shorts: `moat-short`, `pdt-short`, `paradocs-short-1`, `paradocs-short-3` ("The $30,000
+Wafer"), `paradocs-short-4` ("Moore's Law Was Never About Speed").
 Long-form: `paradocs-longform-1` (the 11m07s Cybercab video — format precedent, with its
-defects listed), `paradocs-longform-2` (in prep; `SOURCE-NOTES.md` holds the capture shell).
+defects listed), `paradocs-longform-2` (Apple/2nm; scripted and fact-checked, **not rendered** —
+blocked on confirming what the keynote actually announced; see `EVENT-RUNSHEET.md` for the
+fill-in list and `EDIT-SHEET.md` for the CapCut assembly plan).
