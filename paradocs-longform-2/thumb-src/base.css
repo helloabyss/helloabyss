@@ -1,0 +1,14 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#0B0B0C}
+body{font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.stage{position:relative;overflow:hidden;display:flex;flex-direction:column;
+  justify-content:space-between;
+  background:radial-gradient(120% 90% at 78% 22%, #1b1b1f 0%, #0B0B0C 62%)}
+.art{position:absolute;left:0;top:0;z-index:0}
+.layer{position:relative;z-index:2}
+.kick{color:#E11D22;font-weight:700;text-transform:uppercase}
+.hero{color:#fff;font-weight:700;text-transform:uppercase;line-height:.9;
+  letter-spacing:-.015em;transform:scaleX(.88);transform-origin:left center}
+.hero .red{color:#E11D22}
+.rule{background:#E11D22}
+.mark{color:#9a9aa4;font-weight:700;text-transform:uppercase}
