@@ -63,8 +63,16 @@ Keep style and voice constant across videos so the channel reads as one series.
 - **Higgsfield: 0 credits** (plan `starter`). Unusable for B-roll or video analysis.
 - **vidIQ: 1 credit** as of 2026-09-09 (0 renewable + 1 add-on); resets to 150 on 2026-10-03.
   Transcript costs 5, video-watch 25, thumbnail 22, scoring 5 — **all currently unaffordable**.
-- **HeyGen: 129 premium credits**, resets 2026-10-06. An 11-minute long-form render is
-  affordable on this balance.
+- **HeyGen: 54 premium credits** as of 2026-09-09 (down from 129), resets 2026-10-06.
+  ⚠️ **A long-form render appears to cost ~45 credits and can fail with no error message,
+  consuming them anyway** — see `paradocs-longform-2/PRODUCTION.md`. At this balance there is
+  roughly **one** long-form attempt left. Shorts are cheap by comparison.
+- **`create_video_agent` prompt cap is 10,000 characters**, which limits a single-call verbatim
+  long-form to ~1,350 words (~8 min). See `LONGFORM-GUIDE.md`.
+- **A ~1,350-word / ~8-minute landscape generate-mode render FAILED** on 2026-09-09 with
+  `failure_code: null` and `failure_message: null`, minutes after two ~150-word portrait renders
+  succeeded. Long scripts through this API path are **not proven**. Do not promise a long-form
+  runtime without testing at a small size first.
 - **HeyGen chat mode is currently unusable** — verified 2026-09-09. Sessions are accepted and
   appear in `list_video_agent_sessions`, but `get_video_agent_session` returns 404 for **every**
   session, new and old alike, so the blueprint-approval step cannot be reached. Credits are not

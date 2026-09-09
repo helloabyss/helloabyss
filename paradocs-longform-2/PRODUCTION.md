@@ -1,7 +1,8 @@
 # Production Record — PARADOCS10X Long-Form 2
 
-- **Rendered:** 2026-09-09, ~11:32 PT (keynote ended ~11:2x PT)
-- **video_id:** `1422e737e3804d26b100e754b1bbb46e`
+- **Status: ❌ RENDER FAILED** — see "Attempt 1 failed" below. Not shipped.
+- **Attempted:** 2026-09-09, ~11:32 PT
+- **video_id:** `1422e737e3804d26b100e754b1bbb46e` (failed)
 - **Session:** https://app.heygen.com/video-agent/d6dd2619f6634d64be96d1ec37d443df
 - **Mode:** `generate` — chat mode 404s account-wide (see `CLAUDE.md`)
 - **Orientation:** **landscape 16:9**
@@ -65,3 +66,56 @@ Two 1280×720 variants ready — see `THUMBNAILS.md`. Variant **A** recommended.
 - HeyGen CDN egress blocked → complete, not verified
 - Higgsfield 0 credits → could not be used to ship
 - vidIQ 1 credit → no thumbnail generation (built locally instead) and no title/thumbnail scoring
+
+---
+
+## ❌ ATTEMPT 1 FAILED — 2026-09-09
+
+`get_video` returned `status: "failed"` with **`failure_code: null` and
+`failure_message: null`**. HeyGen supplied no diagnostic of any kind. `get_video_agent_session`
+still 404s account-wide, so the session carries no detail either.
+
+### Credit cost of the failure
+| Moment | Premium credits |
+|---|---|
+| Before the two shorts | 129 |
+| After 2 successful shorts + 1 failed long-form | **54** |
+
+**75 credits consumed; the long-form produced nothing.** Exact attribution is impossible —
+the two dead chat-mode sessions may also have drawn down — but the failed long-form plainly
+accounted for a large share. **A blind retry risks ~45 more of the remaining 54.** Credits do
+not reset until **2026-10-06**.
+
+### What the evidence points at
+| Render | Words | Runtime | Orientation | Result |
+|---|---|---|---|---|
+| Short 4 | 148 | 55.8s | portrait | ✅ completed |
+| Short 3 | 152 | 55.8s | portrait | ✅ completed |
+| **Long-form 2** | **1,348** | **~8 min** | **landscape** | ❌ **failed** |
+
+Both short generate-mode renders succeeded minutes earlier with the same style, voice, account
+and mode. The long-form differed in exactly two ways: **a ~9× longer script** and **landscape
+orientation**. Script length is the more likely cause — ~20 scenes is a far larger generation
+job — but orientation is not ruled out, and with a null error message this is **inference, not
+diagnosis**.
+
+`paradocs-longform-1` (11 min) proves long landscape renders can exist on this account, but its
+session was never recorded, so **there is no evidence it was made through
+`create_video_agent`** — it may have been built in the HeyGen app. That precedent should not be
+treated as proof the API path supports this length.
+
+### Do not retry blind
+At ~45 credits per attempt against a balance of 54, one failed retry leaves the channel unable
+to render anything until October. The options, cheapest first:
+
+1. **Split into two ~4-minute parts**, render separately, join in CapCut. Halves the per-call
+   risk and fits the prompt cap comfortably. Two publishable halves even if one fails.
+2. **Cut to ~5 minutes (~830 words).** Smaller job, materially better odds, still a real
+   long-form. Costs the "what it means for you" and second-order beats.
+3. **Retry identical once.** Only sensible if the failure was transient — unknowable here.
+   Highest risk.
+4. **Build it in the HeyGen app** from `VO-FINAL.txt`, bypassing the API entirely. Zero API
+   risk; needs a human at the keyboard.
+
+The script, fact table and thumbnails are all finished and unaffected — this is purely a
+rendering problem.
