@@ -30,6 +30,13 @@ locked visual identity. Summary of the non-negotiables:
 - **No clickbait.** No subscribe animations, no "what they don't want you to know" CTAs.
   Close on something the viewer can act on.
 
+## Long-form
+
+`STYLE-GUIDE.md` is written for Shorts and its pacing rules break at length.
+**For anything over ~2 minutes, read `LONGFORM-GUIDE.md`** — 16:9, a 16-beat spine,
+~166 wpm, ~66 words per scene, and its own brief template. The hard rules (faceless, palette,
+no logos, compliance card, mandatory counter-evidence) are unchanged at any runtime.
+
 ## Fixed production settings
 
 | Setting | Value |
@@ -43,13 +50,38 @@ Keep style and voice constant across videos so the channel reads as one series.
 
 ## Known environment constraints
 
-- **HeyGen CDN egress is blocked** (`files2.heygen.ai`, `resource2.heygen.ai`). Renders
-  cannot be downloaded or watched from here. Always report a render as *complete, not
-  verified*, and give the user a verification checklist.
+- **HeyGen CDN egress is blocked** (`files2.heygen.ai`, `resource2.heygen.ai`, and also
+  `static.heygen.ai`, which holds scene background images). Renders and stills cannot be
+  downloaded or watched from here. Always report a render as *complete, not verified*, and
+  give the user a verification checklist.
+- **YouTube egress is blocked** (`www.youtube.com`, `googleapis.com`) — verified 2026-09-09.
+  Source videos cannot be fetched, watched or transcribed directly. The only server-side
+  routes are vidIQ (`vidiq_video_transcript`, 5 credits) and Higgsfield
+  (`video_analysis_create`, accepts a YouTube URL) — both need credits.
 - **HeyGen `create_speech` needs separate `api` credits**, which the Creator plan lacks.
   No detached VO stem is available; narration is baked into the render.
-- **Higgsfield: 0 credits.** Unusable for B-roll unless topped up.
-- **vidIQ: ~1 credit.** Thumbnail generation costs 22, scoring 5. Needs a top-up.
+- **Higgsfield: 0 credits** (plan `starter`). Unusable for B-roll or video analysis.
+- **vidIQ: 1 credit** as of 2026-09-09 (0 renewable + 1 add-on); resets to 150 on 2026-10-03.
+  Transcript costs 5, video-watch 25, thumbnail 22, scoring 5 — **all currently unaffordable**.
+- **HeyGen: 54 premium credits** as of 2026-09-09 (down from 129), resets 2026-10-06.
+  ⚠️ **A long-form render appears to cost ~45 credits and can fail with no error message,
+  consuming them anyway** — see `paradocs-longform-2/PRODUCTION.md`. At this balance there is
+  roughly **one** long-form attempt left. Shorts are cheap by comparison.
+- **`create_video_agent` prompt cap is 10,000 characters**, which limits a single-call verbatim
+  long-form to ~1,350 words (~8 min). See `LONGFORM-GUIDE.md`.
+- **A ~1,350-word / ~8-minute landscape generate-mode render FAILED** on 2026-09-09 with
+  `failure_code: null` and `failure_message: null`, minutes after two ~150-word portrait renders
+  succeeded. Long scripts through this API path are **not proven**. Do not promise a long-form
+  runtime without testing at a small size first.
+- **HeyGen chat mode is currently unusable** — verified 2026-09-09. Sessions are accepted and
+  appear in `list_video_agent_sessions`, but `get_video_agent_session` returns 404 for **every**
+  session, new and old alike, so the blueprint-approval step cannot be reached. Credits are not
+  the cause. **Fall back to `mode: generate`**, which returns a real `video_id` immediately and
+  is trackable via `get_video`. Note `bulk_video_statuses` reports `not_found` for a freshly
+  created video while `get_video` correctly reports `pending` — trust `get_video`.
+  Generate mode skips blueprint approval, so **harden the prompt before firing**: state the
+  caption requirement on its own line, ban typography over flat colour explicitly, and make the
+  palette absolute.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
 
@@ -57,3 +89,16 @@ Keep style and voice constant across videos so the channel reads as one series.
 
 One directory per video: `SCRIPT.md` (VO, fact table, shot list, packaging) and
 `PRODUCTION.md` (session IDs, settings, verification checklist, constraints hit).
+
+Shorts: `moat-short`, `pdt-short`, `paradocs-short-1`, `paradocs-short-3` ("The $30,000
+Wafer"), `paradocs-short-4` ("Moore's Law Was Never About Speed").
+Long-form: `paradocs-longform-1` (the 11m07s Cybercab video — format precedent, with its
+defects listed), `paradocs-longform-2` (Apple/2nm; **scripted, fact-checked against confirmed
+post-keynote reporting, thumbnails built — but the API render FAILED**. Build it in the HeyGen
+app: see **`HEYGEN-APP-BUILD.md`** and paste `app-prompt.txt`. `EDIT-SHEET.md` covers CapCut
+assembly if event clips are cut in).
+
+**Lesson recorded:** the API's `generate` mode cannot reach blueprint approval, so constraints
+get one shot and a failure costs ~45 credits with no error message. For long-form, prefer the
+HeyGen app — the blueprint step lets you approve before it spends, and captions are a toggle
+there rather than a defect on every render.
