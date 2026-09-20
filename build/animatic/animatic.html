@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset=utf-8><style>
+html,body{margin:0;background:#0B0B0D}canvas{display:block}</style></head>
+<body><canvas id=c width=1080 height=1920></canvas>
+<script src="render.js"></script>
+<script>
+Promise.all(['shots.json','cues.json','hat_vertices.json'].map(f=>fetch(f).then(r=>r.json())))
+ .then(([s,c,h])=>{window.__init(s,c,h);window.__seek(0);window.__ready=true;});
+</script></body></html>
