@@ -3,7 +3,7 @@
 Upcoming reports worth covering on **This Week in the Market**. Updated every `/twim` run
 (Phase 9.1): drop what reported, add newly confirmed dates 4–6 weeks out.
 
-**Last updated: 2026-09-20.**
+**Last updated: 2026-09-20** (episode 1 run).
 
 ---
 
@@ -44,6 +44,7 @@ Q3 2026 reporting season opens mid-October, led by the banks.
 
 | Date | Weekday | Company | Ticker | Quarter | Confidence | Why it matters |
 |---|---|---|---|---|---|---|
+| 2026-09-30 | Wed | **Micron** | MU | FY2026 Q4 | ✅ **Confirmed** | Company IR. The clearest read available on memory pricing and AI capital spending. **Covered as the Week Ahead beat in episode 1.** Weekday checked. |
 | 2026-11-25 | Wed | NVIDIA | NVDA | Q3 FY2027 | 🟡 **Reported** | After close. The highest-surprise single report in the market and the clearest read on AI capex. Also the cleanest **China** read-through in the format — data-center revenue and export-licence commentary. **Verify against NVIDIA IR.** |
 
 ## Standing watch-list — recurring, date TBC

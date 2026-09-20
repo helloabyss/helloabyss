@@ -10,3 +10,8 @@ node_modules/
 # Symlinks into .agents/ created by `npx skills add` — dangling without it.
 # Versions are pinned in skills-lock.json; re-create with the install command.
 .claude/skills/
+
+# Episode build scratch — frames and contact sheets are regenerable
+videos/*/frames/
+videos/*/contact.png
+videos/*/fixcheck.png

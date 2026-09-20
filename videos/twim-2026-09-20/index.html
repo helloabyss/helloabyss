@@ -1,0 +1,357 @@
+<!doctype html>
+<!--
+  THIS WEEK IN THE MARKET — episode 1, week of 2026-09-14 → 09-18
+  Editorial data-motion. No photography, no faces, no logos. Three colours only.
+  Every figure traces to research/2026-09-20.md (Grade A only).
+  INTEGRITY: no invented series. Only verified data points are plotted.
+  Picture only — narration (112.0s) is dropped in when the VO stem exists.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+      :root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E;--grid:#242427}
+      #root{width:100%;height:100%;position:relative;background:var(--ink);
+        font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;
+        -webkit-font-smoothing:antialiased}
+      .clip{position:absolute;inset:0}
+
+      .kicker{position:absolute;left:110px;top:250px;color:var(--muted);font-size:27px;
+        letter-spacing:.38em;text-transform:uppercase;font-weight:700}
+      .kicker b{color:var(--accent);font-weight:700}
+      .stamp{position:absolute;left:110px;top:1735px;color:var(--muted);font-size:24px;letter-spacing:.03em}
+      .rulebar{position:absolute;left:110px;top:310px;width:180px;height:5px;background:var(--accent);
+        transform-origin:left center}
+
+      .lbl{color:var(--muted);font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+      .big{color:var(--paper);font-weight:800;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+      .red{color:var(--accent)}
+      .tag{display:inline-block;color:var(--accent);font-size:30px;font-weight:800;
+        letter-spacing:.14em;text-transform:uppercase}
+
+      /* compliance + disclaimer */
+      #compliance{position:absolute;left:110px;top:1640px;color:var(--accent);
+        font-size:29px;font-weight:700;letter-spacing:.05em}
+      #discCard{position:absolute;inset:0;background:var(--ink);display:flex;
+        flex-direction:column;justify-content:center;padding:0 110px}
+      #discCard .dl1{color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.18}
+      #discCard .dl2{color:var(--muted);font-size:31px;line-height:1.5;margin-top:38px}
+      #discCard .dbar{width:180px;height:5px;background:var(--accent);margin-bottom:46px}
+
+      /* s1 / s9 threshold */
+      .thLabel{position:absolute;color:var(--muted);font-size:27px;letter-spacing:.06em}
+      /* tape rows */
+      .rowName{position:absolute;color:var(--paper);font-size:40px;font-weight:800;letter-spacing:.02em}
+      .rowVal{position:absolute;color:var(--paper);font-size:52px;font-weight:800;
+        font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+      .bar{position:absolute;height:26px;transform-origin:left center}
+      .bar.neg{transform-origin:right center;background:var(--accent)}
+      .bar.pos{background:var(--paper)}
+      /* closes tiles */
+      .tileL{position:absolute;color:var(--muted);font-size:29px;letter-spacing:.2em;font-weight:700}
+      .tileV{position:absolute;color:var(--paper);font-size:112px;font-weight:800;
+        letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="112"
+         data-width="1080" data-height="1920">
+
+      <!-- ============ 1 · COLD OPEN  0 → 8 ============ -->
+      <div id="s1" class="clip" data-start="0" data-duration="8" data-track-index="0">
+        <div class="rulebar" id="s1bar"></div>
+        <div class="kicker" id="s1k">This Week in the Market</div>
+        <div class="lbl" id="s1lbl" style="position:absolute;left:110px;top:560px">US 10-Year Treasury Yield</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line id="s1th" x1="110" y1="1120" x2="970" y2="1120" stroke="#6E6E6E" stroke-width="3" stroke-dasharray="10 10"/>
+          <circle id="s1dot" cx="820" cy="980" r="16" fill="#D42A2A"/>
+          <line id="s1drop" x1="820" y1="996" x2="820" y2="1120" stroke="#D42A2A" stroke-width="3"/>
+        </svg>
+        <div class="thLabel" id="s1thl" style="left:110px;top:1140px">5.00% threshold</div>
+        <div class="big" id="s1num" style="position:absolute;left:110px;top:680px;font-size:190px">0.000%</div>
+        <div class="tag" id="s1tag" style="position:absolute;left:110px;top:965px">Above five percent</div>
+        <div class="stamp" id="s1st">US 10-year Treasury · close 2026-09-18</div>
+        <div id="compliance">Educational only. Not financial advice.</div>
+      </div>
+
+      <!-- ============ 2 · THE TAPE  8 → 20.8 ============ -->
+      <div id="s2" class="clip" data-start="8" data-duration="12.8" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">The week · three ways</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="540" y1="620" x2="540" y2="1320" stroke="#242427" stroke-width="3"/>
+        </svg>
+        <div class="rowName" style="left:110px;top:660px">DOW</div>
+        <div class="bar neg" id="b1" style="left:170px;top:726px;width:370px"></div>
+        <div class="rowVal red" id="v1" style="left:110px;top:770px">−733 PTS</div>
+        <div class="tag" id="t1" style="position:absolute;left:110px;top:845px;font-size:26px">Worst week since March</div>
+
+        <div class="rowName" style="left:110px;top:960px">NASDAQ</div>
+        <div class="bar pos" id="b2" style="left:540px;top:1026px;width:390px"></div>
+        <div class="rowVal" id="v2" style="left:560px;top:1070px">+2.6%</div>
+
+        <div class="rowName" style="left:110px;top:1200px">S&amp;P 500</div>
+        <div class="bar pos" id="b3" style="left:540px;top:1266px;width:130px"></div>
+        <div class="rowVal" id="v3" style="left:560px;top:1310px">+0.7%</div>
+        <div class="stamp">Weekly change · 14–18 Sep 2026</div>
+      </div>
+
+      <!-- ============ 3 · CLOSES  20.8 → 31.6 ============ -->
+      <div id="s3" class="clip" data-start="20.8" data-duration="10.8" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">Friday's close</div>
+        <div class="tileL" id="c1l" style="left:110px;top:640px">S&amp;P 500</div>
+        <div class="tileV" id="c1v" style="left:110px;top:686px">0.00</div>
+        <div class="tileL" id="c2l" style="left:110px;top:960px">Nasdaq Composite</div>
+        <div class="tileV" id="c2v" style="left:110px;top:1006px">0.00</div>
+        <div class="tileL" id="c3l" style="left:110px;top:1280px">Dow Jones Industrial Average</div>
+        <div class="tileV" id="c3v" style="left:110px;top:1326px">0.00</div>
+        <div class="stamp">Closing levels · 2026-09-18</div>
+      </div>
+
+      <!-- ============ 4 · THE HIKE  31.6 → 46.8 ============ -->
+      <div id="s4" class="clip" data-start="31.6" data-duration="15.2" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">Wednesday 16 September</div>
+        <div class="big" id="s4bp" style="position:absolute;left:110px;top:560px;font-size:250px">+25</div>
+        <div class="lbl" id="s4bpl" style="position:absolute;left:118px;top:872px">basis points</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="1120" x2="970" y2="1120" stroke="#242427" stroke-width="3"/>
+          <rect id="s4old" x="110" y="1090" width="430" height="60" fill="#242427"/>
+          <rect id="s4new" x="540" y="1090" width="430" height="60" fill="#D42A2A"/>
+        </svg>
+        <div class="thLabel" id="s4o" style="left:110px;top:1170px">from 3.50–3.75%</div>
+        <div class="thLabel" id="s4n" style="left:540px;top:1170px;color:#F5F5F3">to 3.75–4.00%</div>
+        <div class="tag" id="s4tag" style="position:absolute;left:110px;top:1300px;font-size:34px">First increase since 2023</div>
+        <div class="stamp">FOMC decision · 2026-09-16</div>
+      </div>
+
+      <!-- ============ 5 · THE VOTE  46.8 → 57.2 ============ -->
+      <div id="s5" class="clip" data-start="46.8" data-duration="10.4" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">The vote</div>
+        <div class="big" id="s5v" style="position:absolute;left:110px;top:540px;font-size:255px">12–0</div>
+        <div class="lbl" id="s5u" style="position:absolute;left:110px;top:930px;color:#F5F5F3">Unanimous · not one dissent</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line id="s5rule" x1="110" y1="1040" x2="970" y2="1040" stroke="#242427" stroke-width="3"/>
+        </svg>
+        <div class="lbl" id="s5n" style="position:absolute;left:110px;top:1090px">Kevin Warsh · Chair, Federal Reserve</div>
+        <div id="s5q" style="position:absolute;left:110px;top:1180px;width:860px;color:#D42A2A;
+             font-size:54px;font-weight:800;letter-spacing:-.02em;line-height:1.22">
+          “A timelier return to two percent.”</div>
+        <div class="stamp">FOMC · 2026-09-16</div>
+      </div>
+
+      <!-- ============ 6 · THE COMPLICATION  57.2 → 72.8 ============ -->
+      <div id="s6" class="clip" data-start="57.2" data-duration="15.6" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">The complication</div>
+        <div class="lbl" id="s6l" style="position:absolute;left:110px;top:560px">US consumer prices · year on year</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="900" x2="970" y2="900" stroke="#242427" stroke-width="2" stroke-dasharray="8 8"/>
+          <line id="s6line" x1="240" y1="900" x2="840" y2="900" stroke="#F5F5F3" stroke-width="8"
+                stroke-linecap="round"/>
+          <circle id="s6d1" cx="240" cy="900" r="14" fill="#F5F5F3"/>
+          <circle id="s6d2" cx="840" cy="900" r="14" fill="#F5F5F3"/>
+        </svg>
+        <div class="thLabel" id="s6a" style="left:190px;top:940px">JUL · 3.4%</div>
+        <div class="thLabel" id="s6b" style="left:780px;top:940px">AUG · 3.4%</div>
+        <div class="thLabel" id="s6c" style="left:110px;top:820px;color:#6E6E6E">Consensus 3.4% — in line</div>
+        <div class="big red" id="s6slam" style="position:absolute;left:110px;top:1120px;
+             font-size:92px;line-height:1.1;width:880px">They hiked<br/>anyway.</div>
+        <div class="stamp">CPI, August 2026 · released 2026-09-11</div>
+      </div>
+
+      <!-- ============ 7 · THE SPLIT  72.8 → 90.4 ============ -->
+      <div id="s7" class="clip" data-start="72.8" data-duration="17.6" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">One week · two directions</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="1080" x2="970" y2="1080" stroke="#242427" stroke-width="3"/>
+          <path id="s7up" d="M 200 1080 L 430 760" stroke="#F5F5F3" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path id="s7dn" d="M 650 1080 L 880 1400" stroke="#D42A2A" stroke-width="10" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="rowName" id="s7ul" style="left:200px;top:660px">NASDAQ</div>
+        <div class="rowVal" id="s7uv" style="left:200px;top:706px">+2.6%</div>
+        <div class="rowName" id="s7dl" style="left:650px;top:1430px">DOW</div>
+        <div class="rowVal red" id="s7dv" style="left:650px;top:1476px">−733 PTS</div>
+        <div class="tag" id="s7c" style="position:absolute;left:110px;top:1104px;font-size:26px;color:#6E6E6E">Same week</div>
+        <div class="stamp">Weekly change · 14–18 Sep 2026</div>
+      </div>
+
+      <!-- ============ 8 · WEEK AHEAD  90.4 → 100 ============ -->
+      <div id="s8" class="clip" data-start="90.4" data-duration="9.6" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">The week ahead</div>
+        <div class="big" id="s8d" style="position:absolute;left:110px;top:600px;font-size:200px">SEP 30</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line id="s8r" x1="110" y1="900" x2="970" y2="900" stroke="#D42A2A" stroke-width="5"/>
+        </svg>
+        <div class="rowName" id="s8n" style="left:110px;top:950px;font-size:60px">MICRON · FISCAL Q4</div>
+        <div class="lbl" id="s8s" style="position:absolute;left:110px;top:1060px">Memory pricing · AI capital spending</div>
+        <div class="stamp">Date per company IR</div>
+      </div>
+
+      <!-- ============ 9 · CLOSE  100 → 106.5 ============ -->
+      <div id="s9" class="clip" data-start="100" data-duration="6.5" data-track-index="0">
+        <div class="rulebar"></div>
+        <div class="kicker">The number to watch</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="1120" x2="970" y2="1120" stroke="#6E6E6E" stroke-width="3" stroke-dasharray="10 10"/>
+          <circle id="s9dot" cx="820" cy="980" r="16" fill="#D42A2A"/>
+          <line id="s9drop" x1="820" y1="996" x2="820" y2="1120" stroke="#D42A2A" stroke-width="3"/>
+        </svg>
+        <div class="thLabel" style="left:110px;top:1140px">5.00% threshold</div>
+        <div class="big" id="s9num" style="position:absolute;left:110px;top:680px;font-size:190px">5.006%</div>
+        <div class="big red" id="s9slam" style="position:absolute;left:110px;top:1260px;font-size:78px;width:880px">
+          The hurdle moved.</div>
+        <div class="stamp">US 10-year Treasury · close 2026-09-18</div>
+      </div>
+
+      <!-- ============ 10 · DISCLAIMER  106.5 → 112 ============ -->
+      <div id="s10" class="clip" data-start="106.5" data-duration="5.5" data-track-index="0">
+        <div id="discCard">
+          <div class="dbar" id="dbar"></div>
+          <div class="dl1" id="dl1">Educational only.<br/>Not financial advice.</div>
+          <div class="dl2" id="dl2">Market commentary, not a recommendation to buy or sell any
+            security.<br/>Figures as of the dates shown. Sources in the description.</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+
+      // deterministic count-up helper
+      function count(sel, to, at, dur, dp, pre, suf, comma){
+        const el = document.querySelector(sel);
+        const o = { v: 0 };
+        tl.to(o, { v: to, duration: dur, ease: "power2.out", onUpdate(){
+          let n = o.v.toFixed(dp);
+          if (comma) { const p = n.split("."); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ","); n = p.join("."); }
+          el.textContent = (pre||"") + n + (suf||"");
+        }}, at);
+      }
+      const inUp = (sel, at, d=.55, y=34) =>
+        tl.fromTo(sel, {opacity:0, y}, {opacity:1, y:0, duration:d, ease:E}, at);
+      const bar = (sel, at, d=.7) =>
+        tl.fromTo(sel, {scaleX:0}, {scaleX:1, duration:d, ease:"power3.inOut"}, at);
+      // punch-in keeps the frame alive (STYLE-GUIDE: nothing static past ~2s)
+      const punch = (sel, at, d=2.4, from=1, to=1.045) =>
+        tl.fromTo(sel, {scale:from}, {scale:to, duration:d, ease:"none",
+          transformOrigin:"20% 50%"}, at);
+
+      /* 1 · COLD OPEN */
+      bar("#s1bar", 0.05, .5);
+      inUp("#s1k", .15); inUp("#s1lbl", .45);
+      count("#s1num", 5.006, .7, 1.9, 3, "", "%");
+      tl.fromTo("#s1th", {opacity:0}, {opacity:1, duration:.4}, 1.1);
+      tl.fromTo("#s1thl", {opacity:0}, {opacity:1, duration:.4}, 1.2);
+      tl.fromTo("#s1drop", {scaleY:0, transformOrigin:"bottom"}, {scaleY:1, duration:.4, ease:E}, 2.5);
+      tl.fromTo("#s1dot", {scale:0, transformOrigin:"center"}, {scale:1, duration:.35, ease:"back.out(2.5)"}, 2.75);
+      inUp("#s1tag", 3.1, .5, 20);
+      tl.fromTo("#s1st", {opacity:0}, {opacity:1, duration:.4}, 3.4);
+      tl.fromTo("#compliance", {opacity:0}, {opacity:1, duration:.35}, .3);
+      tl.to("#compliance", {opacity:0, duration:.3}, 3.9);
+      punch("#s1num", 3.3, 4.2);
+
+      /* 2 · THE TAPE */
+      inUp("#s2 .kicker", 8.15); bar("#s2 .rulebar", 8.05, .5);
+      inUp("#s2 [style*='top:660px']", 8.5, .45, 22);
+      bar("#b1", 8.8, .6); inUp("#v1", 9.1, .45, 18); inUp("#t1", 9.5, .45, 14);
+      inUp("#s2 [style*='top:960px']", 10.3, .45, 22);
+      bar("#b2", 10.6, .6); inUp("#v2", 10.9, .45, 18);
+      inUp("#s2 [style*='top:1200px']", 11.9, .45, 22);
+      bar("#b3", 12.2, .6); inUp("#v3", 12.5, .45, 18);
+      tl.fromTo("#s2 .stamp", {opacity:0}, {opacity:1, duration:.4}, 13.2);
+      punch("#b1", 13.6, 6.5, 1, 1.02);
+
+      /* 3 · CLOSES */
+      bar("#s3 .rulebar", 20.85, .5); inUp("#s3 .kicker", 20.95);
+      inUp("#c1l", 21.3, .4, 18); count("#c1v", 7650.50, 21.4, 1.5, 2, "", "", true);
+      inUp("#c2l", 23.3, .4, 18); count("#c2v", 26522.55, 23.4, 1.5, 2, "", "", true);
+      inUp("#c3l", 25.3, .4, 18); count("#c3v", 51682.64, 25.4, 1.5, 2, "", "", true);
+      tl.fromTo("#s3 .stamp", {opacity:0}, {opacity:1, duration:.4}, 27.2);
+      punch("#c3v", 27.4, 3.8);
+
+      /* 4 · THE HIKE */
+      bar("#s4 .rulebar", 31.65, .5); inUp("#s4 .kicker", 31.75);
+      tl.fromTo("#s4bp", {opacity:0, scale:1.5, transformOrigin:"0% 50%"},
+        {opacity:1, scale:1, duration:.7, ease:"power4.out"}, 32.1);
+      inUp("#s4bpl", 32.6, .45, 20);
+      tl.fromTo("#s4old", {scaleX:0, transformOrigin:"left"}, {scaleX:1, duration:.5, ease:E}, 34.4);
+      inUp("#s4o", 34.7, .4, 14);
+      tl.fromTo("#s4new", {scaleX:0, transformOrigin:"left"}, {scaleX:1, duration:.55, ease:"power3.inOut"}, 36.4);
+      inUp("#s4n", 36.8, .4, 14);
+      inUp("#s4tag", 39.6, .5, 22);
+      tl.fromTo("#s4 .stamp", {opacity:0}, {opacity:1, duration:.4}, 40.2);
+      punch("#s4bp", 33.0, 5.0);
+      punch("#s4tag", 40.4, 5.6, 1, 1.03);
+
+      /* 5 · THE VOTE */
+      bar("#s5 .rulebar", 46.85, .5); inUp("#s5 .kicker", 46.95);
+      tl.fromTo("#s5v", {opacity:0, y:60}, {opacity:1, y:0, duration:.75, ease:"power4.out"}, 47.3);
+      inUp("#s5u", 48.3, .5, 24);
+      tl.fromTo("#s5rule", {scaleX:0, transformOrigin:"left"}, {scaleX:1, duration:.6, ease:E}, 49.6);
+      inUp("#s5n", 49.9, .45, 20);
+      inUp("#s5q", 51.2, .6, 28);
+      tl.fromTo("#s5 .stamp", {opacity:0}, {opacity:1, duration:.4}, 52.2);
+      punch("#s5v", 48.2, 4.0);
+
+      /* 6 · THE COMPLICATION */
+      bar("#s6 .rulebar", 57.25, .5); inUp("#s6 .kicker", 57.35);
+      inUp("#s6l", 57.7, .45, 20);
+      tl.fromTo("#s6d1", {scale:0, transformOrigin:"center"}, {scale:1, duration:.3, ease:"back.out(2)"}, 59.0);
+      tl.fromTo("#s6a", {opacity:0}, {opacity:1, duration:.35}, 59.2);
+      tl.fromTo("#s6line", {scaleX:0, transformOrigin:"left"}, {scaleX:1, duration:1.0, ease:"none"}, 59.4);
+      tl.fromTo("#s6d2", {scale:0, transformOrigin:"center"}, {scale:1, duration:.3, ease:"back.out(2)"}, 60.4);
+      tl.fromTo("#s6b", {opacity:0}, {opacity:1, duration:.35}, 60.6);
+      inUp("#s6c", 62.0, .5, 18);
+      tl.fromTo("#s6slam", {opacity:0, y:44}, {opacity:1, y:0, duration:.6, ease:"power4.out"}, 67.4);
+      tl.fromTo("#s6 .stamp", {opacity:0}, {opacity:1, duration:.4}, 68.4);
+      punch("#s6slam", 68.1, 4.4, 1, 1.05);
+
+      /* 7 · THE SPLIT */
+      bar("#s7 .rulebar", 72.85, .5); inUp("#s7 .kicker", 72.95);
+      inUp("#s7c", 73.4, .45, 16);
+      tl.set("#s7up", {strokeDasharray:400, strokeDashoffset:400}, 74.4)
+        .to("#s7up", {strokeDashoffset:0, duration:.9, ease:"power2.out"}, 74.6);
+      inUp("#s7ul", 75.2, .45, 22); inUp("#s7uv", 75.4, .45, 22);
+      tl.set("#s7dn", {strokeDasharray:400, strokeDashoffset:400}, 77.2)
+        .to("#s7dn", {strokeDashoffset:0, duration:.9, ease:"power2.out"}, 77.4);
+      inUp("#s7dl", 78.0, .45, 22); inUp("#s7dv", 78.2, .45, 22);
+      tl.fromTo("#s7 .stamp", {opacity:0}, {opacity:1, duration:.4}, 79.2);
+      punch("#s7uv", 79.6, 5.0); punch("#s7dv", 79.6, 5.0);
+
+      /* 8 · WEEK AHEAD */
+      bar("#s8 .rulebar", 90.45, .5); inUp("#s8 .kicker", 90.55);
+      tl.fromTo("#s8d", {opacity:0, y:50}, {opacity:1, y:0, duration:.65, ease:"power4.out"}, 90.9);
+      tl.fromTo("#s8r", {scaleX:0, transformOrigin:"left"}, {scaleX:1, duration:.6, ease:E}, 91.8);
+      inUp("#s8n", 92.1, .5, 24);
+      inUp("#s8s", 93.2, .45, 20);
+      tl.fromTo("#s8 .stamp", {opacity:0}, {opacity:1, duration:.4}, 94.0);
+      punch("#s8d", 91.6, 5.0);
+
+      /* 9 · CLOSE (bookend of scene 1) */
+      bar("#s9 .rulebar", 100.05, .5); inUp("#s9 .kicker", 100.15);
+      tl.fromTo("#s9num", {opacity:0, y:40}, {opacity:1, y:0, duration:.6, ease:"power4.out"}, 100.5);
+      tl.fromTo("#s9drop", {scaleY:0, transformOrigin:"bottom"}, {scaleY:1, duration:.4, ease:E}, 101.2);
+      tl.fromTo("#s9dot", {scale:0, transformOrigin:"center"}, {scale:1, duration:.35, ease:"back.out(2.5)"}, 101.4);
+      tl.fromTo("#s9slam", {opacity:0, y:40}, {opacity:1, y:0, duration:.6, ease:"power4.out"}, 103.4);
+      punch("#s9num", 101.0, 4.6);
+
+      /* 10 · DISCLAIMER */
+      tl.fromTo("#dbar", {scaleX:0, transformOrigin:"left"}, {scaleX:1, duration:.5, ease:E}, 106.7);
+      tl.fromTo("#dl1", {opacity:0, y:30}, {opacity:1, y:0, duration:.6, ease:E}, 106.9);
+      tl.fromTo("#dl2", {opacity:0}, {opacity:1, duration:.6}, 107.5);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
