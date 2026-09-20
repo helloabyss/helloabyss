@@ -229,6 +229,11 @@ Write `scripts/DATE-vo.txt`: **narration only, generator-ready.**
 
 ## Phase 8 — RENDER *(only with `--render`)*
 
+> **Read `RENDERING.md` first.** It records the 2026-09-20 decision that the picture is
+> built deterministically in HyperFrames (exact charts, exact axis labels, exact as-of
+> stamps) while HeyGen supplies the locked voice. The HeyGen-only path below still
+> applies until that split is wired in.
+
 1. **Check credits first:** `mcp__heygen__get_current_user`. Premium credits were **0** on
    2026-09-20, resetting **2026-10-06**. If zero, **stop and report** — do not burn the run.
 2. Build the brief from the `STYLE-GUIDE.md §6` template, with the VO text **verbatim** and
