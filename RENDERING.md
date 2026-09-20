@@ -195,3 +195,93 @@ Moving the picture to HyperFrames removes the ~90–180 cr/week HeyGen render **
 What remains is the voice, and the cheapest route to it is still the open question in the
 section above. Sourcing plates from stock rather than generating them takes the weekly
 credit cost to **zero**.
+
+---
+
+## The least-credit path (2026-09-20)
+
+**Answer up front: don't upgrade either plan yet.** The optimal pipeline costs **16–36
+credits a week**, against a HeyGen Creator allowance of 600/month and a Higgsfield top-up
+floor of 500. Upgrading now buys capacity the architecture below removes.
+
+### The finding that sets the shape: the locked voice cannot be TTS'd
+
+`heygen voice speech create` — the free OAuth TTS path — **requires a starfish-engine voice.**
+Alex Wright – Informative (`0db3abd8…`) is **not one.** Checked against
+`list_voices engine=starfish` across both sort bands: it should sort between `0cbcaee1…`
+and `0e2ff5b9…` (band 1) and between `068f3956…` and `13f70a5d…` (band 2), and is absent
+from both. Starfish voices also carry `support_locale` and a null preview URL; this voice
+has a real preview URL and no `support_locale`.
+
+**So there is no TTS route to this voice at any price.** It exists only inside a rendered
+video. The cheapest legitimate way to obtain it is to **render the smallest possible video
+that carries the narration and strip the audio** — the picture is discarded, so the avatar
+engine only needs to be cheap.
+
+| Voice carrier | Per episode (2 min) | Per month |
+|---|---|---|
+| HeyGen CLI avatar video on the **OAuth free-usage allowance** | **0** | 0 |
+| **Avatar III studio (3 cr/min)** | **6** | ~26 |
+| Avatar IV (20 cr/min) | 40 | ~174 |
+| Video agent (observed ~45 cr/min) — *what we do today* | 90 | ~391 |
+
+Rendering a throwaway avatar video purely as a VO carrier sounds wasteful and is in fact the
+cheapest correct answer: **the voice is TTS and is independent of the avatar engine**, so the
+engine that draws the discarded face should be the cheapest one available. It also returns a
+**free SRT sidecar** (`subtitle_url`), which gives caption timings for HyperFrames.
+
+### The other lever: stills, not generated video
+
+`heygen asset search` (image catalog) is on the same **free OAuth path**. `STYLE-GUIDE.md`
+requires a cinematic photographic BASE layer with camera motion applied to the imagery —
+and HyperFrames applies push, parallax and 3D layer separation to a **still** deterministically.
+
+**So most B-roll is a free catalog still plus HyperFrames motion: 0 credits.** Reserve
+generated video for the one or two shots per episode where real motion is the point
+(the hero macro), at `kling3_0`'s 10 cr per 5s.
+
+### Weekly budget
+
+| Component | Route | Credits |
+|---|---|---|
+| Charts, type, captions, cards, all motion | HyperFrames, local | **0** |
+| B-roll stills | HeyGen catalog, OAuth free | **0** |
+| Music / SFX | HeyGen catalog, OAuth free | **0** |
+| Hero motion clips ×1–3 | Higgsfield `kling3_0` | 10–30 |
+| Voice carrier | Avatar III render, audio stripped | 6 |
+| Thumbnail | HyperFrames frame export | **0** |
+| **Total** | | **16–36 / week** |
+
+**≈70–156 credits/month**, split ~26 HeyGen and ~44–130 Higgsfield. Against today's path
+(90–180 HeyGen + 150–875 Higgsfield per week) that is roughly a **10–20× reduction**, and the
+output is *better*, because the charts become exact instead of generated.
+
+### So what to buy
+
+| | Verdict |
+|---|---|
+| **HeyGen** | **Don't upgrade.** Creator's 600/mo is ~23× the ~26 needed. The balance resets 2026-10-06. |
+| **Higgsfield** | **One 500-credit top-up, not a subscription** — ~3.8 months of hero clips. |
+
+Upgrade later only if the shape changes: HeyGen if you run several series a week, need `api`
+credits, or go back to full video-agent renders; Higgsfield if you decide every beat wants
+generated motion rather than stills.
+
+### Verify before committing (all blocked here by the 0 balance)
+
+1. `heygen auth login --oauth`, then `node <media-use>/scripts/resolve.mjs --doctor` — confirm
+   the free-usage path is live and see whether avatar video and catalog search really cost 0.
+2. Render one ~10s Avatar III test with `voiceId` = `0db3abd8…` and confirm the voice is
+   preserved and the credit charge matches 3 cr/min. Check `supported_api_engines` on the
+   chosen look — Avatar III needs a `digital_twin` or `studio_avatar` look.
+3. Strip audio (`ffmpeg -vn`) and A/B it against `moat-short` to confirm the voice matches.
+4. Run the **pronunciation audit** (`VO_PROFILE.md §3`) on that stem — the 30 glossary terms
+   have still never been heard. Pass `brandGlossaryId` on the carrier render.
+
+### The alternative worth knowing about, not recommended
+
+Adopting a **starfish** voice makes narration free and unlimited via OAuth TTS, and gains
+in-script `<break>` pause support (every starfish voice reports `support_pause: true`),
+which this voice does not have (`VO_PROFILE.md §5`). It costs voice continuity with the four
+existing videos, and the brief says the voice must match previous episodes exactly — so it
+stays on the table only if that requirement is ever relaxed.
