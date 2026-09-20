@@ -123,3 +123,75 @@ Phase 8 of `.claude/commands/twim.md` currently sends the whole episode to
 `create_video_agent`. Under this decision it splits: **HyperFrames builds the picture,
 HeyGen supplies the voice.** That rewrite is deliberately *not* applied yet — it depends on
 the auth test above, and on whether the voice is worth waiting for credits. Sheldon's call.
+
+---
+
+## What a week actually costs (measured 2026-09-20)
+
+### HeyGen — derived from this account's own burn, not a pricing page
+
+Two credit checkpoints are recorded in the repo: **501** premium credits at the PDT session
+start, and **330** at the paradocs session. Ten renders sit between them and zero.
+
+| Window | Credits spent | Output rendered | Rate |
+|---|---|---|---|
+| 501 → 330 | 171 | 4 renders · 4.24 min | **40.3 cr/min** |
+| 330 → 0 | 330 | 6 renders · 6.82 min | **48.4 cr/min** |
+| **All ten** | **501** | **11.06 min** | **45.3 cr/min** |
+
+HeyGen's published rate for Avatar IV/V studio video is **20 credits/min** (Avatar III is 3).
+The observed rate is **more than double** that, because `create_video_agent` is a pricier
+product than a plain avatar render — it generates scenes, B-roll and motion graphics — and
+because failed, stopped and superseded renders still consumed credits. **Plan against the
+observed ~45 cr/min, not the published 20.**
+
+**One weekly 2-minute episode, rendered entirely by HeyGen:**
+
+| Basis | Per episode / week | Per month |
+|---|---|---|
+| Published 20 cr/min | 40 | ~174 |
+| **Observed ~45 cr/min** | **~90** | **~394** |
+| Observed, with one re-render | ~180 | **~787** |
+
+The Creator allowance is ~600 premium credits/month. **A weekly episode eats most of it, and
+the house v1→v2 re-render pattern blows straight through it.** That is why the balance is at
+zero — `moat` and `pdt` were each rendered twice.
+
+### Higgsfield — B-roll plates only
+
+Priced with `get_cost` (preflight, no spend). **Model choice is a 3.5× swing:**
+
+| Model | 5s vertical clip | Per second |
+|---|---|---|
+| `seedance_2_5` (the general-video default) | **35 cr** | 7.0 |
+| `kling3_0` | **10 cr** | 2.0 |
+
+A 120s episode cutting every 1.2–1.8s is ~70–100 shots, but a punch-in is a camera move
+inside a plate, not a new plate, and the bookend reuses one. Estimate **15–25 distinct
+plates**, each generated at 5s and cut several ways.
+
+| Model | 15 plates | 25 plates | Monthly (25 plates, +40% retries) |
+|---|---|---|---|
+| `kling3_0` | 150 cr/wk | 250 cr/wk | **~1,520** |
+| `seedance_2_5` | 525 cr/wk | 875 cr/wk | ~5,320 |
+
+The retry margin is not padding: "no faces, no real logos" (`STYLE-GUIDE.md`) is exactly what
+a generative model violates, and a plate with a face in it is regenerated, not fixed.
+
+Balance is **0** on the starter plan; top-ups come in 500 / 1,000 / 2,000 / 4,000 packs. So
+weekly B-roll is roughly a 1,000-credit pack per month on `kling3_0`, or a 4,000 pack on
+`seedance_2_5`. **Use `kling3_0`** unless a specific plate needs the better model.
+
+### Under the adopted plan
+
+| Component | Weekly credits |
+|---|---|
+| Charts, type, captions, cards — **HyperFrames, local** | **0** |
+| B-roll plates — Higgsfield `kling3_0`, *if used* | 150–250 |
+| B-roll plates — stock/archive instead | 0 |
+| Voice — HeyGen | the only unavoidable cost |
+
+Moving the picture to HyperFrames removes the ~90–180 cr/week HeyGen render **entirely**.
+What remains is the voice, and the cheapest route to it is still the open question in the
+section above. Sourcing plates from stock rather than generating them takes the weekly
+credit cost to **zero**.
