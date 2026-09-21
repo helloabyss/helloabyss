@@ -119,7 +119,7 @@ Total runtime: 187 words ≈ 71.9s.
 **Loop:** the close makes the opening line land differently — the hook is about a forecast
 nobody would file; the payoff is a number somebody will.
 
-**First frame:** The empty socket in the pin grid, already in motion — camera pushing toward it. Do NOT open on the pendulum; promote the socket to frame one and hold the pendulum for the bookend.
+**First frame:** The empty socket in the pin grid, already in motion — camera pushing toward it.
 
 **Compliance card:** thin strip, bottom edge, small white type on dark scrim,
 0:00–0:05. NOT a full-frame card, NOT a hold. It must not cover or delay the hook.
@@ -133,12 +133,12 @@ decision as a mechanism that has just reversed direction. Returns at the close.
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
-| "For the first time in three years" | Hero: brass pendulum stopped dead, shallow DOF, dust in the light | — | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook |
+| **"Eighteen officials filed a forecast. Sixteen say rates climb. The chairman filed none."** | Camera cranes over a dark grid of eighteen machined steel pins, pushing toward the one empty socket and ending INSIDE it, already in motion | 16 pins rise red, 2 stay flat as the camera passes; socket rim lights red on arrival, nothing fills it | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook; "16 / 18" white impact flash, then "NO DOT" as a type-as-mask reveal into next scene |
+| "For the first time in three years" | Hero: brass pendulum stopped dead, shallow DOF, dust in the light | — | "FIRST HIKE IN 3 YEARS" arriving with overshoot |
 | "A quarter point… twelve to nothing" | Push through a gap between two vast stone columns | Rate ladder draws itself, tick climbs 3.50 → 3.75–4.00, counter physically rolls | "+0.25%" scaling past frame edges |
 | "Warsh's explanation was one sentence" | Empty lectern shot from behind and low — no person, microphone only | — | Quote sets letter by letter with overshoot |
-| "Sixteen of eighteen" | Camera cranes over a dark grid of eighteen machined steel pins | 16 pins rise red, 2 stay flat | "16 / 18" with white impact flash |
-| **"Warsh filed none"** | Same pin grid, one empty socket, camera pushes INTO the socket | Socket rim lights red, nothing fills it | "NO DOT" — type-as-mask reveal into next scene |
-| "a hole where the chairman's forecast should be" | Through-the-socket transition into a dark document plate | Document rows draw, one row stays blank | — |
+| "Again. He skipped it in June too." | Push from the lectern into a printed meeting-calendar plate, macro, one entry per FOMC date | Rows tick past for each 2026 meeting; the June and September rows stay blank | "JUNE" then "SEPTEMBER" stamped blank — no impact flash; this is a pattern, not new alarm |
+| **"The median projection has the hikes continuing… four point one percent again through twenty twenty seven."** | Push through a drafting-table plate — a rate path stamped across a printed 2026 / 2027 calendar grid, near-black paper | A dashed projection line draws itself flat across both years — it does not lift, does not fall; a "PROJECTION" stamp sets beside it | "4.1%" set in outline / dashed numerals, never a filled ticker tag — "PROJECTION, NOT A PRICE" stamped beside it |
 | "Here is the honest counterweight" | Frame flips — same pendulum lit from the opposite side | Vote tally assembles 12–0 in white, not red | "12–0" |
 | "Lee called the selling an overreaction" | Empty trading-floor architecture, long lens, deserted | Line chart draws, dips, recovers partway | Name-tag, plain text: "Fundstrat — Tom Lee" |
 | "Dow still closed down 631" | Concrete stair descending into shadow, hard parallax | Chart cracks and drops debris on the number | "−631.21" counting up then snapping red |

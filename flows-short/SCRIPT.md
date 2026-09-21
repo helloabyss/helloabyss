@@ -146,7 +146,7 @@ Total runtime: 171 words ≈ 65.8s.
 **Loop:** the hook states who was on which side; the payoff makes the question of "which side"
 irrelevant.
 
-**First frame:** The empty scale pan lifting, weightless, already moving — the absence is the hook. Promote it ahead of the loaded pan.
+**First frame:** The empty scale pan lifting, weightless, already moving — framed together with the loaded pan sinking opposite it. The absence is the hook.
 
 **Compliance card:** thin strip, bottom edge, small white type on dark scrim,
 0:00–0:05. NOT a full-frame card, NOT a hold. It must not cover or delay the hook.
@@ -160,12 +160,10 @@ the other emptying — shot so tight the pans fill the frame. Returns at the clo
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
-| "sixth largest weekly inflow since 2008" | Hero: brass scale pans, one dropping under load | Counter rolls up to "#6" | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook |
-| "Retail investors were not the ones buying" | Camera whips to the *empty* pan, foreground blur streaking past | Pan lifts, weightless | "NOT RETAIL" letters arriving with overshoot |
-| "seven billion dollars" | Push through a stacked grid of dark machined blocks | "$7.0B" counts up physically; splits into 3.9 / 3.1 bars that draw themselves | "$7.0B" scaling past frame edge |
+| **"Sixth largest stock inflow since two thousand eight. Institutions bought it. Retail sold."** | Hero: both counterweighted scale pans in one tight frame — the near pan lifting empty and weightless, already rising, as the far pan sinks under a load of machined blocks | Counter rolls up to "#6" as the pans move | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook; the hook's literal words arrive letter by letter across both clauses |
+| "That's Bank of America's own data… seven billion dollars… three point nine billion… three point one billion" | Push through a stacked grid of dark machined blocks | "$7.0B" counts up physically; splits into 3.9 / 3.1 bars that draw themselves | "$7.0B" scaling past frame edge; second scope-card STRIP (bottom edge, small white type on dark scrim, 0:12–0:16): "Bank of America client flows — not market-wide data" |
 | "Institutions bought 5.8… hedge funds 4.0" | Crane over a vault floor, long shadows, no people | Two red bars grow upward, hard parallax against the floor | Plain text name-tags: "Institutional", "Hedge funds" |
 | **"Private clients sold 2.7 billion"** | Same vault floor, camera inverted — descending | Red bar grows *downward*; floor plates drop away beneath it | "−$2.7B" with white impact flash + shake |
-| "the sixth straight week" | Six identical steel doors receding into black | Each door stamps red in sequence, 1 through 6 | "6 WEEKS" |
 | "So the story writes itself" | Newsprint plate, macro, ink still wet | Headline type sets itself automatically | "SMART MONEY" — type-as-mask wipe |
 | **"that story is weaker than it sounds"** | The newsprint tears — camera pushes THROUGH the tear | Headline fractures and drops as debris | "ONE BANK'S CLIENTS" |
 | "institutional does not mean correct — it means large" | A single vast machined block dwarfing the frame, camera craning to find its edge | Scale bar draws alongside it; no accuracy readout appears | "LARGE ≠ RIGHT" |

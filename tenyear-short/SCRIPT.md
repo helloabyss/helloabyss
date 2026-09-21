@@ -132,7 +132,7 @@ Total runtime: 207 words ≈ 79.6s.
 **Loop:** hook and payoff are the same contrast, stated first as a number gap and last as a
 rule.
 
-**First frame:** The mooring rope under load, fibres already separating — the strain is the hook. Do NOT open on the small brass dial; that shot moves to the PROOF beat.
+**First frame:** The mooring rope under load, fibres already separating — the strain is the hook.
 
 **Compliance card:** thin strip, bottom edge, small white type on dark scrim,
 0:00–0:05. NOT a full-frame card, NOT a hold. It must not cover or delay the hook.
@@ -146,9 +146,8 @@ long end of the curve taking strain the Fed never applied. Returns at the close.
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
-| "raised rates a quarter of a point" | Small brass dial clicking one notch, macro, shallow DOF | Tick: 3.50 → 3.75–4.00 | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook |
-| **"the ten year has moved more than a full point"** | Hero: mooring rope under load, camera pushes ALONG it into blur | Yield line draws hard upward beside the rope | "+1.00%" scaling past frame edges, white flash |
-| "started near 4.15… below 4 in February" | Cold winter estuary, near-black grade, hard parallax | Line dips into a trough, counter rolls down | "4.15%" → "3.9%" counting physically |
+| **"The ten year Treasury moved a full point. The Fed moved a quarter."** | Hero: mooring rope under load, fibres already separating, camera pushes ALONG it into blur — then a hard cut to a small brass dial clicking one notch as "the Fed" is named | Yield line draws hard upward beside the rope; dial ticks 3.50 → 3.75–4.00, small and quiet against it | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook; "+1.00%" scaling past frame edges with white flash, then a smaller "+0.25%" beside it |
+| "started near 4.15… below 4 in February" | Cold winter estuary, near-black grade, hard parallax — opens on the dial's afterimage dissolving into the water | Line dips into a trough, counter rolls down | "4.15%" → "3.9%" counting physically |
 | "On September fourteenth it crossed five" | Whip-pan up a concrete sea wall, water rising against it | Line breaches a drawn "5.00%" threshold; threshold cracks | "5.00%" — type-as-mask reveal |
 | **"The Fed sets the overnight rate. The bond market sets the ten year."** | Two separate machine rooms, cut between them on a match-cut of identical valve wheels | Left valve: small, one click. Right valve: vast, spinning freely | Name-tags, plain text: "FED — overnight" / "BOND MARKET — 10 year" |
 | "the ten year is what your mortgage follows" | Suburban rooflines at dusk, long lens, no people | A line runs from the big valve to a house outline | "10Y → MORTGAGE" |
