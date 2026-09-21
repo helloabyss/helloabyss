@@ -75,6 +75,12 @@ Three. Listed so the pattern is visible, not buried.
 | 2 | The `UC…` channel ID blocks publishing automation | Publishing runs on OAuth; the ID buys nothing. Never checked before sending the user to find it. | User's time on a pointless errand | Corrected; requirement removed |
 | 3 | The hook standard is "enforced structurally rather than left to judgement" | The agents are markdown prompts. "Veto" is an instruction to a model. **There is no gate, hook or CI check — nothing technically stops a failed script reaching HeyGen.** | Misplaced confidence in the pipeline | Corrected in `AGENTS.md` |
 
+| 4 | The vidIQ cost table written as **the correction to #1** — every call listed at a flat 5 credits | Same error class, inside the fix. Only `youtube_search` was ever confirmed at 5 (by an API error message). The rest was arithmetic: 10 calls, 40 credits. That maths only works if 2 calls were free, so the flat-5 table was already contradicted by the numbers used to build it. | None yet — caught before it misled anyone | Corrected; each figure now carries its basis, and the operating rule is to assume 5 and measure with `vidiq_balance` before and after a batch |
+
+Finding #4 is the important one: **the correction repeated the mistake it was correcting.**
+Writing a tidy table felt like rigour and wasn't. The guard against this is not intention — it
+is labelling the basis of every figure, which the table now does.
+
 A milder case in the same family: "disagreement is a retention asset" was generalised into
 doctrine from three clips on one channel. The underlying numbers are real; the generalisation
 was thin. Now caveated wherever it appears.

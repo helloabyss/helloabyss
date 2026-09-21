@@ -65,25 +65,39 @@ being wrong made the channel avoid tools it could afford.**
 - **HeyGen `create_speech`** failed on the old Creator plan (needs separate `api` credits).
   The account is now Pro — **untested since the upgrade.** Test once before assuming there is
   no detached VO stem.
-- **vidIQ cost discipline — CORRECTED 2026-09-21. Read this before any vidIQ call.**
+- **vidIQ cost discipline — CORRECTED 2026-09-21, then corrected again. Read before any call.**
   An earlier version of this file said research calls were free. **That was wrong and it cost
-  the channel 40 of its 41 credits in a single session.**
+  the channel 40 of its 41 credits in one session.**
 
-  | Call | Cost |
-  |---|---|
-  | `vidiq_balance` | free |
-  | **Every other research call** — `channel_stats`, `channel_videos`, `channel_search`, `youtube_search`, `keyword_research`, `video_stats`, `outliers`, `trend_categories` | **5 credits each** |
-  | `score_thumbnail` / `score_title` | 5 |
-  | `generate_thumbnail` | 22 |
+  **What is directly confirmed:** `vidiq_youtube_search` costs **5 credits** — the API said so
+  in an error message. That is the only per-call price actually observed.
 
-  The renewable pool is **150/month** = **30 research calls a month**, about **7 a week**.
-  That is the real budget. Plan queries before making them; a vidIQ call is a purchase.
+  **What is inferred, not measured:** 10 successful vidIQ calls consumed 40 credits. If the
+  charged ones cost 5 each, 8 were charged and 2 were free — most likely `vidiq_user_channels`
+  and `vidiq_trend_categories`, which are metadata lookups rather than searches. **This is
+  arithmetic, not per-call verification. Do not treat the split as established.**
 
-  **Never** call `vidiq_outliers` — it ignores its `query` argument and returns unrelated
-  results, so it is 5 credits for nothing. It is the single worst spend in the tool.
-- **`vidiq_outliers` ignores its `query` argument** — it returned cat compilations and Kaiju
-  gameplay for "investing stock market money", and charged 5 credits to do it. Use
-  `vidiq_channel_search` and `vidiq_youtube_search`, which respect the query.
+  | Call | Cost | Basis |
+  |---|---|---|
+  | `vidiq_balance` | free | observed — called 3× with no drawdown |
+  | `vidiq_youtube_search` | **5** | **confirmed by API error message** |
+  | `channel_stats`, `channel_videos`, `channel_search`, `outliers` | assume **5** | inferred from arithmetic |
+  | `keyword_research`, `video_stats` | assume **5** | never called — assumed by analogy |
+  | `user_channels`, `trend_categories` | possibly free | inferred; do not rely on it |
+  | `score_thumbnail` / `score_title` | 5 | from the tool's own docs, not observed |
+  | `generate_thumbnail` | 22 | from the tool's own docs, not observed |
+
+  **Operating rule: assume every vidIQ call costs 5 unless it is `vidiq_balance`.** Budget on
+  the pessimistic number. The renewable pool of 150/month is then ~30 calls, about 7 a week.
+  Call `vidiq_balance` before and after a batch to measure the real cost and correct this table
+  with observed values.
+
+  **Never** call `vidiq_outliers`. Observed once: given "investing stock market money" it
+  returned cat compilations, Kaiju gameplay and a Hindi TV promo, and charged for it. Whether
+  it ignores the `query` argument or does something else is **not known** — only that the
+  output was unusable. Either way it is not worth 5 credits.
+- **`vidiq_outliers` returned unusable results** (see above). Use `vidiq_channel_search` and
+  `vidiq_youtube_search`, which did respect the query when tested.
 - **vidIQ cannot find The Meticulous Investor** (`@meticulousmoney`) — channels this small are
   not indexed. Two `channel_search` attempts cost 10 credits and returned nothing. **Do not
   search for it again**, and do not try to resolve its `UC…` ID: `www.youtube.com` is

@@ -107,9 +107,9 @@ channel's palette. **Does not chase the score.**
 
 | Rule | Why |
 |---|---|
-| **Every vidIQ call costs 5 credits** except `vidiq_balance` | Corrected 2026-09-21 — research is NOT free, and believing it was cost 40 of 41 credits in one session |
+| **Assume every vidIQ call costs 5** except `vidiq_balance` | Only `youtube_search` is confirmed at 5; the rest is inferred. Budget pessimistically — `CLAUDE.md` has the basis for each figure |
 | Weekly vidIQ budget: **scout 3 · retention-editor 1 · packager 1** | 150/month renewable ≈ 7 calls/week across the whole chain |
-| Never call `vidiq_outliers` | Ignores its query argument — 5 credits for unrelated results |
+| Never call `vidiq_outliers` | Returned wholly unrelated results when tested, and charged for them |
 | No generation credit without your yes **in that turn** | thumbnail 22, score 5 |
 | Check balances at session start | `CLAUDE.md` has been stale before and cost the channel usable tools |
 | Never script from memory | Every figure gets a live search |

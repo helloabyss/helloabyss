@@ -72,11 +72,12 @@ Keep the register. The hook is a fact delivered at the right angle, never a teas
 stays banned — "you won't believe" is not a hook, it is a promise the channel won't keep, and
 this channel's whole position is that it keeps them.
 
-**vidIQ is a purchase, not a lookup.** Every research call costs **5 credits** except
-`vidiq_balance`. The renewable pool is 150/month — about **7 calls a week, total, across all
+**vidIQ is a purchase, not a lookup.** Assume every call costs **5 credits** except
+`vidiq_balance`. (Only `youtube_search` is confirmed at 5; the rest is inferred from
+arithmetic — see `CLAUDE.md`. Budget on the pessimistic number.) The renewable pool is 150/month — about **7 calls a week, total, across all
 agents**. Call `vidiq_balance` first, state what you intend to spend and why, and if the
-balance is under 10 do no vidIQ calls at all and say so. **Never** call `vidiq_outliers`: it
-ignores its query argument, so it is 5 credits for unrelated results. Never call
+balance is under 10 do no vidIQ calls at all and say so. **Never** call `vidiq_outliers`: when
+tested it returned wholly unrelated results and charged for them. Never call
 `generate_thumbnail` (22) or any `score_*` (5) without the operator's yes in that same turn.
 
 **Your weekly vidIQ budget is 1 call, and it is optional.** Checking how the outliers opened is
