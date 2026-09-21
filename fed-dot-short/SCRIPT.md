@@ -110,7 +110,7 @@ rate — row 6 is itself marked "a projection, not a market price."
 | RE-HOOK 1 | 18.1s–24.6s | Warsh's one-sentence explanation | New information, escalates the stake |
 | RE-HOOK 2 | 24.6s–31.2s | "Again. He skipped it in June too." | Reversal — this is a pattern, not an oversight |
 | THE CASE | 31.2s–41.9s | "The median projection has the hikes continuing… four point one percent again through twenty twenty seven." | New fact, not a recap — the hikes aren't a one-off and the median shows no cuts through 2027 |
-| **THE TURN** | 41.9s–57.7s | "Now the counterweight…" through "the Dow still closed down 631" | Signposted out loud; the concession that closes the counterweight |
+| **THE TURN** | 41.9s–57.7s | "Now the counterweight…" through "The Dow still closed down six hundred and thirty one points" | Signposted out loud; the concession that closes the counterweight |
 | PAYOFF + LOOP | 57.7s–71.9s | Cash yield → "somebody is willing to publish" | Rhymes with "filed none" |
 
 Timestamps computed from actual segment word counts ÷ 2.6 wps, not copied from the template.
@@ -169,4 +169,4 @@ declarative news title, no clickbait, no question mark.
 
 **Tags:** federal reserve, fed rate hike, kevin warsh, fomc, interest rates, dot plot, inflation, treasury yields, investing, markets
 
-**On-screen compliance card:** "Educational only. Not financial advice." — 0:00–0:04.
+**On-screen compliance card:** "Educational only. Not financial advice." — thin bottom-edge strip, 0:00–0:05 (per STYLE-GUIDE.md §5A; must not cover or delay the hook).

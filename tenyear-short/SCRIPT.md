@@ -187,4 +187,4 @@ either number render as a ticker, a price tag, or a target.
 
 **Tags:** 10 year treasury, treasury yields, mortgage rates, federal reserve, bond market, oil prices, strait of hormuz, inflation, investing, housing market
 
-**On-screen compliance card:** "Educational only. Not financial advice." — 0:00–0:04.
+**On-screen compliance card:** "Educational only. Not financial advice." — thin bottom-edge strip, 0:00–0:05 (per STYLE-GUIDE.md §5A; must not cover or delay the hook).

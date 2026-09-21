@@ -53,7 +53,7 @@ this session:
 | HeyGen plan | Creator | **Pro** |
 | HeyGen premium credits | — | **372** (resets 2026-10-06) |
 | Higgsfield credits | 0, unusable | **564.84** (starter plan) |
-| vidIQ credits | ~1 | **41** add-on (renewable pool 0/150, resets 2026-10-03) |
+| vidIQ credits | ~1 | **1** — the 41 were spent 2026-09-21; pool resets 2026-10-03 |
 
 Still true: HeyGen CDN egress is blocked, so renders cannot be downloaded or watched here.
 `create_speech` may now work on Pro — untested; test once before assuming a detached VO stem.

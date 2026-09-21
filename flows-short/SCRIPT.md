@@ -194,5 +194,5 @@ Bookend: pans unbalanced → pans level.
 
 **Tags:** bank of america, fund flows, smart money, retail investors, hedge funds, institutional investing, stock market, rebalancing, investing, markets
 
-**On-screen compliance card:** "Educational only. Not financial advice." — 0:00–0:04.
+**On-screen compliance card:** "Educational only. Not financial advice." — thin bottom-edge strip, 0:00–0:05 (per STYLE-GUIDE.md §5A; must not cover or delay the hook).
 **Second card, 0:12–0:16:** "Bank of America client flows — not market-wide data."

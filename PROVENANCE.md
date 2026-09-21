@@ -96,6 +96,12 @@ Three. Listed so the pattern is visible, not buried.
 
 | 13 | `fed-dot-short`'s shot list had one row quoting `"Here is the honest counterweight"` — **zero occurrences in the VO** — plus two rows carrying paraphrases rather than verbatim quotes (`"Warsh's explanation…"` for "Kevin Warsh's **entire** explanation…", and `"Dow still closed down 631"` for "six hundred and thirty one points") | Captions burn in word-by-word. A generator sourcing caption text from a shot-list row would have put an unspoken sentence on screen, and rendered a numeral the narration never speaks. The fabricated row survived three reviews because every pass checked whether work had happened, not whether labels still matched the VO after three rounds of rewrites. | Would have put words on screen that are never spoken | All three corrected. §5A now requires row labels to be verbatim VO substrings and to be re-checked after every VO edit. |
 
+| 14 | `fed-dot-short/PRODUCTION.md`'s pre-publish note still read *"Fact #8 (Dow −628.18) is an intraday figure — re-check the close before upload."* | The −628.18 figure had been **fully retracted** as belonging to a different trading day (finding #6). `PRODUCTION.md` is the upload checklist, so the one document a person reads immediately before publishing was instructing them to re-verify a number the fact table had already thrown out. A careful operator following it might have reinstated the error. | The correction lived in `SCRIPT.md` and never propagated to the checklist that acts on it | Replaced with the corrected figure and an explicit "do not reinstate" |
+
+Finding #14 is the sharpest instance of #12 and #13: **a correction is not finished when the
+primary document is fixed.** It has to reach every document that acts on it — and the checklist
+is the one that matters most, because it is read last.
+
 Finding #13 shares finding #12's shape and is the clearest case of it: **an upstream rewrite
 silently orphans downstream references, and "did the work happen?" cannot detect it.** Only a
 quote-by-quote comparison against the literal current text can. Note also that `art-director`
