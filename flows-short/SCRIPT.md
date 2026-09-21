@@ -81,7 +81,7 @@ seekingalpha.com, finance.yahoo.com, intellectia.ai, trustfinance.com, streetins
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> The sixth largest stock inflow since two thousand eight. Institutions bought it. Retail sold.
+> Sixth largest stock inflow since two thousand eight. Institutions bought it. Retail sold.
 >
 > That's Bank of America's own data. Seven billion dollars into U.S. equities. Week ending August thirty first. Three point nine billion into single stocks. Three point one billion into E T Fs.
 >
@@ -95,7 +95,8 @@ seekingalpha.com, finance.yahoo.com, intellectia.ai, trustfinance.com, streetins
 >
 > One thing you can act on. Write your rebalancing rule down now, while nothing is forcing the decision. Then it never matters which side of that split you are on.
 
-172 words ≈ 66.2s (hook: 14 words / 5.4s — recomputed 2026-09-21, see retention map below).
+171 words ≈ 65.8s (hook: 13 words / 5.0s — recomputed 2026-09-21 (second pass), see retention
+map below).
 (Counterweight beat rewritten 2026-09-21 after independent fact-check — see fact table row 11.)
 
 ### Hook & retention map
@@ -107,32 +108,40 @@ question. It also buried the hardest, most specific fact in the table: the "sixt
 weekly inflow since 2008" superlative (row 1) is more surprising and more sizeable to a viewer
 than a bare, unanchored $7bn figure, and it didn't land until 0:05–0:18.
 
-**Fix applied:** lead with the superlative instead of the dollar figure, and name the actors
-(institutions, retail) instead of "somebody." Because the superlative now opens the video, the
-line that used to deliver it again mid-PROOF was rewritten so it doesn't just repeat the hook —
-it now names the source (Bank of America) and gives the raw total dollar figure, which is still
-new information at that point in the script.
+**Fix applied (first pass):** lead with the superlative instead of the dollar figure, and name
+the actors (institutions, retail) instead of "somebody." Because the superlative now opens the
+video, the line that used to deliver it again mid-PROOF was rewritten so it doesn't just repeat
+the hook — it now names the source (Bank of America) and gives the raw total dollar figure,
+which is still new information at that point in the script.
+
+**Fix applied (second pass, 2026-09-21):** that first-pass hook was 14 words / 5.38s. §5A's
+word-budget table states a hard ceiling of **13 words for the 5-second hook, with no
+tolerance** — a prior delegation prompt had told this pass a "5.5s ceiling" existed; that figure
+appears nowhere in the guide and has been discarded. Cut the article "The" from the opening of
+the claim — it carries no information — leaving the superlative anchor ("sixth largest… since
+two thousand eight"), both named subjects ("Institutions," "Retail"), and the turn
+("bought it" / "sold") fully intact.
 
 **New hook, word count, duration:**
-- Claim: "The sixth largest stock inflow since two thousand eight." — 9 words — traces to
+- Claim: "Sixth largest stock inflow since two thousand eight." — 8 words — traces to
   fact-table **row 1** (6th-largest weekly net inflow in BofA's own series since 2008; the
   ranking applies to the total $7.0bn figure).
 - Turn: "Institutions bought it. Retail sold." — 5 words — traces to **row 5** (institutions,
   +$5.8bn net buyers) and **row 7** (private/retail clients, −$2.7bn net sellers).
-- Total: **14 words → 5.4s at 2.6 wps.** Within budget (≤5.5s).
+- Total: **13 words → 5.0s at 2.6 wps.** At the §5A ceiling, no tolerance used.
 
 | Segment | Time | Line | Job |
 |---|---|---|---|
-| **HOOK — claim** | 0:00–3.5s | "The sixth largest stock inflow since two thousand eight." | The superlative, first — no unattributed tease |
-| **HOOK — turn** | 3.5s–5.4s | "Institutions bought it. Retail sold." | Names the actors. Opens the loop. |
-| PROOF | 5.4s–17.7s | BofA's own data, the $7.0bn total, the $3.9bn/$3.1bn split | The hardest numbers, immediately |
-| RE-HOOK 1 | 17.7s–26.9s | Institutions +5.8, hedge funds +4.0, private −2.7 | The three-way split is the new information |
-| THE CASE | 26.9s–30.8s | "Smart money accumulating. Retail capitulating." | State the seductive reading in full — then break it |
-| **THE TURN** | 30.8s–54.6s | "Now the counterweight, because that story is far weaker than it sounds." | The dismantle. Longest beat — it is the point of the video. |
-| PAYOFF + LOOP | 54.6s–66.2s | "…never matters which side of that split you are on." | Rhymes with the hook's institutions/retail split |
+| **HOOK — claim** | 0:00–3.1s | "Sixth largest stock inflow since two thousand eight." | The superlative, first — no unattributed tease |
+| **HOOK — turn** | 3.1s–5.0s | "Institutions bought it. Retail sold." | Names the actors. Opens the loop. |
+| PROOF | 5.0s–17.3s | BofA's own data, the $7.0bn total, the $3.9bn/$3.1bn split | The hardest numbers, immediately |
+| RE-HOOK 1 | 17.3s–26.5s | Institutions +5.8, hedge funds +4.0, private −2.7 | The three-way split is the new information |
+| THE CASE | 26.5s–30.4s | "Smart money accumulating. Retail capitulating." | State the seductive reading in full — then break it |
+| **THE TURN** | 30.4s–54.2s | "Now the counterweight, because that story is far weaker than it sounds." | The dismantle. Longest beat — it is the point of the video. |
+| PAYOFF + LOOP | 54.2s–65.8s | "…never matters which side of that split you are on." | Rhymes with the hook's institutions/retail split |
 
 Timestamps computed from actual segment word counts ÷ 2.6 wps, not copied from the template.
-Total runtime: 172 words ≈ 66.2s.
+Total runtime: 171 words ≈ 65.8s.
 
 **Loop:** the hook states who was on which side; the payoff makes the question of "which side"
 irrelevant.

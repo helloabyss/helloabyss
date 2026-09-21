@@ -92,6 +92,13 @@ Three. Listed so the pattern is visible, not buried.
 
 | 11 | Delegation prompt to `scriptwriter` said "if it exceeds ~5.5s, it is not done" | **§5A states ≈13 words / 5.0s and no tolerance.** The 5.5s ceiling was invented in the prompt, not taken from the spec — and it worked exactly as invented numbers do: one hook came back at 14 words / 5.38s and was reported as within budget. Caught by `retention-editor`, which noticed the tolerance had no source. | One hook shipped over budget under a fabricated allowance | §5A now states 13 words is a ceiling with no tolerance, and that slack offered anywhere else was invented |
 
+| 12 | `tenyear-short` carried a `fact-checker` paragraph headed "Opening hook, checked against the table above" that quoted the **old** hook and declared it "accurate as written" | The hook had since been replaced by `scriptwriter`. The verification record stayed behind, certifying text no longer in the file. Anyone reading it would believe the current hook had been checked. | A stale sign-off — same family as the fabricated "Reviewed by `retention-editor`" line | Rewritten to the current hook with a clause-by-clause trace, and the superseded hook kept on the record with the reason it failed |
+
+Finding #12 is a hazard the agent pipeline **creates**: when one agent verifies and another
+rewrites, the verification note outlives the thing it verified. It is not caught by checking
+whether work happened — the work did happen. The rule it implies: **a verification record must
+quote the text it verified, so it visibly goes stale when that text changes.**
+
 Finding #11 is the same failure as #1 and #4 in a new place: **a number introduced into a
 delegation prompt propagates as if it were the standard.** The agents obey the prompt, so an
 invented figure there is harder to catch than one in a document — it never gets written down

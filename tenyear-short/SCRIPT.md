@@ -1,4 +1,4 @@
-# Short — "The Fed Moved 25 Basis Points. Your Mortgage Moved a Hundred."
+# Short — "The 10-Year Treasury Moved a Full Point This Year. The Fed Moved a Quarter."
 
 **Status:** scripted, not yet rendered
 **Angle:** The Fed sets the overnight rate; the bond market sets the 10-year; the 10-year sets
@@ -32,14 +32,30 @@ carried over on trust.**
 | 12 | Goldman Sachs base case | **$85 is stale.** It was Goldman's March 2026 full-year-2026 *average* forecast (raised from $77). Since then: April warned of $100+ Brent if Hormuz stayed shut another month; June/July scenario work put Brent at $120–130 if disruption persisted into 2027; **August cut the Q4 2026 base case to $80** (from $90) after a since-collapsed reopening deal; September reporting (post pipeline-attack escalation) still has Goldman's base case near **$80** for Q4 2026, with upside risk to $120+ flagged if Hormuz stays disrupted | Reuters/TradingView, Kitco, Bloomberg, EnergyNow (March $85, now superseded); TheStreet, IBTimes, EnergyNow, Yahoo Finance (later revisions to $80 base case / $120 upside) | Medium-High | **CORRECTED** — current Goldman base case is **~$80, not $85**. VO reworded below to "the low eighties" so it survives the next revision too. |
 | 13 | CNBC framing | 5% yields "may not break markets now — but the clock is ticking" | [CNBC, 2026-09-16](https://www.cnbc.com/2026/09/16/10-year-treasury-yeilds-rise-impact-markets.html) | High | **CONFIRMED** — exact headline match |
 
-**Opening hook, checked against the table above:** *"The Fed moved interest rates a quarter of
-a point this month. The number that actually sets your mortgage moved a full point this year —
-and the Fed never touched it."* **This is accurate as written.** The Fed hiked 25bp to
-3.75%–4.00% on Sept 16 (row 1); the 10-year moved from a ~3.94% February low to a 5.01% Sept 14
-peak, ~1.07 points, *before* the Fed met (rows 2, 3, 5, 6). "The Fed never touched it" is
-editorial shorthand for the standard short-rate/long-rate distinction (Class C framing, not a
-numeric claim) and is the accepted mechanism, not an overstatement. "First time since October
-2023" is confirmed by 8+ independent outlets (row 3).
+**Opening hook, checked against the table above.**
+
+⚠️ **This paragraph originally certified a hook that no longer exists.** The `fact-checker` pass
+verified the hook as it stood at the time, then `scriptwriter` replaced it to meet the §5A word
+budget. The old sign-off was left behind attesting to superseded text — a verification record
+that no longer matched the file. Corrected below.
+
+**Current hook:** *"The ten year Treasury moved a full point. The Fed moved a quarter."*
+(13 words / 5.0s)
+
+| Clause | Traces to | Status |
+|---|---|---|
+| "The ten year Treasury moved a full point" | Row 6 — ~1.07 points, Feb low ≈3.94% → Sept 14 peak 5.01% | CONFIRMED |
+| "The Fed moved a quarter" | Row 1 — +25bp to 3.75%–4.00%, Sept 16 | CONFIRMED |
+
+Both clauses trace to rows independently re-verified on 2026-09-21. The hook makes **no claim
+about mortgage rates** — that distinction is the point of the video, and row 7 (the Mortgage
+News Daily index) is referenced only later, dated and scoped.
+
+**Superseded hook, for the record:** *"The Fed moved interest rates a quarter of a point this
+month. The number that actually sets your mortgage moved a full point this year — and the Fed
+never touched it."* It was factually accurate but failed §5A on two counts — 31 words (11.8s
+against a 13-word / 5.0s ceiling), and an opening sentence whose only job was to set up the
+next one, which §5A bans outright.
 
 **Handling rule applied:** items 11 and 12 are said on screen as "estimates" and attributed by
 name. They are never rendered as a price ticker.
@@ -154,7 +170,7 @@ either number render as a ticker, a price tag, or a target.
 
 ## Packaging
 
-**Title (primary):** The Fed Raised Rates 0.25%. Your Mortgage Moved a Full Point.
+**Title (primary):** The 10-Year Treasury Moved a Full Point This Year. The Fed Moved a Quarter.
 **Title (alt A):** The 10-Year Just Crossed 5% — and the Fed Didn't Do It
 **Title (alt B):** Why the Fed Doesn't Set Your Mortgage Rate
 
