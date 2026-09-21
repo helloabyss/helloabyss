@@ -33,25 +33,48 @@ says so out loud.
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> For the first time in three years, the Federal Reserve raised interest rates.
+> Eighteen Federal Reserve officials filed a rate forecast this week. Sixteen of them say rates go higher.
 >
-> A quarter point. Target range, three and three quarters to four percent. The vote was twelve to nothing.
+> The chairman filed nothing at all.
 >
-> Chair Kevin Warsh's explanation was one sentence. Inflation is too high, and has been for too long.
+> The Fed just raised interest rates for the first time in three years. A quarter point, to a target range of three and three quarters to four percent. The vote was twelve to nothing.
 >
-> Sixteen of the eighteen officials who filed projections expect at least one more hike this year.
+> Kevin Warsh's entire explanation was one sentence. Inflation is too high, and has been for too long.
 >
-> Warsh filed none. He skipped the dot plot. Again.
+> Then he declined to publish a forecast of his own. Again. He skipped it in June too.
 >
-> That is the part worth sitting with. The Fed's own forecast document now has a hole where the chairman's forecast should be.
+> So the Fed's projection document now has a hole in it, exactly where the chairman's number should be. Sixteen dots pointing up. One socket, empty.
 >
-> Here is the honest counterweight. The first reaction was muted. Fundstrat's Tom Lee called the selling an overreaction. And a twelve to nothing vote is a committee that agrees, not a committee in crisis.
+> Now the counterweight, because this is not a Fed in crisis. The vote was unanimous. The first market reaction was muted. And Fundstrat's Tom Lee called the selling an overreaction.
 >
 > The Dow still closed down six hundred and twenty eight points.
 >
-> One thing you can act on. A four percent policy rate reprices money market funds within weeks. Check what your cash is earning before you check your stocks.
+> One thing you can act on. A four percent policy rate reprices money market funds within weeks. Before you check your stocks, check what your cash is earning. That number, at least, somebody is willing to publish.
 
-~168 words ≈ 60–66s.
+~176 words ≈ 64–70s.
+
+### Hook & retention map
+
+Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor`.
+
+| Segment | Time | Line | Job |
+|---|---|---|---|
+| **HOOK — claim** | 0:00–0:02 | "Eighteen officials filed a rate forecast. Sixteen say rates go higher." | Hardest number, no setup |
+| **HOOK — turn** | 0:02–0:05 | "The chairman filed nothing at all." | The contradiction. Opens the loop. |
+| PROOF | 0:05–0:17 | The hike, the range, the 12–0 vote | The news, delivered after the hook has earned it |
+| RE-HOOK 1 | 0:17–0:27 | Warsh's one-sentence explanation | New information, escalates the stake |
+| RE-HOOK 2 | 0:27–0:35 | "Again. He skipped it in June too." | Reversal — this is a pattern, not an oversight |
+| THE CASE | 0:35–0:45 | Sixteen dots up, one socket empty | Pays off the hook's image |
+| **THE TURN** | 0:45–0:58 | "Now the counterweight, because this is not a Fed in crisis." | Signposted out loud |
+| PAYOFF + LOOP | 0:58–end | Cash yield → "somebody is willing to publish" | Rhymes with "filed nothing at all" |
+
+**Loop:** the close makes the opening line land differently — the hook is about a number
+nobody would publish; the payoff is a number somebody will.
+
+**First frame:** The empty socket in the pin grid, already in motion — camera pushing toward it. Do NOT open on the pendulum; promote the socket to frame one and hold the pendulum for the bookend.
+
+**Compliance card:** thin strip, bottom edge, small white type on dark scrim,
+0:00–0:05. NOT a full-frame card, NOT a hold. It must not cover or delay the hook.
 
 ---
 
@@ -62,7 +85,7 @@ decision as a mechanism that has just reversed direction. Returns at the close.
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
-| "For the first time in three years" | Hero: brass pendulum stopped dead, shallow DOF, dust in the light | — | Compliance card: "Educational only. Not financial advice." (first 4s) |
+| "For the first time in three years" | Hero: brass pendulum stopped dead, shallow DOF, dust in the light | — | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook |
 | "A quarter point… twelve to nothing" | Push through a gap between two vast stone columns | Rate ladder draws itself, tick climbs 3.50 → 3.75–4.00, counter physically rolls | "+0.25%" scaling past frame edges |
 | "Warsh's explanation was one sentence" | Empty lectern shot from behind and low — no person, microphone only | — | Quote sets letter by letter with overshoot |
 | "Sixteen of eighteen" | Camera cranes over a dark grid of eighteen machined steel pins | 16 pins rise red, 2 stay flat | "16 / 18" with white impact flash |

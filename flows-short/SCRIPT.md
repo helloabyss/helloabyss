@@ -37,27 +37,44 @@ notes institutions were also heavy buyers into previous tops.
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> Last week, American stocks took in their sixth largest weekly inflow since two thousand eight.
+> Somebody moved seven billion dollars into American stocks in a single week.
 >
-> Retail investors were not the ones buying.
+> It was not ordinary investors. They were selling. For the sixth week running.
 >
-> Bank of America's client book, week ending August thirty first. Seven billion dollars of net inflows. Three point nine billion into single stocks. Three point one billion into E T Fs.
+> That was the sixth largest weekly inflow in Bank of America's data going back to two thousand eight. Week ending August thirty first. Three point nine billion into single stocks. Three point one billion into E T Fs.
 >
-> Institutions bought five point eight billion. Hedge funds bought four billion.
->
-> Private clients — ordinary investors — sold two point seven billion. The sixth straight week of selling.
+> Here is the split. Institutions bought five point eight billion. Hedge funds bought four billion. Private clients — ordinary investors — sold two point seven billion.
 >
 > So the story writes itself. Smart money accumulating. Retail capitulating.
 >
-> Now the counterweight, because that story is weaker than it sounds.
+> Now the counterweight, because that story is far weaker than it sounds. This is one bank's client book. Not the market. Institutions were also heavy buyers into two thousand seven, and into two thousand twenty one. And private client selling is not automatically panic. Retirees draw down. People rebalance after a run.
 >
-> This is one bank's clients. Not the market. Institutions were also heavy buyers into two thousand seven, and into two thousand twenty one. And private client selling is not automatically panic. Retirees draw down. People rebalance after a run.
+> Flow data tells you what already happened. It has never reliably told you what happens next.
 >
-> Flow data tells you what happened. It has never reliably told you what happens next.
->
-> One thing you can act on. Write your rebalancing rule down now, while nothing is forcing the decision.
+> One thing you can act on. Write your rebalancing rule down now, while nothing is forcing the decision. Then it never matters which side of that split you are on.
 
-~172 words ≈ 62–68s.
+~178 words ≈ 64–70s.
+
+### Hook & retention map
+
+Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor`.
+
+| Segment | Time | Line | Job |
+|---|---|---|---|
+| **HOOK — claim** | 0:00–0:02 | "Somebody moved seven billion dollars into American stocks in a single week." | Big concrete number, unattributed — creates the question |
+| **HOOK — turn** | 0:02–0:05 | "It was not ordinary investors. They were selling." | The reversal. Opens the loop. |
+| PROOF | 0:05–0:18 | 6th largest since 2008, the $3.9bn / $3.1bn split | Scale, immediately |
+| RE-HOOK 1 | 0:18–0:28 | Institutions +5.8, hedge funds +4.0, private −2.7 | The three-way split is the new information |
+| THE CASE | 0:28–0:36 | "Smart money accumulating. Retail capitulating." | State the seductive reading in full — then break it |
+| **THE TURN** | 0:36–0:58 | "Now the counterweight, because that story is far weaker than it sounds." | The dismantle. Longest beat — it is the point of the video. |
+| PAYOFF + LOOP | 0:58–end | "…never matters which side of that split you are on." | Rhymes with the hook's split |
+
+**Loop:** the hook poses "which side were you on"; the payoff makes the question irrelevant.
+
+**First frame:** The empty scale pan lifting, weightless, already moving — the absence is the hook. Promote it ahead of the loaded pan.
+
+**Compliance card:** thin strip, bottom edge, small white type on dark scrim,
+0:00–0:05. NOT a full-frame card, NOT a hold. It must not cover or delay the hook.
 
 ---
 
@@ -68,7 +85,7 @@ the other emptying — shot so tight the pans fill the frame. Returns at the clo
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
-| "sixth largest weekly inflow since 2008" | Hero: brass scale pans, one dropping under load | Counter rolls up to "#6" | Compliance card: "Educational only. Not financial advice." (first 4s) |
+| "sixth largest weekly inflow since 2008" | Hero: brass scale pans, one dropping under load | Counter rolls up to "#6" | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook |
 | "Retail investors were not the ones buying" | Camera whips to the *empty* pan, foreground blur streaking past | Pan lifts, weightless | "NOT RETAIL" letters arriving with overshoot |
 | "seven billion dollars" | Push through a stacked grid of dark machined blocks | "$7.0B" counts up physically; splits into 3.9 / 3.1 bars that draw themselves | "$7.0B" scaling past frame edge |
 | "Institutions bought 5.8… hedge funds 4.0" | Crane over a vault floor, long shadows, no people | Two red bars grow upward, hard parallax against the floor | Plain text name-tags: "Institutional", "Hedge funds" |

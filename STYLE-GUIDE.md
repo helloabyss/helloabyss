@@ -76,8 +76,85 @@ object so it has a spine.
 - ~150–170 words ≈ 55–70s. Shorts allow up to 3 minutes; don't cut facts to hit an
   arbitrary 50s.
 - Structure: **hook → define → the case → the honest counter-evidence → close.**
+- **Write the hook first and to the standard in §5A.** It governs the whole script.
 - The counter-evidence beat is mandatory. It is what makes these explainers rather than promos.
 - Close on something actionable. No follow-bait.
+
+---
+
+## 5A. The first five seconds — hook and retention architecture
+
+**This section outranks everything except the factual standard and the faceless rule.** A short
+nobody watches is worth nothing, however well sourced it is. Every brief carries this.
+
+### The five-second rule
+
+The first sentence is the whole video's job interview. It must be the **most surprising true
+thing in the fact table** — not context, not a date, not a setup.
+
+Test before anything else is written: **could the first sentence be the title?** If not, the
+hook is buried. Find the line further down the script that *could* be, and move it to the top.
+
+**Banned openers.** No exceptions:
+- "Let's talk about…", "In this video…", "Here's why…", "So…"
+- Any question. Questions invite a viewer to answer "no" and swipe.
+- Any date, any "recently", any "this week" before the claim itself.
+- Any sentence whose job is to set up the next sentence.
+- Clickbait is still banned. The hook is a **fact delivered at the right angle**, never a tease.
+  "You won't believe" is banned; "Eighteen officials filed a forecast. The chairman filed
+  nothing" is not a tease — it's the most interesting true thing, said first.
+
+**Shape that works for this channel:**
+
+| Beat | Time | Job |
+|---|---|---|
+| **Claim** | 0:00–0:02 | The hardest, most specific fact. A number or a contradiction. |
+| **Turn** | 0:02–0:05 | The part that makes it strange. The stake, the reversal, or the missing piece. |
+
+Two sentences. Both load-bearing. If the second sentence only rephrases the first, it's dead air
+in the most valuable position in the video.
+
+### Resolving the compliance-card conflict
+
+The card is mandatory in the first 4 seconds — and it must **not** eat the hook.
+
+**Render it as a persistent thin strip along the bottom edge**, small white type on a dark
+scrim, 0:00–0:05. **Never a full-frame card, never a centre-screen lockup, never a hold.** The
+hook owns the frame; the card rides the edge. State this explicitly in every brief — a
+generator left to itself will produce a full-screen title card and burn the hook.
+
+### Retention architecture — 60–70s
+
+Retention dies in the gaps between facts. Structure so there is never a gap.
+
+| Segment | Time | Requirement |
+|---|---|---|
+| **HOOK** | 0:00–0:05 | Claim + turn. As above. |
+| **PROOF** | 0:05–0:15 | The hardest number, immediately. Do not walk back to explain. |
+| **RE-HOOK 1** | 0:15–0:25 | A *second* surprise, not a restatement. Escalate the stake. |
+| **THE CASE** | 0:25–0:40 | The argument, one idea per beat. |
+| **THE TURN** | 0:40–0:55 | The counter-evidence. Announce it — "here is why that's weaker than it sounds." |
+| **PAYOFF + LOOP** | 0:55–end | The actionable close, worded so it makes the opening line land differently. |
+
+**Re-hook every 10–15 seconds.** Each interval must deliver new information or a reversal.
+A restatement is a swipe.
+
+**The counter-evidence beat is a retention asset, not a compliance tax.** CNBC's two best-
+performing clips on the September 2026 Fed story were both *disagreement* clips. Signposting
+the turn out loud — "now the counterweight" — buys the next fifteen seconds. Never bury it.
+
+**Close on a loop.** The last line should rhyme with the first so the video reads as complete
+and replays cleanly. The bookend imagery rule (§1) already supports this — make the words do
+it too.
+
+### Retention killers — check for these before any brief ships
+
+- Throat-clearing before the first fact.
+- Recapping something already said.
+- Explaining the video's own structure.
+- A slow build to a number that could have opened the video.
+- A pause for the compliance card.
+- Any beat where the visual restates the audio instead of advancing it.
 
 ---
 
@@ -93,6 +170,16 @@ object so it has a spine.
 > 1. BASE — cinematic photographic imagery filling the frame, the foundation of every scene.
 > 2. MID — motion graphics over that imagery.
 > 3. TOP — hero typography and burned-in word-by-word captions, current word highlighted.
+>
+> **FIRST FIVE SECONDS — HIGHEST PRIORITY:** Open on the hook line with NO build-up, no title
+> card, no establishing shot. The single most arresting image in the piece is the FIRST frame,
+> already in motion. Show "Educational only. Not financial advice." as a THIN STRIP ALONG THE
+> BOTTOM EDGE — small white type on a dark scrim, 0:00–0:05. It must NOT be a full-frame card,
+> a centre-screen lockup, or a hold; it must not delay or cover the hook.
+>
+> **RETENTION:** Deliver new information or a reversal every 10–15 seconds — never restate.
+> Signpost the counter-evidence turn out loud. The final shot returns to the opening image,
+> changed, so the video loops cleanly.
 >
 > **IMAGERY BY BEAT:** [map each beat to a concrete shot; mark the hero shot; bookend the video]
 >

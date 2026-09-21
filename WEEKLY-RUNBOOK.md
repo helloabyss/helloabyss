@@ -4,8 +4,8 @@ Five agents in `.claude/agents/`. They hand off in a fixed order. Each one is de
 narrow so it can't drift into the next one's job.
 
 ```
-scout → fact-checker → scriptwriter → art-director → [HeyGen] → packager → [OpusClip]
- find      verify         write          design        render      title      schedule
+scout → fact-checker → scriptwriter → retention-editor → art-director → [HeyGen] → packager → [OpusClip]
+ find      verify         write           HOOK / VETO        design        render      title      schedule
 ```
 
 Run them with the Agent tool by name (`subagent_type: "scout"`), or say "run the weekly cycle"
@@ -31,8 +31,13 @@ credible counter-evidence, it's a promo — skip it, whatever the demand data sa
 ```
 Agent(subagent_type="fact-checker", prompt="Verify all claims for <angle>. Write the fact table into <dir>/SCRIPT.md.")
 Agent(subagent_type="scriptwriter", prompt="Write the VO for <dir> from its fact table.")
+Agent(subagent_type="retention-editor", prompt="Review <dir>. Five-second test and retention map.")
 Agent(subagent_type="art-director",  prompt="Shot list + HeyGen brief for <dir>.")
 ```
+
+**`retention-editor` has veto.** A FAIL does not proceed to art-director. It owns the first
+five seconds and the retention structure, and it is the check that the compliance card renders
+as an edge strip rather than a full-frame card that eats the hook.
 
 `fact-checker` runs **before** `scriptwriter`, always. The writer is forbidden from using a
 number that isn't in the table — that ordering is the whole safety mechanism.
@@ -84,6 +89,10 @@ in that turn. Check balances at session start; `CLAUDE.md` has been stale before
 
 **Never script from memory.** Every figure gets a live search, every analyst number is marked
 an estimate, every dataset is scoped on screen.
+
+**The hook is not negotiable.** No script reaches HeyGen without a `retention-editor` PASS.
+Re-run it on the finished brief too — a hook that survives the script can still be destroyed by
+a generator that opens on a title card.
 
 **Never chase the thumbnail score.** The palette is the identity; the scorer rewards
 saturation. Known trade, already decided.

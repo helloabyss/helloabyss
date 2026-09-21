@@ -38,23 +38,45 @@ generalise the wording ("above seven percent", "around a hundred dollars").
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> The Federal Reserve raised rates a quarter of a point this month.
+> The Fed moved interest rates a quarter of a point this month.
 >
-> The ten year Treasury has moved more than a full point this year. And the Fed did not do that.
+> The number that actually sets your mortgage moved a full point this year — and the Fed never touched it.
 >
-> It started twenty twenty six near four point one five percent. It dropped below four in February. On September fourteenth it crossed five — the first time since October twenty twenty three.
+> The ten year Treasury started twenty twenty six near four point one five percent. It fell below four in February. On September fourteenth it crossed five. The first time since October twenty twenty three.
 >
-> Here is the distinction almost nobody makes. The Fed sets the overnight rate. The bond market sets the ten year. And the ten year is what your mortgage follows.
+> Here is the distinction almost nobody makes. The Fed sets the overnight rate. The bond market sets the ten year. And the ten year is what mortgage pricing follows.
 >
 > Mortgage News Daily's thirty year fixed index printed seven point one seven percent.
 >
-> The driver is oil. Disruption around the Strait of Hormuz pushed Brent above a hundred dollars, and energy costs feed straight into inflation expectations.
+> The driver is oil. Disruption around the Strait of Hormuz pushed Brent above a hundred dollars a barrel, and energy costs feed straight into inflation expectations.
 >
-> The honest counterweight. Nobody agrees on what comes next. Rystad Energy models crude above one forty and a global recession. Goldman Sachs' base case has Brent falling back toward eighty five. Those are estimates. Not prices.
+> Now the counterweight. Nobody agrees on what comes next. Rystad Energy models crude above one forty and a global recession. Goldman Sachs' base case has Brent falling back toward eighty five. Those are estimates. Not prices.
 >
-> One thing you can act on. If you are rate shopping, watch the ten year — not the Fed's meeting calendar.
+> One thing you can act on. If you are rate shopping, watch the ten year — not the Fed's meeting calendar. The Fed meets eight times a year. The bond market prices your mortgage every day.
 
-~175 words ≈ 64–70s.
+~181 words ≈ 66–72s.
+
+### Hook & retention map
+
+Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor`.
+
+| Segment | Time | Line | Job |
+|---|---|---|---|
+| **HOOK — claim** | 0:00–0:02 | "The Fed moved rates a quarter of a point this month." | Deliberately flat — the setup for the reversal |
+| **HOOK — turn** | 0:02–0:05 | "…moved a full point this year — and the Fed never touched it." | 4× bigger, and not who you think. Opens the loop. |
+| PROOF | 0:05–0:18 | 4.15% → below 4 → crossed 5 on Sept 14 | The move, in numbers, fast |
+| RE-HOOK 1 | 0:18–0:30 | "The distinction almost nobody makes" | The mechanism — the actual value of the video |
+| RE-HOOK 2 | 0:30–0:36 | 7.17% mortgage print | Lands the mechanism on the viewer's own money |
+| THE CASE | 0:36–0:48 | Oil, Hormuz, inflation expectations | Why the long end moved |
+| **THE TURN** | 0:48–1:02 | "Now the counterweight. Nobody agrees." | Rystad vs Goldman, both marked estimates |
+| PAYOFF + LOOP | 1:02–end | "The Fed meets eight times a year. The bond market prices your mortgage every day." | Rhymes with the hook's Fed-vs-bond-market contrast |
+
+**Loop:** hook and payoff are the same contrast, stated first as a puzzle and last as a rule.
+
+**First frame:** The mooring rope under load, fibres already separating — the strain is the hook. Do NOT open on the small brass dial; that shot moves to the PROOF beat.
+
+**Compliance card:** thin strip, bottom edge, small white type on dark scrim,
+0:00–0:05. NOT a full-frame card, NOT a hold. It must not cover or delay the hook.
 
 ---
 
@@ -65,7 +87,7 @@ long end of the curve taking strain the Fed never applied. Returns at the close.
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
-| "raised rates a quarter of a point" | Small brass dial clicking one notch, macro, shallow DOF | Tick: 3.50 → 3.75–4.00 | Compliance card: "Educational only. Not financial advice." (first 4s) |
+| "raised rates a quarter of a point" | Small brass dial clicking one notch, macro, shallow DOF | Tick: 3.50 → 3.75–4.00 | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook |
 | **"the ten year has moved more than a full point"** | Hero: mooring rope under load, camera pushes ALONG it into blur | Yield line draws hard upward beside the rope | "+1.00%" scaling past frame edges, white flash |
 | "started near 4.15… below 4 in February" | Cold winter estuary, near-black grade, hard parallax | Line dips into a trough, counter rolls down | "4.15%" → "3.9%" counting physically |
 | "On September fourteenth it crossed five" | Whip-pan up a concrete sea wall, water rising against it | Line breaches a drawn "5.00%" threshold; threshold cracks | "5.00%" — type-as-mask reveal |

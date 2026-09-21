@@ -19,6 +19,12 @@ more honest and better content than a promo. Every video carries an on-screen
 **Read `STYLE-GUIDE.md` and build the brief from its template.** It is the channel's
 locked visual identity. Summary of the non-negotiables:
 
+- **The first five seconds decide everything.** The opening sentence must be the most
+  surprising true thing in the fact table, and must work as the title. No build-up, no title
+  card, no question. The compliance line renders as a thin bottom-edge strip, never a
+  full-frame card that eats the hook. Then: new information or a reversal every 10–15s, the
+  counter-evidence turn signposted out loud, and a close that loops back to the opening.
+  **`STYLE-GUIDE.md` §5A is the standard and `retention-editor` has veto over it.**
 - **Imagery-first, three-layer stack.** Cinematic photographic imagery is the BASE layer,
   motion graphics over it, type and captions on top. Never typography on abstract
   backgrounds — that was tried and rejected.
@@ -81,7 +87,7 @@ Channel-level documents:
 | `STYLE-GUIDE.md` | Locked visual identity. Read in full before every brief. |
 | `GROWTH-PLAN.md` | Channel strategy, tool stack, pipeline interconnection, metrics. |
 | `WEEKLY-RUNBOOK.md` | The weekly production cycle and how to run the agent team. |
-| `.claude/agents/` | scout · fact-checker · scriptwriter · art-director · packager |
+| `.claude/agents/` | scout · fact-checker · scriptwriter · **retention-editor** · art-director · packager |
 
 ## Which channel this repo serves
 
