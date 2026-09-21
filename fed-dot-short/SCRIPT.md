@@ -10,24 +10,33 @@ channel covered the headline. The dot-plot omission is the differentiated beat.
 
 ## Fact table
 
-Verified 2026-09-21 by web search. Analyst views are marked as estimates, never as prices.
+**Independently re-verified 2026-09-21** (second pass, after the original table below was
+flagged as unverified/possibly wrong). Every row below was re-searched from scratch today;
+do not read the "High" labels in the first pass as having been trustworthy on their own.
+Analyst views are marked as estimates, never as prices.
 
-| # | Claim | Value | Source | Confidence |
-|---|---|---|---|---|
-| 1 | FOMC raised the target range | 3.75%–4.00%, +25bp | CNBC, Schwab, KPMG | High |
-| 2 | First increase since | July 2023 | Schwab Network, Commercial Observer | High |
-| 3 | Vote | 12–0, unanimous | Schwab, KPMG | High |
-| 4 | Warsh quote | "The plain fact is that inflation is too high, and has been for too long." | Post-meeting press conference, via KPMG | High |
-| 5 | Participants projecting ≥1 more hike in 2026 | 16 of 18 | Bloomberg, Kiplinger | High |
-| 6 | Median projected fed funds rate | 4.1% at end-2026 and end-2027 | Kiplinger | High — **this is a projection, not a market price** |
-| 7 | Warsh submitted no dot | Declined at June 2026 and September 2026 | Bloomberg | High |
-| 8 | Dow reaction on decision day | −628.18 pts, −1.18%, to 52,786.07 | CNBC | Medium — intraday figure, verify close before publish |
-| 9 | Tom Lee counter-view | Called the selling an overreaction | CNBC Television | High — **his opinion, framed as opinion** |
-| 10 | Initial equity reaction | Described as "muted," lending credibility to the Fed's stance | Schwab Network | Medium |
+| # | Claim | Value | Source | Confidence | Audit result |
+|---|---|---|---|---|---|
+| 1 | FOMC raised the target range | 3.75%–4.00%, +25bp | CNBC, Schwab, KPMG, U.S. Bank | High | **CONFIRMED** — consistent across 4+ independent outlets |
+| 2 | First increase since | July 2023 | CNBC, CNN, U.S. Bank | High | **CONFIRMED** — matches real Fed history (last hike pre-cycle was July 2023) plus contemporaneous coverage |
+| 3 | Vote | 12–0, unanimous | Schwab, CNBC | High | **CONFIRMED** |
+| 4 | Warsh quote | "The plain fact is that inflation is too high, and has been for too long." | Post-meeting press conference; corroborated by CNBC and Seoul Economic Daily coverage of the same presser | High | **CONFIRMED** — exact wording matches two independent write-ups |
+| 5 | Participants projecting ≥1 more hike in 2026, and where Warsh sits | **18 = the number who SUBMITTED dots, not the full roster.** The SEP normally has 19 participants (7 governors incl. chair + 12 Reserve Bank presidents). Warsh has declined to submit since his first meeting as chair, leaving 18 dots. 16 of those 18 submitted dots project ≥1 more hike in 2026. Warsh is outside the 18, not one of the 16 or the 2. | TradingView/Seeking Alpha, Yahoo Finance dot-plot coverage, allweatherfinance.com ("one of the nineteen is missing") | High | **CONFIRMED — this is the load-bearing row.** Two independent explainer pieces plus the market-report wrap all describe the same structure: 19 seats, Warsh silent, 18 dots, 16 pointing higher. |
+| 6 | Median projected fed funds rate | 4.1% at end-2026 (up from 3.8% in June) and 4.1% at end-2027 (up from 3.6% in June) | KuCoin, CCN, Raisin — cross-checked, all report the same 4.1%/4.1% figures | High — **this is a projection, not a market price** | **CONFIRMED** — 3 independent aggregations of the same SEP table agree |
+| 7 | Warsh submitted no dot | Declined at June 2026 (his first meeting as chair) and again September 2026 | Yahoo Finance dot-plot explainer, Bloomberg headline ("Why Kevin Warsh Again Skipped the Fed's Dot Plot") | High | **CONFIRMED** |
+| 8 | Dow reaction on decision day | **CORRECTED: −631.21 pts (−1.21%), closed at 51,461.90 on Sept 16, 2026.** The original figure (−628.18 pts / −1.18% / 52,786.07) was traced to a **different, unrelated trading day — September 8, 2026**, a sell-off driven by Middle East tensions and rising oil prices. It was not the Fed decision day and should not be in this script at all. | Yahoo Finance ("Stock market today: Dow sinks 600 points... as Fed hikes rates"), rollingout.com ("Dow jones drops 631 points after historic Fed rate hike") | High — this is the closing print, not intraday | **CORRECTED — was wrong day, wrong number, wrong cause** |
+| 9 | Tom Lee counter-view | On CNBC (Closing Bell, Sept 16 2026) said markets were "overreacting" to the Fed decision and that he'd be a dip buyer | CNBC video, "Tom Lee: Markets are overreacting to the Fed and I would be a dip buyer" (2026-09-16) | High — **his opinion, framed as opinion, not a price target** | **CONFIRMED** — named, dated, sourced clip |
+| 10 | Initial equity reaction | "Muted" is accurate only for the instant right after the 2:00pm statement release — multiple outlets describe stocks as "little changed" at that moment. The sell-off (down >600 Dow points by the close) came afterward, during Warsh's 2:30pm press conference, once his hawkish tone registered. | Yahoo Finance live blog, Fortune ("Stocks slide... after Warsh's hawkish press conference") | Medium — **accurate but time-scoped; do not let "muted" describe the whole session, since the same script correctly reports the down-600+ close a few lines later** | **CONFIRMED with caveat** — keep the sequencing (muted → then sold off during the presser) explicit so the two lines don't read as contradictory |
 
 **Disconfirming data included in the script:** items 3, 9 and 10 — the unanimity, the muted
 first reaction, and Lee's overreaction call all cut against a "Fed panic" reading. The script
-says so out loud.
+says so out loud. Row 10's nuance (muted-then-not) is itself close to a second disconfirming
+beat — worth keeping the "then during the press conference" framing so it doesn't overstate
+calm.
+
+**Additional flag found in this audit (not a fact-table row):** the hook's phrase "this week"
+will go stale — the meeting was Wednesday Sept 16, 2026; if this renders on or after Monday
+Sept 22 it is no longer "this week." Use "last week" or drop the time reference before publish.
 
 ---
 
@@ -47,7 +56,7 @@ says so out loud.
 >
 > Now the counterweight, because this is not a Fed in crisis. The vote was unanimous. The first market reaction was muted. And Fundstrat's Tom Lee called the selling an overreaction.
 >
-> The Dow still closed down six hundred and twenty eight points.
+> The Dow still closed down six hundred and thirty one points.
 >
 > One thing you can act on. A four percent policy rate reprices money market funds within weeks. Before you check your stocks, check what your cash is earning. That number, at least, somebody is willing to publish.
 
@@ -93,7 +102,7 @@ decision as a mechanism that has just reversed direction. Returns at the close.
 | "a hole where the chairman's forecast should be" | Through-the-socket transition into a dark document plate | Document rows draw, one row stays blank | — |
 | "Here is the honest counterweight" | Frame flips — same pendulum lit from the opposite side | Vote tally assembles 12–0 in white, not red | "12–0" |
 | "Lee called the selling an overreaction" | Empty trading-floor architecture, long lens, deserted | Line chart draws, dips, recovers partway | Name-tag, plain text: "Fundstrat — Tom Lee" |
-| "Dow still closed down 628" | Concrete stair descending into shadow, hard parallax | Chart cracks and drops debris on the number | "−628.18" counting up then snapping red |
+| "Dow still closed down 631" | Concrete stair descending into shadow, hard parallax | Chart cracks and drops debris on the number | "−631.21" counting up then snapping red |
 | "Check what your cash is earning" | Return to hero pendulum, now swinging | Money-market yield dial sweeps to 4% | "4%" |
 
 Bookend: pendulum arrested → pendulum swinging.

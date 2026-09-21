@@ -11,27 +11,71 @@ from it. That is the channel's differentiator.
 
 ## Fact table
 
-Verified 2026-09-21 by web search. All figures are BofA's own client book, not market-wide flows.
+**Re-verified independently 2026-09-21 (second pass).** The prior table was treated as
+UNVERIFIED going into this pass, per the note that the assistant which wrote it had made five
+documented errors this session. Every row below was re-searched from scratch; none was accepted
+on the strength of its prior "High" label. Direct primary-source fetches (Finvaulta,
+investing.com, Seeking Alpha, Yahoo Finance, trustfinance, intellectia.ai, r.jina.ai proxy) were
+all blocked by network egress in this environment, so verification here rests on convergent web
+search — the same figures, to the same decimal, recurred independently across roughly a dozen
+differently-worded queries run on different days/snippets, including one query that returned
+unrounded figures ($7.026bn / $5.756bn / $3.969bn) that round exactly to the headline numbers.
+That is real corroboration but it is not the same as reading the primary note directly, so
+confidence is capped at High rather than treated as certain, and a pre-publish re-check against
+the primary Finvaulta/BofA note is still recommended before render. All figures are BofA's own
+client book, not market-wide flows.
 
-| # | Claim | Value | Source | Confidence |
-|---|---|---|---|---|
-| 1 | Ranking of the week's inflow | 6th largest weekly inflow in BofA data since 2008 | Seeking Alpha, Finvaulta, fxbus | High |
-| 2 | Week referenced | Week ending 2026-08-31 | Finvaulta | High |
-| 3 | Total net inflow | $7.0bn into US equities | Finvaulta | High |
-| 4 | Split | $3.9bn single stocks / $3.1bn equity ETFs | Finvaulta | High |
-| 5 | Institutional clients | +$5.8bn net buys | Finvaulta, fxbus | High |
-| 6 | Hedge fund clients | +$4.0bn net buys | Finvaulta, fxbus | High |
-| 7 | Private (retail) clients | −$2.7bn net sellers | Finvaulta | High |
-| 8 | Retail selling streak | 6th consecutive week | Finvaulta | High |
-| 9 | Strategist attribution | Jill Carey Hall attributed it to institutional and hedge fund buying | fxbus | Medium — secondary relay of the note |
-| 10 | Second consecutive week of net buying overall | Yes | fxbus | High |
+| # | Claim | Value | Source | Confidence | Status |
+|---|---|---|---|---|---|
+| 1 | Ranking of the week's inflow | 6th-largest weekly net inflow in BofA's own weekly client-flow data series, which runs since 2008 — this ranking applies to the **total $7.0bn figure**, not to institutional or hedge-fund flows specifically | Seeking Alpha ("...driving the biggest inflows since mid-July and the sixth-largest in the firm's weekly data history dating back to 2008"), corroborated via Finvaulta-sourced search snippets | High | CONFIRMED, with scoping clarified |
+| 2 | Week referenced | Week ending 2026-08-31 | Finvaulta (report dated 2026-09-08, the following Monday) | High | CONFIRMED |
+| 3 | Total net inflow | $7.0bn into US equities (precise: $7.026bn) | Finvaulta, cross-checked against an independent search returning the unrounded figure | High | CONFIRMED |
+| 4 | Split | $3.9bn single stocks / $3.1bn equity ETFs | Finvaulta | High | CONFIRMED |
+| 5 | Institutional clients | +$5.8bn net buys (precise: $5.756bn) | Finvaulta, independent search with unrounded figure | High | CONFIRMED |
+| 6 | Hedge fund clients | +$4.0bn net buys (precise: $3.969bn) | Finvaulta, independent search with unrounded figure | High | CONFIRMED |
+| 7 | Private (retail) clients | −$2.7bn net sellers | Finvaulta | High | CONFIRMED |
+| 8 | Retail (private client) selling streak | 6th consecutive week, specifically for private clients in the week ending 2026-08-31 | Finvaulta ("private retail clients remained net sellers for a sixth straight week") | Medium-High — see note below | CONFIRMED, but flagged: "sixth week" streak language recurs constantly in BofA's weekly series attached to *different* client types in *different* weeks (e.g., a separate Aug-12-2026 report has **hedge funds** driving a "6th week of equity net buying" for the *overall* book, and another has **institutions'** own buying streak hit six weeks — unrelated reports, easy to conflate). Re-checked specifically against sources dated to the 2026-08-31 week; the six-week figure ties to private-client selling in that week, not to those other streaks. |
+| 9 | Strategist attribution | Jill Carey Hall (BofA equity & quant strategist) authors this weekly note and attributed the split to institutional/hedge-fund buying | Confirmed Hall is the named BofA strategist for this series (LinkedIn, MarketScreener); could not independently verify her exact wording for this specific week since primary-note text was unreachable | Medium — attribution of authorship is solid, exact quoted framing is not independently confirmed | UNVERIFIABLE in full, CONFIRMED in part |
+| 10 | Second consecutive week of net buying overall | Yes | Seeking Alpha ("net buyers of U.S. equities for the second consecutive week last week") | High | CONFIRMED |
+| — | **"fxbus" as a source** | Removed | The original table cited "fxbus" for five rows. No such outlet could be located in any search — it appears to be a fabricated or unfindable citation. Replaced with the outlets that actually surfaced (Seeking Alpha, Finvaulta, corroborating search snippets). | — | **CORRECTED — citation removed, not just relabelled** |
+| 11 | "Institutions were also heavy buyers into 2007 and into 2021" | **Not supportable as written** | Extensive search of BofA's own flow-note archive and general market-positioning literature found no sourced claim that institutions were heavy net buyers specifically "into 2007" or "into 2021." The closest real data point (AdvisorPerspectives/Fed-flow-of-funds style analysis) shows institutional equity *allocation* peaking near 2000 and recovering to ~57% just before 2008 — a different measure (allocation level, not flow) and a different year (2008, not 2007). BofA's own proprietary flow series **only starts in 2008**, so BofA's own data literally cannot support a claim about "into 2007." Nothing specific to 2021 turned up at all. | Low | **UNVERIFIABLE — flag as an unsourced rhetorical flourish stated as fact in the VO** |
 
 **Scope limit stated on screen:** these are Bank of America client flows, a single broker's book.
-They are not a census of market participation. The script says this explicitly.
+They are not a census of market participation. The script says this explicitly. CONFIRMED as an
+accurate framing — "6th largest since 2008" is BofA's own proprietary weekly series, not a
+market-wide or multi-broker ranking.
 
 **Disconfirming data included:** items 7–8 are usually framed as capitulation. The script gives
-the two boring alternative explanations — retirement drawdown and post-rally rebalancing — and
-notes institutions were also heavy buyers into previous tops.
+two boring alternative explanations — retirement drawdown and post-rally rebalancing — which
+stand as reasonable, if unverified-for-this-specific-week, hypotheses. The "institutions were also
+heavy buyers into 2007 and into 2021" line does **not** stand as a disconfirming/counter-evidence
+data point as written — it is unsourced and should either be cut or rewritten as a softer,
+attributed generality (see recommendation below).
+
+**Opening hook — accuracy verdict:** The hook as written ("Somebody moved seven billion dollars
+into American stocks in a single week. It was not ordinary investors. They were selling. For the
+sixth week running.") is **accurate as written**, given the resolution above: the $7.0bn figure is
+the TOTAL net inflow for the week ending 2026-08-31 (row 3, CONFIRMED); private/retail clients were
+net sellers of $2.7bn in that same week (row 7, CONFIRMED); and it was the sixth consecutive week
+of private-client selling (row 8, CONFIRMED, with the caveat noted above that this specific
+"sixth week" figure must not be confused with unrelated six-week streaks BofA has reported for
+other client types in other weeks). The "6th largest since 2008" ranking (row 1) correctly applies
+to the total inflow within BofA's own proprietary series, not to a market-wide ranking — the
+script's on-screen scope card is doing the necessary work there and should stay.
+
+**Action required before render:** cut or rewrite the VO line "Institutions were also heavy buyers
+into two thousand seven, and into two thousand twenty one" (row 11) — it is not supportable from
+BofA's own data (which starts in 2008, not 2007) or from any other source found. Recommend
+replacing with an attributed, softer line, e.g. "Institutional flows have looked euphoric at past
+market tops before — that's not proof, it's a pattern," or simply cutting the sentence and leaning
+on the retirement-drawdown/rebalancing alternatives, which are on firmer ground.
+
+**Rows needing pre-publish re-check on render day:** none of these are daily prints (this is a
+weekly series, not a spot price/yield), but row 8's streak count and row 9's exact attribution
+wording should be re-confirmed against the primary Finvaulta/BofA note directly if it becomes
+accessible, since this pass relied on search-snippet corroboration rather than the primary text
+(all primary domains were egress-blocked in this environment: finvaulta.com, investing.com,
+seekingalpha.com, finance.yahoo.com, intellectia.ai, trustfinance.com, streetinsider.com, r.jina.ai).
 
 ---
 
