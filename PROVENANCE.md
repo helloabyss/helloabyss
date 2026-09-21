@@ -13,6 +13,10 @@ cost real money. This is the standard that replaces "trust me."
 Every substantive claim in this repo is one of these. **Mark the class whenever the answer
 isn't obvious from a visible source.**
 
+**Note on quoted errors:** the table in the "Class D" section below quotes the original wording
+of each mistake so it is on the record. Those strings appear in this file **as quotations of
+things that were wrong**, not as claims. Nowhere else in the repo do they appear as assertions.
+
 | Class | Meaning | How you check it | Trust |
 |---|---|---|---|
 | **A — Tool output** | Came back from an actual API call this session | Re-run the call. One command. | High, but perishable |
@@ -71,7 +75,7 @@ Three. Listed so the pattern is visible, not buried.
 
 | # | Claim | Reality | Cost | Status |
 |---|---|---|---|---|
-| 1 | "vidIQ research calls appear not to draw down the balance" — written into `CLAUDE.md` as a constraint | Every call costs 5 credits. The balance had been checked once, at session start, and never again — so there was no evidence either way, presented as weak positive evidence. | **40 of 41 credits** | Corrected; real cost table and per-agent budgets now in `CLAUDE.md` and `AGENTS.md` |
+| 1 | "vidIQ research calls appear not to draw down the balance" — written into `CLAUDE.md` as a constraint | Calls do draw down the balance. The balance had been checked once, at session start, and never again — so there was no evidence either way, presented as weak positive evidence. (The replacement claim that *every* call costs 5 was also wrong — see finding #4.) | **40 of 41 credits** | Corrected; real cost table and per-agent budgets now in `CLAUDE.md` and `AGENTS.md` |
 | 2 | The `UC…` channel ID blocks publishing automation | Publishing runs on OAuth; the ID buys nothing. Never checked before sending the user to find it. | User's time on a pointless errand | Corrected; requirement removed |
 | 3 | The hook standard is "enforced structurally rather than left to judgement" | The agents are markdown prompts. "Veto" is an instruction to a model. **There is no gate, hook or CI check — nothing technically stops a failed script reaching HeyGen.** | Misplaced confidence in the pipeline | Corrected in `AGENTS.md` |
 
