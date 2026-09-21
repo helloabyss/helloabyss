@@ -22,19 +22,39 @@ args=sys.argv[1:]
 if len(args)==9:
     beats=[load(a) for a in args]
 elif len(args)==1:
-    a=load(args[0])
-    # split on the 8 longest silences -> 9 beats
+    a=load(args[0]); dur=len(a)/SR
+    # Detect every candidate pause, then SNAP to where each beat boundary is expected
+    # from the script's word distribution. Picking the globally longest silences is wrong:
+    # a sentence pause inside a beat can exceed a beat gap. (Verified failure, 2026-09-21.)
     win=int(0.02*SR); env=np.array([np.abs(a[i:i+win]).max() for i in range(0,len(a)-win,win)])
-    thr=max(env.max()*0.035, 1e-4); quiet=env<thr
-    runs=[];s=None
+    thr=max(env.max()*0.040, 1e-4); quiet=env<thr
+    cands=[];st=None
     for i,q in enumerate(quiet):
-        if q and s is None: s=i
-        elif not q and s is not None:
-            if (i-s)*0.02>0.22: runs.append(((i-s)*0.02, s, i))
-            s=None
-    runs.sort(reverse=True); cuts=sorted([int((r[1]+r[2])/2*win) for r in runs[:8]])
-    if len(cuts)!=8: sys.exit(f"found {len(cuts)} pauses, need 8 — supply 9 files instead")
-    bounds=[0]+cuts+[len(a)]; beats=[a[bounds[i]:bounds[i+1]] for i in range(9)]
+        if q and st is None: st=i
+        elif not q and st is not None:
+            if (i-st)*0.02>=0.16: cands.append(((st+i)/2*0.02, (i-st)*0.02))
+            st=None
+    if st is not None and (len(quiet)-st)*0.02>=0.16: cands.append(((st+len(quiet))/2*0.02,(len(quiet)-st)*0.02))
+    # characters + a per-sentence penalty predicts speech time far better than word count
+    # (spelled-out numbers are long to say but few words). Measured 2026-09-21.
+    wc=[len(re.sub(r"[^A-Za-z0-9]","",p))+2.2*len(re.findall(r"[.!?]",p)) for p in script]
+    tot=sum(wc)
+    expect=[dur*sum(wc[:i+1])/tot for i in range(8)]          # expected boundary times
+    used=set(); cuts=[]; prev=0.0
+    for e in expect:
+        best=None
+        for j,(mid,ln) in enumerate(cands):
+            if j in used or mid<=prev+0.8: continue
+            # prefer near-expected, mildly reward longer pauses
+            cost=abs(mid-e)-min(ln,1.2)*0.5
+            if best is None or cost<best[0]: best=(cost,j,mid)
+        if best is None or abs(best[2]-e)>6.0:
+            cuts.append(e); prev=e                            # fall back to the expected time
+        else:
+            used.add(best[1]); cuts.append(best[2]); prev=best[2]
+    bounds=[0]+[int(c*SR) for c in cuts]+[len(a)]
+    beats=[a[bounds[i]:bounds[i+1]] for i in range(9)]
+    print("  boundary snap: "+", ".join(f"{c:.1f}s(exp {e:.1f})" for c,e in zip(cuts,expect)))
 else:
     sys.exit(__doc__)
 
