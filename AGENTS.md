@@ -95,8 +95,10 @@ channel's palette. **Does not chase the score.**
 
 | Rule | Why |
 |---|---|
-| Research calls are free; generation is not | vidIQ thumbnail 22, score 5, against a 41-credit pool |
-| No generation credit without your yes **in that turn** | Protects the pool from the agents themselves |
+| **Every vidIQ call costs 5 credits** except `vidiq_balance` | Corrected 2026-09-21 — research is NOT free, and believing it was cost 40 of 41 credits in one session |
+| Weekly vidIQ budget: **scout 3 · retention-editor 1 · packager 1** | 150/month renewable ≈ 7 calls/week across the whole chain |
+| Never call `vidiq_outliers` | Ignores its query argument — 5 credits for unrelated results |
+| No generation credit without your yes **in that turn** | thumbnail 22, score 5 |
 | Check balances at session start | `CLAUDE.md` has been stale before and cost the channel usable tools |
 | Never script from memory | Every figure gets a live search |
 | Analyst numbers are estimates, never prices | Regulatory exposure on content people act on |

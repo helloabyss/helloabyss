@@ -13,7 +13,8 @@ There are two channels and they do not share a strategy, an audience or a publis
 |---|---|---|
 | Lane | **Faceless finance — this repo** | AI / tech |
 | Subscribers | **6** | 57 |
-| Channel ID | *needed — see below* | `UCX2_NXOHIgXUQFsBOub65HQ` |
+| Handle | **`@meticulousmoney`** | `@paradocs10x` |
+| Channel ID | *unresolvable from here — see below* | `UCX2_NXOHIgXUQFsBOub65HQ` |
 | vidIQ visibility | Not indexed (too small) | Indexed, connected |
 | OpusClip / AgentOpus publishing | **Not connected** | Connected (`6797cd6d213f56bd20026a41`) |
 | Status | **Active focus** | Parked |
@@ -36,9 +37,10 @@ meaningful fraction of the classification evidence.
 
 ### Blocked on you — two inputs needed
 
-1. **The channel handle or URL** for The Meticulous Investor. vidIQ can't find it by search
-   (channels this small aren't indexed), so I can't pull its stats, competitors or baselines
-   without the ID.
+1. **The `UC…` channel ID**, from YouTube Studio → Settings → Channel → Advanced. The handle
+   `@meticulousmoney` is recorded, but I cannot convert it to an ID from here: `www.youtube.com`
+   is egress-blocked, and vidIQ does not index channels this small (two searches confirmed it
+   and cost 10 credits). Paste the ID and the tooling can address the channel directly.
 2. **Authorise the tooling against it.** `vidiq_authorize_with_youtube` currently points at
    `paradocs10x@gmail.com`. Publishing automation stays unwired until the finance channel has
    its own connection — I will not repoint the tech channel's.
@@ -93,7 +95,7 @@ nothing.
 |---|---|---|
 | **Claude (here)** | Research, fact-checking, scripting, repo, orchestration | Working |
 | **HeyGen** | Render — the only tool producing finished house-style video | **Pro, 372 credits** |
-| **vidIQ** | Demand research, competitor data, title validation | 41 credits — research is free, generation isn't |
+| **vidIQ** | Demand research, competitor data, title validation | **1 credit — exhausted.** Every call costs 5; pool resets 2026-10-03 |
 | **OpusClip** | **Scheduled publishing to YouTube + X** | Connected, unused — see §5 |
 | **DaVinci Resolve** | The one editor you need for fixes and grade | Free tier is enough |
 
@@ -266,7 +268,10 @@ working format three weeks early.
   the weekly cycle slips a week, they're worthless. The 10-year short is the durable one.
 - **No render can be verified from this environment.** CDN egress is blocked. Every video ships
   on your eyes, and that's a hard dependency on you.
-- **vidIQ's renewable pool is 0/150.** The 41 add-on credits are all there is until 2026-10-03.
+- **vidIQ is out of credits until 2026-10-03.** Every research call costs 5, not zero as this
+  plan originally assumed — the correction is in `CLAUDE.md`. The renewable 150/month is
+  **30 calls a month, ~7 a week**, which is now a written budget split across the agents
+  (`AGENTS.md`). Competitor and demand research is unavailable until the reset or a top-up.
 - **OpusClip at 87% of cap until 2026-10-01.** Scheduling only this month.
 - **The style guide's low-saturation palette will score badly** on vidIQ's thumbnail scorer.
   That is a known, accepted trade. Don't let a score talk you out of the identity.

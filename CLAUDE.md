@@ -57,7 +57,7 @@ being wrong made the channel avoid tools it could afford.**
 |---|---|
 | HeyGen | **Pro plan, 372 premium credits** (resets 2026-10-06) |
 | Higgsfield | **564.84 credits**, starter plan — B-roll IS available |
-| vidIQ | **41 add-on credits**; renewable pool 0/150, resets 2026-10-03 |
+| vidIQ | **1 credit** — exhausted 2026-09-21. Renewable pool 0/150, **resets 2026-10-03**. No vidIQ research until then unless topped up. |
 
 - **HeyGen CDN egress is blocked** (`files2.heygen.ai`, `resource2.heygen.ai`). Renders
   cannot be downloaded or watched from here. Always report a render as *complete, not
@@ -65,13 +65,29 @@ being wrong made the channel avoid tools it could afford.**
 - **HeyGen `create_speech`** failed on the old Creator plan (needs separate `api` credits).
   The account is now Pro — **untested since the upgrade.** Test once before assuming there is
   no detached VO stem.
-- **vidIQ cost discipline.** Research calls (`channel_stats`, `channel_videos`,
-  `channel_search`, `youtube_search`, `keyword_research`) appear not to draw down the balance.
-  Generation does: thumbnail 22, scoring 5. With 41 credits that is **one thumbnail, or eight
-  scores — not both.** Spend on research first; HeyGen generates a free thumbnail per session.
+- **vidIQ cost discipline — CORRECTED 2026-09-21. Read this before any vidIQ call.**
+  An earlier version of this file said research calls were free. **That was wrong and it cost
+  the channel 40 of its 41 credits in a single session.**
+
+  | Call | Cost |
+  |---|---|
+  | `vidiq_balance` | free |
+  | **Every other research call** — `channel_stats`, `channel_videos`, `channel_search`, `youtube_search`, `keyword_research`, `video_stats`, `outliers`, `trend_categories` | **5 credits each** |
+  | `score_thumbnail` / `score_title` | 5 |
+  | `generate_thumbnail` | 22 |
+
+  The renewable pool is **150/month** = **30 research calls a month**, about **7 a week**.
+  That is the real budget. Plan queries before making them; a vidIQ call is a purchase.
+
+  **Never** call `vidiq_outliers` — it ignores its `query` argument and returns unrelated
+  results, so it is 5 credits for nothing. It is the single worst spend in the tool.
 - **`vidiq_outliers` ignores its `query` argument** — it returned cat compilations and Kaiju
-  gameplay for "investing stock market money". Use `vidiq_channel_search` and
-  `vidiq_youtube_search` instead; both respect the query.
+  gameplay for "investing stock market money", and charged 5 credits to do it. Use
+  `vidiq_channel_search` and `vidiq_youtube_search`, which respect the query.
+- **vidIQ cannot find The Meticulous Investor** (`@meticulousmoney`) — channels this small are
+  not indexed. Two `channel_search` attempts cost 10 credits and returned nothing. **Do not
+  search for it again.** Get the `UC…` ID from YouTube Studio instead; `www.youtube.com` is
+  egress-blocked from this environment so it cannot be resolved here.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
 
@@ -92,7 +108,8 @@ Channel-level documents:
 
 ## Which channel this repo serves
 
-**The Meticulous Investor** — faceless finance, 6 subscribers, cold start. Every script,
+**The Meticulous Investor** — `@meticulousmoney`, faceless finance, 6 subscribers, cold start.
+Channel ID (`UC…`) still unknown; see the vidIQ note below. Every script,
 render and packaging decision in this repo targets that channel.
 
 `PARADOCS10X` (`UCX2_NXOHIgXUQFsBOub65HQ`, AI/tech, 57 subs) is a **separate, parked** channel.

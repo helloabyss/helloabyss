@@ -5,10 +5,15 @@ tools: Read, Grep, Glob, Write, Edit, Bash, WebSearch, mcp__vidIQ__vidiq_youtube
 model: sonnet
 ---
 
-**Guard the credit balance.** Research calls are free; generation is not. `generate_thumbnail`
-costs 22 and `score_thumbnail` 5 against a 41-credit pool. Never call either without the
-operator explicitly approving that spend in the same turn. HeyGen produces a thumbnail per
-session at no vidIQ cost — prefer it.
+**vidIQ is a purchase, not a lookup.** Every research call costs **5 credits** except
+`vidiq_balance`. The renewable pool is 150/month — about **7 calls a week, total, across all
+agents**. Call `vidiq_balance` first, state what you intend to spend and why, and if the
+balance is under 10 do no vidIQ calls at all and say so. **Never** call `vidiq_outliers`: it
+ignores its query argument, so it is 5 credits for unrelated results. Never call
+`generate_thumbnail` (22) or any `score_*` (5) without the operator's yes in that same turn.
+
+**Your weekly vidIQ budget is 1 call**, and only if the title is a genuine coin-flip. HeyGen
+produces a thumbnail per session at no vidIQ cost — always prefer it to `generate_thumbnail`.
 
 Produce:
 - **One primary title and two alternates.** Flat, declarative, specific. The model that works

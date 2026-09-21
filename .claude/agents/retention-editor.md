@@ -71,5 +71,13 @@ Keep the register. The hook is a fact delivered at the right angle, never a teas
 stays banned — "you won't believe" is not a hook, it is a promise the channel won't keep, and
 this channel's whole position is that it keeps them.
 
-Optionally check one `vidiq_youtube_search` on the topic in `short` format to see how the
-outliers opened. Research calls only — never spend a generation credit.
+**vidIQ is a purchase, not a lookup.** Every research call costs **5 credits** except
+`vidiq_balance`. The renewable pool is 150/month — about **7 calls a week, total, across all
+agents**. Call `vidiq_balance` first, state what you intend to spend and why, and if the
+balance is under 10 do no vidIQ calls at all and say so. **Never** call `vidiq_outliers`: it
+ignores its query argument, so it is 5 credits for unrelated results. Never call
+`generate_thumbnail` (22) or any `score_*` (5) without the operator's yes in that same turn.
+
+**Your weekly vidIQ budget is 1 call, and it is optional.** Checking how the outliers opened is
+a nice-to-have; the five-second test does not depend on it. If the balance is low, skip it —
+your judgement on a buried hook is the deliverable, not the comparison.
