@@ -91,17 +91,27 @@ seekingalpha.com, finance.yahoo.com, intellectia.ai, trustfinance.com, streetins
 >
 > So the story writes itself. Smart money accumulating. Retail capitulating.
 >
-> Now the counterweight, because that story is far weaker than it sounds. This is one bank's client book. Not the market. Institutions were also heavy buyers into two thousand seven, and into two thousand twenty one. And private client selling is not automatically panic. Retirees draw down. People rebalance after a run.
+> Now the counterweight, because that story is far weaker than it sounds. This is one bank's client book. Not the market. And institutional does not mean correct. It means large. Private client selling is not automatically panic either. Retirees draw down. People rebalance after a run.
 >
 > Flow data tells you what already happened. It has never reliably told you what happens next.
 >
 > One thing you can act on. Write your rebalancing rule down now, while nothing is forcing the decision. Then it never matters which side of that split you are on.
 
-~178 words ≈ 64–70s.
+~172 words ≈ 62–68s. (Counterweight beat rewritten 2026-09-21 after independent fact-check —
+see fact table row 11.)
 
 ### Hook & retention map
 
-Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor`.
+Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor` on 2026-09-21 —
+**VERDICT: FAIL.** The hook opens on a vague, unattributed "Somebody moved seven billion
+dollars…" — a curiosity-gap tease, not the hardest fact in the table. The 6th-largest-inflow-
+since-2008 superlative (fact-table row 1) is more specific and more surprising and is buried
+until 0:05–0:18. The shot list has no imagery keyed to the hook's literal words, and the
+compliance strip is attached to the loaded-pan row (shot-list row 1) rather than the empty
+pan the retention map says should open the video. The "Flow data tells you what already
+happened" line is unaccounted for anywhere in the retention map. The claimed 0:00–0:05 hook
+window cannot hold the ~25-word claim+turn at this script's own pace (~9s actual). See
+review notes for a suggested rewrite before this proceeds.
 
 | Segment | Time | Line | Job |
 |---|---|---|---|
@@ -137,7 +147,7 @@ the other emptying — shot so tight the pans fill the frame. Returns at the clo
 | "the sixth straight week" | Six identical steel doors receding into black | Each door stamps red in sequence, 1 through 6 | "6 WEEKS" |
 | "So the story writes itself" | Newsprint plate, macro, ink still wet | Headline type sets itself automatically | "SMART MONEY" — type-as-mask wipe |
 | **"that story is weaker than it sounds"** | The newsprint tears — camera pushes THROUGH the tear | Headline fractures and drops as debris | "ONE BANK'S CLIENTS" |
-| "into 2007, and into 2021" | Two archival-feel chart plates, graded near-black | Both charts draw up, then crack at the peak | "2007" / "2021" |
+| "institutional does not mean correct — it means large" | A single vast machined block dwarfing the frame, camera craning to find its edge | Scale bar draws alongside it; no accuracy readout appears | "LARGE ≠ RIGHT" |
 | "Retirees draw down. People rebalance." | Calm domestic architecture, empty, long lens | Pie re-slices smoothly — no failure animation here | — |
 | "Flow data tells you what happened" | Rear-view mirror macro, road receding | Chart draws backwards only, stops dead at frame centre | "WHAT HAPPENED" / "NOT WHAT'S NEXT" |
 | "Write your rebalancing rule down" | Return to hero scale pans, now level | Rule card sets: "IF / THEN" | "60 / 40?" as a prompt, not a recommendation |

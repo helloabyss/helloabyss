@@ -64,7 +64,15 @@ Sept 22 it is no longer "this week." Use "last week" or drop the time reference 
 
 ### Hook & retention map
 
-Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor`.
+Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor` on 2026-09-21 —
+**VERDICT: FAIL.** Hook wording tracks §5A's own worked example (claim + turn, no rephrase),
+but the brief as written will not deliver it: the shot list assigns no imagery to the hook's
+literal opening words, and the compliance strip is attached to the pendulum row (shot-list
+row 1) rather than the row the retention map says should open the video ("promote the socket
+to frame one"). The "sixteen dots pointing up, one socket, empty" beat (~0:35) restates facts
+5 and 7 rather than adding new information — a recap, not a re-hook. The claimed 0:00–0:05
+hook window cannot hold the ~24-word claim+turn at this script's own narration pace (~9s
+actual). Shot list and timing map need rework before this proceeds.
 
 | Segment | Time | Line | Job |
 |---|---|---|---|

@@ -58,7 +58,15 @@ generalise the wording ("above seven percent", "around a hundred dollars").
 
 ### Hook & retention map
 
-Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor`.
+Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor` on 2026-09-21 —
+**VERDICT: FAIL.** Sentence 1 is explicitly annotated in this document's own retention map as
+"deliberately flat — the setup for the reversal," which is a banned opener under §5A ("any
+sentence whose job is to set up the next sentence"). It also leads with the least surprising
+fact in the table — the Fed's already-headlined 25bp move — instead of the full-point mortgage
+move that is this video's actual differentiator. The shot list contradicts the "open on the
+mooring rope" note (the compliance strip is attached to the brass-dial row instead), and the
+hook needs ~12s to speak at this script's own pace, not the claimed 5s. Swapping the sentence
+order (see review notes) fixes both the text and the visual-assignment problem at once.
 
 | Segment | Time | Line | Job |
 |---|---|---|---|
