@@ -87,6 +87,7 @@ Channel-level documents:
 | `STYLE-GUIDE.md` | Locked visual identity. Read in full before every brief. |
 | `GROWTH-PLAN.md` | Channel strategy, tool stack, pipeline interconnection, metrics. |
 | `WEEKLY-RUNBOOK.md` | The weekly production cycle and how to run the agent team. |
+| `AGENTS.md` | **Agent registry** — the six agents, their roles, authority and handoffs. |
 | `.claude/agents/` | scout · fact-checker · scriptwriter · **retention-editor** · art-director · packager |
 
 ## Which channel this repo serves
