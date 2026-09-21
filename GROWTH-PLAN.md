@@ -5,39 +5,43 @@ true today, what the constraint is, and what connects to what.
 
 ---
 
-## 1. The thing that has to be decided first
+## 1. Two channels, two lanes — RESOLVED 2026-09-21
 
-**The channel this repo publishes to is `PARADOCS10X` — an AI/tech channel, not an investing
-channel.**
+There are two channels and they do not share a strategy, an audience or a publishing path.
 
-| | |
-|---|---|
-| Channel | PARADOCS10X — `UCX2_NXOHIgXUQFsBOub65HQ` |
-| vidIQ / YouTube auth | `paradocs10x@gmail.com` |
-| Subscribers | **57** |
-| Lifetime views | 28,829 across 38 videos |
-| Subscribers gained, last 30d | **0** |
-| Views gained, last 30d | 266 |
-| Top videos | 2023–24 AI shorts — reusable rockets (6,050), China AI (3,843), Face++ (2,697) |
-| Recent finance shorts | "The Moore's Law Myth" 138 · "2NM Chips" 66 · "Cybercab" 15 |
+| | **The Meticulous Investor** | **PARADOCS10X** |
+|---|---|---|
+| Lane | **Faceless finance — this repo** | AI / tech |
+| Subscribers | **6** | 57 |
+| Channel ID | *needed — see below* | `UCX2_NXOHIgXUQFsBOub65HQ` |
+| vidIQ visibility | Not indexed (too small) | Indexed, connected |
+| OpusClip / AgentOpus publishing | **Not connected** | Connected (`6797cd6d213f56bd20026a41`) |
+| Status | **Active focus** | Parked |
 
-There is no channel called "The Meticulous Investor" connected to any tool in this stack.
-So one of these is true, and they lead to different plans:
+**Decision:** all work in this repo targets **The Meticulous Investor**. The existing
+OpusClip and AgentOpus scheduling connection stays **reserved for PARADOCS10X** — it is not
+to be repointed at the finance channel. The tech channel keeps its own scheduling lane for
+whenever it's picked back up.
 
-- **(a) It's a rebrand of PARADOCS10X.** You keep 28.8k lifetime views and 57 subs, but you
-  inherit an audience YouTube has classified as AI/tech. The finance shorts will be shown to
-  people who subscribed for Cybertruck content. That's the 15-view problem above.
-- **(b) It's a new channel, not yet created or not yet connected.** Cleaner signal, zero
-  history, and every tool in the stack needs re-authorising against it.
+### What a 6-subscriber channel actually means
 
-**My recommendation: (b), a clean channel.** 57 subscribers is not an asset worth protecting,
-and the 28.8k views are three years old and topically wrong. A fresh channel gets a clean
-classification from the algorithm on day one. The cost of choosing (b) is one afternoon of
-re-auth; the cost of choosing (a) is fighting a mis-trained recommendation surface for months.
+This is the good case, not the bad one. A near-empty channel has **no mis-trained
+recommendation surface**. PARADOCS10X's problem is that YouTube has three years of evidence
+that its audience wants Cybertruck and AI content — which is why finance shorts posted there
+drew 15–138 views. The Meticulous Investor has no such baggage. Every video is a clean signal.
 
-**Everything below assumes a single dedicated finance channel. Tell me which and I'll wire it.**
+Treat it as a cold start and optimise for **topical consistency above all else**. Do not post
+anything off-lane for the first 90 days. One off-topic video on a 6-sub channel is a
+meaningful fraction of the classification evidence.
 
----
+### Blocked on you — two inputs needed
+
+1. **The channel handle or URL** for The Meticulous Investor. vidIQ can't find it by search
+   (channels this small aren't indexed), so I can't pull its stats, competitors or baselines
+   without the ID.
+2. **Authorise the tooling against it.** `vidiq_authorize_with_youtube` currently points at
+   `paradocs10x@gmail.com`. Publishing automation stays unwired until the finance channel has
+   its own connection — I will not repoint the tech channel's.
 
 ## 2. What the constraint actually is
 
@@ -163,11 +167,14 @@ scheduling only until the reset.
 
 **Three links to build, in priority order:**
 
-1. **Render → publish.** Register the finished HeyGen asset with OpusClip and schedule it to
-   both accounts. This removes the manual step that currently gates every upload. *Blocked on
-   the §1 channel decision — I don't want to wire publishing to the wrong channel.*
+1. **Render → publish.** Register the finished HeyGen asset with OpusClip and schedule it.
+   This removes the manual step that currently gates every upload. **Blocked: The Meticulous
+   Investor is not connected to OpusClip.** The only YouTube account there is PARADOCS10X, and
+   that connection is reserved for the tech channel (§1) — it must not be repointed.
 2. **One asset → two platforms.** Every short should post to YouTube and X from the same
-   render. You already have the X account connected and have never used it. This is free reach.
+   render. The X account (@troybillion) is already connected and has never been used — and
+   unlike the YouTube slot it is channel-agnostic, so **this one is usable today.** Free reach
+   for finance shorts with no new auth required.
 3. **Calendar + repo.** Google Calendar is connected. Put the FOMC dates, CPI release dates and
    earnings dates in it, and have the weekly cycle read from it — so the scout starts the week
    already knowing what's scheduled to happen.
@@ -201,29 +208,60 @@ where the outliers come from.
 
 ---
 
-## 7. What to measure
+## 7. What to measure — recalibrated for a 6-subscriber cold start
 
-Do not measure subscribers for the first 60 days — 57 → 200 is noise and will read as failure
-on a week where you did everything right.
+The earlier version of this plan targeted 1,000 subscribers in 90 days. **From 6 subscribers
+that is not a real target**, and chasing it would push the channel toward exactly the clickbait
+the style guide bans. Here is the honest version.
 
-| Horizon | Metric | Target |
+### The monetisation clock — the one deadline that matters
+
+Verified 2026-09-21:
+
+| Threshold | Requirement | Confidence |
 |---|---|---|
-| Weekly | Shorts published | 3 + reactive |
-| Weekly | Hours from news break → published | **< 24** for reactive |
-| Per video | Views at 48h vs channel median | rising median |
-| Per video | vidIQ `outlierScore` | any video > 2.0 = repeat that format |
-| 30 days | Median views/short | > 500 |
-| 90 days | Subscribers | 1,000 (monetisation floor) |
+| YPP Tier 1 (fan funding) | 500 subs **+ 3M Shorts views / 90 days** | High |
+| YPP full (ad revenue) | 1,000 subs **+ 10M Shorts views / 90 days**, or 4,000 watch hours / 12 months | High |
+| **From 2027-02-01, new applicants** | **8,000 watch hours or 20M Shorts views** | High — announced 2026-08-10 |
 
-**The one leading indicator that matters: median views per short, not the best short.** One
-lucky video tells you nothing. A rising median means the format works.
+Shorts views and long-form watch hours **never mix**.
 
----
+**So there is a real deadline: 2026-02-01 is ~4.5 months away, and after it the Shorts bar
+doubles to 20M.** Qualifying before then is worth a great deal. I am not going to promise you
+10M Shorts views in 4.5 months from a standing start — that would be dishonest. But it is the
+right thing to aim at, and **Tier 1 at 500 subs + 3M views is genuinely reachable** if the
+cadence holds and one or two videos break out.
+
+### Milestones, in order
+
+| Horizon | Target | Why this one |
+|---|---|---|
+| **Weeks 1–4** | 12 shorts published, zero off-lane | Classification. Nothing else matters yet. |
+| **Weeks 1–4** | Median views/short > 150 | Proves the format escapes the 6-sub floor |
+| **Weeks 5–8** | One video with vidIQ `outlierScore` > 2.0 | You now have a format to repeat |
+| **Weeks 5–8** | Median views/short > 500 | The algorithm is testing you on real surfaces |
+| **Weeks 9–12** | 500 subs / 3M Shorts views | YPP Tier 1 |
+| **By 2027-02-01** | 1,000 subs / 10M Shorts views | Full YPP before the bar doubles |
+
+### The leading indicators
+
+**Median views per short — never the best short.** One lucky video tells you nothing; a rising
+median means the format works. Track it weekly.
+
+**Hours from news break to published.** Under 24 for anything reactive. This is the single
+metric most within your control, and §2 shows it is where the views are.
+
+**Do not track subscribers weekly for the first 60 days.** 6 → 40 is noise, it will read as
+failure on a week where everything went right, and reacting to it is how channels abandon a
+working format three weeks early.
 
 ## 8. Honest risks
 
-- **The channel-identity problem (§1) is unresolved and it gates everything.** Publishing
-  finance shorts to an AI/tech channel's audience is why the last three got 15–138 views.
+- **The channel is at 6 subscribers with no tooling connected to it.** Nothing publishes
+  automatically until you supply the handle and authorise against it (§1). Until then every
+  upload is manual.
+- **The monetisation bar doubles on 2027-02-01** (§7). Missing that window means needing 20M
+  Shorts views instead of 10M.
 - **Breaking-news content decays in hours.** Three of this repo's assets are news-reactive. If
   the weekly cycle slips a week, they're worthless. The 10-year short is the durable one.
 - **No render can be verified from this environment.** CDN egress is blocked. Every video ships

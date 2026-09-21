@@ -83,5 +83,25 @@ Channel-level documents:
 | `WEEKLY-RUNBOOK.md` | The weekly production cycle and how to run the agent team. |
 | `.claude/agents/` | scout · fact-checker · scriptwriter · art-director · packager |
 
-**Unresolved:** the connected YouTube channel is `PARADOCS10X` (AI/tech, 57 subs), not a
-finance channel. See `GROWTH-PLAN.md` §1 — this gates publishing automation.
+## Which channel this repo serves
+
+**The Meticulous Investor** — faceless finance, 6 subscribers, cold start. Every script,
+render and packaging decision in this repo targets that channel.
+
+`PARADOCS10X` (`UCX2_NXOHIgXUQFsBOub65HQ`, AI/tech, 57 subs) is a **separate, parked** channel.
+Its OpusClip / AgentOpus publishing connection (`6797cd6d213f56bd20026a41`) is **reserved for
+the tech channel and must not be repointed** at the finance channel.
+
+Consequences to work around until The Meticulous Investor is connected:
+
+- **vidIQ cannot see it.** Channels this small aren't indexed, so `channel_stats`,
+  `channel_videos` and competitor baselines are unavailable for it. Research the *niche*, not
+  the channel.
+- **`vidiq_user_channels` returns PARADOCS10X** (auth is `paradocs10x@gmail.com`). Do not read
+  its numbers as this channel's performance.
+- **No publishing automation.** Uploads are manual. The X account (@troybillion) is
+  channel-agnostic and usable today.
+- **Topical discipline is the whole strategy at 6 subs.** No off-lane videos for 90 days — one
+  is a meaningful fraction of the classification evidence.
+
+See `GROWTH-PLAN.md` §1 and §7.
