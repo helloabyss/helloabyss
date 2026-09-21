@@ -128,23 +128,24 @@ nobody would file; the payoff is a number somebody will.
 
 ## Shot list — imagery-first, three-layer stack
 
-**Hero shot:** macro of a brass pendulum arrested mid-swing against near-black — the rate
-decision as a mechanism that has just reversed direction. Returns at the close.
+**Hero shot:** macro of the empty socket in a machined steel pin grid, camera pushing into
+it, already in motion — the missing forecast as a physical absence. Returns at the close,
+no longer empty.
 
 | Beat | BASE (imagery) | MID (motion graphics) | TOP (type) |
 |---|---|---|---|
 | **"Eighteen officials filed a forecast. Sixteen say rates climb. The chairman filed none."** | Camera cranes over a dark grid of eighteen machined steel pins, pushing toward the one empty socket and ending INSIDE it, already in motion | 16 pins rise red, 2 stay flat as the camera passes; socket rim lights red on arrival, nothing fills it | Compliance STRIP (bottom edge, 0:00–0:05) — must not cover the hook; "16 / 18" white impact flash, then "NO DOT" as a type-as-mask reveal into next scene |
-| "For the first time in three years" | Hero: brass pendulum stopped dead, shallow DOF, dust in the light | — | "FIRST HIKE IN 3 YEARS" arriving with overshoot |
+| "For the first time in three years" | Brass pendulum stopped dead, shallow DOF, dust in the light — recurring rate-mechanism motif, no longer the hero object | — | "FIRST HIKE IN 3 YEARS" arriving with overshoot |
 | "A quarter point… twelve to nothing" | Push through a gap between two vast stone columns | Rate ladder draws itself, tick climbs 3.50 → 3.75–4.00, counter physically rolls | "+0.25%" scaling past frame edges |
-| "Warsh's explanation was one sentence" | Empty lectern shot from behind and low — no person, microphone only | — | Quote sets letter by letter with overshoot |
+| "Kevin Warsh's entire explanation was one sentence" | Empty lectern shot from behind and low — no person, microphone only | — | Quote sets letter by letter with overshoot |
 | "Again. He skipped it in June too." | Push from the lectern into a printed meeting-calendar plate, macro, one entry per FOMC date | Rows tick past for each 2026 meeting; the June and September rows stay blank | "JUNE" then "SEPTEMBER" stamped blank — no impact flash; this is a pattern, not new alarm |
 | **"The median projection has the hikes continuing… four point one percent again through twenty twenty seven."** | Push through a drafting-table plate — a rate path stamped across a printed 2026 / 2027 calendar grid, near-black paper | A dashed projection line draws itself flat across both years — it does not lift, does not fall; a "PROJECTION" stamp sets beside it | "4.1%" set in outline / dashed numerals, never a filled ticker tag — "PROJECTION, NOT A PRICE" stamped beside it |
-| "Here is the honest counterweight" | Frame flips — same pendulum lit from the opposite side | Vote tally assembles 12–0 in white, not red | "12–0" |
+| "The vote was unanimous. The first market reaction was muted." | Frame flips — same pendulum lit from the opposite side | Vote tally assembles 12–0 in white, not red | "12–0" |
 | "Lee called the selling an overreaction" | Empty trading-floor architecture, long lens, deserted | Line chart draws, dips, recovers partway | Name-tag, plain text: "Fundstrat — Tom Lee" |
-| "Dow still closed down 631" | Concrete stair descending into shadow, hard parallax | Chart cracks and drops debris on the number | "−631.21" counting up then snapping red |
-| "Check what your cash is earning" | Return to hero pendulum, now swinging | Money-market yield dial sweeps to 4% | "4%" |
+| "The Dow still closed down six hundred and thirty one points" | Concrete stair descending into shadow, hard parallax | Chart cracks and drops debris on the number | "−631.21" counting up then snapping red |
+| "Check what your cash is earning" | Return to the hero pin grid — the same socket that opened the video, camera pulling back from it, now filled with a seated steel pin | Money-market yield dial sweeps to 4%; socket rim glows white, not red — this is the positive beat | "4%" |
 
-Bookend: pendulum arrested → pendulum swinging.
+Bookend: empty socket → filled socket.
 
 ---
 

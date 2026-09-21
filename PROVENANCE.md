@@ -94,6 +94,14 @@ Three. Listed so the pattern is visible, not buried.
 
 | 12 | `tenyear-short` carried a `fact-checker` paragraph headed "Opening hook, checked against the table above" that quoted the **old** hook and declared it "accurate as written" | The hook had since been replaced by `scriptwriter`. The verification record stayed behind, certifying text no longer in the file. Anyone reading it would believe the current hook had been checked. | A stale sign-off — same family as the fabricated "Reviewed by `retention-editor`" line | Rewritten to the current hook with a clause-by-clause trace, and the superseded hook kept on the record with the reason it failed |
 
+| 13 | `fed-dot-short`'s shot list had one row quoting `"Here is the honest counterweight"` — **zero occurrences in the VO** — plus two rows carrying paraphrases rather than verbatim quotes (`"Warsh's explanation…"` for "Kevin Warsh's **entire** explanation…", and `"Dow still closed down 631"` for "six hundred and thirty one points") | Captions burn in word-by-word. A generator sourcing caption text from a shot-list row would have put an unspoken sentence on screen, and rendered a numeral the narration never speaks. The fabricated row survived three reviews because every pass checked whether work had happened, not whether labels still matched the VO after three rounds of rewrites. | Would have put words on screen that are never spoken | All three corrected. §5A now requires row labels to be verbatim VO substrings and to be re-checked after every VO edit. |
+
+Finding #13 shares finding #12's shape and is the clearest case of it: **an upstream rewrite
+silently orphans downstream references, and "did the work happen?" cannot detect it.** Only a
+quote-by-quote comparison against the literal current text can. Note also that `art-director`
+found the two paraphrase rows outside its brief and *reported* rather than silently rewriting
+them — which is why they are recorded here instead of being invisibly changed.
+
 Finding #12 is a hazard the agent pipeline **creates**: when one agent verifies and another
 rewrites, the verification note outlives the thing it verified. It is not caught by checking
 whether work happened — the work did happen. The rule it implies: **a verification record must

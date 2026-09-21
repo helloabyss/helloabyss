@@ -148,6 +148,19 @@ hook's literal opening words. Notes were bolted on afterwards to paper over the 
 generator building top-to-bottom from the table opens on the wrong image under undefined hook
 audio — the exact failure this section exists to prevent.
 
+**Row labels must be VERBATIM substrings of the VO.** Not a paraphrase, not a trim, not a
+numeral standing in for a spoken number. Captions are burned in word-by-word, so a generator
+that sources caption text from a shot-list row rather than the master VO block will put those
+exact words on screen. A label reading "Dow still closed down 631" renders a numeral the
+narration never speaks; a label reading "Here is the honest counterweight" renders a sentence
+that no longer exists in the script at all. Both were found in the same table.
+
+**Check labels against the VO after every VO edit.** A rewrite three stages upstream silently
+orphans every row keyed to the line it replaced, and no amount of asking "did the work happen"
+catches it — the work happened. Only a quote-by-quote comparison against the literal current VO
+does. Where a row must cover two sentences, join exact substrings with an ellipsis rather than
+rewording.
+
 **Two requirements for every shot list:**
 1. **Row 1 is the hook's literal words**, and it carries the compliance-strip annotation. The
    first-frame image and the strip live on the same row, always.
