@@ -59,9 +59,7 @@ name. They are never rendered as a price ticker.
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> The Fed moved interest rates a quarter of a point this month.
->
-> The number that actually sets your mortgage moved a full point this year — and the Fed never touched it.
+> The ten year Treasury moved a full point. The Fed moved a quarter.
 >
 > The ten year Treasury started twenty twenty six near four point one five percent. It fell below four in February. On September fourteenth it crossed five. The first time since October twenty twenty three.
 >
@@ -75,32 +73,48 @@ name. They are never rendered as a price ticker.
 >
 > One thing you can act on. If you are rate shopping, watch the ten year — not the Fed's meeting calendar. The Fed meets eight times a year. The bond market prices your mortgage every day.
 
-~181 words ≈ 66–72s.
+207 words ≈ 79.6s (hook: 13 words / 5.0s — recomputed 2026-09-21, see retention map below).
 
 ### Hook & retention map
 
-Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor` on 2026-09-21 —
-**VERDICT: FAIL.** Sentence 1 is explicitly annotated in this document's own retention map as
-"deliberately flat — the setup for the reversal," which is a banned opener under §5A ("any
-sentence whose job is to set up the next sentence"). It also leads with the least surprising
-fact in the table — the Fed's already-headlined 25bp move — instead of the full-point mortgage
-move that is this video's actual differentiator. The shot list contradicts the "open on the
-mooring rope" note (the compliance strip is attached to the brass-dial row instead), and the
-hook needs ~12s to speak at this script's own pace, not the claimed 5s. Swapping the sentence
-order (see review notes) fixes both the text and the visual-assignment problem at once.
+Built to `STYLE-GUIDE.md` §5A. **REVISED 2026-09-21** after `retention-editor`'s FAIL verdict —
+the clearest failure of the three. Sentence 1 was explicitly annotated in this document's own
+retention map as "deliberately flat — the setup for the reversal," which §5A bans outright
+("any sentence whose job is to set up the next sentence"). It also opened on the Fed's 25bp
+hike — the least surprising fact in the table, and the exact thing this video exists to
+dismiss — instead of the 10-year's own move, which is the differentiator.
+
+**Fix applied:** lead with the 10-year's full-point move (fact-table **row 6**, CONFIRMED at
+~1.07 points from the February low), then contrast it with the Fed's quarter point. Row 6
+describes the 10-year Treasury yield, not mortgage rates — the hook is written to preserve that
+distinction exactly; nothing in it implies mortgage rates themselves moved a full point. The
+actual mortgage figure (row 7, the Mortgage News Daily index) is introduced later, correctly
+scoped and dated.
+
+**New hook, word count, duration:**
+- Claim: "The ten year Treasury moved a full point." — 8 words — traces to fact-table **row 6**
+  (10-year moved ~1.07 points, Feb low to Sept 14 peak — "a full point" is accurate, if
+  anything conservative).
+- Turn: "The Fed moved a quarter." — 5 words — traces to **row 1** (Fed raised 25bp / a quarter
+  point on Sept 16).
+- Total: **13 words → 5.0s at 2.6 wps.** Within budget.
 
 | Segment | Time | Line | Job |
 |---|---|---|---|
-| **HOOK — claim** | 0:00–0:02 | "The Fed moved rates a quarter of a point this month." | Deliberately flat — the setup for the reversal |
-| **HOOK — turn** | 0:02–0:05 | "…moved a full point this year — and the Fed never touched it." | 4× bigger, and not who you think. Opens the loop. |
-| PROOF | 0:05–0:18 | 4.15% → below 4 → crossed 5 on Sept 14 | The move, in numbers, fast |
-| RE-HOOK 1 | 0:18–0:30 | "The distinction almost nobody makes" | The mechanism — the actual value of the video |
-| RE-HOOK 2 | 0:30–0:36 | 7.17% mortgage print | Lands the mechanism on the viewer's own money |
-| THE CASE | 0:36–0:48 | Oil, Hormuz, inflation expectations | Why the long end moved |
-| **THE TURN** | 0:48–1:02 | "Now the counterweight. Nobody agrees." | Rystad vs Goldman, both marked estimates |
-| PAYOFF + LOOP | 1:02–end | "The Fed meets eight times a year. The bond market prices your mortgage every day." | Rhymes with the hook's Fed-vs-bond-market contrast |
+| **HOOK — claim** | 0:00–3.1s | "The ten year Treasury moved a full point." | The biggest, least-told number in the table — not the Fed's |
+| **HOOK — turn** | 3.1s–5.0s | "The Fed moved a quarter." | The contrast: 4× smaller, and not what actually moved your mortgage |
+| PROOF | 5.0s–18.1s | 4.15% → below 4 → crossed 5 on Sept 14 | The move, in numbers, fast |
+| RE-HOOK 1 | 18.1s–29.2s | "The distinction almost nobody makes" | The mechanism — the actual value of the video |
+| RE-HOOK 2 | 29.2s–38.9s | 7.17% mortgage print | Lands the mechanism on the viewer's own money |
+| THE CASE | 38.9s–48.9s | Oil, Hormuz, inflation expectations | Why the long end moved |
+| **THE TURN** | 48.9s–66.2s | "Now the counterweight. Nobody agrees." | Rystad vs Goldman, both marked estimates |
+| PAYOFF + LOOP | 66.2s–79.6s | "The Fed meets eight times a year. The bond market prices your mortgage every day." | Rhymes with the hook's Fed-vs-bond-market contrast |
 
-**Loop:** hook and payoff are the same contrast, stated first as a puzzle and last as a rule.
+Timestamps computed from actual segment word counts ÷ 2.6 wps, not copied from the template.
+Total runtime: 207 words ≈ 79.6s.
+
+**Loop:** hook and payoff are the same contrast, stated first as a number gap and last as a
+rule.
 
 **First frame:** The mooring rope under load, fibres already separating — the strain is the hook. Do NOT open on the small brass dial; that shot moves to the PROOF beat.
 

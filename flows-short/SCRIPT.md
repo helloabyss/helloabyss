@@ -81,11 +81,9 @@ seekingalpha.com, finance.yahoo.com, intellectia.ai, trustfinance.com, streetins
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> Somebody moved seven billion dollars into American stocks in a single week.
+> The sixth largest stock inflow since two thousand eight. Institutions bought it. Retail sold.
 >
-> It was not ordinary investors. They were selling. For the sixth week running.
->
-> That was the sixth largest weekly inflow in Bank of America's data going back to two thousand eight. Week ending August thirty first. Three point nine billion into single stocks. Three point one billion into E T Fs.
+> That's Bank of America's own data. Seven billion dollars into U.S. equities. Week ending August thirty first. Three point nine billion into single stocks. Three point one billion into E T Fs.
 >
 > Here is the split. Institutions bought five point eight billion. Hedge funds bought four billion. Private clients — ordinary investors — sold two point seven billion.
 >
@@ -97,33 +95,47 @@ seekingalpha.com, finance.yahoo.com, intellectia.ai, trustfinance.com, streetins
 >
 > One thing you can act on. Write your rebalancing rule down now, while nothing is forcing the decision. Then it never matters which side of that split you are on.
 
-~172 words ≈ 62–68s. (Counterweight beat rewritten 2026-09-21 after independent fact-check —
-see fact table row 11.)
+172 words ≈ 66.2s (hook: 14 words / 5.4s — recomputed 2026-09-21, see retention map below).
+(Counterweight beat rewritten 2026-09-21 after independent fact-check — see fact table row 11.)
 
 ### Hook & retention map
 
-Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor` on 2026-09-21 —
-**VERDICT: FAIL.** The hook opens on a vague, unattributed "Somebody moved seven billion
-dollars…" — a curiosity-gap tease, not the hardest fact in the table. The 6th-largest-inflow-
-since-2008 superlative (fact-table row 1) is more specific and more surprising and is buried
-until 0:05–0:18. The shot list has no imagery keyed to the hook's literal words, and the
-compliance strip is attached to the loaded-pan row (shot-list row 1) rather than the empty
-pan the retention map says should open the video. The "Flow data tells you what already
-happened" line is unaccounted for anywhere in the retention map. The claimed 0:00–0:05 hook
-window cannot hold the ~25-word claim+turn at this script's own pace (~9s actual). See
-review notes for a suggested rewrite before this proceeds.
+Built to `STYLE-GUIDE.md` §5A. **REVISED 2026-09-21** after `retention-editor`'s FAIL verdict.
+The old hook — "Somebody moved seven billion dollars…" — withheld the subject to manufacture a
+curiosity gap. That is a tease and banned under §5A even though it was never phrased as a
+question. It also buried the hardest, most specific fact in the table: the "sixth-largest
+weekly inflow since 2008" superlative (row 1) is more surprising and more sizeable to a viewer
+than a bare, unanchored $7bn figure, and it didn't land until 0:05–0:18.
+
+**Fix applied:** lead with the superlative instead of the dollar figure, and name the actors
+(institutions, retail) instead of "somebody." Because the superlative now opens the video, the
+line that used to deliver it again mid-PROOF was rewritten so it doesn't just repeat the hook —
+it now names the source (Bank of America) and gives the raw total dollar figure, which is still
+new information at that point in the script.
+
+**New hook, word count, duration:**
+- Claim: "The sixth largest stock inflow since two thousand eight." — 9 words — traces to
+  fact-table **row 1** (6th-largest weekly net inflow in BofA's own series since 2008; the
+  ranking applies to the total $7.0bn figure).
+- Turn: "Institutions bought it. Retail sold." — 5 words — traces to **row 5** (institutions,
+  +$5.8bn net buyers) and **row 7** (private/retail clients, −$2.7bn net sellers).
+- Total: **14 words → 5.4s at 2.6 wps.** Within budget (≤5.5s).
 
 | Segment | Time | Line | Job |
 |---|---|---|---|
-| **HOOK — claim** | 0:00–0:02 | "Somebody moved seven billion dollars into American stocks in a single week." | Big concrete number, unattributed — creates the question |
-| **HOOK — turn** | 0:02–0:05 | "It was not ordinary investors. They were selling." | The reversal. Opens the loop. |
-| PROOF | 0:05–0:18 | 6th largest since 2008, the $3.9bn / $3.1bn split | Scale, immediately |
-| RE-HOOK 1 | 0:18–0:28 | Institutions +5.8, hedge funds +4.0, private −2.7 | The three-way split is the new information |
-| THE CASE | 0:28–0:36 | "Smart money accumulating. Retail capitulating." | State the seductive reading in full — then break it |
-| **THE TURN** | 0:36–0:58 | "Now the counterweight, because that story is far weaker than it sounds." | The dismantle. Longest beat — it is the point of the video. |
-| PAYOFF + LOOP | 0:58–end | "…never matters which side of that split you are on." | Rhymes with the hook's split |
+| **HOOK — claim** | 0:00–3.5s | "The sixth largest stock inflow since two thousand eight." | The superlative, first — no unattributed tease |
+| **HOOK — turn** | 3.5s–5.4s | "Institutions bought it. Retail sold." | Names the actors. Opens the loop. |
+| PROOF | 5.4s–17.7s | BofA's own data, the $7.0bn total, the $3.9bn/$3.1bn split | The hardest numbers, immediately |
+| RE-HOOK 1 | 17.7s–26.9s | Institutions +5.8, hedge funds +4.0, private −2.7 | The three-way split is the new information |
+| THE CASE | 26.9s–30.8s | "Smart money accumulating. Retail capitulating." | State the seductive reading in full — then break it |
+| **THE TURN** | 30.8s–54.6s | "Now the counterweight, because that story is far weaker than it sounds." | The dismantle. Longest beat — it is the point of the video. |
+| PAYOFF + LOOP | 54.6s–66.2s | "…never matters which side of that split you are on." | Rhymes with the hook's institutions/retail split |
 
-**Loop:** the hook poses "which side were you on"; the payoff makes the question irrelevant.
+Timestamps computed from actual segment word counts ÷ 2.6 wps, not copied from the template.
+Total runtime: 172 words ≈ 66.2s.
+
+**Loop:** the hook states who was on which side; the payoff makes the question of "which side"
+irrelevant.
 
 **First frame:** The empty scale pan lifting, weightless, already moving — the absence is the hook. Promote it ahead of the loaded pan.
 

@@ -87,6 +87,13 @@ Three. Listed so the pattern is visible, not buried.
 | 7 | Flows short VO: "Institutions were also heavy buyers into two thousand seven, and into two thousand twenty one" | **Unsourceable.** No source found for either year. Internally incoherent too: BofA's flow series — the basis for every other claim in the video — **starts in 2008**, so it cannot support a 2007 claim. This was an invented historical flourish stated as flat fact, and it was carrying the counter-evidence beat, the part of the format that exists to keep the channel honest. | Would have shipped a fabricated historical claim as fact | Cut. Replaced with "institutional does not mean correct — it means large," which is an argument rather than an empirical claim and cannot be false. |
 | 8 | Five rows of the flows fact table cited **"fxbus"** as a source | A weak citation, though **not fabricated** — `fxbus.com` genuinely appeared in the original search results. The real fault is treating an obscure aggregator's relay as corroboration for load-bearing figures. The independent check called it "fabricated or unfindable"; **that characterisation is wrong and is corrected here**, because the record should be accurate in both directions. | Overstated corroboration | Replaced with the outlets that actually carry the data |
 
+| 9 | Every `SCRIPT.md` footer stated a VO word count (e.g. "~176 words") | **All were wrong.** `fed-dot-short` was actually 194. The counts were estimated by eye, never computed — which is precisely how the impossible 0:00–0:05 hook windows survived: the arithmetic was never done at any stage, only asserted. Found by `scriptwriter`, not by me. | Concealed finding #4's root cause behind a second bad number | Counts now computed, not estimated |
+| 10 | My verification script for the rewritten hooks reported 2 of 3 as FAIL | **My check was broken, not the work.** It assumed every hook spans exactly two blockquote paragraphs, so for two scripts it concatenated the hook with the PROOF beat and measured 46 and 47 words instead of 14 and 13. Caught by inspecting the files before reporting. | Would have been a false accusation against correct work | Re-measured against each file's demarcated hook: all three PASS |
+
+Finding #10 is the mirror of #8 and belongs in the log for the same reason: **a verification
+step is not automatically right either, including mine.** The instinct to report the first
+number a script prints is the same instinct that produced findings #1–#4.
+
 Finding #8 cuts the other way, and is recorded for that reason: a verifier's accusation is not
 automatically right either. It was checked against the session's own search history rather
 than accepted.

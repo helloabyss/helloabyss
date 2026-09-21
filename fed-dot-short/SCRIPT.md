@@ -42,9 +42,9 @@ Sept 22 it is no longer "this week." Use "last week" or drop the time reference 
 
 ## Voiceover (VERBATIM — do not let the generator rewrite)
 
-> Eighteen Federal Reserve officials filed a rate forecast this week. Sixteen of them say rates go higher.
+> Eighteen officials filed a forecast. Sixteen say rates climb.
 >
-> The chairman filed nothing at all.
+> The chairman filed none.
 >
 > The Fed just raised interest rates for the first time in three years. A quarter point, to a target range of three and three quarters to four percent. The vote was twelve to nothing.
 >
@@ -60,33 +60,47 @@ Sept 22 it is no longer "this week." Use "last week" or drop the time reference 
 >
 > One thing you can act on. A four percent policy rate reprices money market funds within weeks. Before you check your stocks, check what your cash is earning. That number, at least, somebody is willing to publish.
 
-~176 words ≈ 64–70s.
+184 words ≈ 70.8s (hook: 13 words / 5.0s — recomputed 2026-09-21, see retention map below).
 
 ### Hook & retention map
 
-Built to `STYLE-GUIDE.md` §5A. Reviewed by `retention-editor` on 2026-09-21 —
-**VERDICT: FAIL.** Hook wording tracks §5A's own worked example (claim + turn, no rephrase),
-but the brief as written will not deliver it: the shot list assigns no imagery to the hook's
-literal opening words, and the compliance strip is attached to the pendulum row (shot-list
-row 1) rather than the row the retention map says should open the video ("promote the socket
-to frame one"). The "sixteen dots pointing up, one socket, empty" beat (~0:35) restates facts
-5 and 7 rather than adding new information — a recap, not a re-hook. The claimed 0:00–0:05
-hook window cannot hold the ~24-word claim+turn at this script's own narration pace (~9s
-actual). Shot list and timing map need rework before this proceeds.
+Built to `STYLE-GUIDE.md` §5A. **REVISED 2026-09-21** after `retention-editor`'s FAIL verdict.
+The verdict found the hook's *shape* correct (number, then contradiction — matches §5A's own
+worked example) but its *length* wrong: 23 words against a budget §5A had not yet specified
+when this was written, running the hook to ~8.8s against a 5s window. The verdict also flagged
+that the VO's "this week" will read as false on any render date on or after 2026-09-22 (the
+meeting was Wednesday Sept 16).
+
+**Fix applied:**
+- Cut the hook to the same claim-then-contradiction shape, at budget.
+- Removed the time reference entirely rather than patching it to "last week" — this script may
+  render on any date after today, and dropping the reference removes the shelf-life problem
+  outright rather than deferring it.
+
+**New hook, word count, duration:**
+- Claim: "Eighteen officials filed a forecast. Sixteen say rates climb." — 9 words — traces to
+  fact-table **row 5** (18 of 19 SEP seats submitted dots; 16 of those 18 project ≥1 more hike
+  in 2026).
+- Turn: "The chairman filed none." — 4 words — traces to **row 7** (Warsh declined to submit a
+  dot, June and September 2026) and **row 5** (Warsh sits outside the 18 who filed).
+- Total: **13 words → 5.0s at 2.6 wps.** Within budget.
 
 | Segment | Time | Line | Job |
 |---|---|---|---|
-| **HOOK — claim** | 0:00–0:02 | "Eighteen officials filed a rate forecast. Sixteen say rates go higher." | Hardest number, no setup |
-| **HOOK — turn** | 0:02–0:05 | "The chairman filed nothing at all." | The contradiction. Opens the loop. |
-| PROOF | 0:05–0:17 | The hike, the range, the 12–0 vote | The news, delivered after the hook has earned it |
-| RE-HOOK 1 | 0:17–0:27 | Warsh's one-sentence explanation | New information, escalates the stake |
-| RE-HOOK 2 | 0:27–0:35 | "Again. He skipped it in June too." | Reversal — this is a pattern, not an oversight |
-| THE CASE | 0:35–0:45 | Sixteen dots up, one socket empty | Pays off the hook's image |
-| **THE TURN** | 0:45–0:58 | "Now the counterweight, because this is not a Fed in crisis." | Signposted out loud |
-| PAYOFF + LOOP | 0:58–end | Cash yield → "somebody is willing to publish" | Rhymes with "filed nothing at all" |
+| **HOOK — claim** | 0:00–3.5s | "Eighteen officials filed a forecast. Sixteen say rates climb." | Hardest number, no setup |
+| **HOOK — turn** | 3.5s–5.0s | "The chairman filed none." | The contradiction. Opens the loop. |
+| PROOF | 5.0s–18.1s | The hike, the range, the 12–0 vote | The news, delivered after the hook has earned it |
+| RE-HOOK 1 | 18.1s–24.6s | Warsh's one-sentence explanation | New information, escalates the stake |
+| RE-HOOK 2 | 24.6s–31.2s | "Again. He skipped it in June too." | Reversal — this is a pattern, not an oversight |
+| THE CASE | 31.2s–40.8s | Sixteen dots up, one socket empty | Pays off the hook's image |
+| **THE TURN** | 40.8s–56.5s | "Now the counterweight…" through "the Dow still closed down 631" | Signposted out loud; the concession that closes the counterweight |
+| PAYOFF + LOOP | 56.5s–70.8s | Cash yield → "somebody is willing to publish" | Rhymes with "filed none" |
 
-**Loop:** the close makes the opening line land differently — the hook is about a number
-nobody would publish; the payoff is a number somebody will.
+Timestamps computed from actual segment word counts ÷ 2.6 wps, not copied from the template.
+Total runtime: 184 words ≈ 70.8s.
+
+**Loop:** the close makes the opening line land differently — the hook is about a forecast
+nobody would file; the payoff is a number somebody will.
 
 **First frame:** The empty socket in the pin grid, already in motion — camera pushing toward it. Do NOT open on the pendulum; promote the socket to frame one and hold the pendulum for the bookend.
 
