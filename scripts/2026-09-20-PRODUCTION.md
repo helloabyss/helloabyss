@@ -1,6 +1,60 @@
 # Production Record — This Week in Tech, 2026-09-20
 
-## v2 — FULL CUT WITH CINEMATIC PLATES ✅ (2026-09-20)
+## v3 — NARRATED, FACT-CHECKED FINAL ✅
+
+**Watch / download:**
+https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/444c2349-fcfb-4433-b6ec-7f29a4ff4866.mp4
+
+**56.51s · 1080×1920 · 30fps · H.264 + AAC · 14.0MB · total spend 2.06 Higgsfield credits**
+
+### 1. Fact-check — every source opened and read
+This container blocks news domains, but the **Higgsfield sandbox has unrestricted egress**,
+so all six sources were fetched and read in full. **Four errors were found and fixed:**
+
+| Was | Now | Why |
+|---|---|---|
+| "US only" | "Early access only" | Unsupported by any reputable source. Verified instead: Home MCP is "labeled Early Access and targeted at developers" |
+| "Siri AI is a BETA" | "Apple calls it a ROLLOUT, not a finished launch" | **The word "beta" does not appear in the source.** Apple's framing is "rolling out… usage limits may apply" |
+| "the deepest version needs an A17 Pro" | "Needs an A17 Pro" | A17 Pro is the **floor** for Siri AI, not the top tier (that's iPhone 17+/A20 Pro) |
+| Paper "published 2026-09-15" | Published **2026 Jul 29** | `Nat Commun. 2026 Jul 29;17:6085`. Sept 15 is the press release — that's the in-window news event |
+
+Confirmed verbatim and unchanged: $2,195 · $200 refundable deposit · 51° FOV · Fall 2026 ·
+US/UK/France · $20/mo or $200/yr · Claude named by Google's group product manager ·
+iOS 27 on 2026-09-14 · "more than 250 changes" · "pinwheel-like diffraction… clearly lacks
+mirror symmetry" · hobbyist David Smith, 2022.
+
+The on-screen graphics were rebuilt to match: the "US ONLY" card became **EARLY ACCESS /
+DEVELOPERS ONLY**, the **BETA** stamp became **ROLLOUT**, and the silicon tiers were
+relabelled so A17 Pro reads as the minimum.
+
+### 2. Narration added
+`Arthur` (Higgsfield `seed_audio`), chosen by **acoustic match** to the locked voice —
+median F0 140.4 vs 144.1, pitch spread 48.1 vs 48.2. Full method and the deviation record:
+`VO_PROFILE.md` §8.
+
+**This is a substitute.** HeyGen is blocked twice over: 0 credits until 2026-10-06 **and**
+the API token is expired/revoked (`401 unauthorized`). **Reconnect the HeyGen MCP
+integration** to restore the locked voice.
+
+### 3. Timed to the audio, not to an estimate
+Narration generated per beat, silence-trimmed, loudnorm'd, `atempo=1.18`, joined with 0.18s
+gaps → **56.515s**. Shot boundaries derive from the real beat boundaries, so picture and
+voice cannot drift. 22 shots, longest 2.89s. Effective rate **147.6 WPM**.
+
+### 4. Verified
+- `ffprobe`: 56.512s, 1080×1920, h264 + aac stereo
+- Per-beat audio RMS 0.074–0.088 — narration runs the full length with no dropouts
+- Frames extracted from the **encoded file** and inspected; the corrected text
+  ("EARLY ACCESS / DEVELOPERS ONLY", the ROLLOUT stamp, the retitled tiers) confirmed on screen
+- **Not** viewed as a human would: the CDN is blocked from this container. Watch it before publishing.
+
+### 5. Spend
+13 images (11 kept) at 0.12 = 1.56 · 5 narration clips at 0.10 = 0.50 · **2.06 total**.
+Re-renders cost nothing — only generation is charged.
+
+---
+
+## v2 — cinematic plates, silent (superseded)
 
 **Watch / download:**
 https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/759185cd-6001-499c-aa9a-56221ea31326.mp4

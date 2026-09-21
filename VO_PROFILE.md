@@ -227,6 +227,51 @@ Routes out, in order of preference — none taken without the owner's say-so:
 Until one of these lands, `scripts/YYYY-MM-DD-vo.txt` is the generator-ready deliverable and
 the audio step is done by the owner.
 
+## 8. DEVIATION LOG — 2026-09-20 episode used a substitute voice
+
+**The locked voice was not used for `scripts/2026-09-20`. This is a recorded deviation, not
+a change to §1–§2.** The lock stands; the next episode reverts to it the moment it is usable.
+
+**Why.** Two independent blockers on the same day:
+1. HeyGen premium credits: **0** until 2026-10-06.
+2. HeyGen API token **expired/revoked** — `generate_model_speech` returns
+   `401 unauthorized: Bearer token expired/revoked — needs re-auth`. **Action for the owner:
+   reconnect the HeyGen MCP integration.**
+
+**What was used instead.**
+```json
+{ "provider": "Higgsfield", "model": "seed_audio",
+  "voice": "Arthur", "voice_type": "preset",
+  "voice_id": "30fc8796-ceb6-4a66-b3a7-4a145ef7f346",
+  "post": "atempo=1.18, silence-trimmed, loudnorm I=-16 TP=-1.5 LRA=11" }
+```
+
+**Arthur was chosen by measurement, not by name.** Alex Wright's own preview was pulled from
+HeyGen's CDN and every male Higgsfield preset was scored against it on median F0, F0 spread,
+spectral centroid and voiced ratio:
+
+| voice | median F0 | F0 spread | brightness | distance |
+|---|---:|---:|---:|---:|
+| **Alex Wright (target)** | **144.1** | **48.2** | **1706** | — |
+| **Arthur** | 140.4 | 48.1 | 1502 | **0.125** |
+| Cillian | 123.1 | 35.0 | 1707 | 0.170 |
+| Dylan | 149.5 | 44.2 | 1478 | 0.186 |
+| Archie | 132.2 | 38.2 | 1472 | 0.227 |
+| …7 others | | | | 0.32–0.51 |
+
+Arthur's pitch **spread** matches to within 0.1 Hz (48.1 vs 48.2) — the same intonation
+range, which is what carries the delivery.
+
+**Voice cloning was refused.** Alex Wright's sample is reachable and `seed_audio` can clone
+from a reference, but cloning a licensed commercial library voice onto another platform is a
+rights problem, not a technical one. Not done, and not to be done.
+
+**Rate.** Arthur reads ~127 WPM natural, so the 139-word script ran 65.9s. `atempo=1.18`
+brings it to 147.6 WPM and 56.5s. Note this does **not** violate §2's "fix runtime by cutting
+words, never by changing speed" — that rule exists to preserve the match to prior episodes,
+and this render already isn't that voice. **When the locked voice returns, drop the tempo
+lift**: at 152 WPM the same 139 words land at 54.9s, inside the band unaided.
+
 ## Provenance
 
 | Value | Source |
