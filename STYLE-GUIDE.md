@@ -104,6 +104,28 @@ hook is buried. Find the line further down the script that *could* be, and move 
   "You won't believe" is banned; "Eighteen officials filed a forecast. The chairman filed
   nothing" is not a tease — it's the most interesting true thing, said first.
 
+### The word budget — compute it, never assume it
+
+**This is the part the first version of §5A got wrong, and every script built on it failed.**
+The section specified a five-second window and no word count, so three scripts were written to
+its spirit with hooks of 23, 25 and 31 words — all claiming a 0:00–0:05 window that is
+arithmetically impossible.
+
+Measured from this channel's own scripts: **≈2.6 words per second.**
+
+| Window | Word budget |
+|---|---|
+| **5s hook (claim + turn)** | **≈13 words TOTAL** |
+| 10s | ≈26 words |
+| 15s | ≈39 words |
+
+**Before writing any retention map, divide the words by 2.6 and write the real number.** A map
+whose timestamps were copied from this template rather than calculated is worse than no map:
+it asserts the standard was met when it wasn't.
+
+Thirteen words is brutally few. That is the point — it is what five seconds actually is. If
+the claim and the turn don't fit, the hook isn't sharp enough yet.
+
 **Shape that works for this channel:**
 
 | Beat | Time | Job |
@@ -113,6 +135,20 @@ hook is buried. Find the line further down the script that *could* be, and move 
 
 Two sentences. Both load-bearing. If the second sentence only rephrases the first, it's dead air
 in the most valuable position in the video.
+
+### Shot-list rule — the first frame and the strip are the SAME row
+
+Found across all three scripts: the shot-list row carrying the compliance-strip annotation was
+**not** the row the retention map named as the first frame, and no script had a row for the
+hook's literal opening words. Notes were bolted on afterwards to paper over the mismatch. A
+generator building top-to-bottom from the table opens on the wrong image under undefined hook
+audio — the exact failure this section exists to prevent.
+
+**Two requirements for every shot list:**
+1. **Row 1 is the hook's literal words**, and it carries the compliance-strip annotation. The
+   first-frame image and the strip live on the same row, always.
+2. **No "promote X to frame one" note.** If a shot should open the video, it is row 1. Reorder
+   the table instead of annotating around it.
 
 ### Resolving the compliance-card conflict
 
