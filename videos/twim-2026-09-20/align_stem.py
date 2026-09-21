@@ -28,33 +28,77 @@ elif len(args)==1:
     # a sentence pause inside a beat can exceed a beat gap. (Verified failure, 2026-09-21.)
     win=int(0.02*SR); env=np.array([np.abs(a[i:i+win]).max() for i in range(0,len(a)-win,win)])
     thr=max(env.max()*0.040, 1e-4); quiet=env<thr
-    cands=[];st=None
-    for i,q in enumerate(quiet):
-        if q and st is None: st=i
-        elif not q and st is not None:
-            if (i-st)*0.02>=0.16: cands.append(((st+i)/2*0.02, (i-st)*0.02))
-            st=None
-    if st is not None and (len(quiet)-st)*0.02>=0.16: cands.append(((st+len(quiet))/2*0.02,(len(quiet)-st)*0.02))
+    def pauses(minlen):
+        out=[];st=None
+        for i,q in enumerate(quiet):
+            if q and st is None: st=i
+            elif not q and st is not None:
+                if (i-st)*0.02>=minlen: out.append(((st+i)/2*0.02,(i-st)*0.02))
+                st=None
+        if st is not None and (len(quiet)-st)*0.02>=minlen:
+            out.append(((st+len(quiet))/2*0.02,(len(quiet)-st)*0.02))
+        return out
+    # sentence-end pauses are longer than comma pauses: sweep the minimum pause
+    # length to isolate exactly one pause per sentence break.
+    _sp=[len([x for x in re.findall(r"[^.!?]+[.!?]", " ".join(pp.split())) if x.strip()])
+         for pp in script]
+    _want=sum(_sp)-1
+    cands=pauses(0.16)
+    for ml in [x/100 for x in range(16,101,2)]:
+        c=pauses(ml)
+        if len(c)==_want: cands=c; print(f"  pause threshold {ml:.2f}s isolates {len(c)} sentence breaks"); break
+        if len(c)<_want: break
     # characters + a per-sentence penalty predicts speech time far better than word count
     # (spelled-out numbers are long to say but few words). Measured 2026-09-21.
     wc=[len(re.sub(r"[^A-Za-z0-9]","",p))+2.2*len(re.findall(r"[.!?]",p)) for p in script]
     tot=sum(wc)
     expect=[dur*sum(wc[:i+1])/tot for i in range(8)]          # expected boundary times
-    used=set(); cuts=[]; prev=0.0
-    for e in expect:
+    # BEST PATH: we know the script, so we know how many sentences each beat holds.
+    # If pause detection finds exactly one pause per sentence break, the beat
+    # boundaries are simply the pauses at the cumulative sentence indices — exact,
+    # no duration model involved.
+    wc=[len(re.sub(r"[^A-Za-z0-9]","",pp))+2.2*len(re.findall(r"[.!?]",pp)) for pp in script]
+    expect=[dur*sum(wc[:i+1])/sum(wc) for i in range(8)]
+    sents_per=[len([x for x in re.findall(r"[^.!?]+[.!?]", " ".join(p.split())) if x.strip()])
+               for p in script]
+    want=sum(sents_per)-1
+    idx=[sum(sents_per[:i+1])-1 for i in range(8)]
+    # A matching pause count is NOT proof the right pauses were found — a comma pause can
+    # stand in for a missed sentence break and the count still matches, which measured
+    # WORSE than snapping (3.71s vs 2.11s). So validate against the duration model and
+    # only accept when every beat agrees. Verified 2026-09-21.
+    ok=False
+    if len(cands)==want:
+        c2=[cands[i][0] for i in idx]
+        d2=[b-a2 for a2,b in zip([0.0]+c2, c2+[dur])]
+        pred=[dur*x/sum(wc) for x in wc]
+        dev=max(abs(x-y) for x,y in zip(d2,pred))
+        if dev<=1.5:
+            cuts=c2; ok=True
+            print(f"  sentence-index alignment accepted (max deviation {dev:.2f}s)")
+        else:
+            print(f"  sentence-index alignment rejected (max deviation {dev:.2f}s) — snapping instead")
+    if ok:
+        bounds=[0]+[int(c*SR) for c in cuts]+[len(a)]
+        beats=[a[bounds[i]:bounds[i+1]] for i in range(9)]
+        cands=None
+    if cands is None: pass
+    else:
+     used=set(); cuts=[]; prev=0.0
+     for e in expect:
         best=None
         for j,(mid,ln) in enumerate(cands):
             if j in used or mid<=prev+0.8: continue
-            # prefer near-expected, mildly reward longer pauses
             cost=abs(mid-e)-min(ln,1.2)*0.5
             if best is None or cost<best[0]: best=(cost,j,mid)
         if best is None or abs(best[2]-e)>6.0:
-            cuts.append(e); prev=e                            # fall back to the expected time
+            cuts.append(e); prev=e
         else:
             used.add(best[1]); cuts.append(best[2]); prev=best[2]
-    bounds=[0]+[int(c*SR) for c in cuts]+[len(a)]
-    beats=[a[bounds[i]:bounds[i+1]] for i in range(9)]
-    print("  boundary snap: "+", ".join(f"{c:.1f}s(exp {e:.1f})" for c,e in zip(cuts,expect)))
+     bounds=[0]+[int(c*SR) for c in cuts]+[len(a)]
+     beats=[a[bounds[i]:bounds[i+1]] for i in range(9)]
+     print(f"  WARNING approximate: {len(cands)} pauses found, expected {want}. "
+           "Captions may drift ~2-3s. Supply 9 per-beat files for exact sync.")
 else:
     sys.exit(__doc__)
 
