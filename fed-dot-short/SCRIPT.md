@@ -52,7 +52,7 @@ Sept 22 it is no longer "this week." Use "last week" or drop the time reference 
 >
 > Then he declined to publish a forecast of his own. Again. He skipped it in June too.
 >
-> So the Fed's projection document now has a hole in it, exactly where the chairman's number should be. Sixteen dots pointing up. One socket, empty.
+> The median projection has the hikes continuing. Four point one percent through the end of twenty twenty six — and four point one percent again through twenty twenty seven.
 >
 > Now the counterweight, because this is not a Fed in crisis. The vote was unanimous. The first market reaction was muted. And Fundstrat's Tom Lee called the selling an overreaction.
 >
@@ -60,7 +60,8 @@ Sept 22 it is no longer "this week." Use "last week" or drop the time reference 
 >
 > One thing you can act on. A four percent policy rate reprices money market funds within weeks. Before you check your stocks, check what your cash is earning. That number, at least, somebody is willing to publish.
 
-184 words ≈ 70.8s (hook: 13 words / 5.0s — recomputed 2026-09-21, see retention map below).
+187 words ≈ 71.9s (hook: 13 words / 5.0s — recomputed 2026-09-21, see retention map below;
+THE CASE beat replaced 2026-09-21 (second pass), see below).
 
 ### Hook & retention map
 
@@ -85,6 +86,22 @@ meeting was Wednesday Sept 16).
   dot, June and September 2026) and **row 5** (Warsh sits outside the 18 who filed).
 - Total: **13 words → 5.0s at 2.6 wps.** Within budget.
 
+**THE CASE beat — replaced 2026-09-21 (second pass):** `retention-editor` flagged this beat
+twice. The prior line ("the Fed's projection document now has a hole in it… Sixteen dots
+pointing up. One socket, empty.") only re-described the hook's own claim (16 of 18 projecting
+higher, Warsh filing nothing) in imagery. The retention map's own job description for that
+beat — "pays off the hook's image" — was itself the tell: visual dressing on an already-stated
+fact is not new information, and §5A names recapping as a retention killer.
+
+**Fix applied:** replaced it with fact-table **row 6** — the median projected fed funds rate,
+which is new information not touched anywhere else in the script: four and one tenth percent
+at the end of twenty twenty six, and *still* four and one tenth percent at the end of twenty
+twenty seven. That escalates the stake the hook opened with (this is not a one-time hike; the
+median shows no cuts through 2027) and sets up "now the counterweight" better than a recap,
+since the counterweight now has two stacked claims to push against instead of one. Per house
+standard, it is worded as a projection ("the median projection"), not as a locked-in or market
+rate — row 6 is itself marked "a projection, not a market price."
+
 | Segment | Time | Line | Job |
 |---|---|---|---|
 | **HOOK — claim** | 0:00–3.5s | "Eighteen officials filed a forecast. Sixteen say rates climb." | Hardest number, no setup |
@@ -92,12 +109,12 @@ meeting was Wednesday Sept 16).
 | PROOF | 5.0s–18.1s | The hike, the range, the 12–0 vote | The news, delivered after the hook has earned it |
 | RE-HOOK 1 | 18.1s–24.6s | Warsh's one-sentence explanation | New information, escalates the stake |
 | RE-HOOK 2 | 24.6s–31.2s | "Again. He skipped it in June too." | Reversal — this is a pattern, not an oversight |
-| THE CASE | 31.2s–40.8s | Sixteen dots up, one socket empty | Pays off the hook's image |
-| **THE TURN** | 40.8s–56.5s | "Now the counterweight…" through "the Dow still closed down 631" | Signposted out loud; the concession that closes the counterweight |
-| PAYOFF + LOOP | 56.5s–70.8s | Cash yield → "somebody is willing to publish" | Rhymes with "filed none" |
+| THE CASE | 31.2s–41.9s | "The median projection has the hikes continuing… four point one percent again through twenty twenty seven." | New fact, not a recap — the hikes aren't a one-off and the median shows no cuts through 2027 |
+| **THE TURN** | 41.9s–57.7s | "Now the counterweight…" through "the Dow still closed down 631" | Signposted out loud; the concession that closes the counterweight |
+| PAYOFF + LOOP | 57.7s–71.9s | Cash yield → "somebody is willing to publish" | Rhymes with "filed none" |
 
 Timestamps computed from actual segment word counts ÷ 2.6 wps, not copied from the template.
-Total runtime: 184 words ≈ 70.8s.
+Total runtime: 187 words ≈ 71.9s.
 
 **Loop:** the close makes the opening line land differently — the hook is about a forecast
 nobody would file; the payoff is a number somebody will.
