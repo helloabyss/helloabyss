@@ -104,6 +104,7 @@ Channel-level documents:
 | `GROWTH-PLAN.md` | Channel strategy, tool stack, pipeline interconnection, metrics. |
 | `WEEKLY-RUNBOOK.md` | The weekly production cycle and how to run the agent team. |
 | `AGENTS.md` | **Agent registry** — the six agents, their roles, authority and handoffs. |
+| `PROVENANCE.md` | **What is verified vs asserted.** Read this before trusting any claim in the repo. Unchecked claims must be labelled in the sentence that states them. |
 | `.claude/agents/` | scout · fact-checker · scriptwriter · **retention-editor** · art-director · packager |
 
 ## Which channel this repo serves

@@ -18,9 +18,20 @@ scout ─→ fact-checker ─→ scriptwriter ─→ retention-editor ─→ art
                                               FAIL ─┘ back to scriptwriter
 ```
 
-Two gates can stop a video. **`fact-checker`** kills a piece with no honest counter-argument —
-that makes it a promo, not an explainer. **`retention-editor`** vetoes any script that fails
-the five-second test. Neither is advisory.
+Two stages are written as gates. **`fact-checker`** is told to stop a piece with no honest
+counter-argument. **`retention-editor`** is told to fail any script that misses the five-second
+test.
+
+**Be clear about what that is.** These agents are markdown prompt files. "Veto" is an
+instruction to a model, not a mechanism — nothing in this repo technically prevents a failed
+script reaching HeyGen. There is no CI check, no hook, no enforcement. An earlier version of
+this file described it as enforcement that was "not advisory"; that was an overclaim and this
+corrects it.
+
+What the definitions actually buy you is a **named stage with a written standard**, so the
+check is specific and repeatable instead of improvised — and so *you* can ask for it by name
+and see whether it was run. If you want real enforcement, that is a pre-commit hook or a CI
+gate, and it does not exist yet.
 
 ---
 
@@ -29,9 +40,9 @@ the five-second test. Neither is advisory.
 | # | Agent | Owns | Takes in | Hands off | Authority |
 |---|---|---|---|---|---|
 | 1 | **`scout`** | Finding the week's stories | Nothing — sweeps news + demand data | 5 ranked angles, each with decay estimate and a comparable video's real numbers | Recommends only |
-| 2 | **`fact-checker`** | Truth | A chosen angle | The `SCRIPT.md` fact table, per-claim confidence | **Can kill a video** — no honest counter-argument means it's a promo |
+| 2 | **`fact-checker`** | Truth | A chosen angle | The `SCRIPT.md` fact table, per-claim confidence | *Instructed* to kill a piece with no honest counter-argument |
 | 3 | **`scriptwriter`** | The words | The verified fact table | Verbatim VO, 150–175 words | May not use a number that isn't in the table |
-| 4 | **`retention-editor`** | **The first 5 seconds + retention** | The draft VO | PASS/FAIL, rewritten hook, timestamped retention map, brief amendments | **VETO** — a FAIL does not proceed |
+| 4 | **`retention-editor`** | **The first 5 seconds + retention** | The draft VO | PASS/FAIL, rewritten hook, timestamped retention map, brief amendments | *Instructed* to FAIL a buried hook — a prompt, not a mechanism |
 | 5 | **`art-director`** | How it looks | The approved VO | Beat-by-beat shot list + the HeyGen brief | Can request a Higgsfield spend; can't make it |
 | 6 | **`packager`** | How it's found | The finished render | Titles, description, tags, thumbnail direction | Can't spend a vidIQ generation credit unsolicited |
 
@@ -71,7 +82,8 @@ the script onto the timed retention spine, hunts the killers (throat-clearing, r
 to a number that could have opened), and checks the compliance line renders as a bottom-edge
 strip rather than a full-frame card that eats the hook.
 
-**Veto.** And a limit that matters: it may reorder and rewrite freely but **may not introduce a
+**Instructed to fail a buried hook** — and, as above, that is a prompt rather than an enforced
+gate. A limit that matters: it may reorder and rewrite freely but **may not introduce a
 fact outside the verified table**. Otherwise "make it interesting" becomes licence to drift.
 
 Run it again on the finished brief — a hook that survives the script can still be destroyed by a
@@ -104,6 +116,7 @@ channel's palette. **Does not chase the score.**
 | Analyst numbers are estimates, never prices | Regulatory exposure on content people act on |
 | Never chase the thumbnail score | The palette is the identity; already a decided trade |
 | A human watches every render | CDN egress is blocked — **no agent has ever seen a render** |
+| **Mark provenance on every claim** | See `PROVENANCE.md`. A claim with no source is an assertion, and must say so. |
 
 ---
 

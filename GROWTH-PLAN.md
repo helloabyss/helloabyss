@@ -84,14 +84,16 @@ From `vidiq_youtube_search` on the actual Fed story, ranked by pull:
 | **Flat declarative news title.** No question marks, no curiosity gap. | Humphrey Yang — "The Federal Reserve Just Raised Interest Rates For The First Time Since 2023", 286k |
 | **60–90 seconds.** Long enough to carry a real fact, short enough to complete. | Yang 1:22; CNBC 0:35 and 0:28 both outliers |
 | **Publish inside the news window.** | Every outlier above is dated 2026-09-15 or -16 |
-| **A named counter-voice raises watch time.** | CNBC's two Tom Lee clips both outlier ≥2.6 — the *disagreement* is the hook |
+| **A named counter-voice may raise watch time.** *(weak evidence — n=3, one channel)* | Of CNBC's 3 clips on this story, the 2 Tom Lee *disagreement* clips led on views (57k, 46k vs 26k) |
 | **Breakout channels are new and narrow.** | Lock Stock Finance: founded Feb 2025, 201k subs, +4,912% subs/yr, 86 videos, one niche |
 
 That last row matters most. The channels breaking out in finance right now are two years old
 and topically disciplined. Not big, not old — **narrow and frequent.**
 
 The channel's existing differentiator — the mandatory counter-evidence beat — is not a
-handicap. CNBC's best-performing clips this week were *disagreement* clips. Lean into it.
+handicap — and it may be an advantage. Caveat the evidence honestly: of CNBC's three clips on
+this story the two disagreement clips led on views. That is a hint from a single channel on a
+single story, not a proven pattern. Worth leaning into; not worth betting the format on.
 
 ---
 

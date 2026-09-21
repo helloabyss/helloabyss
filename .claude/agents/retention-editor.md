@@ -43,9 +43,10 @@ timestamp where each begins. Then find the failures:
 
 - **Any 15-second stretch with no new information or reversal.** Mark it. That is where the
   swipe happens.
-- **The turn must be signposted out loud.** "Now the counterweight." Disagreement is a
-  retention asset — CNBC's two best-performing clips on the September 2026 Fed story were both
-  disagreement clips. Never bury it.
+- **The turn must be signposted out loud.** "Now the counterweight." The supporting evidence is
+  weak (n=3, one channel, one story — see `STYLE-GUIDE.md` §5A), so treat this as a house
+  convention rather than a proven rule. Never bury the turn regardless: the channel's editorial
+  standard requires it whether or not it also helps retention.
 - **The close must loop** — the last line should make the first line land differently.
 - Hunt the retention killers in §5A: throat-clearing, recap, structure-explaining, a slow build
   to a number that could have opened, a pause for the card, a visual that restates the audio.

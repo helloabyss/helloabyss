@@ -139,8 +139,10 @@ Retention dies in the gaps between facts. Structure so there is never a gap.
 **Re-hook every 10–15 seconds.** Each interval must deliver new information or a reversal.
 A restatement is a swipe.
 
-**The counter-evidence beat is a retention asset, not a compliance tax.** CNBC's two best-
-performing clips on the September 2026 Fed story were both *disagreement* clips. Signposting
+**The counter-evidence beat is probably a retention asset, not just a compliance tax.** The
+evidence behind that is thin and you should know it: of CNBC's three clips on the September
+2026 Fed story, the two highest-viewed were both Tom Lee *disagreement* clips (57k and 46k vs
+26k). That is n=3 on one channel on one story — suggestive, not established. Signposting
 the turn out loud — "now the counterweight" — buys the next fifteen seconds. Never bury it.
 
 **Close on a loop.** The last line should rhyme with the first so the video reads as complete
