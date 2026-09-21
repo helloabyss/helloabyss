@@ -229,48 +229,61 @@ the audio step is done by the owner.
 
 ## 8. DEVIATION LOG — 2026-09-20 episode used a substitute voice
 
-**The locked voice was not used for `scripts/2026-09-20`. This is a recorded deviation, not
-a change to §1–§2.** The lock stands; the next episode reverts to it the moment it is usable.
+**The locked voice was not used. This is a recorded deviation, not a change to §1–§2.**
 
-**Why.** Two independent blockers on the same day:
-1. HeyGen premium credits: **0** until 2026-10-06.
-2. HeyGen API token **expired/revoked** — `generate_model_speech` returns
-   `401 unauthorized: Bearer token expired/revoked — needs re-auth`. **Action for the owner:
-   reconnect the HeyGen MCP integration.**
+**Why.** HeyGen is blocked two ways: premium credits **0** until 2026-10-06, and the API
+token is **expired/revoked** (`401 unauthorized` on `generate_model_speech`).
+**Action for the owner: reconnect the HeyGen MCP integration.**
 
-**What was used instead.**
+### Locked substitute
 ```json
 { "provider": "Higgsfield", "model": "seed_audio",
-  "voice": "Arthur", "voice_type": "preset",
-  "voice_id": "30fc8796-ceb6-4a66-b3a7-4a145ef7f346",
-  "post": "atempo=1.18, silence-trimmed, loudnorm I=-16 TP=-1.5 LRA=11" }
+  "voice": "Callan", "voice_type": "preset",
+  "voice_id": "d8061b90-ff25-5882-8384-7a6a28806f30",
+  "speed": "NATIVE — no atempo, no pitch shift",
+  "post": "trim lead/tail silence; cap internal pauses at 0.30s; loudnorm I=-16 TP=-1.5 LRA=11;
+           0.20s gaps between beats" }
 ```
 
-**Arthur was chosen by measurement, not by name.** Alex Wright's own preview was pulled from
-HeyGen's CDN and every male Higgsfield preset was scored against it on median F0, F0 spread,
-spectral centroid and voiced ratio:
+### How it was chosen — timbre, not pitch
+A first attempt picked **Arthur** on median pitch alone. The owner's verdict: *doesn't fit
+the channel.* Re-done properly, against Alex Wright's own sample, across **all 40 male
+presets**, scoring MFCC timbre (c1–c12), MFCC spread, and pitch:
 
-| voice | median F0 | F0 spread | brightness | distance |
-|---|---:|---:|---:|---:|
-| **Alex Wright (target)** | **144.1** | **48.2** | **1706** | — |
-| **Arthur** | 140.4 | 48.1 | 1502 | **0.125** |
-| Cillian | 123.1 | 35.0 | 1707 | 0.170 |
-| Dylan | 149.5 | 44.2 | 1478 | 0.186 |
-| Archie | 132.2 | 38.2 | 1472 | 0.227 |
-| …7 others | | | | 0.32–0.51 |
+| rank | voice | timbre | spread | pitch Δ | F0 |
+|---:|---|---:|---:|---:|---:|
+| — | **Alex Wright (target)** | — | — | — | **144.1** |
+| 1 | **Callan** | **0.109** | 0.079 | 2.6% | 140.4 |
+| 2 | Arthur | 0.124 | 0.063 | 2.6% | 140.4 |
+| 3 | Dylan | 0.126 | 0.064 | 3.7% | 149.5 |
+| 5 | Xavier | 0.071 | 0.062 | 19.6% | 115.9 |
 
-Arthur's pitch **spread** matches to within 0.1 Hz (48.1 vs 48.2) — the same intonation
-range, which is what carries the delivery.
+Callan wins on timbre at the same pitch. **Pitch alone is not a sufficient selector — always
+score timbre.**
 
-**Voice cloning was refused.** Alex Wright's sample is reachable and `seed_audio` can clone
-from a reference, but cloning a licensed commercial library voice onto another platform is a
-rights problem, not a technical one. Not done, and not to be done.
+### The real cause of the bad first take: the tempo lift
+Arthur is the **slowest** voice tested (100.8 WPM on a fixed sample). Fitting the script
+needed `atempo≈1.18–1.45`, and speeding a voice is what made it sound synthetic and rushed.
 
-**Rate.** Arthur reads ~127 WPM natural, so the 139-word script ran 65.9s. `atempo=1.18`
-brings it to 147.6 WPM and 56.5s. Note this does **not** violate §2's "fix runtime by cutting
-words, never by changing speed" — that rule exists to preserve the match to prior episodes,
-and this render already isn't that voice. **When the locked voice returns, drop the tempo
-lift**: at 152 WPM the same 139 words land at 54.9s, inside the band unaided.
+**Never fix runtime with `atempo`.** Measured on the Callan take: **31% of raw TTS output is
+silence** — seed_audio pads every sentence boundary, and this script is deliberately
+punctuation-dense. Capping internal pauses at 0.30s removes dead air *without touching the
+speech*:
+
+| | raw | pauses capped 0.30s |
+|---|---:|---:|
+| Duration | 69.4s | **54.9s** |
+| Rate | 118.9 WPM | **151.9 WPM** |
+| Silence share | 31% | **19%** |
+
+151.9 WPM lands within 0.3 WPM of the channel's measured 152.3 house rate, at the voice's
+**natural** pitch and speed. This is the technique to reuse — including with the locked
+voice when it returns.
+
+### Voice cloning was refused
+Alex Wright's sample is reachable and `seed_audio` can clone from a reference. Cloning a
+licensed commercial library voice onto another platform is a rights problem, not a technical
+one. Not done, and not to be done.
 
 ## Provenance
 

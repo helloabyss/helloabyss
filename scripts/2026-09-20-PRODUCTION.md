@@ -1,6 +1,31 @@
 # Production Record — This Week in Tech, 2026-09-20
 
-## v3 — NARRATED, FACT-CHECKED FINAL ✅
+## v4 — FINAL: NATIVE-SPEED NARRATION ✅
+
+**Watch / download:**
+https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/138d4acd-a043-4c3f-a570-8254bff4b9f1.mp4
+
+**54.91s · 1080×1920 · H.264 + AAC · 14.0MB**
+
+v3's voice was rejected as not fitting the channel. Two things were wrong, and the second
+mattered more than the first:
+
+1. **Wrong selector.** v3 picked Arthur on median pitch. Re-scored across **all 40 male
+   presets** on MFCC **timbre**, **Callan** wins at the same pitch (timbre 0.109 vs 0.124).
+2. **The tempo lift was the real damage.** Arthur is the slowest voice tested (100.8 WPM),
+   so v3 applied `atempo=1.18` — which is what made it sound synthetic.
+
+**v4 uses no speed manipulation at all.** Instead: 31% of raw TTS output is silence, because
+seed_audio pads every sentence break and this script is punctuation-dense. Capping internal
+pauses at 0.30s takes it from 69.4s to **54.9s — 151.9 WPM**, within 0.3 WPM of the
+channel's 152.3 house rate, at the voice's natural pitch and speed. Silence share 19%.
+
+Verified: 54.909s, h264+aac, per-beat RMS 0.074–0.091 (even across all five beats).
+Fact-check corrections from v3 all carried through unchanged.
+
+---
+
+## v3 — narrated, fact-checked (superseded: voice rejected)
 
 **Watch / download:**
 https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/444c2349-fcfb-4433-b6ec-7f29a4ff4866.mp4
