@@ -90,6 +90,13 @@ Three. Listed so the pattern is visible, not buried.
 | 9 | Every `SCRIPT.md` footer stated a VO word count (e.g. "~176 words") | **All were wrong.** `fed-dot-short` was actually 194. The counts were estimated by eye, never computed — which is precisely how the impossible 0:00–0:05 hook windows survived: the arithmetic was never done at any stage, only asserted. Found by `scriptwriter`, not by me. | Concealed finding #4's root cause behind a second bad number | Counts now computed, not estimated |
 | 10 | My verification script for the rewritten hooks reported 2 of 3 as FAIL | **My check was broken, not the work.** It assumed every hook spans exactly two blockquote paragraphs, so for two scripts it concatenated the hook with the PROOF beat and measured 46 and 47 words instead of 14 and 13. Caught by inspecting the files before reporting. | Would have been a false accusation against correct work | Re-measured against each file's demarcated hook: all three PASS |
 
+| 11 | Delegation prompt to `scriptwriter` said "if it exceeds ~5.5s, it is not done" | **§5A states ≈13 words / 5.0s and no tolerance.** The 5.5s ceiling was invented in the prompt, not taken from the spec — and it worked exactly as invented numbers do: one hook came back at 14 words / 5.38s and was reported as within budget. Caught by `retention-editor`, which noticed the tolerance had no source. | One hook shipped over budget under a fabricated allowance | §5A now states 13 words is a ceiling with no tolerance, and that slack offered anywhere else was invented |
+
+Finding #11 is the same failure as #1 and #4 in a new place: **a number introduced into a
+delegation prompt propagates as if it were the standard.** The agents obey the prompt, so an
+invented figure there is harder to catch than one in a document — it never gets written down
+to be reviewed.
+
 Finding #10 is the mirror of #8 and belongs in the log for the same reason: **a verification
 step is not automatically right either, including mine.** The instinct to report the first
 number a script prints is the same instinct that produced findings #1–#4.

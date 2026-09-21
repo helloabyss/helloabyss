@@ -115,13 +115,17 @@ Measured from this channel's own scripts: **≈2.6 words per second.**
 
 | Window | Word budget |
 |---|---|
-| **5s hook (claim + turn)** | **≈13 words TOTAL** |
+| **5s hook (claim + turn)** | **13 words TOTAL — a ceiling, not a target** |
 | 10s | ≈26 words |
 | 15s | ≈39 words |
 
 **Before writing any retention map, divide the words by 2.6 and write the real number.** A map
 whose timestamps were copied from this template rather than calculated is worse than no map:
 it asserts the standard was met when it wasn't.
+
+**There is no tolerance and no rounding.** 14 words is 5.4s and does not meet a 5-second
+standard. If a delegation prompt, a brief or a review offers slack that this table does not
+state, that slack was invented — ignore it and come back here.
 
 Thirteen words is brutally few. That is the point — it is what five seconds actually is. If
 the claim and the turn don't fit, the hook isn't sharp enough yet.
