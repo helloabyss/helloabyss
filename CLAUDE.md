@@ -86,8 +86,8 @@ being wrong made the channel avoid tools it could afford.**
   `vidiq_channel_search` and `vidiq_youtube_search`, which respect the query.
 - **vidIQ cannot find The Meticulous Investor** (`@meticulousmoney`) — channels this small are
   not indexed. Two `channel_search` attempts cost 10 credits and returned nothing. **Do not
-  search for it again.** Get the `UC…` ID from YouTube Studio instead; `www.youtube.com` is
-  egress-blocked from this environment so it cannot be resolved here.
+  search for it again**, and do not try to resolve its `UC…` ID: `www.youtube.com` is
+  egress-blocked here, and nothing in the pipeline needs the ID anyway.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
 
@@ -109,7 +109,8 @@ Channel-level documents:
 ## Which channel this repo serves
 
 **The Meticulous Investor** — `@meticulousmoney`, faceless finance, 6 subscribers, cold start.
-Channel ID (`UC…`) still unknown; see the vidIQ note below. Every script,
+The `UC…` ID is unknown and **is not needed** — publishing runs on an OAuth connection, not an
+ID. Do not spend calls hunting for it. Every script,
 render and packaging decision in this repo targets that channel.
 
 `PARADOCS10X` (`UCX2_NXOHIgXUQFsBOub65HQ`, AI/tech, 57 subs) is a **separate, parked** channel.

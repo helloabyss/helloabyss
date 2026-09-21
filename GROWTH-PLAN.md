@@ -35,15 +35,26 @@ Treat it as a cold start and optimise for **topical consistency above all else**
 anything off-lane for the first 90 days. One off-topic video on a 6-sub channel is a
 meaningful fraction of the classification evidence.
 
-### Blocked on you — two inputs needed
+### The channel ID is NOT needed — dropped 2026-09-21
 
-1. **The `UC…` channel ID**, from YouTube Studio → Settings → Channel → Advanced. The handle
-   `@meticulousmoney` is recorded, but I cannot convert it to an ID from here: `www.youtube.com`
-   is egress-blocked, and vidIQ does not index channels this small (two searches confirmed it
-   and cost 10 credits). Paste the ID and the tooling can address the channel directly.
-2. **Authorise the tooling against it.** `vidiq_authorize_with_youtube` currently points at
-   `paradocs10x@gmail.com`. Publishing automation stays unwired until the finance channel has
-   its own connection — I will not repoint the tech channel's.
+An earlier version of this plan asked for the `UC…` ID. That was a mistake on my part: nothing
+in the pipeline actually needs it.
+
+- **Publishing** runs on an OAuth connection, not an ID. Connecting the channel inside the
+  OpusClip UI mints its own `post_account_id` — the same way PARADOCS10X's
+  `6797cd6d213f56bd20026a41` exists. No ID to look up, no ID to paste.
+- **vidIQ research** on the channel is impossible regardless: channels this small are not
+  indexed, and the credit pool is exhausted until 2026-10-03.
+
+So the ID would buy nothing today. **Do not spend time hunting for it.**
+
+### The one real prerequisite for automated publishing
+
+**Connect `@meticulousmoney` to OpusClip** (its UI, OAuth, one sign-in). That creates the
+publishing slot. Until then uploads are manual — which is fine, and is how every video in this
+repo has shipped so far.
+
+The X account (@troybillion) is already connected and channel-agnostic, so it needs nothing.
 
 ## 2. What the constraint actually is
 
