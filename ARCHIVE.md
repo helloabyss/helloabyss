@@ -27,3 +27,13 @@ Scored well but deliberately not used. Not archived — these are still **eligib
 | Microsoft "Humanist" AI code of conduct, 37 pages | 2026-09-14 | 33 | Thin visuals — it is a document | When the six-week comment period closes and the revised version lands |
 | Nvidia's Huang forecasts 2× chip sales in 2027 | 2026-09-17 | 33 | A forecast, not an event | When shipment figures test the forecast |
 | SoftBank $11.87B loan toward ~$65B OpenAI position | 2026-09-14 | 24 | **No footage exists** — dropped on the doubled visual weight | Only with a visual hook. Would require the compliance card |
+
+---
+
+## Frontier AI lane
+
+| Date aired | Story | Beat | Event date | Episode | Eligible again when |
+|---|---|---|---|---|---|
+| 2026-09-22 | SpaceXAI ships Grok 4.7 — larger base, unchanged $2/$6 pricing | Lead | 2026-09-21 | `scripts/2026-09-22-frontier-longform.md` | Independent (non-company) benchmarks land, or pricing changes |
+| 2026-09-22 | StepFun Step 5 Preview — 600B MoE, 1M context, $1/$2.70 | Beat 2 | 2026-09-20 | same | **Open weights drop 2026-10-15** — that is a new story |
+| 2026-09-22 | Agility Digit 5 — "cooperatively safe" humanoid | Not-yet segment | 2026-09-15 | same | Early access actually opens (H1 2027) |
