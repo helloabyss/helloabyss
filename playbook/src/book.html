@@ -1,0 +1,2667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Faceless Channel Playbook</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  /* ---------- page geometry ---------- */
+  @page            { size: 8.5in 11in; margin: 0.92in 0.95in 0.85in 0.95in; }
+  @page bleed      { size: 8.5in 11in; margin: 0; }
+
+  :root{
+    --ink:    #121215;
+    --paper:  #FFFFFF;
+    --red:    #E3120B;
+    --mute:   #6E6E74;
+    --rule:   #DCD8D0;
+    --wash:   #F4F1EB;
+    --dark:   #17171A;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ margin:0; padding:0; background:var(--paper); }
+  body{ margin:0; padding:0; background:transparent; color:var(--ink); }
+  body{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:10.4pt; line-height:1.56;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  p{ margin:0 0 0.62em 0; text-align:justify; hyphens:auto; orphans:3; widows:3; }
+  p + p{ text-indent:0; }
+  strong{ font-weight:600; }
+  em{ font-style:italic; }
+  a{ color:inherit; text-decoration:none; }
+
+  /* ---------- full-bleed pages ---------- */
+  .bleed{
+    page:bleed; break-before:page; break-after:page;
+    width:8.5in; height:11in; overflow:hidden;
+    background:var(--dark); color:#F5F3EF; position:relative;
+  }
+
+  /* ---------- cover ---------- */
+  .cover{ display:flex; flex-direction:column; justify-content:space-between; padding:0.95in 0.9in; }
+  .cover .imprint{
+    font-family:'Oswald'; font-weight:500; font-size:8.5pt; letter-spacing:.26em;
+    text-transform:uppercase; color:#8C8C93;
+  }
+  .cover .stripe{ width:1.5in; height:5px; background:var(--red); margin:0 0 0.34in 0; }
+  .cover h1{
+    font-family:'Oswald'; font-weight:700; text-transform:uppercase;
+    font-size:69pt; line-height:0.92; letter-spacing:-0.012em; margin:0; color:#fff;
+  }
+  .cover h1 .accent{ color:var(--red); }
+  .cover .sub{
+    font-family:'Source Serif 4'; font-size:13pt; line-height:1.42; color:#BFBDB8;
+    max-width:5.1in; margin:0.3in 0 0 0; text-align:left;
+  }
+  .cover .foot{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    font-family:'Oswald'; font-weight:500; font-size:8.5pt; letter-spacing:.2em;
+    text-transform:uppercase; color:#8C8C93; border-top:1px solid #313136; padding-top:0.16in;
+  }
+
+  /* ---------- part dividers ---------- */
+  .divider{ display:flex; flex-direction:column; justify-content:center; padding:0 0.95in; }
+  .divider .pnum{
+    font-family:'Oswald'; font-weight:700; font-size:13pt; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--red); margin-bottom:0.12in;
+  }
+  .divider h2{
+    font-family:'Oswald'; font-weight:700; text-transform:uppercase;
+    font-size:40pt; line-height:1.0; letter-spacing:-0.01em; margin:0; color:#fff;
+  }
+  .divider .blurb{
+    font-size:12pt; line-height:1.5; color:#B7B5B0; max-width:4.6in;
+    margin-top:0.26in; padding-top:0.22in; border-top:1px solid #313136; text-align:left;
+  }
+  .divider .contents{
+    margin-top:0.42in; font-family:'Oswald'; font-weight:500; font-size:9.5pt;
+    letter-spacing:.1em; text-transform:uppercase; color:#85858C; line-height:2;
+  }
+  .divider .contents b{ color:var(--red); font-weight:700; display:inline-block; width:0.4in; }
+
+  /* ---------- plain front-matter pages ---------- */
+  .plain{ break-before:page; }
+  .plain.first{ break-before:auto; }
+
+  /* ---------- chapters ---------- */
+  .chapter{ break-before:page; }
+  .chapter .kicker{
+    font-family:'Oswald'; font-weight:700; font-size:8.5pt; letter-spacing:.26em;
+    text-transform:uppercase; color:var(--red); margin-bottom:0.06in;
+  }
+  .chapter h2{
+    font-family:'Oswald'; font-weight:700; text-transform:uppercase;
+    font-size:27pt; line-height:1.02; letter-spacing:-0.008em;
+    margin:0 0 0.12in 0; break-after:avoid;
+  }
+  .chapter .hrule{ height:3px; background:var(--ink); width:100%; margin:0 0 0.19in 0; }
+  .lede{
+    font-size:12.2pt; line-height:1.48; color:#2C2C31; margin-bottom:0.2in;
+    text-align:left;
+  }
+  h3{
+    font-family:'Oswald'; font-weight:700; text-transform:uppercase;
+    font-size:11.5pt; letter-spacing:.06em; margin:0.26in 0 0.07in 0; break-after:avoid;
+  }
+  h4{
+    font-family:'Oswald'; font-weight:500; text-transform:uppercase;
+    font-size:9.5pt; letter-spacing:.16em; color:var(--mute);
+    margin:0.2in 0 0.05in 0; break-after:avoid;
+  }
+
+  /* ---------- components ---------- */
+  .callout{
+    border-left:3px solid var(--red); background:var(--wash);
+    padding:0.15in 0.2in 0.1in 0.2in; margin:0.2in 0; break-inside:avoid;
+  }
+  .callout .lbl{
+    font-family:'Oswald'; font-weight:700; font-size:8pt; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--red); display:block; margin-bottom:0.05in;
+  }
+  .callout p:last-child{ margin-bottom:0; }
+
+  .field{
+    background:var(--dark); color:#E6E4DF; padding:0.17in 0.22in 0.13in 0.22in;
+    margin:0.22in 0; break-inside:avoid;
+  }
+  .field .lbl{
+    font-family:'Oswald'; font-weight:700; font-size:8pt; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--red); display:block; margin-bottom:0.06in;
+  }
+  .field p{ margin-bottom:0.5em; }
+  .field p:last-child{ margin-bottom:0; }
+  .field strong{ color:#fff; }
+
+  .quote{
+    font-family:'Oswald'; font-weight:700; text-transform:uppercase;
+    font-size:17pt; line-height:1.14; letter-spacing:-0.005em;
+    border-top:3px solid var(--red); border-bottom:1px solid var(--rule);
+    padding:0.14in 0 0.14in 0; margin:0.26in 0; break-inside:avoid;
+  }
+
+  table{ width:100%; border-collapse:collapse; margin:0.18in 0; break-inside:avoid; font-size:9.3pt; }
+  th{
+    font-family:'Oswald'; font-weight:700; font-size:8pt; letter-spacing:.14em;
+    text-transform:uppercase; text-align:left; padding:0.04in 0.09in 0.05in 0;
+    border-bottom:2px solid var(--ink); vertical-align:bottom;
+  }
+  td{ padding:0.062in 0.09in 0.062in 0; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.4; }
+  td:last-child, th:last-child{ padding-right:0; }
+  tr:last-child td{ border-bottom:1px solid var(--ink); }
+  .t-num{ font-family:'IBM Plex Mono'; font-size:8.6pt; white-space:nowrap; }
+  .t-key{ font-weight:600; }
+
+  pre{
+    font-family:'IBM Plex Mono'; font-size:8.1pt; line-height:1.48;
+    background:var(--dark); color:#E2E0DB; padding:0.17in 0.2in;
+    margin:0.18in 0; white-space:pre-wrap; break-inside:avoid;
+  }
+  pre.flow{ break-inside:auto; }
+  pre .c{ color:#8D8D96; }
+  pre .k{ color:#FF6B61; }
+  code{ font-family:'IBM Plex Mono'; font-size:8.8pt; background:var(--wash); padding:0 2px; }
+
+  ol,ul{ margin:0.1in 0 0.16in 0; padding-left:0.24in; }
+  li{ margin-bottom:0.055in; line-height:1.5; }
+  ol{ counter-reset:none; }
+
+  .checklist{ list-style:none; padding-left:0; margin:0.14in 0; }
+  .checklist li{
+    padding-left:0.28in; position:relative; margin-bottom:0.09in; break-inside:avoid;
+  }
+  .checklist li:before{
+    content:''; position:absolute; left:0; top:0.055in;
+    width:0.13in; height:0.13in; border:1.5px solid var(--ink);
+  }
+
+  .worksheet{ border:1.5px solid var(--ink); padding:0.2in 0.22in; margin:0.18in 0; break-inside:avoid; }
+  .wline{ margin-bottom:0.15in; }
+  .wline .q{
+    font-family:'Oswald'; font-weight:700; font-size:8.5pt; letter-spacing:.14em;
+    text-transform:uppercase; display:block; margin-bottom:0.02in;
+  }
+  .wline .hint{ font-size:8.6pt; color:var(--mute); font-style:italic; display:block; margin-bottom:0.06in; }
+  .wline .fill{ border-bottom:1px solid #B9B5AC; height:0.21in; }
+  .wline .fill.tall{ height:0.46in; }
+
+  .toc-row{
+    display:flex; align-items:baseline; gap:0.1in;
+    border-bottom:1px solid var(--rule); padding:0.031in 0;
+  }
+  .toc-row .n{
+    font-family:'IBM Plex Mono'; font-size:8.4pt; color:var(--red); width:0.34in; flex:none;
+  }
+  .toc-row .t{ font-size:9.6pt; }
+  .toc-cols{ column-count:2; column-gap:0.34in; }
+  .toc-cols .toc-part:first-of-type{ margin-top:0; }
+  .toc-part{
+    font-family:'Oswald'; font-weight:700; font-size:8.8pt; letter-spacing:.2em;
+    text-transform:uppercase; margin:0.135in 0 0.03in 0; color:var(--ink);
+    border-bottom:2px solid var(--ink); padding-bottom:0.03in;
+  }
+  .toc-part:first-of-type{ margin-top:0.08in; }
+
+  .two-col{ column-count:2; column-gap:0.28in; }
+  .nobreak{ break-inside:avoid; }
+  .tight p{ margin-bottom:0.4em; }
+  .small{ font-size:9.2pt; line-height:1.48; }
+  .mute{ color:var(--mute); }
+  .center{ text-align:center; }
+  .spacer{ height:0.3in; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="bleed cover">
+  <div class="imprint">helloabyss &nbsp;·&nbsp; production series &nbsp;·&nbsp; no. 01</div>
+  <div>
+    <div class="stripe"></div>
+    <h1>The<br>Faceless<br>Channel<br><span class="accent">Playbook</span></h1>
+    <p class="sub">A production system for factual short-form video: the identity lock,
+    the five-beat script, the fact table — and the failure log from building one.</p>
+  </div>
+  <div class="foot">
+    <span>Edition 1.0</span>
+    <span>September 2026</span>
+  </div>
+</section>
+
+<!-- ============ TITLE / COPYRIGHT ============ -->
+<section class="plain first">
+  <div style="height:0.85in"></div>
+  <div style="font-family:'Oswald';font-weight:700;text-transform:uppercase;font-size:30pt;line-height:1.0;letter-spacing:-0.01em;">
+    The Faceless<br>Channel Playbook
+  </div>
+  <div style="height:3px;background:var(--red);width:1.5in;margin:0.18in 0 0.16in 0;"></div>
+  <p style="font-size:12pt;color:#2C2C31;max-width:4.9in;text-align:left;">
+    A production system for factual short-form video: the identity lock, the five-beat
+    script, the fact table — and the failure log from building one.
+  </p>
+
+  <div style="height:1.75in"></div>
+
+  <div class="small mute" style="max-width:5in;">
+    <p><strong>Edition 1.0 — September 2026.</strong> Published by helloabyss.</p>
+    <p>© 2026 helloabyss. All rights reserved. This document is licensed to a single
+    purchaser for personal and internal business use. You may print it, quote briefly
+    from it with attribution, and use every template in it to make your own videos —
+    including commercially, without royalty. You may not resell, redistribute, sublicense
+    or republish the document itself, in whole or in substantial part, or use it as
+    course or training material for sale. The full licence is in Appendix G.</p>
+    <p><strong>Not financial advice.</strong> This is a production manual for people who
+    make educational video. Nothing in it is investment, legal, tax or accounting advice,
+    and nothing in it is a recommendation to buy or sell any security. The market and
+    regulatory figures reproduced here are worked examples of a verification method, not
+    current market data, and several were accurate only as of the dates recorded in
+    Appendix F.</p>
+    <p><strong>No earnings claim.</strong> This book describes a way of working. It does
+    not promise views, subscribers, monetization or income, and no such outcome should be
+    inferred from anything in it.</p>
+    <p>Third-party product and platform names are used descriptively to report what was
+    observed in production. No affiliation, sponsorship or endorsement is claimed by or
+    for any of them.</p>
+  </div>
+</section>
+
+<!-- ============ READ THIS FIRST ============ -->
+<section class="plain">
+  <div class="kicker" style="font-family:'Oswald';font-weight:700;font-size:8.5pt;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-bottom:0.06in;">Before you start</div>
+  <div style="font-family:'Oswald';font-weight:700;text-transform:uppercase;font-size:27pt;line-height:1.02;margin-bottom:0.12in;">Read this first</div>
+  <div class="hrule" style="height:3px;background:var(--ink);margin-bottom:0.19in;"></div>
+
+  <p class="lede">This is the operating manual for a faceless, fact-checked, short-form
+  video channel. It was written from the production record of one — including the two
+  renders that were scrapped, the tool that died for seven and a half hours, and the
+  video that shipped with a defect.</p>
+
+  <h3>What this is</h3>
+  <p>A complete system, in the order you need it: how to lock a visual identity so a
+  generator can actually hold it; how to structure a sixty-second script so it survives
+  contact with a sceptical viewer; how to verify claims before you write them; how to
+  brief an AI video tool so your constraints reach the render; and how to keep a
+  production record that stops you paying twice for the same lesson.</p>
+  <p>Every template in it is a working document. Take them.</p>
+
+  <h3>What this is not</h3>
+  <p>It is not a scheme, and it makes no claim about what you will earn. It does not
+  contain a niche to copy, a done-for-you channel, or a list of prompts that produce
+  videos while you sleep. It is not financial, legal or tax advice. And it is not a
+  neutral survey of every way to make short video — it is one system, described in
+  detail, with its failures attached.</p>
+
+  <h3>Who it is for</h3>
+  <p>Someone who intends to publish at least twenty videos on one subject and wants the
+  twentieth to be recognisably from the same publication as the first. If you plan to
+  publish three and see how it goes, most of this will feel like overhead. It is
+  overhead — that is the point. It is the overhead that makes volume survivable.</p>
+
+  <h3>How to use it</h3>
+  <p>Parts Two, Three and Four before you write your first script. Part Five open beside
+  you while you are at the tool. Part Six before you publish, Part Seven after. The
+  appendices are the parts you will actually use every week: copy them into your own
+  files and fill them in.</p>
+
+  <div class="callout">
+    <span class="lbl">A note on the facts in this book</span>
+    <p>Every external claim carries a source and a confidence level in Appendix F,
+    including the ones that could not be confirmed at the primary source from the machine
+    this was compiled on. Those are marked, not quietly rounded up. That is the same
+    standard Part Four asks of your scripts, and it would be strange to sell you a
+    discipline this book did not practise.</p>
+  </div>
+</section>
+
+<!-- ============ CONTENTS ============ -->
+<section class="plain">
+  <div style="font-family:'Oswald';font-weight:700;text-transform:uppercase;font-size:27pt;line-height:1.02;margin-bottom:0.12in;">Contents</div>
+  <div style="height:3px;background:var(--ink);margin-bottom:0.1in;"></div>
+
+  <div class="toc-cols">
+  <div class="toc-part">Part One — The premise</div>
+  <div class="toc-row"><span class="n">01</span><span class="t">The slop problem became a policy problem</span></div>
+  <div class="toc-row"><span class="n">02</span><span class="t">The three assets you are actually building</span></div>
+
+  <div class="toc-part">Part Two — Lock the identity</div>
+  <div class="toc-row"><span class="n">03</span><span class="t">Imagery first: the three-layer stack</span></div>
+  <div class="toc-row"><span class="n">04</span><span class="t">The hero shot and the bookend</span></div>
+  <div class="toc-row"><span class="n">05</span><span class="t">Three colours and a ban list</span></div>
+  <div class="toc-row"><span class="n">06</span><span class="t">Motion comes from the camera</span></div>
+  <div class="toc-row"><span class="n">07</span><span class="t">The identity lock</span></div>
+
+  <div class="toc-part">Part Three — The script</div>
+  <div class="toc-row"><span class="n">08</span><span class="t">The five beats</span></div>
+  <div class="toc-row"><span class="n">09</span><span class="t">The counter-evidence beat</span></div>
+  <div class="toc-row"><span class="n">10</span><span class="t">Length is a consequence. Close without bait.</span></div>
+
+  <div class="toc-part">Part Four — The fact discipline</div>
+  <div class="toc-row"><span class="n">11</span><span class="t">Never script from memory</span></div>
+  <div class="toc-row"><span class="n">12</span><span class="t">The fact table and the confidence scale</span></div>
+  <div class="toc-row"><span class="n">13</span><span class="t">When the story cannot be sourced</span></div>
+  <div class="toc-row"><span class="n">14</span><span class="t">Pick the claim you can defend</span></div>
+
+  <div class="toc-part">Part Five — Production</div>
+  <div class="toc-row"><span class="n">15</span><span class="t">The brief is the product</span></div>
+  <div class="toc-row"><span class="n">16</span><span class="t">Approval is the mechanism</span></div>
+  <div class="toc-row"><span class="n">17</span><span class="t">When the tool breaks: a triage protocol</span></div>
+  <div class="toc-row"><span class="n">18</span><span class="t">Complete is not verified</span></div>
+  <div class="toc-row"><span class="n">19</span><span class="t">Credits are a production constraint</span></div>
+
+  <div class="toc-part">Part Six — Publish</div>
+  <div class="toc-row"><span class="n">20</span><span class="t">Packaging: titles, description, pinned comment</span></div>
+  <div class="toc-row"><span class="n">21</span><span class="t">Thumbnails and the score trap</span></div>
+  <div class="toc-row"><span class="n">22</span><span class="t">Compliance you cannot skip</span></div>
+  <div class="toc-row"><span class="n">23</span><span class="t">What monetization actually requires</span></div>
+
+  <div class="toc-part">Part Seven — The system</div>
+  <div class="toc-row"><span class="n">24</span><span class="t">Repo as record</span></div>
+  <div class="toc-row"><span class="n">25</span><span class="t">Teardown: one short, end to end</span></div>
+  <div class="toc-row"><span class="n">26</span><span class="t">The pre-publish checklist</span></div>
+
+  <div class="toc-part">Appendices</div>
+  <div class="toc-row"><span class="n">A</span><span class="t">Script file template</span></div>
+  <div class="toc-row"><span class="n">B</span><span class="t">Production file template</span></div>
+  <div class="toc-row"><span class="n">C</span><span class="t">The brief template</span></div>
+  <div class="toc-row"><span class="n">D</span><span class="t">Identity lock worksheet</span></div>
+  <div class="toc-row"><span class="n">E</span><span class="t">Confidence scale — quick card</span></div>
+  <div class="toc-row"><span class="n">F</span><span class="t">Sources and verification log</span></div>
+  <div class="toc-row"><span class="n">G</span><span class="t">Licence</span></div>
+  </div>
+</section>
+
+<!-- ============ PART ONE ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part One</div>
+  <h2>The<br>Premise</h2>
+  <p class="blurb">Why a slower, more expensive way of making short video is now the
+  cheaper one.</p>
+  <div class="contents">
+    <div><b>01</b> The slop problem became a policy problem</div>
+    <div><b>02</b> The three assets you are actually building</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter One</div>
+  <h2>The slop problem<br>became a policy problem</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">The cost of producing a finance short fell to roughly zero. That is the
+  market you are entering. The platform noticed before most creators did, and it responded
+  by pricing the one input that did not get cheaper: authorship.</p>
+
+  <p>Anyone with a card and an afternoon can now generate a vertical explainer with a
+  synthetic voice, stock-feel imagery and burned-in captions. Thousands of people do,
+  daily, on the same eight topics. The supply of competent-looking short video is
+  effectively infinite, and infinite supply destroys the value of looking competent.</p>
+
+  <p>In July 2025, YouTube renamed its <em>repetitious content</em> policy to
+  <em>inauthentic content</em> and spelled out what it covers: content that is
+  mass-produced or repetitive. The rename did not create a new prohibition — repetitive,
+  templated uploads were already ineligible for monetization under the old wording. What
+  it did was name the thing directly. Reporting through 2026 describes enforcement moving
+  from video-by-video review toward channel-level assessment.</p>
+
+  <p>Read that as a pricing signal rather than a threat. Generated video is not penalised.
+  The absence of a human author is. A video built from your research, carrying your
+  position, edited to your identity, is a video with an author. The fiftieth output of a
+  template you ran unchanged is not, and no amount of production polish converts one into
+  the other.</p>
+
+  <div class="quote">You are not competing on production.<br>Production is free. You are
+  competing on the things that stayed expensive.</div>
+
+  <h3>The bar is also rising</h3>
+
+  <p>While the floor was being raised on quality, it was raised on scale too. The current
+  and announced thresholds for the YouTube Partner Program:</p>
+
+  <table>
+    <tr><th style="width:36%">Tier</th><th>Requirement</th></tr>
+    <tr>
+      <td class="t-key">Fan funding tier</td>
+      <td>500 subscribers, 3 valid public uploads in the last 90 days, and either 3,000
+      qualified public watch hours in 12 months or 3 million qualified Shorts views in 90 days</td>
+    </tr>
+    <tr>
+      <td class="t-key">Ad revenue tier</td>
+      <td>1,000 subscribers, and either 4,000 qualified public watch hours in 12 months or
+      10 million qualified Shorts views in 90 days</td>
+    </tr>
+    <tr>
+      <td class="t-key">From 1 Feb 2027<br><span class="mute small">new applicants</span></td>
+      <td>1,000 subscribers, and either 8,000 watch hours or 20 million Shorts views.
+      Channels already in the programme are reported to be grandfathered</td>
+    </tr>
+    <tr>
+      <td class="t-key">From 1 Feb 2027<br><span class="mute small">Shorts revenue share</span></td>
+      <td>A reported floor of 10 million qualified Shorts views per rolling 90 days to earn
+      Shorts ad and subscription revenue, re-entered automatically on crossing back over</td>
+    </tr>
+  </table>
+
+  <p class="small mute">Thresholds and dates as recorded in Appendix F, with confidence
+  levels. Two of YouTube’s own pages were unreachable from the machine this was compiled
+  on, so the 2027 rows rest on secondary reporting. Confirm at the platform’s help centre
+  before you plan around them — they changed twice during the period this book covers.</p>
+
+  <p>Watch hours and Shorts views never combine; you qualify on one or the other. For a
+  channel that publishes only Shorts, that means the qualifying number is ten million
+  views in ninety days — a genuinely different business from four thousand watch hours,
+  and one worth understanding before you choose the format.</p>
+
+  <h3>What follows from this</h3>
+
+  <p>You cannot win this on volume, because volume is exactly what the policy is aimed at
+  and exactly what everyone else already has. Three things stayed expensive, and they are
+  the only durable advantages available to a channel like yours:</p>
+
+  <ol>
+    <li><strong>A visual identity that is instantly recognisable</strong> and cannot be
+    copied carelessly, because it is specified tightly enough to survive a generator.</li>
+    <li><strong>Verified facts — including the ones that damage your own thesis.</strong>
+    Nothing about an automated pipeline produces this. It is manual, and it is the moat.</li>
+    <li><strong>An editorial position.</strong> Something you think, stated plainly enough
+    that a viewer could disagree with it.</li>
+  </ol>
+
+  <p>Everything else in this book is machinery for producing those three repeatably. The
+  system is slower than the alternative. It is slower on purpose: the slowness is located
+  precisely where the value is.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Two</div>
+  <h2>The three assets you<br>are actually building</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">A channel is not a pile of videos. It is three documents that make
+  videos, plus the videos as a by-product. If the documents do not exist outside your
+  head, you do not have a channel — you have a habit.</p>
+
+  <h3>Asset one: the identity document</h3>
+
+  <p>One page that specifies exactly how every video looks and sounds: layer stack,
+  palette, grade, type, captions, motion rules, ban list, hard constraints, tone. Not
+  adjectives — rules. Chapter 7 gives the worksheet.</p>
+
+  <p>Here is the mechanical reason this matters more in an AI pipeline than in a
+  traditional one. A human editor who cut your last video remembers it. A generator does
+  not. Every render starts from nothing, and your identity reaches it through exactly one
+  channel: the brief you write that day. If the identity lives in your head, it arrives at
+  the render only as well as you happened to describe it that morning — and it will drift,
+  video by video, until the channel looks like four different channels.</p>
+
+  <div class="callout">
+    <span class="lbl">The rule</span>
+    <p>If a constraint is not written in the identity document, it will not be in the
+    brief. If it is not in the brief, expect it to be absent from the render. Observed
+    repeatedly, in both directions.</p>
+  </div>
+
+  <h3>Asset two: the script system</h3>
+
+  <p>A fixed structure — hook, define, the case, the honest counter, close — plus a fact
+  table that every claim must pass through before it reaches narration. Part Three and
+  Part Four.</p>
+
+  <p>A structure is not a formula for sameness. It is what lets you spend your judgement
+  on the argument rather than on the shape of the argument, and it is what makes the
+  twentieth video recognisably the work of the same publication as the first.</p>
+
+  <h3>Asset three: the production record</h3>
+
+  <p>What you tried, what broke, what it cost, and what you will do differently. One file
+  per video, written during production rather than after it.</p>
+
+  <p>This is the asset everyone skips and the second most valuable one you own. AI video
+  tools fail in specific, repeatable, badly documented ways. A session that accepts your
+  job, appears in the job list, then returns a 404 forever. A mode that preserves your
+  script perfectly and silently discards a style constraint. A plan whose text-to-speech
+  bills to a different credit pool than everything else, so the voice stem you assumed you
+  had does not exist. You will hit each of these once. Without a record you will hit them
+  twice, and the second time you will spend the same day rediscovering it.</p>
+
+  <div class="quote">Write down what the workaround costs you.<br>Otherwise the workaround
+  quietly becomes the default.</div>
+
+  <h3>Why these are documents and not a workflow tool</h3>
+
+  <p>Keep all three as plain text files in a version-controlled folder — one directory per
+  video. The reason is the diff. When you change the closing line of every video from a
+  call to subscribe to something the viewer can act on, the commit records both the change
+  and the reason. Six months later, the history explains why the channel sounds the way it
+  does, to you and to anyone you hire.</p>
+
+  <p>Chapter 24 covers the file layout. It takes about fifteen minutes to set up and it is
+  the difference between a channel and a series of attempts.</p>
+</section>
+
+<!-- ============ PART TWO ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part Two</div>
+  <h2>Lock the<br>Identity</h2>
+  <p class="blurb">A look you can describe in one page is a look a machine can hold for
+  sixty seconds. A look you can only describe in adjectives is not a look.</p>
+  <div class="contents">
+    <div><b>03</b> Imagery first: the three-layer stack</div>
+    <div><b>04</b> The hero shot and the bookend</div>
+    <div><b>05</b> Three colours and a ban list</div>
+    <div><b>06</b> Motion comes from the camera</div>
+    <div><b>07</b> The identity lock</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Three</div>
+  <h2>Imagery first:<br>the three-layer stack</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">This is the single most important rule in the book, and it was learned
+  the expensive way: two finished renders were scrapped over it.</p>
+
+  <p>The intuitive brief for a faceless explainer is “kinetic typography”. It is the wrong
+  brief. Ask any generator for kinetic typography and it returns words floating over
+  abstract textures — drifting gradients, particle fields, out-of-focus bokeh. It reads
+  flat and cheap, and worse, it reads <em>generic</em>: it is exactly what every other
+  automated finance channel looks like, because they all asked for the same thing.</p>
+
+  <p>The fix is to invert the stack. Photographic imagery is not decoration behind the
+  text. It is the foundation the video is built on.</p>
+
+  <table>
+    <tr><th style="width:18%">Layer</th><th>Content</th></tr>
+    <tr>
+      <td class="t-key">Base</td>
+      <td>Cinematic photographic or rendered imagery filling the frame. The foundation of
+      every scene — never a texture, never a wash, never something you could describe as
+      “a background”.</td>
+    </tr>
+    <tr>
+      <td class="t-key">Mid</td>
+      <td>Motion graphics over that imagery: diagrams, counters, charts, name-tag grids,
+      date stamps, meters.</td>
+    </tr>
+    <tr>
+      <td class="t-key">Top</td>
+      <td>Hero typography and burned-in word-by-word captions, current word highlighted.</td>
+    </tr>
+  </table>
+
+  <p>Three consequences follow, and each one is a line you will need in the brief.</p>
+
+  <h3>Camera motion applies to the imagery too</h3>
+
+  <p>The common half-fix is to keep the abstract background and animate the text harder.
+  It looks worse, because it makes the flatness legible: type moving in three dimensions
+  over a plate that is obviously two. Push the camera through the imagery. Let the
+  photographic layer parallax against the graphics. If the base plate is static, you have
+  not built a stack, you have built a slide.</p>
+
+  <h3>Name the shot, not the mood</h3>
+
+  <p>“Institutional, serious, financial” returns a stock loop of a skyline at dusk.
+  A heavy official stamp striking paper, macro, cold light, returns a shot. Every beat of
+  the script gets a specific, concrete, physical image, written into the brief as an
+  imagery-by-beat table. This is most of the work of briefing, and it is the part that
+  separates a video that looks made from one that looks generated.</p>
+
+  <table>
+    <tr><th style="width:40%">Script beat</th><th>The shot</th></tr>
+    <tr><td>A rule that locked people out is gone</td><td>Massive steel barrier gate, low angle, cold light, camera pushing in</td></tr>
+    <tr><td>A regulator approved it on a date</td><td>Institutional stone facade; a heavy official stamp striking paper</td></tr>
+    <tr><td>Three trades every five days</td><td>Macro of a mechanical turnstile counter clicking over</td></tr>
+    <tr><td>Your account gets restricted</td><td>Steel security shutter slamming down, padlock closing</td></tr>
+    <tr><td>Your exposure is tracked live</td><td>Dark server room, racks of blinking hardware, long lens</td></tr>
+    <tr><td>Frozen for ninety days</td><td>Frost creeping across a metal surface</td></tr>
+  </table>
+
+  <p>Notice that none of these are illustrations of finance. They are physical objects
+  that behave the way the idea behaves. A turnstile counts and then refuses. Frost
+  spreads and locks. That is the whole trick.</p>
+
+  <div class="field">
+    <span class="lbl">Field note — the rebuild that produced this rule</span>
+    <p>Two videos were briefed as kinetic typography, rendered, reviewed, and killed.
+    Both came back as text on abstract backgrounds. The narration was identical in the
+    rebuilds; only the visual treatment changed, and the runtime did not move at all —
+    <strong>71.6 seconds before and after</strong> on one of them.</p>
+    <p>The cost of the lesson was two renders and a day. The cost of the fix was three
+    lines in the brief: name the base layer, name a shot per beat, apply the camera moves
+    to the imagery. Those three lines are now permanent.</p>
+  </div>
+
+  <p>Keep the original renders. Not to publish — to look at next to the rebuild when you
+  are tempted to save twenty minutes on a brief.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Four</div>
+  <h2>The hero shot<br>and the bookend</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Sixty seconds has no room for structure a viewer can feel — except these
+  two devices. Together they are what make a short read as a film rather than a list.</p>
+
+  <h3>The hero shot</h3>
+
+  <p>One shot per video: the single most tactile image in it, carrying the central idea.
+  Not the widest shot, not the most expensive-looking. The most <em>physical</em>.</p>
+
+  <table>
+    <tr><th style="width:44%">The thesis</th><th>The hero shot</th></tr>
+    <tr><td>The rule wasn’t a gate, it was a seatbelt</td><td>Extreme macro: a seatbelt buckle clicking into its latch, slow motion</td></tr>
+    <tr><td>The moat isn’t the cars, it’s the plug</td><td>Extreme macro: a charging connector locking into a port, shallow focus, light on the contacts</td></tr>
+    <tr><td>The solution was never a better horse</td><td>An assembly line of identical chassis receding to a vanishing point</td></tr>
+  </table>
+
+  <p>The test is simple: if a viewer saw only that frame, would they get the argument? In
+  each case above, yes. A buckle locking is safety and restraint in one image. A connector
+  seating is lock-in. An assembly line is replacement at scale.</p>
+
+  <p>How to find it: write your thesis as one sentence, underline the verb, then find the
+  physical object that performs that verb. <em>Locks. Seats. Erodes. Seals. Counts and
+  refuses.</em> Finance is abstract; the verbs are not.</p>
+
+  <h3>The bookend</h3>
+
+  <p>Open and close on the same place or object, changed by the argument. Same camera
+  position both times — that is what makes it read as a statement rather than a
+  coincidence.</p>
+
+  <ul>
+    <li>A steel barrier gate, closed, at the open. At the close, the same gate standing
+    open — and the camera pulls back to reveal a sheer drop behind it. The gate is gone;
+    the floor never existed.</li>
+    <li>A cobbled street choked with horse traffic at the open. The same street, same
+    angle, empty but for one motorcar, at the close.</li>
+    <li>A castle at dawn, camera crossing the water toward it. The same castle at dusk,
+    camera pulling back to full scale.</li>
+  </ul>
+
+  <p>The bookend does three jobs at once. It gives a sixty-second piece a spine. It makes
+  the close land as a conclusion rather than a stop. And it gives the whole video a shape
+  a viewer can hold, which is most of what “memorable” means at this length.</p>
+
+  <div class="callout">
+    <span class="lbl">Build note</span>
+    <p>Write the bookend into the brief twice — once as the opening shot and once as the
+    closing shot — and state explicitly that it is the <em>same location from the same
+    camera position, changed</em>. Briefed once, generators treat the second appearance as
+    a new scene and you lose the effect entirely.</p>
+  </div>
+
+  <h3>The match-cut chain</h3>
+
+  <p>Between the bookends, chain the video’s own objects together so each transition is a
+  morph rather than a cut: turnstile counter to margin meter to calendar; moat ring to
+  counter dial to charger-pin map to line chart; horse-choked avenue to assembly line to
+  empty street.</p>
+
+  <p>Write the chain out as a single line in the brief. It is one sentence and it removes
+  every plain cut from the video.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Five</div>
+  <h2>Three colours<br>and a ban list</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Near-black, white, and one red accent. Nothing else. The constraint is
+  not minimalism for its own sake — it is the only kind of palette a generator can
+  actually hold across a whole video.</p>
+
+  <p>“Rich, dynamic, premium” is not specifiable, so it drifts: scene three picks up a
+  teal, scene six a gold, and the video stops looking like a publication. “Near-black,
+  white, one red, imagery graded dark and desaturated” is six words, it survives
+  restatement, and it is checkable in a single pass of the finished render.</p>
+
+  <h3>The grade is the part people forget</h3>
+
+  <p>The moment you make photography the base layer, you inherit its colour. Stock and
+  generated footage arrives warm, saturated and cheerful, and a stack of it turns an
+  editorial explainer into a travel reel. So the instruction is explicit: <strong>grade
+  imagery dark and desaturated, reading toward near-black and white, and reserve the red
+  for graphics and type.</strong></p>
+
+  <p>Red used on both footage and graphics stops being an accent. Red used only on the
+  graphics layer becomes a signal — the viewer learns, inside two videos, that red means
+  the number matters.</p>
+
+  <h3>The ban list</h3>
+
+  <table>
+    <tr><th style="width:40%">Banned</th><th>Why</th></tr>
+    <tr><td>Neon glows, rainbow gradients, sparkles</td><td>The default decoration of every template. Instantly reads as generated.</td></tr>
+    <tr><td>Lens flare</td><td>Adds motion without adding meaning, and fights the grade.</td></tr>
+    <tr><td>Emoji and exclamation marks</td><td>Wrong register. The tone is a newsroom, not a group chat.</td></tr>
+    <tr><td>Subscribe animations, clickbait arrows</td><td>Buys a fraction of a follow and costs the authority that is the entire product.</td></tr>
+    <tr><td>Money-rain imagery, cash stacks</td><td>Attracts precisely the audience you do not want, and marks you as a pump channel to everyone else.</td></tr>
+    <tr><td>Real corporate logos and badges</td><td>Legal hygiene, and an identity decision — see below.</td></tr>
+    <tr><td>Human faces, identifiable people</td><td>The channel is faceless. Vehicles, machinery, architecture, landscape, hardware only.</td></tr>
+  </table>
+
+  <h3>Why “no logos” is a style rule, not just a legal one</h3>
+
+  <p>When a script names ten real companies, the obvious visual is a grid of their
+  wordmarks. Use plain text name-tags instead. It keeps you clear of trademark and
+  endorsement questions, it stops the frame turning into someone else’s brand colours —
+  and it holds the palette. A grid of real logos is a rainbow by definition.</p>
+
+  <p>The same applies when a script refers to a real publication: do not render its
+  masthead. Set the type yourself, generically.</p>
+
+  <div class="quote">A palette you can state in six words is a palette that
+  survives the render.</div>
+
+  <h3>Type and captions</h3>
+
+  <p>Heavy condensed sans-serif for hero words. Captions burned in, word by word, bottom
+  third, white with a black stroke, current word highlighted — with a dark scrim behind
+  the text wherever the plate underneath is busy. That last clause is what keeps captions
+  readable once you have put real photography under them, and it is the constraint most
+  often lost between brief and render. Check it on every video.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Six</div>
+  <h2>Motion comes<br>from the camera</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Every generator’s default output is too static, and the instinctive fix
+  — more effects — is the wrong one. Drama comes from camera, depth and timing. Decoration
+  is what you add when you have not got those.</p>
+
+  <p>This is the spec that gets pasted into every brief. It is deliberately written as
+  instructions rather than adjectives.</p>
+
+  <h3>Camera and depth</h3>
+  <ul>
+    <li>Treat every scene as 3D space, not a flat card. Push the camera <em>through</em>
+    things — an archway, a gap in a chart, the space between two letters.</li>
+    <li>Hard parallax: background, mid-ground and foreground move at visibly different
+    speeds in every shot.</li>
+    <li>Foreground elements streak past the lens in blur on camera moves.</li>
+  </ul>
+
+  <h3>Type</h3>
+  <ul>
+    <li>Hero words scale past the frame edges until the camera is inside the letterforms.</li>
+    <li>Letters arrive individually with overshoot and settle. Never a whole-word fade.</li>
+    <li>One or two frames of white impact flash and a subtle screen shake on the biggest
+    landings — no more.</li>
+    <li>A light sweep rakes across heavy type after it settles.</li>
+  </ul>
+
+  <h3>Transitions — no plain cuts</h3>
+  <ul>
+    <li>Match-cut morphs chaining the video’s own objects together.</li>
+    <li>Type-as-mask reveals: a giant word wipes off and the next scene is revealed
+    through its counters.</li>
+    <li>Roll and whip transitions with directional motion blur.</li>
+  </ul>
+
+  <h3>Data</h3>
+  <ul>
+    <li>Numbers physically count up. They never simply appear.</li>
+    <li>Charts draw themselves — and then structurally fail on a negative beat: crack,
+    drop, debris.</li>
+    <li>Make the visual metaphor fail on the downside. A wall crumbles, particle by
+    particle, on the word <em>erodes</em>.</li>
+  </ul>
+
+  <h3>Energy and rhythm</h3>
+  <ul>
+    <li>Continuous motion in every frame. Nothing is ever fully at rest.</li>
+    <li>Speed ramps: slow motion into a key word, snap to full speed on the cut.</li>
+    <li>Cut or punch in every 1.2 to 1.8 seconds. No shot holds past two seconds.</li>
+  </ul>
+
+  <div class="callout">
+    <span class="lbl">The line that saves the rhythm</span>
+    <p>When the script runs longer than your target, say this in the brief explicitly:
+    <strong>a longer runtime means more cuts, not slower ones.</strong> Left unsaid,
+    generators stretch shots to fill the time and the whole piece goes slack. Said once,
+    the rhythm survived a render that came in at 55.8 seconds against a 66-second
+    estimate.</p>
+  </div>
+
+  <h3>The constraints the drama must not break</h3>
+
+  <p>Every escalation of energy is also an invitation to break the palette. Attach these
+  four lines to the motion spec, every time, in the same paragraph:</p>
+
+  <ul class="tight">
+    <li>Strict three-colour palette. The drama comes from motion, not decoration.</li>
+    <li>Captions stay readable at all times; flashes and blur never obscure them.</li>
+    <li>No faces, no real logos, no subscribe animations.</li>
+    <li>Analytical newsroom tone. Dramatic, not childish.</li>
+  </ul>
+
+  <p>The counter-evidence beat of your script, incidentally, is the most cinematic beat
+  you have — it is the one where something structurally fails on camera. Honest scripts
+  get better pictures. That is not a coincidence you should waste.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Seven</div>
+  <h2>The identity lock</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">One page. Pasted into every brief, unchanged. Changing it is a
+  deliberate act with a version number and a commit message — never a mood on a Tuesday.</p>
+
+  <p>Fill this in once, before your first video. Then treat it as read-only. The whole
+  value of a locked identity is that it is boring to you long before it is familiar to
+  your audience — you will be sick of it around video six, and your viewers will begin
+  recognising it around video twelve. Hold it.</p>
+
+  <div class="worksheet">
+    <div class="wline">
+      <span class="q">1 — Layer stack</span>
+      <span class="hint">What is the base layer, literally? What sits over it?</span>
+      <div class="fill tall"></div>
+    </div>
+    <div class="wline">
+      <span class="q">2 — Palette</span>
+      <span class="hint">Three colours maximum. Name them. Say which one is the accent and what it is reserved for.</span>
+      <div class="fill tall"></div>
+    </div>
+    <div class="wline">
+      <span class="q">3 — Grade</span>
+      <span class="hint">How is photography treated so it does not read as stock?</span>
+      <div class="fill"></div>
+    </div>
+    <div class="wline">
+      <span class="q">4 — Type and captions</span>
+      <span class="hint">Typeface class, caption style, position, scrim rule.</span>
+      <div class="fill tall"></div>
+    </div>
+    <div class="wline">
+      <span class="q">5 — Motion rules</span>
+      <span class="hint">Camera, transitions, data behaviour, cut rhythm in seconds.</span>
+      <div class="fill tall"></div>
+    </div>
+  </div>
+
+  <div class="worksheet">
+    <div class="wline">
+      <span class="q">6 — Ban list</span>
+      <span class="hint">Everything that must never appear. Be specific enough to check.</span>
+      <div class="fill tall"></div>
+    </div>
+    <div class="wline">
+      <span class="q">7 — Hard constraints</span>
+      <span class="hint">Faces, logos, likeness, anything legal or structural.</span>
+      <div class="fill tall"></div>
+    </div>
+    <div class="wline">
+      <span class="q">8 — Tone</span>
+      <span class="hint">Three adjectives and one anti-pattern: “never a ___”.</span>
+      <div class="fill"></div>
+    </div>
+    <div class="wline">
+      <span class="q">9 — Compliance card</span>
+      <span class="hint">Exact wording, exact timing, on every video.</span>
+      <div class="fill"></div>
+    </div>
+    <div class="wline">
+      <span class="q">10 — Fixed settings</span>
+      <span class="hint">Style ID, voice ID, mode, orientation. Constant across the series.</span>
+      <div class="fill tall"></div>
+    </div>
+  </div>
+
+  <p class="small mute">A blank copy of this worksheet is in Appendix D. The completed
+  version belongs in your repository as its own file, not inside any one video’s folder.</p>
+
+  <div class="callout">
+    <span class="lbl">On keeping the voice constant</span>
+    <p>Whatever synthetic voice and visual style you choose, pin the identifiers and reuse
+    them on every video. Voice is a stronger recognition cue than anything visual at this
+    length, and it is the cheapest one to hold: it is a field in a request. Record both IDs
+    in the production file of every video, so that a year from now you can still reproduce
+    the series.</p>
+  </div>
+</section>
+
+<!-- ============ PART THREE ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part Three</div>
+  <h2>The<br>Script</h2>
+  <p class="blurb">Five beats, one of which is mandatory and almost nobody writes.</p>
+  <div class="contents">
+    <div><b>08</b> The five beats</div>
+    <div><b>09</b> The counter-evidence beat</div>
+    <div><b>10</b> Length is a consequence. Close without bait.</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Eight</div>
+  <h2>The five beats</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Hook, define, the case, the honest counter, close. Every video. The
+  structure is fixed so that your judgement goes into the argument instead of into the
+  shape of the argument.</p>
+
+  <table>
+    <tr><th style="width:17%">Beat</th><th style="width:13%">Length</th><th>Its job — and how it fails</th></tr>
+    <tr>
+      <td class="t-key">Hook</td><td class="t-num">0–5s</td>
+      <td>State the claim flat. <strong>Fails as:</strong> a question (“Did you know…”),
+      a throat-clear (“In this video we’ll look at…”), or a promise of a secret.</td>
+    </tr>
+    <tr>
+      <td class="t-key">Define</td><td class="t-num">5–18s</td>
+      <td>Give the concept in one sentence a non-specialist could repeat.
+      <strong>Fails as:</strong> a synonym. “A moat is a competitive advantage” defines
+      nothing.</td>
+    </tr>
+    <tr>
+      <td class="t-key">The case</td><td class="t-num">18–42s</td>
+      <td>Build the evidence, with the numbers, in an order where each fact makes the next
+      one matter. <strong>Fails as:</strong> a list.</td>
+    </tr>
+    <tr>
+      <td class="t-key">The counter</td><td class="t-num">42–56s</td>
+      <td>Where the thesis is weak, with real figures. <strong>Fails as:</strong> a token
+      hedge — “of course, nothing is guaranteed”.</td>
+    </tr>
+    <tr>
+      <td class="t-key">Close</td><td class="t-num">4–6s</td>
+      <td>Restate the thesis at its sharpest, then one thing the viewer can do.
+      <strong>Fails as:</strong> a request for a follow.</td>
+    </tr>
+  </table>
+
+  <h3>The define beat is where most scripts quietly die</h3>
+
+  <p>Compare two definitions of the same term:</p>
+
+  <p><em>“A moat is a competitive advantage that protects a company.”</em> — This is a
+  synonym dressed as a definition. A viewer learns nothing and, crucially, cannot use it.</p>
+
+  <p><em>“A moat is a structural advantage that stops competitors taking your profits.
+  Not a better product — products get copied. A moat is when copying you is too expensive,
+  or too slow, to be worth it.”</em> — This one gives the viewer a test they can apply to
+  the next company they hear about. That is what a definition is for.</p>
+
+  <p>The rule: a good define beat hands the viewer an instrument, not a label. If your
+  definition could be swapped for the term itself without loss, rewrite it.</p>
+
+  <h3>The case builds; it does not list</h3>
+
+  <p>Three facts in the wrong order are trivia. In the right order they are an argument:</p>
+
+  <pre>Tesla built its own charging network.
+Then nearly every rival automaker adopted Tesla's connector
+   as the North American standard.
+Now their customers pay Tesla to charge.</pre>
+
+  <p>Fact one is a capital expenditure. Fact two makes fact one strategic. Fact three
+  makes it a moat. Reorder them and the beat collapses into a list of things that
+  happened. Before you write, put your facts in the order where each one earns the next.</p>
+
+  <div class="callout">
+    <span class="lbl">Worth noticing</span>
+    <p>The hook and the close are the only beats most viewers will remember, and they are
+    the two that cost nothing to get right. Spend disproportionate time on the first
+    sentence and the last one. Ten minutes each, minimum, after the script is otherwise
+    finished.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Nine</div>
+  <h2>The counter-evidence beat</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">The mandatory beat. It is the reason this system exists, and the
+  single change that converts a promo into an explainer.</p>
+
+  <p>Somewhere between forty and fifty-five seconds in, you state — with real numbers —
+  where your own thesis is weak. Not a disclaimer. Evidence that cuts against you.</p>
+
+  <h3>Three arguments for it, in increasing order of self-interest</h3>
+
+  <p><strong>It is honest.</strong> You are making content about money that people may act
+  on. The disconfirming data exists whether you mention it or not.</p>
+
+  <p><strong>It is better content.</strong> An explainer that admits where it is weak is
+  more interesting than a promo, because it contains a genuine tension. Certainty is
+  boring. A number that moves against the argument is the most engaging thing in a
+  sixty-second video.</p>
+
+  <p><strong>It is durable.</strong> A video that already contains the strongest objection
+  cannot be dunked on with it. You have pre-empted the top comment, and you have done it
+  in a way that makes you look like the person who did the reading.</p>
+
+  <div class="quote">If you cannot find the number that hurts your case,
+  you have not finished researching.</div>
+
+  <h3>How to find it</h3>
+
+  <p>After the case beat is assembled, go looking deliberately for the figure that moves
+  the other way. Search for the quarter that was down. Check whether the trend you are
+  describing reversed. Look for the competitor who is further ahead on the one metric you
+  did not cite.</p>
+
+  <p>If you genuinely cannot find one, treat that as a signal about the thesis rather than
+  a licence to skip the beat. Either the claim is too soft to be interesting, or you have
+  not looked hard enough. It is almost always the second.</p>
+
+  <h3>A worked example</h3>
+
+  <p>The case: a company’s charging standard was adopted by nearly every competitor, and
+  its network has been valued by an analyst at as much as a hundred billion dollars.</p>
+
+  <p>The counter, in the video’s own words:</p>
+
+  <pre>But moats erode. Tesla's US EV share fell from nearly eighty percent
+in 2019 to about forty-four percent in 2025, before clawing back above
+fifty this year. And its energy storage revenue actually dropped year
+over year in early 2026.</pre>
+
+  <p>Two things make this work. First, it is specific — three dated figures, not a mood.
+  Second, it includes the <em>recovery</em> as well as the fall. Reporting only the decline
+  would have been a different kind of dishonesty, and a viewer who knows the space would
+  have caught it. The beat is not “say something negative”. It is “report the picture,
+  including the parts that complicate your argument in both directions”.</p>
+
+  <h3>The anti-pattern</h3>
+
+  <p>“Of course, no investment is without risk, so always do your own research.”</p>
+
+  <p>That is a disclaimer wearing the costume of analysis. It contains no information, it
+  is true of everything, and every viewer has learned to stop listening to it. If your
+  counter beat would be equally true of a different video on a different company, it is
+  not a counter beat.</p>
+
+  <div class="callout">
+    <span class="lbl">The visual dividend</span>
+    <p>The counter beat is also the most cinematic beat in the script — it is where the
+    chart cracks and drops, where the wall crumbles on the word <em>erodes</em>, where the
+    metaphor physically fails. Honest scripts get better pictures. Brief that failure
+    explicitly, at that timecode.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Ten</div>
+  <h2>Length is a consequence.<br>Close without bait.</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Runtime is an output of the argument, not a target you cut facts to hit.
+  The close is the only line anyone repeats.</p>
+
+  <h3>The arithmetic</h3>
+
+  <p>Roughly 150 to 170 words of narration produces 55 to 70 seconds of finished video.
+  Shorts accept up to three minutes — the sixty-second figure is a convention left over
+  from an earlier limit, not a rule. Observed pairs from production:</p>
+
+  <table>
+    <tr><th style="width:28%">Script</th><th style="width:22%">Words</th><th>Finished runtime</th></tr>
+    <tr><td>Rule-change explainer</td><td class="t-num">147</td><td class="t-num">55.8s</td></tr>
+    <tr><td>Moat explainer</td><td class="t-num">166</td><td class="t-num">71.6s</td></tr>
+    <tr><td>Historical parallel</td><td class="t-num">135</td><td class="t-num">45.6s</td></tr>
+  </table>
+
+  <p>Your word count predicts runtime better than the generator’s own estimate does. One
+  tool estimated 66 seconds for a script that rendered at 55.8. Plan from the words.</p>
+
+  <p><strong>Never cut a verified fact to hit an arbitrary runtime.</strong> If you must
+  trim, cut a data point and keep the argument — and decide in advance which data point
+  that is, while you can still think clearly about it. On the moat script the designated
+  trim was the energy-storage sentence: dropping it costs one figure, not the case.</p>
+
+  <h3>The close</h3>
+
+  <p>No follow-bait. No “comment your favourite”. No “what do you think?” A request for a
+  follow buys a fraction of a follow. A sentence the viewer repeats to someone else buys
+  distribution, and it costs exactly the same number of seconds.</p>
+
+  <p>The pattern that works: <strong>restate the thesis at its sharpest, then give one
+  concrete action.</strong></p>
+
+  <pre>The gate's open. The floor isn't.
+Check with your broker before you plan around it.</pre>
+
+  <pre>A moat is a position you defend. Not a trophy you keep.</pre>
+
+  <p>The first is thesis plus action. The second is thesis alone, which is allowed when the
+  thesis <em>is</em> the instruction — it tells the viewer how to think about the next
+  company they look at. What is not allowed is asking for something.</p>
+
+  <div class="field">
+    <span class="lbl">Field note — the close that was rewritten mid-flight</span>
+    <p>Two renders were stopped while still pending, before they produced output, because
+    the close was a clickbait call to action and the rule had just been written down.
+    Stopping a pending render costs nothing. Publishing the wrong close costs the thing
+    the whole channel is for.</p>
+    <p>The replacement — <strong>“Check with your broker before you plan around it”</strong>
+    — is also more useful to the viewer than anything the CTA was going to ask them for.</p>
+  </div>
+
+  <h3>Writing order</h3>
+
+  <p>Write the close second, immediately after the hook, and before the case. It forces
+  you to know what the video concludes before you assemble the evidence for it, which is
+  the only reliable defence against a script that wanders into a summary and stops.</p>
+</section>
+
+<!-- ============ PART FOUR ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part Four</div>
+  <h2>The Fact<br>Discipline</h2>
+  <p class="blurb">The part that cannot be automated, and is therefore the part that is
+  worth something.</p>
+  <div class="contents">
+    <div><b>11</b> Never script from memory</div>
+    <div><b>12</b> The fact table and the confidence scale</div>
+    <div><b>13</b> When the story cannot be sourced</div>
+    <div><b>14</b> Pick the claim you can defend</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Eleven</div>
+  <h2>Never script from memory</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Verify first, draft second. Not the other way around, and not “check it
+  afterwards” — which is a thing people sincerely intend and almost never do properly.</p>
+
+  <h3>Why “check it afterwards” fails</h3>
+
+  <p>Once a sentence exists, it acquires momentum. You wrote it, it scans well, the beat
+  lands on the right word. When the verification comes back slightly different — the date
+  is the approval date, not the effective date; the figure is a range, not a point; the
+  number is an estimate, not a price — you will find yourself softening the fact to
+  preserve the line. Everyone does. The only defence is sequence: do the research first,
+  build the fact table, and write the narration out of the table.</p>
+
+  <h3>What always needs re-checking</h3>
+
+  <ul>
+    <li><strong>Regulatory dates.</strong> Approval date, effective date and compliance
+    deadline are three different dates and are routinely conflated.</li>
+    <li><strong>Market share and revenue figures</strong>, including their direction. “Up
+    27% for the year” and “down 12% for the quarter” can both be true at once.</li>
+    <li><strong>Anything containing “record”, “first” or “only”.</strong></li>
+    <li><strong>Anything you are sure about.</strong> Confidence is a function of when you
+    learned it, not of whether it is still true.</li>
+  </ul>
+
+  <div class="callout">
+    <span class="lbl">The specific risk of AI-assisted scripting</span>
+    <p>A language model will produce a fluent, confident, precisely-formatted figure that
+    was accurate two years ago. It does not sound like a guess, because it is not
+    delivered as one. This is the highest-risk habit available to you, and the reason the
+    rule is written as an absolute: <strong>no claim enters a script that did not come
+    from a source you looked at during this session.</strong></p>
+  </div>
+
+  <h3>The asymmetry</h3>
+
+  <p>Verifying a date takes about four minutes. Publishing a wrong one costs your
+  credibility with exactly the viewers you most want: the ones who already know the subject
+  and were deciding whether you are worth following.</p>
+
+  <p>No version of this trade favours skipping the search. The strategic case in Chapter 1
+  is that your verified facts are the moat: the fact discipline is not overhead attached to
+  the product, it <em>is</em> the product.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twelve</div>
+  <h2>The fact table and<br>the confidence scale</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Every script carries a table. Nothing reaches narration that is not in
+  it. The table takes twenty minutes and does four jobs.</p>
+
+  <p>It forces verification to happen before drafting. It records confidence explicitly,
+  so that a range never hardens into a point. It tells you which claims need an on-screen
+  footnote. And when someone challenges a number in the comments six months later, it is
+  your receipt.</p>
+
+  <h3>The format</h3>
+
+  <table>
+    <tr><th style="width:26%">Claim</th><th style="width:44%">Detail</th><th>Confidence</th></tr>
+    <tr><td>SEC approval</td><td>14 April 2026 — amendments to FINRA Rule 4210</td><td>High</td></tr>
+    <tr><td>Effective date</td><td>4 June 2026</td><td>High</td></tr>
+    <tr><td>Phase-in deadline</td><td>20 October 2027 (18 months)</td><td>High</td></tr>
+    <tr><td>Network valuation</td><td>Analyst estimate, “up to” $100B; conservative case nearer $42B</td><td>Estimate — not a market price</td></tr>
+    <tr><td>Manure per horse</td><td>Cited range 15–30 lbs/day; script says “about twenty”</td><td>Medium</td></tr>
+    <tr><td>1894 newspaper prediction</td><td>No article located; traces to a 2004 essay; attribution refuted 2018</td><td>Unsourced — see Ch. 13</td></tr>
+  </table>
+
+  <h3>The confidence scale</h3>
+
+  <table>
+    <tr><th style="width:24%">Level</th><th>Means</th><th style="width:30%">What the script may do</th></tr>
+    <tr><td class="t-key">High</td><td>Primary source, or several independent ones that agree</td><td>State it plainly</td></tr>
+    <tr><td class="t-key">Medium-high</td><td>Widely reported; primary source not read directly</td><td>State it plainly; keep the source in the description</td></tr>
+    <tr><td class="t-key">Medium</td><td>A single secondary source, or a range you are summarising</td><td>Hedge in the wording: “about”, “over”, “roughly”</td></tr>
+    <tr><td class="t-key">Estimate</td><td>An analyst projection or model output</td><td>Say whose estimate it is, on screen. Never speak it as a price</td></tr>
+    <tr><td class="t-key">Unsourced</td><td>Cannot be traced to any original</td><td>Do not assert it. Chapter 13 shows the alternative</td></tr>
+  </table>
+
+  <h3>The estimate rule, in three layers</h3>
+
+  <p>An analyst’s valuation of a business unit is not a market price, and treating one as
+  the other is the most common dishonesty in finance video — usually unintentional. The
+  handling that works puts the same correction at three levels of depth:</p>
+
+  <ul>
+    <li><strong>In the narration:</strong> “Morgan Stanley has valued that network as high
+    as a hundred billion dollars.” — <em>has valued</em>, <em>as high as</em>.</li>
+    <li><strong>On screen:</strong> a small footnote under the figure reading
+    “Morgan Stanley est.”</li>
+    <li><strong>In the pinned comment:</strong> the full range, including the conservative
+    case at roughly $42 billion.</li>
+  </ul>
+
+  <p>A viewer who watches casually gets a hedged sentence. A viewer who is paying attention
+  gets the attribution. A viewer who came to argue gets the range, and finds you already
+  put it there.</p>
+
+  <h3>Round honestly</h3>
+
+  <p>“Over a hundred thousand horses” is safe when the figure is about 128,000. “About
+  twenty pounds a day” is honest when the cited range is 15 to 30. Rounding toward the
+  claim you want is where credibility leaks out of a script one word at a time — always
+  round toward the weaker version of your own argument.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Thirteen</div>
+  <h2>When the story<br>cannot be sourced</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">The best anecdotes in finance are usually the least sourced. This is the
+  most useful technique in the book, and it turns a liability into the strongest beat in
+  the video.</p>
+
+  <h3>The case</h3>
+
+  <p>A famous story: in 1894, a London newspaper predicted that within fifty years every
+  street in the city would be buried under nine feet of horse manure. It is a perfect
+  hook — vivid, absurd, and it sets up the point that the solution to a crisis is rarely a
+  better version of the thing causing it.</p>
+
+  <p>No such article has ever been found. The quote, the fifty-year figure and the
+  collapsed-conference detail all trace to a single essay from 2004, and The Times refuted
+  the attribution in 2018.</p>
+
+  <h3>Three options</h3>
+
+  <p><strong>Drop it.</strong> Safe, and you lose the best hook available on the subject.</p>
+
+  <p><strong>Assert it anyway.</strong> Most channels do. It is a lie, and it hands the
+  comment section a reason to dismiss everything else you said.</p>
+
+  <p><strong>Keep it and source it honestly.</strong> This is the one.</p>
+
+  <h3>The fix</h3>
+
+  <pre>You've heard this one. Eighteen ninety-four. A London newspaper
+predicts that within fifty years, every street in the city will be
+buried under nine feet of horse manure.
+
+No one has ever found that article. But the crisis underneath
+it was real.</pre>
+
+  <p>The hook survives verbatim, reframed as a <em>familiar claim</em> rather than a
+  reported fact. The correction takes five seconds. And everything after it is documented:
+  New York alone had well over a hundred thousand horses; each produced roughly twenty
+  pounds a day; fifteen million Model Ts had been built by 1927; cars outnumbered horses
+  in New York by 1912.</p>
+
+  <p>Because the audience now knows you check things, the documented material lands
+  <em>harder</em>. The correction is not a cost. It is the beat that earns the rest.</p>
+
+  <div class="callout">
+    <span class="lbl">The three-layer handling again</span>
+    <p><strong>Script:</strong> the correction, spoken, immediately after the hook.
+    <strong>On screen:</strong> a small footnote at that timecode — “Quote unsourced —
+    attribution refuted, 2018.”
+    <strong>Pinned comment:</strong> “Before anyone posts it: yes, the quote can’t be
+    sourced — that’s said in the video. The horses, the tonnage and the speed of the
+    switch are all real.”</p>
+  </div>
+
+  <h3>The general rule</h3>
+
+  <p>An honest correction, placed early, is a hook rather than a weakness. It costs one
+  sentence of runtime and it buys the one thing that cannot be generated at scale: the
+  viewer’s belief that the numbers in the next forty seconds were checked by somebody.</p>
+
+  <p>Apply it to any widely-repeated story before you use it. The founder anecdote, the
+  famous quote, the statistic that appears in every deck. A surprising number of them
+  trace to one uncited blog post, and each one is an opportunity in disguise.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Fourteen</div>
+  <h2>Pick the claim<br>you can defend</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Choosing your angle is a fact-discipline decision before it is a creative
+  one. Two videos can make the same argument, and only one of them stays true.</p>
+
+  <h3>The case</h3>
+
+  <p>Asked to explain a company’s competitive moat, the obvious angle was its
+  self-driving software. It is the claim the company itself emphasises and the one most
+  commentators reach for.</p>
+
+  <p>It is also the least verifiable. The fleet-mileage figures come from company
+  statements and are then recycled through aggregators until they acquire the appearance
+  of independent data. And on the metric that would actually settle it — deployed
+  driverless operation — a competitor was further ahead.</p>
+
+  <p>The angle that was used instead: the charging network. Nearly every rival automaker
+  adopted the company’s connector as the North American standard. That fact is
+  independently verifiable from the rivals’ own announcements.</p>
+
+  <div class="quote">Prefer the claim evidenced by a party<br>with an incentive to say the
+  opposite.</div>
+
+  <p>A competitor adopting your standard is objective evidence of an advantage in a way
+  that a self-reported number can never be. They had every reason not to, and they did it
+  anyway. There is no stronger evidence available in business journalism, and it is
+  usually sitting in a press release nobody read.</p>
+
+  <h3>Two heuristics</h3>
+
+  <p><strong>One: prefer facts with a date and a document behind them.</strong> A rule
+  change has an approval date, an effective date and a published notice. A production
+  figure has a filing. A trend has a dataset. If your central claim has none of these,
+  you are not making an explainer, you are making a take.</p>
+
+  <p><strong>Two: prefer the claim you could still defend if the company went quiet
+  tomorrow.</strong> Anything that depends on continued disclosure from an interested
+  party is a claim with an expiry date attached.</p>
+
+  <h3>What it costs</h3>
+
+  <p>Sometimes the more exciting angle. The self-driving story is a better thumbnail than
+  a connector, and you should be honest with yourself that you are trading some reach for
+  durability.</p>
+
+  <p>What it buys is a video that is still correct in two years, from a channel whose
+  archive does not quietly become a liability. For a channel whose entire strategic
+  position is “the facts here are checked”, that is not a close call — but it is a real
+  trade, and it should be made deliberately and written into the script file as a note,
+  so that the reasoning survives you.</p>
+</section>
+
+<!-- ============ PART FIVE ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part Five</div>
+  <h2>Production</h2>
+  <p class="blurb">Your identity reaches the finished video through exactly one channel.
+  This is how to write it, and what to do when the tool stops working.</p>
+  <div class="contents">
+    <div><b>15</b> The brief is the product</div>
+    <div><b>16</b> Approval is the mechanism</div>
+    <div><b>17</b> When the tool breaks: a triage protocol</div>
+    <div><b>18</b> Complete is not verified</div>
+    <div><b>19</b> Credits are a production constraint</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Fifteen</div>
+  <h2>The brief is the product</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Everything in Parts Two, Three and Four exists only as far as it survives
+  into the brief. The brief is not paperwork preceding the work. It is the work.</p>
+
+  <h3>The eight blocks</h3>
+
+  <table>
+    <tr><th style="width:26%">Block</th><th>What it must contain</th></tr>
+    <tr><td class="t-key">Format and constraint</td><td>Duration, aspect ratio, and the defining negative: no avatar, no presenter, no human face anywhere. Voiceover only.</td></tr>
+    <tr><td class="t-key">The script, verbatim</td><td>The narration, with an explicit instruction not to alter it.</td></tr>
+    <tr><td class="t-key">Layer stack</td><td>Base, mid, top — named as layers, in order.</td></tr>
+    <tr><td class="t-key">Imagery by beat</td><td>A concrete shot for every beat. The hero shot marked. The bookend named at both ends.</td></tr>
+    <tr><td class="t-key">Motion</td><td>The spec from Chapter 6, including the cut rhythm in seconds.</td></tr>
+    <tr><td class="t-key">Look</td><td>Palette, grade, caption legibility rule.</td></tr>
+    <tr><td class="t-key">Hard constraints</td><td>Faces, logos, ban list, compliance card and its timing.</td></tr>
+    <tr><td class="t-key">Tone</td><td>Three adjectives and the anti-pattern.</td></tr>
+  </table>
+
+  <p>The complete copy-paste template is Appendix C.</p>
+
+  <h3>Write the script instruction as a command</h3>
+
+  <pre>Use this narration script VERBATIM — do not rewrite, shorten,
+or add to it:
+"[SCRIPT]"</pre>
+
+  <p>Without that line, generators paraphrase. They shorten a clause, smooth a number,
+  turn “about twenty pounds” into “twenty pounds”. The moment the audio stops matching
+  your fact table, every hour you spent in Part Four is gone — and you will not notice,
+  because you know what the script was supposed to say.</p>
+
+  <div class="callout">
+    <span class="lbl">Check this on every render</span>
+    <p>Read the narration back against the script, scene by scene, from whatever transcript
+    or scene data the tool exposes. On one production the verbatim instruction held across
+    all ten scenes — which is only worth knowing because it was checked rather than
+    assumed.</p>
+  </div>
+
+  <h3>Name shots, not moods</h3>
+
+  <p>Said in Chapter 3, repeated here because it is the single highest-leverage habit in
+  briefing. Mood adjectives produce stock footage. Physical nouns and verbs produce shots.
+  Write the imagery table before you write anything else in the brief; if a beat resists
+  having a concrete shot, that beat is probably too abstract to be in the script.</p>
+
+  <h3>Settings are part of the identity</h3>
+
+  <p>Visual style, voice, mode and orientation stay constant across every video in the
+  series, and their identifiers are recorded in each video’s production file. This is what
+  makes a channel read as one publication rather than a playlist. It costs nothing to hold
+  and it is very expensive to reconstruct after the fact, when a tool has retired the
+  exact voice you used and you have no note of which one it was.</p>
+
+  <div class="field">
+    <span class="lbl">Field note — brand kits may not persist</span>
+    <p>On at least one platform, the agent builds an on-brand kit <em>per session</em> and
+    does not save it to the workspace: listing the account’s brand kits afterwards shows
+    only the vendor’s demo kit. There is no reusable identifier to pin.</p>
+    <p>The practical consequence: <strong>you cannot store your identity in the tool.</strong>
+    It has to be restated, in full, in every brief. The template is the mechanism. Check
+    whether this is true of your own stack before you rely on a saved preset.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Sixteen</div>
+  <h2>Approval is the mechanism</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Most video generators offer two paths: one that pauses to show you a plan
+  and accepts revisions, and one that takes your prompt and returns a finished file. Take
+  the slow one, for a reason that is not the obvious one.</p>
+
+  <p>The obvious reason is that you get to fix mistakes. The real reason is better: the
+  approval step is a second place to say the constraints. Restating the grade, the
+  bookend and the hero shot at the moment the plan is presented is what makes them survive
+  generation. A constraint stated once is a suggestion. A constraint stated at the brief
+  and again at approval is a rule.</p>
+
+  <div class="quote">The fewer chances you get to restate a constraint,<br>the more likely
+  it is absent from the output.</div>
+
+  <h3>What fire-and-forget costs, measured</h3>
+
+  <p>On one production the revisable mode was failing (Chapter 17), so the fallback was
+  used. The result was instructive rather than catastrophic:</p>
+
+  <table>
+    <tr><th style="width:52%">Check</th><th>Result</th></tr>
+    <tr><td>Narration verbatim across all ten scenes</td><td class="t-key">Pass</td></tr>
+    <tr><td>Series voice held</td><td class="t-key">Pass</td></tr>
+    <tr><td>9:16 portrait, 1080p</td><td class="t-key">Pass</td></tr>
+    <tr><td>Burned-in captions — required by house style</td><td class="t-key" style="color:var(--red)">Fail — disabled</td></tr>
+    <tr><td>Imagery-first base layer</td><td class="t-key">Unknown</td></tr>
+  </table>
+
+  <p>The script came through perfectly. A style constraint was silently dropped. That is
+  the characteristic failure mode of the fast path: it protects the thing you gave it
+  literally, and it quietly loses the things you described.</p>
+
+  <h3>How to use the approval step well</h3>
+
+  <ol>
+    <li>Read the plan for <em>absences</em>, not errors. What did it not mention? The
+    grade, the bookend, the footnote, and the cut rhythm are the four most commonly
+    silently dropped.</li>
+    <li>Reply with the constraints restated in full sentences, not “yes but darker”.</li>
+    <li>Restate the negative constraints too. “No human faces” is worth repeating at
+    approval even when nothing in the plan suggests a face.</li>
+    <li>Then approve. Do not renegotiate the script at this point — the script was settled
+    in Part Three and reopening it here is how videos die.</li>
+  </ol>
+
+  <h3>Revisable sessions are also your revision path</h3>
+
+  <p>A session you can reply to lets you fix a defect without paying for a full rebuild.
+  Record the session URL in the production file alongside the video ID; a render you can
+  revise in a week is worth substantially more than one you cannot.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Seventeen</div>
+  <h2>When the tool breaks:<br>a triage protocol</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">AI video tools fail in ways that look like your fault. Having a protocol
+  turns a lost day into twenty minutes and a note in the production file.</p>
+
+  <h3>The incident</h3>
+
+  <p>Two jobs were submitted in the ordinary way. Both were accepted. Both appeared in the
+  account’s session list. Both then returned <code>404</code> on every attempt to read
+  their status, and produced no video at all. One stayed dead for more than seven and a
+  half hours. Same tool, same parameters that had worked earlier the same day.</p>
+
+  <h3>The protocol</h3>
+
+  <table>
+    <tr><th style="width:8%">#</th><th style="width:34%">Rule out</th><th>How</th></tr>
+    <tr><td class="t-num">1</td><td class="t-key">Your account</td><td>Check the credit balance and plan entitlements. A surprising share of “broken” tools are exhausted quotas.</td></tr>
+    <tr><td class="t-num">2</td><td class="t-key">The service</td><td>Call the same endpoint with an older, known-good identifier. If it returns full detail, the endpoint is healthy and the problem is your new object — not the API and not your code.</td></tr>
+    <tr><td class="t-num">3</td><td class="t-key">The request</td><td>Compare against a request that worked earlier. Same tool, same parameters, same shape.</td></tr>
+    <tr><td class="t-num">4</td><td class="t-key">Then switch paths</td><td>Use the fallback — and write down what the fallback costs you.</td></tr>
+  </table>
+
+  <p>In the incident above, step 1 showed 330 credits remaining, step 2 returned full
+  detail for an older session, and step 3 found no difference. That triangulation is what
+  licensed the conclusion “the service is degraded for new objects of this type” rather
+  than the much more expensive conclusion “I am doing something wrong”, which would have
+  produced another four hours of rewriting a request that was already correct.</p>
+
+  <h3>Step 4 is the one everyone skips</h3>
+
+  <p>The fallback mode returned a real job identifier immediately and was trackable
+  normally. It worked. It also skipped the blueprint approval step, which — per Chapter 16
+  — is the mechanism that keeps constraints alive. That cost was recorded in the
+  production file at the time, along with the instruction <em>prefer the primary mode once
+  it recovers</em>.</p>
+
+  <div class="callout">
+    <span class="lbl">Why writing down the cost matters</span>
+    <p>An undocumented workaround becomes the default. It is faster, it worked once, and
+    nobody remembers what it traded away. Three months later the channel’s quality has
+    drifted and the cause is invisible because it was never written down. One line in the
+    production file prevents this: <strong>what I did instead, and what it cost.</strong></p>
+  </div>
+
+  <h3>Generalise it</h3>
+
+  <p>Account, then service, then request, then fallback-with-a-recorded-cost. This is a
+  protocol for any AI tool in any pipeline, and it is worth pinning somewhere you will see
+  it at the moment things go wrong — which is exactly the moment nobody reaches for a
+  checklist.</p>
+
+  <div class="field">
+    <span class="lbl">Field note — the job that produced nothing</span>
+    <p>One session had already been given a full brief before the failure was understood.
+    It sat dead for 7.5 hours and no video from it ever appeared in the account. Its
+    directory was deleted and the research folded into the rebuild.</p>
+    <p>Delete the artefacts of dead runs. Keep the research. A repository full of hopeful
+    empty folders is how a production record stops being trustworthy.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Eighteen</div>
+  <h2>Complete is not verified</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">A render that finished is not a render you have seen. Keeping those two
+  states separate, in writing, is the difference between a production record and a wish
+  list.</p>
+
+  <p>In the production this book is drawn from, the constraint was absolute: network policy
+  blocked the vendor’s media hosts outright, so no finished file could be downloaded or
+  watched from the machine that made it. Every render was logged as
+  <strong>complete, not verified</strong>.</p>
+
+  <p>That sounds like a disadvantage. It produced the most useful habit in the whole
+  system, because it forced the verification to become a written artefact rather than a
+  feeling.</p>
+
+  <h3>The three states</h3>
+
+  <table>
+    <tr><th style="width:20%">State</th><th>Means</th></tr>
+    <tr><td class="t-key">Pass</td><td>Confirmed, and the evidence is named — watched, or read from structured data.</td></tr>
+    <tr><td class="t-key" style="color:var(--red)">Fail</td><td>Confirmed absent or wrong. Fix it before publishing.</td></tr>
+    <tr><td class="t-key">Unknown</td><td>Could not be determined by the means available. <strong>Not the same as Fail.</strong></td></tr>
+  </table>
+
+  <h3>What metadata can tell you</h3>
+
+  <p>More than you would expect. On one render, the scene data reported that captions were
+  disabled — a direct violation of house style, caught without watching a single frame.
+  Better still, no re-render was needed: the platform had produced a separate captioned
+  cut, and publishing that one fixed the defect for free.</p>
+
+  <p>Check from structured data wherever you can: narration text per scene, voice
+  identifier, aspect ratio and resolution, caption flags, scene count and durations.</p>
+
+  <h3>What metadata cannot tell you</h3>
+
+  <p>On the same render, every scene reported a white background with a single element of
+  type <em>motion graphics</em>. Read literally, that is a white video — which would fail
+  both the imagery-first rule and the palette.</p>
+
+  <p>But that API described only some element types in full; a full-frame background plate
+  carried as a motion-graphics element appears as nothing but an identifier and a type. So
+  a plate could be present and invisible to the query. The honest verdict was
+  <strong>Unknown</strong>, not Fail — and that distinction saved a re-render that might
+  have been chasing a phantom.</p>
+
+  <div class="quote">Record what you could not check<br>as carefully as what you could.</div>
+
+  <h3>The handoff checklist</h3>
+
+  <p>When you cannot watch a render yourself, write the checklist for whoever can — a
+  collaborator, a client, or you on a different device. Keep it to things that are
+  checkable in one viewing, in order of how expensive they are to fix:</p>
+
+  <ul class="checklist">
+    <li>No human faces or identifiable people anywhere.</li>
+    <li>Imagery is genuinely the base layer — real plates under the graphics, not abstract
+    texture. Name the specific shots that must be present.</li>
+    <li>Palette held: near-black, white, one red. No neon, gradients or sparkles that crept
+    in under an instruction to be “more dramatic”.</li>
+    <li>Captions present, burned in, and readable through flashes, blur and shake.</li>
+    <li>No real corporate logos or badges; name-tags are plain text.</li>
+    <li>Required footnotes present at the right timecodes.</li>
+    <li>Compliance card visible in the first four seconds.</li>
+    <li>The close is the scripted close, with no subscribe or follow animation.</li>
+    <li>Cut rhythm: no shot holding past about two seconds.</li>
+    <li>Hero shot present; bookend returns at the close from the same camera position.</li>
+  </ul>
+
+  <p>Any item failing goes back through the revisable session rather than into a rebuild.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Nineteen</div>
+  <h2>Credits are a<br>production constraint</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Treat generation credits the way a film production treats stock. They are
+  finite, they are consumed by mistakes, and the cheapest shot is the one you did not have
+  to take twice.</p>
+
+  <h3>A real constraint log</h3>
+
+  <table>
+    <tr><th style="width:34%">Constraint hit</th><th>Consequence for the work</th></tr>
+    <tr><td class="t-key">B-roll generator at zero credits</td><td>No custom footage at all. The shots worth buying were identified and written down for when it is topped up.</td></tr>
+    <tr><td class="t-key">Thumbnail tool at ~1 credit, generation costs 22</td><td>No generated thumbnail. Fallback: the video tool’s own auto-generated thumbnail.</td></tr>
+    <tr><td class="t-key">Text-to-speech billed to a different credit pool than video</td><td>No detached voice stem. Narration is baked into the render.</td></tr>
+  </table>
+
+  <p>The third one is the dangerous one, and it is worth stating plainly because it is easy
+  to assume otherwise: <strong>if you cannot generate speech separately, you have no audio
+  stem, and the render is the master.</strong> You cannot recut it in an editor, retime a
+  beat, or swap a clause. Decide before you render whether you need a stem — and if you do,
+  confirm that your plan actually includes it rather than assuming that a video tool with a
+  voice must expose one.</p>
+
+  <h3>Three habits that save credits</h3>
+
+  <p><strong>Stop renders you already know are wrong.</strong> Two were stopped while still
+  pending, before producing output, when the closing line was rewritten. A stopped pending
+  job costs nothing; a finished one you will not publish costs a full render.</p>
+
+  <p><strong>Get the brief right rather than iterating cheaply.</strong> With AI video
+  there is no cheap iteration — every revision is a render. Twenty more minutes on the
+  brief is the least expensive thing on the menu.</p>
+
+  <p><strong>Note the credit balance and its reset date in every production file.</strong>
+  It turns “I think we’re running low” into a number you can plan a month around.</p>
+
+  <div class="callout">
+    <span class="lbl">Keep a standing constraints list</span>
+    <p>Maintain one list of environment constraints that applies across all videos — what
+    is blocked, what is exhausted, which capability your plan does not include. Read it
+    before you plan a video, not after you have designed one around a tool you cannot use.
+    It stops you rediscovering the same wall monthly, which is the most demoralising way to
+    lose a morning.</p>
+  </div>
+</section>
+
+<!-- ============ PART SIX ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part Six</div>
+  <h2>Publish</h2>
+  <p class="blurb">Packaging, the thumbnail score trap, the compliance you cannot skip,
+  and a sober look at what monetization actually requires.</p>
+  <div class="contents">
+    <div><b>20</b> Packaging: titles, description, pinned comment</div>
+    <div><b>21</b> Thumbnails and the score trap</div>
+    <div><b>22</b> Compliance you cannot skip</div>
+    <div><b>23</b> What monetization actually requires</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty</div>
+  <h2>Packaging: titles,<br>description, pinned comment</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Four small artefacts, each with a distinct job. Write all of them into the
+  script file before the video renders, so that packaging is a decision rather than
+  something you improvise at upload.</p>
+
+  <h3>Titles: write three, all true</h3>
+
+  <pre>1. The $25,000 Day Trading Rule Just Died
+2. They Removed The PDT Rule. Read The Fine Print.
+3. Day Trading With $2,000 Is Now Legal (Here's The Catch)</pre>
+
+  <p>Every one of those is accurate. Writing three forces you past the first phrasing,
+  which is almost never the best one, and it gives you something to swap to if a video
+  underperforms.</p>
+
+  <p>The selection test for this kind of channel is not “which is most clickable” but
+  <strong>which would a sceptic click</strong> — someone who already knows the subject and
+  is deciding whether you are serious. “Read the fine print” and “here’s the catch” both
+  promise the thing the channel actually delivers: the part other coverage leaves out.
+  Promise the counter-evidence beat. It is your differentiator, and unlike a clickbait
+  promise, you can keep it.</p>
+
+  <div class="callout">
+    <span class="lbl">Retitle at upload</span>
+    <p>Generators auto-title renders off-script, and the result is usually a flattened
+    description of the content. Ignore it. Use the title from your own packaging block —
+    and keep the tool’s title out of the file name too, or it will propagate.</p>
+  </div>
+
+  <h3>The description carries the sources</h3>
+
+  <pre>A moat is a structural advantage that keeps competitors from taking
+your profits. Tesla's clearest one isn't the vehicles — it's that
+nearly every rival automaker adopted Tesla's charging connector as
+the North American standard. Also covered: where that moat has been
+eroding.
+
+Sources: automaker standard-adoption announcements; EV share data;
+quarterly filings. Not financial advice. Educational only.</pre>
+
+  <p>Two paragraphs: what the video argues, then where it came from. Listing sources costs
+  thirty seconds and is one of the few visible signals that separates you from a templated
+  channel — templated channels never have them, because there is nothing to list.</p>
+
+  <h3>The pinned comment is a correction channel</h3>
+
+  <p>Use it for three things, in this order of value:</p>
+
+  <ul>
+    <li><strong>The caveat that did not fit the runtime.</strong> “Brokers have until
+    October 2027 to implement — check whether yours has actually turned it on before you
+    plan around it.”</li>
+    <li><strong>The objection you know is coming.</strong> “Before anyone posts it: yes,
+    the quote can’t be sourced — that’s said in the video.”</li>
+    <li><strong>The precision an estimate needs.</strong> “The $100B figure is an analyst
+    estimate for the network, not a market price — a more conservative scenario put it
+    nearer $42B. Treat it as a range.”</li>
+  </ul>
+
+  <p>Each of these converts a potential top comment into a pinned one written by you. It
+  is the cheapest reputational work available on the platform.</p>
+
+  <h3>Hashtags</h3>
+
+  <p>Five, specific to the subject rather than to the genre. They are the least important
+  artefact on this page; write them last and do not agonise.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty-One</div>
+  <h2>Thumbnails and<br>the score trap</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Thumbnail scoring tools penalise low saturation and reward vibrancy. If
+  your identity is a dark, desaturated, three-colour palette, the score will fight you on
+  every single video. Do not let it win.</p>
+
+  <p>Understand what the score is measuring. It is a model of what performs on average,
+  trained on what already exists. Your entire strategic position — see Chapter 1 — is that
+  you are deliberately not the average. Optimising to that score converts your channel into
+  the thing the score was trained on, which is the one outcome you cannot afford.</p>
+
+  <div class="quote">The score optimises for the average thumbnail.<br>Your whole plan is
+  to not be it.</div>
+
+  <h3>When to listen to it anyway</h3>
+
+  <p>Scoring tools are genuinely useful on the mechanical questions, and you should take
+  those notes seriously:</p>
+
+  <ul class="tight">
+    <li><strong>Legibility at small size.</strong> Real. Check it at thumbnail scale, on a
+    phone.</li>
+    <li><strong>Subject size and clarity.</strong> Real. One subject, large.</li>
+    <li><strong>Text length.</strong> Real. Three or four words maximum.</li>
+    <li><strong>Contrast.</strong> Real — and note that a near-black and white palette with
+    one red accent is <em>high</em> contrast. You can satisfy this one without moving.</li>
+    <li><strong>Saturation and vibrancy.</strong> Ignore. This is the identity trade, and
+    it is the whole of the disagreement.</li>
+  </ul>
+
+  <h3>Cheap thumbnails when the credits are gone</h3>
+
+  <p>Video generators frequently produce a thumbnail alongside the plan, at no extra cost.
+  It may be session-internal — visible on the session page but not retrievable through the
+  API — which is inconvenient but not disqualifying: screenshot it, or rebuild it from the
+  hero shot.</p>
+
+  <p>Better still, design the thumbnail into the script file from the start. Your hero shot
+  is almost always the right frame: it is the most tactile image in the video and it
+  already carries the thesis. A macro of a buckle locking with three words of condensed
+  type over it will outperform anything a generator improvises, and it reinforces the
+  identity every time it appears in a feed.</p>
+
+  <div class="callout">
+    <span class="lbl">The honest version of this advice</span>
+    <p>You are trading some click-through for recognisability and authority. That is a real
+    cost, not a free lunch, and it is only the right trade if you are actually going to
+    publish enough videos for recognisability to compound. If you plan to publish five,
+    take the vibrant thumbnail.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty-Two</div>
+  <h2>Compliance<br>you cannot skip</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Four things, none of them optional, none of them expensive. This chapter
+  is a production checklist, not legal advice — rules differ by jurisdiction and change
+  often, and you should confirm the current versions for yourself.</p>
+
+  <h3>One — the card, in the first four seconds</h3>
+
+  <p><strong>“Educational only. Not financial advice.”</strong> On screen, small but
+  legible, from 0:00 to 0:04 of every video. Not in the description instead. Not at the
+  end. In the first four seconds, where a viewer who watches nothing else still sees it.</p>
+
+  <p>Write it into the identity lock, the brief and the pre-publish checklist, because it
+  is exactly the kind of constraint that goes missing when a generator is being creative
+  with the opening.</p>
+
+  <h3>Two — disclose synthetic content where it is realistic</h3>
+
+  <p>Platforms require creators to disclose realistic altered or synthetic content —
+  material a viewer could reasonably mistake for a real person, place or event. Synthetic
+  or cloned voices depicting a real person, digitally manipulated footage of someone saying
+  something they did not say, and fabricated real-world events are the clear cases.
+  Production assistance — colour work, stylisation, clearly unrealistic or animated
+  material — generally is not.</p>
+
+  <p>A faceless channel that bans real people, real logos and real mastheads sits mostly on
+  the light side of that line. That is a happy consequence of the style rules rather than a
+  reason to stop thinking about it. Disclose when in doubt: the toggle costs nothing, and
+  repeated non-disclosure is enforced with content removal and monetization penalties.</p>
+
+  <h3>Three — no real logos, badges or mastheads</h3>
+
+  <p>Plain text name-tags, always. This keeps you clear of trademark and implied-endorsement
+  problems, and — per Chapter 5 — it holds the palette at the same time. When a script names
+  a real publication, set the type generically rather than reproducing its masthead.</p>
+
+  <h3>Four — no identifiable people</h3>
+
+  <p>No faces, no recognisable individuals, including in background footage. Frame people
+  out or use distant silhouettes. This is a likeness question as much as a style one, and
+  generated footage makes it easier to get wrong than real footage does — the person in the
+  frame may resemble someone without anyone having decided that they should.</p>
+
+  <div class="callout">
+    <span class="lbl">Where this is genuinely not enough</span>
+    <p>If you move from explaining public information to recommending specific securities,
+    to managing anyone’s money, or to accepting payment for coverage, you are in a
+    different regulatory category and this chapter stops being sufficient. Sponsorships and
+    affiliate arrangements carry their own disclosure obligations. Take proper advice before
+    you cross any of those lines.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty-Three</div>
+  <h2>What monetization<br>actually requires</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Read this before you build a plan that depends on platform revenue. The
+  numbers are larger than most people assume, and they moved twice in the period this book
+  covers.</p>
+
+  <table>
+    <tr><th style="width:30%">Milestone</th><th>Requirement</th></tr>
+    <tr><td class="t-key">Fan funding tier</td><td>500 subscribers · 3 valid public uploads in 90 days · 3,000 watch hours in 12 months <em>or</em> 3 million Shorts views in 90 days</td></tr>
+    <tr><td class="t-key">Ad revenue tier</td><td>1,000 subscribers · 4,000 watch hours in 12 months <em>or</em> 10 million Shorts views in 90 days</td></tr>
+    <tr><td class="t-key">New applicants from 1 Feb 2027</td><td>1,000 subscribers · 8,000 watch hours <em>or</em> 20 million Shorts views. Existing members reported as grandfathered</td></tr>
+    <tr><td class="t-key">Shorts revenue share from 1 Feb 2027</td><td>A reported floor of 10 million qualified Shorts views per rolling 90 days; falling below pauses Shorts revenue, crossing back restores it automatically</td></tr>
+    <tr><td class="t-key">Always</td><td>No active Community Guidelines strikes. Watch hours and Shorts views never combine — you qualify on one or the other</td></tr>
+  </table>
+
+  <p class="small mute">See Appendix F for sources, dates and confidence. The 2027 rows rest
+  on secondary reporting because the primary pages were unreachable from the machine this
+  was compiled on. Confirm before planning.</p>
+
+  <h3>What this means for a Shorts-first channel</h3>
+
+  <p>Ten million qualified Shorts views in ninety days is the bar, and it is a different
+  business from four thousand watch hours. Watch hours from Shorts in the Shorts feed do
+  not count toward the watch-hour route, so a pure Shorts channel cannot creep in through
+  the other door.</p>
+
+  <p>The planning consequence is straightforward, and it is better to accept it at the start
+  than to discover it at month eight:</p>
+
+  <div class="quote">Do not build a business model<br>that requires Shorts ad revenue early.</div>
+
+  <p>Shorts are a distribution and credibility engine. They are extraordinarily good at
+  putting a specific, verifiable, well-made argument in front of people who have never heard
+  of you, and extraordinarily bad at paying for themselves in the first year.</p>
+
+  <h3>Where the revenue actually is, earlier</h3>
+
+  <p>Things you own, sold to an audience that trusts you because of how the videos are made:
+  a written product, a list, a paid newsletter, a sponsorship you can accept without
+  compromising the thing that made you worth sponsoring. Every one of those depends on the
+  fact discipline in Part Four. That is not a coincidence — the discipline is what converts
+  attention into credibility, and credibility is the only part of this that can be sold.</p>
+
+  <p>This book makes no claim about what you will earn. It does not know your subject, your
+  publishing rate, or your luck, and anyone who tells you a number without knowing those is
+  selling you something. What it can tell you is which of your assets is durable, and the
+  answer is not the videos.</p>
+</section>
+
+<!-- ============ PART SEVEN ============ -->
+<section class="bleed divider">
+  <div class="pnum">Part Seven</div>
+  <h2>The<br>System</h2>
+  <p class="blurb">The files, one video walked end to end, and the checklist that runs
+  before anything is published.</p>
+  <div class="contents">
+    <div><b>24</b> Repo as record</div>
+    <div><b>25</b> Teardown: one short, end to end</div>
+    <div><b>26</b> The pre-publish checklist</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty-Four</div>
+  <h2>Repo as record</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">One directory per video. Two files in it. Fifteen minutes to set up, and
+  it is the difference between a channel and a series of attempts.</p>
+
+  <pre><span class="c">channel/</span>
+  <span class="k">IDENTITY.md</span>        <span class="c">— the locked identity. One file, versioned.</span>
+  <span class="k">CONSTRAINTS.md</span>     <span class="c">— standing environment limits across all videos.</span>
+  <span class="k">moat-short/</span>
+    SCRIPT.md        <span class="c">— narration, fact table, imagery, packaging</span>
+    PRODUCTION.md    <span class="c">— IDs, settings, verification, constraints hit</span>
+  <span class="k">pdt-short/</span>
+    SCRIPT.md
+    PRODUCTION.md
+    thumbnail.png</pre>
+
+  <h3>What goes in the script file</h3>
+
+  <ul class="tight">
+    <li>Runtime target, format, and the beat-by-beat narration with timecodes</li>
+    <li>The fact table, with confidence levels and any required on-screen footnotes</li>
+    <li>A note on <em>why this angle</em> — the reasoning from Chapter 14</li>
+    <li>Imagery by beat, hero shot marked, bookend named, match-cut chain</li>
+    <li>Packaging: three titles, description, hashtags, pinned comment</li>
+    <li>The compliance line</li>
+  </ul>
+
+  <h3>What goes in the production file</h3>
+
+  <ul class="tight">
+    <li>The finished video’s identifier and its revisable session URL</li>
+    <li>Style, voice, mode and orientation — the identifiers, not the names</li>
+    <li>Duration and format as actually rendered</li>
+    <li>The verification checklist, with <em>Pass / Fail / Unknown</em> per item and the
+    evidence for each</li>
+    <li>Constraints hit, and what each one cost</li>
+    <li>Superseded renders, with one line on why they were superseded</li>
+  </ul>
+
+  <h3>Why version control rather than a folder of documents</h3>
+
+  <p>The diff. When you change the close of every video from a call to subscribe to
+  something the viewer can act on, the commit carries both the change and the reason.
+  Six months on, the history explains why the channel sounds the way it does — to you, to
+  a collaborator, and to anyone you eventually hire to do this without you.</p>
+
+  <p>A worked example from the record this book is drawn from, in commit order:
+  <em>add the short · rewrite close: drop clickbait CTA for an actionable one · add imagery
+  layer spec: photography as the base, not abstract backgrounds · lock the channel style ·
+  record render, links and verification checklist</em>. That sequence is the channel’s
+  entire design history, and it cost nothing to keep.</p>
+
+  <div class="callout">
+    <span class="lbl">The rule that keeps it alive</span>
+    <p>Write the production file <em>during</em> production, not after it. The constraint
+    you hit at eleven at night — the credit pool that turned out to be separate, the mode
+    that 404s — is the one you will have rationalised into vagueness by the morning.</p>
+  </div>
+
+  <h3>Keep the superseded renders</h3>
+
+  <p>Not to publish. To compare. A scrapped version next to its rebuild is the most
+  persuasive argument available for why the brief takes twenty more minutes, and it is the
+  only one that still works on you when you are tired.</p>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty-Five</div>
+  <h2>Teardown:<br>one short, end to end</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Every rule in this book, applied to a single fifty-six-second video, in
+  the order it happened.</p>
+
+  <h3>1 — The trigger</h3>
+  <p>A regulatory change with a hard date. These are the best subjects available to a
+  factual channel: they have documents, they have dates, they affect the viewer directly,
+  and most coverage of them is wrong in a way you can fix.</p>
+
+  <h3>2 — Verification, before a word was written</h3>
+
+  <table>
+    <tr><th style="width:34%">Claim</th><th>Detail</th></tr>
+    <tr><td class="t-key">SEC approval</td><td>14 April 2026 — amendments to FINRA Rule 4210</td></tr>
+    <tr><td class="t-key">Effective</td><td>4 June 2026</td></tr>
+    <tr><td class="t-key">Eliminated</td><td>The “pattern day trader” designation, day-trade counting, and the $25,000 minimum equity requirement</td></tr>
+    <tr><td class="t-key">Replacement</td><td>An intraday margin standard keyed to real-time exposure</td></tr>
+    <tr><td class="t-key">Phase-in</td><td>18 months for broker systems, ending 20 October 2027</td></tr>
+    <tr><td class="t-key">$2,000</td><td>The existing minimum to open a margin account — unchanged, and <em>not</em> a new day-trading floor</td></tr>
+  </table>
+
+  <p>That last row is the one that made the video worth making. Most coverage reported
+  “you can now day trade with $2,000”, which conflates a long-standing account minimum with
+  a permission. Getting it right was four minutes of reading.</p>
+
+  <h3>3 — The angle</h3>
+  <p>Not “day trading is free now”. The thesis: <strong>the gate is gone, but the floor
+  never existed.</strong> A restriction was removed and a different, live, less visible
+  one replaced it. That is a claim with documents behind it, and it is the opposite of the
+  consensus take.</p>
+
+  <h3>4 — The five beats, as written</h3>
+
+  <pre><span class="c">HOOK 0:00</span>  The twenty-five thousand dollar rule that locked you out
+          of day trading is dead.
+
+<span class="c">DEFINE</span>    June 4th, 2026. FINRA killed the Pattern Day Trader rule.
+          The label, the trade counting, the twenty-five K minimum —
+          all of it, gone.
+
+<span class="c">CASE</span>      For twenty-five years, under 25K meant three day trades
+          every five days. Take a fourth? Your account got restricted
+          for ninety days. Now a two thousand dollar margin account
+          can trade intraday with no counter.
+
+<span class="c">COUNTER</span>   But that rule wasn't just a gate. It was a seatbelt.
+          It's replaced by an intraday margin standard. Your broker
+          tracks your real exposure live, all day. Run a deficit, you
+          get five business days to cover it — miss that, and you're
+          frozen for ninety days anyway.
+          And brokers have until October 2027 to switch on.
+          Yours might not have.
+
+<span class="c">CLOSE</span>     The gate's open. The floor isn't.
+          Check with your broker before you plan around it.</pre>
+
+  <p>147 words. The counter beat runs long deliberately — it carries two separate pieces of
+  disconfirming evidence, the replacement rule and the phase-in, and it is the reason the
+  video exists.</p>
+
+  <h3>5 — Hero shot and bookend</h3>
+  <p><strong>Hero:</strong> extreme macro of a seatbelt buckle clicking into its latch, slow
+  motion, on the line <em>“It was a seatbelt.”</em><br>
+  <strong>Bookend:</strong> a massive steel barrier gate. Closed, low angle, camera pushing
+  in at the open. At the close, the same gate standing open — and the camera pulls back to
+  reveal a sheer drop behind it.<br>
+  <strong>Match-cut chain:</strong> turnstile counter → margin meter → calendar.<br>
+  <strong>Impact words:</strong> DEAD · SEATBELT · THE FLOOR ISN’T.</p>
+
+  <h3>6 — The brief and the render</h3>
+  <p>House brief template, revisable mode, series style and voice, portrait. The tool
+  estimated 66 seconds for the verbatim script and was told explicitly that a longer
+  runtime meant <em>more cuts, not slower ones</em>. It rendered at <strong>55.8
+  seconds</strong>, with the cut rhythm intact.</p>
+
+  <h3>7 — What went wrong</h3>
+  <p>The first version was briefed before the imagery rule existed and came back as
+  typography on abstract backgrounds. It was scrapped and rebuilt with the three-layer
+  stack. Both versions are kept; only the rebuild was published.</p>
+  <p>The finished file could not be watched from the production machine — the vendor’s media
+  hosts were blocked — so it was logged <strong>complete, not verified</strong>, with a
+  nine-point checklist attached for first viewing.</p>
+
+  <h3>8 — Packaging</h3>
+  <p>Three titles written, the “read the fine print” variant selected. Description carrying
+  the summary, the sources and the disclaimer. Pinned comment holding the caveat that did
+  not fit the runtime: <em>brokers have until October 2027 to implement — check whether
+  yours has actually turned it on.</em></p>
+
+  <div class="field">
+    <span class="lbl">The scoreboard</span>
+    <p>Roughly a day of work for fifty-six seconds of video: about two hours of
+    verification, two hours of scripting, an hour of briefing, the render, the rebuild
+    after the first attempt was scrapped, and the packaging.</p>
+    <p>What it bought: a video that is still correct, that contains its own strongest
+    objection, that is visibly from the same publication as every other video on the
+    channel, and that can be defended line by line against anyone who arrives to argue.
+    <strong>At twenty videos, that is a channel. At twenty templated ones, it is an
+    inventory.</strong></p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Chapter Twenty-Six</div>
+  <h2>The pre-publish checklist</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Run it in order, every time. It takes about ten minutes and it is the last
+  place any of this can be saved.</p>
+
+  <h4>Facts</h4>
+  <ul class="checklist">
+    <li>Every claim in the narration appears in the fact table, with a confidence level.</li>
+    <li>No claim came from memory. Each was checked against a source during this
+    production.</li>
+    <li>Estimates are spoken as estimates, attributed on screen, and ranged in the pinned
+    comment.</li>
+    <li>Any unsourced story is flagged in the script itself, not quietly asserted.</li>
+    <li>Rounding runs toward the weaker version of your own argument.</li>
+  </ul>
+
+  <h4>Script</h4>
+  <ul class="checklist">
+    <li>All five beats present, and the counter-evidence beat carries real figures — not a
+    disclaimer.</li>
+    <li>The define beat hands the viewer an instrument, not a synonym.</li>
+    <li>The close restates the thesis and asks for nothing.</li>
+    <li>Narration in the render matches the script word for word.</li>
+  </ul>
+
+  <h4>Identity</h4>
+  <ul class="checklist">
+    <li>Imagery is genuinely the base layer. Hero shot present. Bookend returns from the
+    same camera position.</li>
+    <li>Palette held — near-black, white, one red. Nothing from the ban list appeared.</li>
+    <li>Captions burned in and readable over every plate.</li>
+    <li>No shot holds past about two seconds.</li>
+    <li>Style and voice identifiers match the rest of the series.</li>
+  </ul>
+
+  <h4>Compliance</h4>
+  <ul class="checklist">
+    <li>“Educational only. Not financial advice.” on screen in the first four seconds.</li>
+    <li>No human faces or identifiable people anywhere.</li>
+    <li>No real logos, badges or mastheads — plain text name-tags only.</li>
+    <li>Synthetic-content disclosure considered, and applied if the material is realistic.</li>
+  </ul>
+
+  <h4>Publish</h4>
+  <ul class="checklist">
+    <li>Title taken from your packaging block, not from the generator.</li>
+    <li>Description carries the summary, the sources and the disclaimer.</li>
+    <li>Pinned comment ready before upload.</li>
+    <li>Production file updated: IDs, settings, verification states with evidence,
+    constraints hit.</li>
+  </ul>
+
+  <div class="callout">
+    <span class="lbl">If you only ever run four of these</span>
+    <p>The fact table is complete. The counter-evidence beat is real. The compliance card
+    is in the first four seconds. The narration matches the script. Those four protect you
+    from the failures that are expensive to undo; everything else on this page protects
+    quality, which you can fix next time.</p>
+  </div>
+</section>
+
+<!-- ============ APPENDICES ============ -->
+<section class="bleed divider">
+  <div class="pnum">Appendices</div>
+  <h2>The Working<br>Documents</h2>
+  <p class="blurb">Copy these into your own repository. They are the parts of this book you
+  will touch every week.</p>
+  <div class="contents">
+    <div><b>A</b> Script file template</div>
+    <div><b>B</b> Production file template</div>
+    <div><b>C</b> The brief template</div>
+    <div><b>D</b> Identity lock worksheet</div>
+    <div><b>E</b> Confidence scale — quick card</div>
+    <div><b>F</b> Sources and verification log</div>
+    <div><b>G</b> Licence</div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix A</div>
+  <h2>Script file template</h2>
+  <div class="hrule"></div>
+  <p class="small mute">Save as <code>SCRIPT.md</code> in the video’s directory.</p>
+
+<pre class="flow"><span class="k"># [TITLE]</span>
+
+Runtime target: [__]s · Format: 9:16 · Style: [series name]
+
+<span class="k">## VO SCRIPT ([__] words)</span>
+
+<span class="c">[0:00-0:05] HOOK</span>
+&gt; [The claim, stated flat.]
+
+<span class="c">[0:05-0:18] DEFINE</span>
+&gt; [One sentence a non-specialist could repeat. An instrument, not a synonym.]
+
+<span class="c">[0:18-0:42] THE CASE</span>
+&gt; [Facts in the order where each one earns the next.]
+
+<span class="c">[0:42-0:56] THE HONEST COUNTER</span>
+&gt; [Real figures that cut against the thesis. Never a disclaimer.]
+
+<span class="c">[0:56-1:00] CLOSE</span>
+&gt; [Thesis at its sharpest. One action. Ask for nothing.]
+
+<span class="k">## FACT BASE</span>
+
+| Claim | Detail | Confidence |
+|---|---|---|
+|  |  |  |
+
+On-screen footnotes required:
+- [timecode] — [exact wording]
+
+<span class="k">## WHY THIS ANGLE</span>
+[Which claim you chose to build on and why it is the defensible one.
+ What you passed over, and what that cost.]
+
+<span class="k">## IMAGERY</span>
+
+Hero shot: [the most tactile image in the video]
+Bookend:   [same location/object, open and close, same camera position]
+Match-cut chain: [object -&gt; object -&gt; object]
+Impact words: [WORD] · [WORD] · [WORD]
+
+| Beat | Shot |
+|---|---|
+|  |  |
+
+<span class="k">## PACKAGING</span>
+
+Titles
+1. 
+2. 
+3. 
+
+Description
+&gt; [What the video argues.]
+&gt;
+&gt; Sources: [...]. Not financial advice. Educational only.
+
+Hashtags: 
+
+Pinned comment
+&gt; [The caveat that did not fit, or the objection you know is coming.]
+
+<span class="k">## COMPLIANCE</span>
+On-screen 0:00-0:04: "Educational only. Not financial advice."</pre>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix B</div>
+  <h2>Production file template</h2>
+  <div class="hrule"></div>
+  <p class="small mute">Save as <code>PRODUCTION.md</code>. Write it during production.</p>
+
+<pre class="flow"><span class="k"># Production Record — [VIDEO]</span>
+
+<span class="k">## FINAL VIDEO</span>
+- Watch:      [url]
+- video_id:   [id]
+- Session:    [revisable session url]
+- Duration:   [__]s · 9:16 · [resolution]
+
+<span class="k">## Build settings</span>
+- Style:       [name] — [id]
+- Voice:       [name] — [id]
+- Mode:        [revisable | fire-and-forget]
+- Orientation: portrait
+
+<span class="k">## Verification — [WATCHED | COMPLETE, NOT VERIFIED]</span>
+
+| Check | Result | Evidence |
+|---|---|---|
+| Narration verbatim |  |  |
+| No faces / identifiable people |  |  |
+| Imagery is the base layer |  |  |
+| Palette held |  |  |
+| Captions burned in and legible |  |  |
+| No real logos |  |  |
+| Footnotes present |  |  |
+| Compliance card in first 4s |  |  |
+| Cut rhythm under 2s |  |  |
+| Close is the scripted close |  |  |
+
+<span class="c">Pass / Fail / Unknown. Unknown is not Fail — record what you could not check.</span>
+
+<span class="k">## Constraints hit</span>
+- [what was blocked, exhausted or unavailable]
+- [what it cost the work]
+
+<span class="k">## Workarounds used</span>
+- [what was done instead]
+- [<span class="k">what it cost</span> — always fill this in]
+
+<span class="k">## Superseded renders</span>
+- [id] — [why it was superseded]
+
+<span class="k">## Credits</span>
+- Balance at session start: [__] · resets [date]</pre>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix C</div>
+  <h2>The brief template</h2>
+  <div class="hrule"></div>
+  <p class="small mute">Paste whole. Fill the bracketed fields. Do not trim the constraint
+  blocks — they are the parts that go missing.</p>
+
+<pre class="flow">Create a ~[__]-second vertical (9:16) short for a FACELESS channel.
+
+CRITICAL: NO avatar, NO presenter, NO human face anywhere. Voiceover only.
+Use this narration script VERBATIM — do not rewrite, shorten, or add to it:
+"[SCRIPT]"
+
+<span class="k">LAYER STACK — imagery-first, three layers:</span>
+1. BASE — cinematic photographic imagery filling the frame, the foundation
+   of every scene. Never a texture or an abstract background.
+2. MID — motion graphics over that imagery: diagrams, counters, charts,
+   name-tag grids.
+3. TOP — hero typography and burned-in word-by-word captions, current word
+   highlighted.
+
+<span class="k">IMAGERY BY BEAT:</span>
+[beat] -&gt; [concrete shot]
+[beat] -&gt; [concrete shot]
+HERO SHOT: [the single most tactile image; name the beat it lands on]
+BOOKEND: open on [X]; close on the SAME [X], changed, from the SAME camera
+position.
+MATCH-CUT CHAIN: [object] -&gt; [object] -&gt; [object]
+
+<span class="k">MOTION:</span> Treat scenes as 3D space — push the camera THROUGH elements,
+hard parallax between layers, foreground streaking past the lens. Hero words
+scale past frame edges; letters arrive individually with overshoot; 1-2 frame
+white flash and screen shake on the biggest landings. No plain cuts —
+match-cut morphs, type-as-mask reveals, whip transitions with motion blur.
+Numbers count up physically; charts draw themselves then crack and drop on
+negative beats. Continuous motion in every frame; speed ramps into key words.
+Cut or punch in every 1.2-1.8s, no shot past 2s. <span class="k">A longer runtime means MORE
+cuts, not slower ones.</span>
+
+<span class="k">LOOK:</span> Strict three-colour palette — near-black, white, one red accent.
+Grade imagery dark and desaturated; reserve red for graphics and type.
+Captions legible at all times — dark scrim behind text over busy plates.
+
+<span class="k">HARD CONSTRAINTS:</span> No human faces or identifiable people. No real corporate
+logos or mastheads — plain text name-tags only. No neon, gradients, sparkles,
+emoji, subscribe animations or clickbait arrows. Show
+"Educational only. Not financial advice." in the first 4 seconds.
+
+<span class="k">TONE:</span> Dry, confident, analytical newsroom. Cinematic, not a commercial.
+A neutral explainer that includes the negative data, not a promo.
+
+Settings: mode [revisable], orientation portrait,
+style [ID], voice [ID].</pre>
+
+  <div class="callout">
+    <span class="lbl">At the approval step</span>
+    <p>Restate, in full sentences: the grade, the bookend, the hero shot, the cut rhythm,
+    and the negative constraints. Read the plan for what it did <em>not</em> mention. Then
+    approve — and do not reopen the script.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix D</div>
+  <h2>Identity lock worksheet</h2>
+  <div class="hrule"></div>
+  <p class="small mute">Fill once. Save as <code>IDENTITY.md</code>. Treat as read-only —
+  changes get a version number and a commit message.</p>
+
+  <div class="worksheet">
+    <div class="wline"><span class="q">1 — Layer stack</span><span class="hint">Base layer, literally. What sits over it.</span><div class="fill tall"></div></div>
+    <div class="wline"><span class="q">2 — Palette</span><span class="hint">Three colours max. Which is the accent, and what is it reserved for.</span><div class="fill tall"></div></div>
+    <div class="wline"><span class="q">3 — Grade</span><span class="hint">How photography is treated so it does not read as stock.</span><div class="fill"></div></div>
+    <div class="wline"><span class="q">4 — Type and captions</span><span class="hint">Typeface class, caption style, position, scrim rule.</span><div class="fill tall"></div></div>
+    <div class="wline"><span class="q">5 — Motion rules</span><span class="hint">Camera, transitions, data behaviour, cut rhythm in seconds.</span><div class="fill tall"></div></div>
+    <div class="wline"><span class="q">6 — Ban list</span><span class="hint">Specific enough to check against a finished render.</span><div class="fill tall"></div></div>
+  </div>
+
+  <div class="worksheet">
+    <div class="wline"><span class="q">7 — Hard constraints</span><span class="hint">Faces, logos, likeness, anything legal or structural.</span><div class="fill tall"></div></div>
+    <div class="wline"><span class="q">8 — Tone</span><span class="hint">Three adjectives and one anti-pattern: “never a ___”.</span><div class="fill"></div></div>
+    <div class="wline"><span class="q">9 — Compliance card</span><span class="hint">Exact wording, exact timing, every video.</span><div class="fill"></div></div>
+    <div class="wline"><span class="q">10 — Fixed settings</span><span class="hint">Style ID, voice ID, mode, orientation.</span><div class="fill tall"></div></div>
+    <div class="wline"><span class="q">Version</span><span class="hint">Number and date. Increment deliberately.</span><div class="fill"></div></div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix E</div>
+  <h2>Confidence scale —<br>quick card</h2>
+  <div class="hrule"></div>
+
+  <table>
+    <tr><th style="width:22%">Level</th><th style="width:38%">Means</th><th>What the script may do</th></tr>
+    <tr><td class="t-key">High</td><td>Primary source, or several independent sources that agree</td><td>State it plainly</td></tr>
+    <tr><td class="t-key">Medium-high</td><td>Widely reported; primary source not read directly</td><td>State it plainly; put the source in the description</td></tr>
+    <tr><td class="t-key">Medium</td><td>A single secondary source, or a range being summarised</td><td>Hedge in the wording: “about”, “over”, “roughly”</td></tr>
+    <tr><td class="t-key">Estimate</td><td>An analyst projection or model output</td><td>Name whose estimate it is, on screen. Never speak it as a price</td></tr>
+    <tr><td class="t-key">Unsourced</td><td>Cannot be traced to any original</td><td>Do not assert it. Flag it in the script itself</td></tr>
+  </table>
+
+  <h3>The three-layer correction</h3>
+  <table>
+    <tr><th style="width:26%">Layer</th><th>Carries</th></tr>
+    <tr><td class="t-key">Narration</td><td>The hedge, in the sentence itself: “has valued… as high as”</td></tr>
+    <tr><td class="t-key">On screen</td><td>The attribution, as a small footnote at that timecode</td></tr>
+    <tr><td class="t-key">Pinned comment</td><td>The full range, including the conservative case</td></tr>
+  </table>
+
+  <h3>Rounding</h3>
+  <p>Always round toward the weaker version of your own argument. “Over a hundred thousand”
+  for 128,000. “About twenty pounds” for a cited range of 15 to 30. Credibility leaks out of
+  a script one convenient rounding at a time.</p>
+
+  <h3>The two questions that catch most errors</h3>
+  <ol>
+    <li>Is this an approval date, an effective date, or a compliance deadline? They are
+    three different dates and they are routinely conflated.</li>
+    <li>Is this a price, or somebody’s estimate of a value? If it is an estimate, whose?</li>
+  </ol>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix F</div>
+  <h2>Sources and<br>verification log</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Part Four asks you to record every external claim with a confidence level.
+  It would be strange to sell you that discipline and not practise it. Every external fact
+  in this book is below, with what it rests on.</p>
+
+  <h4>Method and its limits</h4>
+  <p class="small">All external claims were checked on <strong>22 September 2026</strong>.
+  Two of the relevant primary domains — YouTube’s help centre and YouTube’s official blog —
+  were unreachable from the machine this edition was compiled on, because of a network
+  egress policy. Where a row depends on those, it is marked <em>Medium</em> and says so.
+  That is the honest state of the evidence, and it is exactly the situation Chapter 12
+  describes: a claim that is widely and consistently reported but whose primary source you
+  have not read yourself is not the same as one you have.</p>
+
+  <table>
+    <tr><th style="width:30%">Claim</th><th style="width:44%">Rests on</th><th>Confidence</th></tr>
+    <tr>
+      <td class="t-key">YPP: 1,000 subscribers and either 4,000 watch hours / 12 months or 10 million Shorts views / 90 days; fan-funding tier at 500 subscribers, 3 uploads / 90 days, 3,000 hours or 3 million Shorts views; the two routes never combine; no active strikes</td>
+      <td>Multiple independent creator-industry sources in agreement, September 2026. YouTube’s own help page could not be opened from this machine</td>
+      <td>Medium-high</td>
+    </tr>
+    <tr>
+      <td class="t-key">From 1 Feb 2027: new applicants need 8,000 watch hours or 20 million Shorts views; existing members grandfathered; a 10 million Shorts views / 90 days floor for Shorts revenue sharing, restored automatically</td>
+      <td>Secondary reporting of a YouTube announcement, consistent across several outlets. Neither the announcement nor the help page was reachable from this machine</td>
+      <td>Medium — confirm before planning</td>
+    </tr>
+    <tr>
+      <td class="t-key">“Repetitious content” policy renamed “inauthentic content” on 15 July 2025, clarified to cover mass-produced and repetitive content; not a new prohibition; enforcement described as moving to channel level</td>
+      <td>Trade press reporting of the policy update and subsequent policy trackers</td>
+      <td>Medium-high</td>
+    </tr>
+    <tr>
+      <td class="t-key">Shorts may run up to 3 minutes; the limit rose from 60 seconds on 15 October 2024</td>
+      <td>Consistent across many independent sources; uncontested</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td class="t-key">Disclosure is required for realistic altered or synthetic content; production assistance and clearly unrealistic material generally exempt; repeated non-disclosure carries removal and monetization penalties</td>
+      <td>YouTube’s announcement of the disclosure tool and help-centre summaries reported by several outlets</td>
+      <td>Medium-high</td>
+    </tr>
+    <tr>
+      <td class="t-key">SEC approved amendments to FINRA Rule 4210 on 14 April 2026; effective 4 June 2026; the pattern day trader designation, day-trade counting and the $25,000 minimum equity requirement eliminated; replaced by an intraday margin standard; 18-month phase-in ending 20 October 2027</td>
+      <td>FINRA regulatory notice and investor guidance, the SEC release on the rule filing, and broker-dealer client notices — all in agreement</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td class="t-key">The $2,000 figure is the long-standing minimum to open a margin account, unchanged by the amendments, and is not a new day-trading floor</td>
+      <td>As above</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td class="t-key">The “1894 London newspaper / nine feet of manure in fifty years” prediction cannot be sourced; it traces to a 2004 essay, and the attribution was refuted in 2018</td>
+      <td>The newspaper’s own later correction, plus repeated unsuccessful attempts by others to locate the original</td>
+      <td>Medium-high</td>
+    </tr>
+    <tr>
+      <td class="t-key">Worked examples in Chapters 4, 8, 9, 12 and 14: charging-standard adoption, network valuation estimates, EV market share, energy storage revenue, horse populations, Model T production</td>
+      <td>Reproduced from the channel’s own fact tables, with the confidence levels and dates recorded there. They illustrate a method; they were not re-verified for this edition and must not be treated as current data</td>
+      <td>As originally recorded</td>
+    </tr>
+    <tr>
+      <td class="t-key">All production incidents, runtimes, word counts, credit balances, failure modes and verification results</td>
+      <td>First-hand production records of the channel described</td>
+      <td>High</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <span class="lbl">Read this table the way the book asks you to read yours</span>
+    <p>Two rows are Medium, and they are the two that concern your income. That is not a
+    comfortable place for them to be, and pretending otherwise would have been easy and
+    invisible. Go and check them at the platform’s own pages before you make a plan that
+    depends on them — which is, in one sentence, the entire argument of Part Four.</p>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="kicker">Appendix G</div>
+  <h2>Licence</h2>
+  <div class="hrule"></div>
+
+  <p class="lede">Plain-language terms. They are meant to be generous about the work and
+  strict about the document.</p>
+
+  <h3>What you may do</h3>
+  <ul>
+    <li>Read it, print it, and keep copies for your own use on your own devices.</li>
+    <li>Use every template, worksheet, checklist and structure in it to make your own
+    videos and run your own channel — <strong>including commercially, with no royalty and
+    no attribution required</strong>.</li>
+    <li>Adapt the templates to your own identity, tools and subject.</li>
+    <li>Quote briefly from the text, with attribution, in a review, article or post.</li>
+  </ul>
+
+  <h3>What you may not do</h3>
+  <ul>
+    <li>Resell, redistribute, sublicense, lend or republish this document, in whole or in
+    substantial part, in any format.</li>
+    <li>Share your copy publicly, upload it to a file-sharing or “free ebook” site, or post
+    it to a group.</li>
+    <li>Use it as course material, training material or a bonus attached to something you
+    sell.</li>
+    <li>Reproduce it as text, audio or video, in whole or substantially, under your own
+    name or anyone else’s.</li>
+    <li>Use it to train a machine learning model, or to generate a derivative work that
+    substitutes for it.</li>
+  </ul>
+
+  <p>The distinction is simple: <strong>the methods are yours to use, the document is not
+  yours to distribute.</strong> If you want to share it with a colleague, send them the
+  purchase link.</p>
+
+  <h3>Team and organisation use</h3>
+  <p>One copy covers one person. If several people at the same organisation will use it,
+  buy a copy for each, or contact the publisher for a team licence.</p>
+
+  <h3>Warranty and liability</h3>
+  <p class="small">This document is provided “as is”, without warranty of any kind. It
+  describes practices that worked in one production, on particular tools, at a particular
+  time. Platforms, policies, prices and regulations change — several did while it was being
+  written. Nothing here is financial, legal, tax or accounting advice, and no outcome of any
+  kind is promised or implied. To the maximum extent permitted by law, the publisher is not
+  liable for any loss arising from use of this document, including lost revenue, platform
+  enforcement action, or reliance on any figure reproduced in it.</p>
+
+  <h3>Refunds</h3>
+  <p class="small">If this is not what you expected, say so and you will be refunded. It
+  costs nothing to send back a document, and a reader who feels misled is more expensive
+  than a refund.</p>
+
+  <p class="small mute" style="margin-top:0.3in;">© 2026 helloabyss. All rights reserved.
+  Edition 1.0, September 2026.</p>
+</section>
+
+<!-- ============ COLOPHON / BACK ============ -->
+<section class="bleed" style="display:flex;flex-direction:column;justify-content:space-between;padding:0.95in 0.9in;">
+  <div>
+    <div style="width:1.5in;height:5px;background:var(--red);margin-bottom:0.34in;"></div>
+    <div style="font-family:'Oswald';font-weight:700;text-transform:uppercase;font-size:34pt;line-height:1.02;color:#fff;">
+      Colophon
+    </div>
+  </div>
+
+  <div style="max-width:5in;color:#B7B5B0;font-size:10.5pt;line-height:1.6;">
+    <p style="text-align:left;">Compiled from the production record of a faceless finance
+    short-form channel: its script files, its style guide, its verification checklists, and
+    the notes it kept on what broke.</p>
+    <p style="text-align:left;">Set in Oswald, Source Serif 4 and IBM Plex Mono. Typeset as
+    HTML and rendered to PDF; the source document and its build script are kept in the same
+    repository as the videos it describes, so that a correction is a commit rather than a
+    new file.</p>
+    <p style="text-align:left;">Corrections and disagreements are welcome and will be
+    credited in the next edition. If a figure in here is wrong, that is a defect in the
+    thing this book is about, and it should be fixed in public.</p>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;font-family:'Oswald';font-weight:500;font-size:8.5pt;letter-spacing:.2em;text-transform:uppercase;color:#8C8C93;border-top:1px solid #313136;padding-top:0.16in;">
+    <span>helloabyss</span>
+    <span>Edition 1.0 · September 2026</span>
+  </div>
+</section>
+
+</body>
+</html>
