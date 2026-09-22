@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=1080,height=1920"><script src="vendor/gsap.min.js"></script><style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B1A2E}
+#root{width:100%;height:100%;position:relative;background:#0B1A2E;font-family:"Liberation Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+.kick{position:absolute;left:100px;top:300px;color:#8FA6C0;font-size:30px;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+.hero{position:absolute;left:100px;top:470px;color:#FFFFFF;font-weight:800;letter-spacing:-.03em;line-height:.95}
+.sub{position:absolute;left:100px;top:700px;color:#C9D6E6;font-size:44px;font-weight:600;letter-spacing:-.01em;width:880px;line-height:1.25}
+.rule{position:absolute;left:100px;top:370px;width:150px;height:5px;background:#FFFFFF;transform-origin:left center}
+.slug{position:absolute;right:100px;top:200px;color:#8299B4;font-size:22px;letter-spacing:.22em}
+.capline{position:absolute;left:90px;top:1500px;width:900px;text-align:center;font-size:42px;font-weight:800;
+  opacity:0;line-height:1.24;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.capline span{color:rgba(255,255,255,.5);margin:0 .15em}
+#disc{position:absolute;left:100px;top:1716px;color:#8FA6C0;font-size:27px;font-weight:700;letter-spacing:.02em;line-height:1.4}
+#prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:#FFFFFF;transform-origin:left;transform:scaleX(0)}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="12.555" data-width="1080" data-height="1920">
+<div id="c0" class="clip" data-start="0.0" data-duration="3.652" data-track-index="0"><div class="slug">THE OCTOBER 6 VOTE</div><div class="rule" id="r0"></div><div class="kick" id="k0">Covered today</div><div class="hero" id="h0" style="top:470px;font-size:150px">11.8%</div><div class="sub" id="s0" style="top:697px">of EU population</div></div>
+<div id="c1" class="clip" data-start="3.652" data-duration="3.652" data-track-index="0"><div class="slug">THE OCTOBER 6 VOTE</div><div class="rule" id="r1"></div><div class="kick" id="k1">Threshold</div><div class="hero" id="h1" style="top:470px;font-size:150px">15 STATES</div><div class="sub" id="s1" style="top:697px">and 65% of population</div></div>
+<div id="c2" class="clip" data-start="7.303" data-duration="5.252" data-track-index="0"><div class="slug">THE OCTOBER 6 VOTE</div><div class="rule" id="r2"></div><div class="kick" id="k2">Expected</div><div class="hero" id="h2" style="top:470px;font-size:150px">6 OCTOBER</div><div class="sub" id="s2" style="top:697px">committee vote</div></div>
+<div id="caps"><div class="capline" id="g0"><span id="w0_0">Seven</span><span id="w0_1">countries.</span></div>
+<div class="capline" id="g1"><span id="w1_0">Roughly</span><span id="w1_1">eleven</span><span id="w1_2">point</span><span id="w1_3">eight</span></div>
+<div class="capline" id="g2"><span id="w2_0">percent</span><span id="w2_1">of</span><span id="w2_2">the</span><span id="w2_3">EU</span></div>
+<div class="capline" id="g3"><span id="w3_0">population.</span></div>
+<div class="capline" id="g4"><span id="w4_0">The</span><span id="w4_1">committee</span><span id="w4_2">vote</span><span id="w4_3">still</span></div>
+<div class="capline" id="g5"><span id="w5_0">needs</span><span id="w5_1">fifteen</span><span id="w5_2">states</span><span id="w5_3">and</span></div>
+<div class="capline" id="g6"><span id="w6_0">sixty</span><span id="w6_1">five</span><span id="w6_2">percent.</span></div>
+<div class="capline" id="g7"><span id="w7_0">Two</span><span id="w7_1">weeks</span><span id="w7_2">to</span><span id="w7_3">go.</span></div></div>
+<div id="disc">Not financial advice.<br>FSD Supervised is supervised.</div>
+<div id="prog"></div>
+<audio id="vo" src="vo.wav" data-start="0" data-duration="10.955" data-track-index="9" data-volume="1"></audio>
+</div><script>
+const tl=gsap.timeline({paused:true}),E="power3.out";
+const up=(s,at,d=.55,y=36)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:12.555,ease:"none"},0);
+tl.fromTo("#r0",{scaleX:0},{scaleX:1,duration:.5,ease:E},0.05);
+up("#k0",0.15);
+up("#h0",0.35,.6,46);
+up("#s0",0.75);
+tl.fromTo("#r1",{scaleX:0},{scaleX:1,duration:.5,ease:E},3.702);
+up("#k1",3.802);
+up("#h1",4.002,.6,46);
+up("#s1",4.402);
+tl.fromTo("#r2",{scaleX:0},{scaleX:1,duration:.5,ease:E},7.353);
+up("#k2",7.453);
+up("#h2",7.653,.6,46);
+up("#s2",8.053);
+tl.set("#g0",{opacity:1},0.000).set("#g0",{opacity:0},1.335);
+tl.set("#w0_0",{color:"#FFFFFF"},0.000).set("#w0_0",{color:"rgba(255,255,255,.5)"},0.437);
+tl.set("#w0_1",{color:"#FFFFFF"},0.437).set("#w0_1",{color:"rgba(255,255,255,.5)"},1.237);
+tl.set("#g1",{opacity:1},1.347).set("#g1",{opacity:0},3.104);
+tl.set("#w1_0",{color:"#FFFFFF"},1.397).set("#w1_0",{color:"rgba(255,255,255,.5)"},1.921);
+tl.set("#w1_1",{color:"#FFFFFF"},1.921).set("#w1_1",{color:"rgba(255,255,255,.5)"},2.380);
+tl.set("#w1_2",{color:"#FFFFFF"},2.380).set("#w1_2",{color:"rgba(255,255,255,.5)"},2.773);
+tl.set("#w1_3",{color:"#FFFFFF"},2.773).set("#w1_3",{color:"rgba(255,255,255,.5)"},3.166);
+tl.set("#g2",{opacity:1},3.116).set("#g2",{opacity:0},4.283);
+tl.set("#w2_0",{color:"#FFFFFF"},3.166).set("#w2_0",{color:"rgba(255,255,255,.5)"},3.690);
+tl.set("#w2_1",{color:"#FFFFFF"},3.690).set("#w2_1",{color:"rgba(255,255,255,.5)"},3.886);
+tl.set("#w2_2",{color:"#FFFFFF"},3.886).set("#w2_2",{color:"rgba(255,255,255,.5)"},4.148);
+tl.set("#w2_3",{color:"#FFFFFF"},4.148).set("#w2_3",{color:"rgba(255,255,255,.5)"},4.345);
+tl.set("#g3",{opacity:1},4.295).set("#g3",{opacity:0},5.229);
+tl.set("#w3_0",{color:"#FFFFFF"},4.345).set("#w3_0",{color:"rgba(255,255,255,.5)"},5.131);
+tl.set("#g4",{opacity:1},5.241).set("#g4",{opacity:0},6.730);
+tl.set("#w4_0",{color:"#FFFFFF"},5.291).set("#w4_0",{color:"rgba(255,255,255,.5)"},5.531);
+tl.set("#w4_1",{color:"#FFFFFF"},5.531).set("#w4_1",{color:"rgba(255,255,255,.5)"},6.131);
+tl.set("#w4_2",{color:"#FFFFFF"},6.131).set("#w4_2",{color:"rgba(255,255,255,.5)"},6.431);
+tl.set("#w4_3",{color:"#FFFFFF"},6.431).set("#w4_3",{color:"rgba(255,255,255,.5)"},6.792);
+tl.set("#g5",{opacity:1},6.742).set("#g5",{opacity:0},8.231);
+tl.set("#w5_0",{color:"#FFFFFF"},6.792).set("#w5_0",{color:"rgba(255,255,255,.5)"},7.152);
+tl.set("#w5_1",{color:"#FFFFFF"},7.152).set("#w5_1",{color:"rgba(255,255,255,.5)"},7.632);
+tl.set("#w5_2",{color:"#FFFFFF"},7.632).set("#w5_2",{color:"rgba(255,255,255,.5)"},8.052);
+tl.set("#w5_3",{color:"#FFFFFF"},8.052).set("#w5_3",{color:"rgba(255,255,255,.5)"},8.293);
+tl.set("#g6",{opacity:1},8.243).set("#g6",{opacity:0},9.591);
+tl.set("#w6_0",{color:"#FFFFFF"},8.293).set("#w6_0",{color:"rgba(255,255,255,.5)"},8.653);
+tl.set("#w6_1",{color:"#FFFFFF"},8.653).set("#w6_1",{color:"rgba(255,255,255,.5)"},8.953);
+tl.set("#w6_2",{color:"#FFFFFF"},8.953).set("#w6_2",{color:"rgba(255,255,255,.5)"},9.493);
+tl.set("#g7",{opacity:1},9.603).set("#g7",{opacity:0},11.255);
+tl.set("#w7_0",{color:"#FFFFFF"},9.653).set("#w7_0",{color:"rgba(255,255,255,.5)"},9.960);
+tl.set("#w7_1",{color:"#FFFFFF"},9.960).set("#w7_1",{color:"rgba(255,255,255,.5)"},10.419);
+tl.set("#w7_2",{color:"#FFFFFF"},10.419).set("#w7_2",{color:"rgba(255,255,255,.5)"},10.648);
+tl.set("#w7_3",{color:"#FFFFFF"},10.648).set("#w7_3",{color:"rgba(255,255,255,.5)"},10.955);
+window.__timelines["main"]=tl;tl.seek(0);</script></body></html>
