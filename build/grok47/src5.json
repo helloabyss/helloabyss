@@ -1,0 +1,38 @@
+{"id":"5","title":"WHAT YOU CAN ACTUALLY USE","eyebrow":"FRONTIER AI","date":"WEEK OF SEP 21 · 2026",
+ "source":"x.ai + multi-source · company-reported",
+ "plates":["s5_1.jpg","s5_2.jpg","s5_3.jpg","s5_4.jpg"],
+ "sents":[
+  "Two frontier models you can call right now.",
+  "Grok four-point-seven at old pricing, two and six.",
+  "Step 5 Preview at one and two-seventy, with a million-token context.",
+  "Both live today, both company-reported.",
+  "Test the claims yourself before you migrate anything."],
+ "phrases":[
+  ["Two frontier models","you can call right now."],
+  ["Grok four-point-seven","at old pricing, two and six."],
+  ["Step 5 Preview","at one and two-seventy,","with a million-token context."],
+  ["Both live today,","both company-reported."],
+  ["Test the claims yourself","before you migrate anything."]],
+ "beats":[
+  {"sent":[0],"plate":0,"mv":{"x":1,"y":-1},"blocks":[
+    {"k":"big","t":"TWO YOU CAN","y":680,"px":112,"at":0.05,"track":true},
+    {"k":"big","t":"USE TODAY","y":806,"px":112,"col":"ACC","at":0.05,"track":true},
+    {"k":"rule","y":905,"w":300,"at":0.70}]},
+  {"sent":[1],"plate":1,"mv":{"x":-1,"y":1},"blocks":[
+    {"k":"label","t":"OPTION ONE","y":470,"at":0.05},
+    {"k":"big","t":"GROK 4.7","y":650,"px":128,"at":0.20,"track":true},
+    {"k":"statpair","y":880,"at":0.60,"items":[{"v":"$2","l":"INPUT"},{"v":"$6","l":"OUTPUT"}]},
+    {"k":"sub","t":"unchanged from 4.6","y":1030,"at":1.40}]},
+  {"sent":[2],"plate":2,"mv":{"x":1,"y":1},"blocks":[
+    {"k":"label","t":"OPTION TWO","y":440,"at":0.05},
+    {"k":"big","t":"STEP 5","y":610,"px":128,"at":0.20,"track":true},
+    {"k":"statpair","y":840,"at":0.55,"items":[{"v":"$1","l":"INPUT"},{"v":"$2.70","l":"OUTPUT"}]},
+    {"k":"accent","t":"1M TOKEN CONTEXT","y":1010,"px":50,"at":1.30}]},
+  {"sent":[3],"plate":3,"mv":{"x":-1,"y":-1},"blocks":[
+    {"k":"big","t":"BOTH LIVE","y":660,"px":120,"at":0.05,"track":true},
+    {"k":"big","t":"TODAY","y":786,"px":120,"col":"ACC","at":0.05,"track":true},
+    {"k":"caveat","title":"BOTH COMPANY-REPORTED","t":"Every number in this video comes from the vendor. None of it is independently benchmarked.","y":950,"h":210,"at":0.85}]},
+  {"sent":[4],"plate":0,"mv":{"x":1,"y":-1},"blocks":[
+    {"k":"big","t":"TEST IT","y":690,"px":150,"at":0.05,"track":true},
+    {"k":"big","t":"YOURSELF","y":826,"px":120,"col":"ACC","at":0.05,"track":true},
+    {"k":"sub","t":"before you migrate anything","y":950,"px":40,"at":0.70}]}]}

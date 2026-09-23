@@ -1,0 +1,42 @@
+{"id":"4","title":"STEP 5 IS CHEAPER THAN GROK","eyebrow":"FRONTIER AI","date":"SEP 20 · 2026",
+ "source":"multi-source · company-reported",
+ "plates":["s4_1.jpg","s4_2.jpg","s4_3.jpg","s4_4.jpg"],
+ "sents":[
+  "StepFun shipped Step 5 Preview on September twentieth.",
+  "Six hundred billion sparse mixture of experts, twenty-seven billion active, one million token context.",
+  "Text and image in.",
+  "One dollar in, two-seventy out, under Grok's pricing, at a similar index score.",
+  "Open weights October fifteenth."],
+ "phrases":[
+  ["StepFun shipped Step 5 Preview","on September twentieth."],
+  ["Six hundred billion sparse MoE,","twenty-seven billion active,","one million token context."],
+  ["Text and image in."],
+  ["One dollar in, two-seventy out,","under Grok's pricing,","at a similar index score."],
+  ["Open weights October fifteenth."]],
+ "beats":[
+  {"sent":[0],"plate":0,"mv":{"x":1,"y":-1},"blocks":[
+    {"k":"big","t":"STEP 5","y":680,"px":170,"at":0.05,"track":true},
+    {"k":"big","t":"PREVIEW","y":812,"px":110,"col":"ACC","at":0.05,"track":true},
+    {"k":"rule","y":910,"w":300,"at":0.70},
+    {"k":"sub","t":"StepFun · September 20, 2026","y":990,"at":1.00}]},
+  {"sent":[1],"plate":1,"mv":{"x":-1,"y":1},"blocks":[
+    {"k":"label","t":"THE ARCHITECTURE","y":470,"at":0.05},
+    {"k":"rows","y":660,"at":0.18,"items":[
+      {"l":"TOTAL","r":"600B SPARSE MoE"},
+      {"l":"ACTIVE","r":"27B","hl":true},
+      {"l":"CONTEXT","r":"1M TOKENS","hl":true}]},
+    {"k":"para","t":"Only a fraction of the model runs on any one token.","y":1010,"at":1.45}]},
+  {"sent":[2],"plate":2,"mv":{"x":1,"y":1},"blocks":[
+    {"k":"label","t":"INPUTS","y":560,"at":0.05},
+    {"k":"list","y":720,"at":0.18,"stagger":0.42,"items":["TEXT","IMAGE"]},
+    {"k":"caveat","title":"CUT FROM THIS SCRIPT","t":"Some coverage claims video input too. No primary document settles it, so it is not in this video.","y":990,"h":210,"at":0.95}]},
+  {"sent":[3],"plate":3,"mv":{"x":-1,"y":-1},"blocks":[
+    {"k":"label","t":"PRICE PER MILLION TOKENS","y":440,"at":0.05},
+    {"k":"statpair","y":620,"at":0.15,"items":[{"v":"$1","l":"INPUT"},{"v":"$2.70","l":"OUTPUT"}]},
+    {"k":"rows","y":940,"at":0.95,"items":[
+      {"l":"GROK 4.7","r":"$2  /  $6"},
+      {"l":"STEP 5","r":"$1  /  $2.70","hl":true}]},
+    {"k":"stamp","t":"CHEAPER","y":1190,"at":1.70}]},
+  {"sent":[4],"plate":0,"mv":{"x":1,"y":1},"blocks":[
+    {"k":"big","t":"OPEN WEIGHTS","y":700,"px":104,"at":0.05,"track":true},
+    {"k":"big","t":"OCT 15","y":830,"px":140,"col":"ACC","at":0.05,"track":true}]}]}

@@ -1,0 +1,37 @@
+{"id":"3","title":"READ THE BENCHMARK FINE PRINT","eyebrow":"FRONTIER AI","date":"SEP 21 · 2026",
+ "source":"x.ai/news/grok-4-7 · company-reported",
+ "plates":["s3_1.jpg","s3_2.jpg","s3_3.jpg","s3_4.jpg"],
+ "sents":[
+  "SpaceXAI reports Grok four-point-seven at forty-six point three on CursorBench, versus forty point four.",
+  "But read the column headers.",
+  "That is Grok four-point-seven on x-high effort against four-point-six on high.",
+  "Different settings. The gain is real.",
+  "It is not like-for-like."],
+ "phrases":[
+  ["SpaceXAI reports Grok 4.7","at forty-six point three","on CursorBench,","versus forty point four."],
+  ["But read the column headers."],
+  ["That is Grok 4.7 on x-high effort","against four-point-six on high."],
+  ["Different settings.","The gain is real."],
+  ["It is not like-for-like."]],
+ "beats":[
+  {"sent":[0],"plate":0,"mv":{"x":1,"y":-1},"blocks":[
+    {"k":"label","t":"CURSORBENCH 4.0","y":470,"at":0.05},
+    {"k":"vs","y":700,"px":150,"at":0.25,"left":{"t":"40.4","l":"GROK 4.6"},"right":{"t":"46.3","l":"GROK 4.7"}},
+    {"k":"sub","t":"company-reported","y":900,"at":1.30}]},
+  {"sent":[1],"plate":1,"mv":{"x":-1,"y":1},"blocks":[
+    {"k":"big","t":"READ THE","y":690,"px":118,"at":0.05,"track":true},
+    {"k":"big","t":"COLUMN HEADERS","y":812,"px":86,"col":"ACC","at":0.05,"track":true}]},
+  {"sent":[2],"plate":2,"mv":{"x":1,"y":1},"blocks":[
+    {"k":"label","t":"WHAT THE TABLE ACTUALLY COMPARES","y":470,"at":0.05},
+    {"k":"rows","y":660,"at":0.20,"items":[
+      {"l":"GROK 4.7","r":"xHIGH EFFORT","hl":true},
+      {"l":"GROK 4.6","r":"HIGH EFFORT"}]},
+    {"k":"para","t":"Two different reasoning-effort settings.","y":900,"at":1.20}]},
+  {"sent":[3],"plate":3,"mv":{"x":-1,"y":-1},"blocks":[
+    {"k":"big","t":"DIFFERENT","y":660,"px":120,"at":0.05,"track":true},
+    {"k":"big","t":"SETTINGS","y":786,"px":120,"col":"ACC","at":0.05,"track":true},
+    {"k":"accent","t":"THE GAIN IS REAL","y":950,"px":54,"at":1.30}]},
+  {"sent":[4],"plate":1,"mv":{"x":1,"y":1},"blocks":[
+    {"k":"big","t":"NOT","y":650,"px":150,"at":0.05,"track":true},
+    {"k":"big","t":"LIKE-FOR-LIKE","y":790,"px":96,"col":"ACC","at":0.05,"track":true},
+    {"k":"caveat","title":"WHY THIS MATTERS","t":"A real improvement measured at a higher effort setting is still a real improvement. It is just not the number it looks like.","y":960,"h":250,"at":0.80}]}]}

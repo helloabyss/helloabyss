@@ -1,0 +1,38 @@
+{"id":"2","title":"SAME PRICE, BIGGER MODEL","eyebrow":"FRONTIER AI","date":"SEP 21 · 2026",
+ "source":"x.ai/news/grok-4-7 · company-reported",
+ "plates":["s2_1.jpg","s2_2.jpg","s2_3.jpg","s2_4.jpg"],
+ "sents":[
+  "Grok four-point-seven keeps four-point-six pricing exactly.",
+  "Two dollars in, six dollars out, per million tokens.",
+  "New larger base, longer reinforcement learning on harder tasks.",
+  "SpaceXAI says it verifies its own work better and handles longer context.",
+  "Live now."],
+ "phrases":[
+  ["Grok four-point-seven keeps","four-point-six pricing exactly."],
+  ["Two dollars in,","six dollars out,","per million tokens."],
+  ["New larger base,","longer reinforcement learning","on harder tasks."],
+  ["SpaceXAI says it verifies","its own work better","and handles longer context."],
+  ["Live now."]],
+ "beats":[
+  {"sent":[0],"plate":0,"mv":{"x":1,"y":-1},"blocks":[
+    {"k":"big","t":"SAME PRICE","y":690,"px":126,"at":0.05,"track":true},
+    {"k":"big","t":"BIGGER MODEL","y":822,"px":126,"col":"ACC","at":0.05,"track":true},
+    {"k":"rule","y":930,"w":300,"at":0.70},
+    {"k":"sub","t":"Grok 4.7 · SpaceXAI","y":1010,"at":1.00}]},
+  {"sent":[1],"plate":1,"mv":{"x":-1,"y":1},"blocks":[
+    {"k":"label","t":"PRICE PER MILLION TOKENS","y":470,"at":0.05},
+    {"k":"statpair","y":660,"at":0.18,"items":[{"v":"$2","l":"INPUT"},{"v":"$6","l":"OUTPUT"}]},
+    {"k":"stamp","t":"IDENTICAL TO 4.6","y":1010,"px":54,"at":1.30}]},
+  {"sent":[2],"plate":2,"mv":{"x":1,"y":1},"blocks":[
+    {"k":"label","t":"WHAT CHANGED","y":470,"at":0.05},
+    {"k":"bars","y":640,"at":0.22,"items":[
+      {"k":"BASE MODEL","v":"LARGER","a":0.52,"b":0.78},
+      {"k":"RL RUN","v":"LONGER","a":0.44,"b":0.86}]},
+    {"k":"para","t":"On a harder mix of tasks.","y":1130,"at":1.60}]},
+  {"sent":[3],"plate":3,"mv":{"x":-1,"y":-1},"blocks":[
+    {"k":"label","t":"SPACEXAI SAYS","y":520,"at":0.05},
+    {"k":"list","y":680,"at":0.20,"stagger":0.55,"px":54,"items":["VERIFIES ITS OWN WORK","HANDLES LONGER CONTEXT"]},
+    {"k":"caveat","title":"COMPANY-REPORTED","t":"These are SpaceXAI's own claims about its own model. Test them before you migrate.","y":980,"h":200,"at":1.30}]},
+  {"sent":[4],"plate":0,"mv":{"x":1,"y":-1},"blocks":[
+    {"k":"big","t":"LIVE NOW","y":760,"px":150,"col":"ACC","at":0.05,"track":true},
+    {"k":"sub","t":"Cursor · Grok Build · API","y":900,"px":40,"at":0.55}]}]}
