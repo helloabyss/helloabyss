@@ -144,3 +144,42 @@ is uploaded back. Reusable for every future episode.
   count, duration, stream layout, per-plate luminance) and the layout was validated locally
   against stand-in plates, but the CDN is unreachable from the container so I could not view it.
   Report it as *complete, not verified*.
+
+---
+
+## Frontier AI lane — all five Shorts shipped (2026-09-23)
+
+Every Short narrated by Callan (locked profile, native speed), cinematic plates graded to the
+house look, captions aligned to the real audio. Built with the spec-driven engine.
+
+| # | Title | Runtime | URL |
+|---|---|---|---|
+| 1 | GROK 4.7 IS LIVE | 18.83s | `https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/79c37b42-45ba-4029-8461-934cc78e2d02.mp4` |
+| 2 | SAME PRICE, BIGGER MODEL | 20.66s | `https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/33f036a0-81f4-4260-89b3-a946a8d7f4bf.mp4` |
+| 3 | READ THE BENCHMARK FINE PRINT | 18.94s | `https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/3ee8f71e-0dd4-4885-a58f-100ec01278d1.mp4` |
+| 4 | STEP 5 IS CHEAPER THAN GROK | 20.22s | `https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/83ff2341-5569-43ce-b735-c3c3c96761ba.mp4` |
+| 5 | WHAT YOU CAN ACTUALLY USE | 16.30s | `https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/be2cf66b-038a-4cf4-a8fb-002f0214ad39.mp4` |
+
+**Credits: 554.6 → 540.05 = 14.55 for the whole lane**, about 2.9 per Short. 21 plates at 0.25,
+5 narration tracks at 0.30; the rest was rendering, which is free.
+
+### The system
+`engine.js` renders any episode from a JSON spec — primitives are label, big, accent, sub,
+rule, para, statpair, rows, stamp, bars, list, vs, caveat, composited over a graded plate with
+Ken Burns. `build.py` grades plates, pause-caps the VO, aligns captions to faster-whisper
+sentence spans, renders and encodes. **A new episode is a spec file, not new code.**
+
+Code travels to the sandbox by `raw.githubusercontent.com`; only the finished MP4 is uploaded
+back. Presigned upload URLs are credentials and are passed directly to the sandbox, never committed.
+
+### Editorial
+Every Short carries its caveat on screen, per `STYLE.md`:
+- 2 — "COMPANY-REPORTED: these are SpaceXAI's own claims about its own model."
+- 3 — the whole Short is the caveat: xHigh vs High is not like-for-like.
+- 4 — "CUT FROM THIS SCRIPT: some coverage claims video input. No primary document settles it."
+- 5 — "BOTH COMPANY-REPORTED: none of it is independently benchmarked."
+
+### Still true
+**None of these have been watched.** Verified numerically — frame counts, durations, stream
+layout, per-plate luminance 33.4–33.8 — and the layout was validated locally against stand-in
+plates. The CDN is unreachable from the container, so report them *complete, not verified*.
