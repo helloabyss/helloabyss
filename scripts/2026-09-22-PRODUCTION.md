@@ -94,3 +94,53 @@ ffmpeg -framerate 30 -i /tmp/g47/%05d.jpg -f lavfi -i anullsrc=channel_layout=st
 Amber `#FFB020` accent · near-black `#0B0B0D` · off-white `#F2F2F0` · no logos, plain text
 name-tags · on-screen source attribution throughout · the xHigh-vs-High caveat on screen in the
 close · burned-in captions · content kept clear of the bottom 300px Shorts UI overlay.
+
+---
+
+## Short 1 v2 — cinematic plates + locked VO (2026-09-23)
+
+`https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/79c37b42-45ba-4029-8461-934cc78e2d02.mp4`
+18.834s · 1080×1920 · 30fps · H.264 CRF 20 · AAC 160k · 22MB · media_id `79c37b42-45ba-4029-8461-934cc78e2d02`
+
+**Total spend: 1.55 credits** (5 plates × 0.25 + 1 narration × 0.30). Balance 554.6 → ~553.
+
+### What v2 adds over the local silent cut
+| | v1 (local file) | v2 (this) |
+|---|---|---|
+| Base layer | procedural bokeh | 5 graded photographic plates, Ken Burns |
+| Voice | none | Callan, locked profile, native speed |
+| Runtime | 17.80s | 18.834s, cut to the actual read |
+| Caption sync | estimated at 152 WPM | faster-whisper word timings off the real WAV |
+
+### Assets
+| # | Beat | Plate | Job |
+|---|---|---|---|
+| 1 | Hook | server hall corridor, single amber source | `bee521cb` |
+| 2 | Price | gold contact pins macro | `9636c9a5` |
+| 3 | What changed | long-exposure light trails | `f90d2356` |
+| 4 | Available today | desk, out-of-focus monitor glow | `70cd790d` |
+| 5 | Close | dawn shaft across a bare desk | `92807410` |
+| — | VO | Callan `d8061b90…`, seed_audio | `34b3b888` |
+
+### Grade (measured, not eyeballed)
+`TARGET_LUM=35`, autocontrast → soft-knee highlight rolloff at 0.62 → desaturate → contrast 1.12
+→ binary-search gamma. All five land 33.6–33.8 mean luminance, stddev 38–52. Prompted
+**well-exposed** and graded down afterwards — prompting for "near-black" returns crushed frames.
+
+### VO timing
+Raw 26.88s → trim/loudnorm 26.33s → pause-cap at 0.30s **18.83s**. 30% of raw seed_audio output
+is inter-sentence padding. Native speed, **no `atempo`** — per `VO_PROFILE.md` §8 that is what
+made the rejected Arthur take sound synthetic.
+
+### Pipeline note — git is the transport
+The sandbox pulls `render_v2.js` / `cues_v2.json` / `short_v2.html` from
+`raw.githubusercontent.com` on the working branch. Code travels by git; only the finished MP4
+is uploaded back. Reusable for every future episode.
+
+### Known limits
+- Plates generated at 752×1344 and Lanczos-upscaled to 1080×1920 (~1.44×). Regenerate at higher
+  resolution if the upscale ever shows.
+- **This cut has not been watched by anyone yet.** The render was verified numerically (frame
+  count, duration, stream layout, per-plate luminance) and the layout was validated locally
+  against stand-in plates, but the CDN is unreachable from the container so I could not view it.
+  Report it as *complete, not verified*.
