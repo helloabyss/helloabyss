@@ -285,3 +285,28 @@ in-script `<break>` pause support (every starfish voice reports `support_pause: 
 which this voice does not have (`VO_PROFILE.md §5`). It costs voice continuity with the four
 existing videos, and the brief says the voice must match previous episodes exactly — so it
 stays on the table only if that requirement is ever relaxed.
+
+
+---
+
+## Confirmed in production, 2026-09-23
+
+The account moved to **Pro (361 credits)** and the first real HeyGen render of this system
+landed: `07ec91817c45421993a4eaa90c802b78`, 110.07s, the locked Alex Wright voice, script
+verbatim, glossary applied. **74 credits — 40.3 cr/min**, which matches the 40.3–48.4 range
+measured from the account's own history above. The estimate held.
+
+Three things the run settled:
+- **Chat mode is not reliable.** It stalled at `thinking/progress:0` with no `video_id` for
+  7+ minutes, exactly as in `paradocs-short-1`. It costs **nothing** when it stalls, so the
+  cost of trying it is only time. Use `generate`.
+- **Generate mode disables captions regardless of the prompt.** An explicit "captions must
+  be ENABLED" instruction was ignored. The separate `captioned_video_url` cut is the fix,
+  and it needs no re-render.
+- **The CDN is still blocked**, so a HeyGen render remains *complete, not verified*: scene
+  data proves voice, script, glossary and aspect ratio, but never the palette, because a
+  full-frame `motion_graphics` plate is opaque to `get_video_scenes`.
+
+The split in this document still stands — HyperFrames for pixel-exact charts and working
+captions at zero credits, HeyGen for the locked voice — but HeyGen alone is now a viable
+one-shot path when the voice matters more than chart precision.
