@@ -1,0 +1,15 @@
+[
+ {"a":0.35,"b":1.28,"t":"SpaceXAI dropped"},
+ {"a":1.28,"b":2.10,"t":"Grok 4.7"},
+ {"a":2.10,"b":3.45,"t":"on September twenty-first."},
+ {"a":3.78,"b":4.80,"t":"Same two-dollar,"},
+ {"a":4.80,"b":5.80,"t":"six-dollar pricing"},
+ {"a":5.80,"b":7.20,"t":"as four-point-six."},
+ {"a":7.78,"b":8.90,"t":"Larger base model,"},
+ {"a":8.90,"b":10.20,"t":"trained longer on tasks"},
+ {"a":10.20,"b":11.62,"t":"that take many hours."},
+ {"a":12.05,"b":13.20,"t":"Already live in Cursor,"},
+ {"a":13.20,"b":14.70,"t":"Grok Build, and the API."},
+ {"a":15.05,"b":16.20,"t":"Coding and agent work"},
+ {"a":16.20,"b":17.62,"t":"just got a cheaper option."}
+]

@@ -54,3 +54,43 @@ encoded files (duration, video+audio streams present) and by inspecting rendered
 2. The `xHIGH vs HIGH` card in Short 3 is legible at speed — it is the whole point of that one.
 3. No plate reads as a product UI or contains stray generated text.
 4. Amber vs cyan is the call you want.
+
+---
+
+## Short 1 — local render (2026-09-23)
+
+`scripts/2026-09-22-grok47-short.mp4` — 17.80s · 1080×1920 · 30fps · H.264 CRF 21 · silent AAC · 19MB.
+
+Built entirely in this container by `build/grok47/`, **0 credits**. This exists because the
+Higgsfield CDN (`d2ol7oe51mr4n9.cloudfront.net`) is blocked by the environment's network
+policy, so no cloud render can be downloaded and delivered as a file. A local render can.
+
+| File | Role |
+|---|---|
+| `build/grok47/render.js` | Canvas renderer — `seek(t)` is pure in `t`, so frames are reproducible |
+| `build/grok47/cues.json` | Caption cues, timed to the approved Short 1 VO at 152 WPM |
+| `build/grok47/short.html` | Host page, 1080×1920 canvas |
+| `build/grok47/capture.js` | Playwright frame capture |
+
+Rebuild:
+```bash
+cd build/grok47 && python3 -m http.server 8941 &
+NODE_PATH=/opt/node22/lib/node_modules node capture.js
+ffmpeg -framerate 30 -i /tmp/g47/%05d.jpg -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=48000 \
+  -shortest -c:v libx264 -preset slow -crf 21 -pix_fmt yuv420p -c:a aac -movflags +faststart out.mp4
+```
+
+### Deviations from `STYLE.md`, stated not hidden
+- **No narration.** Every neural TTS voice model is hosted on HuggingFace or GitHub releases,
+  both unreachable from here, and the HeyGen token is expired. Captions carry the script.
+  The VO in `VO_PROFILE.md` is unchanged and still governs — this is a missing layer, not a new setting.
+- **Base layer is procedural, not photographic.** `STYLE.md` inherits "imagery first" from the
+  finance guide. No plate can be generated or fetched locally, so the base is a drifting
+  bokeh/key-light field, graded dark and desaturated, under the motion-graphics and type layers.
+  The three-layer stack is preserved; the bottom layer is synthetic. Swap in real plates when
+  CDN egress is restored.
+
+### Held to
+Amber `#FFB020` accent · near-black `#0B0B0D` · off-white `#F2F2F0` · no logos, plain text
+name-tags · on-screen source attribution throughout · the xHigh-vs-High caveat on screen in the
+close · burned-in captions · content kept clear of the bottom 300px Shorts UI overlay.
