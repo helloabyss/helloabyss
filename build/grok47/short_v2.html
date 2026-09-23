@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset=utf-8><style>
+html,body{margin:0;background:#0B0B0D}canvas{display:block}</style></head>
+<body><canvas id=c width=1080 height=1920></canvas>
+<script src="render_v2.js"></script>
+<script>
+const load=s=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=s;});
+Promise.all([fetch('cues_v2.json').then(r=>r.json()),
+             Promise.all([1,2,3,4,5].map(n=>load('g'+n+'.jpg')))])
+ .then(([c,imgs])=>{window.__init(c,imgs);window.__seek(0);window.__ready=true;});
+</script></body></html>
