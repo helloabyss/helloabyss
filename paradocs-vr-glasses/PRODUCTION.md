@@ -38,6 +38,23 @@ channel. The change was sent into the session before the blueprint was approved.
 - HeyGen estimates **~66s** with the verbatim script at this voice's pace (target was ~58s).
   Kept as is: Shorts allow up to 3 min and the style guide says not to cut facts for length.
 
+## RENDER COMPLETE — not verified
+
+- **Watch:** https://app.heygen.com/videos/26c914fb455c440ab5a4704d665678e6
+- **video_id:** `26c914fb455c440ab5a4704d665678e6`
+- **Duration:** 58.7s (the blueprint estimated 66s, but the render came in on the ~58s target) · 9:16 · 1080p · 13 scenes
+- HeyGen auto-title "The Headset That Disappeared" — use a title from `SCRIPT.md`.
+
+### Checked from scene data (not from watching — CDN egress blocked)
+| Check | Result |
+|---|---|
+| VO verbatim (13 scenes joined, compared to the brief exactly) | **PASS** |
+| House voice `0db3abd8…`, speed 1.0 | **PASS** |
+| 9:16, 1080p | **PASS** |
+| No disclaimer card | Agent confirms; no scene script/element suggests one — **eyes needed** |
+| Captions | **AMBIGUOUS** — `caption.enabled: false` at video level (same as Short 1), but the agent says it built **custom karaoke captions** (white on dark scrim, active word red) as on-screen graphics. If the main render shows no captions, publish the `captioned_video_url` cut (`caption_26c914fb….mp4`, linked from the video page). **Do not publish both caption layers stacked.** |
+| Imagery base layer | **UNKNOWN** — every scene reports `background: #ffffff` + one `motion_graphics` b-roll element; this API doesn't describe those, same as Short 1. Must be watched. |
+
 ## Verification checklist (a human has to watch it — CDN egress is blocked)
 - [ ] **No** "Not financial advice" card (removed by user; tech channel)
 - [ ] VO verbatim, ends "This is Paradocs 10X."
