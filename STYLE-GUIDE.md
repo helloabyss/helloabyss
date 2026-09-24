@@ -67,7 +67,9 @@ object so it has a spine.
 - **No human faces or identifiable people.** Vehicles, machinery, architecture, landscape,
   hardware only. Frame people out or use distant silhouettes.
 - **No real corporate logos or badges.** Plain text name-tags instead.
-- **Compliance card** — "Educational only. Not financial advice." on screen in the first 4s.
+- **Compliance card (finance channel only)** — "Educational only. Not financial advice." on
+  screen in the first 4s. Leave it out of PARADOCS10X (tech) videos: drop that sentence from
+  the brief below.
 - **Tone:** dry, confident, analytical newsroom. Dramatic, not childish. Never a hype guru,
   never a stock pump.
 
@@ -83,7 +85,7 @@ object so it has a spine.
 
 ## 6. HeyGen brief template
 
-> Create a ~60-second vertical (9:16) YouTube Short for a FACELESS finance channel.
+> Create a ~60-second vertical (9:16) YouTube Short for a FACELESS [finance | tech] channel.
 >
 > **CRITICAL:** NO avatar, NO presenter, NO human face anywhere. Voiceover only.
 > Use this narration script VERBATIM — do not rewrite, shorten, or add to it:
@@ -110,7 +112,7 @@ object so it has a spine.
 >
 > **HARD CONSTRAINTS:** No human faces or identifiable people. No real corporate logos —
 > plain text name-tags only. No neon, gradients, sparkles, emoji, subscribe animations or
-> clickbait arrows. Show "Educational only. Not financial advice." in the first 4 seconds.
+> clickbait arrows. [Finance channel only:] Show "Educational only. Not financial advice." in the first 4 seconds.
 >
 > **TONE:** Dry, confident, analytical newsroom. Cinematic, not a commercial. A neutral
 > explainer that includes the negative data, not a promo.

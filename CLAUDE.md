@@ -1,22 +1,35 @@
-# helloabyss — faceless finance YouTube Shorts
+# helloabyss — faceless YouTube Shorts (two channels)
 
-Repo holds scripts, shot lists and production records for a **faceless YouTube money
-channel**. Video is generated with HeyGen; the repo is the durable record.
+Repo holds scripts, shot lists and production records for **two faceless YouTube
+channels**. Video is generated with HeyGen; the repo is the durable record.
+
+## Channels — check which one before scripting
+
+| Channel | Type | Videos | Sign-off | "Not financial advice" card |
+|---|---|---|---|---|
+| **Finance channel** | Finance / money | `moat-short/`, `pdt-short/` | none | **Required**, first 4s |
+| **PARADOCS10X** | **Tech** | `paradocs-*/` | "This is Paradocs 10X." | **None** — tech channel, user's call |
+
+PARADOCS10X's recurring thesis: the winner is never a better version of the old thing, it
+is the thing that removes it (horse to car, headset to glasses). If a request names
+PARADOCS10X, or is about a product or technology rather than a trade or investment, it is
+the tech channel.
 
 ## Before writing any script
 
-**Verify every factual claim with a web search first.** This channel publishes finance
-content people may act on. Never script from memory — regulatory dates, ticker figures and
+**Verify every factual claim with a web search first.** Both channels publish claims
+people may act on. Never script from memory — regulatory dates, ticker figures and
 market-share numbers change. Record each claim in a fact table in `SCRIPT.md` with a
 confidence level, and mark analyst estimates as estimates, never as market prices.
 
 Include the disconfirming data. An explainer that admits where the thesis is weak is both
-more honest and better content than a promo. Every video carries an on-screen
-"Educational only. Not financial advice." card in the first 4 seconds.
+more honest and better content than a promo. **Finance channel only:** every video carries
+an on-screen "Educational only. Not financial advice." card in the first 4 seconds. Do not
+add it to PARADOCS10X videos; use small source footnotes for company figures instead.
 
 ## House style — apply to every short
 
-**Read `STYLE-GUIDE.md` and build the brief from its template.** It is the channel's
+**Read `STYLE-GUIDE.md` and build the brief from its template.** Both channels share this
 locked visual identity. Summary of the non-negotiables:
 
 - **Imagery-first, three-layer stack.** Cinematic photographic imagery is the BASE layer,
@@ -27,6 +40,8 @@ locked visual identity. Summary of the non-negotiables:
 - **Three-colour editorial palette** — near-black, white, one red accent. Imagery graded
   dark and desaturated. No neon, gradients, sparkles or emoji.
 - **Dramatic motion**, but from camera and animation, not decoration.
+- **Never use another company's footage or images**, not even mirrored or remixed to get
+  past Content ID. Generate generic, unbranded stand-ins.
 - **No clickbait.** No subscribe animations, no "what they don't want you to know" CTAs.
   Close on something the viewer can act on.
 
@@ -39,7 +54,7 @@ locked visual identity. Summary of the non-negotiables:
 | Mode | `chat` (revisable — send follow-ups into the session) |
 | Orientation | `portrait` (9:16) |
 
-Keep style and voice constant across videos so the channel reads as one series.
+Both channels use the same style and voice. Keep them constant so each channel reads as one series.
 
 ## Known environment constraints
 
