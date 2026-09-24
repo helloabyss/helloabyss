@@ -32,7 +32,11 @@ The user removed the "Educational only. Not financial advice." card because PARA
 channel. The change was sent into the session before the blueprint was approved.
 
 ## Status
-Blueprint pending. Restate the grade, bookend, hero-shot and captions rules at approval.
+- **13:56 UTC — blueprint `blueprint_904s7t` approved** with all constraints restated (imagery
+  base layer, grade, same-desk bookend, hero shot, captions, no faces/logos, no disclaimer
+  card, footnotes kept). Rendering.
+- HeyGen estimates **~66s** with the verbatim script at this voice's pace (target was ~58s).
+  Kept as is: Shorts allow up to 3 min and the style guide says not to cut facts for length.
 
 ## Verification checklist (a human has to watch it — CDN egress is blocked)
 - [ ] **No** "Not financial advice" card (removed by user; tech channel)
