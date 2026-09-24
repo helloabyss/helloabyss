@@ -27,11 +27,15 @@ script says only "narrower than a Quest 3".
 - Bookend: same desk, same camera position — headset at the open, only glasses at the close.
 - Captions explicitly required (Short 1 rendered with `caption.enabled: false`).
 
+## Brief change
+The user removed the "Educational only. Not financial advice." card because PARADOCS10X is a tech
+channel. The change was sent into the session before the blueprint was approved.
+
 ## Status
 Blueprint pending. Restate the grade, bookend, hero-shot and captions rules at approval.
 
 ## Verification checklist (a human has to watch it — CDN egress is blocked)
-- [ ] "Educational only. Not financial advice." visible within 0–4s
+- [ ] **No** "Not financial advice" card (removed by user; tech channel)
 - [ ] VO verbatim, ends "This is Paradocs 10X."
 - [ ] Burned-in word-by-word captions present
 - [ ] Imagery base layer on every scene — not flat white or abstract

@@ -110,7 +110,7 @@ Impact-frame words: "100 GRAMS", "SUBTRACTION", "$4.6 BILLION".
 > the numbers that say it might not be enough: tethered, ~3 hours of battery (Meta's claim),
 > and a Reality Labs loss of $4.62B last quarter.
 >
-> Specs are pre-release. Educational only. Not financial advice.
+> Specs are pre-release.
 
 **Hashtags:** #meta #vrglasses #virtualreality #tech #investing
 
@@ -119,4 +119,5 @@ Impact-frame words: "100 GRAMS", "SUBTRACTION", "$4.6 BILLION".
 > Reality Labs loss is from Meta's Q2 filing.
 
 ## COMPLIANCE
-On-screen 0:00–0:04: **"Educational only. Not financial advice."**
+No "Not financial advice" card: PARADOCS10X is a tech channel, and the user removed it
+(24 Sep 2026). The two source footnotes stay.
