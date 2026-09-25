@@ -27,6 +27,14 @@ more honest and better content than a promo. **Finance channel only:** every vid
 an on-screen "Educational only. Not financial advice." card in the first 4 seconds. Do not
 add it to PARADOCS10X videos; use small source footnotes for company figures instead.
 
+## Thumbnail first — free mockups before any video
+
+Before scripting or rendering a video, mock up 3 thumbnail concepts **for free** with
+`node tools/thumbnail-mockup/render.mjs <video-dir>` (see `tools/thumbnail-mockup/README.md`).
+Send the user `mockups/sheet.png` and get a pick. The thumbnail's hook then shapes the video's
+opening. Only the chosen concept becomes a paid image: one generation, after the pick.
+**Never spend image credits on exploration.**
+
 ## House style — apply to every short
 
 **Read `STYLE-GUIDE.md` and build the brief from its template.** Both channels share this

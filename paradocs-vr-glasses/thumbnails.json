@@ -1,0 +1,38 @@
+{
+  "concepts": [
+    {
+      "id": "A",
+      "label": "Name + strike (what shipped as v2)",
+      "tag": "PARADOCS 10X",
+      "subject": "vr-glasses",
+      "lines": [
+        { "text": "META", "size": 300 },
+        { "text": "VR HEADSET", "size": 170, "strike": true },
+        { "text": "$1,299 GLASSES", "size": 150 }
+      ],
+      "finalImage": "Chunky graphite VR glasses, opaque black front, corner cameras, cable to a phone-sized puck, dark desk, hard rim light."
+    },
+    {
+      "id": "B",
+      "label": "Weight shock",
+      "tag": "PARADOCS 10X",
+      "subject": "glasses-on-scale",
+      "lines": [
+        { "text": "100 GRAMS", "size": 280 },
+        { "text": "META'S NEW VR", "size": 130, "color": "red" }
+      ],
+      "finalImage": "Same glasses resting on a precision scale reading 100g."
+    },
+    {
+      "id": "C",
+      "label": "Old vs new",
+      "tag": "PARADOCS 10X",
+      "subject": "headset-vs-glasses",
+      "lines": [
+        { "text": "THE HEADSET", "size": 200 },
+        { "text": "IS OVER", "size": 200, "color": "red" }
+      ],
+      "finalImage": "Bulky generic headset cracking on a desk, slim VR glasses floating above it."
+    }
+  ]
+}
