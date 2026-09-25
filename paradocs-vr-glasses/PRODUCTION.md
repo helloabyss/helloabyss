@@ -64,3 +64,21 @@ channel. The change was sent into the session before the blueprint was approved.
 - [ ] Near-black / white / red only; imagery desaturated
 - [ ] Footnotes on battery (Meta's figure) and Reality Labs (Q2 2026, 10-Q)
 - [ ] Bookend: same desk at open and close
+
+## Thumbnail — 4 candidates generated (Higgsfield, GPT Image 2.5, 9:16, 2K)
+Higgsfield now has credits (540 at the time, ~11 used). vidIQ has 1 credit, so generating costs 22
+and scoring costs 5, and scoring also needs an uploaded YouTube video ID. **No CTR score available.**
+Images are hosted on cloudfront, which the egress proxy blocks, so they could not be pulled
+into the repo or looked at from here.
+
+| # | Concept | Job ID |
+|---|---|---|
+| A1 | "100 GRAMS" / red "THE HEADSET IS GONE", cracked headset + floating glasses | `0b3fdcc4-bd62-4da1-a098-c8fe27389658` |
+| A2 | same prompt, second variant | `d5df1d54-7407-4fb6-a962-6d99a7d44670` |
+| **B1** | **"VR HEADSET" struck through in red / "$1,299 GLASSES", glasses on a scale reading 100g** | `5327b1ca-f6cb-48b8-893e-bf70922e6bcb` |
+| B2 | same prompt, second variant | `434ea87d-6ff3-410f-a70d-eb557daa8ef8` |
+
+**Recommendation: concept B.** The struck-through "before" next to the "after" states the whole
+video in three words, reads at phone size, and uses the same red-strike layout as the PDT
+thumbnail (`pdt-short/thumbnail-pdt.png`). Before picking, check the AI-rendered text for spelling
+and that there are no logos or brand-like marks on the hardware.
