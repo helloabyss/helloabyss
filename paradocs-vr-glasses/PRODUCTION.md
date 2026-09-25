@@ -82,3 +82,13 @@ into the repo or looked at from here.
 video in three words, reads at phone size, and uses the same red-strike layout as the PDT
 thumbnail (`pdt-short/thumbnail-pdt.png`). Before picking, check the AI-rendered text for spelling
 and that there are no logos or brand-like marks on the hardware.
+
+### Thumbnail v2 — product likeness + "META" name (user request)
+The user flagged that the A/B options looked generic, with nothing tying them to Meta's device.
+One image generated (~1.4 credits), `0e43a6ee-788e-494b-aaa2-d22504dde303`:
+https://d8j0ntlcm91z4.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/hf_20260925_013656_0e43a6ee-788e-494b-aaa2-d22504dde303.png
+
+The hardware follows reported descriptions (UploadVR, VR.org): chunky glasses-like frame,
+magnesium alloy, opaque front, sensors on the temple undersides, nose pads, no strap, thin cable
+to a ~two-phone-sized puck. No Meta imagery used. Text: "META" / ~~VR HEADSET~~ / "$1,299 GLASSES".
+Name in plain text only, no logo. Credit rule from now on: **generate one image at a time and ask before any more.**
