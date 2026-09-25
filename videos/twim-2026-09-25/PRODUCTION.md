@@ -73,9 +73,32 @@ Playwright lives at `/opt/node22/lib/node_modules/playwright`; Chromium at
 `/opt/pw-browsers/chromium`. **Kill stray browsers between runs** — leftover Chromium
 processes from an aborted capture starved the next one and it hung with zero frames written.
 
-## Voice
+## Voice — Alex Wright cut
 
-Rendered with the **local Kokoro placeholder**, not the channel voice. `VO_PROFILE.md`
+User directive: **"Only Alex Wright."** Approved spending credits on the locked voice.
+
+**The constraint that decides the shape of this cut:** HeyGen's CDN (`files2.heygen.ai`,
+`resource2.heygen.ai`) is blocked from this environment, so a HeyGen audio stem **cannot be
+downloaded** and therefore cannot be swapped into the HyperFrames picture via
+`swap_voice.sh`. The only way to get the locked voice onto a finished video from here is to
+let HeyGen render the whole thing — which means **HeyGen's picture, not the charts in this
+project**. Two separate cuts, not one merged one.
+
+**Submitted** with the `PRODUCTION.md` recipe from `videos/mstr-btc-2026-09-23`:
+- `session_id` `b863363d9f284d7daa975741e2dd23b7` ·
+  watch: https://app.heygen.com/video-agent/b863363d9f284d7daa975741e2dd23b7
+- `video_id` `3f8e1bd9b43142c8af83c26b9efb1d11`
+- `mode: generate`, portrait, style `e7f9a126…` (Economist),
+  voice `0db3abd8…` (Alex Wright – Informative), glossary `c9064148…`
+- Full prompt carried the verbatim script plus every palette, faceless, no-logo, chart and
+  compliance constraint, because generate mode has no blueprint approval step
+
+Expect ~69–74 credits at the measured 40.3 cr/min against a 235-credit balance.
+Expect `caption.enabled:false` — publish the `captioned_video_url` cut instead.
+
+## Voice — local placeholder cut
+
+Also rendered with the **local Kokoro placeholder**, not the channel voice. `VO_PROFILE.md`
 requires Alex Wright (`0db3abd83c74452fb2460b0dd113daad`) for series cohesion.
 
 **Swap path:** `videos/twim-2026-09-20/swap_voice.sh` aligns an exported HeyGen stem to the
