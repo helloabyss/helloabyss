@@ -360,3 +360,49 @@ re-proposed.
    on their own machine; it cannot be tested from this environment.
 4. **Relaxing the voice-match requirement** to a starfish voice makes narration free and
    unlimited. Still the single largest saving available, still the user's call.
+
+---
+
+## The faceless motion-graphics path has a caption prerequisite, 2026-09-25
+
+Two `create_video_agent` `generate`-mode submissions for TWIM 2026-09-25 both stalled at
+`progress: 0`, and the session logs name the same cause:
+
+> "The visual generator requires an attached caption style before it will render motion
+> graphics."
+
+This is **not a prompt problem.** The first attempt used a long, highly prescriptive brief;
+the second used a deliberately lean one modelled on the MSTR prompt that succeeded. Both hit
+the identical wall, which rules out prompt length, on-screen-text density and per-beat chart
+instructions as the trigger. It is a platform-side prerequisite of the **faceless /
+motion-graphics** path: no avatar means every scene is a generated plate, and the plate
+generator refuses to run until a caption style exists on the session.
+
+| Attempt | Session | Outcome |
+|---|---|---|
+| 1 — detailed prompt | `b863363d9f284d7daa975741e2dd23b7` | Looped on the caption prerequisite, never resolved it. Stopped manually after ~40 min → `failed` |
+| 2 — lean prompt | `5f0b616086d541b0addc9a055d87fcf6` | **Resolved it** ("Captions are attached"), restarted the batch of 25 plates |
+
+**Both cost zero credits while stalled.** Balance held at 235 throughout. A stalled video-agent
+session is free, so the only cost of trying is wall-clock time — but a stalled session can
+still complete later, so **stop it before resubmitting** or risk paying twice for one video.
+
+### What this means for the channel
+
+The MSTR video (`07ec9181…`) got through this path and billed 74 credits, so it is not
+permanently broken — but it is slow and unreliable, and the pipeline is at its most fragile
+exactly where this channel needs it most, because **faceless is non-negotiable here**
+(`CLAUDE.md`). An avatar-led video would sidestep the plate generator entirely and would
+almost certainly render first time; it is also the one thing the channel cannot use.
+
+### Practical guidance
+
+1. Submit, then **leave it alone**. Progress messages carry timestamps from early in the run
+   and surface late, so `progress: 0` with an old last-message time does **not** mean dead.
+   Attempt 2 looked hung for ~15 minutes and was in fact advancing.
+2. Give it **45+ minutes** before concluding anything. The documented "5 minutes then switch"
+   rule applies to *chat* mode, not this.
+3. Never fire a second submission without stopping the first.
+4. The reliable, zero-credit path remains **HyperFrames locally**. It rendered this same
+   episode end to end in about two minutes with exact charts and working captions. Only the
+   locked voice requires HeyGen, and only because the CDN block prevents exporting a stem.
