@@ -11,6 +11,37 @@ the same explainer with new numbers.
 
 ## TWIM episodes
 
+## 2026-09-25 — "Why A Bond Auction Moved Your Mortgage"
+- **Runtime / words:** 101.9s / 259 words (measured 159.9 wpm through Kokoro)
+- **Cold-open number:** the US 10-year at **5.12%**, highest since 2007
+- **Source:** a Wall Street Trapper Facebook clip supplied by the user. Facebook is blocked by
+  the egress proxy; ingested via OpusClip (`P3092504KIRS`, 179s) and transcribed.
+- **Beats and framings:**
+  | Segment | Story | Framing used | Named |
+  |---|---|---|---|
+  | The print | 10-year at 5.12% | the level plus the speed — "most of it in one day" | US 10Y |
+  | What it is | definition | "the price of government money" | — |
+  | The trigger | weak $70bn 5-year auction | **the auction as the cause**, not the Fed | — |
+  | Portfolio | risk-free rate competition | "they compete for the same dollar" | US equities |
+  | Who hurts | long-duration / AI capex | data centres, chips, power — "all built with borrowed money" | — |
+  | Mortgage | 30-yr at 7.03% | "arriving at your kitchen table" | — |
+  | **Correction** | Aug 2024 claim | **"it fell"** — 4.28% → 3.73% | — |
+  | Close | what to watch | "watch the rate, not the reaction" | US 10Y |
+- **Counter-beat / disconfirming data:** the episode's spine. The source clip claims the
+  10-year hit 5% in August 2024; it **fell** that month during the yen carry-trade unwind.
+  The April 2025 tariff-pause claim is half right — bonds did force it, at ~4.5%, not 5%.
+  Framed against "the version going around", never against the creator. No name, no dunk.
+- **China channel used:** none — no in-window story passed the scope test.
+- **Cut as unresolvable:** Thursday's index closes. Two conflicting sets across outlets
+  (−0.51/−0.32/−0.78 vs −0.8/−0.7/−1.1), almost certainly a Sep 23 vs Sep 24 mix-up. No daily
+  index percentage appears anywhere in the cut.
+- **Cut as too close to a forecast:** market-implied Fed hike odds (~64% Oct, ~48% Dec).
+- **Video:** `videos/twim-2026-09-25/ten-year-at-5.mp4` — rendered locally, **0 credits**,
+  check passed 69/69 WCAG AA, frames inspected and two collisions fixed before final.
+- **Notes:** Kokoro placeholder voice — the locked Alex Wright cut (~69 credits) is **not**
+  rendered, awaiting approval. Blocked on the `[OPEN]` primary-sourcing flag: Treasury, FRED
+  and Freddie Mac are all unreachable from this environment.
+
 ## 2026-09-20 — "The Fed Just Hiked For The First Time Since 2023"
 - **Runtime / words:** 112.0s / 280 words (cut to the measured 150 wpm; no audio yet)
 - **Cold-open number:** the US 10-year at **5.006%**, above 5%
@@ -56,6 +87,12 @@ the same explainer with new numbers.
 -->
 
 ## Framing-reuse watch
+
+**The US 10-year is now spent twice.** 2026-09-20 opened on it at 5.006% as "the number
+underneath every American stock"; 2026-09-25 made it the whole subject at 5.12%. A third
+episode needs a genuinely new development on the instrument — a new level, a new transmission,
+or a new counterparty — not another restatement of the mechanism. Both "the number underneath"
+and "the rate underneath" are burned.
 
 Track angles that are getting worn so they can be rested:
 

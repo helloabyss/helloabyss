@@ -73,7 +73,7 @@ SCENES=[
    +SVG('<line x1="540" y1="620" x2="540" y2="1240" stroke="#242427" stroke-width="3"/>')+
    '<div class="rowName" id="d1" style="left:110px;top:640px">TREASURY</div>'
    '<div class="rowVal red" id="d2" style="left:110px;top:700px">5%</div>'
-   '<div class="lbl" id="d3" style="position:absolute;left:110px;top:800px;width:380px">about as close to<br>risk-free as it gets</div>'
+   '<div class="lbl" id="d3" style="position:absolute;left:110px;top:800px;width:400px">risk-free,<br>near enough</div>'
    '<div class="rowName" id="d4" style="left:620px;top:640px">STOCKS</div>'
    '<div class="rowVal" id="d5" style="left:620px;top:700px">MUST BEAT IT</div>'
    '<div class="lbl" id="d6" style="position:absolute;left:620px;top:800px;width:360px">same money,<br>more risk</div>'
@@ -103,14 +103,14 @@ SCENES=[
  # 7 — the correction
  sc(6,"07",'<div class="rulebar"></div><div class="kicker">One correction</div>'
    '<div class="lbl" id="n1" style="position:absolute;left:110px;top:540px">The clip going around says</div>'
-   '<div class="big" id="n2" style="position:absolute;left:110px;top:592px;font-size:72px;width:880px">"the same thing happened<br>in August 2024"</div>'
-   +SVG('<line x1="110" y1="820" x2="970" y2="820" stroke="#D42A2A" stroke-width="5"/>'
-        '<path id="n3" d="M 190 900 L 880 1120" stroke="#D42A2A" stroke-width="10" fill="none" stroke-linecap="round"/>'
-        '<circle id="n4" cx="190" cy="900" r="13" fill="#F5F5F3"/><circle id="n5" cx="880" cy="1120" r="13" fill="#D42A2A"/>')+
-   '<div class="big red" id="n6" style="position:absolute;left:110px;top:860px;font-size:92px">IT FELL</div>'
-   '<div class="thLabel" id="n7" style="left:190px;top:1170px">24 Jul 2024 · 4.28%</div>'
-   '<div class="thLabel" id="n8" style="left:660px;top:1170px;color:#F5F5F3">5 Aug 2024 · 3.73%</div>'
-   '<div class="big" id="n9" style="position:absolute;left:110px;top:1270px;font-size:58px;width:880px">Last real 5% print:<br><span class="red">October 2023.</span></div>'
+   '<div class="big" id="n2" style="position:absolute;left:110px;top:588px;font-size:66px;width:880px">"the same thing happened<br>in August 2024"</div>'
+   +SVG('<line x1="110" y1="960" x2="970" y2="960" stroke="#D42A2A" stroke-width="5"/>'
+        '<path id="n3" d="M 190 1015 L 880 1150" stroke="#D42A2A" stroke-width="10" fill="none" stroke-linecap="round"/>'
+        '<circle id="n4" cx="190" cy="1015" r="13" fill="#F5F5F3"/><circle id="n5" cx="880" cy="1150" r="13" fill="#D42A2A"/>')+
+   '<div class="big red" id="n6" style="position:absolute;left:110px;top:840px;font-size:88px">IT FELL</div>'
+   '<div class="thLabel" id="n7" style="left:110px;top:1195px">24 Jul 2024 · 4.28%</div>'
+   '<div class="thLabel" id="n8" style="left:660px;top:1195px;color:#F5F5F3">5 Aug 2024 · 3.73%</div>'
+   '<div class="big" id="n9" style="position:absolute;left:110px;top:1285px;font-size:56px;width:880px">Last real 5% print:<br><span class="red">October 2023.</span></div>'
    '<div class="stamp">Yield path Jul–Aug 2024 · press convergence</div>'),
  # 8 — the close
  sc(7,"08",'<div class="rulebar"></div><div class="kicker">What to actually watch</div>'
