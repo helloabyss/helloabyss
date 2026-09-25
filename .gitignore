@@ -17,3 +17,9 @@ videos/*/contact.png
 videos/*/fixcheck.png
 fsd-czechia/f/
 fsd-czechia/shorts.png
+
+# Rendered artifacts and generated audio — rebuild with gen.py + hyperframes render
+videos/*/f/
+videos/*/renders/
+videos/*/shot.mjs
+videos/*/work-*/
