@@ -36,11 +36,15 @@ the same explainer with new numbers.
   (−0.51/−0.32/−0.78 vs −0.8/−0.7/−1.1), almost certainly a Sep 23 vs Sep 24 mix-up. No daily
   index percentage appears anywhere in the cut.
 - **Cut as too close to a forecast:** market-implied Fed hike odds (~64% Oct, ~48% Dec).
-- **Video:** `videos/twim-2026-09-25/ten-year-at-5.mp4` — rendered locally, **0 credits**,
+- **Video (HeyGen, locked voice):** `4e87955e22af47b687fcc29026b392e3` — "The Ten-Year Yield",
+  99.29s, 9:16, 1080p, **67 credits**. Alex Wright on all 25 scenes, script verbatim, faceless,
+  glossary applied, captioned cut available. Palette unverified — CDN blocked.
+- **Video (HyperFrames):** `videos/twim-2026-09-25/ten-year-at-5.mp4` — rendered locally, **0 credits**,
   check passed 69/69 WCAG AA, frames inspected and two collisions fixed before final.
-- **Notes:** Kokoro placeholder voice — the locked Alex Wright cut (~69 credits) is **not**
-  rendered, awaiting approval. Blocked on the `[OPEN]` primary-sourcing flag: Treasury, FRED
-  and Freddie Mac are all unreachable from this environment.
+- **Notes:** two cuts exist because HeyGen's CDN block prevents lifting the voice stem into
+  the HyperFrames picture. The HeyGen cut carries the channel voice; the HyperFrames cut
+  carries the exact charts. Both still blocked on the `[OPEN]` primary-sourcing flag:
+  Treasury, FRED and Freddie Mac are all unreachable from this environment.
 
 ## 2026-09-20 — "The Fed Just Hiked For The First Time Since 2023"
 - **Runtime / words:** 112.0s / 280 words (cut to the measured 150 wpm; no audio yet)

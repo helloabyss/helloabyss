@@ -93,8 +93,35 @@ project**. Two separate cuts, not one merged one.
 - Full prompt carried the verbatim script plus every palette, faceless, no-logo, chart and
   compliance constraint, because generate mode has no blueprint approval step
 
-Expect ~69–74 credits at the measured 40.3 cr/min against a 235-credit balance.
-Expect `caption.enabled:false` — publish the `captioned_video_url` cut instead.
+**RESULT: completed.** Attempt 1 (`b863363d…`) looped on a caption prerequisite and was
+stopped manually → `failed`, **zero credits**. Attempt 2 (`5f0b6160…`, video
+`4e87955e22af47b687fcc29026b392e3`) cleared the blocker and completed.
+
+- **99.29s · 9:16 · 1080p · 25 scenes · 67 credits (235 → 168) = 40.5 cr/min**, matching the
+  40.3 cr/min baseline in `RENDERING.md`
+- Title auto-set to **"The Ten-Year Yield"** — good enough to keep
+- Watch: https://app.heygen.com/videos/4e87955e22af47b687fcc29026b392e3
+
+### Verified from `get_video_scenes`
+| Check | Result |
+|---|---|
+| Voice `0db3abd8…` on all 25 scenes | **PASS** |
+| Script verbatim — 1,442 chars, character-exact against `vo.txt` | **PASS** |
+| Faceless — 25 `motion_graphics` elements, **zero** avatar elements | **PASS** |
+| 9:16, 1080p | **PASS** |
+| Brand glossary `c9064148…` | **PASS** |
+| Closing disclaimer card — final scene is `<break time="4.0s"/>` held in silence | **PASS** |
+| `caption.enabled` | **false** — but `captioned_video_url` **is** populated |
+
+**Captions are available this time.** The MSTR run had no captioned cut; here the caption
+style that blocked the render twice is exactly what produced one. Publish
+`caption_4e87955e22af47b687fcc29026b392e3.mp4` from the video page — no re-render needed.
+
+**UNKNOWN — needs eyes.** Every scene reports `background:#ffffff` with a single opaque
+`motion_graphics` element. A full-frame dark plate is invisible to this API, so **whether the
+three-colour palette, the mirrored rising/falling charts and the opening compliance card
+actually landed cannot be resolved from here.** CDN egress is blocked. Watch it on the video
+page before publishing.
 
 ## Voice — local placeholder cut
 
