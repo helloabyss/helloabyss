@@ -310,3 +310,53 @@ Three things the run settled:
 The split in this document still stands — HyperFrames for pixel-exact charts and working
 captions at zero credits, HeyGen for the locked voice — but HeyGen alone is now a viable
 one-shot path when the voice matters more than chart precision.
+
+---
+
+## The "voice carrier" theory is dead, 2026-09-25
+
+The cheapest-production plan in the section above rested on one untested assumption: that
+`create_video_from_avatar` with `engine:{type:"avatar_iii"}` would bill at the published
+**Avatar III rate of 3 cr/min**, letting HeyGen supply only the locked voice while
+HyperFrames drew the picture free. That would have been ~6 cr/video against the 74 cr the
+video-agent path costs — a 92% saving. It was worth one test to find out.
+
+**Test render:** `ad3453273f76ba92a36f39d934c2b600`, avatar `Daphne_public_1` (confirmed
+`supported_api_engines: ["avatar_iii"]`), voice `0db3abd83c74452fb2460b0dd113daad`,
+glossary `c906414830134497906c72eecf054153`, 720p, 9:16, `caption:{file_format:"srt"}`,
+first two paragraphs of the MSTR script. Picture discarded by design — only the audio and
+the SRT word timings were ever wanted.
+
+**Result: 20.53s of finished video cost 52 credits.** Balance went 287 → 275 while the job
+was still processing, then → 235 on completion. That is **≈152 cr/min — roughly 3.8× more
+expensive than the 40.3 cr/min video-agent path**, not 13× cheaper. The shape of the
+numbers (a small charge on submit, a large one on completion, on a sub-half-minute render)
+points to a per-render floor rather than true per-second billing, so the published 3 cr/min
+Avatar III rate does not appear to reach this API surface on this plan.
+
+**Consequences, in order of cost:**
+
+| Path | Credits for a ~110s short | Voice |
+|---|---|---|
+| HyperFrames + local Kokoro `am_michael` | **0** | Not the locked voice |
+| HeyGen video agent, `generate` mode | 74 | Locked Alex Wright |
+| HeyGen Avatar III "carrier" | ~280 (extrapolated) | Locked Alex Wright — **do not use** |
+
+So the honest cost floor for a video carrying the locked voice is **74 credits**, and at
+235 credits remaining that is **three more voiced shorts this cycle** (resets 2026-10-06).
+Nothing about the carrier path is worth retrying; it is recorded here so it is not
+re-proposed.
+
+**Where the real savings are, cheapest first:**
+1. **Cut runtime, not quality.** Billing is per minute of finished video, so a 60s short
+   costs ~40 cr against a 110s short's ~74. Two 60s shorts cost about the same as one
+   110s short and give twice the upload cadence.
+2. **Voice only the episodes that need a voice.** Chart-led explainers render free on
+   HyperFrames with on-screen type carrying the argument; the locked voice is worth its
+   74 credits on the flagship weekly, not on every cut.
+3. **The OAuth free-usage path** (`heygen auth login --oauth`, see
+   `media-use/references/setup-providers.md`) is still untested and is the only remaining
+   candidate for zero-credit access to a HeyGen voice. It needs the user to run the login
+   on their own machine; it cannot be tested from this environment.
+4. **Relaxing the voice-match requirement** to a starfish voice makes narration free and
+   unlimited. Still the single largest saving available, still the user's call.
