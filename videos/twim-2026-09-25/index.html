@@ -1,0 +1,582 @@
+<!doctype html>
+<!-- TWIM · the ten-year at 5%. Editorial data-motion, three colours.
+     No photography/faces/logos. Figures traceable to FACTS.md. Rolling digits use the
+     HyperFrames registry `number-wheel` primitive, inlined verbatim. -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="vendor/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+:root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E;--brand:#D42A2A}
+#root{width:100%;height:100%;position:relative;background:var(--ink);font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+.frame{position:absolute;inset:0;pointer-events:none}
+.fr-t{position:absolute;left:110px;right:110px;top:190px;height:1px;background:rgba(245,245,243,.09)}
+.fr-b{position:absolute;left:110px;right:110px;top:1790px;height:1px;background:rgba(245,245,243,.09)}
+.slug{position:absolute;right:110px;top:152px;color:#797979;font-size:21px;letter-spacing:.24em}
+.num{position:absolute;right:110px;top:1812px;color:#797979;font-size:21px;letter-spacing:.2em}
+.tick{position:absolute;width:16px;height:16px;border-color:rgba(245,245,243,.18);border-style:solid;border-width:0}
+.tick.tl{left:110px;top:190px;border-left-width:1px;border-top-width:1px}
+.tick.tr{right:110px;top:190px;border-right-width:1px;border-top-width:1px}
+.kicker{position:absolute;left:110px;top:250px;color:var(--muted);font-size:27px;letter-spacing:.34em;text-transform:uppercase;font-weight:700}
+.stamp{position:absolute;left:110px;top:1722px;color:var(--muted);font-size:25px;letter-spacing:.03em}
+.rulebar{position:absolute;left:110px;top:310px;width:180px;height:5px;background:var(--accent);transform-origin:left center}
+.lbl{color:var(--muted);font-size:29px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;line-height:1.35}
+.big{color:var(--paper);font-weight:800;letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
+.red{color:var(--accent)}
+.tag{display:inline-block;color:var(--accent);font-size:30px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.thLabel{position:absolute;color:var(--muted);font-size:27px;letter-spacing:.05em}
+.rowName{position:absolute;color:var(--paper);font-size:38px;font-weight:800;letter-spacing:.02em}
+.rowVal{position:absolute;color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em}
+#compliance{position:absolute;left:110px;top:1620px;color:var(--accent);font-size:29px;font-weight:700;letter-spacing:.05em}
+#discCard{position:absolute;inset:0;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 110px}
+#discCard .dl1{color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.18}
+#discCard .dl2{color:var(--muted);font-size:31px;line-height:1.5;margin-top:38px}
+#discCard .dbar{width:180px;height:5px;background:var(--accent);margin-bottom:46px}
+.capline{position:absolute;left:100px;top:1466px;width:880px;text-align:center;font-size:43px;font-weight:800;
+  letter-spacing:.004em;line-height:1.25;opacity:0;visibility:hidden;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+.capline span{color:rgba(245,245,243,.46);margin:0 .15em}
+#prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}
+
+  .hf-number-wheel {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--hf-wheel-gap, 0.02em);
+    color: var(--hf-wheel-color, inherit);
+    font-variant-numeric: tabular-nums;
+  }
+  .hf-number-wheel-digit {
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+  }
+  .hf-number-wheel-strip {
+    display: grid;
+    transform: translateY(0em);
+    will-change: transform;
+  }
+  .hf-number-wheel-strip span {
+    height: 1em;
+    line-height: 1em;
+  }
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="101.933" data-width="1080" data-height="1920">
+<div id="s1" class="clip" data-start="0.0" data-duration="9.57" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">01</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar" id="r1"></div><div class="kicker" id="k1">The print</div><div class="lbl" id="a1" style="position:absolute;left:110px;top:560px">US 10-year Treasury yield</div><div class="big red" id="a2" style="position:absolute;left:110px;top:614px;font-size:200px"><span class="hf-number-wheel " data-value="5.12"></span>%</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="a3" x1="110" y1="900" x2="970" y2="900" stroke="#242427" stroke-width="3"/></svg><div class="lbl" id="a4" style="position:absolute;left:110px;top:950px">Highest since</div><div class="big" id="a5" style="position:absolute;left:110px;top:1000px;font-size:150px">2007</div><div class="tag" id="a6" style="position:absolute;left:110px;top:1230px">Most of it in one day</div><div class="stamp">Yield as of 2026-09-24 · press convergence</div><div id="compliance">Educational only. Not financial advice.</div></div>
+<div id="s2" class="clip" data-start="9.57" data-duration="8.479" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">02</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">What it actually is</div><div class="big" id="b1" style="position:absolute;left:110px;top:560px;font-size:86px;width:880px">The price of<br>government money</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="b2" x1="110" y1="880" x2="970" y2="880" stroke="#242427" stroke-width="3"/></svg><div class="lbl" id="b3" style="position:absolute;left:110px;top:930px">Lend to the Treasury for</div><div class="big" id="b4" style="position:absolute;left:110px;top:980px;font-size:150px">10 YEARS</div><div class="big red" id="b5" style="position:absolute;left:110px;top:1240px;font-size:62px;width:880px">Nearly every other price<br>is set off the back of it.</div><div class="stamp">Definitional</div></div>
+<div id="s3" class="clip" data-start="18.049" data-duration="11.182" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">03</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">The trigger</div><div class="lbl" id="c1" style="position:absolute;left:110px;top:560px">Auction of five-year notes</div><div class="big" id="c2" style="position:absolute;left:110px;top:612px;font-size:150px">$<span class="hf-number-wheel " data-value="70"></span>bn</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="c3" x1="110" y1="880" x2="970" y2="880" stroke="#D42A2A" stroke-width="5"/></svg><div class="big red" id="c4" style="position:absolute;left:110px;top:930px;font-size:120px">WEAK<br>DEMAND</div><div class="lbl" id="c5" style="position:absolute;left:110px;top:1260px;width:880px">Buyers step back →<br>the government pays up</div><div class="stamp">Auction detail per press reports · 2026-09-24</div></div>
+<div id="s4" class="clip" data-start="29.231" data-duration="13.358" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">04</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">Why your portfolio felt it</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line x1="540" y1="620" x2="540" y2="1240" stroke="#242427" stroke-width="3"/></svg><div class="rowName" id="d1" style="left:110px;top:640px">TREASURY</div><div class="rowVal red" id="d2" style="left:110px;top:700px">5%</div><div class="lbl" id="d3" style="position:absolute;left:110px;top:800px;width:400px">risk-free,<br>near enough</div><div class="rowName" id="d4" style="left:620px;top:640px">STOCKS</div><div class="rowVal" id="d5" style="left:620px;top:700px">MUST BEAT IT</div><div class="lbl" id="d6" style="position:absolute;left:620px;top:800px;width:360px">same money,<br>more risk</div><div class="big" id="d7" style="position:absolute;left:110px;top:1320px;font-size:62px;width:880px">They compete for<br>the same dollar.</div><div class="stamp">Valuation mechanics, not a forecast</div></div>
+<div id="s5" class="clip" data-start="42.589" data-duration="12.191" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">05</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">Who it hurts first</div><div class="big" id="e1" style="position:absolute;left:110px;top:560px;font-size:76px;width:880px">Profits furthest<br>in the future</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="e2" x1="110" y1="810" x2="970" y2="810" stroke="#242427" stroke-width="3"/></svg><div class="rowName" id="e3" style="left:110px;top:870px">DATA CENTRES</div><div class="rowName" id="e4" style="left:110px;top:950px">CHIPS</div><div class="rowName" id="e5" style="left:110px;top:1030px">POWER</div><div class="big red" id="e6" style="position:absolute;left:110px;top:1160px;font-size:66px;width:880px">All built with<br>borrowed money.</div><div class="tag" id="e7" style="position:absolute;left:110px;top:1360px;font-size:32px">A higher rate discounts them harder</div><div class="stamp">Duration logic · mechanism, not a recommendation</div></div>
+<div id="s6" class="clip" data-start="54.78" data-duration="13.23" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">06</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">It is not only markets</div><div class="lbl" id="f1" style="position:absolute;left:110px;top:540px">30-year fixed mortgage</div><div class="big red" id="f2" style="position:absolute;left:110px;top:590px;font-size:170px"><span class="hf-number-wheel " data-value="7.03"></span>%</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line x1="110" y1="1150" x2="970" y2="1150" stroke="#242427" stroke-width="3"/><polyline id="f3" points="150,1099 400,1057 650,897 900,829" fill="none" stroke="#D42A2A" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><circle id="f4" cx="900" cy="829" r="13" fill="#D42A2A"/></svg><div class="thLabel" id="f5" style="left:110px;top:1170px">Sep 3 · 6.71%</div><div class="thLabel" id="f6" style="left:760px;top:1170px;color:#F5F5F3">Sep 24 · 7.03%</div><div class="big" id="f7" style="position:absolute;left:110px;top:1270px;font-size:58px;width:880px">Above 7% for the first<br>time in about 20 months.</div><div class="stamp">Freddie Mac PMMS weekly survey · 2026-09-24</div></div>
+<div id="s7" class="clip" data-start="68.01" data-duration="19.98" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">07</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">One correction</div><div class="lbl" id="n1" style="position:absolute;left:110px;top:540px">The clip going around says</div><div class="big" id="n2" style="position:absolute;left:110px;top:588px;font-size:66px;width:880px">"the same thing happened<br>in August 2024"</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line x1="110" y1="960" x2="970" y2="960" stroke="#D42A2A" stroke-width="5"/><path id="n3" d="M 190 1015 L 880 1150" stroke="#D42A2A" stroke-width="10" fill="none" stroke-linecap="round"/><circle id="n4" cx="190" cy="1015" r="13" fill="#F5F5F3"/><circle id="n5" cx="880" cy="1150" r="13" fill="#D42A2A"/></svg><div class="big red" id="n6" style="position:absolute;left:110px;top:840px;font-size:88px">IT FELL</div><div class="thLabel" id="n7" style="left:110px;top:1195px">24 Jul 2024 · 4.28%</div><div class="thLabel" id="n8" style="left:660px;top:1195px;color:#F5F5F3">5 Aug 2024 · 3.73%</div><div class="big" id="n9" style="position:absolute;left:110px;top:1285px;font-size:56px;width:880px">Last real 5% print:<br><span class="red">October 2023.</span></div><div class="stamp">Yield path Jul–Aug 2024 · press convergence</div></div>
+<div id="s8" class="clip" data-start="87.99" data-duration="9.443" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE 10-YEAR AT 5%</div><div class="num">08</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">What to actually watch</div><div class="big" id="i1" style="position:absolute;left:110px;top:560px;font-size:120px">THE<br>10-YEAR</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="i2" x1="110" y1="880" x2="970" y2="880" stroke="#D42A2A" stroke-width="5"/></svg><div class="lbl" id="i3" style="position:absolute;left:110px;top:940px">It quietly sets</div><div class="rowName" id="i4" style="left:110px;top:1010px">YOUR MORTGAGE</div><div class="rowName" id="i5" style="left:110px;top:1090px">CORPORATE DEBT</div><div class="rowName red" id="i6" style="left:110px;top:1170px">THE PRICE OF GROWTH</div><div class="big" id="i7" style="position:absolute;left:110px;top:1300px;font-size:58px;width:880px">Watch the rate,<br>not the reaction.</div><div class="stamp">Educational only · not investment advice</div></div>
+<div id="s9" class="clip" data-start="97.433" data-duration="4.5" data-track-index="0"><div id="discCard"><div class="dbar" id="dbar"></div><div class="dl1" id="dl1">Educational only.<br>Not financial advice.</div><div class="dl2" id="dl2">Market commentary, not a recommendation to buy or sell any security.<br>Figures as of the dates shown. Sources in the description.</div></div></div>
+<div id="caps">
+<div class="capline" id="cg0"><span id="cw0_0">The</span><span id="cw0_1">ten-year</span><span id="cw0_2">Treasury</span><span id="cw0_3">yield</span><span id="cw0_4">just</span></div>
+<div class="capline" id="cg1"><span id="cw1_0">hit</span><span id="cw1_1">five</span><span id="cw1_2">point</span><span id="cw1_3">one</span><span id="cw1_4">two</span></div>
+<div class="capline" id="cg2"><span id="cw2_0">percent.</span></div>
+<div class="capline" id="cg3"><span id="cw3_0">That</span><span id="cw3_1">is</span><span id="cw3_2">the</span><span id="cw3_3">highest</span><span id="cw3_4">since</span></div>
+<div class="capline" id="cg4"><span id="cw4_0">2007,</span><span id="cw4_1">and</span><span id="cw4_2">most</span><span id="cw4_3">of</span><span id="cw4_4">it</span></div>
+<div class="capline" id="cg5"><span id="cw5_0">happened</span><span id="cw5_1">in</span><span id="cw5_2">a</span><span id="cw5_3">single</span><span id="cw5_4">day.</span></div>
+<div class="capline" id="cg6"><span id="cw6_0">The</span><span id="cw6_1">ten-year</span><span id="cw6_2">is</span><span id="cw6_3">what</span><span id="cw6_4">it</span></div>
+<div class="capline" id="cg7"><span id="cw7_0">costs</span><span id="cw7_1">the</span><span id="cw7_2">government</span><span id="cw7_3">to</span><span id="cw7_4">borrow</span></div>
+<div class="capline" id="cg8"><span id="cw8_0">for</span><span id="cw8_1">a</span><span id="cw8_2">decade.</span></div>
+<div class="capline" id="cg9"><span id="cw9_0">Almost</span><span id="cw9_1">every</span><span id="cw9_2">other</span><span id="cw9_3">price</span><span id="cw9_4">in</span></div>
+<div class="capline" id="cg10"><span id="cw10_0">finance</span><span id="cw10_1">is</span><span id="cw10_2">set</span><span id="cw10_3">off</span><span id="cw10_4">the</span></div>
+<div class="capline" id="cg11"><span id="cw11_0">back</span><span id="cw11_1">of</span><span id="cw11_2">it.</span></div>
+<div class="capline" id="cg12"><span id="cw12_0">Start</span><span id="cw12_1">with</span><span id="cw12_2">the</span><span id="cw12_3">trigger.</span></div>
+<div class="capline" id="cg13"><span id="cw13_0">A</span><span id="cw13_1">seventy</span><span id="cw13_2">billion</span><span id="cw13_3">dollar</span><span id="cw13_4">auction</span></div>
+<div class="capline" id="cg14"><span id="cw14_0">of</span><span id="cw14_1">five-year</span><span id="cw14_2">notes</span><span id="cw14_3">drew</span><span id="cw14_4">weak</span></div>
+<div class="capline" id="cg15"><span id="cw15_0">demand.</span></div>
+<div class="capline" id="cg16"><span id="cw16_0">When</span><span id="cw16_1">buyers</span><span id="cw16_2">step</span><span id="cw16_3">back,</span><span id="cw16_4">the</span></div>
+<div class="capline" id="cg17"><span id="cw17_0">government</span><span id="cw17_1">pays</span><span id="cw17_2">up,</span><span id="cw17_3">and</span><span id="cw17_4">the</span></div>
+<div class="capline" id="cg18"><span id="cw18_0">whole</span><span id="cw18_1">curve</span><span id="cw18_2">reprices.</span></div>
+<div class="capline" id="cg19"><span id="cw19_0">Here</span><span id="cw19_1">is</span><span id="cw19_2">why</span><span id="cw19_3">your</span><span id="cw19_4">portfolio</span></div>
+<div class="capline" id="cg20"><span id="cw20_0">felt</span><span id="cw20_1">it.</span></div>
+<div class="capline" id="cg21"><span id="cw21_0">A</span><span id="cw21_1">Treasury</span><span id="cw21_2">is</span><span id="cw21_3">about</span><span id="cw21_4">as</span></div>
+<div class="capline" id="cg22"><span id="cw22_0">close</span><span id="cw22_1">to</span><span id="cw22_2">risk-free</span><span id="cw22_3">as</span><span id="cw22_4">markets</span></div>
+<div class="capline" id="cg23"><span id="cw23_0">get.</span></div>
+<div class="capline" id="cg24"><span id="cw24_0">At</span><span id="cw24_1">five</span><span id="cw24_2">percent,</span><span id="cw24_3">it</span><span id="cw24_4">competes</span></div>
+<div class="capline" id="cg25"><span id="cw25_0">with</span><span id="cw25_1">stocks</span><span id="cw25_2">for</span><span id="cw25_3">the</span><span id="cw25_4">same</span></div>
+<div class="capline" id="cg26"><span id="cw26_0">money,</span><span id="cw26_1">and</span><span id="cw26_2">stocks</span><span id="cw26_3">have</span><span id="cw26_4">to</span></div>
+<div class="capline" id="cg27"><span id="cw27_0">promise</span><span id="cw27_1">more</span><span id="cw27_2">to</span><span id="cw27_3">win</span><span id="cw27_4">it.</span></div>
+<div class="capline" id="cg28"><span id="cw28_0">The</span><span id="cw28_1">companies</span><span id="cw28_2">that</span><span id="cw28_3">hurt</span><span id="cw28_4">most</span></div>
+<div class="capline" id="cg29"><span id="cw29_0">are</span><span id="cw29_1">the</span><span id="cw29_2">ones</span><span id="cw29_3">whose</span><span id="cw29_4">profits</span></div>
+<div class="capline" id="cg30"><span id="cw30_0">sit</span><span id="cw30_1">furthest</span><span id="cw30_2">in</span><span id="cw30_3">the</span><span id="cw30_4">future.</span></div>
+<div class="capline" id="cg31"><span id="cw31_0">Data</span><span id="cw31_1">centres,</span><span id="cw31_2">chips</span><span id="cw31_3">and</span><span id="cw31_4">power</span></div>
+<div class="capline" id="cg32"><span id="cw32_0">are</span><span id="cw32_1">all</span><span id="cw32_2">built</span><span id="cw32_3">with</span><span id="cw32_4">borrowed</span></div>
+<div class="capline" id="cg33"><span id="cw33_0">money,</span><span id="cw33_1">so</span><span id="cw33_2">a</span><span id="cw33_3">higher</span><span id="cw33_4">rate</span></div>
+<div class="capline" id="cg34"><span id="cw34_0">discounts</span><span id="cw34_1">them</span><span id="cw34_2">harder.</span></div>
+<div class="capline" id="cg35"><span id="cw35_0">It</span><span id="cw35_1">is</span><span id="cw35_2">not</span><span id="cw35_3">only</span><span id="cw35_4">markets.</span></div>
+<div class="capline" id="cg36"><span id="cw36_0">The</span><span id="cw36_1">thirty-year</span><span id="cw36_2">mortgage</span><span id="cw36_3">hit</span><span id="cw36_4">seven</span></div>
+<div class="capline" id="cg37"><span id="cw37_0">point</span><span id="cw37_1">zero</span><span id="cw37_2">three</span><span id="cw37_3">percent</span><span id="cw37_4">this</span></div>
+<div class="capline" id="cg38"><span id="cw38_0">week,</span><span id="cw38_1">above</span><span id="cw38_2">seven</span><span id="cw38_3">for</span><span id="cw38_4">the</span></div>
+<div class="capline" id="cg39"><span id="cw39_0">first</span><span id="cw39_1">time</span><span id="cw39_2">in</span><span id="cw39_3">about</span><span id="cw39_4">twenty</span></div>
+<div class="capline" id="cg40"><span id="cw40_0">months.</span></div>
+<div class="capline" id="cg41"><span id="cw41_0">That</span><span id="cw41_1">is</span><span id="cw41_2">the</span><span id="cw41_3">same</span><span id="cw41_4">move</span></div>
+<div class="capline" id="cg42"><span id="cw42_0">arriving</span><span id="cw42_1">at</span><span id="cw42_2">your</span><span id="cw42_3">kitchen</span><span id="cw42_4">table.</span></div>
+<div class="capline" id="cg43"><span id="cw43_0">One</span><span id="cw43_1">correction,</span><span id="cw43_2">because</span><span id="cw43_3">the</span><span id="cw43_4">version</span></div>
+<div class="capline" id="cg44"><span id="cw44_0">going</span><span id="cw44_1">around</span><span id="cw44_2">gets</span><span id="cw44_3">this</span><span id="cw44_4">wrong.</span></div>
+<div class="capline" id="cg45"><span id="cw45_0">It</span><span id="cw45_1">says</span><span id="cw45_2">the</span><span id="cw45_3">same</span><span id="cw45_4">thing</span></div>
+<div class="capline" id="cg46"><span id="cw46_0">happened</span><span id="cw46_1">in</span><span id="cw46_2">August</span><span id="cw46_3">2024.</span></div>
+<div class="capline" id="cg47"><span id="cw47_0">It</span><span id="cw47_1">did</span><span id="cw47_2">not.</span></div>
+<div class="capline" id="cg48"><span id="cw48_0">Yields</span><span id="cw48_1">fell</span><span id="cw48_2">that</span><span id="cw48_3">month,</span><span id="cw48_4">from</span></div>
+<div class="capline" id="cg49"><span id="cw49_0">four</span><span id="cw49_1">point</span><span id="cw49_2">two</span><span id="cw49_3">eight</span><span id="cw49_4">to</span></div>
+<div class="capline" id="cg50"><span id="cw50_0">three</span><span id="cw50_1">point</span><span id="cw50_2">seven</span><span id="cw50_3">three</span><span id="cw50_4">percent.</span></div>
+<div class="capline" id="cg51"><span id="cw51_0">The</span><span id="cw51_1">last</span><span id="cw51_2">time</span><span id="cw51_3">the</span><span id="cw51_4">ten-year</span></div>
+<div class="capline" id="cg52"><span id="cw52_0">touched</span><span id="cw52_1">five</span><span id="cw52_2">was</span><span id="cw52_3">October</span><span id="cw52_4">2023.</span></div>
+<div class="capline" id="cg53"><span id="cw53_0">So</span><span id="cw53_1">watch</span><span id="cw53_2">the</span><span id="cw53_3">ten-year,</span><span id="cw53_4">not</span></div>
+<div class="capline" id="cg54"><span id="cw54_0">the</span><span id="cw54_1">headline.</span></div>
+<div class="capline" id="cg55"><span id="cw55_0">It</span><span id="cw55_1">quietly</span><span id="cw55_2">sets</span><span id="cw55_3">your</span><span id="cw55_4">mortgage,</span></div>
+<div class="capline" id="cg56"><span id="cw56_0">the</span><span id="cw56_1">cost</span><span id="cw56_2">of</span><span id="cw56_3">corporate</span><span id="cw56_4">debt,</span></div>
+<div class="capline" id="cg57"><span id="cw57_0">and</span><span id="cw57_1">what</span><span id="cw57_2">the</span><span id="cw57_3">market</span><span id="cw57_4">will</span></div>
+<div class="capline" id="cg58"><span id="cw58_0">pay</span><span id="cw58_1">for</span><span id="cw58_2">growth.</span></div>
+</div>
+<div id="prog"></div>
+<audio id="vo" src="vo.wav" data-start="0" data-duration="97.233" data-track-index="10" data-volume="1"></audio>
+</div>
+<script>
+  (function () {
+    const vars =
+      window.__hyperframes && window.__hyperframes.getVariables
+        ? window.__hyperframes.getVariables()
+        : {};
+
+    // Unrecognised overrides return to their declared defaults.
+    const spins = { single: 0, double: 1, triple: 2 };
+    const gaps = { tight: "0em", standard: "0.02em", wide: "0.14em" };
+    const tones = {
+      inherit: "inherit",
+      ink: "#18181b",
+      paper: "#fafafa",
+      accent: "var(--brand, #34d399)",
+    };
+    const pick = (table, value, fallback) =>
+      Object.prototype.hasOwnProperty.call(table, value) ? table[value] : table[fallback];
+
+    const cycles = pick(spins, vars.spin, "single");
+    const gap = pick(gaps, vars.spacing, "standard");
+    const tone = pick(tones, vars.tone, "inherit");
+
+    document.querySelectorAll(".hf-number-wheel").forEach((el) => {
+      if (el.dataset.hfNumberWheelReady === "1") return;
+      el.style.setProperty("--hf-wheel-gap", gap);
+      el.style.setProperty("--hf-wheel-color", tone);
+      const value = el.dataset.value || "0";
+      el.textContent = "";
+      for (const char of value) {
+        if (!/\d/.test(char)) {
+          el.append(document.createTextNode(char));
+          continue;
+        }
+        const stops = cycles * 10 + Number(char);
+        const frame = document.createElement("span");
+        frame.className = "hf-number-wheel-digit";
+        const strip = document.createElement("span");
+        strip.className = "hf-number-wheel-strip";
+        strip.style.setProperty("--hf-number-target-y", `${-stops}em`);
+        for (let i = 0; i <= stops; i++) {
+          const step = document.createElement("span");
+          step.textContent = String(i % 10);
+          strip.appendChild(step);
+        }
+        frame.appendChild(strip);
+        el.appendChild(frame);
+      }
+      el.dataset.hfNumberWheelReady = "1";
+    });
+  })();
+</script>
+<script>
+const tl=gsap.timeline({paused:true}),E="power3.out";
+const up=(s,at,d=.55,y=34)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+const bar=(s,at,d=.7)=>tl.fromTo(s,{scaleX:0},{scaleX:1,duration:d,ease:"power3.inOut"},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:101.933,ease:"none"},0);
+bar("#s1 .rulebar",0.050,.5); up("#s1 .kicker",0.150);
+tl.fromTo("#s1 .stamp",{opacity:0},{opacity:1,duration:.4},2.200);
+tl.fromTo("#s1 .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.15,ease:"power3.out",stagger:.055,immediateRender:false},0.650);
+bar("#s2 .rulebar",9.620,.5); up("#s2 .kicker",9.720);
+tl.fromTo("#s2 .stamp",{opacity:0},{opacity:1,duration:.4},11.770);
+bar("#s3 .rulebar",18.099,.5); up("#s3 .kicker",18.199);
+tl.fromTo("#s3 .stamp",{opacity:0},{opacity:1,duration:.4},20.249);
+tl.fromTo("#s3 .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.15,ease:"power3.out",stagger:.055,immediateRender:false},18.699);
+bar("#s4 .rulebar",29.281,.5); up("#s4 .kicker",29.381);
+tl.fromTo("#s4 .stamp",{opacity:0},{opacity:1,duration:.4},31.431);
+bar("#s5 .rulebar",42.639,.5); up("#s5 .kicker",42.739);
+tl.fromTo("#s5 .stamp",{opacity:0},{opacity:1,duration:.4},44.789);
+bar("#s6 .rulebar",54.830,.5); up("#s6 .kicker",54.930);
+tl.fromTo("#s6 .stamp",{opacity:0},{opacity:1,duration:.4},56.980);
+tl.fromTo("#s6 .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.15,ease:"power3.out",stagger:.055,immediateRender:false},55.430);
+bar("#s7 .rulebar",68.060,.5); up("#s7 .kicker",68.160);
+tl.fromTo("#s7 .stamp",{opacity:0},{opacity:1,duration:.4},70.210);
+bar("#s8 .rulebar",88.040,.5); up("#s8 .kicker",88.140);
+tl.fromTo("#s8 .stamp",{opacity:0},{opacity:1,duration:.4},90.190);
+up("#a1",0.450,.55,30);
+up("#a2",1.200,.55,30);
+up("#a4",1.950,.55,30);
+up("#a5",2.700,.55,30);
+up("#a6",3.450,.55,30);
+up("#b1",10.020,.55,30);
+up("#b3",10.770,.55,30);
+up("#b4",11.520,.55,30);
+up("#b5",12.270,.55,30);
+up("#c1",18.499,.55,30);
+up("#c2",19.249,.55,30);
+up("#c4",19.999,.55,30);
+up("#c5",20.749,.55,30);
+up("#d1",29.681,.55,30);
+up("#d2",30.431,.55,30);
+up("#d3",31.181,.55,30);
+up("#d4",31.931,.55,30);
+up("#d5",32.681,.55,30);
+up("#d6",33.431,.55,30);
+up("#d7",34.181,.55,30);
+up("#e1",43.039,.55,30);
+up("#e3",43.789,.55,30);
+up("#e4",44.539,.55,30);
+up("#e5",45.289,.55,30);
+up("#e6",46.039,.55,30);
+up("#e7",46.789,.55,30);
+up("#f1",55.230,.55,30);
+up("#f2",55.980,.55,30);
+up("#f7",56.730,.55,30);
+up("#n1",68.460,.55,30);
+up("#n2",69.210,.55,30);
+up("#n6",69.960,.55,30);
+up("#n9",70.710,.55,30);
+up("#i1",88.440,.55,30);
+up("#i3",89.190,.55,30);
+up("#i4",89.940,.55,30);
+up("#i5",90.690,.55,30);
+up("#i6",91.440,.55,30);
+up("#i7",92.190,.55,30);
+tl.fromTo("#compliance",{opacity:0},{opacity:1,duration:.35},0.300).to("#compliance",{opacity:0,duration:.3},4.400);
+tl.set("#f3",{strokeDasharray:1000,strokeDashoffset:1000},54.780).to("#f3",{strokeDashoffset:0,duration:1.5,ease:"power2.inOut"},55.680);
+tl.fromTo("#f4",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},57.180);
+up("#f5",56.780);up("#f6",57.380);
+tl.set("#n3",{strokeDasharray:760,strokeDashoffset:760},68.010).to("#n3",{strokeDashoffset:0,duration:1.2,ease:"power2.inOut"},69.410);
+tl.fromTo("#n4",{scale:0,transformOrigin:"center"},{scale:1,duration:.3,ease:"back.out(2)"},69.410);
+tl.fromTo("#n5",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},70.510);
+up("#n7",70.210);up("#n8",70.810);
+tl.fromTo("#dbar",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:E},97.633);
+tl.fromTo("#dl1",{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},97.833);
+tl.fromTo("#dl2",{opacity:0},{opacity:1,duration:.6},98.433);
+tl.to("#cg0",{autoAlpha:1,duration:.01},0.000).to("#cg0",{autoAlpha:0,duration:.01},2.018);
+tl.to("#cw0_0",{color:"#F5F5F3",duration:.01},0.000).to("#cw0_0",{color:"rgba(245,245,243,.46)",duration:.01},0.252);
+tl.to("#cw0_1",{color:"#F5F5F3",duration:.01},0.252).to("#cw0_1",{color:"rgba(245,245,243,.46)",duration:.01},0.819);
+tl.to("#cw0_2",{color:"#F5F5F3",duration:.01},0.819).to("#cw0_2",{color:"rgba(245,245,243,.46)",duration:.01},1.386);
+tl.to("#cw0_3",{color:"#F5F5F3",duration:.01},1.386).to("#cw0_3",{color:"rgba(245,245,243,.46)",duration:.01},1.764);
+tl.to("#cw0_4",{color:"#F5F5F3",duration:.01},1.764).to("#cw0_4",{color:"rgba(245,245,243,.46)",duration:.01},2.080);
+tl.to("#cg1",{autoAlpha:1,duration:.01},2.030).to("#cg1",{autoAlpha:0,duration:.01},3.467);
+tl.to("#cw1_0",{color:"#F5F5F3",duration:.01},2.080).to("#cw1_0",{color:"rgba(245,245,243,.46)",duration:.01},2.332);
+tl.to("#cw1_1",{color:"#F5F5F3",duration:.01},2.332).to("#cw1_1",{color:"rgba(245,245,243,.46)",duration:.01},2.647);
+tl.to("#cw1_2",{color:"#F5F5F3",duration:.01},2.647).to("#cw1_2",{color:"rgba(245,245,243,.46)",duration:.01},3.025);
+tl.to("#cw1_3",{color:"#F5F5F3",duration:.01},3.025).to("#cw1_3",{color:"rgba(245,245,243,.46)",duration:.01},3.277);
+tl.to("#cw1_4",{color:"#F5F5F3",duration:.01},3.277).to("#cw1_4",{color:"rgba(245,245,243,.46)",duration:.01},3.529);
+tl.to("#cg2",{autoAlpha:1,duration:.01},3.479).to("#cg2",{autoAlpha:0,duration:.01},4.134);
+tl.to("#cw2_0",{color:"#F5F5F3",duration:.01},3.529).to("#cw2_0",{color:"rgba(245,245,243,.46)",duration:.01},4.096);
+tl.to("#cg3",{autoAlpha:1,duration:.01},4.146).to("#cg3",{autoAlpha:0,duration:.01},5.950);
+tl.to("#cw3_0",{color:"#F5F5F3",duration:.01},4.196).to("#cw3_0",{color:"rgba(245,245,243,.46)",duration:.01},4.545);
+tl.to("#cw3_1",{color:"#F5F5F3",duration:.01},4.545).to("#cw3_1",{color:"rgba(245,245,243,.46)",duration:.01},4.755);
+tl.to("#cw3_2",{color:"#F5F5F3",duration:.01},4.755).to("#cw3_2",{color:"rgba(245,245,243,.46)",duration:.01},5.034);
+tl.to("#cw3_3",{color:"#F5F5F3",duration:.01},5.034).to("#cw3_3",{color:"rgba(245,245,243,.46)",duration:.01},5.593);
+tl.to("#cw3_4",{color:"#F5F5F3",duration:.01},5.593).to("#cw3_4",{color:"rgba(245,245,243,.46)",duration:.01},6.012);
+tl.to("#cg4",{autoAlpha:1,duration:.01},5.962).to("#cg4",{autoAlpha:0,duration:.01},7.417);
+tl.to("#cw4_0",{color:"#F5F5F3",duration:.01},6.012).to("#cw4_0",{color:"rgba(245,245,243,.46)",duration:.01},6.431);
+tl.to("#cw4_1",{color:"#F5F5F3",duration:.01},6.431).to("#cw4_1",{color:"rgba(245,245,243,.46)",duration:.01},6.710);
+tl.to("#cw4_2",{color:"#F5F5F3",duration:.01},6.710).to("#cw4_2",{color:"rgba(245,245,243,.46)",duration:.01},7.060);
+tl.to("#cw4_3",{color:"#F5F5F3",duration:.01},7.060).to("#cw4_3",{color:"rgba(245,245,243,.46)",duration:.01},7.269);
+tl.to("#cw4_4",{color:"#F5F5F3",duration:.01},7.269).to("#cw4_4",{color:"rgba(245,245,243,.46)",duration:.01},7.479);
+tl.to("#cg5",{autoAlpha:1,duration:.01},7.429).to("#cg5",{autoAlpha:0,duration:.01},9.595);
+tl.to("#cw5_0",{color:"#F5F5F3",duration:.01},7.479).to("#cw5_0",{color:"rgba(245,245,243,.46)",duration:.01},8.107);
+tl.to("#cw5_1",{color:"#F5F5F3",duration:.01},8.107).to("#cw5_1",{color:"rgba(245,245,243,.46)",duration:.01},8.317);
+tl.to("#cw5_2",{color:"#F5F5F3",duration:.01},8.317).to("#cw5_2",{color:"rgba(245,245,243,.46)",duration:.01},8.457);
+tl.to("#cw5_3",{color:"#F5F5F3",duration:.01},8.457).to("#cw5_3",{color:"rgba(245,245,243,.46)",duration:.01},8.945);
+tl.to("#cw5_4",{color:"#F5F5F3",duration:.01},8.945).to("#cw5_4",{color:"rgba(245,245,243,.46)",duration:.01},9.295);
+tl.to("#cg6",{autoAlpha:1,duration:.01},9.795).to("#cg6",{autoAlpha:0,duration:.01},11.118);
+tl.to("#cw6_0",{color:"#F5F5F3",duration:.01},9.845).to("#cw6_0",{color:"rgba(245,245,243,.46)",duration:.01},10.067);
+tl.to("#cw6_1",{color:"#F5F5F3",duration:.01},10.067).to("#cw6_1",{color:"rgba(245,245,243,.46)",duration:.01},10.568);
+tl.to("#cw6_2",{color:"#F5F5F3",duration:.01},10.568).to("#cw6_2",{color:"rgba(245,245,243,.46)",duration:.01},10.735);
+tl.to("#cw6_3",{color:"#F5F5F3",duration:.01},10.735).to("#cw6_3",{color:"rgba(245,245,243,.46)",duration:.01},11.013);
+tl.to("#cw6_4",{color:"#F5F5F3",duration:.01},11.013).to("#cw6_4",{color:"rgba(245,245,243,.46)",duration:.01},11.180);
+tl.to("#cg7",{autoAlpha:1,duration:.01},11.130).to("#cg7",{autoAlpha:0,duration:.01},12.844);
+tl.to("#cw7_0",{color:"#F5F5F3",duration:.01},11.180).to("#cw7_0",{color:"rgba(245,245,243,.46)",duration:.01},11.514);
+tl.to("#cw7_1",{color:"#F5F5F3",duration:.01},11.514).to("#cw7_1",{color:"rgba(245,245,243,.46)",duration:.01},11.737);
+tl.to("#cw7_2",{color:"#F5F5F3",duration:.01},11.737).to("#cw7_2",{color:"rgba(245,245,243,.46)",duration:.01},12.349);
+tl.to("#cw7_3",{color:"#F5F5F3",duration:.01},12.349).to("#cw7_3",{color:"rgba(245,245,243,.46)",duration:.01},12.516);
+tl.to("#cw7_4",{color:"#F5F5F3",duration:.01},12.516).to("#cw7_4",{color:"rgba(245,245,243,.46)",duration:.01},12.906);
+tl.to("#cg8",{autoAlpha:1,duration:.01},12.856).to("#cg8",{autoAlpha:0,duration:.01},13.723);
+tl.to("#cw8_0",{color:"#F5F5F3",duration:.01},12.906).to("#cw8_0",{color:"rgba(245,245,243,.46)",duration:.01},13.128);
+tl.to("#cw8_1",{color:"#F5F5F3",duration:.01},13.128).to("#cw8_1",{color:"rgba(245,245,243,.46)",duration:.01},13.239);
+tl.to("#cw8_2",{color:"#F5F5F3",duration:.01},13.239).to("#cw8_2",{color:"rgba(245,245,243,.46)",duration:.01},13.685);
+tl.to("#cg9",{autoAlpha:1,duration:.01},13.735).to("#cg9",{autoAlpha:0,duration:.01},15.496);
+tl.to("#cw9_0",{color:"#F5F5F3",duration:.01},13.785).to("#cw9_0",{color:"rgba(245,245,243,.46)",duration:.01},14.228);
+tl.to("#cw9_1",{color:"#F5F5F3",duration:.01},14.228).to("#cw9_1",{color:"rgba(245,245,243,.46)",duration:.01},14.608);
+tl.to("#cw9_2",{color:"#F5F5F3",duration:.01},14.608).to("#cw9_2",{color:"rgba(245,245,243,.46)",duration:.01},14.988);
+tl.to("#cw9_3",{color:"#F5F5F3",duration:.01},14.988).to("#cw9_3",{color:"rgba(245,245,243,.46)",duration:.01},15.368);
+tl.to("#cw9_4",{color:"#F5F5F3",duration:.01},15.368).to("#cw9_4",{color:"rgba(245,245,243,.46)",duration:.01},15.558);
+tl.to("#cg10",{autoAlpha:1,duration:.01},15.508).to("#cg10",{autoAlpha:0,duration:.01},16.952);
+tl.to("#cw10_0",{color:"#F5F5F3",duration:.01},15.558).to("#cw10_0",{color:"rgba(245,245,243,.46)",duration:.01},16.064);
+tl.to("#cw10_1",{color:"#F5F5F3",duration:.01},16.064).to("#cw10_1",{color:"rgba(245,245,243,.46)",duration:.01},16.254);
+tl.to("#cw10_2",{color:"#F5F5F3",duration:.01},16.254).to("#cw10_2",{color:"rgba(245,245,243,.46)",duration:.01},16.508);
+tl.to("#cw10_3",{color:"#F5F5F3",duration:.01},16.508).to("#cw10_3",{color:"rgba(245,245,243,.46)",duration:.01},16.761);
+tl.to("#cw10_4",{color:"#F5F5F3",duration:.01},16.761).to("#cw10_4",{color:"rgba(245,245,243,.46)",duration:.01},17.014);
+tl.to("#cg11",{autoAlpha:1,duration:.01},16.964).to("#cg11",{autoAlpha:0,duration:.01},18.074);
+tl.to("#cw11_0",{color:"#F5F5F3",duration:.01},17.014).to("#cw11_0",{color:"rgba(245,245,243,.46)",duration:.01},17.331);
+tl.to("#cw11_1",{color:"#F5F5F3",duration:.01},17.331).to("#cw11_1",{color:"rgba(245,245,243,.46)",duration:.01},17.521);
+tl.to("#cw11_2",{color:"#F5F5F3",duration:.01},17.521).to("#cw11_2",{color:"rgba(245,245,243,.46)",duration:.01},17.774);
+tl.to("#cg12",{autoAlpha:1,duration:.01},18.274).to("#cg12",{autoAlpha:0,duration:.01},19.749);
+tl.to("#cw12_0",{color:"#F5F5F3",duration:.01},18.324).to("#cw12_0",{color:"rgba(245,245,243,.46)",duration:.01},18.671);
+tl.to("#cw12_1",{color:"#F5F5F3",duration:.01},18.671).to("#cw12_1",{color:"rgba(245,245,243,.46)",duration:.01},18.960);
+tl.to("#cw12_2",{color:"#F5F5F3",duration:.01},18.960).to("#cw12_2",{color:"rgba(245,245,243,.46)",duration:.01},19.191);
+tl.to("#cw12_3",{color:"#F5F5F3",duration:.01},19.191).to("#cw12_3",{color:"rgba(245,245,243,.46)",duration:.01},19.711);
+tl.to("#cg13",{autoAlpha:1,duration:.01},19.761).to("#cg13",{autoAlpha:0,duration:.01},21.871);
+tl.to("#cw13_0",{color:"#F5F5F3",duration:.01},19.811).to("#cw13_0",{color:"rgba(245,245,243,.46)",duration:.01},19.939);
+tl.to("#cw13_1",{color:"#F5F5F3",duration:.01},19.939).to("#cw13_1",{color:"rgba(245,245,243,.46)",duration:.01},20.454);
+tl.to("#cw13_2",{color:"#F5F5F3",duration:.01},20.454).to("#cw13_2",{color:"rgba(245,245,243,.46)",duration:.01},20.968);
+tl.to("#cw13_3",{color:"#F5F5F3",duration:.01},20.968).to("#cw13_3",{color:"rgba(245,245,243,.46)",duration:.01},21.418);
+tl.to("#cw13_4",{color:"#F5F5F3",duration:.01},21.418).to("#cw13_4",{color:"rgba(245,245,243,.46)",duration:.01},21.933);
+tl.to("#cg14",{autoAlpha:1,duration:.01},21.883).to("#cg14",{autoAlpha:0,duration:.01},23.736);
+tl.to("#cw14_0",{color:"#F5F5F3",duration:.01},21.933).to("#cw14_0",{color:"rgba(245,245,243,.46)",duration:.01},22.126);
+tl.to("#cw14_1",{color:"#F5F5F3",duration:.01},22.126).to("#cw14_1",{color:"rgba(245,245,243,.46)",duration:.01},22.769);
+tl.to("#cw14_2",{color:"#F5F5F3",duration:.01},22.769).to("#cw14_2",{color:"rgba(245,245,243,.46)",duration:.01},23.155);
+tl.to("#cw14_3",{color:"#F5F5F3",duration:.01},23.155).to("#cw14_3",{color:"rgba(245,245,243,.46)",duration:.01},23.476);
+tl.to("#cw14_4",{color:"#F5F5F3",duration:.01},23.476).to("#cw14_4",{color:"rgba(245,245,243,.46)",duration:.01},23.798);
+tl.to("#cg15",{autoAlpha:1,duration:.01},23.748).to("#cg15",{autoAlpha:0,duration:.01},24.350);
+tl.to("#cw15_0",{color:"#F5F5F3",duration:.01},23.798).to("#cw15_0",{color:"rgba(245,245,243,.46)",duration:.01},24.312);
+tl.to("#cg16",{autoAlpha:1,duration:.01},24.362).to("#cg16",{autoAlpha:0,duration:.01},25.943);
+tl.to("#cw16_0",{color:"#F5F5F3",duration:.01},24.412).to("#cw16_0",{color:"rgba(245,245,243,.46)",duration:.01},24.707);
+tl.to("#cw16_1",{color:"#F5F5F3",duration:.01},24.707).to("#cw16_1",{color:"rgba(245,245,243,.46)",duration:.01},25.120);
+tl.to("#cw16_2",{color:"#F5F5F3",duration:.01},25.120).to("#cw16_2",{color:"rgba(245,245,243,.46)",duration:.01},25.415);
+tl.to("#cw16_3",{color:"#F5F5F3",duration:.01},25.415).to("#cw16_3",{color:"rgba(245,245,243,.46)",duration:.01},25.769);
+tl.to("#cw16_4",{color:"#F5F5F3",duration:.01},25.769).to("#cw16_4",{color:"rgba(245,245,243,.46)",duration:.01},26.005);
+tl.to("#cg17",{autoAlpha:1,duration:.01},25.955).to("#cg17",{autoAlpha:0,duration:.01},27.596);
+tl.to("#cw17_0",{color:"#F5F5F3",duration:.01},26.005).to("#cw17_0",{color:"rgba(245,245,243,.46)",duration:.01},26.654);
+tl.to("#cw17_1",{color:"#F5F5F3",duration:.01},26.654).to("#cw17_1",{color:"rgba(245,245,243,.46)",duration:.01},26.950);
+tl.to("#cw17_2",{color:"#F5F5F3",duration:.01},26.950).to("#cw17_2",{color:"rgba(245,245,243,.46)",duration:.01},27.186);
+tl.to("#cw17_3",{color:"#F5F5F3",duration:.01},27.186).to("#cw17_3",{color:"rgba(245,245,243,.46)",duration:.01},27.422);
+tl.to("#cw17_4",{color:"#F5F5F3",duration:.01},27.422).to("#cw17_4",{color:"rgba(245,245,243,.46)",duration:.01},27.658);
+tl.to("#cg18",{autoAlpha:1,duration:.01},27.608).to("#cg18",{autoAlpha:0,duration:.01},29.256);
+tl.to("#cw18_0",{color:"#F5F5F3",duration:.01},27.658).to("#cw18_0",{color:"rgba(245,245,243,.46)",duration:.01},28.012);
+tl.to("#cw18_1",{color:"#F5F5F3",duration:.01},28.012).to("#cw18_1",{color:"rgba(245,245,243,.46)",duration:.01},28.366);
+tl.to("#cw18_2",{color:"#F5F5F3",duration:.01},28.366).to("#cw18_2",{color:"rgba(245,245,243,.46)",duration:.01},28.956);
+tl.to("#cg19",{autoAlpha:1,duration:.01},29.456).to("#cg19",{autoAlpha:0,duration:.01},31.316);
+tl.to("#cw19_0",{color:"#F5F5F3",duration:.01},29.506).to("#cw19_0",{color:"rgba(245,245,243,.46)",duration:.01},29.853);
+tl.to("#cw19_1",{color:"#F5F5F3",duration:.01},29.853).to("#cw19_1",{color:"rgba(245,245,243,.46)",duration:.01},30.061);
+tl.to("#cw19_2",{color:"#F5F5F3",duration:.01},30.061).to("#cw19_2",{color:"rgba(245,245,243,.46)",duration:.01},30.338);
+tl.to("#cw19_3",{color:"#F5F5F3",duration:.01},30.338).to("#cw19_3",{color:"rgba(245,245,243,.46)",duration:.01},30.685);
+tl.to("#cw19_4",{color:"#F5F5F3",duration:.01},30.685).to("#cw19_4",{color:"rgba(245,245,243,.46)",duration:.01},31.378);
+tl.to("#cg20",{autoAlpha:1,duration:.01},31.328).to("#cg20",{autoAlpha:0,duration:.01},32.040);
+tl.to("#cw20_0",{color:"#F5F5F3",duration:.01},31.378).to("#cw20_0",{color:"rgba(245,245,243,.46)",duration:.01},31.725);
+tl.to("#cw20_1",{color:"#F5F5F3",duration:.01},31.725).to("#cw20_1",{color:"rgba(245,245,243,.46)",duration:.01},32.002);
+tl.to("#cg21",{autoAlpha:1,duration:.01},32.052).to("#cg21",{autoAlpha:0,duration:.01},33.504);
+tl.to("#cw21_0",{color:"#F5F5F3",duration:.01},32.102).to("#cw21_0",{color:"rgba(245,245,243,.46)",duration:.01},32.229);
+tl.to("#cw21_1",{color:"#F5F5F3",duration:.01},32.229).to("#cw21_1",{color:"rgba(245,245,243,.46)",duration:.01},32.802);
+tl.to("#cw21_2",{color:"#F5F5F3",duration:.01},32.802).to("#cw21_2",{color:"rgba(245,245,243,.46)",duration:.01},32.993);
+tl.to("#cw21_3",{color:"#F5F5F3",duration:.01},32.993).to("#cw21_3",{color:"rgba(245,245,243,.46)",duration:.01},33.375);
+tl.to("#cw21_4",{color:"#F5F5F3",duration:.01},33.375).to("#cw21_4",{color:"rgba(245,245,243,.46)",duration:.01},33.566);
+tl.to("#cg22",{autoAlpha:1,duration:.01},33.516).to("#cg22",{autoAlpha:0,duration:.01},35.413);
+tl.to("#cw22_0",{color:"#F5F5F3",duration:.01},33.566).to("#cw22_0",{color:"rgba(245,245,243,.46)",duration:.01},33.947);
+tl.to("#cw22_1",{color:"#F5F5F3",duration:.01},33.947).to("#cw22_1",{color:"rgba(245,245,243,.46)",duration:.01},34.138);
+tl.to("#cw22_2",{color:"#F5F5F3",duration:.01},34.138).to("#cw22_2",{color:"rgba(245,245,243,.46)",duration:.01},34.775);
+tl.to("#cw22_3",{color:"#F5F5F3",duration:.01},34.775).to("#cw22_3",{color:"rgba(245,245,243,.46)",duration:.01},34.965);
+tl.to("#cw22_4",{color:"#F5F5F3",duration:.01},34.965).to("#cw22_4",{color:"rgba(245,245,243,.46)",duration:.01},35.475);
+tl.to("#cg23",{autoAlpha:1,duration:.01},35.425).to("#cg23",{autoAlpha:0,duration:.01},35.831);
+tl.to("#cw23_0",{color:"#F5F5F3",duration:.01},35.475).to("#cw23_0",{color:"rgba(245,245,243,.46)",duration:.01},35.793);
+tl.to("#cg24",{autoAlpha:1,duration:.01},35.843).to("#cg24",{autoAlpha:0,duration:.01},37.621);
+tl.to("#cw24_0",{color:"#F5F5F3",duration:.01},35.893).to("#cw24_0",{color:"rgba(245,245,243,.46)",duration:.01},36.078);
+tl.to("#cw24_1",{color:"#F5F5F3",duration:.01},36.078).to("#cw24_1",{color:"rgba(245,245,243,.46)",duration:.01},36.387);
+tl.to("#cw24_2",{color:"#F5F5F3",duration:.01},36.387).to("#cw24_2",{color:"rgba(245,245,243,.46)",duration:.01},36.942);
+tl.to("#cw24_3",{color:"#F5F5F3",duration:.01},36.942).to("#cw24_3",{color:"rgba(245,245,243,.46)",duration:.01},37.128);
+tl.to("#cw24_4",{color:"#F5F5F3",duration:.01},37.128).to("#cw24_4",{color:"rgba(245,245,243,.46)",duration:.01},37.683);
+tl.to("#cg25",{autoAlpha:1,duration:.01},37.633).to("#cg25",{autoAlpha:0,duration:.01},39.165);
+tl.to("#cw25_0",{color:"#F5F5F3",duration:.01},37.683).to("#cw25_0",{color:"rgba(245,245,243,.46)",duration:.01},37.992);
+tl.to("#cw25_1",{color:"#F5F5F3",duration:.01},37.992).to("#cw25_1",{color:"rgba(245,245,243,.46)",duration:.01},38.424);
+tl.to("#cw25_2",{color:"#F5F5F3",duration:.01},38.424).to("#cw25_2",{color:"rgba(245,245,243,.46)",duration:.01},38.671);
+tl.to("#cw25_3",{color:"#F5F5F3",duration:.01},38.671).to("#cw25_3",{color:"rgba(245,245,243,.46)",duration:.01},38.918);
+tl.to("#cw25_4",{color:"#F5F5F3",duration:.01},38.918).to("#cw25_4",{color:"rgba(245,245,243,.46)",duration:.01},39.227);
+tl.to("#cg26",{autoAlpha:1,duration:.01},39.177).to("#cg26",{autoAlpha:0,duration:.01},40.770);
+tl.to("#cw26_0",{color:"#F5F5F3",duration:.01},39.227).to("#cw26_0",{color:"rgba(245,245,243,.46)",duration:.01},39.659);
+tl.to("#cw26_1",{color:"#F5F5F3",duration:.01},39.659).to("#cw26_1",{color:"rgba(245,245,243,.46)",duration:.01},39.906);
+tl.to("#cw26_2",{color:"#F5F5F3",duration:.01},39.906).to("#cw26_2",{color:"rgba(245,245,243,.46)",duration:.01},40.338);
+tl.to("#cw26_3",{color:"#F5F5F3",duration:.01},40.338).to("#cw26_3",{color:"rgba(245,245,243,.46)",duration:.01},40.647);
+tl.to("#cw26_4",{color:"#F5F5F3",duration:.01},40.647).to("#cw26_4",{color:"rgba(245,245,243,.46)",duration:.01},40.832);
+tl.to("#cg27",{autoAlpha:1,duration:.01},40.782).to("#cg27",{autoAlpha:0,duration:.01},42.614);
+tl.to("#cw27_0",{color:"#F5F5F3",duration:.01},40.832).to("#cw27_0",{color:"rgba(245,245,243,.46)",duration:.01},41.326);
+tl.to("#cw27_1",{color:"#F5F5F3",duration:.01},41.326).to("#cw27_1",{color:"rgba(245,245,243,.46)",duration:.01},41.635);
+tl.to("#cw27_2",{color:"#F5F5F3",duration:.01},41.635).to("#cw27_2",{color:"rgba(245,245,243,.46)",duration:.01},41.820);
+tl.to("#cw27_3",{color:"#F5F5F3",duration:.01},41.820).to("#cw27_3",{color:"rgba(245,245,243,.46)",duration:.01},42.067);
+tl.to("#cw27_4",{color:"#F5F5F3",duration:.01},42.067).to("#cw27_4",{color:"rgba(245,245,243,.46)",duration:.01},42.314);
+tl.to("#cg28",{autoAlpha:1,duration:.01},42.814).to("#cg28",{autoAlpha:0,duration:.01},44.452);
+tl.to("#cw28_0",{color:"#F5F5F3",duration:.01},42.864).to("#cw28_0",{color:"rgba(245,245,243,.46)",duration:.01},43.092);
+tl.to("#cw28_1",{color:"#F5F5F3",duration:.01},43.092).to("#cw28_1",{color:"rgba(245,245,243,.46)",duration:.01},43.660);
+tl.to("#cw28_2",{color:"#F5F5F3",duration:.01},43.660).to("#cw28_2",{color:"rgba(245,245,243,.46)",duration:.01},43.945);
+tl.to("#cw28_3",{color:"#F5F5F3",duration:.01},43.945).to("#cw28_3",{color:"rgba(245,245,243,.46)",duration:.01},44.229);
+tl.to("#cw28_4",{color:"#F5F5F3",duration:.01},44.229).to("#cw28_4",{color:"rgba(245,245,243,.46)",duration:.01},44.514);
+tl.to("#cg29",{autoAlpha:1,duration:.01},44.464).to("#cg29",{autoAlpha:0,duration:.01},45.988);
+tl.to("#cw29_0",{color:"#F5F5F3",duration:.01},44.514).to("#cw29_0",{color:"rgba(245,245,243,.46)",duration:.01},44.741);
+tl.to("#cw29_1",{color:"#F5F5F3",duration:.01},44.741).to("#cw29_1",{color:"rgba(245,245,243,.46)",duration:.01},44.969);
+tl.to("#cw29_2",{color:"#F5F5F3",duration:.01},44.969).to("#cw29_2",{color:"rgba(245,245,243,.46)",duration:.01},45.253);
+tl.to("#cw29_3",{color:"#F5F5F3",duration:.01},45.253).to("#cw29_3",{color:"rgba(245,245,243,.46)",duration:.01},45.595);
+tl.to("#cw29_4",{color:"#F5F5F3",duration:.01},45.595).to("#cw29_4",{color:"rgba(245,245,243,.46)",duration:.01},46.050);
+tl.to("#cg30",{autoAlpha:1,duration:.01},46.000).to("#cg30",{autoAlpha:0,duration:.01},47.681);
+tl.to("#cw30_0",{color:"#F5F5F3",duration:.01},46.050).to("#cw30_0",{color:"rgba(245,245,243,.46)",duration:.01},46.277);
+tl.to("#cw30_1",{color:"#F5F5F3",duration:.01},46.277).to("#cw30_1",{color:"rgba(245,245,243,.46)",duration:.01},46.789);
+tl.to("#cw30_2",{color:"#F5F5F3",duration:.01},46.789).to("#cw30_2",{color:"rgba(245,245,243,.46)",duration:.01},46.960);
+tl.to("#cw30_3",{color:"#F5F5F3",duration:.01},46.960).to("#cw30_3",{color:"rgba(245,245,243,.46)",duration:.01},47.188);
+tl.to("#cw30_4",{color:"#F5F5F3",duration:.01},47.188).to("#cw30_4",{color:"rgba(245,245,243,.46)",duration:.01},47.643);
+tl.to("#cg31",{autoAlpha:1,duration:.01},47.693).to("#cg31",{autoAlpha:0,duration:.01},49.613);
+tl.to("#cw31_0",{color:"#F5F5F3",duration:.01},47.743).to("#cw31_0",{color:"rgba(245,245,243,.46)",duration:.01},48.065);
+tl.to("#cw31_1",{color:"#F5F5F3",duration:.01},48.065).to("#cw31_1",{color:"rgba(245,245,243,.46)",duration:.01},48.644);
+tl.to("#cw31_2",{color:"#F5F5F3",duration:.01},48.644).to("#cw31_2",{color:"rgba(245,245,243,.46)",duration:.01},49.031);
+tl.to("#cw31_3",{color:"#F5F5F3",duration:.01},49.031).to("#cw31_3",{color:"rgba(245,245,243,.46)",duration:.01},49.288);
+tl.to("#cw31_4",{color:"#F5F5F3",duration:.01},49.288).to("#cw31_4",{color:"rgba(245,245,243,.46)",duration:.01},49.675);
+tl.to("#cg32",{autoAlpha:1,duration:.01},49.625).to("#cg32",{autoAlpha:0,duration:.01},51.416);
+tl.to("#cw32_0",{color:"#F5F5F3",duration:.01},49.675).to("#cw32_0",{color:"rgba(245,245,243,.46)",duration:.01},49.932);
+tl.to("#cw32_1",{color:"#F5F5F3",duration:.01},49.932).to("#cw32_1",{color:"rgba(245,245,243,.46)",duration:.01},50.190);
+tl.to("#cw32_2",{color:"#F5F5F3",duration:.01},50.190).to("#cw32_2",{color:"rgba(245,245,243,.46)",duration:.01},50.577);
+tl.to("#cw32_3",{color:"#F5F5F3",duration:.01},50.577).to("#cw32_3",{color:"rgba(245,245,243,.46)",duration:.01},50.899);
+tl.to("#cw32_4",{color:"#F5F5F3",duration:.01},50.899).to("#cw32_4",{color:"rgba(245,245,243,.46)",duration:.01},51.478);
+tl.to("#cg33",{autoAlpha:1,duration:.01},51.428).to("#cg33",{autoAlpha:0,duration:.01},52.962);
+tl.to("#cw33_0",{color:"#F5F5F3",duration:.01},51.478).to("#cw33_0",{color:"rgba(245,245,243,.46)",duration:.01},51.929);
+tl.to("#cw33_1",{color:"#F5F5F3",duration:.01},51.929).to("#cw33_1",{color:"rgba(245,245,243,.46)",duration:.01},52.122);
+tl.to("#cw33_2",{color:"#F5F5F3",duration:.01},52.122).to("#cw33_2",{color:"rgba(245,245,243,.46)",duration:.01},52.251);
+tl.to("#cw33_3",{color:"#F5F5F3",duration:.01},52.251).to("#cw33_3",{color:"rgba(245,245,243,.46)",duration:.01},52.702);
+tl.to("#cw33_4",{color:"#F5F5F3",duration:.01},52.702).to("#cw33_4",{color:"rgba(245,245,243,.46)",duration:.01},53.024);
+tl.to("#cg34",{autoAlpha:1,duration:.01},52.974).to("#cg34",{autoAlpha:0,duration:.01},54.805);
+tl.to("#cw34_0",{color:"#F5F5F3",duration:.01},53.024).to("#cw34_0",{color:"rgba(245,245,243,.46)",duration:.01},53.668);
+tl.to("#cw34_1",{color:"#F5F5F3",duration:.01},53.668).to("#cw34_1",{color:"rgba(245,245,243,.46)",duration:.01},53.990);
+tl.to("#cw34_2",{color:"#F5F5F3",duration:.01},53.990).to("#cw34_2",{color:"rgba(245,245,243,.46)",duration:.01},54.505);
+tl.to("#cg35",{autoAlpha:1,duration:.01},55.005).to("#cg35",{autoAlpha:0,duration:.01},56.907);
+tl.to("#cw35_0",{color:"#F5F5F3",duration:.01},55.055).to("#cw35_0",{color:"rgba(245,245,243,.46)",duration:.01},55.282);
+tl.to("#cw35_1",{color:"#F5F5F3",duration:.01},55.282).to("#cw35_1",{color:"rgba(245,245,243,.46)",duration:.01},55.509);
+tl.to("#cw35_2",{color:"#F5F5F3",duration:.01},55.509).to("#cw35_2",{color:"rgba(245,245,243,.46)",duration:.01},55.811);
+tl.to("#cw35_3",{color:"#F5F5F3",duration:.01},55.811).to("#cw35_3",{color:"rgba(245,245,243,.46)",duration:.01},56.189);
+tl.to("#cw35_4",{color:"#F5F5F3",duration:.01},56.189).to("#cw35_4",{color:"rgba(245,245,243,.46)",duration:.01},56.869);
+tl.to("#cg36",{autoAlpha:1,duration:.01},56.919).to("#cg36",{autoAlpha:0,duration:.01},59.004);
+tl.to("#cw36_0",{color:"#F5F5F3",duration:.01},56.969).to("#cw36_0",{color:"rgba(245,245,243,.46)",duration:.01},57.208);
+tl.to("#cw36_1",{color:"#F5F5F3",duration:.01},57.208).to("#cw36_1",{color:"rgba(245,245,243,.46)",duration:.01},57.928);
+tl.to("#cw36_2",{color:"#F5F5F3",duration:.01},57.928).to("#cw36_2",{color:"rgba(245,245,243,.46)",duration:.01},58.467);
+tl.to("#cw36_3",{color:"#F5F5F3",duration:.01},58.467).to("#cw36_3",{color:"rgba(245,245,243,.46)",duration:.01},58.707);
+tl.to("#cw36_4",{color:"#F5F5F3",duration:.01},58.707).to("#cw36_4",{color:"rgba(245,245,243,.46)",duration:.01},59.066);
+tl.to("#cg37",{autoAlpha:1,duration:.01},59.016).to("#cg37",{autoAlpha:0,duration:.01},60.803);
+tl.to("#cw37_0",{color:"#F5F5F3",duration:.01},59.066).to("#cw37_0",{color:"rgba(245,245,243,.46)",duration:.01},59.426);
+tl.to("#cw37_1",{color:"#F5F5F3",duration:.01},59.426).to("#cw37_1",{color:"rgba(245,245,243,.46)",duration:.01},59.726);
+tl.to("#cw37_2",{color:"#F5F5F3",duration:.01},59.726).to("#cw37_2",{color:"rgba(245,245,243,.46)",duration:.01},60.085);
+tl.to("#cw37_3",{color:"#F5F5F3",duration:.01},60.085).to("#cw37_3",{color:"rgba(245,245,243,.46)",duration:.01},60.565);
+tl.to("#cw37_4",{color:"#F5F5F3",duration:.01},60.565).to("#cw37_4",{color:"rgba(245,245,243,.46)",duration:.01},60.865);
+tl.to("#cg38",{autoAlpha:1,duration:.01},60.815).to("#cg38",{autoAlpha:0,duration:.01},62.361);
+tl.to("#cw38_0",{color:"#F5F5F3",duration:.01},60.865).to("#cw38_0",{color:"rgba(245,245,243,.46)",duration:.01},61.224);
+tl.to("#cw38_1",{color:"#F5F5F3",duration:.01},61.224).to("#cw38_1",{color:"rgba(245,245,243,.46)",duration:.01},61.584);
+tl.to("#cw38_2",{color:"#F5F5F3",duration:.01},61.584).to("#cw38_2",{color:"rgba(245,245,243,.46)",duration:.01},61.943);
+tl.to("#cw38_3",{color:"#F5F5F3",duration:.01},61.943).to("#cw38_3",{color:"rgba(245,245,243,.46)",duration:.01},62.183);
+tl.to("#cw38_4",{color:"#F5F5F3",duration:.01},62.183).to("#cw38_4",{color:"rgba(245,245,243,.46)",duration:.01},62.423);
+tl.to("#cg39",{autoAlpha:1,duration:.01},62.373).to("#cg39",{autoAlpha:0,duration:.01},63.979);
+tl.to("#cw39_0",{color:"#F5F5F3",duration:.01},62.423).to("#cw39_0",{color:"rgba(245,245,243,.46)",duration:.01},62.783);
+tl.to("#cw39_1",{color:"#F5F5F3",duration:.01},62.783).to("#cw39_1",{color:"rgba(245,245,243,.46)",duration:.01},63.082);
+tl.to("#cw39_2",{color:"#F5F5F3",duration:.01},63.082).to("#cw39_2",{color:"rgba(245,245,243,.46)",duration:.01},63.262);
+tl.to("#cw39_3",{color:"#F5F5F3",duration:.01},63.262).to("#cw39_3",{color:"rgba(245,245,243,.46)",duration:.01},63.622);
+tl.to("#cw39_4",{color:"#F5F5F3",duration:.01},63.622).to("#cw39_4",{color:"rgba(245,245,243,.46)",duration:.01},64.041);
+tl.to("#cg40",{autoAlpha:1,duration:.01},63.991).to("#cg40",{autoAlpha:0,duration:.01},64.559);
+tl.to("#cw40_0",{color:"#F5F5F3",duration:.01},64.041).to("#cw40_0",{color:"rgba(245,245,243,.46)",duration:.01},64.521);
+tl.to("#cg41",{autoAlpha:1,duration:.01},64.571).to("#cg41",{autoAlpha:0,duration:.01},65.828);
+tl.to("#cw41_0",{color:"#F5F5F3",duration:.01},64.621).to("#cw41_0",{color:"rgba(245,245,243,.46)",duration:.01},64.909);
+tl.to("#cw41_1",{color:"#F5F5F3",duration:.01},64.909).to("#cw41_1",{color:"rgba(245,245,243,.46)",duration:.01},65.082);
+tl.to("#cw41_2",{color:"#F5F5F3",duration:.01},65.082).to("#cw41_2",{color:"rgba(245,245,243,.46)",duration:.01},65.313);
+tl.to("#cw41_3",{color:"#F5F5F3",duration:.01},65.313).to("#cw41_3",{color:"rgba(245,245,243,.46)",duration:.01},65.601);
+tl.to("#cw41_4",{color:"#F5F5F3",duration:.01},65.601).to("#cw41_4",{color:"rgba(245,245,243,.46)",duration:.01},65.890);
+tl.to("#cg42",{autoAlpha:1,duration:.01},65.840).to("#cg42",{autoAlpha:0,duration:.01},68.035);
+tl.to("#cw42_0",{color:"#F5F5F3",duration:.01},65.890).to("#cw42_0",{color:"rgba(245,245,243,.46)",duration:.01},66.409);
+tl.to("#cw42_1",{color:"#F5F5F3",duration:.01},66.409).to("#cw42_1",{color:"rgba(245,245,243,.46)",duration:.01},66.582);
+tl.to("#cw42_2",{color:"#F5F5F3",duration:.01},66.582).to("#cw42_2",{color:"rgba(245,245,243,.46)",duration:.01},66.870);
+tl.to("#cw42_3",{color:"#F5F5F3",duration:.01},66.870).to("#cw42_3",{color:"rgba(245,245,243,.46)",duration:.01},67.332);
+tl.to("#cw42_4",{color:"#F5F5F3",duration:.01},67.332).to("#cw42_4",{color:"rgba(245,245,243,.46)",duration:.01},67.735);
+tl.to("#cg43",{autoAlpha:1,duration:.01},68.235).to("#cg43",{autoAlpha:0,duration:.01},70.399);
+tl.to("#cw43_0",{color:"#F5F5F3",duration:.01},68.285).to("#cw43_0",{color:"rgba(245,245,243,.46)",duration:.01},68.527);
+tl.to("#cw43_1",{color:"#F5F5F3",duration:.01},68.527).to("#cw43_1",{color:"rgba(245,245,243,.46)",duration:.01},69.252);
+tl.to("#cw43_2",{color:"#F5F5F3",duration:.01},69.252).to("#cw43_2",{color:"rgba(245,245,243,.46)",duration:.01},69.736);
+tl.to("#cw43_3",{color:"#F5F5F3",duration:.01},69.736).to("#cw43_3",{color:"rgba(245,245,243,.46)",duration:.01},69.978);
+tl.to("#cw43_4",{color:"#F5F5F3",duration:.01},69.978).to("#cw43_4",{color:"rgba(245,245,243,.46)",duration:.01},70.461);
+tl.to("#cg44",{autoAlpha:1,duration:.01},70.411).to("#cg44",{autoAlpha:0,duration:.01},72.313);
+tl.to("#cw44_0",{color:"#F5F5F3",duration:.01},70.461).to("#cw44_0",{color:"rgba(245,245,243,.46)",duration:.01},70.824);
+tl.to("#cw44_1",{color:"#F5F5F3",duration:.01},70.824).to("#cw44_1",{color:"rgba(245,245,243,.46)",duration:.01},71.247);
+tl.to("#cw44_2",{color:"#F5F5F3",duration:.01},71.247).to("#cw44_2",{color:"rgba(245,245,243,.46)",duration:.01},71.549);
+tl.to("#cw44_3",{color:"#F5F5F3",duration:.01},71.549).to("#cw44_3",{color:"rgba(245,245,243,.46)",duration:.01},71.852);
+tl.to("#cw44_4",{color:"#F5F5F3",duration:.01},71.852).to("#cw44_4",{color:"rgba(245,245,243,.46)",duration:.01},72.275);
+tl.to("#cg45",{autoAlpha:1,duration:.01},72.325).to("#cg45",{autoAlpha:0,duration:.01},74.173);
+tl.to("#cw45_0",{color:"#F5F5F3",duration:.01},72.375).to("#cw45_0",{color:"rgba(245,245,243,.46)",duration:.01},72.617);
+tl.to("#cw45_1",{color:"#F5F5F3",duration:.01},72.617).to("#cw45_1",{color:"rgba(245,245,243,.46)",duration:.01},73.022);
+tl.to("#cw45_2",{color:"#F5F5F3",duration:.01},73.022).to("#cw45_2",{color:"rgba(245,245,243,.46)",duration:.01},73.345);
+tl.to("#cw45_3",{color:"#F5F5F3",duration:.01},73.345).to("#cw45_3",{color:"rgba(245,245,243,.46)",duration:.01},73.750);
+tl.to("#cw45_4",{color:"#F5F5F3",duration:.01},73.750).to("#cw45_4",{color:"rgba(245,245,243,.46)",duration:.01},74.235);
+tl.to("#cg46",{autoAlpha:1,duration:.01},74.185).to("#cg46",{autoAlpha:0,duration:.01},76.295);
+tl.to("#cw46_0",{color:"#F5F5F3",duration:.01},74.235).to("#cw46_0",{color:"rgba(245,245,243,.46)",duration:.01},74.963);
+tl.to("#cw46_1",{color:"#F5F5F3",duration:.01},74.963).to("#cw46_1",{color:"rgba(245,245,243,.46)",duration:.01},75.206);
+tl.to("#cw46_2",{color:"#F5F5F3",duration:.01},75.206).to("#cw46_2",{color:"rgba(245,245,243,.46)",duration:.01},75.772);
+tl.to("#cw46_3",{color:"#F5F5F3",duration:.01},75.772).to("#cw46_3",{color:"rgba(245,245,243,.46)",duration:.01},76.257);
+tl.to("#cg47",{autoAlpha:1,duration:.01},76.307).to("#cg47",{autoAlpha:0,duration:.01},77.569);
+tl.to("#cw47_0",{color:"#F5F5F3",duration:.01},76.357).to("#cw47_0",{color:"rgba(245,245,243,.46)",duration:.01},76.651);
+tl.to("#cw47_1",{color:"#F5F5F3",duration:.01},76.651).to("#cw47_1",{color:"rgba(245,245,243,.46)",duration:.01},77.042);
+tl.to("#cw47_2",{color:"#F5F5F3",duration:.01},77.042).to("#cw47_2",{color:"rgba(245,245,243,.46)",duration:.01},77.531);
+tl.to("#cg48",{autoAlpha:1,duration:.01},77.581).to("#cg48",{autoAlpha:0,duration:.01},79.317);
+tl.to("#cw48_0",{color:"#F5F5F3",duration:.01},77.631).to("#cw48_0",{color:"rgba(245,245,243,.46)",duration:.01},78.053);
+tl.to("#cw48_1",{color:"#F5F5F3",duration:.01},78.053).to("#cw48_1",{color:"rgba(245,245,243,.46)",duration:.01},78.354);
+tl.to("#cw48_2",{color:"#F5F5F3",duration:.01},78.354).to("#cw48_2",{color:"rgba(245,245,243,.46)",duration:.01},78.655);
+tl.to("#cw48_3",{color:"#F5F5F3",duration:.01},78.655).to("#cw48_3",{color:"rgba(245,245,243,.46)",duration:.01},79.077);
+tl.to("#cw48_4",{color:"#F5F5F3",duration:.01},79.077).to("#cw48_4",{color:"rgba(245,245,243,.46)",duration:.01},79.379);
+tl.to("#cg49",{autoAlpha:1,duration:.01},79.329).to("#cg49",{autoAlpha:0,duration:.01},80.763);
+tl.to("#cw49_0",{color:"#F5F5F3",duration:.01},79.379).to("#cw49_0",{color:"rgba(245,245,243,.46)",duration:.01},79.680);
+tl.to("#cw49_1",{color:"#F5F5F3",duration:.01},79.680).to("#cw49_1",{color:"rgba(245,245,243,.46)",duration:.01},80.042);
+tl.to("#cw49_2",{color:"#F5F5F3",duration:.01},80.042).to("#cw49_2",{color:"rgba(245,245,243,.46)",duration:.01},80.283);
+tl.to("#cw49_3",{color:"#F5F5F3",duration:.01},80.283).to("#cw49_3",{color:"rgba(245,245,243,.46)",duration:.01},80.645);
+tl.to("#cw49_4",{color:"#F5F5F3",duration:.01},80.645).to("#cw49_4",{color:"rgba(245,245,243,.46)",duration:.01},80.825);
+tl.to("#cg50",{autoAlpha:1,duration:.01},80.775).to("#cg50",{autoAlpha:0,duration:.01},82.853);
+tl.to("#cw50_0",{color:"#F5F5F3",duration:.01},80.825).to("#cw50_0",{color:"rgba(245,245,243,.46)",duration:.01},81.187);
+tl.to("#cw50_1",{color:"#F5F5F3",duration:.01},81.187).to("#cw50_1",{color:"rgba(245,245,243,.46)",duration:.01},81.549);
+tl.to("#cw50_2",{color:"#F5F5F3",duration:.01},81.549).to("#cw50_2",{color:"rgba(245,245,243,.46)",duration:.01},81.910);
+tl.to("#cw50_3",{color:"#F5F5F3",duration:.01},81.910).to("#cw50_3",{color:"rgba(245,245,243,.46)",duration:.01},82.272);
+tl.to("#cw50_4",{color:"#F5F5F3",duration:.01},82.272).to("#cw50_4",{color:"rgba(245,245,243,.46)",duration:.01},82.815);
+tl.to("#cg51",{autoAlpha:1,duration:.01},82.865).to("#cg51",{autoAlpha:0,duration:.01},85.087);
+tl.to("#cw51_0",{color:"#F5F5F3",duration:.01},82.915).to("#cw51_0",{color:"rgba(245,245,243,.46)",duration:.01},83.246);
+tl.to("#cw51_1",{color:"#F5F5F3",duration:.01},83.246).to("#cw51_1",{color:"rgba(245,245,243,.46)",duration:.01},83.659);
+tl.to("#cw51_2",{color:"#F5F5F3",duration:.01},83.659).to("#cw51_2",{color:"rgba(245,245,243,.46)",duration:.01},84.073);
+tl.to("#cw51_3",{color:"#F5F5F3",duration:.01},84.073).to("#cw51_3",{color:"rgba(245,245,243,.46)",duration:.01},84.404);
+tl.to("#cw51_4",{color:"#F5F5F3",duration:.01},84.404).to("#cw51_4",{color:"rgba(245,245,243,.46)",duration:.01},85.149);
+tl.to("#cg52",{autoAlpha:1,duration:.01},85.099).to("#cg52",{autoAlpha:0,duration:.01},88.015);
+tl.to("#cw52_0",{color:"#F5F5F3",duration:.01},85.149).to("#cw52_0",{color:"rgba(245,245,243,.46)",duration:.01},85.811);
+tl.to("#cw52_1",{color:"#F5F5F3",duration:.01},85.811).to("#cw52_1",{color:"rgba(245,245,243,.46)",duration:.01},86.225);
+tl.to("#cw52_2",{color:"#F5F5F3",duration:.01},86.225).to("#cw52_2",{color:"rgba(245,245,243,.46)",duration:.01},86.556);
+tl.to("#cw52_3",{color:"#F5F5F3",duration:.01},86.556).to("#cw52_3",{color:"rgba(245,245,243,.46)",duration:.01},87.218);
+tl.to("#cw52_4",{color:"#F5F5F3",duration:.01},87.218).to("#cw52_4",{color:"rgba(245,245,243,.46)",duration:.01},87.715);
+tl.to("#cg53",{autoAlpha:1,duration:.01},88.215).to("#cg53",{autoAlpha:0,duration:.01},89.860);
+tl.to("#cw53_0",{color:"#F5F5F3",duration:.01},88.265).to("#cw53_0",{color:"rgba(245,245,243,.46)",duration:.01},88.449);
+tl.to("#cw53_1",{color:"#F5F5F3",duration:.01},88.449).to("#cw53_1",{color:"rgba(245,245,243,.46)",duration:.01},88.817);
+tl.to("#cw53_2",{color:"#F5F5F3",duration:.01},88.817).to("#cw53_2",{color:"rgba(245,245,243,.46)",duration:.01},89.063);
+tl.to("#cw53_3",{color:"#F5F5F3",duration:.01},89.063).to("#cw53_3",{color:"rgba(245,245,243,.46)",duration:.01},89.677);
+tl.to("#cw53_4",{color:"#F5F5F3",duration:.01},89.677).to("#cw53_4",{color:"rgba(245,245,243,.46)",duration:.01},89.922);
+tl.to("#cg54",{autoAlpha:1,duration:.01},89.872).to("#cg54",{autoAlpha:0,duration:.01},90.820);
+tl.to("#cw54_0",{color:"#F5F5F3",duration:.01},89.922).to("#cw54_0",{color:"rgba(245,245,243,.46)",duration:.01},90.168);
+tl.to("#cw54_1",{color:"#F5F5F3",duration:.01},90.168).to("#cw54_1",{color:"rgba(245,245,243,.46)",duration:.01},90.782);
+tl.to("#cg55",{autoAlpha:1,duration:.01},90.832).to("#cg55",{autoAlpha:0,duration:.01},92.758);
+tl.to("#cw55_0",{color:"#F5F5F3",duration:.01},90.882).to("#cw55_0",{color:"rgba(245,245,243,.46)",duration:.01},91.070);
+tl.to("#cw55_1",{color:"#F5F5F3",duration:.01},91.070).to("#cw55_1",{color:"rgba(245,245,243,.46)",duration:.01},91.570);
+tl.to("#cw55_2",{color:"#F5F5F3",duration:.01},91.570).to("#cw55_2",{color:"rgba(245,245,243,.46)",duration:.01},91.882);
+tl.to("#cw55_3",{color:"#F5F5F3",duration:.01},91.882).to("#cw55_3",{color:"rgba(245,245,243,.46)",duration:.01},92.195);
+tl.to("#cw55_4",{color:"#F5F5F3",duration:.01},92.195).to("#cw55_4",{color:"rgba(245,245,243,.46)",duration:.01},92.820);
+tl.to("#cg56",{autoAlpha:1,duration:.01},92.770).to("#cg56",{autoAlpha:0,duration:.01},94.508);
+tl.to("#cw56_0",{color:"#F5F5F3",duration:.01},92.820).to("#cw56_0",{color:"rgba(245,245,243,.46)",duration:.01},93.070);
+tl.to("#cw56_1",{color:"#F5F5F3",duration:.01},93.070).to("#cw56_1",{color:"rgba(245,245,243,.46)",duration:.01},93.382);
+tl.to("#cw56_2",{color:"#F5F5F3",duration:.01},93.382).to("#cw56_2",{color:"rgba(245,245,243,.46)",duration:.01},93.570);
+tl.to("#cw56_3",{color:"#F5F5F3",duration:.01},93.570).to("#cw56_3",{color:"rgba(245,245,243,.46)",duration:.01},94.195);
+tl.to("#cw56_4",{color:"#F5F5F3",duration:.01},94.195).to("#cw56_4",{color:"rgba(245,245,243,.46)",duration:.01},94.570);
+tl.to("#cg57",{autoAlpha:1,duration:.01},94.520).to("#cg57",{autoAlpha:0,duration:.01},96.071);
+tl.to("#cw57_0",{color:"#F5F5F3",duration:.01},94.570).to("#cw57_0",{color:"rgba(245,245,243,.46)",duration:.01},94.820);
+tl.to("#cw57_1",{color:"#F5F5F3",duration:.01},94.820).to("#cw57_1",{color:"rgba(245,245,243,.46)",duration:.01},95.132);
+tl.to("#cw57_2",{color:"#F5F5F3",duration:.01},95.132).to("#cw57_2",{color:"rgba(245,245,243,.46)",duration:.01},95.382);
+tl.to("#cw57_3",{color:"#F5F5F3",duration:.01},95.382).to("#cw57_3",{color:"rgba(245,245,243,.46)",duration:.01},95.820);
+tl.to("#cw57_4",{color:"#F5F5F3",duration:.01},95.820).to("#cw57_4",{color:"rgba(245,245,243,.46)",duration:.01},96.133);
+tl.to("#cg58",{autoAlpha:1,duration:.01},96.083).to("#cg58",{autoAlpha:0,duration:.01},97.433);
+tl.to("#cw58_0",{color:"#F5F5F3",duration:.01},96.133).to("#cw58_0",{color:"rgba(245,245,243,.46)",duration:.01},96.383);
+tl.to("#cw58_1",{color:"#F5F5F3",duration:.01},96.383).to("#cw58_1",{color:"rgba(245,245,243,.46)",duration:.01},96.633);
+tl.to("#cw58_2",{color:"#F5F5F3",duration:.01},96.633).to("#cw58_2",{color:"rgba(245,245,243,.46)",duration:.01},97.133);
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>
