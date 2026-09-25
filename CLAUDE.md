@@ -63,7 +63,13 @@ Both channels use the same style and voice. Keep them constant so each channel r
   verified*, and give the user a verification checklist.
 - **HeyGen `create_speech` needs separate `api` credits**, which the Creator plan lacks.
   No detached VO stem is available; narration is baked into the render.
-- **Higgsfield: 0 credits.** Unusable for B-roll unless topped up.
+- **Higgsfield: ~530 credits** (Sep 2026). It's the only connected text-to-image generator
+  (GPT Image 2.5 at 2K is ~1.4 credits per image). **Generate one image at a time and ask the
+  user before spending any more.**
+- **Adobe connector: no image generation** (generative AI is disabled apart from outpainting).
+  Use it at no generation cost to **look at images** (`asset_inline_preview` fetches URLs this
+  container can't reach, e.g. Higgsfield's cloudfront), for Photoshop-style edits, for
+  Stock search, and for text layout in Express.
 - **vidIQ: ~1 credit.** Thumbnail generation costs 22, scoring 5. Needs a top-up.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.

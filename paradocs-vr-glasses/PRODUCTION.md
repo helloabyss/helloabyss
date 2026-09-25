@@ -92,3 +92,8 @@ The hardware follows reported descriptions (UploadVR, VR.org): chunky glasses-li
 magnesium alloy, opaque front, sensors on the temple undersides, nose pads, no strap, thin cable
 to a ~two-phone-sized puck. No Meta imagery used. Text: "META" / ~~VR HEADSET~~ / "$1,299 GLASSES".
 Name in plain text only, no logo. Credit rule from now on: **generate one image at a time and ask before any more.**
+
+**v2 reviewed via Adobe `asset_inline_preview`:** "META" / red-struck "VR HEADSET" / "$1,299 GLASSES"
+all spelled correctly and readable. Chunky graphite glasses with an opaque black front, corner
+cameras, nose pads, no strap, cable to a puck. No logos. Nitpicks: the top of "VR HEADSET" is
+slightly cropped by the strike band, and the puck is round rather than phone-shaped. **Usable as is.**
