@@ -113,6 +113,16 @@ def build_spec(src, se_span, ph_span, dur):
     # a cue never overlaps the next one
     for k in range(len(cues) - 1):
         cues[k]["b"] = min(cues[k]["b"], cues[k + 1]["a"])
+    # no cue shorter than MIN_CUE: borrow time from the following cue (STYLE.md captions)
+    MIN_CUE = 0.55
+    for k in range(len(cues) - 1):
+        short = MIN_CUE - (cues[k]["b"] - cues[k]["a"])
+        if short > 0:
+            nxt = cues[k + 1]
+            room = max(0.0, (nxt["b"] - nxt["a"]) - MIN_CUE)
+            shift = min(short, room)
+            cues[k]["b"] = round(cues[k]["b"] + shift, 3)
+            nxt["a"] = round(nxt["a"] + shift, 3)
     return {"dur": round(dur, 3), "eyebrow": src["eyebrow"], "date": src["date"],
             "source": src["source"], "plates": src["plates"], "beats": beats, "cues": cues}
 
