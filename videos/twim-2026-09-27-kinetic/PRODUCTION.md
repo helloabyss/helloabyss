@@ -129,3 +129,28 @@ An absolutely positioned element with no width and no right anchor collapses to 
 just invisible.** Contrast, motion, layout and lint all reported green on a scene that was
 rendering nothing. This is the standing argument for pulling real frames out of the MP4 on
 every build, not trusting the validator.
+
+---
+
+## Voiced cut — Alex Wright + B-roll (HeyGen)
+
+User direction, 2026-09-27: **"I want videos that are produced with the Alex Wright VO. Add
+b-roll with fitting pictures too."** This is now the default for the channel.
+
+The locked voice is only reachable through HeyGen's video agent, and HeyGen's CDN is blocked
+here, so the voiced version is a **HeyGen render**, not this HyperFrames build with a new audio
+track. B-roll suits that path: `CLAUDE.md` already specifies cinematic photography as the base
+layer with motion graphics over it.
+
+- VO: `scripts/2026-09-27-vo.txt` — 157 words, facts from `research/2026-09-27.md`, rewritten
+  for the ear (the hook uses the index ratio rather than "almost nothing in it did", which leaned
+  on single-sourced sector data)
+- `session_id` `d89984c8f1c242ce9d8ebaf9195d0e3c` · `video_id` `692226063fb54a55a502206ad478ac53`
+- generate mode, portrait, Economist style, Alex Wright `0db3abd8…`, glossary `c9064148…`
+- B-roll brief per beat: financial-district skyline, blurred trading screens, stone columns and
+  bond paper, empty boardroom, desk calendar, wafer and server racks, empty factory floor, empty
+  office, sunrise. No faces, logos, seals or signage; graded dark and desaturated
+- Budget: ~45 credits against a 110 balance
+
+The balance was 110, not the 168 left after the 2026-09-25 render: a 40s video titled
+"Claude Opus 5.5: The Fact-Check" was created on the account outside this session.
