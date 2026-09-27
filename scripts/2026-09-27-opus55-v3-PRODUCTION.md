@@ -17,6 +17,7 @@ in Alex Wright's voice.
 | Mode / orientation | chat / portrait |
 | Glossary | `c7cb764ee025432caa879e8d76048c7f` |
 | Blueprint | Agent timed it at ~42 s to keep the VO verbatim; approved as is |
+| Output | video `0ab25010503441d1bb3e707a7e95a9ee`, 40.39 s, 1080×1920 (https://app.heygen.com/videos/0ab25010503441d1bb3e707a7e95a9ee) |
 
 ## B: rebuilt engine (`build/opus55v3/`)
 
@@ -60,8 +61,10 @@ caption crowding, OPUS/5.5 collision, date pill vs caption).
 |---|---|
 | Higgsfield gpt_image_2_5 × 2 | 0.5 credits |
 | Higgsfield seedance preflight / refused | 0 |
-| HeyGen create_speech (99 words) | ~2–3 premium credits |
-| HeyGen Video Agent (A) | see HeyGen balance after render |
+| **Higgsfield "Seed Audio 1.0" −6.9 at 21:45:37Z** | **Not requested by this session.** No generate_audio call was made. Unexplained, like the five 2.75 charges on Sep 25. Owner to check the Higgsfield history. |
+| HeyGen create_speech + Video Agent (A) | 29 premium credits combined (141 → 112) |
+
+Balances after: Higgsfield 505.1 (from 512.5), HeyGen 112 premium (reset 2026-10-06).
 
 ## Verification checklist (owner)
 
