@@ -2,6 +2,12 @@
 
 Every short uses this. Build the HeyGen brief from the template at the bottom.
 
+> **Superseded in part, 2026-09-27.** The owner approved `STANDARD.md` (Opus 5.5 v4) as the
+> standard Short. For engine-built Shorts it overrides this file's **dark, desaturated grade**
+> (§3; now bright), its **1.2–1.8 s cut rate** (§2; now a cut per sentence with continuous
+> in-scene motion) and its **~55–70 s length** (§5; now about 50 s). Everything else here still
+> applies, and the §6 brief remains the template for the HeyGen Video Agent route.
+
 ---
 
 ## 1. Layer stack (imagery-first)

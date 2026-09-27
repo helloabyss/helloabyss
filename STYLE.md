@@ -7,6 +7,10 @@ graphics and kinetic text.
 Narration settings live in `VO_PROFILE.md` and are locked. This file governs everything
 else: what the show sounds like in writing, how it is built, and what it looks like.
 
+**Build standard:** `STANDARD.md` (owner sign-off 2026-09-27) defines how every Short is built:
+script beats, scene grammar, B-roll, captions, music and whooshes, and the pipeline. It replaces
+the old dark, desaturated grade with a bright one (§0 updated).
+
 ---
 
 ## 0. Relationship to `STYLE-GUIDE.md` — read this first
@@ -24,7 +28,7 @@ Three places TWiT deliberately diverges, and why:
 | **No identifiable people** at all | No *presenter*; third-party footage **may** contain people, attributed on screen | "Faceless" here means the channel has no host and no avatar. A keynote clip of an executive announcing the thing is the news. |
 
 Everything else carries over unchanged and is **not** open for reinterpretation: imagery
-first, dark and desaturated grade, continuous motion, burned-in captions, no clickbait, no
+first, bright grade (`STANDARD.md`), continuous motion, burned-in captions, no clickbait, no
 subscribe animations, no emoji, no sparkles, no neon.
 
 `CLAUDE.md`'s compliance card ("Educational only. Not financial advice.") is a

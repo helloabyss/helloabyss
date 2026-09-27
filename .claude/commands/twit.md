@@ -15,6 +15,8 @@ Produce one finished 50–60s faceless vertical Short covering the last 7 days o
    **Never change it** unless the channel owner says so explicitly, in those words.
    Take from it: the word-count band, the WPM, the pronunciation lexicon, the failure list.
 2. Read **`STYLE.md`** for voice, format, visual system and rules.
+   Read **`STANDARD.md`**, the owner-approved build standard (2026-09-27). Its beat order,
+   scene grammar, B-roll, captions and audio rules are how every episode is built.
 3. Read **`ARCHIVE.md`**. Everything in it is ineligible.
 4. Set `DATE` = today (or the date in `$ARGUMENTS`). The research window is
    **`DATE − 7 days` → `DATE`**, inclusive. Nothing older. Ever.
@@ -94,6 +96,11 @@ count and the estimated runtime at the three observed WPM rates.
   paper over it with a stock cliché.
 - Apply the `STYLE.md` visual system: amber wipe between beats, lower-third on each beat's
   first frame, source attribution under third-party footage.
+
+- **Build it with the standard engine** (`STANDARD.md` §2, §8): each row becomes a scene in
+  `build/<ep>/scenes.js`. Alternate B-roll and graphic scenes, key every landing to its spoken
+  word, and use 3–5 fresh `gpt_image_2_5` B-roll images. Nothing is reused from earlier episodes.
+  Run the local `preview.js` layout check before any paid step.
 
 ## Step 5 — ASSET MANIFEST
 

@@ -16,16 +16,20 @@ more honest and better content than a promo. Every video carries an on-screen
 
 ## House style — apply to every short
 
-**Read `STYLE-GUIDE.md` and build the brief from its template.** It is the channel's
-locked visual identity. Summary of the non-negotiables:
+**`STANDARD.md` is the approved Short (owner sign-off 2026-09-27, reference: Opus 5.5 v4).**
+Build every Short to it with the engine in `build/standard/`. Where it disagrees with
+`STYLE-GUIDE.md`, `STANDARD.md` wins. `STYLE-GUIDE.md` still holds the HeyGen Video Agent brief
+template and the identity rules below. Summary of the non-negotiables:
 
 - **Imagery-first, three-layer stack.** Cinematic photographic imagery is the BASE layer,
   motion graphics over it, type and captions on top. Never typography on abstract
   backgrounds — that was tried and rejected.
 - **Faceless.** No avatars, no presenters, no identifiable people, ever.
 - **No real corporate logos or badges.** Use plain text name-tags.
-- **Three-colour editorial palette** — near-black, white, one red accent. Imagery graded
-  dark and desaturated. No neon, gradients, sparkles or emoji.
+- **Three-colour editorial palette.** Near-black, white and one accent (amber for tech,
+  red for finance). Imagery is graded **bright** per `STANDARD.md`; the owner rejected the dark,
+  desaturated grade on 2026-09-27. No neon, gradients, sparkles or emoji.
+- **Music bed and a whoosh on every cut** (`STANDARD.md` §6), with fresh B-roll every video, never reused.
 - **Dramatic motion**, but from camera and animation, not decoration.
 - **No clickbait.** No subscribe animations, no "what they don't want you to know" CTAs.
   Close on something the viewer can act on.
@@ -57,3 +61,5 @@ Keep style and voice constant across videos so the channel reads as one series.
 
 One directory per video: `SCRIPT.md` (VO, fact table, shot list, packaging) and
 `PRODUCTION.md` (session IDs, settings, verification checklist, constraints hit).
+Engine-built Shorts: `build/<ep>/` (`scenes.js`, `words.json`) on top of `build/standard/`
+(`core.js`, `render.sh`, `preview.js`, `words.py`), with records in `scripts/<date>-<slug>-*`.
