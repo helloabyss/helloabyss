@@ -1,0 +1,7 @@
+Anthropic's new AI wrote this video. Here's what it caught.
+
+It sent three research agents across the web at once. Together they checked seventeen stories. They spotted a reported robot speed that didn't fit the robot's own finish time. And a rocket launch everyone expected? It hadn't happened yet.
+
+That AI is Claude Opus five point five, released September twenty-second. Anthropic says it matches Fable five point one, its most capable public model, on most work. At less than half the price: four dollars in, twenty out, per million tokens.
+
+The benchmarks are Anthropic's claims. The fact-checking was real.

@@ -1,0 +1,155 @@
+<!doctype html><html><head><meta charset=utf-8><style>
+html,body{margin:0;background:#0B0B0D}canvas{display:block}</style></head>
+<body><canvas id=c width=1080 height=1920></canvas>
+<script>
+// Opus 5.5 v3 — fully animated Short. Every beat moves; no reused stills.
+// Timing comes from HeyGen create_speech word timestamps (words.json).
+const W=1080,H=1920,c=document.getElementById('c'),x=c.getContext('2d');
+const INK='#0B0B0D',PAPER='#F4F3EF',ACC='#FFB020',RED='#FF4A3D',MUTE='#8A8A86';
+const F='"Montserrat","Liberation Sans","Helvetica Neue",Arial,sans-serif';
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t;
+const eo=t=>1-Math.pow(1-cl(t),3), eio=t=>{t=cl(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+const back=t=>{t=cl(t);const s=1.9;return 1+(s+1)*Math.pow(t-1,3)+s*Math.pow(t-1,2)};
+const prog=(t,a,d)=>cl((t-a)/d);
+let WORDS=[],DUR=44,IMG={};
+function font(sz,w=800){x.font=`${w} ${sz}px ${F}`}
+function txt(s,X,Y,sz,col,w=800,al='center',ls=0){font(sz,w);x.fillStyle=col;x.textAlign=al;x.textBaseline='alphabetic';
+  if(ls){x.letterSpacing=ls+'px'}x.fillText(s,X,Y);if(ls)x.letterSpacing='0px'}
+function rr(X,Y,w,h,r){x.beginPath();x.roundRect(X,Y,w,h,r)}
+function T(i){return WORDS[i]}             // word by index
+const nrm=s=>s.toLowerCase().replace(/[^a-z0-9'-]/g,'');
+function at(word,from=0){const q=nrm(word);for(let i=from;i<WORDS.length;i++)if(nrm(WORDS[i].w)===q)return WORDS[i].s;return 0}
+
+// ---------- scene boundaries (set in init from word times) ----------
+let S=[];
+function cover(img,t0,t,dir){ // image with strong continuous camera move
+  const p=prog(t,t0,6),k=1.12+0.22*eio(p);const iw=img.width,ih=img.height,s=Math.max(W/iw,H/ih)*k;
+  const dw=iw*s,dh=ih*s;x.drawImage(img,(W-dw)/2+dir*lerp(60,-60,p),(H-dh)/2+lerp(30,-40,p),dw,dh)}
+function flashIn(t,t0){const a=1-prog(t,t0,.22);if(a>0){x.fillStyle=`rgba(255,255,255,${.55*a})`;x.fillRect(0,0,W,H)}}
+function camera(t,t0,fn){ // whip-in: scale + slide at scene start
+  const p=eo(prog(t,t0,.35));x.save();x.translate(W/2,H/2);x.scale(lerp(1.18,1,p)+0.012*Math.sin(t*1.3),lerp(1.18,1,p)+0.012*Math.sin(t*1.3));
+  x.rotate(lerp(-0.035,0,p));x.translate(-W/2+lerp(140,0,p),-H/2);fn();x.restore()}
+
+// ---------- scenes ----------
+const SC=[
+// 0 HOOK — terminal types, two catches pop
+(t,a,b)=>{x.fillStyle=INK;x.fillRect(0,0,W,H);
+  const z=1+0.10*eio(prog(t,a,b-a));x.save();x.translate(W/2,860);x.scale(z,z);x.translate(-W/2,-860);
+  rr(60,520,960,560,26);x.fillStyle='#16161A';x.fill();x.strokeStyle='#2A2A30';x.lineWidth=3;x.stroke();
+  [RED,ACC,'#4CC38A'].forEach((col,i)=>{x.beginPath();x.arc(120+i*44,566,12,0,7);x.fillStyle=col;x.fill()});
+  const L=['> research this week in tech','> fact-check every claim','> write the video'];
+  L.forEach((s,i)=>{const st=a+.15+i*.55,n=Math.floor(cl((t-st)/.4)*s.length);if(t>st)txt(s.slice(0,n)+(n<s.length&&Math.floor(t*6)%2?'▌':''),100,660+i*84,46,i==2?'#FFFFFF':'#BDBDB8',600,'left')});
+  const ct=at('caught.')-.25;[['SPEED MISMATCH',0],['LAUNCH NOT FLOWN',1]].forEach(([s,i])=>{const p=back(prog(t,ct+i*.28,.35));if(p<=0)return;
+    x.save();x.translate(540,1170+i*120);x.scale(p,p);rr(-400,-44,800,88,14);x.fillStyle=i?RED:ACC;x.fill();
+    txt('!  '+s,0,16,44,INK,900,'center',2);x.restore()});
+  x.restore();
+  // disclosure card (first 4 s)
+  const d=cl(1-prog(t,3.7,.3));if(d>0){x.globalAlpha=d;rr(160,190,760,120,16);x.fillStyle='rgba(255,255,255,.1)';x.fill();
+    txt('EDUCATIONAL ONLY. NOT FINANCIAL ADVICE.',540,240,30,'#FFFFFF',700,'center',2);txt('MADE WITH CLAUDE OPUS 5.5',540,286,26,ACC,700,'center',3);x.globalAlpha=1}},
+// 1 THREE AGENTS — racing lanes with live counters
+(t,a,b)=>{camera(t,a,()=>{x.fillStyle=PAPER;x.fillRect(-200,-200,W+400,H+400);
+  txt('3 AGENTS. AT ONCE.',540,420,72,INK,900,'center',1);
+  const lanes=[['SPACE',37],['AI + BIG TECH',44],['SCIENCE',68]];
+  lanes.forEach(([n,v],i)=>{const y=620+i*260,p=eio(prog(t,a+.25+i*.08,b-a-.9)),w=860*p*(v/68);
+    txt(n,110,y-26,36,INK,800,'left',2);rr(110,y,860,110,55);x.fillStyle='#E2E0DA';x.fill();
+    if(w>0){rr(110,y,Math.max(110,w),110,55);x.fillStyle=i==2?ACC:INK;x.fill()}
+    // runner dot pulse
+    const px=110+Math.max(55,w-55);x.beginPath();x.arc(px,y+55,30+6*Math.sin(t*14+i),0,7);x.fillStyle='#FFFFFF';x.fill();
+    txt(String(Math.round(v*p)),970,y-26,56,i==2?'#B87400':INK,900,'right');});
+  txt('tool calls per agent',540,1400,34,MUTE,600,'center')})},
+// 2 SEVENTEEN STORIES — fast scrolling checklist + counter
+(t,a,b)=>{camera(t,a,()=>{x.fillStyle=INK;x.fillRect(-200,-200,W+400,H+400);
+  const rows=['Chip export rules','Robot marathon','Starship Flight 14','Opus 5.5 launch','Muon imaging','Humanoid hands','Patent verdict','EU AI Act date','Quantum error rates','Battery recall','Satellite outage','Open-weights model','Fusion shot','Phone launch','Data-centre power','Drone delivery','Browser agent'];
+  const sc=eio(prog(t,a,b-a))*1150;
+  x.save();x.beginPath();x.rect(0,300,W,1000);x.clip();
+  rows.forEach((r,i)=>{const y=380+i*120-sc+300;const ck=t>a+.2+i*.15;
+    rr(90,y-64,900,96,14);x.fillStyle=ck?'#1E1E24':'#141418';x.fill();
+    txt(r,140,y,42,ck?'#FFFFFF':'#6A6A70',700,'left');
+    if(ck){x.strokeStyle=ACC;x.lineWidth=10;x.lineCap='round';x.beginPath();x.moveTo(900,y-18);x.lineTo(925,y+6);x.lineTo(960,y-42);x.stroke()}});
+  x.restore();const n=Math.min(17,Math.floor(cl((t-a-.2)/.15)+0)+0);
+  txt(String(cl(Math.floor((t-a-.2)/.15)+1,0,17)),540,250,170,ACC,900,'center');txt('STORIES CHECKED',540,1400,44,'#FFFFFF',800,'center',4)})},
+// 3 ROBOT — moving photo + speed maths
+(t,a,b)=>{x.fillStyle=INK;x.fillRect(0,0,W,H);if(IMG.robot)cover(IMG.robot,a,t,1);
+  // speed streaks
+  x.strokeStyle='rgba(255,255,255,.25)';x.lineWidth=4;for(let i=0;i<14;i++){const y=(i*137+ (t*900)%137)%H,xx=((i*331+t*2400)%(W+600))-300;x.beginPath();x.moveTo(xx,y);x.lineTo(xx-260,y);x.stroke()}
+  const g=x.createLinearGradient(0,900,0,1500);g.addColorStop(0,'rgba(11,11,13,0)');g.addColorStop(1,'rgba(11,11,13,.85)');x.fillStyle=g;x.fillRect(0,900,W,1020);
+  const p1=back(prog(t,a+.3,.4));x.save();x.translate(540,300);x.scale(p1,p1);rr(-440,-120,880,240,22);x.fillStyle='rgba(11,11,13,.82)';x.fill();
+  txt('42.195 km  ÷  4:19:52',0,-20,54,'#FFFFFF',800);const p2=prog(t,at('speed')-.1,.3);
+  if(p2>0){x.globalAlpha=p2;txt('= 2.71 m/s',0,72,76,ACC,900);x.globalAlpha=1}x.restore();
+  const p3=back(prog(t,at("didn't")-.15,.35));if(p3>0){x.save();x.translate(540,720);x.scale(p3,p3);
+    txt('REPORTED',0,-70,36,'#FFFFFF',700,'center',4);txt('2.64 m/s',0,30,110,'#FFFFFF',900);
+    const s=eo(prog(t,at("didn't"),.35));x.strokeStyle=RED;x.lineWidth=16;x.beginPath();x.moveTo(-250,-5);x.lineTo(-250+500*s,-5);x.stroke();x.restore()}
+  flashIn(t,a)},
+// 4 ROCKET — push-in + stamp
+(t,a,b)=>{x.fillStyle=INK;x.fillRect(0,0,W,H);const sh=t>at('hadn\'t')&&t<at('hadn\'t')+.3?8:0;
+  x.save();x.translate((Math.random()-.5)*sh,(Math.random()-.5)*sh);if(IMG.rocket)cover(IMG.rocket,a,t,-1);x.restore();
+  const p=back(prog(t,at('expected?')-.2,.35));if(p>0){x.save();x.translate(540,420);x.scale(p,p);txt('LAUNCHED?',0,0,120,'#FFFFFF',900,'center',2);x.restore()}
+  const q=prog(t,at("hadn't")-.1,.25);if(q>0){const s=lerp(2.4,1,eo(q));x.save();x.translate(540,760);x.rotate(-0.12);x.scale(s,s);x.globalAlpha=cl(q*2);
+    x.strokeStyle=RED;x.lineWidth=14;rr(-330,-100,660,200,12);x.stroke();txt('NOT YET',0,40,120,RED,900,'center',4);x.restore();
+    x.globalAlpha=cl((t-at("hadn't")-.4)/.3);txt('NOW NET SEP 28',540,940,48,'#FFFFFF',800,'center',4);x.globalAlpha=1}
+  flashIn(t,a)},
+// 5 TITLE — Claude Opus 5.5 slams in
+(t,a,b)=>{camera(t,a,()=>{x.fillStyle=PAPER;x.fillRect(-200,-200,W+400,H+400);
+  const wipe=eo(prog(t,a,.4));x.fillStyle=ACC;x.fillRect(-200,540,(W+400)*wipe,26);
+  const ws=[['CLAUDE',at('claude')],['OPUS',at('opus',50)],['5.5',at('five',50)]];
+  ws.forEach(([s,ts],i)=>{const p=back(prog(t,ts-.12,.3));if(p<=0)return;x.save();x.translate(540,[720,900,1120][i]);x.scale(p,p);
+    txt(s,0,0,i==2?230:170,i==2?INK:INK,900,'center',i==2?0:4);x.restore()});
+  const r=eo(prog(t,at('released')-.1,.35));if(r>0){x.globalAlpha=r;rr(290,1210,500,90,45);x.fillStyle=INK;x.fill();txt('SEP 22, 2026',540,1272,44,'#FFFFFF',800,'center',3);x.globalAlpha=1}})},
+// 6 BARS — matches Fable 5.1 (Anthropic's claim)
+(t,a,b)=>{camera(t,a,()=>{x.fillStyle=INK;x.fillRect(-200,-200,W+400,H+400);
+  txt("ANTHROPIC'S CLAIM",540,330,40,ACC,800,'center',6);
+  const base=1300,hmax=760,p=eio(prog(t,at('matches')-.2,1.1));
+  [['OPUS 5.5',.97,ACC],['FABLE 5.1',1,'#FFFFFF']].forEach(([n,v,col],i)=>{const X=230+i*400,h=hmax*v*p;
+    rr(X,base-h,220,h,16);x.fillStyle=col;x.fill();txt(n,X+110,base+80,48,'#FFFFFF',800);});
+  const m=prog(t,at('most',70)-.1,.3);if(m>0){x.globalAlpha=m;txt('≈ on most work',540,base+190,52,'#FFFFFF',700);x.globalAlpha=1}
+  const q=prog(t,at('capable')-.1,.3);if(q>0){x.globalAlpha=q;txt('most capable public model',630,base-hmax-40,30,MUTE,600);x.globalAlpha=1}})},
+// 7 PRICE — Fable column shrinks
+(t,a,b)=>{camera(t,a,()=>{x.fillStyle=PAPER;x.fillRect(-200,-200,W+400,H+400);
+  txt('PER MILLION TOKENS',540,330,38,MUTE,800,'center',5);
+  const sh=eio(prog(t,at('half')-.1,.7));
+  // Fable card (shrinks + fades)
+  x.save();x.translate(540,700);x.scale(lerp(1,.62,sh),lerp(1,.62,sh));x.translate(0,lerp(0,-260,sh));x.globalAlpha=lerp(1,.45,sh);
+  txt('FABLE 5.1',0,-40,44,INK,800,'center',4);txt('$10 in · $50 out',0,70,84,INK,900);x.restore();
+  // Opus card (rises)
+  const o=back(prog(t,at('four')-.25,.4));if(o>0){x.save();x.translate(540,1080);x.scale(o,o);rr(-460,-150,920,300,26);x.fillStyle=INK;x.fill();
+    txt('OPUS 5.5',0,-60,44,ACC,800,'center',4);const f=Math.round(lerp(10,4,eo(prog(t,at('four'),.4)))),tw=Math.round(lerp(50,20,eo(prog(t,at('twenty'),.4))));
+    txt(`$${f} in · $${t>at('twenty')-.1?tw:50} out`,0,60,90,'#FFFFFF',900);x.restore()}
+  const d=back(prog(t,at('tokens.')-.2,.35));if(d>0){x.save();x.translate(540,1420);x.scale(d,d);rr(-200,-70,400,140,70);x.fillStyle=ACC;x.fill();txt('−60%',0,34,84,INK,900);x.restore()}})},
+// 8 CLOSE — claims vs real
+(t,a,b)=>{camera(t,a,()=>{x.fillStyle=INK;x.fillRect(-200,-200,W+400,H+400);
+  const p=eo(prog(t,a+.05,.35));x.globalAlpha=p;txt('BENCHMARKS',540,560,64,MUTE,900,'center',4);txt("Anthropic's claims",540,650,52,MUTE,600);x.globalAlpha=1;
+  const q=back(prog(t,at('fact-checking')-.15,.4));if(q>0){x.save();x.translate(540,960);x.scale(q,q);txt('FACT-CHECKING',0,0,84,'#FFFFFF',900,'center',4);
+    rr(-150,50,300,120,60);x.fillStyle=ACC;x.fill();txt('REAL',0,138,80,INK,900,'center',6);x.restore()}
+  const e=prog(t,b-1.6,.4);if(e>0){x.globalAlpha=e;txt('Sources + fact table in the description',540,1360,34,'#BDBDB8',600);x.globalAlpha=1}})},
+];
+
+// ---------- word-by-word captions: 1–3 word groups, current word amber ----------
+let GROUPS=[];
+function buildGroups(){GROUPS=[];let g=[];WORDS.forEach((w,i)=>{g.push(i);const end=/[.,?!:]$/.test(w.w);
+  const gap=i+1<WORDS.length?WORDS[i+1].s-w.e:9;const ch=g.reduce((a,j)=>a+WORDS[j].w.length,0);if(end||g.length>=3||gap>.35||ch>15){GROUPS.push(g);g=[]}});if(g.length)GROUPS.push(g)}
+function captions(t){let G=null;for(const g of GROUPS){const s=WORDS[g[0]].s-.05,e=WORDS[g[g.length-1]].e+.25;if(t>=s&&t<e){G=g}}
+  if(!G)return;const parts=G.map(i=>WORDS[i].w.toUpperCase().replace(/[,.:]$/,''));
+  let fs=80;font(fs,900);let ws=parts.map(p=>x.measureText(p).width),sp=30,tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1);
+  if(tot>900){fs=Math.floor(fs*900/tot);font(fs,900);ws=parts.map(p=>x.measureText(p).width);sp=26;tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1)}
+  let X=(W-tot)/2;const Y=1500;
+  rr(X-34,Y-fs-8,tot+68,fs+44,20);x.fillStyle='rgba(11,11,13,.78)';x.fill();
+  G.forEach((wi,k)=>{const w=WORDS[wi],on=t>=w.s-.03&&t<(k<G.length-1?WORDS[G[k+1]].s-.03:1e9),p=back(prog(t,w.s-.03,.16));
+    x.save();x.translate(X+ws[k]/2,Y);const s=on?Math.min(1.05,lerp(.85,1.05,p)):1;x.scale(s,s);
+    txt(parts[k],0,0,fs,on?ACC:(t>=w.s?'#FFFFFF':'rgba(255,255,255,.55)'),900,'center');x.restore();X+=ws[k]+sp})}
+
+function grain(){if(!grain.t){grain.t=[];for(let k=0;k<4;k++){const g=document.createElement('canvas');g.width=270;g.height=480;const gx=g.getContext('2d'),d=gx.createImageData(270,480);
+  for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=18}gx.putImageData(d,0,0);grain.t.push(g)}}
+  x.globalAlpha=.5;x.drawImage(grain.t[Math.floor(performance.now()/40)%4],0,0,W,H);x.globalAlpha=1}
+
+window.__seek=t=>{let k=S.length-1;for(let i=0;i<S.length;i++)if(t<S[i][1]){k=i;break}
+  x.setTransform(1,0,0,1,0,0);SC[k](t,S[k][0],S[k][1]);x.setTransform(1,0,0,1,0,0);
+  // progress bar (retention cue)
+  x.fillStyle='rgba(255,255,255,.18)';x.fillRect(0,0,W,8);x.fillStyle=ACC;x.fillRect(0,0,W*cl(t/DUR),8);
+  captions(t);grain()};
+window.__init=(words,dur,imgs)=>{WORDS=words;DUR=dur;IMG=imgs;buildGroups();
+  const st=w=>at(w)-.18;const b=[0,T(10).s-.2,T(20).s-.2,T(25).s-.12,T(39).s-.12,T(49).s-.1,T(60).s-.15,T(76).s-.1,T(90).s-.12,dur];
+  S=[];for(let i=0;i<9;i++)S.push([b[i],b[i+1]]);window.__S=S};
+const load=s=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=s});
+fetch('words.json').then(r=>r.json()).then(async d=>{const [robot,rocket]=await Promise.all([load('robot.jpg'),load('rocket.jpg')]);
+  window.__init(d.words,d.dur+0.9,{robot,rocket});window.__seek(0);window.__ready=true});
+</script></body></html>
