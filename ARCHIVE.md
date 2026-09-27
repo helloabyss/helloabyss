@@ -44,3 +44,4 @@ Scored well but deliberately not used. Not archived — these are still **eligib
 | 2026-09-22 | SpaceXAI ships Grok 4.7 — larger base, unchanged $2/$6 pricing | Lead | 2026-09-21 | `scripts/2026-09-22-frontier-longform.md` | Independent (non-company) benchmarks land, or pricing changes |
 | 2026-09-22 | StepFun Step 5 Preview — 600B MoE, 1M context, $1/$2.70 | Beat 2 | 2026-09-20 | same | **Open weights drop 2026-10-15** — that is a new story |
 | 2026-09-22 | Agility Digit 5 — "cooperatively safe" humanoid | Not-yet segment | 2026-09-15 | same | Early access actually opens (H1 2027) |
+| 2026-09-27 | Anthropic Claude Opus 5.5 — $4/$20, Fable-5.1-level claim | Standalone (Frontier AI) | 2026-09-22 | `scripts/2026-09-27-opus55.md` | Independent benchmarks land, or Sonnet 5.5 / Haiku 5.5 ship |
