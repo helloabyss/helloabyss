@@ -1,0 +1,47 @@
+<!doctype html><html><head><meta charset=utf-8><style>
+html,body{margin:0;background:#0B0B0D}canvas{display:block}</style></head>
+<body><canvas id=c></canvas>
+<script>
+// Text-led thumbnail: graded plate + 2-3 huge lines. Readable at 120px wide.
+const C={BASE:'#0B0B0D',TYPE:'#F2F2F0',ACC:'#FFB020',CAU:'#8A8A86'};
+const FONT='"Liberation Sans","DejaVu Sans",sans-serif';
+const qs=new URLSearchParams(location.search);
+fetch(qs.get('spec')||'thumb.json').then(r=>r.json()).then(spec=>{
+  const W=+qs.get('w')||1280, H=+qs.get('h')||720, cv=document.getElementById('c');
+  cv.width=W;cv.height=H;const x=cv.getContext('2d');
+  const img=new Image();img.onload=()=>{draw(x,W,H,img,spec);window.__ready=true;};
+  img.onerror=()=>{draw(x,W,H,null,spec);window.__ready=true;};img.src=spec.plate;
+});
+function fit(x,s,maxW,px){let p=px;do{x.font=`bold ${p}px ${FONT}`;p-=2;}while(x.measureText(s).width>maxW&&p>20);return p+2;}
+function draw(x,W,H,img,s){
+  const land=W>H;
+  x.fillStyle=C.BASE;x.fillRect(0,0,W,H);
+  if(img){const k=Math.max(W/img.width,H/img.height)*1.04;const dw=img.width*k,dh=img.height*k;
+    const ox=land?(W-dw)*0.85:(W-dw)/2; x.drawImage(img,ox,(H-dh)/2,dw,dh);}
+  // scrim: heavy on the text side
+  let g=land?x.createLinearGradient(0,0,W,0):x.createLinearGradient(0,0,0,H);
+  if(land){g.addColorStop(0,'rgba(11,11,13,0.94)');g.addColorStop(0.55,'rgba(11,11,13,0.70)');g.addColorStop(1,'rgba(11,11,13,0.10)');}
+  else{g.addColorStop(0,'rgba(11,11,13,0.25)');g.addColorStop(0.45,'rgba(11,11,13,0.55)');g.addColorStop(1,'rgba(11,11,13,0.95)');}
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  const pad=land?64:72, maxW=land?W*0.62:W-pad*2;
+  // eyebrow tag
+  x.font=`bold ${land?26:40}px ${FONT}`;x.letterSpacing=(land?5:7)+'px';x.fillStyle=C.ACC;
+  x.textBaseline='top';x.textAlign='left';x.fillText(s.tag,pad,land?52:120);
+  x.letterSpacing='0px';
+  // headline lines, bottom-anchored
+  const lines=s.lines, base=land?[132,132,132]:[190,190,190];
+  const px=lines.map((l,i)=>fit(x,l.t,maxW,l.px||base[i]));
+  const lh=px.map(p=>p*1.02);
+  let total=lh.reduce((a,b)=>a+b,0);
+  let y=land?(H-total)/2+20:H*0.58-total/2;
+  lines.forEach((l,i)=>{
+    x.font=`bold ${px[i]}px ${FONT}`;x.textBaseline='top';
+    x.lineWidth=px[i]*0.10;x.strokeStyle='rgba(11,11,13,0.85)';x.lineJoin='round';
+    x.strokeText(l.t,pad,y);
+    x.fillStyle=l.acc?C.ACC:C.TYPE;x.fillText(l.t,pad,y);
+    y+=lh[i];
+  });
+  // amber rule
+  x.fillStyle=C.ACC;x.fillRect(pad,y+(land?14:24),land?140:220,land?8:12);
+}
+</script></body></html>
