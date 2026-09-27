@@ -406,3 +406,20 @@ almost certainly render first time; it is also the one thing the channel cannot 
 4. The reliable, zero-credit path remains **HyperFrames locally**. It rendered this same
    episode end to end in about two minutes with exact charts and working captions. Only the
    locked voice requires HeyGen, and only because the CDN block prevents exporting a stem.
+
+---
+
+## B-roll costs more, 2026-09-27
+
+Channel default is now **Alex Wright VO + cinematic B-roll** (user direction). First render on
+that path — `692226063fb54a55a502206ad478ac53`, 69.30s — billed **69 credits = 59.7 cr/min**,
+against 40.3–40.5 cr/min for the plain motion-graphics renders. No other activity on the account
+during the render, so the premium is real.
+
+| Path | cr/min | A 60s short | A 110s short |
+|---|---|---|---|
+| Video agent, motion-graphics only | ~40 | ~40 | ~74 |
+| Video agent, **B-roll + motion graphics** | **~60** | **~60** | **~110** |
+| HyperFrames locally (no locked voice) | 0 | 0 | 0 |
+
+At Pro's allowance, B-roll shorts are the expensive way to use the voice. Keep them near 60s.

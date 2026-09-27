@@ -154,3 +154,28 @@ layer with motion graphics over it.
 
 The balance was 110, not the 168 left after the 2026-09-25 render: a 40s video titled
 "Claude Opus 5.5: The Fact-Check" was created on the account outside this session.
+
+### Result — completed
+
+**"The Meticulous Investor — Seven to One"** · `692226063fb54a55a502206ad478ac53` · **69.30s** · 9:16 ·
+1080p · 15 scenes · watch: https://app.heygen.com/videos/692226063fb54a55a502206ad478ac53
+
+| Check (`get_video_scenes`) | Result |
+|---|---|
+| Alex Wright `0db3abd8…` on all 15 scenes | **PASS** |
+| Script verbatim — 930 chars, exact match to `scripts/2026-09-27-vo.txt` | **PASS** |
+| Faceless — 15 `motion_graphics` elements (ids prefixed `b_roll_`), **zero** avatar elements | **PASS** |
+| 9:16, 1080p, glossary `c9064148…` | **PASS** |
+| Closing card — final scene is a 3.0s silent break | **PASS** |
+| `caption.enabled` false; `captioned_video_url` **populated** | Publish the captioned cut |
+
+**Cost: 69 credits (110 → 41) = 59.7 cr/min.** Confirmed no other video was created during the
+render. That is ~50% above the 40.3–40.5 cr/min of the two plain motion-graphics renders, so the
+**B-roll photo layers carry a real premium**. Budget B-roll shorts at **~60 cr/min**.
+
+**UNKNOWN — needs eyes.** The B-roll is baked inside opaque `motion_graphics` plates, so which
+photos were used, whether any show faces or logos, and whether the grade stayed dark and
+desaturated cannot be checked from here. CDN egress is blocked. Watch before publishing.
+
+Took ~58 minutes from submit to completion, with no progress messages for the last ~40. Same
+pattern as 2026-09-25: slow, not stuck.
