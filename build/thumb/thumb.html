@@ -29,7 +29,7 @@ function draw(x,W,H,img,s){
   x.textBaseline='top';x.textAlign='left';x.fillText(s.tag,pad,land?52:120);
   x.letterSpacing='0px';
   // headline lines, bottom-anchored
-  const lines=s.lines, base=land?[132,132,132]:[190,190,190];
+  const lines=(!land&&s.linesP)?s.linesP:s.lines, base=land?[132,132,132]:[190,190,190];
   const px=lines.map((l,i)=>fit(x,l.t,maxW,l.px||base[i]));
   const lh=px.map(p=>p*1.02);
   let total=lh.reduce((a,b)=>a+b,0);

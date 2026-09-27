@@ -105,7 +105,7 @@ const BLOCKS={
  }
 };
 
-function chrome(x,t){
+function chrome(x,t,src){
   const a=ease(seg(t,0.10,0.65));
   ltext(x,SPEC.eyebrow,62,86,26,'bold','CAU',6,a*.9);
   rtext(x,SPEC.date,W-62,86,26,'bold','CAU',6,a*.9);
@@ -114,7 +114,7 @@ function chrome(x,t){
   const b=ease(seg(t,0.40,1.05));
   x.globalAlpha=b*.55;x.beginPath();x.moveTo(62,1566);x.lineTo(W-62,1566);x.stroke();x.globalAlpha=1;
   ltext(x,'SOURCE',62,1606,24,'bold','ACC',5,b*.95);
-  rtext(x,SPEC.source,W-62,1606,24,'normal','CAU',1,b*.85);
+  rtext(x,src||SPEC.source,W-62,1606,24,'normal','CAU',1,b*.85);
 }
 function captions(x,t){
   for(const c of SPEC.cues){
@@ -137,13 +137,17 @@ function seek(t){
   x.setTransform(1,0,0,1,0,0);x.globalAlpha=1;
   x.fillStyle=C.BASE;x.fillRect(0,0,W,H);
   let b=SPEC.beats[0];for(const q of SPEC.beats)if(t>=q.a)b=q;
-  plate(x,b.plate,clamp((t-b.a)/(b.b-b.a),0,1),b.mv);
+  const lp=clamp((t-b.a)/(b.b-b.a),0,1);
+  if(b.plates&&b.plates.length){const n=b.plates.length,k=Math.min(n-1,Math.floor(lp*n));
+    const sp=lp*n-k, mv=k%2?{x:-(b.mv&&b.mv.x||1),y:(b.mv&&b.mv.y||1)}:b.mv;
+    plate(x,b.plates[k],sp,mv);}
+  else plate(x,b.plate,lp,b.mv);
   for(const blk of (b.blocks||[])){
     const at=b.a+(blk.at||0), a=ease(seg(t,at,at+(blk.dur||0.65)));
     if(a<=0.001)continue;
     (BLOCKS[blk.k]||(()=>{}))(x,blk,a,t,b.a);
   }
-  vignette(x);chrome(x,t);captions(x,t);grain(x,t);
+  vignette(x);chrome(x,t,b.source);captions(x,t);grain(x,t);
   for(const q of SPEC.beats){
     if(q.a===0)continue;
     if(t>=q.a-0.05&&t<q.a+0.05){x.globalAlpha=0.14*(1-Math.abs(t-q.a)/0.05);x.fillStyle=C.ACC;x.fillRect(0,0,W,H);x.globalAlpha=1;}

@@ -44,14 +44,26 @@ def make_vo(src, dst):
                     "-of","default=nw=1:nk=1",dst).strip())
 
 def sent_spans(wav, sents, dur):
+    """Sentence spans from whisper word timings, grouped on terminal punctuation.
+    Matching on sentence *boundaries* rather than words survives whisper writing
+    'twenty' as '20'. Falls back to character-proportional spans if counts differ."""
+    import re
     from faster_whisper import WhisperModel
     m = WhisperModel("base.en", device="cpu", compute_type="int8")
-    segs, _ = m.transcribe(wav)
-    S = [(s.start, s.end) for s in segs]
-    if len(S) == len(sents):
-        return S
-    t0 = S[0][0] if S else 0.0
-    t1 = S[-1][1] if S else dur
+    segs, _ = m.transcribe(wav, word_timestamps=True)
+    words = [w for s in segs for w in s.words]
+    groups, cur = [], []
+    for w in words:
+        cur.append(w)
+        if re.search(r"[.?!]\s*$", w.word.strip()):
+            groups.append((cur[0].start, cur[-1].end)); cur = []
+    if cur: groups.append((cur[0].start, cur[-1].end))
+    if len(groups) == len(sents):
+        print(f"  aligned {len(sents)} sentences on whisper boundaries", flush=True)
+        return groups
+    print(f"  WARN whisper gave {len(groups)} sentences for {len(sents)}; proportional fallback", flush=True)
+    t0 = words[0].start if words else 0.0
+    t1 = words[-1].end if words else dur
     tot = sum(len(x) for x in sents) or 1
     out, acc = [], t0
     for x in sents:
@@ -65,7 +77,8 @@ def build_spec(src, spans, dur):
     for i, b in enumerate(src["beats"]):
         a = 0.0 if i == 0 else max(0.0, starts[i] - 0.18)
         z = dur if i == len(src["beats"]) - 1 else max(a + 0.4, starts[i + 1] - 0.18)
-        beats.append({"a": round(a, 3), "b": round(z, 3), "plate": b["plate"],
+        beats.append({"a": round(a, 3), "b": round(z, 3), "plate": b.get("plate", 0),
+                      "plates": b.get("plates"), "source": b.get("source"),
                       "mv": b.get("mv", {}), "blocks": b["blocks"]})
     for i, ph in enumerate(src["phrases"]):
         s0, s1 = spans[i]
@@ -79,7 +92,7 @@ def build_spec(src, spans, dur):
             "source": src["source"], "plates": src["plates"], "beats": beats, "cues": cues}
 
 def main():
-    man = json.load(open("manifest.json"))
+    man = json.load(open(os.environ.get("MANIFEST", "manifest.json")))
     ups = json.load(open("uploads.json"))
     for ep in man["episodes"]:
         i = ep["id"]
