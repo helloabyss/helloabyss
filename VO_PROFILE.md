@@ -6,6 +6,9 @@ here without the channel owner saying so explicitly, in those words.
 **Derived:** 2026-09-20, from the three existing episodes in this repo and from the live
 HeyGen API records for this account. Nothing in this file is invented — the
 [Provenance](#provenance) table says where each value came from.
+**Last owner-approved change: 2026-09-27** — HeyGen `create_speech` adopted as the standard
+narration route (§7). Approved by the channel owner in session, in those words ("Yes" to
+"make Alex Wright through HeyGen the standard route from now on"). Voice and settings unchanged.
 
 ---
 
@@ -69,6 +72,18 @@ durations, not an estimate.
 | **Pooled** | **439** | **173.0s** | **152.3** |
 
 **Planning rate: 152 WPM. Observed spread: 142–162 WPM.**
+
+### Stem route measurements (`create_speech` + 0.30s pause cap) — added 2026-09-27
+The standard route (§7) produces a standalone WAV that the pipeline pause-caps. Rates below
+are measured on the **capped** stem, which is what airs.
+
+| Episode | VO words | Raw stem | Pause-capped | WPM (capped) |
+|---|---:|---:|---:|---:|
+| `2026-09-27-opus55` | 79 | 35.60s | 30.05s | **157.7** |
+
+n=1. Inside the 142–162 house band, so **the planning rate stays 152** and the 135–142 word
+band stays. Re-measure every render and add a row. The raw stem runs ~133 WPM, so an uncapped
+stem would overrun: **always cap.**
 
 ### The word-count band for a 50–60s Short
 The band has to survive the *whole* observed spread, not just the average, or a slow read
@@ -201,7 +216,9 @@ same run — a lexicon that lives only in this file is not applied to anything.
 | 5 | **Adjacent sibilants slur** — "Snap's Specs specs", "six sixty-six". | Reword. "Snap's Specs" is fine; "Specs specs" is not. |
 | 6 | **Version strings read as decimals** — "iOS 27.1" becomes "twenty-seven point one", which is correct, but "GPT-4o" is unpredictable. | Write model names phonetically in the script and add them to §5. |
 | 7 | **CAPS does not produce audible emphasis.** | Treat CAPS as an editing note. If a word must land, give it its own short sentence. |
-| 8 | **No detached VO stem on this plan.** `create_speech` bills to separate `api` credits the Creator plan does not carry, and `generate_model_speech` requires an *active professional* voice — a public library voice like this one does not qualify. Narration is baked into the HeyGen render. | See §7. |
+| 8 | ~~No detached VO stem on this plan.~~ **Resolved 2026-09-27.** On the **Pro** plan `create_speech` works with this voice and bills to *premium* credits (2 credits for a 79-word read). `generate_model_speech` still requires an active professional voice and does not apply. | See §7. |
+| 9 | **`create_speech` takes no `brandGlossaryId`.** The §5 glossary only acts on HeyGen *renders*, not on the stem route. | Check every proper noun against the returned `word_timestamps` and the pipeline's whisper pass. If a term misreads, respell it **only in the `create_speech` request**. Captions and the SRT are built from the spec, not the audio, so they stay correct. Log the respelling in that episode's PRODUCTION notes as a known VO-file vs audio-prompt difference. |
+| 10 | **`create_speech` advertises SSML** (`inputType: "ssml"`), which contradicts #1 (written for the render path). | Untested on this account. Do not use until one test read confirms tags are honoured, not read aloud. |
 
 ### Words to avoid
 Not because the voice cannot say them, but because they cost runtime or read badly at this
@@ -209,25 +226,41 @@ pace: *nevertheless, furthermore, additionally, simultaneously, approximately* (
 *utilize* (say "use"), *particularly*. Prefer the one-syllable word every time — the word
 budget is 137, and every four-syllable connective costs most of a second.
 
-## 7. Open constraint — getting a VO stem
+## 7. Standard narration route — HeyGen `create_speech` stem  *(resolved 2026-09-27)*
 
-The workflow in `/twit` assumes narration can be cut against B-roll on a timeline, which
-needs a standalone audio file. **This account cannot currently produce one** (§6.8), and
-premium credits are at **0 until 2026-10-06**.
+The `/twit` pipeline needs a standalone audio file to cut captions and visuals against. As of
+**2026-09-27** the account (Pro plan, MCP login valid) can produce one with the locked voice.
+**This is the standard route for every episode and every Short.**
 
-Routes out, in order of preference — none taken without the owner's say-so:
-1. **Add HeyGen `api` credits** to the account, then `create_speech` with the voice ID and
-   settings above. Keeps the voice identical. Recommended.
-2. **Render through HeyGen and strip the audio** from the finished MP4. Free, but bakes in
-   HeyGen's visuals and this account's CDN egress is blocked, so the file has to be pulled
-   down by hand outside this environment.
-3. **Switch provider.** Rejected on 2026-09-20 — it breaks the voice-match requirement,
-   which is the reason this file exists.
+```json
+{ "tool": "heygen create_speech",
+  "voiceId": "0db3abd83c74452fb2460b0dd113daad",
+  "speed": 1.0, "locale": "en-US", "inputType": "text",
+  "text": "<scripts/YYYY-MM-DD-vo.txt, verbatim, one paragraph>" }
+```
+Returns a WAV URL on `resource2.heygen.ai` plus `word_timestamps`. The container cannot reach
+that host; the Higgsfield sandbox can, so the build pulls the WAV there.
 
-Until one of these lands, `scripts/YYYY-MM-DD-vo.txt` is the generator-ready deliverable and
-the audio step is done by the owner.
+**Post-processing — mandatory, and identical to the Callan recipe that fixed the 09-20 take:**
+trim lead/tail silence → `loudnorm I=-16 TP=-1.5 LRA=11` → **cap internal pauses at 0.30s** →
+**native speed, never `atempo`**. `build/grok47/build.py` `make_vo()` does exactly this.
+
+**Cost:** HeyGen premium credits, about 2 per 80 words. Check `get_current_user` before a run.
+The balance was 141 on 2026-09-27; it resets 2026-10-06.
+
+**Fallback only if HeyGen is unavailable** (auth expired, credits at 0): the Callan substitute
+in §8. Every fallback use is a deviation and gets its own §8 entry.
+
+**Rejected routes, kept for the record:** stripping audio from a HeyGen render (bakes in HeyGen's
+visuals); switching provider (breaks voice match); cloning Alex Wright elsewhere (§8, rights).
 
 ## 8. DEVIATION LOG — 2026-09-20 episode used a substitute voice
+
+> **CLOSED 2026-09-27.** The locked voice is restored via §7. Callan below is kept **only as the
+> emergency fallback** for when HeyGen is unavailable, and each use must be logged here as a new
+> deviation. Episodes narrated by Callan up to 2026-09-27: `2026-09-20`, the Frontier AI
+> Shorts 1–5 (`2026-09-22`), `2026-09-27` and `2026-09-27-opus55` v1. The Opus 5.5 Short was
+> re-rendered with the locked voice as v2.
 
 **The locked voice was not used. This is a recorded deviation, not a change to §1–§2.**
 
@@ -298,3 +331,5 @@ one. Not done, and not to be done.
 | Glossary mechanism + caption-safety | HeyGen `create_brand_glossary` / `get_brand_glossary` descriptions |
 | Respelling convention | Existing `TWIM — This Week in the Market` glossary, `c906414830134497906c72eecf054153` |
 | Credit state | HeyGen `get_current_user`, 2026-09-20 |
+| Pro plan, 143 → 141 premium credits, `create_speech` working | HeyGen `get_current_user` + `create_speech`, 2026-09-27 |
+| Stem-route WPM row | `2026-09-27-opus55` v2 build log: 79 words, 35.60s raw, 30.05s capped |

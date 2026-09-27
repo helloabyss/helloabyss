@@ -106,11 +106,16 @@ the substitute in the same row.
 Narration only. No timecodes, no stage directions, no visual notes, no beat headers.
 
 - Numbers spelled exactly as spoken.
-- **Pronunciation is applied via HeyGen's `brandGlossaryId`, NOT by respelling in this
-  file.** The glossary changes the audio while leaving caption spelling intact; respelling
-  inline would corrupt the SRT. See `VO_PROFILE.md` §5.
-- **Do not write SSML.** HeyGen does not support it and will read it aloud
-  (`VO_PROFILE.md` §6.1).
+- **Never respell in this file** — captions and the SRT are built from it. The standard
+  narration route is HeyGen `create_speech` (`VO_PROFILE.md` §7), which takes **no**
+  `brandGlossaryId`. Check pronunciation from the returned `word_timestamps` plus the
+  whisper pass. Fix a misread term by respelling it **only in the `create_speech` request**,
+  and log that difference (`VO_PROFILE.md` §6.9).
+- **Do not write SSML** (`VO_PROFILE.md` §6.1, §6.10).
+- **Generate the stem:** `create_speech` with the locked voice ID, speed 1.0, locale en-US,
+  this file verbatim. Check HeyGen premium credits first (about 2 per 80 words). The build
+  pause-caps at 0.30s at native speed — never `atempo`. Callan (`VO_PROFILE.md` §8) is the
+  fallback only if HeyGen is unavailable, and each use is a logged deviation.
 - **Any drift between this file and the timecoded script is a bug.** Diff them
   mechanically before finishing — strip markdown from the script's VO lines and compare
   word-for-word.
@@ -128,8 +133,9 @@ Narration only. No timecodes, no stage directions, no visual notes, no beat head
 Check the script against `VO_PROFILE.md` and report each result explicitly:
 
 - [ ] Word count inside the band; runtime at slow/nominal/fast WPM all inside **50–60s**
-- [ ] No term mispronounced — every proper noun, acronym and unit either in the glossary
-      or added to it **and pushed to HeyGen in this run**
+- [ ] No term mispronounced — every proper noun, acronym and unit checked against the
+      `create_speech` word timestamps and the whisper pass; any request-only respelling logged
+- [ ] Narration is the locked voice via `create_speech` — or the Callan fallback is logged in `VO_PROFILE.md` §8
 - [ ] No sentence over ~20 words; no four-plus item comma list
 - [ ] No banned words (`STYLE.md` §1); no SSML; no bare numerals
 - [ ] Every claim has a linked source; company claims labelled as claims
