@@ -137,3 +137,32 @@ genuinely new development.
   A more conservative case put it near `$42B`. Always framed as a range, always attributed.
 - The "1894 London newspaper" quote is **unsourced** — The Times refuted the attribution in
   2018. Never repeat it as fact.
+
+---
+
+## The Meticulous Investor — kinetic weekly format
+
+A second format alongside TWIM: **silent kinetic motion graphics**, type-led, built entirely
+in local HyperFrames at zero credits. Same locked palette and faceless rule; different motion
+language (slam / wordsIn / bar race / calendar build on a 0.5s beat grid).
+
+### 2026-09-27 — "Every Index Rose. Almost Nothing In It Did."
+- **Runtime:** 69.5s · silent · 9:16 · **0 credits**
+- **Cold-open number:** Nasdaq **+2.1%** against the Dow's **+0.3%**
+- **The find:** every index closed green while the 10-year hit **5.18%**, its highest since
+  2007 — a rising risk-free rate that did not compress multiples, on a seven-to-one advance
+- **Beats:** hook → bar race → 5.18% → the contradiction → 42%→58% hike odds → five-print
+  calendar → three if/then scenarios → "prepared beats reactive"
+- **The payload:** the week-ahead calendar and three scenarios, so the viewer goes into Monday
+  with a decision already made rather than a reaction to have
+- **Cut for scope:** Alibaba's AI chip (no stateable US-equity transmission inside the window)
+- **Cut as untraceable:** the "Nvidia rose on a SpaceX chip surprise" line — single weak source,
+  and the SpaceX/Nvidia tie-up is from August
+- **Cut as single-sourced:** sector percentages; breadth is carried by the index ratio instead
+- **Correction logged:** the 2026-09-25 episode used 5.12% for the 10-year (Thursday's reported
+  figure, correct as published). The week's high was 5.18%. Different reference points, not a
+  contradiction — see `research/2026-09-27.md` §3
+- **Video:** `videos/twim-2026-09-27-kinetic/meticulous-week-ahead.mp4`
+- **Notes:** silent is a decision, not a gap — Shorts are watched muted, and the locked voice
+  is only reachable through HeyGen, which the brief excluded. A music bed can be added without
+  rebuilding. Still blocked on the `[OPEN]` primary-sourcing flag.
