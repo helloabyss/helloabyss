@@ -43,51 +43,76 @@ def make_vo(src, dst):
     return float(sh("ffprobe","-v","error","-show_entries","format=duration",
                     "-of","default=nw=1:nk=1",dst).strip())
 
-def sent_spans(wav, sents, dur):
-    """Sentence spans from whisper word timings, grouped on terminal punctuation.
-    Matching on sentence *boundaries* rather than words survives whisper writing
-    'twenty' as '20'. Falls back to character-proportional spans if counts differ."""
+def _tok(s):
     import re
+    return [t for t in re.split(r"[\s\-]+", s) if re.sub(r"[^A-Za-z0-9']", "", t)]
+
+def _norm(t):
+    import re
+    return re.sub(r"[^a-z0-9']", "", t.lower())
+
+def align(wav, src, dur):
+    """Word-level alignment. Each script token is matched to a whisper token with
+    difflib; unmatched tokens (e.g. 'twenty' vs '20') are interpolated between the
+    nearest matched neighbours. Returns per-sentence and per-phrase (start, end)."""
+    import difflib
     from faster_whisper import WhisperModel
     m = WhisperModel("base.en", device="cpu", compute_type="int8")
     segs, _ = m.transcribe(wav, word_timestamps=True)
-    words = [w for s in segs for w in s.words]
-    groups, cur = [], []
-    for w in words:
-        cur.append(w)
-        if re.search(r"[.?!]\s*$", w.word.strip()):
-            groups.append((cur[0].start, cur[-1].end)); cur = []
-    if cur: groups.append((cur[0].start, cur[-1].end))
-    if len(groups) == len(sents):
-        print(f"  aligned {len(sents)} sentences on whisper boundaries", flush=True)
-        return groups
-    print(f"  WARN whisper gave {len(groups)} sentences for {len(sents)}; proportional fallback", flush=True)
-    t0 = words[0].start if words else 0.0
-    t1 = words[-1].end if words else dur
-    tot = sum(len(x) for x in sents) or 1
-    out, acc = [], t0
-    for x in sents:
-        d = (t1 - t0) * len(x) / tot
-        out.append((acc, acc + d)); acc += d
-    return out
+    wt = []
+    for sg in segs:
+        for w in sg.words:
+            parts = _tok(w.word) or [w.word]
+            step = (w.end - w.start) / len(parts)
+            for k, pt in enumerate(parts):
+                wt.append((_norm(pt), w.start + k * step, w.start + (k + 1) * step))
+    mine, where = [], []
+    for si, ph in enumerate(src["phrases"]):
+        for pi, p in enumerate(ph):
+            for t in _tok(p):
+                mine.append(_norm(t)); where.append((si, pi))
+    sm = difflib.SequenceMatcher(None, mine, [x[0] for x in wt], autojunk=False)
+    times = [None] * len(mine)
+    for blk in sm.get_matching_blocks():
+        for k in range(blk.size):
+            times[blk.a + k] = (wt[blk.b + k][1], wt[blk.b + k][2])
+    matched = sum(1 for t in times if t)
+    print(f"  aligned {matched}/{len(mine)} tokens directly", flush=True)
+    t_first = wt[0][1] if wt else 0.0
+    t_last = wt[-1][2] if wt else dur
+    idx = [i for i, t in enumerate(times) if t]
+    for i in range(len(times)):
+        if times[i]: continue
+        lo = max([j for j in idx if j < i], default=None)
+        hi = min([j for j in idx if j > i], default=None)
+        ta = times[lo][1] if lo is not None else t_first
+        tb = times[hi][0] if hi is not None else t_last
+        la = lo if lo is not None else -1
+        hb = hi if hi is not None else len(times)
+        f0 = (i - la) / (hb - la); f1 = (i + 1 - la) / (hb - la)
+        times[i] = (ta + (tb - ta) * f0 - 0.0, ta + (tb - ta) * f1)
+    ph_span, se_span = {}, {}
+    for (si, pi), (t0, t1) in zip(where, times):
+        a, b = ph_span.get((si, pi), (t0, t1)); ph_span[(si, pi)] = (min(a, t0), max(b, t1))
+        a, b = se_span.get(si, (t0, t1)); se_span[si] = (min(a, t0), max(b, t1))
+    return se_span, ph_span
 
-def build_spec(src, spans, dur):
+def build_spec(src, se_span, ph_span, dur):
     beats, cues = [], []
-    starts = [spans[b["sent"][0]][0] for b in src["beats"]]
+    starts = [se_span[b["sent"][0]][0] for b in src["beats"]]
     for i, b in enumerate(src["beats"]):
         a = 0.0 if i == 0 else max(0.0, starts[i] - 0.18)
         z = dur if i == len(src["beats"]) - 1 else max(a + 0.4, starts[i + 1] - 0.18)
         beats.append({"a": round(a, 3), "b": round(z, 3), "plate": b.get("plate", 0),
                       "plates": b.get("plates"), "source": b.get("source"),
                       "mv": b.get("mv", {}), "blocks": b["blocks"]})
-    for i, ph in enumerate(src["phrases"]):
-        s0, s1 = spans[i]
-        tot = sum(len(p) for p in ph) or 1
-        acc = s0
-        for p in ph:
-            d = (s1 - s0) * len(p) / tot
-            cues.append({"a": round(acc, 3), "b": round(min(acc + d, dur), 3), "t": p})
-            acc += d
+    for si, ph in enumerate(src["phrases"]):
+        for pi, p in enumerate(ph):
+            t0, t1 = ph_span[(si, pi)]
+            cues.append({"a": round(t0, 3), "b": round(min(max(t1, t0 + 0.6), dur), 3), "t": p})
+    # a cue never overlaps the next one
+    for k in range(len(cues) - 1):
+        cues[k]["b"] = min(cues[k]["b"], cues[k + 1]["a"])
     return {"dur": round(dur, 3), "eyebrow": src["eyebrow"], "date": src["date"],
             "source": src["source"], "plates": src["plates"], "beats": beats, "cues": cues}
 
@@ -105,8 +130,8 @@ def main():
         sh("curl","-sSf","-o",f"_vo{i}.wav",ep["vo"])
         dur = make_vo(f"_vo{i}.wav", f"vo{i}.wav")
         print(f"  vo {dur:.2f}s", flush=True)
-        spans = sent_spans(f"vo{i}.wav", src["sents"], dur)
-        spec = build_spec(src, spans, dur)
+        se, ph = align(f"vo{i}.wav", src, dur)
+        spec = build_spec(src, se, ph, dur)
         json.dump(spec, open(f"spec{i}.json", "w"))
         print(f"  {len(spec['beats'])} beats, {len(spec['cues'])} cues", flush=True)
         n = int(round(dur * 30))

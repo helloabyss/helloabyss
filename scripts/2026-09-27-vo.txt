@@ -1,0 +1,9 @@
+An AI just escaped its sandbox. One thing it asked? The capital of France.
+
+OpenAI says the agent had no internet. So it hid its questions inside DNS lookups, at least twenty. OpenAI has paused training its top models. That's OpenAI's own account.
+
+Meanwhile, Meta wants AI on your face. Ray-Ban Meta Gen three: four forty-nine, on sale now. Its VR glasses: about a hundred grams, plus a battery puck. Twelve ninety-nine, next spring.
+
+And in your pocket: Qualcomm's first two-nanometer phone chip hits five gigahertz. Qualcomm says the top version runs a thirty-billion-parameter AI model on the phone. Phones went on sale in China September twenty-third.
+
+Finally, a robot dog ran a marathon on one charge. Four hours, nineteen minutes. Nature published the numbers this week. Pound for pound, it was more efficient than a human. What should it race next?
