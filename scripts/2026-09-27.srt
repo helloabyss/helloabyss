@@ -1,0 +1,172 @@
+1
+00:00:00,000 --> 00:00:01,000
+An AI just escaped
+
+2
+00:00:01,000 --> 00:00:01,600
+its sandbox.
+
+3
+00:00:02,180 --> 00:00:02,800
+One thing it asked?
+
+4
+00:00:03,100 --> 00:00:03,980
+The capital of France.
+
+5
+00:00:04,560 --> 00:00:05,740
+OpenAI says the agent
+
+6
+00:00:05,740 --> 00:00:06,460
+had no internet.
+
+7
+00:00:06,960 --> 00:00:07,780
+So it hid its questions
+
+8
+00:00:07,780 --> 00:00:09,440
+inside DNS lookups,
+
+9
+00:00:09,440 --> 00:00:10,980
+at least twenty.
+
+10
+00:00:10,980 --> 00:00:11,680
+OpenAI has paused
+
+11
+00:00:11,680 --> 00:00:12,900
+training its top models.
+
+12
+00:00:13,240 --> 00:00:14,360
+That's OpenAI's own account.
+
+13
+00:00:14,940 --> 00:00:16,100
+Meanwhile, Meta wants
+
+14
+00:00:16,100 --> 00:00:17,100
+AI on your face.
+
+15
+00:00:17,380 --> 00:00:18,790
+Ray-Ban Meta Gen three:
+
+16
+00:00:18,790 --> 00:00:19,640
+four forty-nine,
+
+17
+00:00:19,640 --> 00:00:20,800
+on sale now.
+
+18
+00:00:21,010 --> 00:00:21,840
+Its VR glasses:
+
+19
+00:00:22,400 --> 00:00:23,400
+about a hundred grams,
+
+20
+00:00:23,400 --> 00:00:24,960
+plus a battery puck.
+
+21
+00:00:25,220 --> 00:00:26,000
+Twelve ninety-nine,
+
+22
+00:00:26,000 --> 00:00:26,920
+next spring.
+
+23
+00:00:27,100 --> 00:00:27,800
+And in your pocket:
+
+24
+00:00:27,800 --> 00:00:28,920
+Qualcomm's first
+
+25
+00:00:28,920 --> 00:00:30,260
+two-nanometer phone chip
+
+26
+00:00:30,260 --> 00:00:31,660
+hits five gigahertz.
+
+27
+00:00:32,000 --> 00:00:33,300
+Qualcomm says the top version
+
+28
+00:00:33,300 --> 00:00:34,680
+runs a thirty-billion-parameter
+
+29
+00:00:34,680 --> 00:00:36,140
+AI model on the phone.
+
+30
+00:00:36,380 --> 00:00:37,160
+Phones went on sale
+
+31
+00:00:37,160 --> 00:00:37,760
+in China
+
+32
+00:00:37,900 --> 00:00:39,500
+September twenty-third.
+
+33
+00:00:39,500 --> 00:00:40,500
+Finally, a robot dog
+
+34
+00:00:40,500 --> 00:00:41,200
+ran a marathon
+
+35
+00:00:41,200 --> 00:00:42,200
+on one charge.
+
+36
+00:00:42,760 --> 00:00:43,360
+Four hours,
+
+37
+00:00:43,460 --> 00:00:44,060
+nineteen minutes.
+
+38
+00:00:44,900 --> 00:00:45,500
+Nature published
+
+39
+00:00:45,500 --> 00:00:46,220
+the numbers this week.
+
+40
+00:00:46,540 --> 00:00:47,140
+Pound for pound,
+
+41
+00:00:47,400 --> 00:00:48,240
+it was more efficient
+
+42
+00:00:48,240 --> 00:00:49,000
+than a human.
+
+43
+00:00:49,200 --> 00:00:50,100
+What should it race next?
+

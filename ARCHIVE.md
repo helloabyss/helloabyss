@@ -13,6 +13,10 @@ story, and the *Development* column is where that judgement gets recorded.
 | 2026-09-20 | Snap opens Specs AR-glasses pre-orders, $2,195 | 2 | 2026-09-16 | `scripts/2026-09-20.md` | **Units actually ship** (fall 2026), price changes, or the launch slips |
 | 2026-09-20 | Apple ships iOS 27; Siri AI arrives as a beta | 3 | 2026-09-14 | `scripts/2026-09-20.md` | Siri AI leaves beta, adds languages, or the A17 Pro requirement changes |
 | 2026-09-20 | "Hat" monotile produces chiral pinwheel diffraction | Wildcard | 2026-09-15 | `scripts/2026-09-20.md` | A working optical device is built on it |
+| 2026-09-27 | OpenAI agent escapes sandbox via DNS; top-model training paused | Hook + 1 | 2026-09-25 (incident 09-20) | `scripts/2026-09-27.md` | Pause lifts, an independent audit lands, or a third escape |
+| 2026-09-27 | Meta Connect: Ray-Ban Meta Gen 3 $449; VR Glasses $1,299.99 | 2 | 2026-09-23 | `scripts/2026-09-27.md` | **VR Glasses ship (spring 2027)** or price changes |
+| 2026-09-27 | Snapdragon 8 Elite Gen 6 — first 2nm, 5 GHz, 30B on-device; Xiaomi 18 Pro on sale in China | 3 | 2026-09-22 | `scripts/2026-09-27.md` | Independent benchmarks, or US phone launches |
+| 2026-09-27 | KAIST RAIBO2 marathon on one charge (Nature) | Wildcard | 2026-09-23 (run Nov 2024) | `scripts/2026-09-27.md` | A new run, or a commercial product |
 
 ---
 
@@ -22,11 +26,14 @@ Scored well but deliberately not used. Not archived — these are still **eligib
 
 | Story | Event date | Score | Why held | Revisit when |
 |---|---|---:|---|---|
-| SpaceX Starship Flight 14 — first orbital test, first Starlink V3 deployment | NET 2026-09-22 | 41 | Had not flown at build time; covering it meant file footage and slip risk | **Next episode** — after it flies there will be first-orbital-flight footage. Strongest story in the pipeline |
+| SpaceX Starship Flight 14 — first orbital test, 26 Starlink V3 | NET **2026-09-28 12:15 UTC** (slipped from 09-22) | 41 | **Held twice.** Had not flown at either build (09-20, 09-27) | **Next episode — lead if it flies.** B21/S41, WDR 09-24, FAA licence reported 09-26 |
 | Huawei Ascend 960 SuperPoD, 4,096 cards, Peerium architecture | 2026-09-17 | 37 | Fourth in a four-slot episode | Next quiet week, or when the 960DT ships in Q1 2027 |
 | Microsoft "Humanist" AI code of conduct, 37 pages | 2026-09-14 | 33 | Thin visuals — it is a document | When the six-week comment period closes and the revised version lands |
 | Nvidia's Huang forecasts 2× chip sales in 2027 | 2026-09-17 | 33 | A forecast, not an event | When shipment figures test the forecast |
 | SoftBank $11.87B loan toward ~$65B OpenAI position | 2026-09-14 | 24 | **No footage exists** — dropped on the doubled visual weight | Only with a visual hook. Would require the compliance card |
+| Apple ordered to pay $5.7B — Taction haptics patent verdict | 2026-09-25 | 36 | Off-spine for 09-27 | Post-trial motions or appeal |
+| Unitree Dex5-S hand, 22 DoF, from $6,500 | 2026-09-21 | 39 | Second robot beside the wildcard dog | A robotics-themed week |
+| Laser-made muons image through 2 m concrete | ~2026-09-25 | 32 | Preprint only | Peer-reviewed publication |
 
 ---
 
