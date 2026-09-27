@@ -1,0 +1,13 @@
+Anthropic just made its top AI faster and cheaper. This is Claude Opus five point five.
+
+It launched September twenty-second. Anthropic says it matches Fable five point one, its most powerful public model, on most work.
+
+In Anthropic's tests, it beat Fable on a tough coding benchmark: sixty-six percent to fifty-six.
+
+It writes over thirty percent faster than Opus five.
+
+And it costs four dollars in, twenty out, per million tokens. Anthropic says that's about forty percent less on typical jobs.
+
+The catch? Those are Anthropic's own numbers, not independent tests.
+
+If you pay for Opus, rerun one real job on five point five, and compare the bill.
