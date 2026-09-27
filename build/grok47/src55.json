@@ -1,0 +1,53 @@
+{"id":"55","title":"CLAUDE OPUS 5.5","eyebrow":"FRONTIER AI","date":"SEP 22 · 2026",
+ "source":"anthropic.com/claude-opus-5-5",
+ "plates":["s55_1.jpg","s55_2.jpg","s55_3.jpg","s55_4.jpg","s55_5.jpg","s55_6.jpg"],
+ "sents":[
+  "The AI that wrote this video just got cheaper.",
+  "Anthropic released Claude Opus five point five on September twenty-second.",
+  "Four dollars in, twenty out, per million tokens.",
+  "Down from five and twenty-five.",
+  "Anthropic says it matches Fable five point one on most work.",
+  "And costs about forty percent less to run than Opus five.",
+  "Those are Anthropic's numbers, not independent tests.",
+  "It's live now in the API and paid Claude plans.",
+  "Yes, it wrote this.",
+  "You be the judge."],
+ "phrases":[
+  ["The AI that wrote","this video","just got cheaper."],
+  ["Anthropic released Claude","Opus five point five","on September twenty-second."],
+  ["Four dollars in,","twenty out,","per million tokens."],
+  ["Down from five","and twenty-five."],
+  ["Anthropic says it matches","Fable five point one","on most work."],
+  ["And costs about","forty percent less to run","than Opus five."],
+  ["Those are Anthropic's numbers,","not independent tests."],
+  ["It's live now","in the API","and paid Claude plans."],
+  ["Yes, it wrote this."],
+  ["You be the judge."]],
+ "beats":[
+  {"sent":[0],"plates":[0],"mv":{"x":1,"y":-1},"source":"anthropic.com/claude-opus-5-5","blocks":[
+    {"k":"big","t":"THE AI THAT WROTE","y":640,"px":88,"at":-0.3,"dur":0.2},
+    {"k":"big","t":"THIS VIDEO","y":770,"px":140,"col":"ACC","at":-0.3,"dur":0.2},
+    {"k":"accent","t":"JUST GOT CHEAPER","y":910,"px":56,"ls":8,"at":1.3}]},
+  {"sent":[1],"plates":[1],"mv":{"x":-1,"y":1},"source":"anthropic.com · TechCrunch · Sep 22","blocks":[
+    {"k":"label","t":"ANTHROPIC · SEP 22","y":470,"at":0.05},
+    {"k":"big","t":"CLAUDE","y":640,"px":120,"at":0.10,"track":true},
+    {"k":"big","t":"OPUS 5.5","y":780,"px":156,"col":"ACC","at":0.10,"track":true},
+    {"k":"sub","t":"1M-token context · 128K output","y":900,"px":38,"at":1.2}]},
+  {"sent":[2],"plates":[2,3],"mv":{"x":1,"y":1},"source":"anthropic.com pricing · TechCrunch","blocks":[
+    {"k":"label","t":"PRICE PER MILLION TOKENS","y":440,"at":0.05},
+    {"k":"statpair","y":620,"px":170,"at":0.15,"items":[{"v":"$4","l":"INPUT"},{"v":"$20","l":"OUTPUT"}]},
+    {"k":"rows","y":900,"at":2.5,"items":[
+      {"l":"OPUS 5","r":"$5  /  $25"},
+      {"l":"OPUS 5.5","r":"$4  /  $20","hl":true}]},
+    {"k":"stamp","t":"20% LOWER LIST PRICE","y":1130,"px":50,"at":3.3}]},
+  {"sent":[4],"plates":[4,1],"mv":{"x":-1,"y":-1},"source":"anthropic.com · system card · company-reported","blocks":[
+    {"k":"label","t":"ANTHROPIC SAYS","y":470,"at":0.05},
+    {"k":"list","y":640,"at":0.2,"stagger":2.4,"px":56,"items":["FABLE 5.1-LEVEL","~40% CHEAPER TO RUN"]},
+    {"k":"sub","t":"Fable 5.1 lists at $10 / $50","y":900,"px":36,"at":1.4},
+    {"k":"caveat","title":"COMPANY-REPORTED","t":"Anthropic's own evaluations. The 40% is versus Opus 5 on typical workloads and varies by task. No independent benchmarks yet.","y":990,"h":250,"at":5.6}]},
+  {"sent":[7],"plates":[5],"mv":{"x":1,"y":-1},"source":"anthropic.com","blocks":[
+    {"k":"big","t":"LIVE NOW","y":600,"px":140,"at":0.05,"track":true},
+    {"k":"sub","t":"API · AWS · Google Cloud · Azure","y":720,"px":38,"at":0.4},
+    {"k":"sub","t":"Pro · Max · Team · Enterprise","y":780,"px":38,"at":0.8},
+    {"k":"caveat","title":"DISCLOSURE","t":"This video was researched and scripted with Claude Opus 5.5. Voice and imagery were generated with Higgsfield.","y":880,"h":240,"at":2.4},
+    {"k":"accent","t":"YOU BE THE JUDGE","y":1230,"px":54,"ls":8,"at":4.2}]}]}

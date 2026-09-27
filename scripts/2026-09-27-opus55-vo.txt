@@ -1,0 +1,7 @@
+The AI that wrote this video just got cheaper. Anthropic released Claude Opus five point five on September twenty-second.
+
+Four dollars in, twenty out, per million tokens. Down from five and twenty-five.
+
+Anthropic says it matches Fable five point one on most work. And costs about forty percent less to run than Opus five. Those are Anthropic's numbers, not independent tests.
+
+It's live now in the API and paid Claude plans. Yes, it wrote this. You be the judge.
