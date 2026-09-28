@@ -86,8 +86,23 @@ in the first preview before rendering the full video.
 
 ## Packaging
 
-**SEO title (chosen):** `Dollar Cost Averaging NVDA vs QQQ: $500 a Month for 10 Years` (61 chars —
-primary keyword first, both tickers, matches thumbnail B2's "vs" and both thumbnails' $500/month banner).
+**Title (chosen by poll):** `$500 a Month Into Nvidia and QQQ for 10 Years: The Real Math (and the Catch)`
+**Challenger for Test & Compare:** `Dollar Cost Averaging Nvidia and QQQ: Real 10-Year Returns (and the Catch)`
+
+Blind 5-agent poll, 2026-09-28 (titles shuffled per voter; SEO, CTR, beginner viewer, experienced
+investor, algorithm/retention perspectives). Borda points out of 25:
+
+| Title | 1st-place votes | Borda |
+|---|---|---|
+| T4 $500 a Month Into Nvidia and QQQ for 10 Years: The Real Math (and the Catch) | 2 | **21** |
+| T3 Dollar Cost Averaging Nvidia and QQQ: Real 10-Year Returns (and the Catch) | 1 | 19 |
+| T1 Dollar Cost Averaging NVDA vs QQQ: $500 a Month for 10 Years | 1 | 13 |
+| T2 $500 a Month in Nvidia vs QQQ for 10 Years \| Dollar Cost Averaging Explained | 1 | 12 |
+| T5 Why a Lump Sum Beat Dollar Cost Averaging — and Why You Might Still Choose It | 0 | 10 |
+
+T4 was top-3 on every ballot. It supersedes the earlier SEO pick (T1), which won the SEO voter
+but ranked low with every viewer persona. T4 truncates near "…The Real Math" on mobile; "the
+catch" is carried by the thumbnail sticker. AI opinions, not viewer data — real CTR decides.
 **Tags:** dollar cost averaging, NVDA, QQQ, Nvidia stock, Nasdaq 100, investing for beginners, DCA vs lump sum.
 
 **Title options** (no clickbait):
