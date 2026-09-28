@@ -93,8 +93,14 @@ in the first preview before rendering the full video.
 
 Recommend **1** — specific, searchable, and "the catch" is paid off honestly at 3:30.
 
-**Thumbnail:** `$500/mo → ?` in large type over a dark price-line, small red **"THE CATCH"** tag.
-No logos, no faces, no fake surprised reaction.
+**Thumbnails:** built — `videos/dca-2026-09-28/thumbnail/` (1280×720 PNG, regenerate with
+`python3 gen_thumbs.py && node shoot.mjs`). No logos, no faces, no fake reaction shot.
+- **A (lead):** "$500 A MONTH INTO NVIDIA" / **$1.7M** / red "BUT THERE'S A CATCH", over the real
+  split-adjusted NVDA price path with the ten January buys as dots. Pairs with title 1.
+- **B (test):** "SAME $60,000 IN QQQ" / **DCA LOST?** / bars $191K vs $398K. Pairs with title 3.
+Run both in YouTube **Test & Compare**. Every number on them is in `research/2026-09-28-dca.md`,
+and both are paid off in the video, so neither is clickbait under `CLAUDE.md`. Both fail vidIQ's
+saturation heuristic by design — don't chase that score.
 
 **Chapters:**
 ```
