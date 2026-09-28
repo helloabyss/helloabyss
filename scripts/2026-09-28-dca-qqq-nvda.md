@@ -86,6 +86,10 @@ in the first preview before rendering the full video.
 
 ## Packaging
 
+**SEO title (chosen):** `Dollar Cost Averaging NVDA vs QQQ: $500 a Month for 10 Years` (61 chars —
+primary keyword first, both tickers, matches thumbnail B2's "vs" and both thumbnails' $500/month banner).
+**Tags:** dollar cost averaging, NVDA, QQQ, Nvidia stock, Nasdaq 100, investing for beginners, DCA vs lump sum.
+
 **Title options** (no clickbait):
 1. `$500 a Month Into Nvidia and QQQ for 10 Years: The Real Math (and the Catch)`
 2. `Dollar Cost Averaging QQQ and Nvidia: 10 Years of Real Numbers`
