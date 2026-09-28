@@ -166,3 +166,8 @@ language (slam / wordsIn / bar race / calendar build on a 0.5s beat grid).
 - **Notes:** silent is a decision, not a gap — Shorts are watched muted, and the locked voice
   is only reachable through HeyGen, which the brief excluded. A music bed can be added without
   rebuilding. Still blocked on the `[OPEN]` primary-sourcing flag.
+
+## 2026-09-28 — Can the Market Crash 20% in One Day? (Short, scripted)
+- `videos/crash-20-2026-09-28/` · VO `scripts/2026-09-28-crash20-vo.txt` (159 words)
+- Framing: circuit breakers and slow crashes. Deliberately **not** a 10-year-yield episode (framing-reuse watch).
+- Render held: ~65–72 credits needed, 41 available until 2026-10-06.
