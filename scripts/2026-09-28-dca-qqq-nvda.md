@@ -102,6 +102,15 @@ Run both in YouTube **Test & Compare**. Every number on them is in `research/202
 and both are paid off in the video, so neither is clickbait under `CLAUDE.md`. Both fail vidIQ's
 saturation heuristic by design — don't chase that score.
 
+**v2 — colourful, at user direction (2026-09-28):** "too flat — more engaging colourful graphics,
+NVIDIA and QQQ tickers". This deliberately departs from the channel's three-colour palette for
+long-form thumbnails only. Built with OFL fonts (Anton, Inter) vendored from npm in `fonts/`.
+Regenerate: `python3 gen_thumbs_v2.py && node shoot.mjs`.
+- **A2 (lead):** NVDA / QQQ ticker chips, gold **$1.7M** / **$191K**, glowing real NVDA price path,
+  hot-pink "THE CATCH?" sticker.
+- **B2:** NVDA **VS** QQQ split-screen, green vs blue glow, gold results.
+Tickers are plain text in coloured chips — no company logos or brand marks.
+
 **Chapters:**
 ```
 0:00 $60,000 into Nvidia
