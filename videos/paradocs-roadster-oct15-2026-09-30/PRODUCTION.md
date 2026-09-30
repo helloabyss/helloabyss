@@ -20,3 +20,22 @@ The full brief is in the session's first message (same text as the `create_video
 - [ ] "Educational only. Not financial advice." within 4 s
 - [ ] Publish the `captioned_video_url` cut (generate mode disables inline captions)
 - [ ] Post by Sun 10/4, never on or after Oct 15
+
+## Owner-supplied clips → CapCut inserts (2026-09-30, 0 credits)
+
+The owner supplied three clips. Two are AI-generated Roadster shots, made into inserts here. They can't go into the HeyGen render:
+it can't be downloaded from here, and a re-render has no credits. So they go on over the render in CapCut.
+
+| File (`inserts/`) | Source | Treatment |
+|---|---|---|
+| `roadster-thrusters-ai-illustration-9x16.mp4` / `-band.mp4` | AI clip, car lifting on thrusters (1280×720, 6.0 s) | Tesla "T" badge tracked (OpenCV template match, all 145 frames) and blurred; graded dark and desaturated; label "AI ILLUSTRATION · NOT REAL FOOTAGE"; muted |
+| `roadster-coast-ai-illustration-9x16.mp4` / `-band.mp4` | AI clip, coastal road at sunset (736×400, 6.0 s) | Same |
+
+- `-9x16` is full frame (1080×1920, blurred fill). `-band` is only the picture plus label (1080×~700), so the burned-in captions in the
+  bottom third stay visible. **Use the band versions over the captioned cut.**
+- Placement (estimated at 150 wpm; confirm against the render's timing):
+  - thrusters on "The reveal was set for October 1st, outdoors near Waco" (~0:04–0:08, **after** the 4 s compliance card);
+  - coast on "The Roadster was unveiled in 2017, with production promised for 2020" (~0:15–0:20). Trim each to 3–4 s.
+- Keep the label on screen, and turn on YouTube's altered/synthetic content disclosure. The thruster shot shows something Tesla
+  has not demonstrated.
+- The third clip (`PARADOCS10X_short1_oct1_reveal.mp4`, 12 s) is **not used**. Its "Oct 1 is a reveal" line is now out of date.
