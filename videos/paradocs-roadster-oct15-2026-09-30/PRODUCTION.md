@@ -1,6 +1,6 @@
 # Production — PARADOCS10X Roadster "another date" Short (2026-09-30)
 
-**Status: RENDERING** (submitted 2026-09-30)
+**Status: COMPLETE, NOT VERIFIED** (submitted and completed 2026-09-30; CDN blocked, so not watched)
 
 | | |
 |---|---|
@@ -39,3 +39,24 @@ it can't be downloaded from here, and a re-render has no credits. So they go on 
 - Keep the label on screen, and turn on YouTube's altered/synthetic content disclosure. The thruster shot shows something Tesla
   has not demonstrated.
 - The third clip (`PARADOCS10X_short1_oct1_reveal.mp4`, 12 s) is **not used**. Its "Oct 1 is a reveal" line is now out of date.
+
+## Result — completed 2026-09-30
+
+**"Tesla Roadster: Another Date"** · `ab86416b92974d2497ae541086bb6689` · **41.12 s** · 9:16 · 1080p · 10 scenes ·
+watch: https://app.heygen.com/videos/ab86416b92974d2497ae541086bb6689
+
+| Check (`get_video_scenes`) | Result |
+|---|---|
+| Voice `f925838e…` (Sheldon - Voice) on all 10 scenes, ElevenLabs engine, speed 1.1 | **PASS** |
+| Script verbatim: 435 chars, exact match to `scripts/2026-09-30-paradocs-roadster-oct15-vo.txt` | **PASS** |
+| Faceless: 10 `motion_graphics` elements, **zero** avatar elements | **PASS** |
+| 9:16, 1080p | **PASS** |
+| `caption.enabled` false; `captioned_video_url` **populated** | Publish the captioned cut |
+
+**Cost: 24 credits (28 → 4) = 35.0 cr/min.** This is below the ~40 cr/min estimate for motion graphics. The runtime came out
+~8 s longer than the 30 s planned, even at speed 1.1, so HeyGen appears to add holds and a closing beat.
+
+**UNKNOWN — needs eyes:**
+- **Palette.** Every scene's background is set to `#ffffff`. The full-frame motion-graphics plates probably cover it,
+  but `get_video_scenes` can't show the plate content. Check that it reads near-black, white and red, not white.
+- No logo or car imagery, compliance card within 4 s, and the "82%" labelled as a forecast.
