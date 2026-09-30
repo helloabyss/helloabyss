@@ -171,3 +171,8 @@ language (slam / wordsIn / bar race / calendar build on a 0.5s beat grid).
 - `videos/crash-20-2026-09-28/` · VO `scripts/2026-09-28-crash20-vo.txt` (159 words)
 - Framing: circuit breakers and slow crashes. Deliberately **not** a 10-year-yield episode (framing-reuse watch).
 - Render held: ~65–72 credits needed, 41 available until 2026-10-06.
+
+## 2026-09-30 — "10-Year Treasury at 5.26%" Short (pipeline #4): SKIPPED
+- Owner's call. It would have been the third 10-year episode in a week (framing-reuse watch).
+  The 9/29 figure was also unconfirmed: search showed 5.24% (Trading Economics) against 5.26% in the video.
+- Pipeline copy with the row updated: `pipeline/pipeline-2026-09-30.xlsx`.
