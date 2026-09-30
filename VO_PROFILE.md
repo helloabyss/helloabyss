@@ -12,6 +12,16 @@ assumed — the provenance of each number is stated.
 
 ---
 
+> ## ⚠️ Voice changed 2026-09-30, on Sheldon's explicit instruction
+> "I want this voice to be used going forward for all my videos and projects": Sheldon's own voice.
+> - **HeyGen renders:** `voiceId` **`f925838e942b4f43838bafa25abac051`** ("Sheldon - Voice", private clone, status complete,
+>   engines starfish / elevenlabs / elevenlabs_v3). A second entry, `a32f980daef743d49caae9e269d14346` ("Sheldon"), was created 4 s
+>   earlier and has no status. Don't use it.
+> - **Free local renders:** a local clone is planned but not yet built. It needs a clean recording and permission to download an
+>   open-source model. Until it exists, there is no free route to this voice.
+> - Alex Wright (below) is kept only as the record of older episodes. The pacing and writing rules in §3–§4 still apply.
+
+
 ## 1. Provider and voice — locked
 
 | Field | Value | Source |
