@@ -1,6 +1,6 @@
 # Production — "93% of Pros Lost to the S&P 500" (2026-10-01)
 
-**Status: RENDERED, SILENT CUT.** `93-percent-lost-to-the-sp500.mp4` · 57.3 s · 1080×1920 · 30 fps · 0 credits (local HyperFrames).
+**Status: RENDERED WITH NARRATION, B-ROLL PENDING.** `93-percent-lost-to-the-sp500.mp4` · 62.0 s (57.5 s VO + 4.5 s disclaimer) · 1080×1920 · 30 fps · H.264 + AAC.
 MP4s are gitignored (repo convention), so regenerate with `cd build && python3 gen.py && npx --yes hyperframes@0.8.55 render -o ../93-percent-lost-to-the-sp500.mp4 -f 30`.
 
 ## Why silent
@@ -42,3 +42,14 @@ Palette #0B0B0C / #F5F5F3 / #D42A2A; no logos, no faces, no tickers.
 - The plate layer is already in `gen.py` (track 1, behind all graphics): slow push-in, grayscale .7 / brightness .78 grade, top and bottom
   scrim, and the trophy plate falls with "STAY." It was tested end to end with placeholder images (check: 0 errors). Grade and opacity
   still need tuning against the real photos.
+
+## Narration (owner: "go with a fitting voice or use ElevenLabs", 2026-10-01)
+- **ElevenLabs "Brian - Deep, Resonant and Comforting"** (`nPczCjzI2devNBz1zQrb`, premade, American, middle-aged), `eleven_multilingual_v2`,
+  script verbatim, **860 ElevenLabs credits (~$0.09)**. Flow: https://elevenlabs.io/app/flows/D7InKIOKdcGugwgqCcgf
+- The first pick, library voice "BlueAshby", is refused on the current ElevenLabs tier (creator tier needed).
+- **This is a one-off exception to the house voice** (Sheldon - Voice) on the owner's say-so. `CLAUDE.md` is unchanged.
+- File: `build/assets/vo-brian.mp3` (57.52 s). The download host (storage.googleapis.com) is reachable here, unlike Higgsfield's.
+- Sync: local transcription can't fetch its model (HTTP 403), so beat edges come from the pauses (silencedetect −38 dB / 0.18 s),
+  mapped to sentences by hand (`LINE_END_GAP` in `gen.py`). The automatic mapping got 4 of 18 lines wrong, so it isn't used.
+  Pauses in the rendered MP4 land at the same times as the source (1.28 / 5.68 / 7.13 / 9.96 s …).
+- Loudness of the render: mean −25.1 dB, peak −3.8 dB. No music bed yet.

@@ -26,6 +26,19 @@ BEATS = [  # (caption line, highlighted word, seconds)
  ("It's the one part of your return you know in advance.", "advance.", 3.6),
 ]
 T = []; acc = 0.0
+# Narration: ElevenLabs "Brian" (premade, eleven_multilingual_v2), 57.5 s. Beat edges sit in the middle of the
+# pause after each line (silencedetect -38 dB / 0.18 s), mapped to sentences by hand: 1-based gap index per line end.
+import os, re, subprocess
+VO_FILE = "assets/vo-brian.mp3"
+if os.path.exists(VO_FILE):
+    _o = subprocess.run(["ffmpeg","-hide_banner","-i",VO_FILE,"-af","silencedetect=n=-38dB:d=0.18","-f","null","-"],
+                        capture_output=True, text=True).stderr
+    _st = [float(x) for x in re.findall(r"silence_start: ([0-9.]+)", _o)]
+    _en = [float(x) for x in re.findall(r"silence_end: ([0-9.]+)", _o)]
+    _g = list(zip(_st, _en))
+    LINE_END_GAP = [1,2,3,4,7,9,10,11,12,14,15,16,17,18,20,21,23]
+    _edges = [0.0] + [(_g[i-1][0]+_g[i-1][1])/2 for i in LINE_END_GAP] + [_st[-1] + 0.35]
+    BEATS = [(c, h, round(_edges[i+1]-_edges[i], 3)) for i,(c,h,_) in enumerate(BEATS)]
 for _,_,d in BEATS: T.append(round(acc,3)); acc += d
 VO_END = round(acc,3)
 DISC_AT, DISC_DUR = VO_END, 4.5
@@ -209,8 +222,8 @@ TW += [f'slam("#aN",{t(1,0.05):.3f},.40);', 'flash(' + f'{t(1,0.05):.3f}' + ');'
        f'slam("#a20",{t(3,0.08):.3f},.38);', f'flash({t(3,0.08):.3f});']
 # B
 TW += [f'rise("#bNA",{t(4,0.1):.3f});', f'out("#bNA",{t(5,-0.1):.3f});',
-       f'slam("#bP1",{t(5,0.05):.3f},.32);', f'slam("#bP2",{t(5,0.75):.3f},.30);',
-       f'slam("#bP3",{t(5,1.35):.3f},.30);', f'slam("#bP4",{t(5,1.95):.3f},.30);',
+       f'slam("#bP1",{t(5,0.25):.3f},.32);', f'slam("#bP2",{t(5,1.30):.3f},.30);',
+       f'slam("#bP3",{t(5,2.65):.3f},.30);', f'slam("#bP4",{t(5,3.80):.3f},.30);',
        f'out("#bP1, #bP2, #bP3, #bP4",{t(6,-0.05):.3f});',
        f'tl.fromTo("#bG .dot",{{opacity:0,scale:.3}},{{opacity:1,scale:1,duration:.25,ease:EO,stagger:{{each:.006,from:"start"}}}},{t(6,0.05):.3f});',
        f'tl.fromTo("#bG .dot:nth-child(-n+79)",{{backgroundColor:"#3A3A3C"}},{{backgroundColor:"#D42A2A",duration:.2,stagger:.016,immediateRender:false}},{t(6,0.9):.3f});',
@@ -305,7 +318,7 @@ HTML = HTML.replace("Every figure traceable to ../../research/2026-09-27.md", "E
 HTML = HTML.replace("kinetic weekly. Type IS the motion. Silent by design:", "93% of pros lost to the S&P 500. VO-paced; captions carry the script:")
 HTML = (HTML.replace("__TOTAL__", str(TOTAL))
         .replace("/*WHEELCSS*/", WHEEL_CSS + EXTRA_CSS).replace("/*WHEELJS*/", WHEEL_JS)
-        .replace("/*SCENES*/", PL + "\n" + "\n".join(S) + "\n" + CAPS + "\n" + DISC + '\n<div id="flash"></div>\n')
+        .replace("/*SCENES*/", PL + "\n" + "\n".join(S) + "\n" + CAPS + "\n" + DISC + '\n<div id="flash"></div>\n' + (f'<audio id="vo" class="clip" src="{VO_FILE}" data-start="0" data-duration="{VO_END}" data-track-index="3" data-volume="1"></audio>' if os.path.exists(VO_FILE) else ''))
         .replace("const out=", HELPERS + "const out=")
         .replace("/*TW*/", "\n".join(PTW + TW)))
 # autoAlpha: hidden beats get visibility:hidden, so they never count as on-screen
