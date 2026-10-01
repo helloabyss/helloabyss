@@ -31,3 +31,14 @@ Palette #0B0B0C / #F5F5F3 / #D42A2A; no logos, no faces, no tickers.
 - [ ] `[OPEN]` Confirm the 93% (20-yr) against the SPIVA YE2025 PDF; if it differs, change beat 1 and re-render
 - [ ] Description disclaimer and sources from `SCRIPT.md`
 - [ ] YouTube altered/synthetic setting: not needed (no realistic synthetic footage)
+
+## B-roll (owner request 2026-10-01): stills generated, waiting on download
+- 10 AI stills generated on Higgsfield (`gpt_image_2_5`, 9:16, 752×1344): **2.5 credits** (327.25 → 324.75). The prompts ask for no
+  people, no logos and no readable text, graded dark. Shot list: trading floor · tower looking up · screen wall · lobby · trophy ·
+  boardroom · dawn skyline · storm · coins · laptop.
+- **Blocked:** the network policy of this cloud environment denies Higgsfield's file host `d8j0ntlcm91z4.cloudfront.net`, so the files can't be
+  pulled here. Once the host is allowed (or the files are uploaded by hand into `build/assets/broll/` under the names in `fetch.sh`):
+  `cd build && assets/broll/fetch.sh && python3 gen.py && npx --yes hyperframes@0.8.55 render -o ../93-percent-lost-to-the-sp500.mp4 -f 30`
+- The plate layer is already in `gen.py` (track 1, behind all graphics): slow push-in, grayscale .7 / brightness .78 grade, top and bottom
+  scrim, and the trophy plate falls with "STAY." It was tested end to end with placeholder images (check: 0 errors). Grade and opacity
+  still need tuning against the real photos.

@@ -165,6 +165,27 @@ DISC = (f'<div id="s_disc" class="clip" data-start="{DISC_AT}" data-duration="{D
   'indicate future results. Figures from S&amp;P Dow Jones Indices SPIVA reports, as of the dates shown.</div>'
   '<div class="dl3" id="dL3">THE METICULOUS INVESTOR</div></div></div>')
 
+
+# ---------------------------------------------------------------- B-roll plates (base layer)
+# (file, first beat, last beat, opacity). AI stills from Higgsfield, graded dark/desaturated in CSS,
+# moved with slow push-ins so they play as B-roll. Skipped silently if the file isn't on disk yet.
+import os
+PLATES = [("b00-trading-floor.png",1,1,.60),("b01-tower-up.png",2,3,.42),("b03-lobby.png",4,4,.55),
+          ("b02-screen-wall.png",5,5,.50),("b05-boardroom.png",6,6,.30),("b04-trophy.png",7,8,.58),
+          ("b00-trading-floor.png",9,11,.28),("b06-dawn-skyline.png",12,14,.32),("b07-storm.png",15,15,.50),
+          ("b08-coins.png",16,16,.40),("b09-laptop.png",17,18,.45)]
+PL = ""; PTW = []
+for n,(f,a,z,op) in enumerate(PLATES):
+    if not os.path.exists(f"assets/broll/{f}"):
+        print("  (plate missing, skipped)", f); continue
+    st = T[a-1]; en = T[z] if z < len(T) else VO_END; du = round(en-st,3)
+    PL += (f'<div class="clip plate" id="pl{n}" data-start="{st}" data-duration="{du}" data-track-index="1">'
+           f'<img src="assets/broll/{f}" alt=""><div class="scrim"></div></div>')
+    PTW.append(f'tl.fromTo("#pl{n} img",{{scale:1.06,y:0}},{{scale:1.20,y:-40,duration:{du},ease:"none"}},{st:.3f});')
+    PTW.append(f'tl.fromTo("#pl{n} img",{{opacity:0}},{{opacity:{op},duration:.35,ease:"power2.out",immediateRender:false}},{st:.3f});')
+    if f == "b04-trophy.png":   # the trophy falls with "STAY."
+        PTW.append(f'tl.to("#pl{n} img",{{y:260,rotation:6,opacity:0,duration:.7,ease:"power2.in"}},{t(8,1.9):.3f});')
+
 # ---------------------------------------------------------------- choreography
 TW = []
 for sid,a,_,_,_ in SC:
@@ -266,6 +287,10 @@ EXTRA_CSS = """
 .cw{display:inline-block}.cw.hl{color:#D42A2A}
 #flash{position:absolute;inset:0;background:#F5F5F3;opacity:0;pointer-events:none;z-index:50}
 #compliance{top:1680px}
+.plate{overflow:hidden}
+.plate img{position:absolute;left:-60px;top:-110px;width:1200px;height:2140px;object-fit:cover;
+  filter:grayscale(.7) contrast(1.1) brightness(.78);transform-origin:50% 45%}
+.plate .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.85) 0%,rgba(11,11,12,.25) 30%,rgba(11,11,12,.35) 62%,rgba(11,11,12,.92) 100%)}
 """
 HELPERS = """
 const flash=(at)=>tl.fromTo("#flash",{opacity:.0},{opacity:.55,duration:.04,immediateRender:false},at).to("#flash",{opacity:0,duration:.08},at+.05);
@@ -280,9 +305,9 @@ HTML = HTML.replace("Every figure traceable to ../../research/2026-09-27.md", "E
 HTML = HTML.replace("kinetic weekly. Type IS the motion. Silent by design:", "93% of pros lost to the S&P 500. VO-paced; captions carry the script:")
 HTML = (HTML.replace("__TOTAL__", str(TOTAL))
         .replace("/*WHEELCSS*/", WHEEL_CSS + EXTRA_CSS).replace("/*WHEELJS*/", WHEEL_JS)
-        .replace("/*SCENES*/", "\n".join(S) + "\n" + CAPS + "\n" + DISC + '\n<div id="flash"></div>\n')
+        .replace("/*SCENES*/", PL + "\n" + "\n".join(S) + "\n" + CAPS + "\n" + DISC + '\n<div id="flash"></div>\n')
         .replace("const out=", HELPERS + "const out=")
-        .replace("/*TW*/", "\n".join(TW)))
+        .replace("/*TW*/", "\n".join(PTW + TW)))
 # autoAlpha: hidden beats get visibility:hidden, so they never count as on-screen
 HTML = HTML.replace("{opacity:0,","{autoAlpha:0,").replace("{opacity:1,","{autoAlpha:1,").replace("to(s,{opacity:0,","to(s,{autoAlpha:0,")
 open("index.html","w").write(HTML)
