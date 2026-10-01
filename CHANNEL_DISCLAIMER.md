@@ -4,6 +4,27 @@ Copy-paste text for YouTube. v2 adds AI voice, music and image disclosure, becau
 "Educational only, not financial advice" in the first ~150 characters, the part of the About text visible without tapping "more".
 `COMPLIANCE.md` §8 still governs the on-screen cards.
 
+## 0. Financial-advice disclaimer (standalone)
+
+Full version (website, Community post, long descriptions):
+```
+NOT FINANCIAL ADVICE. The Meticulous Investor is an educational channel. Nothing in our videos, descriptions, comments or community posts is financial, investment, tax or legal advice, or a recommendation to buy, sell or hold any security, fund or asset. The creator is not a licensed financial adviser, broker or tax professional, and no adviser-client relationship is formed by watching or commenting.
+
+Investing involves risk, including the possible loss of your entire investment. Past performance does not guarantee future results. Examples, backtests and projections are hypothetical and for illustration only. Figures are accurate as of the dates shown and may have changed since. Opinions and forecasts from analysts or institutions are theirs, not ours.
+
+Your situation is unique. Before making any financial decision, do your own research and consider speaking with a licensed, independent professional. You are solely responsible for your own investment decisions.
+```
+
+Short version (video descriptions):
+```
+Not financial advice. This video is for education only and is not a recommendation to buy or sell any security. Investing involves risk, including loss of principal. Past performance does not guarantee future results. Do your own research and consult a licensed professional before investing.
+```
+
+One-liner (pinned comment, on-screen):
+```
+Educational only. Not financial advice. Investing involves risk.
+```
+
 ## 1. Channel About section (limit 1,000 characters; this is 944)
 
 ```
