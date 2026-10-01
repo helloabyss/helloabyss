@@ -61,3 +61,11 @@ Palette #0B0B0C / #F5F5F3 / #D42A2A; no logos, no faces, no tickers.
   as the narration ends. Master loudness **-14.3 LUFS / -1.3 dBFS peak** (YouTube's reference level). Music in the narration pauses sits
   ~-25 dB, so it stays in the background.
 - `build/assets/vo-mix.m4a` is the single audio track in the render. The narration and music stems sit next to it.
+
+## B-roll, final (owner: "Do whatever", 2026-10-01)
+- Higgsfield stills (above) still can't be downloaded here. They were remade on **ElevenLabs FLUX.2 Pro, 9:16 1080p** (storage.googleapis.com is reachable).
+  The free ElevenLabs plan's **daily image cap** let only 3 of 10 start: screen wall, lobby, coins (**~818 credits, ~$0.08**). The 7 refused nodes
+  are still on the flow, so they can be re-run tomorrow or on a paid plan.
+- Placement (`PLATES` in `gen.py`): screen wall on beats 1, 5 and 17–18 · lobby on beats 2–4 and 9–11 · coins on beat 16. Data-heavy beats
+  (dot grids, crash line) stay on the plain dark ground.
+- Checked by eye: B-roll reads as a dark base layer, type and captions stay legible, no faces, logos or readable text. Loudness unchanged (-14.3 LUFS).

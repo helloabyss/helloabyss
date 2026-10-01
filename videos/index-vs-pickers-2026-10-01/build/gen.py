@@ -183,10 +183,10 @@ DISC = (f'<div id="s_disc" class="clip" data-start="{DISC_AT}" data-duration="{D
 # (file, first beat, last beat, opacity). AI stills from Higgsfield, graded dark/desaturated in CSS,
 # moved with slow push-ins so they play as B-roll. Skipped silently if the file isn't on disk yet.
 import os
-PLATES = [("b00-trading-floor.png",1,1,.60),("b01-tower-up.png",2,3,.42),("b03-lobby.png",4,4,.55),
-          ("b02-screen-wall.png",5,5,.50),("b05-boardroom.png",6,6,.30),("b04-trophy.png",7,8,.58),
-          ("b00-trading-floor.png",9,11,.28),("b06-dawn-skyline.png",12,14,.32),("b07-storm.png",15,15,.50),
-          ("b08-coins.png",16,16,.40),("b09-laptop.png",17,18,.45)]
+PLATES = [("b02-screen-wall.png",1,1,.55),("b03-lobby.png",2,4,.45),("b02-screen-wall.png",5,5,.50),
+          ("b03-lobby.png",9,11,.26),("b08-coins.png",16,16,.45),("b02-screen-wall.png",17,18,.32)]
+# Only 3 stills exist (ElevenLabs FLUX.2 Pro; the free plan's daily image cap stopped the other 7), so beats 6-8 and 12-15,
+# which carry dot grids, the leaderboard and the crash line, stay on the plain dark ground.
 PL = ""; PTW = []
 for n,(f,a,z,op) in enumerate(PLATES):
     if not os.path.exists(f"assets/broll/{f}"):
