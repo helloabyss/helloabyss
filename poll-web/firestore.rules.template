@@ -1,0 +1,44 @@
+rules_version = '2';
+// Generated into firestore.rules by `npm run rules` (ADMIN_EMAIL=you@example.com).
+// Keep the admin address out of git: only this template is committed.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "__ADMIN_EMAIL__"
+        && request.auth.token.email_verified == true;
+    }
+
+    function validPoll(d) {
+      return d.keys().hasOnly(['question', 'context', 'options', 'optionIds', 'status', 'createdAt'])
+        && d.question is string && d.question.size() > 0 && d.question.size() <= 160
+        && d.context is string && d.context.size() <= 400
+        && d.options is list && d.options.size() >= 2 && d.options.size() <= 8
+        && d.optionIds is list && d.optionIds.size() == d.options.size()
+        && d.status in ['open', 'closed'];
+    }
+
+    match /polls/{pollId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validPoll(request.resource.data);
+      allow delete: if isAdmin();
+
+      // One vote per account: the document id IS the voter's uid.
+      match /votes/{voterId} {
+        function poll() {
+          return get(/databases/$(database)/documents/polls/$(pollId)).data;
+        }
+        allow read: if true;   // votes hold only an option id and a time; needed for public counts
+        allow create, update: if request.auth != null
+          && request.auth.uid == voterId
+          && poll().status == 'open'
+          && request.resource.data.keys().hasOnly(['option', 'at'])
+          && request.resource.data.option in poll().optionIds
+          && request.resource.data.at == request.time;
+        allow delete: if isAdmin()
+          || (request.auth != null && request.auth.uid == voterId && poll().status == 'open');
+      }
+    }
+  }
+}

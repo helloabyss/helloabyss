@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=1080,height=1920"><script src="vendor/gsap.min.js"></script><style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B1A2E}
+#root{width:100%;height:100%;position:relative;background:#0B1A2E;font-family:"Liberation Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+.kick{position:absolute;left:100px;top:300px;color:#8FA6C0;font-size:30px;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+.hero{position:absolute;left:100px;top:470px;color:#FFFFFF;font-weight:800;letter-spacing:-.03em;line-height:.95}
+.sub{position:absolute;left:100px;top:700px;color:#C9D6E6;font-size:44px;font-weight:600;letter-spacing:-.01em;width:880px;line-height:1.25}
+.rule{position:absolute;left:100px;top:370px;width:150px;height:5px;background:#FFFFFF;transform-origin:left center}
+.slug{position:absolute;right:100px;top:200px;color:#8299B4;font-size:22px;letter-spacing:.22em}
+.capline{position:absolute;left:90px;top:1500px;width:900px;text-align:center;font-size:42px;font-weight:800;
+  opacity:0;line-height:1.24;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.capline span{color:rgba(255,255,255,.5);margin:0 .15em}
+#disc{position:absolute;left:100px;top:1716px;color:#8FA6C0;font-size:27px;font-weight:700;letter-spacing:.02em;line-height:1.4}
+#prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:#FFFFFF;transform-origin:left;transform:scaleX(0)}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="15.904" data-width="1080" data-height="1920">
+<div id="c0" class="clip" data-start="0.0" data-duration="4.768" data-track-index="0"><div class="slug">SEVEN COUNTRIES</div><div class="rule" id="r0"></div><div class="kick" id="k0">One at a time</div><div class="hero" id="h0" style="top:470px;font-size:150px">SEVEN</div><div class="sub" id="s0" style="top:697px">national recognitions</div></div>
+<div id="c1" class="clip" data-start="4.768" data-duration="4.768" data-track-index="0"><div class="slug">SEVEN COUNTRIES</div><div class="rule" id="r1"></div><div class="kick" id="k1">Approved</div><div class="hero" id="h1" style="top:470px;font-size:108px">NL · LT · EE</div><div class="sub" id="s1" style="top:645px">DK · BE · SI · CZ</div></div>
+<div id="c2" class="clip" data-start="9.536" data-duration="6.368" data-track-index="0"><div class="slug">SEVEN COUNTRIES</div><div class="rule" id="r2"></div><div class="kick" id="k2">Not bloc-wide</div><div class="hero" id="h2" style="top:470px;font-size:108px">ONE BY ONE</div><div class="sub" id="s2" style="top:645px">each state decides</div></div>
+<div id="caps"><div class="capline" id="g0"><span id="w0_0">Netherlands.</span></div>
+<div class="capline" id="g1"><span id="w1_0">Lithuania.</span></div>
+<div class="capline" id="g2"><span id="w2_0">Estonia.</span></div>
+<div class="capline" id="g3"><span id="w3_0">Denmark.</span></div>
+<div class="capline" id="g4"><span id="w4_0">Belgium.</span></div>
+<div class="capline" id="g5"><span id="w5_0">Slovenia.</span></div>
+<div class="capline" id="g6"><span id="w6_0">And</span><span id="w6_1">now</span><span id="w6_2">Czechia.</span></div>
+<div class="capline" id="g7"><span id="w7_0">Tesla</span><span id="w7_1">FSD</span><span id="w7_2">Supervised</span><span id="w7_3">keeps</span></div>
+<div class="capline" id="g8"><span id="w8_0">expanding,</span><span id="w8_1">one</span><span id="w8_2">national</span><span id="w8_3">recognition</span></div>
+<div class="capline" id="g9"><span id="w9_0">at</span><span id="w9_1">a</span><span id="w9_2">time.</span></div></div>
+<div id="disc">Not financial advice.<br>FSD Supervised is supervised.</div>
+<div id="prog"></div>
+<audio id="vo" src="vo.wav" data-start="0" data-duration="14.304" data-track-index="9" data-volume="1"></audio>
+</div><script>
+const tl=gsap.timeline({paused:true}),E="power3.out";
+const up=(s,at,d=.55,y=36)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:15.904,ease:"none"},0);
+tl.fromTo("#r0",{scaleX:0},{scaleX:1,duration:.5,ease:E},0.05);
+up("#k0",0.15);
+up("#h0",0.35,.6,46);
+up("#s0",0.75);
+tl.fromTo("#r1",{scaleX:0},{scaleX:1,duration:.5,ease:E},4.818);
+up("#k1",4.918);
+up("#h1",5.117999999999999,.6,46);
+up("#s1",5.518);
+tl.fromTo("#r2",{scaleX:0},{scaleX:1,duration:.5,ease:E},9.586);
+up("#k2",9.686);
+up("#h2",9.886,.6,46);
+up("#s2",10.286);
+tl.set("#g0",{opacity:1},0.000).set("#g0",{opacity:0},1.143);
+tl.set("#w0_0",{color:"#FFFFFF"},0.000).set("#w0_0",{color:"rgba(255,255,255,.5)"},1.045);
+tl.set("#g1",{opacity:1},1.155).set("#g1",{opacity:0},2.391);
+tl.set("#w1_0",{color:"#FFFFFF"},1.205).set("#w1_0",{color:"rgba(255,255,255,.5)"},2.293);
+tl.set("#g2",{opacity:1},2.403).set("#g2",{opacity:0},3.554);
+tl.set("#w2_0",{color:"#FFFFFF"},2.453).set("#w2_0",{color:"rgba(255,255,255,.5)"},3.456);
+tl.set("#g3",{opacity:1},3.566).set("#g3",{opacity:0},4.653);
+tl.set("#w3_0",{color:"#FFFFFF"},3.616).set("#w3_0",{color:"rgba(255,255,255,.5)"},4.555);
+tl.set("#g4",{opacity:1},4.665).set("#g4",{opacity:0},5.709);
+tl.set("#w4_0",{color:"#FFFFFF"},4.715).set("#w4_0",{color:"rgba(255,255,255,.5)"},5.611);
+tl.set("#g5",{opacity:1},5.721).set("#g5",{opacity:0},6.978);
+tl.set("#w5_0",{color:"#FFFFFF"},5.771).set("#w5_0",{color:"rgba(255,255,255,.5)"},6.880);
+tl.set("#g6",{opacity:1},6.990).set("#g6",{opacity:0},8.503);
+tl.set("#w6_0",{color:"#FFFFFF"},7.040).set("#w6_0",{color:"rgba(255,255,255,.5)"},7.361);
+tl.set("#w6_1",{color:"#FFFFFF"},7.361).set("#w6_1",{color:"rgba(255,255,255,.5)"},7.683);
+tl.set("#w6_2",{color:"#FFFFFF"},7.683).set("#w6_2",{color:"rgba(255,255,255,.5)"},8.405);
+tl.set("#g7",{opacity:1},8.515).set("#g7",{opacity:0},10.597);
+tl.set("#w7_0",{color:"#FFFFFF"},8.565).set("#w7_0",{color:"rgba(255,255,255,.5)"},9.031);
+tl.set("#w7_1",{color:"#FFFFFF"},9.031).set("#w7_1",{color:"rgba(255,255,255,.5)"},9.341);
+tl.set("#w7_2",{color:"#FFFFFF"},9.341).set("#w7_2",{color:"rgba(255,255,255,.5)"},10.194);
+tl.set("#w7_3",{color:"#FFFFFF"},10.194).set("#w7_3",{color:"rgba(255,255,255,.5)"},10.659);
+tl.set("#g8",{opacity:1},10.609).set("#g8",{opacity:0},13.389);
+tl.set("#w8_0",{color:"#FFFFFF"},10.659).set("#w8_0",{color:"rgba(255,255,255,.5)"},11.512);
+tl.set("#w8_1",{color:"#FFFFFF"},11.512).set("#w8_1",{color:"rgba(255,255,255,.5)"},11.822);
+tl.set("#w8_2",{color:"#FFFFFF"},11.822).set("#w8_2",{color:"rgba(255,255,255,.5)"},12.520);
+tl.set("#w8_3",{color:"#FFFFFF"},12.520).set("#w8_3",{color:"rgba(255,255,255,.5)"},13.451);
+tl.set("#g9",{opacity:1},13.401).set("#g9",{opacity:0},14.604);
+tl.set("#w9_0",{color:"#FFFFFF"},13.451).set("#w9_0",{color:"rgba(255,255,255,.5)"},13.684);
+tl.set("#w9_1",{color:"#FFFFFF"},13.684).set("#w9_1",{color:"rgba(255,255,255,.5)"},13.839);
+tl.set("#w9_2",{color:"#FFFFFF"},13.839).set("#w9_2",{color:"rgba(255,255,255,.5)"},14.304);
+window.__timelines["main"]=tl;tl.seek(0);</script></body></html>

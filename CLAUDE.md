@@ -35,7 +35,7 @@ locked visual identity. Summary of the non-negotiables:
 | Setting | Value |
 |---|---|
 | HeyGen style | Economist — `e7f9a12679ec426099db7646b70a4639` |
-| HeyGen voice | Alex Wright – Informative — `0db3abd83c74452fb2460b0dd113daad` |
+| HeyGen voice | **Sheldon - Voice** (the owner's own cloned voice) — `f925838e942b4f43838bafa25abac051`. Owner's instruction 2026-09-30: use it for all videos and projects going forward. Alex Wright `0db3abd8…` is retired for new work. |
 | Mode | `chat` (revisable — send follow-ups into the session) |
 | Orientation | `portrait` (9:16) |
 

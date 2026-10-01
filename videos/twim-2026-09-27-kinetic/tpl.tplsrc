@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- The Meticulous Investor · kinetic weekly. Type IS the motion. Silent by design:
+     built to read with the sound off. Three colours, no photography, no faces, no logos.
+     Every figure traceable to ../../research/2026-09-27.md -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="vendor/gsap.min.js"></script>
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+html,body{{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}}
+:root{{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E}}
+#root{{width:100%;height:100%;position:relative;background:var(--ink);
+  font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}}
+.clip{{position:absolute;inset:0}}
+/* ---- chrome ---- */
+.frame{{position:absolute;inset:0;pointer-events:none}}
+.fr-t{{position:absolute;left:96px;right:96px;top:176px;height:1px;background:rgba(245,245,243,.09)}}
+.fr-b{{position:absolute;left:96px;right:96px;top:1800px;height:1px;background:rgba(245,245,243,.09)}}
+.slug{{position:absolute;left:96px;top:138px;color:#8A8A8A;font-size:20px;letter-spacing:.30em;font-weight:700}}
+.num{{position:absolute;right:96px;top:138px;color:#8A8A8A;font-size:20px;letter-spacing:.20em;font-weight:700}}
+.stamp{{position:absolute;left:96px;top:1740px;color:var(--muted);font-size:25px;letter-spacing:.02em}}
+.kicker{{position:absolute;left:96px;top:244px;color:var(--accent);font-size:28px;letter-spacing:.34em;
+  text-transform:uppercase;font-weight:800}}
+.rule{{position:absolute;left:96px;top:306px;width:168px;height:6px;background:var(--accent);transform-origin:left center}}
+/* ---- kinetic type ---- */
+.mega{{position:absolute;left:96px;color:var(--paper);font-weight:800;letter-spacing:-.045em;
+  line-height:.94;font-variant-numeric:tabular-nums}}
+.big{{position:absolute;left:96px;color:var(--paper);font-weight:800;letter-spacing:-.03em;line-height:1.02;
+  font-variant-numeric:tabular-nums}}
+.lbl{{position:absolute;color:var(--muted);font-size:29px;letter-spacing:.22em;text-transform:uppercase;font-weight:800}}
+.red{{color:var(--accent)}}
+.dim{{color:var(--muted)}}
+.word{{display:inline-block}}
+/* ---- bar race ---- */
+.barRow{{position:absolute;left:96px;width:888px;height:104px}}
+.barName{{position:absolute;left:0;top:6px;color:var(--paper);font-size:34px;font-weight:800;letter-spacing:.10em}}
+.barTrack{{position:absolute;left:0;top:52px;height:34px;width:790px;background:rgba(245,245,243,.06)}}
+.barFill{{position:absolute;left:0;top:52px;height:34px;width:790px;background:var(--paper);transform-origin:left center}}
+.barFill.acc{{background:var(--accent)}}
+.barVal{{position:absolute;top:44px;color:var(--paper);font-size:44px;font-weight:800;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}}
+/* ---- calendar strip ---- */
+.calRow{{position:absolute;left:96px;width:888px;height:112px;border-top:1px solid rgba(245,245,243,.12)}}
+.calDay{{position:absolute;left:0;top:30px;color:var(--accent);font-size:30px;font-weight:800;letter-spacing:.20em}}
+.calWhat{{position:absolute;left:210px;top:24px;color:var(--paper);font-size:46px;font-weight:800;letter-spacing:-.015em}}
+.calNote{{position:absolute;left:210px;top:76px;color:var(--muted);font-size:26px;letter-spacing:.03em}}
+/* ---- if/then ---- */
+.ifRow{{position:absolute;left:96px;width:888px}}
+.ifCond{{color:var(--accent);font-size:42px;font-weight:800;letter-spacing:.02em}}
+.ifThen{{color:var(--paper);font-size:42px;font-weight:800;letter-spacing:-.01em;margin-top:8px}}
+/* ---- compliance ---- */
+#compliance{{position:absolute;left:96px;top:1660px;color:var(--accent);font-size:29px;font-weight:800;letter-spacing:.04em}}
+#discCard{{position:absolute;inset:0;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 96px}}
+#discCard .dbar{{width:168px;height:6px;background:var(--accent);margin-bottom:46px}}
+#discCard .dl1{{color:var(--paper);font-size:54px;font-weight:800;letter-spacing:-.02em;line-height:1.16}}
+#discCard .dl2{{color:var(--muted);font-size:30px;line-height:1.5;margin-top:36px}}
+#discCard .dl3{{color:var(--accent);font-size:26px;letter-spacing:.24em;font-weight:800;margin-top:52px}}
+#prog{{position:absolute;left:0;bottom:0;height:5px;width:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}}
+/*WHEELCSS*/
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__TOTAL__" data-width="1080" data-height="1920">
+/*SCENES*/
+<div id="prog"></div>
+</div>
+<script>/*WHEELJS*/</script>
+<script>
+const tl=gsap.timeline({{paused:true}});
+const E="power4.out", EO="power3.out";
+/* slam: scale overshoot + fade. The signature move of this piece. */
+const slam=(s,at,d=.42)=>tl.fromTo(s,{{opacity:0,scale:1.34,transformOrigin:"left center"}},
+  {{opacity:1,scale:1,duration:d,ease:E}},at);
+/* rise: word lifts into place */
+const rise=(s,at,d=.46,y=46)=>tl.fromTo(s,{{opacity:0,y}},{{opacity:1,y:0,duration:d,ease:E}},at);
+/* wordsIn: per-word stagger, the kinetic backbone */
+const wordsIn=(s,at,st=.055,d=.44)=>tl.fromTo(s,{{opacity:0,yPercent:58}},
+  {{opacity:1,yPercent:0,duration:d,ease:E,stagger:st}},at);
+/* bar: horizontal race */
+const bar=(s,at,sx,d=.85)=>tl.fromTo(s,{{scaleX:0}},{{scaleX:sx,duration:d,ease:"power3.inOut"}},at);
+/* wipe: reveal by clip */
+const wipe=(s,at,d=.6)=>tl.fromTo(s,{{clipPath:"inset(0 100% 0 0)"}},
+  {{clipPath:"inset(0 0% 0 0)",duration:d,ease:"power3.inOut"}},at);
+/* out: push a beat off screen so the next can land clean */
+const out=(s,at,d=.28)=>tl.to(s,{{opacity:0,duration:d,ease:"power2.in"}},at);
+tl.fromTo("#prog",{{scaleX:0}},{{scaleX:1,duration:__TOTAL__,ease:"none"}},0);
+/*TW*/
+window.__timelines=window.__timelines||{{}};
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>
