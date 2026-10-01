@@ -1,0 +1,330 @@
+<!doctype html>
+<!-- The Meticulous Investor · 93% of pros lost to the S&P 500. VO-paced; captions carry the script:
+     built to read with the sound off. Three colours, no photography, no faces, no logos.
+     Every figure traceable to ../SCRIPT.md (fact table) -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="vendor/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+:root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E}
+#root{width:100%;height:100%;position:relative;background:var(--ink);
+  font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+/* ---- chrome ---- */
+.frame{position:absolute;inset:0;pointer-events:none}
+.fr-t{position:absolute;left:96px;right:96px;top:176px;height:1px;background:rgba(245,245,243,.09)}
+.fr-b{position:absolute;left:96px;right:96px;top:1800px;height:1px;background:rgba(245,245,243,.09)}
+.slug{position:absolute;left:96px;top:138px;color:#8A8A8A;font-size:20px;letter-spacing:.30em;font-weight:700}
+.num{position:absolute;right:96px;top:138px;color:#8A8A8A;font-size:20px;letter-spacing:.20em;font-weight:700}
+.stamp{position:absolute;left:96px;top:1740px;color:var(--muted);font-size:25px;letter-spacing:.02em}
+.kicker{position:absolute;left:96px;top:244px;color:var(--accent);font-size:28px;letter-spacing:.34em;
+  text-transform:uppercase;font-weight:800}
+.rule{position:absolute;left:96px;top:306px;width:168px;height:6px;background:var(--accent);transform-origin:left center}
+/* ---- kinetic type ---- */
+.mega{position:absolute;left:96px;color:var(--paper);font-weight:800;letter-spacing:-.045em;
+  line-height:.94;font-variant-numeric:tabular-nums}
+.big{position:absolute;left:96px;color:var(--paper);font-weight:800;letter-spacing:-.03em;line-height:1.02;
+  font-variant-numeric:tabular-nums}
+.lbl{position:absolute;color:var(--muted);font-size:29px;letter-spacing:.22em;text-transform:uppercase;font-weight:800}
+.red{color:var(--accent)}
+.dim{color:var(--muted)}
+.word{display:inline-block}
+/* ---- bar race ---- */
+.barRow{position:absolute;left:96px;width:888px;height:104px}
+.barName{position:absolute;left:0;top:6px;color:var(--paper);font-size:34px;font-weight:800;letter-spacing:.10em}
+.barTrack{position:absolute;left:0;top:52px;height:34px;width:790px;background:rgba(245,245,243,.06)}
+.barFill{position:absolute;left:0;top:52px;height:34px;width:790px;background:var(--paper);transform-origin:left center}
+.barFill.acc{background:var(--accent)}
+.barVal{position:absolute;top:44px;color:var(--paper);font-size:44px;font-weight:800;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+/* ---- calendar strip ---- */
+.calRow{position:absolute;left:96px;width:888px;height:112px;border-top:1px solid rgba(245,245,243,.12)}
+.calDay{position:absolute;left:0;top:30px;color:var(--accent);font-size:30px;font-weight:800;letter-spacing:.20em}
+.calWhat{position:absolute;left:210px;top:24px;color:var(--paper);font-size:46px;font-weight:800;letter-spacing:-.015em}
+.calNote{position:absolute;left:210px;top:76px;color:var(--muted);font-size:26px;letter-spacing:.03em}
+/* ---- if/then ---- */
+.ifRow{position:absolute;left:96px;width:888px}
+.ifCond{color:var(--accent);font-size:42px;font-weight:800;letter-spacing:.02em}
+.ifThen{color:var(--paper);font-size:42px;font-weight:800;letter-spacing:-.01em;margin-top:8px}
+/* ---- compliance ---- */
+#compliance{position:absolute;left:96px;top:1660px;color:var(--accent);font-size:29px;font-weight:800;letter-spacing:.04em}
+#discCard{position:absolute;inset:0;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 96px}
+#discCard .dbar{width:168px;height:6px;background:var(--accent);margin-bottom:46px}
+#discCard .dl1{color:var(--paper);font-size:54px;font-weight:800;letter-spacing:-.02em;line-height:1.16}
+#discCard .dl2{color:var(--muted);font-size:30px;line-height:1.5;margin-top:36px}
+#discCard .dl3{color:var(--accent);font-size:26px;letter-spacing:.24em;font-weight:800;margin-top:52px}
+#prog{position:absolute;left:0;bottom:0;height:5px;width:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}
+
+  .hf-number-wheel {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--hf-wheel-gap, 0.02em);
+    color: var(--hf-wheel-color, inherit);
+    font-variant-numeric: tabular-nums;
+  }
+  .hf-number-wheel-digit {
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+  }
+  .hf-number-wheel-strip {
+    display: grid;
+    transform: translateY(0em);
+    will-change: transform;
+  }
+  .hf-number-wheel-strip span {
+    height: 1em;
+    line-height: 1em;
+  }
+
+.unit{font-size:.30em;letter-spacing:.08em;margin-left:18px;color:#8A8A8A;vertical-align:.95em}
+.chart{position:absolute;left:96px;width:888px;overflow:visible}
+.axis{stroke:rgba(245,245,243,.18);stroke-width:2}
+.ln{fill:none;stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.ln.paper{stroke:#F5F5F3}.ln.accent{stroke:#D42A2A}
+.tag{position:absolute;color:#F5F5F3;font-size:26px;font-weight:800;letter-spacing:.18em}
+.tag.red{color:#D42A2A}
+.dotGrid{position:absolute;left:150px;width:780px;height:780px}
+.dot{position:absolute;border-radius:50%;background:#3A3A3C}
+.strike{position:absolute;left:96px;height:14px;background:#D42A2A;transform-origin:left center}
+.lbRow{position:absolute;left:96px;width:888px;height:46px}
+.lbN{position:absolute;left:0;top:4px;color:#8A8A8A;font-size:30px;font-weight:800;width:80px}
+.lbBar{position:absolute;left:90px;top:8px;height:30px;width:760px;background:#F5F5F3}
+.col{position:absolute;width:340px;background:#F5F5F3}
+.colFee{position:absolute;width:340px;background:#D42A2A}
+.colLbl{position:absolute;color:#F5F5F3;font-size:40px;font-weight:800;letter-spacing:.16em}
+#fPage{position:absolute;left:96px;top:520px;width:888px;background:#161618;border:1px solid rgba(245,245,243,.14);padding:34px 40px 18px}
+.pgHead{color:#8A8A8A;font-size:26px;letter-spacing:.28em;font-weight:800;margin-bottom:18px}
+.pgRow{position:relative;display:flex;justify-content:space-between;color:#F5F5F3;font-size:42px;padding:26px 0;border-top:1px solid rgba(245,245,243,.10)}
+.pgRow span:first-child{color:#B9B9B9}
+.erVal{font-weight:800}
+#fHL{position:absolute;left:-16px;right:-16px;top:12px;bottom:12px;background:rgba(212,42,42,.32);transform-origin:left center;z-index:-1}
+#fER{z-index:1}
+.cap{pointer-events:none}
+.capIn{position:absolute;left:96px;right:120px;top:1470px;font-size:46px;line-height:1.24;font-weight:800;color:#F5F5F3;
+  letter-spacing:-.01em;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+.cw{display:inline-block}.cw.hl{color:#D42A2A}
+#flash{position:absolute;inset:0;background:#F5F5F3;opacity:0;pointer-events:none;z-index:50}
+#compliance{top:1680px}
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="57.3" data-width="1080" data-height="1920">
+<div id="s_a" class="clip" data-start="0.0" data-duration="7.8" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="slug">THE METICULOUS INVESTOR</div></div><div class="rule" id="aR"></div><div class="kicker" id="aK">The scorecard</div><div class="mega red" id="aN" style="top:430px;font-size:300px"><span class="hf-number-wheel" data-value="93"></span>%</div><div class="big" id="aL" style="top:760px;font-size:76px;width:888px">LOST TO THE<br><span class="red">S&amp;P 500</span></div><svg id="aChart" class="chart" viewBox="0 0 888 360" style="top:1000px"><line x1="0" y1="359" x2="888" y2="359" class="axis"/><path id="aIdx" class="ln paper" d="M0,300 C120,270 220,250 330,215 S560,140 660,110 S820,50 888,30"/><path id="aAct" class="ln accent" d="M0,300 C120,282 220,272 330,250 S560,205 660,190 S820,160 888,150"/></svg><div class="lbl" id="aY0" style="left:96px;top:1372px">2006</div><div class="lbl" id="aY1" style="left:860px;top:1372px">2025</div><div class="tag" id="aT1" style="left:800px;top:990px">INDEX</div><div class="tag red" id="aT2" style="left:800px;top:1130px">AVG FUND</div><div class="mega" id="a20" style="top:430px;font-size:300px">20<span class="unit">YRS</span></div><div id="compliance">Educational only. Not financial advice.</div><div class="stamp" id="aS">Large-cap funds vs S&P 500 · 20 yrs · SPIVA U.S. Year-End 2025</div></div>
+<div id="s_b" class="clip" data-start="7.8" data-duration="9.2" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="slug">THE METICULOUS INVESTOR</div></div><div class="rule" id="bR"></div><div class="kicker" id="bK">The pros</div><div class="big dim" id="bNA" style="top:520px;font-size:64px;width:888px">Not financial advice.<br>Do your own research.</div><div class="mega" id="bP1" style="top:470px;font-size:150px">PROS.</div><div class="mega dim" id="bP2" style="top:660px;font-size:110px">TEAMS.</div><div class="mega dim" id="bP3" style="top:790px;font-size:110px">TERMINALS.</div><div class="mega dim" id="bP4" style="top:920px;font-size:110px">SALARIES.</div><div class="dotGrid" id="bG" style="top:430px"><div class="dot" id="bG0" style="left:0px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG1" style="left:68px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG2" style="left:136px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG3" style="left:204px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG4" style="left:272px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG5" style="left:340px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG6" style="left:408px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG7" style="left:476px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG8" style="left:544px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG9" style="left:612px;top:0px;width:50px;height:50px"></div><div class="dot" id="bG10" style="left:0px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG11" style="left:68px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG12" style="left:136px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG13" style="left:204px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG14" style="left:272px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG15" style="left:340px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG16" style="left:408px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG17" style="left:476px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG18" style="left:544px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG19" style="left:612px;top:68px;width:50px;height:50px"></div><div class="dot" id="bG20" style="left:0px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG21" style="left:68px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG22" style="left:136px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG23" style="left:204px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG24" style="left:272px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG25" style="left:340px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG26" style="left:408px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG27" style="left:476px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG28" style="left:544px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG29" style="left:612px;top:136px;width:50px;height:50px"></div><div class="dot" id="bG30" style="left:0px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG31" style="left:68px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG32" style="left:136px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG33" style="left:204px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG34" style="left:272px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG35" style="left:340px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG36" style="left:408px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG37" style="left:476px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG38" style="left:544px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG39" style="left:612px;top:204px;width:50px;height:50px"></div><div class="dot" id="bG40" style="left:0px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG41" style="left:68px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG42" style="left:136px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG43" style="left:204px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG44" style="left:272px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG45" style="left:340px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG46" style="left:408px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG47" style="left:476px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG48" style="left:544px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG49" style="left:612px;top:272px;width:50px;height:50px"></div><div class="dot" id="bG50" style="left:0px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG51" style="left:68px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG52" style="left:136px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG53" style="left:204px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG54" style="left:272px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG55" style="left:340px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG56" style="left:408px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG57" style="left:476px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG58" style="left:544px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG59" style="left:612px;top:340px;width:50px;height:50px"></div><div class="dot" id="bG60" style="left:0px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG61" style="left:68px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG62" style="left:136px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG63" style="left:204px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG64" style="left:272px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG65" style="left:340px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG66" style="left:408px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG67" style="left:476px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG68" style="left:544px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG69" style="left:612px;top:408px;width:50px;height:50px"></div><div class="dot" id="bG70" style="left:0px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG71" style="left:68px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG72" style="left:136px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG73" style="left:204px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG74" style="left:272px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG75" style="left:340px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG76" style="left:408px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG77" style="left:476px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG78" style="left:544px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG79" style="left:612px;top:476px;width:50px;height:50px"></div><div class="dot" id="bG80" style="left:0px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG81" style="left:68px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG82" style="left:136px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG83" style="left:204px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG84" style="left:272px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG85" style="left:340px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG86" style="left:408px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG87" style="left:476px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG88" style="left:544px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG89" style="left:612px;top:544px;width:50px;height:50px"></div><div class="dot" id="bG90" style="left:0px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG91" style="left:68px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG92" style="left:136px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG93" style="left:204px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG94" style="left:272px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG95" style="left:340px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG96" style="left:408px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG97" style="left:476px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG98" style="left:544px;top:612px;width:50px;height:50px"></div><div class="dot" id="bG99" style="left:612px;top:612px;width:50px;height:50px"></div></div><div class="mega red" id="bN" style="top:1180px;font-size:140px"><span class="hf-number-wheel" data-value="79"></span>%</div><div class="big" id="bNL" style="top:1210px;left:430px;font-size:54px;width:560px">TRAILED<br>THE INDEX · 2025</div><div class="stamp" id="bS">SPIVA U.S. Year-End 2025 · calendar 2025</div></div>
+<div id="s_c" class="clip" data-start="17.0" data-duration="5.2" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="slug">THE METICULOUS INVESTOR</div></div><div class="rule" id="cR"></div><div class="kicker" id="cK">The obvious fix</div><div class="mega" id="cQ" style="top:560px;font-size:130px">PICK THE<br><span class="red">WINNERS?</span></div><div class="mega" id="cA1" style="top:560px;font-size:130px">WINNERS</div><div class="mega" id="cA2" style="top:700px;font-size:130px">DON'T</div><div class="mega red" id="cA3" style="top:840px;font-size:130px">STAY.</div><div class="strike" id="cX" style="top:905px;width:470px"></div></div>
+<div id="s_d" class="clip" data-start="22.2" data-duration="8.2" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="slug">THE METICULOUS INVESTOR</div></div><div class="rule" id="dR"></div><div class="kicker" id="dK">Persistence</div><div class="big" id="dH" style="top:400px;font-size:62px;width:888px">TOP QUARTER · <span class="red">2021</span></div><div class="lbRow" id="dR0" style="top:560px"><span class="lbN">#1</span><span class="lbBar"></span></div><div class="lbRow" id="dR1" style="top:618px"><span class="lbN">#2</span><span class="lbBar"></span></div><div class="lbRow" id="dR2" style="top:676px"><span class="lbN">#3</span><span class="lbBar"></span></div><div class="lbRow" id="dR3" style="top:734px"><span class="lbN">#4</span><span class="lbBar"></span></div><div class="lbRow" id="dR4" style="top:792px"><span class="lbN">#5</span><span class="lbBar"></span></div><div class="lbRow" id="dR5" style="top:850px"><span class="lbN">#6</span><span class="lbBar"></span></div><div class="lbRow" id="dR6" style="top:908px"><span class="lbN">#7</span><span class="lbBar"></span></div><div class="lbRow" id="dR7" style="top:966px"><span class="lbN">#8</span><span class="lbBar"></span></div><div class="lbRow" id="dR8" style="top:1024px"><span class="lbN">#9</span><span class="lbBar"></span></div><div class="lbRow" id="dR9" style="top:1082px"><span class="lbN">#10</span><span class="lbBar"></span></div><div class="lbRow" id="dR10" style="top:1140px"><span class="lbN">#11</span><span class="lbBar"></span></div><div class="lbRow" id="dR11" style="top:1198px"><span class="lbN">#12</span><span class="lbBar"></span></div><div class="mega" id="dYr" style="top:400px;font-size:62px"><span class="hf-number-wheel" data-value="2025"></span></div><div class="mega red" id="dN" style="top:1240px;font-size:150px">0.46%</div><div class="big" id="dNL" style="top:1250px;left:640px;font-size:50px;width:360px">STILL<br>THERE</div><div class="mega" id="d200" style="top:1240px;font-size:150px">1 IN <span class="red">200+</span></div><div class="stamp" id="dS">U.S. Persistence Scorecard Year-End 2025 · domestic equity funds</div></div>
+<div id="s_e" class="clip" data-start="30.4" data-duration="11.8" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="slug">THE METICULOUS INVESTOR</div></div><div class="rule" id="eR"></div><div class="kicker" id="eK">The other side</div><div class="big" id="eF" style="top:400px;font-size:62px;width:888px">TO BE FAIR · <span class="red">2026 H1</span></div><div class="dotGrid" id="eG" style="top:520px"><div class="dot" id="eG0" style="left:0px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG1" style="left:68px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG2" style="left:136px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG3" style="left:204px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG4" style="left:272px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG5" style="left:340px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG6" style="left:408px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG7" style="left:476px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG8" style="left:544px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG9" style="left:612px;top:0px;width:50px;height:50px"></div><div class="dot" id="eG10" style="left:0px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG11" style="left:68px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG12" style="left:136px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG13" style="left:204px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG14" style="left:272px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG15" style="left:340px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG16" style="left:408px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG17" style="left:476px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG18" style="left:544px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG19" style="left:612px;top:68px;width:50px;height:50px"></div><div class="dot" id="eG20" style="left:0px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG21" style="left:68px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG22" style="left:136px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG23" style="left:204px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG24" style="left:272px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG25" style="left:340px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG26" style="left:408px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG27" style="left:476px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG28" style="left:544px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG29" style="left:612px;top:136px;width:50px;height:50px"></div><div class="dot" id="eG30" style="left:0px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG31" style="left:68px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG32" style="left:136px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG33" style="left:204px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG34" style="left:272px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG35" style="left:340px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG36" style="left:408px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG37" style="left:476px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG38" style="left:544px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG39" style="left:612px;top:204px;width:50px;height:50px"></div><div class="dot" id="eG40" style="left:0px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG41" style="left:68px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG42" style="left:136px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG43" style="left:204px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG44" style="left:272px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG45" style="left:340px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG46" style="left:408px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG47" style="left:476px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG48" style="left:544px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG49" style="left:612px;top:272px;width:50px;height:50px"></div><div class="dot" id="eG50" style="left:0px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG51" style="left:68px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG52" style="left:136px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG53" style="left:204px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG54" style="left:272px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG55" style="left:340px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG56" style="left:408px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG57" style="left:476px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG58" style="left:544px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG59" style="left:612px;top:340px;width:50px;height:50px"></div><div class="dot" id="eG60" style="left:0px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG61" style="left:68px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG62" style="left:136px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG63" style="left:204px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG64" style="left:272px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG65" style="left:340px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG66" style="left:408px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG67" style="left:476px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG68" style="left:544px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG69" style="left:612px;top:408px;width:50px;height:50px"></div><div class="dot" id="eG70" style="left:0px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG71" style="left:68px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG72" style="left:136px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG73" style="left:204px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG74" style="left:272px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG75" style="left:340px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG76" style="left:408px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG77" style="left:476px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG78" style="left:544px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG79" style="left:612px;top:476px;width:50px;height:50px"></div><div class="dot" id="eG80" style="left:0px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG81" style="left:68px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG82" style="left:136px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG83" style="left:204px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG84" style="left:272px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG85" style="left:340px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG86" style="left:408px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG87" style="left:476px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG88" style="left:544px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG89" style="left:612px;top:544px;width:50px;height:50px"></div><div class="dot" id="eG90" style="left:0px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG91" style="left:68px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG92" style="left:136px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG93" style="left:204px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG94" style="left:272px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG95" style="left:340px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG96" style="left:408px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG97" style="left:476px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG98" style="left:544px;top:612px;width:50px;height:50px"></div><div class="dot" id="eG99" style="left:612px;top:612px;width:50px;height:50px"></div></div><div class="mega red" id="eN" style="top:1240px;font-size:140px"><span class="hf-number-wheel" data-value="67"></span>%</div><div class="big" id="eNL" style="top:1290px;left:430px;font-size:54px;width:560px">LAGGED</div><div class="mega" id="e23" style="top:1250px;left:430px;font-size:110px">2 IN 3</div><svg id="eChart" class="chart" viewBox="0 0 888 520" style="top:560px"><line x1="0" y1="519" x2="888" y2="519" class="axis"/><path id="eLn" class="ln paper" d="M0,120 L140,100 L260,130 L360,90 L430,110 L480,360 L540,430 L600,330 L700,260 L800,200 L888,170"/></svg><div class="mega" id="eFall" style="top:1160px;font-size:96px">INDEX FUNDS<br><span class="red">FALL TOO.</span></div><div class="stamp" id="eS">SPIVA U.S. Mid-Year 2026 · H1 2026</div></div>
+<div id="s_f" class="clip" data-start="42.2" data-duration="10.6" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="slug">THE METICULOUS INVESTOR</div></div><div class="rule" id="fR"></div><div class="kicker" id="fK">What you control</div><div class="colLbl" id="fL1" style="left:180px;top:1158px">ACTIVE</div><div class="colLbl" id="fL2" style="left:620px;top:1158px">INDEX</div><div class="col" id="fC1" style="left:150px;top:560px;height:580px"></div><div class="colFee" id="fFee1" style="left:150px;top:560px;height:150px"></div><div class="col" id="fC2" style="left:590px;top:560px;height:580px"></div><div class="colFee" id="fFee2" style="left:590px;top:560px;height:12px"></div><div class="tag red" id="fFT" style="left:150px;top:500px">FEES</div><div class="mega" id="fH" style="top:1240px;font-size:78px">FEES OUT OF<br>THE <span class="red">FIGHT.</span></div><div id="fPage"><div class="pgHead">FUND DETAILS</div><div class="pgRow"><span>Category</span><span>Large blend</span></div><div class="pgRow"><span>Holdings</span><span>— —</span></div><div class="pgRow" id="fER"><span>Expense ratio</span><span class="erVal">0.__%</span><i id="fHL"></i></div><div class="pgRow"><span>Inception</span><span>— —</span></div></div><div class="mega" id="fKnown" style="top:1240px;font-size:78px">KNOWN IN<br><span class="red">ADVANCE.</span></div><div class="stamp" id="fS">Illustration · no specific fund shown</div></div>
+<div class="clip cap" id="cap1" data-start="0.0" data-duration="2.4" data-track-index="2"><div class="capIn"><span class="cw hl">Ninety-three</span> <span class="cw">percent.</span> </div></div><div class="clip cap" id="cap2" data-start="2.4" data-duration="3.6" data-track-index="2"><div class="capIn"><span class="cw">That's</span> <span class="cw">how</span> <span class="cw">many</span> <span class="cw">large-cap</span> <span class="cw">fund</span> <span class="cw">managers</span> <span class="cw hl">lost</span> <span class="cw">to</span> <span class="cw">the</span> <span class="cw">plain</span> <span class="cw">S&P</span> <span class="cw">500.</span> </div></div><div class="clip cap" id="cap3" data-start="6.0" data-duration="1.8" data-track-index="2"><div class="capIn"><span class="cw">Over</span> <span class="cw hl">twenty</span> <span class="cw">years.</span> </div></div><div class="clip cap" id="cap4" data-start="7.8" data-duration="2.4" data-track-index="2"><div class="capIn"><span class="cw">Not</span> <span class="cw">financial</span> <span class="cw">advice,</span> <span class="cw">so</span> <span class="cw">do</span> <span class="cw">your</span> <span class="cw hl">own</span> <span class="cw">research.</span> </div></div><div class="clip cap" id="cap5" data-start="10.2" data-duration="3.0" data-track-index="2"><div class="capIn"><span class="cw">These</span> <span class="cw">are</span> <span class="cw hl">pros.</span> <span class="cw">Research</span> <span class="cw">teams.</span> <span class="cw">Data</span> <span class="cw">terminals.</span> <span class="cw">Big</span> <span class="cw">salaries.</span> </div></div><div class="clip cap" id="cap6" data-start="13.2" data-duration="3.8" data-track-index="2"><div class="capIn"><span class="cw">And</span> <span class="cw">in</span> <span class="cw">2025</span> <span class="cw">alone,</span> <span class="cw hl">seventy-nine</span> <span class="cw">percent</span> <span class="cw">of</span> <span class="cw">them</span> <span class="cw">still</span> <span class="cw">trailed</span> <span class="cw">the</span> <span class="cw">index.</span> </div></div><div class="clip cap" id="cap7" data-start="17.0" data-duration="2.6" data-track-index="2"><div class="capIn"><span class="cw">So</span> <span class="cw">why</span> <span class="cw">not</span> <span class="cw">just</span> <span class="cw">pick</span> <span class="cw">the</span> <span class="cw hl">winners?</span> </div></div><div class="clip cap" id="cap8" data-start="19.6" data-duration="2.6" data-track-index="2"><div class="capIn"><span class="cw">Because</span> <span class="cw">the</span> <span class="cw">winners</span> <span class="cw hl">don't</span> <span class="cw">stay</span> <span class="cw">winners.</span> </div></div><div class="clip cap" id="cap9" data-start="22.2" data-duration="2.4" data-track-index="2"><div class="capIn"><span class="cw">Take</span> <span class="cw">the</span> <span class="cw">top-quarter</span> <span class="cw">funds</span> <span class="cw">of</span> <span class="cw hl">2021.</span> </div></div><div class="clip cap" id="cap10" data-start="24.6" data-duration="3.4" data-track-index="2"><div class="capIn"><span class="cw">By</span> <span class="cw">the</span> <span class="cw">end</span> <span class="cw">of</span> <span class="cw">2025,</span> <span class="cw">less</span> <span class="cw">than</span> <span class="cw hl">half</span> <span class="cw">a</span> <span class="cw">percent</span> <span class="cw">were</span> <span class="cw">still</span> <span class="cw">there.</span> </div></div><div class="clip cap" id="cap11" data-start="28.0" data-duration="2.4" data-track-index="2"><div class="capIn"><span class="cw">Fewer</span> <span class="cw">than</span> <span class="cw">one</span> <span class="cw">in</span> <span class="cw hl">two</span> <span class="cw">hundred.</span> </div></div><div class="clip cap" id="cap12" data-start="30.4" data-duration="3.0" data-track-index="2"><div class="capIn"><span class="cw">To</span> <span class="cw">be</span> <span class="cw hl">fair,</span> <span class="cw">active</span> <span class="cw">funds</span> <span class="cw">had</span> <span class="cw">a</span> <span class="cw">better</span> <span class="cw">start</span> <span class="cw">to</span> <span class="cw">2026.</span> </div></div><div class="clip cap" id="cap13" data-start="33.4" data-duration="2.8" data-track-index="2"><div class="capIn"><span class="cw">Only</span> <span class="cw hl">sixty-seven</span> <span class="cw">percent</span> <span class="cw">lagged</span> <span class="cw">in</span> <span class="cw">the</span> <span class="cw">first</span> <span class="cw">half.</span> </div></div><div class="clip cap" id="cap14" data-start="36.2" data-duration="1.8" data-track-index="2"><div class="capIn"><span class="cw">Still</span> <span class="cw hl">two</span> <span class="cw">in</span> <span class="cw">three.</span> </div></div><div class="clip cap" id="cap15" data-start="38.0" data-duration="4.2" data-track-index="2"><div class="capIn"><span class="cw">And</span> <span class="cw">an</span> <span class="cw">index</span> <span class="cw">fund</span> <span class="cw">won't</span> <span class="cw">save</span> <span class="cw">you</span> <span class="cw">in</span> <span class="cw">a</span> <span class="cw">crash.</span> <span class="cw">It</span> <span class="cw hl">falls</span> <span class="cw">with</span> <span class="cw">the</span> <span class="cw">market.</span> </div></div><div class="clip cap" id="cap16" data-start="42.2" data-duration="3.0" data-track-index="2"><div class="capIn"><span class="cw">What</span> <span class="cw">it</span> <span class="cw">does</span> <span class="cw">is</span> <span class="cw">take</span> <span class="cw">the</span> <span class="cw hl">fees</span> <span class="cw">out</span> <span class="cw">of</span> <span class="cw">the</span> <span class="cw">fight.</span> </div></div><div class="clip cap" id="cap17" data-start="45.2" data-duration="4.0" data-track-index="2"><div class="capIn"><span class="cw">Tonight,</span> <span class="cw">look</span> <span class="cw">up</span> <span class="cw">one</span> <span class="cw">number</span> <span class="cw">on</span> <span class="cw">every</span> <span class="cw">fund</span> <span class="cw">you</span> <span class="cw">own:</span> <span class="cw">the</span> <span class="cw hl">expense</span> <span class="cw">ratio.</span> </div></div><div class="clip cap" id="cap18" data-start="49.2" data-duration="3.6" data-track-index="2"><div class="capIn"><span class="cw">It's</span> <span class="cw">the</span> <span class="cw">one</span> <span class="cw">part</span> <span class="cw">of</span> <span class="cw">your</span> <span class="cw">return</span> <span class="cw">you</span> <span class="cw">know</span> <span class="cw">in</span> <span class="cw hl">advance.</span> </div></div>
+<div id="s_disc" class="clip" data-start="52.8" data-duration="4.5" data-track-index="0"><div id="discCard"><div class="dbar" id="dBar"></div><div class="dl1" id="dL1">Educational only.<br>Not financial advice.</div><div class="dl2" id="dL2">Not a recommendation to buy or sell any security. Past performance does not indicate future results. Figures from S&amp;P Dow Jones Indices SPIVA reports, as of the dates shown.</div><div class="dl3" id="dL3">THE METICULOUS INVESTOR</div></div></div>
+<div id="flash"></div>
+
+<div id="prog"></div>
+</div>
+<script>
+  (function () {
+    const vars =
+      window.__hyperframes && window.__hyperframes.getVariables
+        ? window.__hyperframes.getVariables()
+        : {};
+
+    // Unrecognised overrides return to their declared defaults.
+    const spins = { single: 0, double: 1, triple: 2 };
+    const gaps = { tight: "0em", standard: "0.02em", wide: "0.14em" };
+    const tones = {
+      inherit: "inherit",
+      ink: "#18181b",
+      paper: "#fafafa",
+      accent: "var(--brand, #34d399)",
+    };
+    const pick = (table, value, fallback) =>
+      Object.prototype.hasOwnProperty.call(table, value) ? table[value] : table[fallback];
+
+    const cycles = pick(spins, vars.spin, "single");
+    const gap = pick(gaps, vars.spacing, "standard");
+    const tone = pick(tones, vars.tone, "inherit");
+
+    document.querySelectorAll(".hf-number-wheel").forEach((el) => {
+      if (el.dataset.hfNumberWheelReady === "1") return;
+      el.style.setProperty("--hf-wheel-gap", gap);
+      el.style.setProperty("--hf-wheel-color", tone);
+      const value = el.dataset.value || "0";
+      el.textContent = "";
+      for (const char of value) {
+        if (!/\d/.test(char)) {
+          el.append(document.createTextNode(char));
+          continue;
+        }
+        const stops = cycles * 10 + Number(char);
+        const frame = document.createElement("span");
+        frame.className = "hf-number-wheel-digit";
+        const strip = document.createElement("span");
+        strip.className = "hf-number-wheel-strip";
+        strip.style.setProperty("--hf-number-target-y", `${-stops}em`);
+        for (let i = 0; i <= stops; i++) {
+          const step = document.createElement("span");
+          step.textContent = String(i % 10);
+          strip.appendChild(step);
+        }
+        frame.appendChild(strip);
+        el.appendChild(frame);
+      }
+      el.dataset.hfNumberWheelReady = "1";
+    });
+  })();
+</script>
+<script>
+const tl=gsap.timeline({paused:true});
+const E="power4.out", EO="power3.out";
+/* slam: scale overshoot + fade. The signature move of this piece. */
+const slam=(s,at,d=.42)=>tl.fromTo(s,{autoAlpha:0,scale:1.34,transformOrigin:"left center"},
+  {autoAlpha:1,scale:1,duration:d,ease:E},at);
+/* rise: word lifts into place */
+const rise=(s,at,d=.46,y=46)=>tl.fromTo(s,{autoAlpha:0,y},{autoAlpha:1,y:0,duration:d,ease:E},at);
+/* wordsIn: per-word stagger, the kinetic backbone */
+const wordsIn=(s,at,st=.055,d=.44)=>tl.fromTo(s,{autoAlpha:0,yPercent:58},
+  {autoAlpha:1,yPercent:0,duration:d,ease:E,stagger:st},at);
+/* bar: horizontal race */
+const bar=(s,at,sx,d=.85)=>tl.fromTo(s,{scaleX:0},{scaleX:sx,duration:d,ease:"power3.inOut"},at);
+/* wipe: reveal by clip */
+const wipe=(s,at,d=.6)=>tl.fromTo(s,{clipPath:"inset(0 100% 0 0)"},
+  {clipPath:"inset(0 0% 0 0)",duration:d,ease:"power3.inOut"},at);
+/* out: push a beat off screen so the next can land clean */
+
+const flash=(at)=>tl.fromTo("#flash",{opacity:.0},{opacity:.55,duration:.04,immediateRender:false},at).to("#flash",{autoAlpha:0,duration:.08},at+.05);
+const shake=(at)=>tl.fromTo("#root",{x:0},{x:14,duration:.04,yoyo:true,repeat:5,ease:"none",immediateRender:false},at).to("#root",{x:0,duration:.02},at+.25);
+const draw=(s,at,d)=>{const p=document.querySelector(s);const L=p.getTotalLength();
+  p.style.strokeDasharray=L;tl.fromTo(s,{strokeDashoffset:L},{strokeDashoffset:0,duration:d,ease:"power2.inOut"},at);};
+const roll=(s,at,d)=>tl.fromTo(s+" .hf-number-wheel-strip",{y:0},{y:(_,el)=>el.style.getPropertyValue("--hf-number-target-y"),
+  duration:d,ease:"power3.out",stagger:.06,immediateRender:false},at);
+const out=(s,at,d=.28)=>tl.to(s,{autoAlpha:0,duration:d,ease:"power2.in"},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:57.3,ease:"none"},0);
+tl.fromTo("#aR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},0.080);
+tl.fromTo("#aK",{autoAlpha:0,x:-22},{autoAlpha:1,x:0,duration:.4,ease:EO},0.180);
+tl.fromTo("#aS",{opacity:0},{autoAlpha:1,duration:.4,immediateRender:false},1.000);
+tl.fromTo("#bR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},7.880);
+tl.fromTo("#bK",{autoAlpha:0,x:-22},{autoAlpha:1,x:0,duration:.4,ease:EO},7.980);
+tl.fromTo("#bS",{opacity:0},{autoAlpha:1,duration:.4,immediateRender:false},8.800);
+tl.fromTo("#cR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},17.080);
+tl.fromTo("#cK",{autoAlpha:0,x:-22},{autoAlpha:1,x:0,duration:.4,ease:EO},17.180);
+tl.fromTo("#dR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},22.280);
+tl.fromTo("#dK",{autoAlpha:0,x:-22},{autoAlpha:1,x:0,duration:.4,ease:EO},22.380);
+tl.fromTo("#dS",{opacity:0},{autoAlpha:1,duration:.4,immediateRender:false},23.200);
+tl.fromTo("#eR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},30.480);
+tl.fromTo("#eK",{autoAlpha:0,x:-22},{autoAlpha:1,x:0,duration:.4,ease:EO},30.580);
+tl.fromTo("#eS",{opacity:0},{autoAlpha:1,duration:.4,immediateRender:false},31.400);
+tl.fromTo("#fR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},42.280);
+tl.fromTo("#fK",{autoAlpha:0,x:-22},{autoAlpha:1,x:0,duration:.4,ease:EO},42.380);
+tl.fromTo("#fS",{opacity:0},{autoAlpha:1,duration:.4,immediateRender:false},43.200);
+tl.fromTo("#cap1 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},0.020);
+tl.fromTo("#cap2 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},2.420);
+tl.fromTo("#cap3 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},6.020);
+tl.fromTo("#cap4 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},7.820);
+tl.fromTo("#cap5 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},10.220);
+tl.fromTo("#cap6 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},13.220);
+tl.fromTo("#cap7 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},17.020);
+tl.fromTo("#cap8 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},19.620);
+tl.fromTo("#cap9 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},22.220);
+tl.fromTo("#cap10 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},24.620);
+tl.fromTo("#cap11 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},28.020);
+tl.fromTo("#cap12 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},30.420);
+tl.fromTo("#cap13 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},33.420);
+tl.fromTo("#cap14 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},36.220);
+tl.fromTo("#cap15 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},38.020);
+tl.fromTo("#cap16 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},42.220);
+tl.fromTo("#cap17 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},45.220);
+tl.fromTo("#cap18 .cw",{autoAlpha:0,y:18},{autoAlpha:1,y:0,duration:.22,ease:EO,stagger:.045},49.220);
+slam("#aN",0.050,.40);
+flash(0.050);
+roll("#aN",0.100,1.2);
+tl.fromTo("#compliance",{opacity:0},{autoAlpha:1,duration:.3},0.400).to("#compliance",{autoAlpha:0,duration:.3},4.100);
+tl.to("#aN",{scale:.42,y:-40,transformOrigin:"left top",duration:.5,ease:"power3.inOut"},2.400);
+rise("#aL",2.650);
+tl.fromTo("#aChart",{opacity:0},{autoAlpha:1,duration:.25},3.020);
+draw("#aIdx",3.100,2.4);
+draw("#aAct",3.100,2.4);
+rise("#aY0",3.100,.3,10);
+rise("#aY1",3.100,.3,10);
+rise("#aT1",5.000,.3,10);
+rise("#aT2",5.200,.3,10);
+out("#aN",6.000);
+out("#aL",6.000);
+slam("#a20",6.080,.38);
+flash(6.080);
+rise("#bNA",7.900);
+out("#bNA",10.100);
+slam("#bP1",10.250,.32);
+slam("#bP2",10.950,.30);
+slam("#bP3",11.550,.30);
+slam("#bP4",12.150,.30);
+out("#bP1, #bP2, #bP3, #bP4",13.150);
+tl.fromTo("#bG .dot",{autoAlpha:0,scale:.3},{autoAlpha:1,scale:1,duration:.25,ease:EO,stagger:{each:.006,from:"start"}},13.250);
+tl.fromTo("#bG .dot:nth-child(-n+79)",{backgroundColor:"#3A3A3C"},{backgroundColor:"#D42A2A",duration:.2,stagger:.016,immediateRender:false},14.100);
+rise("#bN",14.100);
+roll("#bN",14.200,1.3);
+rise("#bNL",14.400);
+slam("#cQ",17.050,.40);
+out("#cQ",19.520);
+slam("#cA1",19.620,.30);
+slam("#cA2",20.020,.30);
+slam("#cA3",20.420,.30);
+flash(20.420);
+tl.fromTo("#cX",{scaleX:0},{scaleX:1,duration:.35,ease:"power3.inOut",immediateRender:false},21.000);
+tl.to("#cA3",{y:220,rotation:8,opacity:0,duration:.7,ease:"power2.in"},21.500);
+rise("#dH",22.250);
+tl.fromTo(".lbRow",{autoAlpha:0,x:-40},{autoAlpha:1,x:0,duration:.3,ease:EO,stagger:.05,immediateRender:false},22.600);
+out("#dH",24.550);
+rise("#dYr",24.650,.3,12);
+roll("#dYr",24.650,2.4);
+tl.to("#dR3",{opacity:.06,x:30,duration:.22,ease:"power2.in"},24.850);
+tl.to("#dR9",{opacity:.06,x:30,duration:.22,ease:"power2.in"},25.050);
+tl.to("#dR0",{opacity:.06,x:30,duration:.22,ease:"power2.in"},25.250);
+tl.to("#dR6",{opacity:.06,x:30,duration:.22,ease:"power2.in"},25.450);
+tl.to("#dR11",{opacity:.06,x:30,duration:.22,ease:"power2.in"},25.650);
+tl.to("#dR2",{opacity:.06,x:30,duration:.22,ease:"power2.in"},25.850);
+tl.to("#dR8",{opacity:.06,x:30,duration:.22,ease:"power2.in"},26.050);
+tl.to("#dR5",{opacity:.06,x:30,duration:.22,ease:"power2.in"},26.250);
+tl.to("#dR10",{opacity:.06,x:30,duration:.22,ease:"power2.in"},26.450);
+tl.to("#dR1",{opacity:.06,x:30,duration:.22,ease:"power2.in"},26.650);
+tl.to("#dR7",{opacity:.06,x:30,duration:.22,ease:"power2.in"},26.850);
+tl.to("#dR4 .lbBar",{backgroundColor:"#D42A2A",duration:.2},27.200);
+slam("#dN",27.000,.36);
+rise("#dNL",27.200);
+out("#dN, #dNL",27.950);
+slam("#d200",28.050,.36);
+flash(28.050);
+rise("#eF",30.450);
+tl.fromTo("#eG .dot",{autoAlpha:0,scale:.3},{autoAlpha:1,scale:1,duration:.25,ease:EO,stagger:{each:.006}},30.700);
+tl.fromTo("#eG .dot:nth-child(-n+67)",{backgroundColor:"#3A3A3C"},{backgroundColor:"#D42A2A",duration:.2,stagger:.02,immediateRender:false},33.450);
+rise("#eN",33.500);
+roll("#eN",33.550,1.2);
+rise("#eNL",33.700);
+out("#eNL",36.150);
+slam("#e23",36.220,.32);
+flash(36.220);
+out("#eG, #eN, #e23",37.950);
+tl.to("#eF",{autoAlpha:0,duration:.25},37.950);
+tl.fromTo("#eChart",{opacity:0},{autoAlpha:1,duration:.2},38.100);
+draw("#eLn",38.150,2.0);
+shake(39.050);
+rise("#eFall",39.600);
+tl.fromTo("#fC1, #fC2",{scaleY:0,transformOrigin:"center bottom"},{scaleY:1,duration:.55,ease:EO,immediateRender:false},42.250);
+rise("#fL1",42.500,.3,10);
+rise("#fL2",42.500,.3,10);
+tl.fromTo("#fFee1, #fFee2",{scaleY:0,transformOrigin:"center top"},{scaleY:1,duration:.5,ease:EO,immediateRender:false},43.000);
+rise("#fFT",43.200,.3,10);
+slam("#fH",43.700,.36);
+out("#fC1, #fC2, #fFee1, #fFee2, #fL1, #fL2, #fFT, #fH",45.150);
+tl.fromTo("#fPage",{autoAlpha:0,y:80},{autoAlpha:1,y:0,duration:.5,ease:EO},45.250);
+tl.fromTo("#fPage",{y:0},{y:-140,duration:1.6,ease:"power2.inOut",immediateRender:false},45.900);
+tl.fromTo("#fHL",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut",immediateRender:false},47.500);
+tl.to("#fPage",{scale:1.12,transformOrigin:"center 60%",duration:3.0,ease:"none"},49.200);
+slam("#fKnown",49.600,.40);
+tl.fromTo("#dBar",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:EO},53.000);
+tl.fromTo("#dL1",{autoAlpha:0,y:28},{autoAlpha:1,y:0,duration:.55,ease:EO},53.200);
+tl.fromTo("#dL2",{opacity:0},{autoAlpha:1,duration:.55},53.800);
+tl.fromTo("#dL3",{opacity:0},{autoAlpha:1,duration:.55},54.500);
+window.__timelines=window.__timelines||{};
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>

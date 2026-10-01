@@ -1,0 +1,33 @@
+# Production — "93% of Pros Lost to the S&P 500" (2026-10-01)
+
+**Status: RENDERED, SILENT CUT.** `93-percent-lost-to-the-sp500.mp4` · 57.3 s · 1080×1920 · 30 fps · 0 credits (local HyperFrames).
+MP4s are gitignored (repo convention), so regenerate with `cd build && python3 gen.py && npx --yes hyperframes@0.8.55 render -o ../93-percent-lost-to-the-sp500.mp4 -f 30`.
+
+## Why silent
+The owner asked for the video that night. The house voice (Sheldon - Voice, HeyGen) costs about 35–40 credits for this length,
+and the balance was 4 (resets 2026-10-06). So this cut is built **VO-paced**: each of the 18 beats is timed to its spoken line,
+and a caption rail carries every line word for word, so it plays complete with the sound off. To add the voice later:
+- **Sheldon's own recording** (free): put it in `build/assets/vo.wav` and add
+  `<audio id="vo" class="clip" src="assets/vo.wav" data-start="0" data-duration="52.8" data-track-index="3"></audio>` to the root,
+  then nudge the `BEATS` durations in `gen.py` to the recording and re-render.
+- **HeyGen render** after the reset: submit the VO in `SCRIPT.md` with voice `f925838e…`. HeyGen redraws its own visuals, so that is a
+  separate video, not this one with audio added.
+
+## Build
+`build/gen.py` generates `build/index.html` from `tpl.tplsrc` (cloned from `twim-2026-09-27-kinetic`). Six scenes over 18 beats:
+93% roll-up and 20-year line race · pros stack and 79/100 dot grid · "winners don't stay" strike · top-quartile leaderboard draining to 0.46% ·
+"to be fair" 67/100 grid with the crash line · fee columns and mock fund page with the expense ratio highlighted · disclaimer card.
+Palette #0B0B0C / #F5F5F3 / #D42A2A; no logos, no faces, no tickers.
+
+## QA
+- `hyperframes check`: 0 errors. Remaining warnings are the known number-wheel overflow, sub-composition suggestions and
+  two-sample overlaps during cross-fades.
+- Frames checked by eye at every beat. Three bugs were caught and fixed: charts and dot grids visible before their beats
+  (`immediateRender:false` on the reveal), a duplicate `#fK` id (kicker vs headline), and stray line caps/axes before the draw.
+- **Deviation from the style guide:** motion graphics only, no photographic base layer (no image source at 0 credits). This is the same
+  trade-off as `twim-2026-09-27-kinetic`.
+
+## Before posting
+- [ ] `[OPEN]` Confirm the 93% (20-yr) against the SPIVA YE2025 PDF; if it differs, change beat 1 and re-render
+- [ ] Description disclaimer and sources from `SCRIPT.md`
+- [ ] YouTube altered/synthetic setting: not needed (no realistic synthetic footage)
