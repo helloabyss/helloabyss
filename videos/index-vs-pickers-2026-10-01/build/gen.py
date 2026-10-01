@@ -318,7 +318,7 @@ HTML = HTML.replace("Every figure traceable to ../../research/2026-09-27.md", "E
 HTML = HTML.replace("kinetic weekly. Type IS the motion. Silent by design:", "93% of pros lost to the S&P 500. VO-paced; captions carry the script:")
 HTML = (HTML.replace("__TOTAL__", str(TOTAL))
         .replace("/*WHEELCSS*/", WHEEL_CSS + EXTRA_CSS).replace("/*WHEELJS*/", WHEEL_JS)
-        .replace("/*SCENES*/", PL + "\n" + "\n".join(S) + "\n" + CAPS + "\n" + DISC + '\n<div id="flash"></div>\n' + (f'<audio id="vo" class="clip" src="{VO_FILE}" data-start="0" data-duration="{VO_END}" data-track-index="3" data-volume="1"></audio>' if os.path.exists(VO_FILE) else ''))
+        .replace("/*SCENES*/", PL + "\n" + "\n".join(S) + "\n" + CAPS + "\n" + DISC + '\n<div id="flash"></div>\n' + ((f'<audio id="vo" class="clip" src="assets/vo-mix.m4a" data-start="0" data-duration="{TOTAL}" data-track-index="3" data-volume="1"></audio>') if os.path.exists("assets/vo-mix.m4a") else (f'<audio id="vo" class="clip" src="{VO_FILE}" data-start="0" data-duration="{VO_END}" data-track-index="3" data-volume="1"></audio>' if os.path.exists(VO_FILE) else '')))
         .replace("const out=", HELPERS + "const out=")
         .replace("/*TW*/", "\n".join(PTW + TW)))
 # autoAlpha: hidden beats get visibility:hidden, so they never count as on-screen

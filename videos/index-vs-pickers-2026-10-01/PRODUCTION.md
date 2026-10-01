@@ -53,3 +53,11 @@ Palette #0B0B0C / #F5F5F3 / #D42A2A; no logos, no faces, no tickers.
   mapped to sentences by hand (`LINE_END_GAP` in `gen.py`). The automatic mapping got 4 of 18 lines wrong, so it isn't used.
   Pauses in the rendered MP4 land at the same times as the source (1.28 / 5.68 / 7.13 / 9.96 s …).
 - Loudness of the render: mean −25.1 dB, peak −3.8 dB. No music bed yet.
+
+## Music bed (owner: "I would love a low background track", 2026-10-01)
+- ElevenLabs Music v2.5, instrumental, 63 s: a minimal dark underscore (low synth bass pulse ~90 BPM, muted clock ticks, warm pad, no melody,
+  no vocals). **945 ElevenLabs credits (~$0.09).** It's on the same flow as the narration.
+- Mix (`build/assets/mix.sh`): music at 0.14 gain, sidechain-ducked under the voice (6:1), 1.5 s fade-in; the track fades out by itself
+  as the narration ends. Master loudness **-14.3 LUFS / -1.3 dBFS peak** (YouTube's reference level). Music in the narration pauses sits
+  ~-25 dB, so it stays in the background.
+- `build/assets/vo-mix.m4a` is the single audio track in the render. The narration and music stems sit next to it.
