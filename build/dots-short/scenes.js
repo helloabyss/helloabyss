@@ -14,3 +14,4 @@ BEATS=[
 {cue:'but every bot shares',...K.broll({img:'keys',src:'REPORTED',stamp:{at:'same logins',text:'SHARED LOGINS',size:80}})},
 {cue:'One careful agent',...K.cta({img:'standoff_v',left:'CAREFUL AGENT?',right:'CHEAP CREW?',atA:'careful agent',atB:'cheap crew',atC:'Comment'})},
 ];
+(()=>{const l=['swarm','orb','cloudpc','keys'];let k=0;BEATS.forEach(b=>{if(!b.img&&!b.plate){b.plate=l[k++%l.length];b.pdir=k%2?1:-1}})})();

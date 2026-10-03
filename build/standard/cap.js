@@ -10,6 +10,6 @@ const FPS=30,PAGE=process.env.PAGE||'short.html',PORT=process.env.PORT||8958,LAN
  fs.writeFileSync('cuts.json',JSON.stringify(await p.evaluate(()=>window.__S.map(s=>s[0]).slice(1))));
  const N=Math.ceil(await p.evaluate(()=>window.__S[window.__S.length-1][1])*FPS);
  const f0=+(process.env.F0||0),f1=Math.min(N,+(process.env.F1||N));
- for(let i=f0;i<f1;i++){const d=await p.evaluate(t=>{window.__seek(t);return document.getElementById('c').toDataURL('image/jpeg',0.92)},i/FPS);
+ for(let i=f0;i<f1;i++){const d=await p.evaluate(async t=>{if(window.__prep)await window.__prep(t);window.__seek(t);return document.getElementById('c').toDataURL('image/jpeg',0.92)},i/FPS);
   fs.writeFileSync('fr/'+String(i).padStart(5,'0')+'.jpg',Buffer.from(d.split(',')[1],'base64'));if((i-f0)%300==0)console.log('frame',i,'/',f1)}
  await b.close();if(errs.length)console.log('PAGE ERRORS',errs.slice(0,3));console.log('frames',f0,f1,'of',N)})();

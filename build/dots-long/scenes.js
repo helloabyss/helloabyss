@@ -81,3 +81,8 @@ BEATS=[
 {cue:'This might not stay',...K.broll({img:'road',src:'SOURCE: OPENAI',tags:[{at:'teams of dots',text:'TEAMS OF DOTS: COMING'}]})},
 {cue:'So, would you hire',...K.cta({img:'standoff',left:'ONE AGENT',right:'WHOLE CREW',atA:'one agent',atB:'whole crew',atC:'comments'})},
 ];
+// Every graphic scene gets a moving plate from its chapter's footage (no flat backgrounds).
+(()=>{const P={'':['tower','swarm','standoff'],'01 · THE DOT':['orb','cloudpc','phone','monitors'],'02 · THE CREW':['swarm','monitors','baton','table'],
+  '03 · THE COMPUTER':['glass','monitors','cloudpc'],'04 · SAFETY':['turnstile','toggle','keys','cabinet'],'05 · PRICE':['tags','europe','docs'],
+  '06 · THE CATCH':['photos','docs','magnifier','court'],'07 · VERDICT':['road','standoff','orb','swarm']};
+  let tag='',k=0;BEATS.forEach(b=>{if(b.tag){tag=b.tag;k=0}if(!b.img&&!b.plate){const l=P[tag]||P[''];b.plate=l[k++%l.length];b.pdir=k%2?1:-1}})})();

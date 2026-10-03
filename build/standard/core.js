@@ -24,7 +24,7 @@ function at(word,from=0){const q=nrm(word);for(let i=from;i<WORDS.length;i++)if(
 // ---------- scene boundaries (set in init from word times) ----------
 let S=[];
 function cover(img,t0,t,dir){ // image with strong continuous camera move
-  const p=prog(t,t0,6),k=1.12+0.22*eio(p);const iw=img.width,ih=img.height,s=Math.max(W/iw,H/ih)*k;
+  const p=prog(t,t0,6),k=1.12+0.22*eio(p);const iw=img.videoWidth||img.width,ih=img.videoHeight||img.height,s=Math.max(W/iw,H/ih)*k;
   const dw=iw*s,dh=ih*s;x.drawImage(img,(W-dw)/2+dir*lerp(60,-60,p),(H-dh)/2+lerp(30,-40,p),dw,dh)}
 function flashIn(t,t0){const a=1-prog(t,t0,.22);if(a>0){x.fillStyle=`rgba(255,255,255,${.55*a})`;x.fillRect(0,0,W,H)}}
 function camera(t,t0,fn){ // whip-in: scale + slide at scene start

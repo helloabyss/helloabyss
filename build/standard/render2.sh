@@ -5,6 +5,7 @@
 #   SHA       commit to pin                                          SCRIPT repo path of the narration text
 #   IMGMAP    repo path of images.json ({name: url})                 VO_URL narration audio (wav/mp3)
 #   MUSIC_URL, WHOOSH_URL, PUT_URL                                   WORKERS (default 6)
+#   CLIPMAP   optional repo path of clips.json ({name: mp4 url}); each clip becomes <name>.webm, the moving plate
 set -e; WD=/home/user/ep_$EP; mkdir -p $WD && cd $WD
 R=https://raw.githubusercontent.com/helloabyss/helloabyss/$SHA
 for f in core.js kinds.js boot.js $PAGE cap.js align.py; do curl -sSf -o $f $R/build/standard/$f; done
@@ -16,6 +17,11 @@ LAND=$([[ $PAGE == long* ]] && echo 1 || echo 0)
 for n in $(node -e "eval(require('fs').readFileSync('scenes.js','utf8').split('\n').find(l=>l.startsWith('const IMAGES')).replace('const ','global.'));console.log(IMAGES.join(' '))"); do
   u=$(python3 -c "import json;print(json.load(open('images.json')).get('$n',''))"); [ -z "$u" ] && { echo "WARN no image for $n"; continue; }; curl -sSfL -o $n.png "$u"
   convert $n.png -resize $([ $LAND = 1 ] && echo 1920x || echo 1080x) -modulate 104,92 -sigmoidal-contrast 3,50% -quality 90 $n.jpg; done
+if [ -n "$CLIPMAP" ]; then curl -sSf -o clips.json $R/$CLIPMAP
+  python3 -c "import json;[print(k,v) for k,v in json.load(open('clips.json')).items()]" | while read n u; do
+    curl -sSfL -o $n.mp4 "$u" && ffmpeg -v error -y -i $n.mp4 -an -vf "scale=$([ $LAND = 1 ] && echo 1920:-2 || echo -2:1920),eq=saturation=1.08:brightness=0.02" \
+      -c:v libvpx-vp9 -b:v 0 -crf 33 -g 6 -deadline realtime -cpu-used 8 -row-mt 1 $n.webm && echo "clip $n ok" &
+  done; wait; fi
 (python3 -m http.server 8958 >/dev/null 2>&1 &); sleep 1
 N=$(python3 -c "import json,math;print(math.ceil((json.load(open('words.json'))['dur']+0.9)*30))"); K=${WORKERS:-6}; C=$(( (N+K-1)/K ))
 echo "frames $N, $K workers x $C"
