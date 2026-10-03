@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset=utf-8><style>
+html,body{margin:0;background:#0B0B0D}canvas{display:block}</style></head>
+<body><canvas id=c></canvas>
+<script>
+// PARADOCS10X versus thumbnail: saturated plate, two named sides, VS, one small stakes tag.
+// ?w=1280&h=720&img=standoff.jpg&l=DOTS&r=GROK%20BOT&tag=%24100%20vs%20%2420
+const q=new URLSearchParams(location.search),W=+q.get('w')||1280,H=+q.get('h')||720,cv=document.getElementById('c');cv.width=W;cv.height=H;
+const x=cv.getContext('2d'),F='"Montserrat","Liberation Sans",Arial,sans-serif',ACC='#FFB020',BLUE='#3DA9FC',RED='#FF4A3D';
+function fit(s,maxW,px){do{x.font=`900 ${px}px ${F}`;px-=2}while(x.measureText(s).width>maxW&&px>20);return px+2}
+function word(s,X,Y,px,col,al){x.font=`900 ${px}px ${F}`;x.textAlign=al;x.textBaseline='middle';x.lineJoin='round';
+  x.lineWidth=px*.16;x.strokeStyle='rgba(0,0,0,.9)';x.strokeText(s,X,Y);x.fillStyle=col;x.fillText(s,X,Y)}
+const im=new Image();im.onload=()=>{draw(im);window.__ready=true};im.onerror=()=>{draw(null);window.__ready=true};im.src=q.get('img')||'standoff.jpg';
+function draw(img){const land=W>H;x.fillStyle='#0B0B0D';x.fillRect(0,0,W,H);
+  if(img){const k=Math.max(W/img.width,H/img.height)*1.06,dw=img.width*k,dh=img.height*k;x.filter='saturate(1.35) contrast(1.12) brightness(1.08)';x.drawImage(img,(W-dw)/2,(H-dh)/2,dw,dh);x.filter='none'}
+  const v=x.createRadialGradient(W/2,H/2,Math.min(W,H)*.3,W/2,H/2,Math.max(W,H)*.75);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,.6)');x.fillStyle=v;x.fillRect(0,0,W,H);
+  const L=q.get('l')||'DOTS',R=q.get('r')||'GROK BOT',T=q.get('tag')||'';
+  if(land){const px=Math.min(fit(L,W*.40,170),fit(R,W*.40,170));word(L,W*.06,H*.30,px,ACC,'left');word(R,W*.94,H*.30,px,BLUE,'right');word('VS',W/2,H*.56,150,'#FFFFFF','center');
+    if(T){x.font=`900 56px ${F}`;const w=x.measureText(T).width+60;x.fillStyle=RED;x.beginPath();x.roundRect(W/2-w/2,H*.80-42,w,84,42);x.fill();x.fillStyle='#FFFFFF';x.textAlign='center';x.fillText(T,W/2,H*.80+2)}}
+  else{const px=Math.min(fit(L,W*.86,220),fit(R,W*.86,220));word(L,W/2,H*.24,px,ACC,'center');word('VS',W/2,H*.40,170,'#FFFFFF','center');word(R,W/2,H*.56,px,BLUE,'center');
+    if(T){x.font=`900 70px ${F}`;const w=x.measureText(T).width+70;x.fillStyle=RED;x.beginPath();x.roundRect(W/2-w/2,H*.72-50,w,100,50);x.fill();x.fillStyle='#FFFFFF';x.textAlign='center';x.fillText(T,W/2,H*.72+3)}}}
+</script></body></html>

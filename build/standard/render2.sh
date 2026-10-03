@@ -14,7 +14,7 @@ python3 align.py vo16.wav script.txt words.json
 curl -sSfL -o music.wav "$MUSIC_URL"; curl -sSfL -o whoosh.mp3 "$WHOOSH_URL"
 LAND=$([[ $PAGE == long* ]] && echo 1 || echo 0)
 for n in $(node -e "eval(require('fs').readFileSync('scenes.js','utf8').split('\n').find(l=>l.startsWith('const IMAGES')).replace('const ','global.'));console.log(IMAGES.join(' '))"); do
-  u=$(python3 -c "import json,sys;print(json.load(open('images.json'))['$n'])"); curl -sSfL -o $n.png "$u"
+  u=$(python3 -c "import json;print(json.load(open('images.json')).get('$n',''))"); [ -z "$u" ] && { echo "WARN no image for $n"; continue; }; curl -sSfL -o $n.png "$u"
   convert $n.png -resize $([ $LAND = 1 ] && echo 1920x || echo 1080x) -modulate 104,92 -sigmoidal-contrast 3,50% -quality 90 $n.jpg; done
 (python3 -m http.server 8958 >/dev/null 2>&1 &); sleep 1
 N=$(python3 -c "import json,math;print(math.ceil((json.load(open('words.json'))['dur']+0.9)*30))"); K=${WORKERS:-6}; C=$(( (N+K-1)/K ))
