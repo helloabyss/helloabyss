@@ -1,0 +1,44 @@
+## 0 COLD OPEN
+Three days before OpenAI launched an AI that works for you around the clock, it admitted something awkward. Its own AI agents had posted fifty-three users' images online. Nobody told them to.
+
+Then, on September twenty-ninth, it shipped Dots anyway. Always-on agents with their own computers, built to keep working while you sleep.
+
+But Elon Musk's xAI got there first. Grok Bot launched in August. Not one agent. A whole crew, sharing one machine, talking to each other in a group chat.
+
+So here's the real question. Do you want one assistant you trust, or a team you have to manage?
+
+By the end of this video, you'll know which one fits you, what each one actually costs, and the one setting we would never switch on.
+
+## 1 WHAT DOTS IS
+Start with OpenAI. A dot is a named agent that lives inside ChatGPT. It runs on GPT-6 Astra, OpenAI's top model, and it gets its own cloud computer: a Linux machine with a Chrome browser that you can open and watch at any time.
+
+Through plugins, it can reach more than four thousand apps. You message it in ChatGPT, Slack or Teams, or you just call it. Texting is coming later.
+
+And here's the part that's new. When you're not talking to it, a dot keeps working. OpenAI calls this proactive research. It reads through the apps you've connected, looking for ways to help.
+
+One early tester, developer Dan McAteer, says his dot spotted an invoice he'd forgotten to send. It pulled the details from an email thread and drafted the invoice. He approved it, and the dot sent it.
+
+That's the pitch. Not a chatbot that waits for you. A colleague that notices things.
+
+## 2 WHAT GROK BOT IS
+Now xAI. Grok Bot launched in beta on August eleventh, seven weeks before Dots.
+
+Same core idea: agents with their own cloud computer that sign into your tools and finish multi-step jobs. But the design is different in one big way.
+
+With Grok Bot, you don't get one agent. You can run several at once, and they all share a single virtual machine, with the same files and the same logins.
+
+They message each other. They coordinate in group chats, pass work around, assign ownership, and only pull you in for judgment calls. xAI's own framing is a small team with a chief of staff on top.
+
+You can teach a bot a job by letting it watch you do it once. It saves the steps as a routine, and runs them on its own after that.
+
+And on September twenty-eighth, xAI added Team Bots: shared bots for whole companies, each with its own Slack handle.
+
+## 3 ONE COMPUTER OR MANY
+So what's actually different? It comes down to computers.
+
+Each dot works on its own cloud computer, and OpenAI says different users' environments are isolated from each other. Your own laptop stays out of it, unless you switch local access on. And that starts switched off.
+
+Grok Bot puts every bot in your account on one shared Linux machine. The product itself calls that machine a real blast radius. Separate bots are not separate security sandboxes. They share the same files, and the same logins.
+
+That's the trade. A team that shares everything moves faster, because nobody has to hand anything over. But one mistake can reach everything that team can touch.
+

@@ -9,7 +9,8 @@ function findPhrase(ph,from=0){const q=ph.split(/\s+/).map(nrm).filter(Boolean);
 // time of a phrase inside beat b (searches from the beat's first word)
 function A(b,ph){b._c=b._c||{};if(!(ph in b._c)){const i=findPhrase(ph,b.i0);b._c[ph]=i<0?b.t0+0.5:WORDS[i].s}return b._c[ph]}
 let BEATS=[];
-const CUTS=()=>{let p=0;let ch='';BEATS.forEach((b,k)=>{const i=findPhrase(b.cue,p);b.i0=i<0?p:i;p=b.i0+1;if(b.tag)ch=b.tag;b.chap=ch});
+const CUTS=()=>{let p=0;let ch='';BEATS.forEach((b,k)=>{const i=findPhrase(b.cue,p);b.skip=i<0;if(i<0)return;b.i0=i;p=i+1;if(b.tag)ch=b.tag;b.chap=ch});
+  BEATS=BEATS.filter(b=>!b.skip); // a cue missing from this narration drops its beat (logged in __errs)
   BEATS.forEach(b=>b.t0=WORDS[b.i0].s);return BEATS.slice(1).map(b=>[b.i0,.12])};
 const SC=new Proxy([],{get:(o,k)=>k==='length'?BEATS.length:(isNaN(k)?o[k]:((t,a,e)=>{BEATS[+k].draw(t,a,e,BEATS[+k]);disclosure(t)}))});
 // compliance card, first 4 s of every video (CLAUDE.md)
