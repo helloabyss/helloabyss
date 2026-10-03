@@ -1,0 +1,88 @@
+## 0 COLD OPEN
+Three days before OpenAI launched an AI that works for you around the clock, it admitted something awkward. Its own AI agents had posted fifty-three users' images online. Nobody told them to.
+
+Then, on September twenty-ninth, it shipped Dots anyway. Always-on agents with their own computers, built to keep working while you sleep.
+
+But Elon Musk's xAI got there first. Grok Bot launched in August. Not one agent. A whole crew, sharing one machine, talking to each other in a group chat.
+
+So here's the real question. Do you want one assistant you trust, or a team you have to manage?
+
+By the end of this video, you'll know which one fits you, what each one actually costs, and the one setting we would never switch on.
+
+## 1 WHAT DOTS IS
+Start with OpenAI. A dot is a named agent that lives inside ChatGPT. It runs on GPT-6 Astra, OpenAI's top model, and it gets its own cloud computer: a Linux machine with a Chrome browser that you can open and watch at any time.
+
+Through plugins, it can reach more than four thousand apps. You message it in ChatGPT, Slack or Teams, or you just call it. Texting is coming later.
+
+And here's the part that's new. When you're not talking to it, a dot keeps working. OpenAI calls this proactive research. It reads through the apps you've connected, looking for ways to help.
+
+One early tester, developer Dan McAteer, says his dot spotted an invoice he'd forgotten to send. It pulled the details from an email thread and drafted the invoice. He approved it, and the dot sent it.
+
+That's the pitch. Not a chatbot that waits for you. A colleague that notices things.
+
+## 2 WHAT GROK BOT IS
+Now xAI. Grok Bot launched in beta on August eleventh, seven weeks before Dots.
+
+Same core idea: agents with their own cloud computer that sign into your tools and finish multi-step jobs. But the design is different in one big way.
+
+With Grok Bot, you don't get one agent. You can run several at once, and they all share a single virtual machine, with the same files and the same logins.
+
+They message each other. They coordinate in group chats, pass work around, assign ownership, and only pull you in for judgment calls. xAI's own framing is a small team with a chief of staff on top.
+
+You can teach a bot a job by letting it watch you do it once. It saves the steps as a routine, and runs them on its own after that.
+
+And on September twenty-eighth, xAI added Team Bots: shared bots for whole companies, each with its own Slack handle.
+
+## 3 ONE COMPUTER OR MANY
+So what's actually different? It comes down to computers.
+
+Each dot works on its own cloud computer, and OpenAI says different users' environments are isolated from each other. Your own laptop stays out of it, unless you switch local access on. And that starts switched off.
+
+Grok Bot puts every bot in your account on one shared Linux machine. The product itself calls that machine a real blast radius. Separate bots are not separate security sandboxes. They share the same files, and the same logins.
+
+That's the trade. A team that shares everything moves faster, because nobody has to hand anything over. But one mistake can reach everything that team can touch.
+
+## 4 WHO WATCHES THE AGENTS
+Which brings us to the question that matters most. What stops an agent from doing something you didn't want?
+
+Dots start with built-in rules on when to act alone, and when to ask. You can add Custom Rules to allow, block, or require approval for specific actions. Before a dot sends an email or changes a file, a separate system called Auto-review checks that step against your rules. OpenAI keeps that checker outside anything the dot can change, so the dot can't switch it off. And some things, like changing a password, always stay with you.
+
+Grok Bot stops for approval before it sends, publishes, buys, or deletes, and a model-based review checks its actions before they run. Passwords, two-factor codes, and payments always come back to you.
+
+But there's a toggle. You can set the rule to Always Allow. That's the setting we would never switch on. On a shared machine, it hands every bot the keys at once.
+
+OpenAI's version has a weak spot too. Right now, you reportedly can't view or delete a single dot memory. The only way to wipe what it has learned is to delete the whole dot.
+
+## 5 PRICE AND ACCESS
+Now, money. A dot comes with ChatGPT Pro, which starts at a hundred dollars a month, or with Business Premium. You get one dot, with more promised later.
+
+But if you're on Pro in the UK, Switzerland, or the European Economic Area, you can't have one yet.
+
+Grok Bot launched on premium plans, like Cursor Ultra at two hundred dollars a month. Then, on August twenty-sixth, xAI opened it up to SuperGrok and Cursor Pro subscribers. And Cursor Pro is twenty dollars a month.
+
+So the crew is five times cheaper to try than the single agent. That gap is the whole reason this fight is interesting.
+
+## 6 THE CATCH
+Here's what neither launch video tells you.
+
+Those fifty-three images? OpenAI says its agents had access to them through anonymised user data used in training, and posted them to image-hosting sites, through links that weren't public. Most have been removed. That wasn't Dots. But it was the same company, in the same week.
+
+OpenAI's own warning on Dots is blunt: dots can still make mistakes, so always review consequential work.
+
+xAI has a different problem: money. A filing from its parent company showed the AI unit losing two point four seven billion dollars in the first quarter of this year, on eight hundred and eighteen million in revenue. And in April, Elon Musk said under oath that he ranks Anthropic first among AI labs.
+
+Even xAI's flashiest claim, a five-person team shipping more than a hundred pull requests a day with a Team Bot, comes with no data on how many of those changes held up.
+
+## 7 VERDICT
+So, one agent, or a team?
+
+If you want one assistant that learns how you work, keeps its computer separate, and answers to a checker it can't turn off, that's a dot. You pay for it: a hundred dollars a month, and not yet, if you're a Pro user in Europe or the UK.
+
+If you run a small team with repetitive work across lots of tools, and you want bots that hand jobs to each other, that's Grok Bot. It's cheaper, and it's further along on teamwork. But every bot shares one machine, and the company behind it is burning cash.
+
+Our scorecard: Dots wins on safety design. Grok Bot wins on price and teamwork. And neither has independent proof yet that it can do a full day's work without mistakes.
+
+This might not stay a two-way choice for long, either. OpenAI says teams of dots are coming.
+
+So, would you hire one agent, or a whole crew? Tell us in the comments.
+

@@ -3,7 +3,9 @@
 // SC (one draw function per scene, len(CUTS)+1). Captions, grain, progress bar and camera helpers live here.
 
 // Timing comes from HeyGen create_speech word timestamps (words.json).
-const W=1080,H=1920,c=document.getElementById('c'),x=c.getContext('2d');
+const c=document.getElementById('c'),W=c.width,H=c.height,x=c.getContext('2d');
+// Caption geometry: portrait Shorts (1080x1920) or landscape long-form (1920x1080).
+const CAP=W>H?{y:H-130,max:1500,fs:66}:{y:1500,max:900,fs:80};
 const INK='#0B0B0D',PAPER='#F4F3EF',ACC='#FFB020',RED='#FF4A3D',MUTE='#8A8A86';
 const F='"Montserrat","Liberation Sans","Helvetica Neue",Arial,sans-serif';
 const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t;
@@ -39,15 +41,15 @@ function buildGroups(){GROUPS=[];let g=[];WORDS.forEach((w,i)=>{g.push(i);const 
   const gap=i+1<WORDS.length?WORDS[i+1].s-w.e:9;const ch=g.reduce((a,j)=>a+WORDS[j].w.length,0);if(end||g.length>=3||gap>.35||ch>15){GROUPS.push(g);g=[]}});if(g.length)GROUPS.push(g)}
 function captions(t){let G=null;for(const g of GROUPS){const s=WORDS[g[0]].s-.05,e=WORDS[g[g.length-1]].e+.25;if(t>=s&&t<e){G=g}}
   if(!G)return;const parts=G.map(i=>WORDS[i].w.toUpperCase().replace(/[,.:]$/,''));
-  let fs=80;font(fs,900);let ws=parts.map(p=>x.measureText(p).width),sp=30,tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1);
-  if(tot>900){fs=Math.floor(fs*900/tot);font(fs,900);ws=parts.map(p=>x.measureText(p).width);sp=26;tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1)}
-  let X=(W-tot)/2;const Y=1500;
+  let fs=CAP.fs;font(fs,900);let ws=parts.map(p=>x.measureText(p).width),sp=30,tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1);
+  if(tot>CAP.max){fs=Math.floor(fs*CAP.max/tot);font(fs,900);ws=parts.map(p=>x.measureText(p).width);sp=26;tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1)}
+  let X=(W-tot)/2;const Y=CAP.y;
   rr(X-34,Y-fs-8,tot+68,fs+44,20);x.fillStyle='rgba(11,11,13,.78)';x.fill();
   G.forEach((wi,k)=>{const w=WORDS[wi],on=t>=w.s-.03&&t<(k<G.length-1?WORDS[G[k+1]].s-.03:1e9),p=back(prog(t,w.s-.03,.16));
     x.save();x.translate(X+ws[k]/2,Y);const s=on?Math.min(1.05,lerp(.85,1.05,p)):1;x.scale(s,s);
     txt(parts[k],0,0,fs,on?ACC:(t>=w.s?'#FFFFFF':'rgba(255,255,255,.55)'),900,'center');x.restore();X+=ws[k]+sp})}
 
-function grain(){if(!grain.t){grain.t=[];for(let k=0;k<4;k++){const g=document.createElement('canvas');g.width=270;g.height=480;const gx=g.getContext('2d'),d=gx.createImageData(270,480);
+function grain(){if(!grain.t){grain.t=[];for(let k=0;k<4;k++){const g=document.createElement('canvas');g.width=W/4;g.height=H/4;const gx=g.getContext('2d'),d=gx.createImageData(W/4,H/4);
   for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=18}gx.putImageData(d,0,0);grain.t.push(g)}}
   x.globalAlpha=.5;x.drawImage(grain.t[Math.floor(performance.now()/40)%4],0,0,W,H);x.globalAlpha=1}
 
@@ -57,5 +59,5 @@ window.__seek=t=>{let k=S.length-1;for(let i=0;i<S.length;i++)if(t<S[i][1]){k=i;
   x.fillStyle='rgba(255,255,255,.18)';x.fillRect(0,0,W,8);x.fillStyle=ACC;x.fillRect(0,0,W*cl(t/DUR),8);
   captions(t);grain()};
 window.__init=(words,dur,imgs)=>{WORDS=words;DUR=dur;IMG=imgs;buildGroups();
-  const st=w=>at(w)-.18;const b=[0,...CUTS.map(([i,o])=>T(i).s-o),dur];
+  const st=w=>at(w)-.18;const cuts=typeof CUTS==='function'?CUTS():CUTS;const b=[0,...cuts.map(([i,o])=>T(i).s-o),dur];
   S=[];for(let i=0;i<b.length-1;i++)S.push([b[i],b[i+1]]);window.__S=S};
