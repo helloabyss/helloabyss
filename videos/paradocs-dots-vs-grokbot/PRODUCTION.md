@@ -8,7 +8,7 @@
 | Facts | `FACTS.md`. Every claim has a source; company claims are labelled on screen |
 | Visuals | 72 long-form scenes (`build/dots-long/scenes.js`), 15 Short scenes (`build/dots-short/scenes.js`) |
 | B-roll | 24 images (`images.json`) and 15 Kling 3.0 motion clips (`clips.json`); every graphic scene sits on a moving plate |
-| Preview v3 | Cold open + chapter 1, footage-first look (clips at full strength behind every scene), no voice or captions: https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/5fbedccf-42cd-45c0-9464-8d0fc2e724df.mp4 (2:00, 1920×1080). Superseded v1 buried the clips under a 74% paper / 44% ink tint. |
+| Preview v5 | Cold open + chapter 1, footage-first, de-pixelated (clip VP9 crf 15 instead of crf 33 realtime, push 1.03-1.09x, x264 crf 16 at 14 Mb/s), no voice or captions: https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/6f72a3c8-975c-4cee-b49c-9b6ae8ab299d.mp4 (2:00, 1920x1080). |
 | **Voice** | **Blocked.** The owner chose their own HeyGen voice, "Sheldon" (`a32f980daef743d49caae9e269d14346`, ElevenLabs engine via HeyGen; tested OK on 2026-10-03). HeyGen premium credits are 0 until **2026-10-06 12:57 UTC**. The full set needs ~33 credits (long ~30, Short ~3) |
 | Thumbnail | `build/thumb/versus.html`: DOTS vs GROK BOT, `$100 vs $20` tag, standoff plate |
 | Publish copy | `PUBLISH.md` |
