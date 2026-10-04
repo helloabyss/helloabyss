@@ -13,7 +13,7 @@ R=https://raw.githubusercontent.com/helloabyss/helloabyss/$SHA
 for f in core.js kinds.js boot.js $PAGE cap.js align.py; do curl -sSf -o $f $R/build/standard/$f; done
 curl -sSf -o scenes.js $R/build/$EP/scenes.js; curl -sSf -o script.txt $R/$SCRIPT; curl -sSf -o images.json $R/$IMGMAP
 if [ -n "$VO_URL" ]; then
-  curl -sSfL -o vo.src "$VO_URL"; ffmpeg -v error -y -i vo.src -ar 44100 -ac 1 $([ -n "$VO_CAPGAP" ] && echo "-af silenceremove=stop_periods=-1:stop_duration=0.6:stop_threshold=-42dB:stop_silence=$VO_CAPGAP") vo.wav; ffmpeg -v error -y -i vo.wav -ar 16000 vo16.wav
+  curl -sSfL -o vo.src "$VO_URL"; ffmpeg -v error -y -i vo.src -ar 44100 -ac 1 $([ -n "$VO_CAPGAP" ] && echo "-af silenceremove=stop_periods=-1:stop_duration=0.6:stop_threshold=-36dB:detection=rms:stop_silence=$VO_CAPGAP") vo.wav; ffmpeg -v error -y -i vo.wav -ar 16000 vo16.wav
   python3 align.py vo16.wav script.txt words.json
 else  # visual preview: timing from a committed words file ($WORDS), silent voice track, captions off
   curl -sSf -o words.json $R/$WORDS; DUR=$(python3 -c "import json;print(json.load(open('words.json'))['dur'])")
