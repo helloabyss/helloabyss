@@ -37,7 +37,10 @@ function bg(c){x.fillStyle=c;x.fillRect(-200,-200,W+400,H+400)}
 // ---------- moving plates: a video clip (<name>.webm) when present, else the still with a camera move ----------
 let VID={};const RATE=0.85;
 function clipTime(v,s){const D=Math.max(.2,(v.duration||4)-.06),u=Math.max(0,s)*RATE,m=u%(2*D);return m<D?m:2*D-m}
-function media(nm,t,a,dir){const v=VID[nm];if(v&&v.readyState>=2){cover(v,a,t,dir||1);ONV=true;return true}const im=IMG[nm];if(im){cover(im,a,t,dir||1);ONV=true;return true}return false}
+// footage already has its own camera move: only a gentle push (1.03->1.09) so the 1280px clip is not blown up into blocks
+function coverV(v,t0,t,dir){const p=prog(t,t0,6),k=1.03+0.06*eio(p),s=Math.max(W/v.videoWidth,H/v.videoHeight)*k,dw=v.videoWidth*s,dh=v.videoHeight*s;
+  x.imageSmoothingQuality='high';x.drawImage(v,(W-dw)/2+dir*lerp(18,-18,p),(H-dh)/2+lerp(8,-10,p),dw,dh)}
+function media(nm,t,a,dir){const v=VID[nm];if(v&&v.readyState>=2){coverV(v,a,t,dir||1);ONV=true;return true}const im=IMG[nm];if(im){cover(im,a,t,dir||1);ONV=true;return true}return false}
 // light scrim for footage: thin overall wash + darker edges, so the clip stays the dominant layer
 function vwash(a=.22){x.fillStyle=`rgba(11,11,13,${a})`;x.fillRect(-200,-200,W+400,H+400);
   const g=x.createRadialGradient(CX,CY,Math.min(W,H)*.25,CX,CY,Math.max(W,H)*.75);g.addColorStop(0,'rgba(11,11,13,0)');g.addColorStop(1,'rgba(11,11,13,.55)');x.fillStyle=g;x.fillRect(-200,-200,W+400,H+400)}
@@ -55,7 +58,7 @@ function fmtNum(v,dec=0){return v.toLocaleString('en-US',{minimumFractionDigits:
 const K={
 // B-roll photo with continuous camera move; optional tags / stamp / big stat
 broll:o=>({src:o.src,img:o.img,draw:(t,a,e,b)=>{bg(INK);
-  if(o.punch&&t>A(b,o.punch)){x.save();x.translate(W/2,H/2);x.scale(1.28,1.28);x.translate(-W/2+(o.px||0)*U,-H/2+(o.py||0)*U);media(o.img,A(b,o.punch),t,-(o.dir||1));x.restore()}else media(o.img,a,t,o.dir||1);
+  if(o.punch&&t>A(b,o.punch)){x.save();x.translate(W/2,H/2);const ps=VID[o.img]?1.12:1.28;x.scale(ps,ps);x.translate(-W/2+(o.px||0)*U,-H/2+(o.py||0)*U);media(o.img,A(b,o.punch),t,-(o.dir||1));x.restore()}else media(o.img,a,t,o.dir||1);
   scrim(.45);(o.tags||[]).forEach(g=>tagAt(t,b,g));if(o.stat){const s=o.stat;pop(t,A(b,s.at)-.1,CX,s.y??CY,()=>{
     txt((s.prefix||'')+fmtNum(counter(t,A(b,s.at),s.value,s.d||0.8),s.dec||0)+(s.suffix||''),0,0,(s.size||220)*U,s.color||'#FFFFFF',900);
     if(s.label)txt(s.label,0,70*U,44*U,s.color||ACC,800,'center',6)})}

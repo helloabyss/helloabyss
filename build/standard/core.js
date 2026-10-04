@@ -52,8 +52,8 @@ function captions(t){ONV=false;if(window.NOCAP)return;let G=null;for(const g of 
     x.save();x.translate(X+ws[k]/2,Y);const s=on?Math.min(1.05,lerp(.85,1.05,p)):1;x.scale(s,s);
     txt(parts[k],0,0,fs,on?ACC:(t>=w.s?'#FFFFFF':'rgba(255,255,255,.55)'),900,'center');x.restore();X+=ws[k]+sp})}
 
-function grain(){if(!grain.t){grain.t=[];for(let k=0;k<4;k++){const g=document.createElement('canvas');g.width=W/4;g.height=H/4;const gx=g.getContext('2d'),d=gx.createImageData(W/4,H/4);
-  for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=18}gx.putImageData(d,0,0);grain.t.push(g)}}
+function grain(){if(!grain.t){grain.t=[];for(let k=0;k<4;k++){const g=document.createElement('canvas');g.width=W/2;g.height=H/2;const gx=g.getContext('2d'),d=gx.createImageData(W/2,H/2);
+  for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=14}gx.putImageData(d,0,0);grain.t.push(g)}}
   x.globalAlpha=.5;x.drawImage(grain.t[Math.floor(performance.now()/40)%4],0,0,W,H);x.globalAlpha=1}
 
 window.__seek=t=>{let k=S.length-1;for(let i=0;i<S.length;i++)if(t<S[i][1]){k=i;break}
