@@ -8,6 +8,7 @@
 | Facts | `FACTS.md`. Every claim has a source; company claims are labelled on screen |
 | Visuals | 72 long-form scenes (`build/dots-long/scenes.js`), 15 Short scenes (`build/dots-short/scenes.js`) |
 | B-roll | 24 images (`images.json`) and 15 Kling 3.0 motion clips (`clips.json`); every graphic scene sits on a moving plate |
+| Short (final, stock voice) | Higgsfield Seed Audio preset voice **Callan** (owner chose a stock voice on 2026-10-04 while HeyGen credits are 0), pauses capped at 0.4 s (`VO_CAPGAP`), captions on, 15 Kling clips: https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/e151c879-5fe9-4c17-b65c-bd736996d290.mp4 (49.7 s, 1080x1920, 16 Mb/s). Voice cost 5.2 Higgsfield credits. Complete, not verified by eye. |
 | Preview v5 | Cold open + chapter 1, footage-first, de-pixelated (clip VP9 crf 15 instead of crf 33 realtime, push 1.03-1.09x, x264 crf 16 at 14 Mb/s), no voice or captions: https://d2ol7oe51mr4n9.cloudfront.net/user_3IyooMrH11AlVriZuDqzIr96yrM/6f72a3c8-975c-4cee-b49c-9b6ae8ab299d.mp4 (2:00, 1920x1080). |
 | **Voice** | **Blocked.** The owner chose their own HeyGen voice, "Sheldon" (`a32f980daef743d49caae9e269d14346`, ElevenLabs engine via HeyGen; tested OK on 2026-10-03). HeyGen premium credits are 0 until **2026-10-06 12:57 UTC**. The full set needs ~33 credits (long ~30, Short ~3) |
 | Thumbnail | `build/thumb/versus.html`: DOTS vs GROK BOT, `$100 vs $20` tag, standoff plate |
@@ -38,3 +39,10 @@
 | **Not this session:** Seed Audio spends of ~100 credits on 2026-10-04 01:18–01:55 UTC | — |
 
 Higgsfield balance after: 80.75.
+
+## 2026-10-04 notes
+
+- Higgsfield upload URLs carry a short-lived STS token: request `media_upload` right before the PUT (a URL issued ~15 min before the PUT returned 400).
+- Seed Audio leaves 4-11 s gaps at paragraph breaks; `VO_CAPGAP=0.4` (sox) took the Short from 82.7 s to 48.8 s.
+- Long-form stock voice would cost ~45 Higgsfield credits (balance 40.35 after the Short). Long-form waits for the HeyGen Sheldon voice (credits reset 2026-10-06 12:57 UTC) unless the owner tops up.
+- Unexplained Seed Audio spend on the account, not from this session: ~100 credits 01:18-01:55 UTC and ~35 credits 02:01-02:14 UTC on 2026-10-04.
