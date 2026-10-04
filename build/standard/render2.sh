@@ -27,7 +27,7 @@ for n in $(node -e "eval(require('fs').readFileSync('scenes.js','utf8').split('\
 if [ -n "$CLIPMAP" ]; then curl -sSf -o clips.json $R/$CLIPMAP
   python3 -c "import json;[print(k,v) for k,v in json.load(open('clips.json')).items()]" | while read n u; do
     curl -sSfL -o $n.mp4 "$u" && ffmpeg -v error -y -i $n.mp4 -an -vf "scale=$([ $LAND = 1 ] && echo "'min(1280,iw)':-2" || echo "-2:'min(1280,ih)'"),eq=saturation=1.2:brightness=0.05:contrast=1.05" \
-      -c:v libvpx-vp9 -b:v 0 -crf 14 -g 6 -deadline good -cpu-used 2 -row-mt 1 $n.webm && echo "clip $n ok" &
+      -c:v libvpx-vp9 -b:v 0 -crf 15 -g 4 -auto-alt-ref 0 -lag-in-frames 0 -deadline good -cpu-used 4 -row-mt 1 $n.webm && echo "clip $n ok" &
   done; wait; fi
 (python3 -m http.server 8958 >/dev/null 2>&1 &); sleep 1
 N=$(python3 -c "import json,math;print(math.ceil((json.load(open('words.json'))['dur']+0.9)*30))"); K=${WORKERS:-4}; C=$(( (N+K-1)/K ))
