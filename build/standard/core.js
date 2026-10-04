@@ -12,10 +12,11 @@ const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t;
 const eo=t=>1-Math.pow(1-cl(t),3), eio=t=>{t=cl(t);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
 const back=t=>{t=cl(t);const s=1.9;return 1+(s+1)*Math.pow(t-1,3)+s*Math.pow(t-1,2)};
 const prog=(t,a,d)=>cl((t-a)/d);
-let WORDS=[],DUR=44,IMG={};
+let WORDS=[],DUR=44,IMG={},ONV=false,NOSH=false; // ONV: this frame's background is footage (text gets a shadow)
 function font(sz,w=800){x.font=`${w} ${sz}px ${F}`}
-function txt(s,X,Y,sz,col,w=800,al='center',ls=0){font(sz,w);x.fillStyle=col;x.textAlign=al;x.textBaseline='alphabetic';
-  if(ls){x.letterSpacing=ls+'px'}x.fillText(s,X,Y);if(ls)x.letterSpacing='0px'}
+function txt(s,X,Y,sz,col,w=800,al='center',ls=0){font(sz,w);if(ONV&&!NOSH){if(col===INK)col='#FFFFFF';else if(col===MUTE)col='#D9D9D3'}x.fillStyle=col;x.textAlign=al;x.textBaseline='alphabetic';
+  if(ONV&&!NOSH){x.shadowColor='rgba(0,0,0,.7)';x.shadowBlur=Math.max(8,sz*.35);x.shadowOffsetY=sz*.04}
+  if(ls){x.letterSpacing=ls+'px'}x.fillText(s,X,Y);if(ls)x.letterSpacing='0px';x.shadowColor='transparent';x.shadowBlur=0;x.shadowOffsetY=0}
 function rr(X,Y,w,h,r){x.beginPath();x.roundRect(X,Y,w,h,r)}
 function T(i){return WORDS[i]}             // word by index
 const nrm=s=>s.toLowerCase().replace(/[^a-z0-9'-]/g,'');
@@ -34,12 +35,14 @@ function camera(t,t0,fn){ // whip-in: scale + slide at scene start
 // ---------- scene helpers ----------
 function scrim(a=.55){const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,`rgba(11,11,13,${a*.7})`);g.addColorStop(.45,'rgba(11,11,13,0)');g.addColorStop(.7,'rgba(11,11,13,.15)');g.addColorStop(1,`rgba(11,11,13,${a+.2})`);x.fillStyle=g;x.fillRect(0,0,W,H)}
 function pop(t,t0,X,Y,fn,d=.32){const p=back(prog(t,t0,d));if(p<=0)return;x.save();x.translate(X,Y);x.scale(p,p);fn();x.restore()}
-function pill(s,X,Y,sz,bg,fg,padX=44){font(sz,900);const w=x.measureText(s).width+padX*2;rr(X-w/2,Y-sz*.95,w,sz*1.55,sz*.78);x.fillStyle=bg;x.fill();txt(s,X,Y+sz*.08,sz,fg,900,'center',2)}
+function pill(s,X,Y,sz,bg,fg,padX=44){font(sz,900);const w=x.measureText(s).width+padX*2;rr(X-w/2,Y-sz*.95,w,sz*1.55,sz*.78);
+  if(ONV){x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=sz*.6;x.shadowOffsetY=sz*.12}x.fillStyle=bg;x.fill();x.shadowColor='transparent';x.shadowBlur=0;x.shadowOffsetY=0;
+  NOSH=true;txt(s,X,Y+sz*.08,sz,fg,900,'center',2);NOSH=false}
 // ---------- word-by-word captions: 1–3 word groups, current word amber ----------
 let GROUPS=[];
 function buildGroups(){GROUPS=[];let g=[];WORDS.forEach((w,i)=>{g.push(i);const end=/[.,?!:]$/.test(w.w);
   const gap=i+1<WORDS.length?WORDS[i+1].s-w.e:9;const ch=g.reduce((a,j)=>a+WORDS[j].w.length,0);if(end||g.length>=3||gap>.35||ch>15){GROUPS.push(g);g=[]}});if(g.length)GROUPS.push(g)}
-function captions(t){if(window.NOCAP)return;let G=null;for(const g of GROUPS){const s=WORDS[g[0]].s-.05,e=WORDS[g[g.length-1]].e+.25;if(t>=s&&t<e){G=g}}
+function captions(t){ONV=false;if(window.NOCAP)return;let G=null;for(const g of GROUPS){const s=WORDS[g[0]].s-.05,e=WORDS[g[g.length-1]].e+.25;if(t>=s&&t<e){G=g}}
   if(!G)return;const parts=G.map(i=>WORDS[i].w.toUpperCase().replace(/[,.:]$/,''));
   let fs=CAP.fs;font(fs,900);let ws=parts.map(p=>x.measureText(p).width),sp=30,tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1);
   if(tot>CAP.max){fs=Math.floor(fs*CAP.max/tot);font(fs,900);ws=parts.map(p=>x.measureText(p).width);sp=26;tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1)}
