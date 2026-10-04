@@ -49,7 +49,7 @@ f.append("[v][md]"+''.join(f'[w{i}]' for i in range(n))+f"amix=inputs={n+2}:norm
 open('mix.txt','w').write(';\n'.join(f))
 PYF
 ffmpeg -v error -y -i vo.wav -stream_loop -1 -i music.wav -i whoosh.mp3 -filter_complex_script mix.txt -map "[a]" -t $D -ar 48000 mix.wav
-ffmpeg -v error -y -framerate 30 -i fr/%05d.jpg -i mix.wav -c:v libx264 -preset medium -tune film -crf 16 -pix_fmt yuv420p \
+ffmpeg -v error -y -framerate 30 -i fr/%05d.jpg -i mix.wav -c:v libx264 -preset ${X264_PRESET:-medium} -tune film -crf 16 -pix_fmt yuv420p \
   -c:a aac -b:a 192k -shortest -movflags +faststart out.mp4
 ffprobe -v error -show_entries format=duration,size -of csv=p=0 out.mp4
 curl -sf -o /dev/null -w "PUT %{http_code}\n" -X PUT -H "Content-Type: video/mp4" -H "If-None-Match: *" --upload-file out.mp4 "$PUT_URL"
