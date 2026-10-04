@@ -40,7 +40,7 @@ function clipTime(v,s){const D=Math.max(.2,(v.duration||4)-.06),u=Math.max(0,s)*
 function media(nm,t,a,dir){const v=VID[nm];if(v&&v.readyState>=2){cover(v,a,t,dir||1);return true}const im=IMG[nm];if(im){cover(im,a,t,dir||1);return true}return false}
 // graphic scenes sit on a tinted moving plate: 'ink' = dark tint, 'paper' = frosted light tint
 function plate(b,t,a,mode){bg(mode==='paper'?PAPER:INK);const nm=b.plate;if(!nm||!media(nm,t,a,b.pdir||1))return;
-  x.fillStyle=mode==='paper'?'rgba(244,243,239,.80)':'rgba(11,11,13,.58)';x.fillRect(-200,-200,W+400,H+400)}
+  x.fillStyle=mode==='paper'?'rgba(244,243,239,.74)':'rgba(11,11,13,.44)';x.fillRect(-200,-200,W+400,H+400)}
 // capture hook: seek the clip the scene at time t is showing, then draw
 window.__prep=async t=>{const S=window.__S;if(!S)return;let k=S.length-1;for(let i=0;i<S.length;i++)if(t<S[i][1]){k=i;break}
   const b=BEATS[k];if(!b)return;const nm=b.img||b.plate,v=VID[nm];if(!v)return;const ct=clipTime(v,t-S[k][0]);
@@ -53,7 +53,7 @@ const K={
 // B-roll photo with continuous camera move; optional tags / stamp / big stat
 broll:o=>({src:o.src,img:o.img,draw:(t,a,e,b)=>{bg(INK);
   if(o.punch&&t>A(b,o.punch)){x.save();x.translate(W/2,H/2);x.scale(1.28,1.28);x.translate(-W/2+(o.px||0)*U,-H/2+(o.py||0)*U);media(o.img,A(b,o.punch),t,-(o.dir||1));x.restore()}else media(o.img,a,t,o.dir||1);
-  scrim(.6);(o.tags||[]).forEach(g=>tagAt(t,b,g));if(o.stat){const s=o.stat;pop(t,A(b,s.at)-.1,CX,s.y??CY,()=>{
+  scrim(.45);(o.tags||[]).forEach(g=>tagAt(t,b,g));if(o.stat){const s=o.stat;pop(t,A(b,s.at)-.1,CX,s.y??CY,()=>{
     txt((s.prefix||'')+fmtNum(counter(t,A(b,s.at),s.value,s.d||0.8),s.dec||0)+(s.suffix||''),0,0,(s.size||220)*U,s.color||'#FFFFFF',900);
     if(s.label)txt(s.label,0,70*U,44*U,s.color||ACC,800,'center',6)})}
   if(o.stamp)stampAt(t,b,o.stamp);flashIn(t,a);chrome(b)}}),

@@ -26,7 +26,7 @@ for n in $(node -e "eval(require('fs').readFileSync('scenes.js','utf8').split('\
   convert $n.png -resize $([ $LAND = 1 ] && echo 1920x || echo 1080x) -modulate 104,92 -sigmoidal-contrast 3,50% -quality 90 $n.jpg; done
 if [ -n "$CLIPMAP" ]; then curl -sSf -o clips.json $R/$CLIPMAP
   python3 -c "import json;[print(k,v) for k,v in json.load(open('clips.json')).items()]" | while read n u; do
-    curl -sSfL -o $n.mp4 "$u" && ffmpeg -v error -y -i $n.mp4 -an -vf "scale=$([ $LAND = 1 ] && echo 1920:-2 || echo -2:1920),eq=saturation=1.08:brightness=0.02" \
+    curl -sSfL -o $n.mp4 "$u" && ffmpeg -v error -y -i $n.mp4 -an -vf "scale=$([ $LAND = 1 ] && echo 1920:-2 || echo -2:1920),eq=saturation=1.2:brightness=0.05:contrast=1.05" \
       -c:v libvpx-vp9 -b:v 0 -crf 33 -g 6 -deadline realtime -cpu-used 8 -row-mt 1 $n.webm && echo "clip $n ok" &
   done; wait; fi
 (python3 -m http.server 8958 >/dev/null 2>&1 &); sleep 1
