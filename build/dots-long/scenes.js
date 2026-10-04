@@ -3,14 +3,15 @@
 const IMAGES=['tower','orb','swarm','photos','cloudpc','envelope','monitors','table','glass','turnstile','toggle','keys','cabinet','tags','europe','court','docs','phone','road','baton','standoff','magnifier'];
 BEATS=[
 // ---- COLD OPEN ----
-{cue:'Three days before',...K.broll({img:'tower',tags:[{at:'it admitted',text:'3 DAYS BEFORE LAUNCH',y:CY+60*U}]})},
-{cue:'Its own AI agents',...K.broll({img:'photos',src:'REPORTED',stat:{at:'fifty-three',value:53,label:'IMAGES POSTED ONLINE',color:'#FFFFFF'},stamp:{at:'Nobody',text:'NOT INSTRUCTED',y:CY+260*U,size:64}})},
-{cue:'Then, on September',...K.date({at:'September',month:'SEP',day:29,label:'OPENAI SHIPS',sub:'DOTS',src:'SOURCE: OPENAI'})},
-{cue:'Always-on agents',...K.broll({img:'orb',tags:[{at:'Always-on',text:'ALWAYS ON'},{at:'while you sleep',text:'WHILE YOU SLEEP',y:CY+140*U,bg:'#FFFFFF'}]})},
-{cue:'But Elon Musk\'s',...K.broll({img:'swarm',dir:-1,tags:[{at:'got there first',text:'GROK BOT · AUGUST',bg:BLUE}]})},
-{cue:'Not one agent.',...K.machine({mode:'shared',bots:4,title:'A WHOLE CREW'})},
-{cue:'So here\'s the real question.',...K.cta({img:'standoff',left:'ONE YOU TRUST?',right:'A TEAM TO MANAGE?',atA:'trust',atB:'a team',atC:'manage'})},
-{cue:'By the end of this video',...K.steps({title:'BY THE END',items:[{at:'fits you',text:'WHO IT FITS'},{at:'actually costs',text:'REAL COST'},{at:'the one setting',text:'1 SETTING TO AVOID',bg:RED}]})},
+{cue:'This summer, more than',...K.broll({img:'swarm',src:'SOURCE: OPENAI',stat:{at:'twelve hundred',value:1200,label:'OPENAI TEST AGENTS',color:'#FFFFFF'}})},
+{cue:'No internet.',...K.slam({dark:true,src:'SOURCE: OPENAI',lines:[{at:'No internet.',text:'NO INTERNET.',color:'#FFFFFF',size:120},{at:'No way to talk',text:'NO CONTACT.',color:'#FFFFFF',size:120}]})},
+{cue:'They found a way anyway.',...K.broll({img:'monitors',src:'REPORTED',stamp:{at:'found a way',text:'THEY FOUND A WAY',size:76},tags:[{at:'secret message board',text:'SECRET MESSAGE BOARD',y:CY+250*U,bg:RED,fg:'#FFFFFF'}]})},
+{cue:'used it to reach the internet',...K.steps({src:'REPORTED',title:'HOW THEY GOT OUT',items:[{at:'used it',text:'AGENT'},{at:'reach',text:'SHARED TOOL'},{at:'internet,',text:'INTERNET'},{at:'broke into',text:'HUGGING FACE',bg:RED}]})},
+{cue:'On one of its servers',...K.broll({img:'glass',src:'SOURCE: OPENAI',stamp:{at:'root access',text:'ROOT ACCESS',size:110}})},
+{cue:'Now OpenAI wants to give you',...K.broll({img:'orb',src:'SOURCE: OPENAI',tags:[{at:'always-on agent',text:'ALWAYS-ON AGENT'},{at:'Dots.',text:'IT\'S CALLED DOTS',y:CY+140*U,bg:'#FFFFFF'}]})},
+{cue:'And Elon Musk\'s xAI already sells',...K.machine({mode:'shared',bots:4,title:'GROK BOT: A WHOLE CREW',src:'SOURCE: XAI'})},
+{cue:'So which one should you trust?',...K.cta({img:'standoff',left:'ONE AGENT?',right:'A WHOLE CREW?',atA:'which one',atB:'trust',atC:'By the end'})},
+{cue:'By the end of this video',...K.steps({title:'BY THE END',items:[{at:'actually does',text:'WHAT IT DOES'},{at:'what it costs',text:'REAL COST'},{at:'the one setting',text:'1 SETTING TO AVOID',bg:RED}]})},
 // ---- 01 THE DOT ----
 {cue:'Start with OpenAI.',...K.chapter({n:'01',title:'THE DOT',tag:'01 · THE DOT'})},
 {cue:'A dot is a named agent',...K.broll({img:'orb',dir:-1,src:'SOURCE: OPENAI',tags:[{at:'named agent',text:'NAMED AGENT'},{at:'inside ChatGPT',text:'LIVES IN CHATGPT',y:CY+140*U,bg:'#FFFFFF'}]})},
@@ -39,6 +40,7 @@ BEATS=[
 {cue:'Your own laptop stays out',...K.broll({img:'cloudpc',dir:-1,src:'SOURCE: OPENAI',tags:[{at:'Your own laptop',text:'YOUR LAPTOP: OUT'},{at:'starts switched off',text:'LOCAL ACCESS: OFF',y:CY+140*U,bg:GREEN}]})},
 {cue:'Grok Bot puts every bot',...K.machine({mode:'shared',bots:5,title:'GROK BOT: ONE SHARED MACHINE',src:'REPORTED',blastAt:'blast radius'})},
 {cue:'Separate bots are not',...K.broll({img:'glass',src:'REPORTED',stamp:{at:'not separate',text:'NOT SANDBOXED',size:80},tags:[{at:'same logins',text:'SAME LOGINS',y:CY+250*U,bg:'#FFFFFF'}]})},
+{cue:'Remember those twelve hundred agents?',...K.slam({dark:true,src:'REPORTED',lines:[{at:'sandboxes were separate',text:'SEPARATE SANDBOXES.',color:'#FFFFFF',size:100},{at:'one thing they shared',text:'ONE SHARED TOOL.',color:RED,size:120}]})},
 {cue:'That\'s the trade.',...K.chips({title:'THE TRADE',items:[{at:'moves faster',text:'SPEED',bg:GREEN},{at:'one mistake',text:'ONE MISTAKE',bg:RED,fg:'#FFFFFF'},{at:'everything',text:'REACHES ALL',bg:RED,fg:'#FFFFFF'}]})},
 // ---- 04 WHO'S WATCHING ----
 {cue:'Which brings us',...K.chapter({n:'04',title:'WHO\'S WATCHING?',tag:'04 · SAFETY'})},
@@ -63,7 +65,7 @@ BEATS=[
 {cue:'So the crew is five times cheaper',...K.bars({paper:true,title:'CHEAPEST WAY IN',items:[{at:'five times',label:'DOTS',value:100,color:ACC,fmt:v=>'$'+Math.round(v)},{at:'cheaper to try',label:'GROK BOT',value:20,color:BLUE,fmt:v=>'$'+Math.round(v)}],note:{at:'single agent',text:'5× CHEAPER TO TRY'}})},
 // ---- 06 THE CATCH ----
 {cue:'Here\'s what neither launch video tells you.',...K.chapter({n:'06',title:'THE CATCH',tag:'06 · THE CATCH'})},
-{cue:'Those fifty-three images?',...K.broll({img:'photos',dir:-1,src:'REPORTED',tags:[{at:'anonymised user data',text:'FROM TRAINING DATA'},{at:'weren\'t public',text:'NON-PUBLIC LINKS',y:CY+140*U,bg:'#FFFFFF'}]})},
+{cue:'And days before Dots launched',...K.broll({img:'photos',dir:-1,src:'REPORTED',stat:{at:'fifty-three',value:53,label:'USER IMAGES POSTED',color:'#FFFFFF',y:CY-60*U},tags:[{at:'weren\'t public',text:'NON-PUBLIC LINKS',y:CY+200*U,bg:'#FFFFFF'}]})},
 {cue:'Most have been removed.',...K.slam({dark:true,src:'REPORTED',lines:[{at:'removed',text:'MOSTLY REMOVED',color:GREEN,size:130}]})},
 {cue:'That wasn\'t Dots.',...K.slam({lines:[{at:'wasn\'t Dots',text:'NOT DOTS.',color:INK},{at:'same company',text:'SAME COMPANY.',color:RED},{at:'same week',text:'SAME WEEK.',color:RED}]})},
 {cue:'OpenAI\'s own warning',...K.quote({src:'SOURCE: OPENAI',at:'can still make mistakes',text:'Dots can still make mistakes, so always review consequential work.',who:'OPENAI'})},

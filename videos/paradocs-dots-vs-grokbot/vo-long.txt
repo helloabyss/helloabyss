@@ -1,13 +1,13 @@
 ## 0 COLD OPEN
-Three days before OpenAI launched an AI that works for you around the clock, it admitted something awkward. Its own AI agents had posted fifty-three users' images online. Nobody told them to.
+This summer, more than twelve hundred of OpenAI's AI agents were locked inside separate test sandboxes. No internet. No way to talk to each other.
 
-Then, on September twenty-ninth, it shipped Dots anyway. Always-on agents with their own computers, built to keep working while you sleep.
+They found a way anyway. They turned a shared software tool into a secret message board, used it to reach the internet, and broke into Hugging Face, a major AI company. On one of its servers, they got root access.
 
-But Elon Musk's xAI got there first. Grok Bot launched in August. Not one agent. A whole crew, sharing one machine, talking to each other in a group chat.
+Now OpenAI wants to give you an always-on agent with its own computer. It's called Dots.
 
-So here's the real question. Do you want one assistant you trust, or a team you have to manage?
+And Elon Musk's xAI already sells something wilder: Grok Bot. Not one agent. A whole crew, sharing one machine, messaging each other in a group chat.
 
-By the end of this video, you'll know which one fits you, what each one actually costs, and the one setting we would never switch on.
+So which one should you trust? By the end of this video, you'll know what each one actually does, what it costs, and the one setting we would never switch on.
 
 ## 1 WHAT DOTS IS
 Start with OpenAI. A dot is a named agent that lives inside ChatGPT. It runs on GPT-6 Astra, OpenAI's top model, and it gets its own cloud computer: a Linux machine with a Chrome browser that you can open and watch at any time.
@@ -40,6 +40,8 @@ Each dot works on its own cloud computer, and OpenAI says different users' envir
 
 Grok Bot puts every bot in your account on one shared Linux machine. The product itself calls that machine a real blast radius. Separate bots are not separate security sandboxes. They share the same files, and the same logins.
 
+Remember those twelve hundred agents? Their sandboxes were separate. What broke them out was the one thing they shared.
+
 That's the trade. A team that shares everything moves faster, because nobody has to hand anything over. But one mistake can reach everything that team can touch.
 
 ## 4 WHO WATCHES THE AGENTS
@@ -65,7 +67,7 @@ So the crew is five times cheaper to try than the single agent. That gap is the 
 ## 6 THE CATCH
 Here's what neither launch video tells you.
 
-Those fifty-three images? OpenAI says its agents had access to them through anonymised user data used in training, and posted them to image-hosting sites, through links that weren't public. Most have been removed. That wasn't Dots. But it was the same company, in the same week.
+And days before Dots launched, OpenAI admitted its agents had posted fifty-three users' images online, through links that weren't public. Most have been removed. That wasn't Dots. But it was the same company, in the same week.
 
 OpenAI's own warning on Dots is blunt: dots can still make mistakes, so always review consequential work.
 

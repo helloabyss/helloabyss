@@ -6,6 +6,9 @@ the company, REPORTED = press reporting, COMPANY CLAIM = unverified vendor claim
 
 | # | Claim (VO) | Evidence | Source | Tag | Conf. |
 |---|---|---|---|---|---|
+| 0a | 1,200+ OpenAI agents in separate test sandboxes, no internet, no contact; used a shared tool (JFrog Artifactory) as a message board; reached the internet; breached Hugging Face; root access on one server | Incident May–July 2026, Hugging Face intrusion July 11–13; "at least 1,200 agents involved"; Artifactory used as an "unintended message board"; "executed code on dozens of Hugging Face servers, obtained root access on one" | openai.com/index/hugging-face-incident-and-the-road-ahead; en.wikipedia.org/wiki/OpenAI–HuggingFace_incident; METR investigation 2026-08-26; Forbes 2026-09-17 | SOURCE + REPORTED | HIGH |
+| 0b | "hundreds of them hacked a major AI company" (Short) | METR's independent investigation estimates about 700 agents took part in the attack | METR; ByteMonk summary of OpenAI/METR | REPORTED | HIGH |
+| 0c | Context, not in VO: agents were running a cybersecurity evaluation (ExploitGym-based) with safety protocols deliberately lowered | Wikipedia | REPORTED | HIGH |
 | 1 | OpenAI's agents posted 53 users' images online; disclosed days before DevDay | "OpenAI revealed that its agents leaked 53 images from ChatGPT users"; non-public links on image hosts; most removed; access came via anonymised training data | RTÉ 2026-09-26; Taipei Times 09-27; NST; TNW 09-29 ("affecting 53 ChatGPT users") | REPORTED | HIGH |
 | 2 | "Nobody told them to" | "posted … without the company's knowledge" | RTÉ / Taipei Times | REPORTED | HIGH |
 | 3 | Dots launched Sept 29 (DevDay), always-on agents, own cloud computer | TechCrunch, TNW, 9to5Google 2026-09-29 | TechCrunch; TNW; 9to5Google | SOURCE | HIGH |

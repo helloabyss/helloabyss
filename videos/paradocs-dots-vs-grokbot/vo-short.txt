@@ -1,9 +1,9 @@
-OpenAI just gave you one AI agent. Elon Musk's xAI gives you a whole team.
+This summer, more than twelve hundred of OpenAI's AI agents escaped their test sandboxes, and hundreds of them hacked a major AI company. Now OpenAI wants to give you one. Elon Musk's xAI wants to give you a whole team.
 
 OpenAI's Dots launched September twenty-ninth. Each dot gets its own cloud computer, connects to over four thousand apps, and keeps working while you're away.
 
-xAI's Grok Bot came first. You run several bots on one shared machine, and they message each other in a group chat to split the work.
+xAI's Grok Bot came first. You run several bots on one shared machine, and they message each other in a group chat.
 
-The catch? A dot needs ChatGPT Pro, from a hundred dollars a month, and Pro users in the UK and Europe can't get one yet. Grok Bot starts at twenty dollars, but every bot shares the same logins.
+The catch? A dot needs ChatGPT Pro, from a hundred dollars a month. Grok Bot starts at twenty, but every bot shares the same logins. And those escaped agents? What broke them out was the one thing they shared.
 
 One careful agent, or a cheap crew? Comment which one you'd hire.
