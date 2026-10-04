@@ -48,3 +48,4 @@ Higgsfield balance after: 80.75.
 - Long-form stock voice would cost ~45 Higgsfield credits (balance 40.35 after the Short). Long-form waits for the HeyGen Sheldon voice (credits reset 2026-10-06 12:57 UTC) unless the owner tops up.
 - Unexplained Seed Audio spend on the account, not from this session: ~100 credits 01:18-01:55 UTC and ~35 credits 02:01-02:14 UTC on 2026-10-04.
 - Long-form render: Higgsfield upload returns 413 for very large files (crf 16 veryfast ~700 MB+); `MAXRATE=7M X264_PRESET=faster` gave 342 MB and uploaded. Seed Audio allows one job at a time on this account (parallel jobs fail and are refunded).
+- 2026-10-04: owner approved the Callan versions ("Ok with callan"). The Oct 6 Sheldon re-voice routine was cancelled; no HeyGen credits will be spent on this video.
