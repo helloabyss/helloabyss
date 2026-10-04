@@ -1,0 +1,140 @@
+<!doctype html>
+<!--
+  TWIM render probe — proves deterministic chart rendering in the locked palette.
+  DATA IS SYNTHETIC SAMPLE DATA, labelled as such on screen. Not research output.
+  Chart geometry is hand-computed: y = 1300 - (value - 3.50) * 600
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        margin: 0; width: 1080px; height: 1920px;
+        overflow: hidden; background: #0B0B0C;
+      }
+      :root { --ink:#0B0B0C; --paper:#F5F5F3; --accent:#D42A2A; --muted:#6E6E6E; }
+      #root {
+        width: 100%; height: 100%; position: relative;
+        font-family: "Helvetica Neue", Inter, ui-sans-serif, system-ui, sans-serif;
+        background: var(--ink);
+      }
+      .clip { position: absolute; inset: 0; }
+
+      /* ---- Scene 1 : title ---- */
+      #s1 { display:flex; flex-direction:column; align-items:center; justify-content:center; }
+      #kicker {
+        color: var(--muted); font-size: 30px; letter-spacing: .42em;
+        text-transform: uppercase; margin-bottom: 44px;
+      }
+      #title {
+        color: var(--paper); font-size: 132px; font-weight: 800; line-height: .92;
+        letter-spacing: -.035em; text-align: center; text-transform: uppercase;
+      }
+      #rule { width: 150px; height: 6px; background: var(--accent); margin: 54px 0 40px; }
+      #disc { color: var(--accent); font-size: 31px; letter-spacing: .06em; font-weight: 600; }
+
+      /* ---- Scene 2 : chart ---- */
+      #s2 { padding: 0; }
+      #chartTitle {
+        position:absolute; top:520px; left:140px;
+        color:var(--paper); font-size:52px; font-weight:800; letter-spacing:-.01em;
+      }
+      #chartSub {
+        position:absolute; top:596px; left:140px;
+        color:var(--muted); font-size:29px; letter-spacing:.04em;
+      }
+      #stamp {
+        position:absolute; top:1352px; left:140px;
+        color:var(--muted); font-size:25px; letter-spacing:.03em;
+      }
+      .axlab { fill:var(--muted); font-size:26px; font-family:inherit; }
+      .fomc  { fill:var(--accent); font-size:27px; font-weight:700; font-family:inherit; }
+      #bigNum {
+        position:absolute; top:1470px; left:140px;
+        color:var(--accent); font-size:132px; font-weight:800; letter-spacing:-.03em;
+      }
+      #bigLab {
+        position:absolute; top:1636px; left:146px;
+        color:var(--paper); font-size:31px; letter-spacing:.2em; text-transform:uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="9"
+         data-width="1080" data-height="1920">
+
+      <!-- Scene 1 -->
+      <div id="s1" class="clip" data-start="0" data-duration="3.2" data-track-index="0">
+        <div id="kicker">Week of 14 September 2026</div>
+        <div id="title">This Week<br/>in the Market</div>
+        <div id="rule"></div>
+        <div id="disc">Educational only. Not financial advice.</div>
+      </div>
+
+      <!-- Scene 2 -->
+      <div id="s2" class="clip" data-start="3.2" data-duration="5.8" data-track-index="0">
+        <div id="chartTitle">US 10-YEAR TREASURY YIELD</div>
+        <div id="chartSub">Five sessions</div>
+
+        <svg width="1080" height="1920" style="position:absolute;inset:0;">
+          <!-- gridlines: 3.50 / 3.75 / 4.00 / 4.25 / 4.50 -->
+          <g stroke="#2A2A2C" stroke-width="2">
+            <line x1="140" y1="1300" x2="940" y2="1300"/>
+            <line x1="140" y1="1150" x2="940" y2="1150"/>
+            <line x1="140" y1="1000" x2="940" y2="1000"/>
+            <line x1="140" y1="850"  x2="940" y2="850"/>
+            <line x1="140" y1="700"  x2="940" y2="700"/>
+          </g>
+          <g class="axlab" text-anchor="end">
+            <text x="122" y="1309">3.50%</text>
+            <text x="122" y="1159">3.75%</text>
+            <text x="122" y="1009">4.00%</text>
+            <text x="122" y="859">4.25%</text>
+            <text x="122" y="709">4.50%</text>
+          </g>
+          <!-- FOMC marker at 4th session -->
+          <line id="fomcRule" x1="740" y1="700" x2="740" y2="1300"
+                stroke="#D42A2A" stroke-width="3" stroke-dasharray="9 9"/>
+          <text id="fomcLab" class="fomc" x="756" y="742">FOMC</text>
+          <!-- series: 3.92 3.97 4.05 4.21 4.28 -->
+          <polyline id="line" points="140,1048 340,1018 540,970 740,874 940,832"
+                    fill="none" stroke="#F5F5F3" stroke-width="7"
+                    stroke-linejoin="round" stroke-linecap="round"/>
+          <circle id="dot" cx="940" cy="832" r="13" fill="#D42A2A"/>
+        </svg>
+
+        <div id="stamp">Source: SAMPLE DATA — RENDER PROBE · as of 2026-09-18 close</div>
+        <div id="bigNum">+36 bps</div>
+        <div id="bigLab">The week in one number</div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Scene 1
+      tl.fromTo("#kicker", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .5 }, 0.1)
+        .fromTo("#title",  { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .7 }, 0.3)
+        .fromTo("#rule",   { scaleX: 0 },         { scaleX: 1, duration: .5 }, 0.9)
+        .fromTo("#disc",   { opacity: 0 },        { opacity: 1, duration: .5 }, 1.15);
+
+      // Scene 2 — line draws itself L→R
+      tl.set("#line", { strokeDasharray: 1400, strokeDashoffset: 1400 }, 3.2)
+        .fromTo("#chartTitle", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: .5 }, 3.3)
+        .fromTo("#chartSub",   { opacity: 0 },        { opacity: 1, duration: .4 }, 3.5)
+        .to("#line", { strokeDashoffset: 0, duration: 1.6, ease: "none" }, 3.7)
+        .fromTo("#fomcRule", { opacity: 0 }, { opacity: 1, duration: .3 }, 4.9)
+        .fromTo("#fomcLab",  { opacity: 0 }, { opacity: 1, duration: .3 }, 4.9)
+        .fromTo("#dot",  { scale: 0, transformOrigin: "center" }, { scale: 1, duration: .35 }, 5.4)
+        .fromTo("#stamp",  { opacity: 0 }, { opacity: 1, duration: .4 }, 5.6)
+        .fromTo("#bigNum", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .5 }, 6.1)
+        .fromTo("#bigLab", { opacity: 0 },        { opacity: 1, duration: .4 }, 6.4);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

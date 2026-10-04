@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- $MSTR · how the bitcoin move hit the math. Editorial data-motion, three colours.
+     No photography/faces/logos. Figures traceable to FACTS.md. Rolling digits use the
+     HyperFrames registry `number-wheel` primitive, inlined verbatim. -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="vendor/gsap.min.js"></script>
+<style>
+*{{margin:0;padding:0;box-sizing:border-box}}html,body{{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}}
+:root{{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E;--brand:#D42A2A}}
+#root{{width:100%;height:100%;position:relative;background:var(--ink);font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}}
+.clip{{position:absolute;inset:0}}
+.frame{{position:absolute;inset:0;pointer-events:none}}
+.fr-t{{position:absolute;left:110px;right:110px;top:190px;height:1px;background:rgba(245,245,243,.09)}}
+.fr-b{{position:absolute;left:110px;right:110px;top:1790px;height:1px;background:rgba(245,245,243,.09)}}
+.slug{{position:absolute;right:110px;top:152px;color:#797979;font-size:21px;letter-spacing:.24em}}
+.num{{position:absolute;right:110px;top:1812px;color:#797979;font-size:21px;letter-spacing:.2em}}
+.tick{{position:absolute;width:16px;height:16px;border-color:rgba(245,245,243,.18);border-style:solid;border-width:0}}
+.tick.tl{{left:110px;top:190px;border-left-width:1px;border-top-width:1px}}
+.tick.tr{{right:110px;top:190px;border-right-width:1px;border-top-width:1px}}
+.kicker{{position:absolute;left:110px;top:250px;color:var(--muted);font-size:27px;letter-spacing:.34em;text-transform:uppercase;font-weight:700}}
+.stamp{{position:absolute;left:110px;top:1722px;color:var(--muted);font-size:25px;letter-spacing:.03em}}
+.rulebar{{position:absolute;left:110px;top:310px;width:180px;height:5px;background:var(--accent);transform-origin:left center}}
+.lbl{{color:var(--muted);font-size:29px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;line-height:1.35}}
+.big{{color:var(--paper);font-weight:800;letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}}
+.red{{color:var(--accent)}}
+.tag{{display:inline-block;color:var(--accent);font-size:30px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}}
+.thLabel{{position:absolute;color:var(--muted);font-size:27px;letter-spacing:.05em}}
+.rowName{{position:absolute;color:var(--paper);font-size:38px;font-weight:800;letter-spacing:.02em}}
+.rowVal{{position:absolute;color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em}}
+#compliance{{position:absolute;left:110px;top:1620px;color:var(--accent);font-size:29px;font-weight:700;letter-spacing:.05em}}
+#discCard{{position:absolute;inset:0;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 110px}}
+#discCard .dl1{{color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.18}}
+#discCard .dl2{{color:var(--muted);font-size:31px;line-height:1.5;margin-top:38px}}
+#discCard .dbar{{width:180px;height:5px;background:var(--accent);margin-bottom:46px}}
+.capline{{position:absolute;left:100px;top:1466px;width:880px;text-align:center;font-size:43px;font-weight:800;
+  letter-spacing:.004em;line-height:1.25;opacity:0;visibility:hidden;text-shadow:0 2px 10px rgba(0,0,0,.85)}}
+.capline span{{color:rgba(245,245,243,.46);margin:0 .15em}}
+#prog{{position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}}
+/*WHEELCSS*/
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__TOTAL__" data-width="1080" data-height="1920">
+/*SCENES*/
+<div id="caps">
+/*CAPS*/
+</div>
+<div id="prog"></div>
+<audio id="vo" src="vo.wav" data-start="0" data-duration="__ADUR__" data-track-index="10" data-volume="1"></audio>
+</div>
+<script>/*WHEELJS*/</script>
+<script>
+const tl=gsap.timeline({{paused:true}}),E="power3.out";
+const up=(s,at,d=.55,y=34)=>tl.fromTo(s,{{opacity:0,y}},{{opacity:1,y:0,duration:d,ease:E}},at);
+const bar=(s,at,d=.7)=>tl.fromTo(s,{{scaleX:0}},{{scaleX:1,duration:d,ease:"power3.inOut"}},at);
+tl.fromTo("#prog",{{scaleX:0}},{{scaleX:1,duration:__TOTAL__,ease:"none"}},0);
+/*TW*/
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>

@@ -116,7 +116,7 @@ object so it has a spine.
 > explainer that includes the negative data, not a promo.
 
 Settings: `mode: chat`, `orientation: portrait`,
-style `e7f9a12679ec426099db7646b70a4639`, voice `0db3abd83c74452fb2460b0dd113daad`.
+style `e7f9a12679ec426099db7646b70a4639`, voice `f925838e942b4f43838bafa25abac051` (Sheldon - Voice; see `VO_PROFILE.md`).
 
 ---
 

@@ -1,0 +1,25 @@
+# HyperFrames skills — 19MB, reproducible via `npx skills add heygen-com/hyperframes`
+.agents/
+
+# Node
+node_modules/
+
+# Rendered output — regenerate with `npm run render`; keep verification frames only
+*.mp4
+
+# Symlinks into .agents/ created by `npx skills add` — dangling without it.
+# Versions are pinned in skills-lock.json; re-create with the install command.
+.claude/skills/
+
+# Episode build scratch — frames and contact sheets are regenerable
+videos/*/frames/
+videos/*/contact.png
+videos/*/fixcheck.png
+fsd-czechia/f/
+fsd-czechia/shorts.png
+
+# Rendered artifacts and generated audio — rebuild with gen.py + hyperframes render
+videos/*/f/
+videos/*/renders/
+videos/*/shot.mjs
+videos/*/work-*/
