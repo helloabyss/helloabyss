@@ -6,14 +6,15 @@
 #   IMGMAP    repo path of images.json ({name: url})                 VO_URL narration audio (wav/mp3)
 #   MUSIC_URL, WHOOSH_URL, PUT_URL                                   WORKERS (default 6)
 #   WORDS     (preview only, when VO_URL is empty) repo path of a words.json with planned timing
-#   VO_CAPGAP optional: shorten every pause longer than 0.6 s to this many seconds (e.g. 0.4); for TTS engines that leave long gaps
+#   VO_CAPGAP optional: shorten every pause longer than this many seconds to that length (sox, -40 dB) (e.g. 0.4); for TTS engines that leave long gaps
 #   CLIPMAP   optional repo path of clips.json ({name: mp4 url}); each clip becomes <name>.webm, the moving plate
 set -e; WD=/home/user/ep_$EP; mkdir -p $WD && cd $WD
 R=https://raw.githubusercontent.com/helloabyss/helloabyss/$SHA
 for f in core.js kinds.js boot.js $PAGE cap.js align.py; do curl -sSf -o $f $R/build/standard/$f; done
 curl -sSf -o scenes.js $R/build/$EP/scenes.js; curl -sSf -o script.txt $R/$SCRIPT; curl -sSf -o images.json $R/$IMGMAP
 if [ -n "$VO_URL" ]; then
-  curl -sSfL -o vo.src "$VO_URL"; ffmpeg -v error -y -i vo.src -ar 44100 -ac 1 $([ -n "$VO_CAPGAP" ] && echo "-af silenceremove=stop_periods=-1:stop_duration=0.6:stop_threshold=-36dB:detection=rms:stop_silence=$VO_CAPGAP") vo.wav; ffmpeg -v error -y -i vo.wav -ar 16000 vo16.wav
+  curl -sSfL -o vo.src "$VO_URL"; ffmpeg -v error -y -i vo.src -ar 44100 -ac 1 vo.wav;
+  if [ -n "$VO_CAPGAP" ]; then sox vo.wav vo_c.wav silence -l 1 0.05 1% -1 $VO_CAPGAP 1% && mv vo_c.wav vo.wav; fi; ffmpeg -v error -y -i vo.wav -ar 16000 vo16.wav
   python3 align.py vo16.wav script.txt words.json
 else  # visual preview: timing from a committed words file ($WORDS), silent voice track, captions off
   curl -sSf -o words.json $R/$WORDS; DUR=$(python3 -c "import json;print(json.load(open('words.json'))['dur'])")
