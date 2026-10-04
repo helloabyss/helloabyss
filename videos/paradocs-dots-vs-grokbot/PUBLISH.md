@@ -17,7 +17,14 @@ OpenAI's Dots and xAI's Grok Bot both promise AI that keeps working while you sl
 Educational only. Not financial advice. Company claims are labelled on screen.
 
 CHAPTERS
-{chapters}
+0:00 The AI agents that broke out
+0:51 What a Dot is
+1:46 What Grok Bot is
+2:34 One computer or many
+3:26 Who watches the agents
+4:24 Price and access
+5:02 The catch
+5:41 Verdict
 
 SOURCES
 OpenAI Dots launch (Sep 29, 2026): https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/
