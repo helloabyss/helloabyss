@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset=utf-8><style>
+html,body{margin:0;background:#0B0B0D}canvas{display:block}</style></head>
+<body><canvas id=c></canvas>
+<script>
+// PARADOCS10X hero thumbnail: one dominant subject (the hero) on the left third, the matchup across the top-right,
+// one stakes pill. ?w=1280&h=720&img=hero.jpg&l=DOTS&r=GROK%20BOT&tag=%24100%20vs%20%2420&tx=0.35
+const q=new URLSearchParams(location.search),W=+q.get('w')||1280,H=+q.get('h')||720,cv=document.getElementById('c');cv.width=W;cv.height=H;
+const x=cv.getContext('2d'),F='"Montserrat","Liberation Sans",Arial,sans-serif',ACC='#FFB020',BLUE='#3DA9FC',RED='#FF4A3D';
+const TX=+(q.get('tx')||0.35); // left edge of the text block, as a fraction of W (keep it clear of the hero)
+function word(s,X,Y,px,col,al){x.font=`900 ${px}px ${F}`;x.textAlign=al;x.textBaseline='middle';x.lineJoin='round';
+  x.lineWidth=px*.17;x.strokeStyle='rgba(0,0,0,.92)';x.strokeText(s,X,Y);x.fillStyle=col;x.fillText(s,X,Y)}
+const im=new Image();im.onload=()=>{draw(im);window.__ready=true};im.onerror=()=>{draw(null);window.__ready=true};im.src=q.get('img')||'hero.jpg';
+function draw(img){x.fillStyle='#0B0B0D';x.fillRect(0,0,W,H);
+  if(img){const k=Math.max(W/img.width,H/img.height),dw=img.width*k,dh=img.height*k;x.filter='saturate(1.25) contrast(1.1) brightness(1.12)';x.drawImage(img,(W-dw)/2,(H-dh)/2,dw,dh);x.filter='none'}
+  // darken only behind the text (top right), keep the hero bright
+  const g=x.createLinearGradient(0,0,0,H*.5);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(W*TX-40,0,W,H*.5);
+  const L=q.get('l')||'DOTS',R=q.get('r')||'GROK BOT',T=q.get('tag')||'',X0=W*TX,maxW=W*(0.97-TX);
+  let px=Math.round(H*.2);x.font=`900 ${px}px ${F}`;const vs=' VS ';
+  const tw=()=>{x.font=`900 ${px}px ${F}`;return x.measureText(L).width+x.measureText(R).width+x.measureText(vs).width*.6};
+  while(tw()>maxW&&px>30)px-=2;
+  let X=X0,Y=H*.16;word(L,X,Y,px,ACC,'left');X+=x.measureText(L).width;x.font=`900 ${px}px ${F}`;const vw=x.measureText(vs).width*.6;
+  word('VS',X+vw/2,Y,Math.round(px*.6),'#FFFFFF','center');X+=vw;word(R,X,Y,px,BLUE,'left');
+  if(T){const tp=Math.round(H*.075);x.font=`900 ${tp}px ${F}`;const w=x.measureText(T).width+tp*1.2,cx=X0+maxW/2,cy=H*.34;
+    x.fillStyle=RED;x.beginPath();x.roundRect(cx-w/2,cy-tp*.8,w,tp*1.6,tp*.8);x.fill();x.fillStyle='#FFFFFF';x.textAlign='center';x.textBaseline='middle';x.fillText(T,cx,cy+2)}}
+</script></body></html>
