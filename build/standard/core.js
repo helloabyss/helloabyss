@@ -39,7 +39,7 @@ function pill(s,X,Y,sz,bg,fg,padX=44){font(sz,900);const w=x.measureText(s).widt
 let GROUPS=[];
 function buildGroups(){GROUPS=[];let g=[];WORDS.forEach((w,i)=>{g.push(i);const end=/[.,?!:]$/.test(w.w);
   const gap=i+1<WORDS.length?WORDS[i+1].s-w.e:9;const ch=g.reduce((a,j)=>a+WORDS[j].w.length,0);if(end||g.length>=3||gap>.35||ch>15){GROUPS.push(g);g=[]}});if(g.length)GROUPS.push(g)}
-function captions(t){let G=null;for(const g of GROUPS){const s=WORDS[g[0]].s-.05,e=WORDS[g[g.length-1]].e+.25;if(t>=s&&t<e){G=g}}
+function captions(t){if(window.NOCAP)return;let G=null;for(const g of GROUPS){const s=WORDS[g[0]].s-.05,e=WORDS[g[g.length-1]].e+.25;if(t>=s&&t<e){G=g}}
   if(!G)return;const parts=G.map(i=>WORDS[i].w.toUpperCase().replace(/[,.:]$/,''));
   let fs=CAP.fs;font(fs,900);let ws=parts.map(p=>x.measureText(p).width),sp=30,tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1);
   if(tot>CAP.max){fs=Math.floor(fs*CAP.max/tot);font(fs,900);ws=parts.map(p=>x.measureText(p).width);sp=26;tot=ws.reduce((a,b)=>a+b,0)+sp*(parts.length-1)}

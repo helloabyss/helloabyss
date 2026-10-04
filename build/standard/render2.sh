@@ -5,13 +5,20 @@
 #   SHA       commit to pin                                          SCRIPT repo path of the narration text
 #   IMGMAP    repo path of images.json ({name: url})                 VO_URL narration audio (wav/mp3)
 #   MUSIC_URL, WHOOSH_URL, PUT_URL                                   WORKERS (default 6)
+#   WORDS     (preview only, when VO_URL is empty) repo path of a words.json with planned timing
 #   CLIPMAP   optional repo path of clips.json ({name: mp4 url}); each clip becomes <name>.webm, the moving plate
 set -e; WD=/home/user/ep_$EP; mkdir -p $WD && cd $WD
 R=https://raw.githubusercontent.com/helloabyss/helloabyss/$SHA
 for f in core.js kinds.js boot.js $PAGE cap.js align.py; do curl -sSf -o $f $R/build/standard/$f; done
 curl -sSf -o scenes.js $R/build/$EP/scenes.js; curl -sSf -o script.txt $R/$SCRIPT; curl -sSf -o images.json $R/$IMGMAP
-curl -sSfL -o vo.src "$VO_URL"; ffmpeg -v error -y -i vo.src -ar 44100 -ac 1 vo.wav; ffmpeg -v error -y -i vo.wav -ar 16000 vo16.wav
-python3 align.py vo16.wav script.txt words.json
+if [ -n "$VO_URL" ]; then
+  curl -sSfL -o vo.src "$VO_URL"; ffmpeg -v error -y -i vo.src -ar 44100 -ac 1 vo.wav; ffmpeg -v error -y -i vo.wav -ar 16000 vo16.wav
+  python3 align.py vo16.wav script.txt words.json
+else  # visual preview: timing from a committed words file ($WORDS), silent voice track, captions off
+  curl -sSf -o words.json $R/$WORDS; DUR=$(python3 -c "import json;print(json.load(open('words.json'))['dur'])")
+  ffmpeg -v error -y -f lavfi -i anullsrc=r=44100:cl=mono -t $DUR vo.wav
+  for f in $PAGE; do sed -i 's#<script src="core.js"></script>#<script>window.NOCAP=1</script><script src="core.js"></script>#' $f; done
+fi
 curl -sSfL -o music.wav "$MUSIC_URL"; curl -sSfL -o whoosh.mp3 "$WHOOSH_URL"
 LAND=$([[ $PAGE == long* ]] && echo 1 || echo 0)
 for n in $(node -e "eval(require('fs').readFileSync('scenes.js','utf8').split('\n').find(l=>l.startsWith('const IMAGES')).replace('const ','global.'));console.log(IMAGES.join(' '))"); do
