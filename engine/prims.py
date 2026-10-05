@@ -12,27 +12,11 @@ def ground(y=950,x1=100,x2=1820):
 def box(x,y,w,h,fill=W,sw=SW,rx=0):
     return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="{K}" stroke-width="{sw}"/>'
 
-def zul(x,y,sc=1.0,arms=None):
-    """arms: None, 'down', 'table' (reaching forward/down), 'up' (holding)"""
-    a = {'down':'<line x1="-46" y1="112" x2="-74" y2="168" stroke="#000" stroke-width="7" stroke-linecap="round"/><line x1="46" y1="112" x2="74" y2="168" stroke="#000" stroke-width="7" stroke-linecap="round"/>',
-         'table':'<line x1="-44" y1="110" x2="-104" y2="150" stroke="#000" stroke-width="7" stroke-linecap="round"/><line x1="44" y1="110" x2="104" y2="150" stroke="#000" stroke-width="7" stroke-linecap="round"/>',
-         'up':'<line x1="-44" y1="110" x2="-92" y2="74" stroke="#000" stroke-width="7" stroke-linecap="round"/><line x1="44" y1="110" x2="92" y2="74" stroke="#000" stroke-width="7" stroke-linecap="round"/>',
-         }.get(arms,'')
-    return f'''<g transform="translate({x},{y}) scale({sc})">
-  <circle cx="0" cy="0" r="46" fill="{W}" stroke="{K}" stroke-width="7"/>
-  <g stroke="{K}" stroke-width="6" fill="none">
-    <circle cx="-44" cy="-14" r="9"/><circle cx="-34" cy="-30" r="9"/><circle cx="-18" cy="-40" r="9"/>
-    <circle cx="0" cy="-44" r="9"/><circle cx="18" cy="-40" r="9"/><circle cx="34" cy="-30" r="9"/><circle cx="44" cy="-14" r="9"/></g>
-  <path d="M-50 -34 A 50 42 0 0 1 50 -34 Z" fill="{G}" stroke="{K}" stroke-width="7"/>
-  <path d="M-47 -44 A 50 42 0 0 1 47 -44 Z" fill="{Y}" stroke="{K}" stroke-width="7"/>
-  <path d="M-40 -56 A 50 42 0 0 1 40 -56 Z" fill="{R}" stroke="{K}" stroke-width="7"/>
-  <g stroke="{K}" stroke-width="6" fill="none"><rect x="-36" y="-10" width="30" height="24" rx="4"/>
-    <rect x="6" y="-10" width="30" height="24" rx="4"/><line x1="-6" y1="2" x2="6" y2="2"/></g>
-  <circle cx="-21" cy="2" r="5" fill="{K}"/><circle cx="21" cy="2" r="5" fill="{K}"/>
-  <line x1="-16" y1="28" x2="16" y2="28" stroke="{K}" stroke-width="7" stroke-linecap="round"/>
-  <line x1="0" y1="46" x2="0" y2="92" stroke="{K}" stroke-width="7"/>
-  <path d="M-52 168 L-40 96 L40 96 L52 168 Z" fill="{W}" stroke="{K}" stroke-width="7" stroke-linejoin="round"/>
-  <path d="M-14 96 L0 112 L14 96" fill="none" stroke="{K}" stroke-width="6"/>{a}</g>'''
+# Zul lives in zul.py — he is the channel's recurring host and is shared
+# across every video, so he gets his own module. Re-exported here so the
+# existing `from prims import ...` call sites keep working.
+from zul import zul  # noqa: E402,F401
+
 
 def fig(x,y,sc=1.0,mood='neutral',arms='down',legs=True):
     m={'neutral':'<line x1="-10" y1="14" x2="10" y2="14" stroke="#000" stroke-width="6" stroke-linecap="round"/>',

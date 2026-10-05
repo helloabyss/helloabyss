@@ -16,3 +16,8 @@ a[0-9].png
 # quiet-depression/VO-SCRIPT.md) or re-run the composition node — it is free.
 *.mp4
 final-thumb.jpg
+
+# Working renders — regenerate with sheet_zul.py / thumb_qd.py
+zulcheck/
+__pycache__/
+*.pyc

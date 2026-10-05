@@ -44,14 +44,26 @@ no logos, compliance card, mandatory counter-evidence) are unchanged at any runt
 
 ## Fixed production settings
 
+**The narrator is the same person in every video, whatever the format.**
+
 | Setting | Value |
 |---|---|
+| **Channel narrator** | **Aaron — `ESDuPqgyZIDDVZTlIrH7`** (ElevenLabs). British RP, warm, documentary. Saved in the workspace, not a library voice, so it cannot vanish |
+| **Narrator model** | `eleven_multilingual_v2` |
+| **Channel host** | **Zul** — see `CHARACTER-ZUL.md`. Code in `engine/zul.py`; never drawn by hand |
 | HeyGen style | Economist — `e7f9a12679ec426099db7646b70a4639` |
 | HeyGen voice | Alex Wright – Informative — `0db3abd83c74452fb2460b0dd113daad` |
 | Mode | `chat` (revisable — send follow-ups into the session) |
-| Orientation | `portrait` (9:16) |
+| Orientation | `portrait` (9:16) for HeyGen shorts · `landscape` (16:9) for stickman long-form |
 
-Keep style and voice constant across videos so the channel reads as one series.
+⚠️ **Two narrators are currently on record and that is a defect, not a choice.**
+HeyGen renders bake in Alex Wright; the stickman videos use Aaron. A viewer moving
+between them hears two different channels. Aaron is the one to keep — he is on the
+most recent video and on the format Zul hosts. Either run narration through
+ElevenLabs and mux it (free, see the constraint below), or accept that HeyGen
+shorts are a separate strand. **Do not add a third voice.**
+
+Keep style, voice and host constant across videos so the channel reads as one series.
 
 ## Known environment constraints
 
@@ -100,6 +112,13 @@ Keep style and voice constant across videos so the channel reads as one series.
   palette absolute.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
+
+## The host
+
+Every stickman video is hosted by **Zul**. Read **`CHARACTER-ZUL.md`** before
+drawing him or writing a scene he appears in — he is locked the same way the
+palette is. He is built by `engine/zul.py` and positioned by the centre of his
+head; the model sheet is `engine/zulsheet/`.
 
 ## Repo layout
 
