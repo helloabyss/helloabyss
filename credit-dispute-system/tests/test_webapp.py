@@ -29,8 +29,20 @@ class WebFlow(unittest.TestCase):
         return self.c.post(path, data=data, content_type="multipart/form-data" if files else None,
                            follow_redirects=True)
 
-    def register(self, email="a@example.com"):
-        return self.post("/register", {"email": email, "password": "correct horse battery"})
+    def register(self, email="a@example.com", verify=True):
+        r = self.post("/register", {"email": email, "password": "correct horse battery"})
+        if verify:
+            self.follow_mail(email, "/verify/")
+        return r
+
+    def follow_mail(self, to, path_part, visit=True):
+        msg = [m for m in self.app.config.get("OUTBOX", []) if m["to"] == to][-1]
+        url = re.search(r"https?://\S+", msg["body"]).group(0)
+        path = "/" + url.split("://", 1)[1].split("/", 1)[1]
+        self.assertIn(path_part, path)
+        if visit:
+            self.c.get(path)
+        return path
 
     def new_case(self):
         self.post("/case/new", {"title": "Test"}, page="/dashboard")
@@ -129,6 +141,33 @@ class WebFlow(unittest.TestCase):
         self.assertNotIn(b"%PDF", blob)
         self.assertNotIn(b"Rivera", data)
 
+    def test_unverified_email_cannot_sign(self):
+        self.register(verify=False)
+        cid = self.new_case()
+        self.fill_case(cid)
+        r = self.c.get(f"/case/{cid}/disclosure", follow_redirects=True)
+        self.assertIn("Confirm your email", r.get_data(as_text=True))
+
+    def test_login_throttled_after_repeated_failures(self):
+        self.register()
+        self.post("/logout", {}, page="/dashboard")
+        for _ in range(5):
+            self.post("/login", {"email": "a@example.com", "password": "wrong password"})
+        r = self.post("/login", {"email": "a@example.com", "password": "correct horse battery"})
+        self.assertIn("Too many attempts", r.get_data(as_text=True))
+
+    def test_password_reset_is_single_use(self):
+        self.register()
+        self.post("/logout", {}, page="/dashboard")
+        self.post("/forgot", {"email": "a@example.com"})
+        path = self.follow_mail("a@example.com", "/reset/", visit=False)
+        r = self.post(path, {"password": "a brand new password"})
+        self.assertIn("Password changed", r.get_data(as_text=True))
+        r = self.c.get(path, follow_redirects=True)
+        self.assertIn("invalid, expired or already used", r.get_data(as_text=True))
+        r = self.post("/login", {"email": "a@example.com", "password": "a brand new password"})
+        self.assertIn("My cases", r.get_data(as_text=True))
+
     def test_disclosure_is_statutory_text(self):
         self.assertTrue(croa.DISCLOSURE.startswith("Consumer Credit File Rights Under State and Federal Law"))
         self.assertIn("within 3 business days from the date you signed it", croa.DISCLOSURE)
@@ -137,3 +176,78 @@ class WebFlow(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FirmFlow(WebFlow):
+    """Professional tier: firm staff build the case; the client signs through a private link."""
+
+    def register_firm(self, email="pro@firm.com"):
+        r = self.post("/pro/register", {"firm": "Rivera Law PLLC", "address": "100 Main St, Suite 2, Austin, TX 78701",
+                                        "email": email, "password": "correct horse battery"})
+        self.follow_mail(email, "/verify/")
+        return r
+
+    def firm_case(self):
+        self.register_firm()
+        self.post("/pro/case/new", {"client_name": "Jordan A. Rivera", "client_email": "client@example.com",
+                                    "client_price": "300"}, page="/pro/dashboard")
+        cid = 1
+        self.fill_case(cid)
+        return cid
+
+    def test_full_firm_flow(self):
+        cid = self.firm_case()
+        # Staff can't sign for the client.
+        self.assertIn("/signing", self.c.get(f"/case/{cid}/disclosure").headers["Location"])
+        self.post(f"/pro/case/{cid}/signing", {})
+        path = self.follow_mail("client@example.com", "/sign/", visit=False)
+        client = self.app.test_client()
+        page = client.get(path).get_data(as_text=True)
+        self.assertIn("Consumer Credit File Rights", page)
+        tok = re.search(r'name="csrf" value="([^"]+)"', page).group(1)
+        client.post(path, data={"csrf": tok, "step": "ack", "ack": "1", "signature": "Jordan A. Rivera"})
+        page = client.get(path).get_data(as_text=True)
+        self.assertIn("Rivera Law PLLC", page)
+        self.assertIn("$300.00", page)
+        client.post(path, data={"csrf": tok, "step": "agree", "agree": "1", "signature": "Jordan A. Rivera"})
+        self.assertIn("You can cancel without penalty", client.get(path).get_data(as_text=True))
+        # Signed, but no subscription and still in the window: nothing released.
+        self.assertEqual(self.c.get(f"/case/{cid}/letters.zip").status_code, 402)
+        self.post("/pro/subscribe", {}, page="/pro/dashboard")
+        self.assertEqual(self.c.get(f"/case/{cid}/letters.zip").status_code, 402)
+        with self.app.app_context():
+            from webapp import store
+            store.db().execute("UPDATE agreements SET cancel_deadline='2000-01-01T00:00:00'")
+            store.db().commit()
+        r = self.c.get(f"/case/{cid}/letters.zip")
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("00-how-to-send.pdf", zipfile.ZipFile(io.BytesIO(r.data)).namelist())
+
+    def test_client_can_cancel(self):
+        cid = self.firm_case()
+        self.post(f"/pro/case/{cid}/signing", {})
+        path = self.follow_mail("client@example.com", "/sign/", visit=False)
+        client = self.app.test_client()
+        tok = re.search(r'name="csrf" value="([^"]+)"', client.get(path).get_data(as_text=True)).group(1)
+        client.post(path, data={"csrf": tok, "step": "ack", "ack": "1", "signature": "Jordan A. Rivera"})
+        client.post(path, data={"csrf": tok, "step": "agree", "agree": "1", "signature": "Jordan A. Rivera"})
+        client.post(path, data={"csrf": tok, "step": "cancel"})
+        self.assertIn("You cancelled this agreement", client.get(path).get_data(as_text=True))
+
+    def test_staff_invite_and_shared_access(self):
+        cid = self.firm_case()
+        self.post("/pro/invite", {"email": "staff@firm.com"}, page="/pro/dashboard")
+        path = self.follow_mail("staff@firm.com", "/reset/", visit=False)
+        self.post("/logout", {}, page="/pro/dashboard")
+        self.post(path, {"password": "staff password 123"})
+        self.post("/login", {"email": "staff@firm.com", "password": "staff password 123"})
+        self.assertEqual(self.c.get(f"/case/{cid}").status_code, 200)
+
+    def test_other_firm_cannot_see_case(self):
+        cid = self.firm_case()
+        self.post("/logout", {}, page="/pro/dashboard")
+        self.register_firm("other@firm2.com")
+        self.assertEqual(self.c.get(f"/case/{cid}").status_code, 404)
+        self.assertEqual(self.c.get("/sign/not-a-real-token-at-all-xyz").status_code, 404)
+
+    # The consumer-only tests inherited from WebFlow still run against a consumer account.

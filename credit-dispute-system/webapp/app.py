@@ -22,6 +22,7 @@ from datetime import datetime
 
 from flask import (Flask, abort, flash, g, redirect, render_template, request, send_file, session,
                    url_for)
+from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from cfads import DISCLAIMER
@@ -35,7 +36,7 @@ from cfads.pipeline import next_actions
 from cfads.report import audit_text
 from cfads.states import state_notes
 
-from . import croa, store
+from . import croa, mailer, store
 from .pdf import text_to_pdf
 
 ALLOWED_UPLOADS = {".pdf": "application/pdf", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png"}
@@ -61,6 +62,11 @@ def create_app(test_config=None):
         STRIPE_WEBHOOK_SECRET=os.environ.get("STRIPE_WEBHOOK_SECRET"),
         DEV_PAYMENTS=os.environ.get("DEV_PAYMENTS") == "1",
         BASE_URL=os.environ.get("BASE_URL", "http://127.0.0.1:5000"),
+        STRIPE_PRO_PRICE_ID=os.environ.get("STRIPE_PRO_PRICE_ID"),
+        SMTP_HOST=os.environ.get("SMTP_HOST"), SMTP_PORT=os.environ.get("SMTP_PORT", "587"),
+        SMTP_USER=os.environ.get("SMTP_USER"), SMTP_PASSWORD=os.environ.get("SMTP_PASSWORD"),
+        MAIL_FROM=os.environ.get("MAIL_FROM", "no-reply@localhost"),
+        PERMANENT_SESSION_LIFETIME=60 * 60 * 8,
         MAX_CONTENT_LENGTH=10 * 1024 * 1024,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
@@ -86,6 +92,8 @@ def create_app(test_config=None):
         store.purge_expired_acknowledgments()
 
     register_routes(app)
+    from .pro import register_pro_routes
+    register_pro_routes(app)
     return app
 
 
@@ -110,7 +118,7 @@ def login_required(fn):
 
 
 def get_case(case_id):
-    row, data = store.load_case(case_id, g.user["id"])
+    row, data = store.load_case(case_id, g.user)
     if not row:
         abort(404)
     return row, data
@@ -132,7 +140,74 @@ def paid(case_id):
     return store.db().execute("SELECT 1 FROM payments WHERE case_id=? AND status='paid'", (case_id,)).fetchone()
 
 
-def case_progress(case_id, data):
+def org_active(org_id):
+    row = store.db().execute("SELECT sub_status FROM orgs WHERE id=?", (org_id,)).fetchone()
+    return bool(row and row["sub_status"] == "active")
+
+
+# ---- signed tokens (email verification, password reset, client signing links)
+def _ser(salt):
+    from flask import current_app
+    return URLSafeTimedSerializer(current_app.config["SECRET_KEY"], salt=salt)
+
+
+def make_token(salt, payload):
+    return _ser(salt).dumps(payload)
+
+
+def read_token(salt, token, max_age):
+    try:
+        return _ser(salt).loads(token, max_age=max_age)
+    except (BadSignature, SignatureExpired):
+        return None
+
+
+def send_verification(user_id, email):
+    from flask import current_app
+    link = current_app.config["BASE_URL"] + url_for("verify_email", token=make_token("verify", user_id))
+    mailer.send(email, "Confirm your email", f"Confirm your email address to continue:\n\n{link}\n\n"
+                "The link works for 3 days. If you didn't create an account, ignore this email.")
+
+
+def company_for(row):
+    """The party providing the service: us for consumer cases, the firm for firm cases."""
+    from flask import current_app
+    if row["org_id"]:
+        o = store.db().execute("SELECT name, address FROM orgs WHERE id=?", (row["org_id"],)).fetchone()
+        return {"name": o["name"], "address": o["address"]}
+    return current_app.config["COMPANY"]
+
+
+def price_for(row):
+    """Consumer cases pay our price; firm clients pay whatever the firm charges them."""
+    from flask import current_app
+    if row["org_id"]:
+        return row["client_price_cents"] or 0
+    return current_app.config["PRICE_CENTS"]
+
+
+def sign_acknowledgment(row, case, name, email, ip):
+    if name.lower() != case.consumer.full_name.lower():
+        return "Type your full name exactly as it appears on the case."
+    store.record_acknowledgment(email, row["id"], name, croa.DISCLOSURE_SHA256, ip, croa.RETENTION_YEARS)
+    return None
+
+
+def sign_agreement(row, case, name, ip):
+    if name.lower() != case.consumer.full_name.lower():
+        return "Type your full name exactly as it appears on the case."
+    company, price, signed = company_for(row), price_for(row), datetime.now()
+    text = croa.contract_text(company, case.consumer.full_name, price, signed, firm=bool(row["org_id"]))
+    store.db().execute("INSERT INTO agreements (case_id, signed_name, signed_at, ip, contract_text,"
+                       " price_cents, cancel_deadline) VALUES (?,?,?,?,?,?,?)",
+                       (row["id"], name, signed.isoformat(timespec="seconds"), ip,
+                        text + "\n\n" + croa.cancellation_notice(company, signed), price,
+                        croa.cancellation_deadline(signed).isoformat()))
+    store.db().commit()
+    return None
+
+
+def case_progress(case_id, data, row=None):
     """What's done, and what blocks the next step."""
     p = {"about": bool(data.get("consumer")),
          "documents": bool(data.get("evidence")),
@@ -157,8 +232,16 @@ def case_progress(case_id, data):
     p["cancelled"] = bool(ag and ag["cancelled_at"])
     p["signed"] = bool(ag and not ag["cancelled_at"])
     p["cancel_period_over"] = bool(p["signed"] and datetime.now() > datetime.fromisoformat(ag["cancel_deadline"]))
-    p["paid"] = bool(paid(case_id))
-    p["can_pay"] = p["signed"] and p["cancel_period_over"] and p["ready_to_agree"] and not p["paid"]
+    p["org_case"] = bool(row is not None and row["org_id"])
+    if p["org_case"]:
+        # Firm cases: the firm's subscription covers delivery, but the client's CROA
+        # cancellation period must still have ended before letters are released.
+        p["subscription"] = org_active(row["org_id"])
+        p["paid"] = p["subscription"] and p["signed"] and p["cancel_period_over"] and p["ready_to_agree"]
+        p["can_pay"] = False
+    else:
+        p["paid"] = bool(paid(case_id))
+        p["can_pay"] = p["signed"] and p["cancel_period_over"] and p["ready_to_agree"] and not p["paid"]
     return case, p
 
 
@@ -249,6 +332,9 @@ def register_routes(app):
                     store.db().commit()
                     session.clear()
                     session["uid"] = cur.lastrowid
+                    session.permanent = True
+                    send_verification(cur.lastrowid, email)
+                    flash("Check your email for a link to confirm your address.")
                     return redirect(url_for("dashboard"))
                 except Exception:
                     flash("That email already has an account. Log in instead.")
@@ -257,11 +343,19 @@ def register_routes(app):
     @app.route("/login", methods=["GET", "POST"])
     def login():
         if request.method == "POST":
-            row = store.db().execute("SELECT * FROM users WHERE email=?",
-                                     (request.form.get("email", "").strip().lower(),)).fetchone()
-            if row and check_password_hash(row["pw_hash"], request.form.get("password", "")):
+            email = request.form.get("email", "").strip().lower()
+            keys = (f"email:{email}", f"ip:{request.remote_addr}")
+            if store.too_many_failures(*keys):
+                flash("Too many attempts. Wait 15 minutes, or reset your password.")
+                return render_template("auth.html", mode="login"), 429
+            row = store.db().execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
+            if not (row and check_password_hash(row["pw_hash"], request.form.get("password", ""))):
+                store.record_failure(*keys)
+            else:
+                store.clear_failures(*keys)
                 session.clear()
                 session["uid"] = row["id"]
+                session.permanent = True
                 nxt = request.args.get("next", "")
                 return redirect(nxt if nxt.startswith("/") and not nxt.startswith("//") else url_for("dashboard"))
             flash("Email or password is incorrect.")
@@ -276,6 +370,8 @@ def register_routes(app):
     @app.get("/dashboard")
     @login_required
     def dashboard():
+        if g.user["org_id"]:
+            return redirect(url_for("pro_dashboard"))
         rows = store.db().execute("SELECT id, title, status, updated_at FROM cases WHERE user_id=? ORDER BY id DESC",
                                   (g.user["id"],)).fetchall()
         return render_template("dashboard.html", cases=rows)
@@ -293,7 +389,7 @@ def register_routes(app):
     @login_required
     def case_home(case_id):
         row, data = get_case(case_id)
-        case, p = case_progress(case_id, data)
+        case, p = case_progress(case_id, data, row)
         return render_template("case.html", row=row, p=p)
 
     # ---- step 1: about you
@@ -493,7 +589,7 @@ def register_routes(app):
     @login_required
     def case_review(case_id):
         row, data = get_case(case_id)
-        case, p = case_progress(case_id, data)
+        case, p = case_progress(case_id, data, row)
         return render_template("review.html", row=row, p=p,
                                state=state_notes(case.consumer.state) if case else "")
 
@@ -502,18 +598,22 @@ def register_routes(app):
     @login_required
     def case_disclosure(case_id):
         row, data = get_case(case_id)
-        case, p = case_progress(case_id, data)
+        case, p = case_progress(case_id, data, row)
+        if row["org_id"]:
+            return redirect(url_for("pro_signing", case_id=case_id))
         if not p["ready_to_agree"]:
             flash("Finish the earlier steps first.")
             return redirect(url_for("case_review", case_id=case_id))
+        if not g.user["email_verified"]:
+            flash("Confirm your email address first (check your inbox, or resend from My cases).")
+            return redirect(url_for("case_home", case_id=case_id))
         if request.method == "POST":
-            name = request.form.get("signature", "").strip()
-            if name.lower() != case.consumer.full_name.lower() or not request.form.get("ack"):
-                flash("Tick the box and type your full name exactly as entered in step 1.")
+            err = None if request.form.get("ack") else "Tick the box to confirm you received the statement."
+            err = err or sign_acknowledgment(row, case, request.form.get("signature", "").strip(),
+                                             g.user["email"], request.remote_addr)
+            if err:
+                flash(err)
             else:
-                store.record_acknowledgment(g.user["email"], case_id, name, croa.DISCLOSURE_SHA256,
-                                            request.remote_addr, croa.RETENTION_YEARS)
-                session[f"ack_{case_id}"] = True
                 return redirect(url_for("case_agreement", case_id=case_id))
         return render_template("disclosure.html", row=row, text=croa.DISCLOSURE)
 
@@ -521,32 +621,27 @@ def register_routes(app):
     @login_required
     def case_agreement(case_id):
         row, data = get_case(case_id)
-        case, p = case_progress(case_id, data)
+        case, p = case_progress(case_id, data, row)
         acked = store.db().execute("SELECT 1 FROM acknowledgments WHERE case_id=? AND user_email=?",
                                    (case_id, g.user["email"])).fetchone()
         if not acked:
             return redirect(url_for("case_disclosure", case_id=case_id))
-        company, price = app.config["COMPANY"], app.config["PRICE_CENTS"]
+        if row["org_id"]:
+            return redirect(url_for("pro_signing", case_id=case_id))
+        company, price = company_for(row), price_for(row)
         if request.method == "POST" and not p["signed"]:
-            name = request.form.get("signature", "").strip()
-            if name.lower() != case.consumer.full_name.lower() or not request.form.get("agree"):
-                flash("Tick the box and type your full name exactly as entered in step 1.")
+            err = None if request.form.get("agree") else "Tick the box to agree."
+            err = err or sign_agreement(row, case, request.form.get("signature", "").strip(), request.remote_addr)
+            if err:
+                flash(err)
             else:
-                signed = datetime.now()
-                text = croa.contract_text(company, case.consumer.full_name, price, signed)
-                store.db().execute("INSERT INTO agreements (case_id, signed_name, signed_at, ip, contract_text,"
-                                   " price_cents, cancel_deadline) VALUES (?,?,?,?,?,?,?)",
-                                   (case_id, name, signed.isoformat(timespec="seconds"), request.remote_addr,
-                                    text + "\n\n" + croa.cancellation_notice(company, signed), price,
-                                    croa.cancellation_deadline(signed).isoformat()))
-                store.db().commit()
                 flash("Agreement signed. Download your copy below.")
                 return redirect(url_for("case_agreement", case_id=case_id))
         if p["signed"]:
             ag = p["agreement"]
             return render_template("agreement.html", row=row, p=p, contract=ag["contract_text"], signed=True)
         return render_template("agreement.html", row=row, p=p, signed=False,
-                               contract=croa.contract_text(company, case.consumer.full_name, price),
+                               contract=croa.contract_text(company, case.consumer.full_name, price, firm=bool(row["org_id"])),
                                notice=croa.cancellation_notice(company, datetime.now()))
 
     @app.get("/case/<int:case_id>/agreement.pdf")
@@ -583,8 +678,8 @@ def register_routes(app):
     @login_required
     def case_checkout(case_id):
         row, data = get_case(case_id)
-        case, p = case_progress(case_id, data)
-        if not p["can_pay"]:
+        case, p = case_progress(case_id, data, row)
+        if row["org_id"] or not p["can_pay"]:
             flash("Payment opens after your cancellation period ends and your letters are ready.")
             return redirect(url_for("case_home", case_id=case_id))
         price = p["agreement"]["price_cents"]
@@ -631,17 +726,26 @@ def register_routes(app):
                                                 app.config["STRIPE_WEBHOOK_SECRET"])
         except Exception:
             abort(400)
+        obj = ev["data"]["object"]
         if ev["type"] == "checkout.session.completed":
-            s = ev["data"]["object"]
-            if s.get("payment_status") == "paid" and s.get("metadata", {}).get("case_id"):
-                _mark_paid(int(s["metadata"]["case_id"]), s["id"], s.get("amount_total") or 0)
+            md = obj.get("metadata", {})
+            if obj.get("payment_status") == "paid" and md.get("case_id"):
+                _mark_paid(int(md["case_id"]), obj["id"], obj.get("amount_total") or 0)
+            if md.get("org_id") and obj.get("subscription"):
+                store.db().execute("UPDATE orgs SET sub_status='active', stripe_customer=?, stripe_subscription=?"
+                                   " WHERE id=?", (obj.get("customer"), obj["subscription"], int(md["org_id"])))
+                store.db().commit()
+        elif ev["type"] in ("customer.subscription.updated", "customer.subscription.deleted"):
+            status = "active" if obj.get("status") in ("active", "trialing") else "inactive"
+            store.db().execute("UPDATE orgs SET sub_status=? WHERE stripe_subscription=?", (status, obj["id"]))
+            store.db().commit()
         return "", 200
 
     @app.get("/case/<int:case_id>/letters.zip")
     @login_required
     def case_letters(case_id):
         row, data = get_case(case_id)
-        case, p = case_progress(case_id, data)
+        case, p = case_progress(case_id, data, row)
         if not p["paid"]:
             return "Payment required before download.", 402
         letters, _ = plan_letters(case, p["findings"])
@@ -693,13 +797,74 @@ def register_routes(app):
     @app.post("/account/delete")
     @login_required
     def account_delete():
-        uid = g.user["id"]
-        store.db().execute("DELETE FROM cases WHERE user_id=?", (uid,))
+        uid, org = g.user["id"], g.user["org_id"]
+        store.db().execute("DELETE FROM cases WHERE user_id=? AND org_id IS NULL", (uid,))
+        if org:
+            other = store.db().execute("SELECT MIN(id) FROM users WHERE org_id=? AND id<>?", (org, uid)).fetchone()[0]
+            if other:  # firm cases stay with the firm
+                store.db().execute("UPDATE cases SET user_id=? WHERE user_id=? AND org_id=?", (other, uid, org))
+            else:      # last member: the firm and its cases go too
+                store.db().execute("DELETE FROM cases WHERE org_id=?", (org,))
+                store.db().execute("DELETE FROM orgs WHERE id=?", (org,))
         store.db().execute("DELETE FROM users WHERE id=?", (uid,))
         store.db().commit()
         session.clear()
         flash("Your account and all case data are deleted.")
         return redirect(url_for("home"))
+
+    @app.get("/verify/<token>")
+    def verify_email(token):
+        uid = read_token("verify", token, 3 * 24 * 3600)
+        if uid is None:
+            flash("That confirmation link is invalid or expired. Log in and resend it.")
+            return redirect(url_for("login"))
+        store.db().execute("UPDATE users SET email_verified=1 WHERE id=?", (uid,))
+        store.db().commit()
+        flash("Email confirmed.")
+        return redirect(url_for("dashboard") if session.get("uid") else url_for("login"))
+
+    @app.post("/verify/resend")
+    @login_required
+    def verify_resend():
+        if not g.user["email_verified"]:
+            send_verification(g.user["id"], g.user["email"])
+        flash("Confirmation email sent.")
+        return redirect(url_for("dashboard"))
+
+    @app.route("/forgot", methods=["GET", "POST"])
+    def forgot():
+        if request.method == "POST":
+            email = request.form.get("email", "").strip().lower()
+            row = store.db().execute("SELECT id, pw_hash FROM users WHERE email=?", (email,)).fetchone()
+            if row:
+                # Binding the token to the current hash makes it single-use.
+                tok = make_token("reset", [row["id"], row["pw_hash"][-12:]])
+                mailer.send(email, "Reset your password",
+                            f"Reset your password here (valid for 1 hour):\n\n{app.config['BASE_URL']}"
+                            f"{url_for('reset_password', token=tok)}\n\nIf you didn't ask, ignore this email.")
+            flash("If that email has an account, a reset link is on its way.")
+            return redirect(url_for("login"))
+        return render_template("auth.html", mode="forgot")
+
+    @app.route("/reset/<token>", methods=["GET", "POST"])
+    def reset_password(token):
+        data = read_token("reset", token, 3600)
+        row = data and store.db().execute("SELECT * FROM users WHERE id=?", (data[0],)).fetchone()
+        if not row or row["pw_hash"][-12:] != data[1]:
+            flash("That reset link is invalid, expired or already used.")
+            return redirect(url_for("forgot"))
+        if request.method == "POST":
+            pw = request.form.get("password", "")
+            if len(pw) < 10:
+                flash("Use a password of at least 10 characters.")
+            else:
+                store.db().execute("UPDATE users SET pw_hash=?, email_verified=1 WHERE id=?",
+                                   (generate_password_hash(pw), row["id"]))
+                store.db().commit()
+                store.clear_failures(f"email:{row['email']}")
+                flash("Password changed. Log in with your new password.")
+                return redirect(url_for("login"))
+        return render_template("auth.html", mode="reset")
 
     @app.get("/legal/rights")
     def legal_rights():

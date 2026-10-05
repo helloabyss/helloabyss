@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block body %}
+<h1>{{ company.name }}: your credit dispute file</h1>
+{% if p.cancelled %}<div class="card">You cancelled this agreement. You owe nothing.</div>
+{% elif p.signed %}<div class="card"><p class="ok">You signed on {{ p.agreement.signed_at }}.</p>
+{% if not p.cancel_period_over %}<p>You can cancel without penalty until midnight on {{ p.agreement.cancel_deadline[:10] }}.</p>
+<form method="post" onsubmit="return confirm('Cancel your agreement?')"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="step" value="cancel"><button class="danger">Cancel my agreement</button></form>{% endif %}
+<a class="btn secondary" href="{{ url_for('client_agreement_pdf', token=token) }}">Download your agreement</a>
+<a class="btn secondary" href="{{ url_for('client_rights_pdf', token=token) }}">Download your rights statement</a></div>
+{% elif not p.ready_to_agree %}<div class="card">{{ company.name }} is still preparing your file. Check back soon.</div>
+{% elif not acked %}<p>Federal law requires you to receive this statement before signing anything.</p>
+<pre>{{ disclosure }}</pre><a class="small" href="{{ url_for('client_rights_pdf', token=token) }}">Download a copy (PDF)</a>
+<form class="card" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="step" value="ack">
+<label style="font-weight:400"><input type="checkbox" name="ack" value="1"> I have received and read the statement above.</label>
+<label>Type your full name to sign</label><input name="signature" required><button>Sign and continue</button></form>
+{% else %}<pre>{{ contract }}</pre><h2>Notice of cancellation</h2><pre>{{ notice }}</pre>
+<form class="card" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="step" value="agree">
+<label style="font-weight:400"><input type="checkbox" name="agree" value="1"> I agree to this contract.</label>
+<label>Type your full name to sign</label><input name="signature" required><button>Sign agreement</button></form>{% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}
+<h1>Client signing and delivery</h1>
+<div class="card"><table>
+<tr><td>Case ready</td><td>{{ '✓' if p.ready_to_agree else 'Not yet: finish documents, reports and statements' }}</td></tr>
+<tr><td>Client signed rights statement and agreement</td><td>{% if p.cancelled %}Cancelled by client{% elif p.signed %}✓ {{ p.agreement.signed_at }}{% else %}Not yet{% endif %}</td></tr>
+<tr><td>Cancellation period</td><td>{% if p.signed %}{{ 'Ended' if p.cancel_period_over else 'Ends ' ~ p.agreement.cancel_deadline[:10] }}{% else %}Starts when the client signs{% endif %}</td></tr>
+<tr><td>Firm subscription</td><td>{{ 'Active' if p.subscription else 'Inactive' }}</td></tr></table></div>
+{% if p.paid %}<a class="btn" href="{{ url_for('case_letters', case_id=row.id) }}">Download letters (.zip)</a>
+{% elif not p.signed %}<form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<p>We'll email {{ row.client_email }} a private link to read the required rights statement and sign your agreement
+({{ org.name }}, ${{ '%.2f' % ((row.client_price_cents or 0)/100) }}).</p><button>{{ 'Resend' if link else 'Send' }} signing link</button></form>{% endif %}
+{% if link %}<p class="small">Signing link (share only with the client): <code>{{ link }}</code></p>{% endif %}
+{% endblock %}

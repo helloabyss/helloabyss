@@ -56,26 +56,40 @@ def cancellation_deadline(signed_at):
     return datetime.combine(day, time(23, 59, 59))
 
 
-def contract_text(company, consumer_name, price_cents, signed_on=None):
+def contract_text(company, consumer_name, price_cents, signed_on=None, firm=False):
+    """firm=False: our self-service product. firm=True: a professional firm's contract with its client."""
     price = f"${price_cents / 100:,.2f}"
     deadline = cancellation_deadline(signed_on or datetime.now())
+    if firm:
+        services = ("We will (a) review the credit report information and documents you provide for inaccuracies "
+                    "under the Fair Credit Reporting Act and related laws, (b) prepare dispute letters based only on "
+                    "facts and documents you supply, and (c) track responses and prepare any follow-up letters. "
+                    "We will not dispute information you tell us is accurate.")
+        timing = ("Your dispute letters will be delivered within 5 business days after your cancellation "
+                  "period below has ended.")
+        payment = (f"Total price: {price}. We will not request or accept any payment until all services in "
+                   "section 1 are fully performed.")
+    else:
+        services = ("We provide software that (a) reviews the credit report information and documents you enter "
+                    "for inaccuracies under the Fair Credit Reporting Act and related laws, and (b) prepares dispute "
+                    "letters, based only on facts and documents you supply, for you to review, sign and mail yourself. "
+                    "We do not contact credit bureaus or creditors for you. We do not prepare disputes of "
+                    "information you tell us is accurate.")
+        timing = ("Your audit is shown as soon as you enter your information. Your letters are delivered for "
+                  "download immediately after payment, which can be made only after your cancellation period "
+                  "below has ended.")
+        payment = (f"Total price: {price}, one time. You are not charged anything until the services in section 1 "
+                   "are fully performed and your letters are ready to deliver. There are no subscriptions or "
+                   "recurring charges.")
     return f"""SERVICE AGREEMENT
 
 Between {company['name']}, {company['address']} ("we"), and {consumer_name} ("you").
 
-1. SERVICES. We provide software that (a) reviews the credit report information and documents you
-enter for inaccuracies under the Fair Credit Reporting Act and related laws, and (b) prepares dispute
-letters, based only on facts and documents you supply, for you to review, sign and mail yourself. We
-do not contact credit bureaus or creditors for you. We do not prepare disputes of information you
-tell us is accurate.
+1. SERVICES. {services}
 
-2. TIME TO PERFORM. Your audit is shown as soon as you enter your information. Your letters are
-delivered for download immediately after payment, which can be made only after your cancellation
-period below has ended.
+2. TIME TO PERFORM. {timing}
 
-3. PAYMENT. Total price: {price}, one time. You are not charged anything until the services in
-section 1 are fully performed and your letters are ready to deliver. There are no subscriptions or
-recurring charges.
+3. PAYMENT. {payment}
 
 4. NO GUARANTEE. We cannot and do not promise that any item will be removed or that your credit score
 will change. Accurate, current and verifiable information cannot lawfully be removed.
@@ -83,10 +97,10 @@ will change. Accurate, current and verifiable information cannot lawfully be rem
 5. YOUR RESPONSIBILITY. The information and documents you provide must be true. Disputes must be
 truthful; knowingly false disputes can harm you and others.
 
-6. NOT LEGAL ADVICE. We are not a law firm. For legal claims, consult a licensed attorney.
+6. LEGAL ADVICE. Unless we are your licensed attorney under a separate engagement, nothing here is legal advice.
 
 7. RECORDS. We keep your signed acknowledgment of the Consumer Credit File Rights statement for
-{RETENTION_YEARS} years as the law requires. You can delete your case and documents at any time.
+{RETENTION_YEARS} years as the law requires.
 
 YOU MAY CANCEL THIS CONTRACT WITHOUT PENALTY OR OBLIGATION AT ANY TIME BEFORE MIDNIGHT OF THE 3RD
 BUSINESS DAY AFTER THE DATE ON WHICH YOU SIGNED THE CONTRACT. SEE THE ATTACHED NOTICE OF CANCELLATION

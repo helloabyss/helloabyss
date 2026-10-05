@@ -41,10 +41,18 @@ behind HTTPS on any host (Render, Fly.io, Railway, a VPS). Mount `/data` on a pe
 `croa.VERIFY_BEFORE_LAUNCH`, register in any state that requires credit services organizations to
 register or post a bond, and publish a privacy policy and terms of service.
 
-**Security:** case data and documents are encrypted at rest (Fernet, `DATA_KEY`); passwords are hashed;
-every form has a CSRF token; users can only reach their own cases; users can delete cases or their
-whole account. Still to do before launch: login rate limiting, email verification, password reset,
-and off-site encrypted backups.
+**Professional tier (`webapp/pro.py`)**: firms (attorneys, credit repair businesses) sign up at `/pro`,
+subscribe monthly (Stripe subscription, `STRIPE_PRO_PRICE_ID`), invite staff, and add clients. Staff build
+each client's case. The client gets a private link to read the rights statement and sign the firm's
+contract (naming the firm and its price), and can cancel from the same link. Letters are released only
+when the firm's subscription is active **and** the client's cancellation period has ended. The firm
+remains responsible for its own state registration, bonding and licensing.
+
+**Security:** case data and documents encrypted at rest (Fernet, `DATA_KEY`); hashed passwords; CSRF
+tokens on every form; login throttling (5 failures per 15 minutes per email and per IP); email
+verification required before signing or adding clients; single-use, 1-hour password reset links; 8-hour
+sessions; users reach only their own or their firm's cases; deletion of cases or whole accounts.
+Back up with `scripts/backup.py` daily and copy the files off-site; keep `DATA_KEY` stored separately.
 
 ## Command-line quick start
 

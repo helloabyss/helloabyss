@@ -1,10 +1,11 @@
 {% extends "base.html" %}{% block body %}
-<h1>{{ 'Create your account' if mode == 'register' else 'Log in' }}</h1>
+{% set titles = {'register': 'Create your account', 'login': 'Log in', 'forgot': 'Reset your password', 'reset': 'Choose a new password'} %}
+<h1>{{ titles[mode] }}</h1>
 <form class="card" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
-<label>Email</label><input name="email" type="email" required autocomplete="email">
-<label>Password{% if mode == 'register' %} (10+ characters){% endif %}</label>
-<input name="password" type="password" required autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}">
-<button>{{ 'Create account' if mode == 'register' else 'Log in' }}</button></form>
-{% if mode == 'register' %}<p class="small">Have an account? <a href="{{ url_for('login') }}">Log in</a></p>
-{% else %}<p class="small">New here? <a href="{{ url_for('register') }}">Create an account</a></p>{% endif %}
+{% if mode != 'reset' %}<label>Email</label><input name="email" type="email" required autocomplete="email">{% endif %}
+{% if mode != 'forgot' %}<label>{{ 'New password' if mode == 'reset' else 'Password' }}{% if mode in ('register', 'reset') %} (10+ characters){% endif %}</label>
+<input name="password" type="password" required autocomplete="{{ 'current-password' if mode == 'login' else 'new-password' }}">{% endif %}
+<button>{{ {'register': 'Create account', 'login': 'Log in', 'forgot': 'Send reset link', 'reset': 'Save password'}[mode] }}</button></form>
+{% if mode == 'register' %}<p class="small">Have an account? <a href="{{ url_for('login') }}">Log in</a> · Are you a law firm or credit professional? <a href="{{ url_for('pro_home') }}">Firm accounts</a></p>
+{% elif mode == 'login' %}<p class="small">New here? <a href="{{ url_for('register') }}">Create an account</a> · <a href="{{ url_for('forgot') }}">Forgot password?</a></p>{% endif %}
 {% endblock %}
