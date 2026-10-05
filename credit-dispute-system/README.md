@@ -9,6 +9,20 @@ and other evidence first, and it refuses to write any dispute that has no factua
 
 Pure Python 3.10+ standard library. Optional: `pypdf` or `pdftotext` for reading PDFs.
 
+## Guides
+
+- **[DEPLOY.md](DEPLOY.md)**: put the website live (domain, Stripe, email, Render), step by step.
+- **[APP-STORES.md](APP-STORES.md)**: publish the iPhone and Android apps.
+
+## Phone apps
+
+- **Installable web app:** on any phone, customers can "Add to Home Screen" (`/install` explains how).
+  Includes the manifest, icons, an offline page, and a service worker that never caches personal data.
+- **Store apps (`mobile/`):** Capacitor wrappers for iOS and Android that load the live site, with camera
+  capture of documents and on-device deadline reminders (`/api/reminders`; reminder text never names a
+  creditor). GitHub Actions builds the Android app on every push (`.github/workflows/android.yml`).
+  The apps show no prices or buy buttons by default (`NATIVE_PAYMENT_MODE=none`).
+
 ## Hosted web app (for customers)
 
 `webapp/` is a self-service website: customers create an account, enter their details, upload ID,

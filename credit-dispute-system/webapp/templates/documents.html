@@ -18,7 +18,9 @@ an FTC Identity Theft Report, a bankruptcy discharge, letters from creditors. Fi
 <div><label>Expiry date (IDs)</label><input type="date" name="expires_date"></div>
 <div><label>Name shown on it</label><input name="name_on_document"></div>
 <div><label>Address shown on it</label><input name="address_on_document"></div></div>
-<label>File (PDF, JPG or PNG, up to 10 MB)</label><input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" required>
+<label>Choose a file (PDF, JPG or PNG, up to 10 MB)</label><input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png">
+<label>…or take a photo with your phone's camera</label><input type="file" name="photo" accept="image/*" capture="environment">
+<p class="small muted">Lay the document flat in good light, fill the frame, and check it's readable before uploading.</p>
 <button>Upload</button></form>
 <a class="btn secondary" href="{{ url_for('case_reports', case_id=row.id) }}">Next: your reports →</a>
 {% endblock %}

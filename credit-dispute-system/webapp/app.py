@@ -18,10 +18,10 @@ import os
 import re
 import secrets
 import zipfile
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from flask import (Flask, abort, flash, g, redirect, render_template, request, send_file, session,
-                   url_for)
+from flask import (Flask, abort, flash, g, jsonify, redirect, render_template, request, send_file,
+                   send_from_directory, session, url_for)
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -32,7 +32,7 @@ from cfads.law import LAWS
 from cfads.letters import plan_letters, render
 from cfads.metro2 import ACCOUNT_STATUS, DISPUTE_CATEGORIES
 from cfads.models import ASSERTION_TYPES, BUREAUS, EVIDENCE_TYPES, CaseFile
-from cfads.pipeline import next_actions
+from cfads.pipeline import deadline, next_actions
 from cfads.report import audit_text
 from cfads.states import state_notes
 
@@ -67,6 +67,10 @@ def create_app(test_config=None):
         SMTP_USER=os.environ.get("SMTP_USER"), SMTP_PASSWORD=os.environ.get("SMTP_PASSWORD"),
         MAIL_FROM=os.environ.get("MAIL_FROM", "no-reply@localhost"),
         PERMANENT_SESSION_LIFETIME=60 * 60 * 8,
+        # How the App Store / Google Play apps handle payment: "none" shows the website address as text
+        # (safest for store review everywhere); "link" opens the website checkout in the phone's browser
+        # (allowed by Apple in the US since 2025 - check current store rules before switching).
+        NATIVE_PAYMENT_MODE=os.environ.get("NATIVE_PAYMENT_MODE", "none"),
         MAX_CONTENT_LENGTH=10 * 1024 * 1024,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
@@ -85,6 +89,11 @@ def create_app(test_config=None):
         sk, dk = open(key_file).read().split()
         app.config["SECRET_KEY"] = app.config["SECRET_KEY"] or sk
         app.config["DATA_KEY"] = app.config["DATA_KEY"] or dk
+
+    if os.environ.get("TRUST_PROXY") == "1":
+        # Behind Render/Fly/a load balancer: use the real client IP (for login throttling) and scheme.
+        from werkzeug.middleware.proxy_fix import ProxyFix
+        app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
 
     app.teardown_appcontext(store.close_db)
     with app.app_context():
@@ -298,6 +307,11 @@ def register_routes(app):
                                  LETTER_TYPES_TRACKED=LETTER_TYPES_TRACKED)
 
     @app.before_request
+    def detect_native():
+        # The store apps add "CDLApp/" to their user agent (mobile/capacitor.config.json).
+        g.native = "CDLApp/" in request.headers.get("User-Agent", "")
+
+    @app.before_request
     def check_csrf():
         if request.method == "POST" and request.endpoint != "stripe_webhook":
             if not secrets.compare_digest(request.form.get("csrf", ""), session.get("csrf", "")):
@@ -310,6 +324,53 @@ def register_routes(app):
         resp.headers["Referrer-Policy"] = "same-origin"
         resp.headers["Content-Security-Policy"] = "default-src 'self'; style-src 'self' 'unsafe-inline'"
         return resp
+
+    @app.get("/sw.js")
+    def service_worker():
+        resp = send_from_directory(app.static_folder, "sw.js", mimetype="application/javascript")
+        resp.headers["Cache-Control"] = "no-cache"
+        resp.headers["Service-Worker-Allowed"] = "/"
+        return resp
+
+    @app.get("/manifest.webmanifest")
+    def manifest():
+        return send_from_directory(app.static_folder, "manifest.webmanifest", mimetype="application/manifest+json")
+
+    @app.get("/offline")
+    def offline():
+        return render_template("offline.html")
+
+    @app.get("/install")
+    def install():
+        return render_template("install.html")
+
+    @app.get("/api/reminders")
+    @login_required
+    def api_reminders():
+        """Upcoming dispute deadlines for on-device notifications. Notification text is generic on
+        purpose: it shows on the lock screen, so it never names a creditor or bureau."""
+        rows = store.db().execute("SELECT id, data FROM cases WHERE user_id=? OR (org_id IS NOT NULL AND org_id=?)",
+                                  (g.user["id"], g.user["org_id"] or -1)).fetchall()
+        out, now = [], datetime.now()
+        for r in rows:
+            for d in store.dec(r["data"]).get("disputes", []):
+                if d.get("status") != "sent":
+                    continue
+                due, _ = deadline(d)
+                if not due:
+                    continue
+                at = datetime.combine(due, datetime.min.time()).replace(hour=10)
+                at = at + timedelta(days=1)  # morning after the deadline passes
+                if at > now:
+                    out.append({"id": r["id"] * 1000 + len(out) + 1, "at": at.isoformat(),
+                                "title": "A dispute deadline has passed",
+                                "body": "Open the app to see your next step."})
+        return jsonify(reminders=out[:60])
+
+    @app.get("/healthz")
+    def healthz():
+        store.db().execute("SELECT 1")
+        return "ok"
 
     @app.get("/")
     def home():
@@ -432,6 +493,8 @@ def register_routes(app):
         row, data = get_case(case_id)
         if request.method == "POST":
             up = request.files.get("file")
+            if not (up and up.filename):
+                up = request.files.get("photo")  # "Take a photo" on phones
             f = _clean_form(["type", "description", "issued_date", "expires_date", "name_on_document",
                              "address_on_document"])
             ext = os.path.splitext(up.filename or "")[1].lower() if up else ""
@@ -865,6 +928,14 @@ def register_routes(app):
                 flash("Password changed. Log in with your new password.")
                 return redirect(url_for("login"))
         return render_template("auth.html", mode="reset")
+
+    @app.get("/privacy")
+    def privacy():
+        return render_template("privacy.html", company=app.config["COMPANY"])
+
+    @app.get("/terms")
+    def terms():
+        return render_template("terms.html", company=app.config["COMPANY"])
 
     @app.get("/legal/rights")
     def legal_rights():

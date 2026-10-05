@@ -11,7 +11,7 @@ for you to sign and mail yourself.</p>
 <li>It won't dispute information you tell us is accurate. Nobody can lawfully remove accurate, current information.</li>
 <li>It doesn't promise deletions or a higher score.</li>
 <li>It isn't a law firm and doesn't give legal advice.</li></ul>
-<p><strong>${{ '%.2f' % (price/100) }} one time</strong>, charged only when your letters are ready, after your 3-business-day cancellation period. No subscription.</p>
+<p>{% if not g.native %}<strong>${{ '%.2f' % (price/100) }} one time</strong>, charged only when your letters are ready, after your 3-business-day cancellation period. No subscription.</p>{% else %}No charge until your letters are ready and your 3-business-day cancellation period has ended.</p>{% endif %}
 <p>You can dispute errors yourself for free by writing to the bureaus. This app saves you the research and paperwork.</p>
 <a class="btn" href="{{ url_for('register') }}">Start</a> <a class="btn secondary" href="{{ url_for('legal_rights') }}">Read your rights</a></div>
 {% endblock %}

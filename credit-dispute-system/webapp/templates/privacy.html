@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block body %}
+{# Drafted from the app's actual data handling. Have counsel review before launch (DEPLOY.md step 8). #}
+<h1>Privacy policy</h1><p class="muted small">{{ company.name }} · {{ company.address }}</p>
+<h2>What we collect</h2><ul>
+<li><strong>Account:</strong> your email address and a hashed password.</li>
+<li><strong>Your case:</strong> name, other names you've used, date of birth, last 4 digits of your Social Security number, current and past addresses, phone (optional), and the credit report details and statements you enter.</li>
+<li><strong>Documents you upload:</strong> ID, proof of address and supporting documents.</li>
+<li><strong>Records the law requires:</strong> your signed acknowledgment of the "Consumer Credit File Rights" statement and your agreement, with the date, time and IP address of signing.</li>
+<li><strong>Payments</strong> are processed by Stripe. We never see or store your card number.</li></ul>
+<h2>How we use it</h2><p>Only to run your audit, prepare your letters, send you account and deadline emails, and meet our legal record-keeping duties. We do not sell your information, share it for advertising, or use it to track you. We do not contact credit bureaus or creditors for you.</p>
+<h2>How we protect it</h2><p>Connections are encrypted (HTTPS). Case data and documents are encrypted in storage. Only you, and staff of a firm that opened your case for you, can see your case.</p>
+<h2>Service providers</h2><p>Hosting (Render), payments (Stripe) and email delivery process data for us under their own security and privacy terms.</p>
+<h2>Keeping and deleting</h2><p>You can delete a case, or your whole account and all its data, at any time from <em>My cases</em>. Deletion is immediate; encrypted backups are overwritten within 30 days. The Credit Repair Organizations Act requires us to keep your signed rights acknowledgment for 2 years, so that one record (your name, email and signing date) is kept for 2 years and then deleted automatically.</p>
+<h2>Phone apps</h2><p>The apps use your camera only when you choose to photograph a document, and send deadline reminders as notifications on your phone. Reminder text never names a creditor or bureau.</p>
+<h2>Contact</h2><p>{{ company.name }}, {{ company.address }}. Email: {{ config.MAIL_FROM }}</p>
+{% endblock %}

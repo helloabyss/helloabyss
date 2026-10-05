@@ -251,3 +251,40 @@ class FirmFlow(WebFlow):
         self.assertEqual(self.c.get("/sign/not-a-real-token-at-all-xyz").status_code, 404)
 
     # The consumer-only tests inherited from WebFlow still run against a consumer account.
+
+
+class PhoneApp(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.NamedTemporaryFile(suffix=".db")
+        self.app = create_app({"TESTING": True, "DATABASE": self.tmp.name, "SECRET_KEY": "t",
+                               "DATA_KEY": Fernet.generate_key().decode(), "DEV_PAYMENTS": True})
+        self.c = self.app.test_client()
+
+    def test_pwa_files_served(self):
+        sw = self.c.get("/sw.js")
+        self.assertEqual(sw.headers["Service-Worker-Allowed"], "/")
+        self.assertIn(b"never cached", sw.data)
+        m = self.c.get("/manifest.webmanifest")
+        self.assertIn(b'"display": "standalone"', m.data)
+        self.assertEqual(self.c.get("/static/icons/icon-512.png").status_code, 200)
+        self.assertEqual(self.c.get("/offline").status_code, 200)
+        self.assertIn(b"manifest.webmanifest", self.c.get("/").data)
+        self.assertIn(b"Privacy policy", self.c.get("/privacy").data)
+        self.assertIn(b"Terms of service", self.c.get("/terms").data)
+
+    def test_native_app_hides_price_and_web_shows_it(self):
+        self.assertIn(b"one time", self.c.get("/").data)
+        self.assertNotIn(b"one time", self.c.get("/", headers={"User-Agent": "Mozilla/5.0 CDLApp/1"}).data)
+
+    def test_reminders_require_login_and_are_generic(self):
+        self.assertEqual(self.c.get("/api/reminders").status_code, 302)
+        flow = WebFlow("test_full_flow_to_paid_download")
+        flow.app, flow.c = self.app, self.c
+        flow.register()
+        cid = flow.new_case()
+        flow.fill_case(cid)
+        flow.post(f"/case/{cid}/tracker", {"kind": "new", "letter_type": "bureau_dispute", "target": "equifax",
+                                           "sent_date": __import__("datetime").date.today().isoformat()})
+        rem = self.c.get("/api/reminders").get_json()["reminders"]
+        self.assertEqual(len(rem), 1)
+        self.assertNotIn("equifax", str(rem).lower())

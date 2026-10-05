@@ -4,7 +4,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY cfads cfads
 COPY webapp webapp
-ENV DATABASE=/data/cfads.db
-VOLUME /data
+COPY scripts scripts
+ENV DATABASE=/data/cfads.db TRUST_PROXY=1 PYTHONUNBUFFERED=1
+RUN useradd -m app && mkdir -p /data && chown app /data
+USER app
 EXPOSE 8000
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:8000", "webapp.app:create_app()"]
+CMD ["sh", "-c", "gunicorn -w 2 -b 0.0.0.0:${PORT:-8000} --access-logfile - 'webapp.app:create_app()'"]

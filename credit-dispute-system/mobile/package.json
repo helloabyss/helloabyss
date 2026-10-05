@@ -1,0 +1,21 @@
+{
+  "name": "credit-dispute-letters-mobile",
+  "private": true,
+  "version": "1.0.0",
+  "description": "iOS and Android apps for Credit Dispute Letters (Capacitor wrapper around the hosted web app)",
+  "scripts": {
+    "sync": "cap sync",
+    "android": "cap open android",
+    "ios": "cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.6.9",
+    "@capacitor/app": "^7.1.2",
+    "@capacitor/browser": "^7.0.5",
+    "@capacitor/cli": "^7.6.9",
+    "@capacitor/core": "^7.6.9",
+    "@capacitor/ios": "^7.6.9",
+    "@capacitor/local-notifications": "^7.0.7",
+    "@capacitor/splash-screen": "^7.0.5"
+  }
+}

@@ -13,6 +13,8 @@
 {% if p.org_case and not p.paid %}<a class="btn" href="{{ url_for('pro_signing', case_id=row.id) }}">Client signing and delivery</a>
 {% elif p.paid %}<a class="btn" href="{{ url_for('case_letters', case_id=row.id) }}">Download your letters (.zip)</a>
 <a class="btn secondary" href="{{ url_for('case_tracker', case_id=row.id) }}">Track your disputes</a>
+{% elif p.can_pay and g.native and config.NATIVE_PAYMENT_MODE == 'none' %}<div class="card">Your letters are ready. To complete your purchase, sign in at <strong>{{ config.BASE_URL.split('://')[-1] }}</strong> in your web browser.</div>
+{% elif p.can_pay and g.native %}<a class="btn" data-external href="{{ config.BASE_URL }}{{ url_for('case_home', case_id=row.id) }}">Complete purchase on our website</a>
 {% elif p.can_pay %}<form method="post" action="{{ url_for('case_checkout', case_id=row.id) }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
 <button>Pay ${{ '%.2f' % (p.agreement.price_cents/100) }} and download letters</button></form>
 {% elif p.signed %}<p>Your letters will be available to pay for and download after your cancellation period ends.</p>

@@ -1,0 +1,43 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# In Render: New > Blueprint > pick this repo and the claude/credit-dispute-system branch.
+services:
+  - type: web
+    name: credit-dispute-letters
+    runtime: docker
+    rootDir: credit-dispute-system
+    dockerfilePath: ./Dockerfile
+    plan: starter            # persistent disks need a paid plan
+    healthCheckPath: /healthz
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATA_KEY          # paste a Fernet key (see DEPLOY.md, step 3). Never change it after launch.
+        sync: false
+      - key: BASE_URL          # e.g. https://app.yourdomain.com
+        sync: false
+      - key: COMPANY_NAME
+        sync: false
+      - key: COMPANY_ADDRESS
+        sync: false
+      - key: PRICE_CENTS
+        value: "4900"
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PRO_PRICE_ID
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: MAIL_FROM
+        sync: false

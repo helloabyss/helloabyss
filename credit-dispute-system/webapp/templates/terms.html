@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block body %}
+{# Have counsel review before launch (DEPLOY.md step 8). #}
+<h1>Terms of service</h1><p class="muted small">{{ company.name }} · {{ company.address }}</p>
+<ol>
+<li><strong>What the service is.</strong> Software that reviews credit report information you enter and prepares dispute letters from the facts and documents you supply. You review, sign and mail the letters yourself. It is not a law firm and does not give legal advice.</li>
+<li><strong>Your agreement.</strong> Purchases are governed by the separate Service Agreement you sign, including your right to cancel within 3 business days. You are never charged before your letters are ready.</li>
+<li><strong>Truthful information only.</strong> You must only dispute information you believe in good faith is inaccurate or incomplete, and only upload documents that are genuine and yours to share. We may close accounts used to submit false disputes.</li>
+<li><strong>No guaranteed results.</strong> No one can lawfully remove accurate, current and verifiable information from a credit report. We don't promise any deletion or score change.</li>
+<li><strong>Firm accounts.</strong> Firms are responsible for their own compliance with federal and state law, including registration, bonding and licensing, and for their agreements with their clients.</li>
+<li><strong>Your account.</strong> Keep your password private. You can delete your account at any time.</li>
+<li><strong>Changes.</strong> We'll post changes here and email you about material ones.</li></ol>
+<p>Your rights: <a href="{{ url_for('legal_rights') }}">Consumer Credit File Rights Under State and Federal Law</a></p>
+{% endblock %}
