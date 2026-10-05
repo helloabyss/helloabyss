@@ -16,6 +16,9 @@ The channel explains why money works the way it does. Topics include:
 
 • The psychology of money and behavioural economics
 • Market history, manias, crashes and recoveries
+• **Bitcoin and crypto** — the mechanics, the energy, the halvings, the exchange collapses, the four-year cycle argument and the case against it
+• **Options and derivatives** — what a contract actually is, payoff shapes, implied volatility, theta decay, assignment, 0DTE, and why the house usually wins
+• **The Magnificent Seven and the FAANG era** — Apple, Microsoft, Alphabet, Amazon, Nvidia, Meta, Tesla: index concentration, capex cycles, moats, and the founders and CEOs who built them
 • How everyday financial products actually work — credit cards, mortgages, insurance, pensions, index funds
 • Hidden fees, incentives and conflicts of interest
 • Economic history and the invention of money itself
@@ -55,6 +58,34 @@ This channel publishes financial content that people may act on. These rules ove
 • Every video carries an on-screen card reading "Educational only. Not financial advice." within the first 4 seconds, and the same line in the description.
 • Where a real company is named, name it in narration only. Never draw its logo, wordmark or branding in any frame.
 
+OPTIONS AND DERIVATIVES — additional rules
+
+• Explain mechanics. Never teach a trade to copy. The video shows how a contract works, not what to buy this week.
+• Every payoff shown must show the loss side at the same size as the gain side. A payoff diagram cropped above the x-axis is banned.
+• Never describe premium income as "free money", "passive income" or "easy yield". Covered calls cap upside; cash-secured puts oblige you to buy a falling asset; the wheel is not a machine.
+• State the base rate. Where regulators or brokers publish the share of retail derivative accounts that lose money, cite that figure with its source and year.
+• Name the ways a position dies: time decay, assignment, gap risk, early exercise, liquidity, and spread costs. A video that only mentions direction is incomplete.
+• Undefined-risk positions — naked calls, short straddles — are shown as unlimited loss on screen, in red, every time.
+• Never show a single winning trade without the distribution it came from.
+
+BITCOIN AND CRYPTO — additional rules
+
+• No price predictions, no targets, no cycle-top calls. The four-year cycle may be described as a pattern that has held so far and may not repeat.
+• Every price chart shows the drawdowns at the same prominence as the rises. Any Bitcoin chart must display at least one of the historical drawdowns of roughly 80 percent, labelled.
+• Distinguish the technology from the asset, and the asset from the exchange holding it. Custody failures are their own beat.
+• Total loss is a real outcome and must be named at least once in any video that discusses buying.
+• Treat on-chain metrics as contested indicators, never as signals. Attribute whoever devised them.
+• Never present an unaudited exchange reserve, a protocol yield or a stablecoin peg as safe.
+
+NAMED CEOS AND REAL PEOPLE — additional rules
+
+• Only documented, sourced public actions and statements. Every quote carries a date and the venue it was said in.
+• Attribute decisions to the company where the record does, and to the individual only where the record names them.
+• No speculation about motive, health, private life, or anything a court or regulator has not established.
+• A person charged with something is described as charged. A person convicted is described as convicted. Never blur the two.
+• Criticism must be of a decision and its consequences, evidenced — never of character.
+• Draw a named person as a plain stickman with their name in bold black text beside them. No caricature, no recognisable likeness, no company logo on them or behind them.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 VISUAL STYLE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -84,6 +115,12 @@ Props:
 
 Common props for this channel: coins, banknote stacks, piggy banks, bank buildings with columns, houses, credit cards, ledgers, safes, briefcases, line charts, bar charts, pie charts, arrows, calculators, contracts, clocks and hourglasses.
 
+Crypto props: a plain orange-free coin marked with a bold black B, chained cubes for a blockchain, a server rack for mining, a padlocked wallet, a hardware key, an exchange building, candlestick charts.
+
+Options props: payoff diagrams, a horizontal strike line, an expiry calendar, a contract page, a decaying clock, a two-column option chain, a ticket marked CALL or PUT.
+
+Company and CEO props: a plain office tower, a chip wafer, a delivery box, a rocket, a server hall, a stickman at a lectern. Label every company and person with bold black text. Never draw a logo, a bitten fruit, a swoosh, a stylised letter, or any mark that stands in for a brand.
+
 Never use gradients or shadows.
 
 Display bold black text inside scenes whenever emphasizing important facts or statistics.
@@ -108,6 +145,10 @@ YELLOW = Paper money, documents, contracts and warm objects
 BROWN = Economic history and pre-modern scenes
 
 Use red and green only for direction of money. Never decoratively — if a frame is red, something is being lost.
+
+Candlesticks follow the same rule: green up, red down, flat fill, thick black outline, no wicks shaded differently.
+
+On every options payoff diagram the loss region is red, the profit region green, the break-even marked with a labelled vertical line, and the x-axis drawn so the loss side is fully visible.
 
 All visuals are 16:9 landscape.
 
@@ -134,6 +175,10 @@ Angle:
 One sentence revealing the surprising truth explored in the video.
 
 No title may promise a return, a secret, or a guaranteed outcome. No "what banks don't want you to know." The title states a claim the viewer can disagree with.
+
+Also banned in titles and hooks: a price target or prediction of any kind, "turn $X into $Y", "before it's too late", a named CEO plus an unproven accusation, and any phrasing implying urgency to buy or sell.
+
+Across any set of ten ideas, spread the subject matter — do not return ten crypto ideas or ten options ideas. A good spread is roughly three on markets and history, two on behaviour, two on crypto or derivatives mechanics, two on the Magnificent Seven and the people running them, and one on an everyday product.
 
 After all ten ideas, write exactly:
 
@@ -185,11 +230,23 @@ Writing requirements
 
 "Lose fifty percent, and you need one hundred percent just to get back to where you started."
 
+"Bitcoin has fallen more than seventy percent four separate times, and recovered every time so far."
+
+"An option is a contract that expires. That single word is where most of the money goes."
+
+"Seven companies now carry roughly a third of the index that most people call diversified."
+
 • Keep sentences concise.
 
 • Allow each fact to land before moving to the next.
 
-• Reference genuine studies, named researchers and real dates whenever possible. Daniel Kahneman, Amos Tversky, Richard Thaler, Harry Markowitz, Eugene Fama, Robert Shiller and the SPIVA scorecards are fair game — cite them precisely or not at all.
+• Reference genuine studies, named researchers and real dates whenever possible. Daniel Kahneman, Amos Tversky, Richard Thaler, Harry Markowitz, Eugene Fama, Robert Shiller, Hyman Minsky and the SPIVA scorecards are fair game — cite them precisely or not at all.
+
+• For derivatives and retail trading, Brad Barber and Terrance Odean's work on retail performance, and published regulator and broker disclosures on the share of losing accounts, are the evidence base. Cite the study or the filing, with its year.
+
+• For crypto, use the primary record: the 2008 white paper, dated exchange collapses and their court filings, published halving dates, and on-chain data with the analyst named. Never cite an anonymous chart.
+
+• For the Magnificent Seven, use filings, earnings calls and dated public statements. A 10-K or a transcript beats a headline every time.
 
 • Include one rhetorical question approximately every 60–90 seconds.
 
@@ -417,6 +474,32 @@ If the narration names a researcher,
 
 show that researcher as a stickman with their study title on a yellow paper beside them.
 
+If the narration says:
+
+"An option is a contract that expires."
+
+Show a payoff diagram: horizontal x-axis labelled PRICE, vertical y-axis labelled PROFIT, a flat red line left of the strike, a green diagonal rising right of it, a labelled vertical break-even line, and bold black text reading MAX LOSS: 100% OF PREMIUM. The red region must be as visible as the green.
+
+If the narration says:
+
+"Bitcoin has fallen more than seventy percent four separate times."
+
+Show a single line chart rising across a labelled timeline with four red vertical drawdown bands, each labelled with its year and its percentage fall. Do not crop the chart to hide them.
+
+If the narration says:
+
+"Seven companies now carry roughly a third of the index."
+
+Show a pie or stacked bar divided into two flat blocks — one labelled 7 COMPANIES in red, one labelled 493 COMPANIES in blue — with the percentage in bold black text. No logos.
+
+If the narration names a chief executive,
+
+show a plain stickman at a lectern with their name in bold black text beside them, and the dated statement they made on a yellow paper. No likeness, no company mark.
+
+If the narration describes time decay,
+
+show the same option ticket shrinking across a row of dated calendar squares, with its value in bold black text falling at each step.
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 SHORT-FORM VISUAL RULES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -552,6 +635,8 @@ If the narration references:
 
 Charts must be directionally honest. A line described as falling is drawn falling. Never exaggerate an axis for drama.
 
+Axes start at a sensible baseline and are labelled. A truncated y-axis that makes a small move look dramatic is a factual error, not a stylistic choice. Log scale is allowed for long crypto and index series, but the frame must say LOG SCALE in bold black text.
+
 Every frame should teach something.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -592,7 +677,7 @@ Paragraph one: two or three sentences stating what the video shows and the singl
 
 Paragraph two: the sources behind the main claims, named.
 
-Paragraph three: any caveat the video carries — unverified figures, estimates, or contested data.
+Paragraph three: any caveat the video carries — unverified figures, estimates, or contested data. Where the video covers derivatives, state plainly that options can lose their entire value and are not suitable for everyone. Where it covers crypto, state that the asset is volatile and total loss is possible. Where it discusses a named individual, confirm that every statement is drawn from the public record and link the primary source.
 
 Final line, always, exactly:
 
