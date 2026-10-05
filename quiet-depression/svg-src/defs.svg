@@ -1,0 +1,36 @@
+<defs>
+  <!-- ZUL: circle head, dot eyes, line mouth, curly hair, glasses, polo, rasta beanie -->
+  <g id="zul">
+    <circle cx="0" cy="0" r="46" fill="#fff" stroke="#000" stroke-width="7"/>
+    <g stroke="#000" stroke-width="6" fill="none">
+      <circle cx="-44" cy="-14" r="9"/><circle cx="-34" cy="-30" r="9"/>
+      <circle cx="-18" cy="-40" r="9"/><circle cx="0" cy="-44" r="9"/>
+      <circle cx="18" cy="-40" r="9"/><circle cx="34" cy="-30" r="9"/>
+      <circle cx="44" cy="-14" r="9"/>
+    </g>
+    <path d="M-50 -34 A 50 42 0 0 1 50 -34 Z" fill="#2e9e3e" stroke="#000" stroke-width="7"/>
+    <path d="M-47 -44 A 50 42 0 0 1 47 -44 Z" fill="#f2c200" stroke="#000" stroke-width="7"/>
+    <path d="M-40 -56 A 50 42 0 0 1 40 -56 Z" fill="#d81e28" stroke="#000" stroke-width="7"/>
+    <g stroke="#000" stroke-width="6" fill="none">
+      <rect x="-36" y="-10" width="30" height="24" rx="4"/>
+      <rect x="6" y="-10" width="30" height="24" rx="4"/>
+      <line x1="-6" y1="2" x2="6" y2="2"/>
+    </g>
+    <circle cx="-21" cy="2" r="5" fill="#000"/><circle cx="21" cy="2" r="5" fill="#000"/>
+    <line x1="-16" y1="28" x2="16" y2="28" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="46" x2="0" y2="92" stroke="#000" stroke-width="7"/>
+    <path d="M-52 150 L-40 96 L40 96 L52 150 Z" fill="#fff" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M-14 96 L0 112 L14 96" fill="none" stroke="#000" stroke-width="6"/>
+  </g>
+  <!-- generic stickfigure, head only variant -->
+  <g id="fig">
+    <circle cx="0" cy="0" r="30" fill="#fff" stroke="#000" stroke-width="7"/>
+    <circle cx="-11" cy="-4" r="4" fill="#000"/><circle cx="11" cy="-4" r="4" fill="#000"/>
+    <line x1="-10" y1="14" x2="10" y2="14" stroke="#000" stroke-width="6" stroke-linecap="round"/>
+    <line x1="0" y1="30" x2="0" y2="120" stroke="#000" stroke-width="7"/>
+    <line x1="0" y1="52" x2="-34" y2="92" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="52" x2="34" y2="92" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="120" x2="-28" y2="182" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+    <line x1="0" y1="120" x2="28" y2="182" stroke="#000" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</defs>
