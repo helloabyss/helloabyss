@@ -198,7 +198,7 @@ Say the word and I'll verify and work them in.
 |---|---|
 | **Voice** | Aaron — `ESDuPqgyZIDDVZTlIrH7`, British RP, library voice built for documentary narration |
 | **Model** | `eleven_multilingual_v2` |
-| **Files** | `vo-part1.mp3` (scenes 1–30, 243.16s) · `vo-part2.mp3` (scenes 31–60, 241.39s) |
+| **Files** | `vo-part1.mp3` (scenes 1–30) · `vo-part2.mp3` (scenes 31–60) · `vo-full.mp3` (both joined, 484.676s) |
 | **Total** | **484.55s — 8m04.5s** |
 | **Cost** | 6,783 credits ≈ **$2.47**, one take (not the default 4, which would have been ~$10) |
 | **Flow** | https://elevenlabs.io/app/flows/sQbQNeWLD40kbZHo9Mqx |
@@ -215,7 +215,54 @@ video was re-rendered with **per-scene durations weighted by each line's length*
 9.7s, totalling 484.55s exactly) so each image lasts as long as the sentence spoken over it.
 `out/timing.srt` was regenerated to match.
 
-### Not muxed here
-This container's ffmpeg has **no audio encoder or decoder at all** — video codecs only. The
-voiceover cannot be combined with the video in-session. Drop both into CapCut: video on V1,
-the two MP3s end to end on A1.
+### Muxed — finished file
+The two parts were joined into `vo-full.mp3` and muxed with the render **in-session**, via an
+ElevenLabs **composition** node. Output: **1920×1080 H.264 + AAC MP4, 8m04.69s.**
+
+| | |
+|---|---|
+| **Master** | 106.9 MB — generation `eOfETVjW9wWowJoJXWx7` |
+| **Viewing copy** | 7.8 MB — the same run's `preview_content.mp4` |
+| **Cost** | 0 credits |
+| **Re-download** | https://elevenlabs.io/app/image-video/history?modality=video&generationId=eOfETVjW9wWowJoJXWx7 |
+
+Signed download URLs expire two hours after they are issued; re-fetch from the flow history
+link above, or re-run the composition node (it is free and the source assets stay on the flow).
+
+**Verified in-session** by parsing the MP4 atom tree directly, not by trusting the API:
+
+```
+track 1 vide avc1  5816 samples  484.690s   (5816 / 484.69 = 12.0 fps exactly)
+track 2 soun mp4a 20873 samples  484.648s
+```
+
+Both tracks span the full runtime, so nothing is truncated. A frame of the output was pulled
+and checked visually: artwork correct, compliance card present.
+
+### How the audio was joined
+`vo-part1.mp3` and `vo-part2.mp3` are both ID3v2.4 (17,171-byte tag) wrapping **MPEG-1 Layer III,
+128 kbps CBR, 44.1 kHz** — identical encoder settings, and neither carries an ID3v1 trailer. So
+the two were joined by stripping both tags and concatenating the raw frame streams:
+
+| | frames | duration |
+|---|---|---|
+| part 1 | 9,311 | 243.226s |
+| part 2 | 9,243 | 241.450s |
+| **vo-full.mp3** | **18,554** | **484.676s** |
+
+Each walk ended exactly at EOF, confirming clean frame boundaries. 484.676s of audio against
+484.67s of video — a 6 ms match, no stretching needed.
+
+The join carries ~26 ms of MP3 encoder delay/padding, which lands on the scene 30/31 cut rather
+than mid-sentence, so it is inaudible.
+
+### Why one file rather than two audio nodes
+A composition node gives **each audio source its own track, all starting at 0** — two VO nodes
+would have played on top of each other. No `set_clip_property` tool is exposed through this
+connector, so part 2 could not be offset. Concatenating to a single MP3 sidesteps the problem.
+
+### Local ffmpeg limits (unchanged)
+The bundled Playwright ffmpeg has exactly two muxers (`webm`, `image2`) and two demuxers
+(`image2pipe`, `matroska,webm`) — no MP3 demuxer, so it cannot read the VO at all and cannot
+write MP4. The mux had to happen server-side. CapCut is **no longer required**; use it only if
+you want to cut in event clips.

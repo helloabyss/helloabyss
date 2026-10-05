@@ -66,6 +66,17 @@ Keep style and voice constant across videos so the channel reads as one series.
 - **HeyGen `create_speech` needs separate `api` credits**, which the Creator plan lacks.
   No detached VO stem is available; narration is baked into the render.
 - **Higgsfield: 0 credits** (plan `starter`). Unusable for B-roll or video analysis.
+- **ElevenLabs can mux audio onto video, in-session and free.** A `composition` node takes a
+  video input plus audio inputs and returns a single **H.264 + AAC MP4** — verified 2026-10-05 on
+  an 8-minute 1080p render, **0 credits**, ~7 min for a 92 MB WebM source. Upload with
+  `creative_create_asset_upload` → HTTP PUT → `creative_finalize_asset_upload` (200 MB cap);
+  WebM in, MP4 out. **This removes the need for CapCut as a mux step.** Two caveats: each audio
+  source gets **its own track starting at 0** (so sequential VO parts must be concatenated into
+  one file first — no `set_clip_property` is exposed to offset them), and the signed download
+  URLs expire after 2 hours.
+- **The bundled ffmpeg is Playwright's** (`/opt/pw-browsers/ffmpeg-1011/ffmpeg-linux`): exactly
+  two muxers (`webm`, `image2`) and two demuxers (`image2pipe`, `matroska,webm`). No audio codecs,
+  no MP3 demuxer, no MP4 muxer. Anything involving audio must go server-side.
 - **vidIQ: 1 credit** as of 2026-09-09 (0 renewable + 1 add-on); resets to 150 on 2026-10-03.
   Transcript costs 5, video-watch 25, thumbnail 22, scoring 5 — **all currently unaffordable**.
 - **HeyGen: 54 premium credits** as of 2026-09-09 (down from 129), resets 2026-10-06.
