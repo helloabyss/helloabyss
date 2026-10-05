@@ -1,0 +1,5 @@
+# Rendered video: 98 MB. Too large for git; regenerate with VIDEO.md in ~8 min.
+*.webm
+rec*/
+player.html
+render.log
