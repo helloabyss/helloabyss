@@ -3,3 +3,11 @@
 rec*/
 player.html
 render.log
+
+# Scratch frames pulled out of an encode for spot-checks
+qc*.png
+v_*.png
+chk_*.png
+p_*.png
+q_*.png
+a[0-9].png
