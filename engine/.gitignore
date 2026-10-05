@@ -1,0 +1,23 @@
+# Rendered video: 98 MB. Too large for git; regenerate with VIDEO.md in ~8 min.
+*.webm
+rec*/
+player.html
+render.log
+
+# Scratch frames pulled out of an encode for spot-checks
+qc*.png
+v_*.png
+chk_*.png
+p_*.png
+q_*.png
+a[0-9].png
+
+# Muxed MP4 masters: ~107 MB. Re-fetch from the ElevenLabs flow (see
+# quiet-depression/VO-SCRIPT.md) or re-run the composition node — it is free.
+*.mp4
+final-thumb.jpg
+
+# Working renders — regenerate with sheet_zul.py / thumb_qd.py
+zulcheck/
+__pycache__/
+*.pyc

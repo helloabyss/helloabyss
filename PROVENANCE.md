@@ -71,7 +71,7 @@ Not verifiable. Reasonable people would disagree with some of it.
 
 ## Class D — found in this session, all corrected
 
-Three. Listed so the pattern is visible, not buried.
+Fifteen. Listed so the pattern is visible, not buried.
 
 | # | Claim | Reality | Cost | Status |
 |---|---|---|---|---|
@@ -97,6 +97,8 @@ Three. Listed so the pattern is visible, not buried.
 | 13 | `fed-dot-short`'s shot list had one row quoting `"Here is the honest counterweight"` — **zero occurrences in the VO** — plus two rows carrying paraphrases rather than verbatim quotes (`"Warsh's explanation…"` for "Kevin Warsh's **entire** explanation…", and `"Dow still closed down 631"` for "six hundred and thirty one points") | Captions burn in word-by-word. A generator sourcing caption text from a shot-list row would have put an unspoken sentence on screen, and rendered a numeral the narration never speaks. The fabricated row survived three reviews because every pass checked whether work had happened, not whether labels still matched the VO after three rounds of rewrites. | Would have put words on screen that are never spoken | All three corrected. §5A now requires row labels to be verbatim VO substrings and to be re-checked after every VO edit. |
 
 | 14 | `fed-dot-short/PRODUCTION.md`'s pre-publish note still read *"Fact #8 (Dow −628.18) is an intraday figure — re-check the close before upload."* | The −628.18 figure had been **fully retracted** as belonging to a different trading day (finding #6). `PRODUCTION.md` is the upload checklist, so the one document a person reads immediately before publishing was instructing them to re-verify a number the fact table had already thrown out. A careful operator following it might have reinstated the error. | The correction lived in `SCRIPT.md` and never propagated to the checklist that acts on it | Replaced with the corrected figure and an explicit "do not reinstate" |
+
+| 15 | `CLAUDE.md`'s credit block, headed **"verified 2026-09-21"**, read HeyGen **372**, Higgsfield **564.84**, vidIQ **1 (blocked until 10-03)** | Measured 2026-10-05: HeyGen **0**, Higgsfield **0.35**, vidIQ **121**. Two balances overstated by three orders of magnitude. The block's own warning said it "has been wrong before" and named the September failure — understating, so the channel avoided tools it could afford. Overstating is the costlier direction: **T5 and T6 both sat on the board as `NEEDS-YOU — say go`**, one word from being attempted, and both would have failed on an empty balance. `GROWTH-PLAN.md` §4 ("Higgsfield … 564 credits … idle") and §6 ("at 372 HeyGen credits that runs for months") are built on the same stale figures, so the cadence plan's economics were unfounded. | Caught before any spend was attempted. The standing instruction to re-check at session start is what caught it — it works, and skipping it is what let the figures go stale | Corrected with observed values, dated and labelled as measured. T4 → READY, T5 and T6 → BLOCKED with the reason. `GROWTH-PLAN.md` flagged stale in `CLAUDE.md` rather than silently edited, since it is a dated strategy document |
 
 Finding #14 is the sharpest instance of #12 and #13: **a correction is not finished when the
 primary document is fixed.** It has to reach every document that acts on it — and the checklist

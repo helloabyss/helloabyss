@@ -49,15 +49,26 @@ Keep style and voice constant across videos so the channel reads as one series.
 
 ## Known environment constraints
 
-**Credit figures verified 2026-09-21. Re-check with `vidiq_balance`, `higgsfield balance` and
-`heygen get_current_user` at the top of each session — this block has been wrong before, and
-being wrong made the channel avoid tools it could afford.**
+**Credit figures measured 2026-10-05. Re-check with `vidiq_balance`, `higgsfield balance` and
+`heygen get_current_user` at the top of each session — this block has been wrong before in
+both directions. In September it understated what was available and the channel avoided tools
+it could afford; by 2026-10-05 the same block overstated two balances by three orders of
+magnitude, which is the more expensive failure because it plans spends that cannot clear.**
 
-| Resource | Status |
-|---|---|
-| HeyGen | **Pro plan, 372 premium credits** (resets 2026-10-06) |
-| Higgsfield | **564.84 credits**, starter plan — B-roll IS available |
-| vidIQ | **1 credit** — exhausted 2026-09-21. Renewable pool 0/150, **resets 2026-10-03**. No vidIQ research until then unless topped up. |
+| Resource | Status 2026-10-05 | Was claimed |
+|---|---|---|
+| HeyGen | **0 premium credits.** Pro plan; resets **2026-10-06 12:57 UTC** | 372 |
+| Higgsfield | **0.35 credits**, starter — B-roll is **NOT** available | 564.84 |
+| vidIQ | **121** = 120 renewable (of 150) + 1 add-on. Next reset **2026-11-03** | 1, blocked to 10-03 |
+
+All three read directly from `vidiq_balance`, `higgsfield balance` and `heygen
+get_current_user` on 2026-10-05 — observed, not inferred.
+
+**Consequences, which invert three task-board rows:** no HeyGen render can run until the
+2026-10-06 reset; Higgsfield hero plates (T5) are unaffordable, not merely unapproved; and
+vidIQ research (T4) is unblocked with ~24 calls of headroom at the pessimistic 5/call.
+`GROWTH-PLAN.md` §4 still describes Higgsfield as "564 credits … idle" and §6 budgets against
+372 HeyGen credits; both are stale and the figures there should not be spent against.
 
 - **HeyGen CDN egress is blocked** (`files2.heygen.ai`, `resource2.heygen.ai`). Renders
   cannot be downloaded or watched from here. Always report a render as *complete, not
@@ -120,6 +131,9 @@ Channel-level documents:
 | `AGENTS.md` | **Agent registry** — the six agents, their roles, authority and handoffs. |
 | `TASKS.md` | **Assignment board** — the open queue per agent, with blockers. Check this first in a new session. |
 | `PROVENANCE.md` | **What is verified vs asserted.** Read this before trusting any claim in the repo. Unchecked claims must be labelled in the sentence that states them. |
+| `SERIES-ONE-NUMBER.md` | **Prepared series brief, awaiting a decision (T8).** Zero-credit stickman format aimed at the §2 cadence constraint. §6 states the case against it as well as for it. |
+| `CHARACTER-ZUL.md` | **Zul**, the host that series would use. Locked design, built by `engine/zul.py`, never drawn by hand. Transferred from the parked PARADOCS10X channel — a deliberate reuse, not continuity. |
+| `engine/` | Zero-credit deterministic still renderer (SVG → PNG via headless Chromium). Composed for 1920×1080; `engine/portrait/proof.png` shows it reframing to 9:16. |
 | `.claude/agents/` | scout · fact-checker · scriptwriter · **retention-editor** · art-director · packager |
 
 ## Which channel this repo serves
