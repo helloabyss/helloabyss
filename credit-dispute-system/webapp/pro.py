@@ -54,8 +54,10 @@ def register_pro_routes(app):
                 cur = store.db().execute("INSERT INTO orgs (name, address, created_at) VALUES (?,?,?)",
                                          (f["firm"], f["address"], store.now()))
                 org_id = cur.lastrowid
-                cur = store.db().execute("INSERT INTO users (email, pw_hash, role, org_id, created_at) VALUES (?,?,?,?,?)",
-                                         (f["email"], generate_password_hash(f["password"]), "pro_admin", org_id, store.now()))
+                cur = store.db().execute("INSERT INTO users (email, pw_hash, role, org_id, created_at, email_verified)"
+                                         " VALUES (?,?,?,?,?,?)", (f["email"], generate_password_hash(f["password"]),
+                                                                    "pro_admin", org_id, store.now(),
+                                                                    1 if app.config["DEMO_MODE"] else 0))
                 store.db().commit()
                 from flask import session
                 session.clear()

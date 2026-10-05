@@ -1,43 +1,22 @@
-# Render Blueprint: https://render.com/docs/blueprint-spec
-# In Render: New > Blueprint > pick this repo and the claude/credit-dispute-system branch.
+# FREE DEMO on Render. Data is erased whenever the service restarts or sleeps.
+# Not for real customers: see credit-dispute-system/render.production.yaml for that.
+# In Render: New > Blueprint > choose this repository and the claude/credit-dispute-system branch.
 services:
   - type: web
-    name: credit-dispute-letters
+    name: credit-dispute-demo
     runtime: docker
     rootDir: credit-dispute-system
     dockerfilePath: ./Dockerfile
-    plan: starter            # persistent disks need a paid plan
+    plan: free
     healthCheckPath: /healthz
-    disk:
-      name: data
-      mountPath: /data
-      sizeGB: 1
     envVars:
+      - key: DEMO_MODE
+        value: "1"
       - key: SECRET_KEY
         generateValue: true
-      - key: DATA_KEY          # paste a Fernet key (see DEPLOY.md, step 3). Never change it after launch.
-        sync: false
-      - key: BASE_URL          # e.g. https://app.yourdomain.com
-        sync: false
+      - key: DATABASE
+        value: /tmp/cfads.db
       - key: COMPANY_NAME
-        sync: false
+        value: "Demo Company LLC"
       - key: COMPANY_ADDRESS
-        sync: false
-      - key: PRICE_CENTS
-        value: "4900"
-      - key: STRIPE_SECRET_KEY
-        sync: false
-      - key: STRIPE_WEBHOOK_SECRET
-        sync: false
-      - key: STRIPE_PRO_PRICE_ID
-        sync: false
-      - key: SMTP_HOST
-        sync: false
-      - key: SMTP_PORT
-        value: "587"
-      - key: SMTP_USER
-        sync: false
-      - key: SMTP_PASSWORD
-        sync: false
-      - key: MAIL_FROM
-        sync: false
+        value: "123 Demo Street, Anytown, CA 90000"

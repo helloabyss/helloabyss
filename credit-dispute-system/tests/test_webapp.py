@@ -288,3 +288,33 @@ class PhoneApp(unittest.TestCase):
         rem = self.c.get("/api/reminders").get_json()["reminders"]
         self.assertEqual(len(rem), 1)
         self.assertNotIn("equifax", str(rem).lower())
+
+
+class DemoMode(unittest.TestCase):
+    def test_demo_mode_banner_autoverify_and_no_wait(self):
+        import os
+        os.environ["DEMO_MODE"] = "1"
+        try:
+            tmp = tempfile.NamedTemporaryFile(suffix=".db")
+            app = create_app({"TESTING": True, "DATABASE": tmp.name, "SECRET_KEY": "s", "DATA_KEY": None})
+        finally:
+            del os.environ["DEMO_MODE"]
+        flow = WebFlow("test_full_flow_to_paid_download")
+        flow.app, flow.c = app, app.test_client()
+        self.assertIn(b"DEMO ONLY", flow.c.get("/").data)
+        flow.register(verify=False)
+        cid = flow.new_case()
+        flow.fill_case(cid)
+        flow.post(f"/case/{cid}/disclosure", {"ack": "1", "signature": "Jordan A. Rivera"})
+        flow.post(f"/case/{cid}/agreement", {"agree": "1", "signature": "Jordan A. Rivera"})
+        flow.post(f"/case/{cid}/checkout", {}, page=f"/case/{cid}")
+        self.assertEqual(flow.c.get(f"/case/{cid}/letters.zip").status_code, 200)
+
+    def test_demo_mode_refuses_live_stripe_keys(self):
+        import os
+        os.environ.update(DEMO_MODE="1", STRIPE_SECRET_KEY="sk_live_x")
+        try:
+            with self.assertRaises(RuntimeError):
+                create_app({"TESTING": True, "DATABASE": ":memory:", "SECRET_KEY": "s"})
+        finally:
+            del os.environ["DEMO_MODE"], os.environ["STRIPE_SECRET_KEY"]

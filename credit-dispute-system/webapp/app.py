@@ -9,6 +9,8 @@ Config (environment variables):
   COMPANY_NAME / COMPANY_ADDRESS   shown on the contract and cancellation notice
   STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET   enable real payments
   DEV_PAYMENTS=1    mark cases paid without Stripe (local testing only)
+  DEMO_MODE=1       public demo: banner on every page, no email confirmation, simulated payment,
+                    no cancellation wait. Never use with real customers.
   BASE_URL          public URL, used for Stripe redirects
 """
 
@@ -60,7 +62,8 @@ def create_app(test_config=None):
                  "address": os.environ.get("COMPANY_ADDRESS", "[Company street address, City, ST ZIP]")},
         STRIPE_SECRET_KEY=os.environ.get("STRIPE_SECRET_KEY"),
         STRIPE_WEBHOOK_SECRET=os.environ.get("STRIPE_WEBHOOK_SECRET"),
-        DEV_PAYMENTS=os.environ.get("DEV_PAYMENTS") == "1",
+        DEV_PAYMENTS=os.environ.get("DEV_PAYMENTS") == "1" or os.environ.get("DEMO_MODE") == "1",
+        DEMO_MODE=os.environ.get("DEMO_MODE") == "1",
         BASE_URL=os.environ.get("BASE_URL", "http://127.0.0.1:5000"),
         STRIPE_PRO_PRICE_ID=os.environ.get("STRIPE_PRO_PRICE_ID"),
         SMTP_HOST=os.environ.get("SMTP_HOST"), SMTP_PORT=os.environ.get("SMTP_PORT", "587"),
@@ -78,6 +81,16 @@ def create_app(test_config=None):
     )
     if test_config:
         app.config.update(test_config)
+    if app.config["DEMO_MODE"]:
+        if (app.config["STRIPE_SECRET_KEY"] or "").startswith("sk_live"):
+            raise RuntimeError("DEMO_MODE must not be used with live Stripe keys")
+        if app.config["SECRET_KEY"] and not app.config["DATA_KEY"]:
+            # Demo only: derive the encryption key so no manual setup is needed.
+            import base64
+            import hashlib
+            digest = hashlib.sha256(("data-key:" + app.config["SECRET_KEY"]).encode()).digest()
+            app.config["DATA_KEY"] = base64.urlsafe_b64encode(digest).decode()
+
     if not app.config["SECRET_KEY"] or not app.config["DATA_KEY"]:
         if not (app.debug or app.testing or app.config["DEV_PAYMENTS"]):
             raise RuntimeError("Set SECRET_KEY and DATA_KEY before running in production")
@@ -205,13 +218,16 @@ def sign_acknowledgment(row, case, name, email, ip):
 def sign_agreement(row, case, name, ip):
     if name.lower() != case.consumer.full_name.lower():
         return "Type your full name exactly as it appears on the case."
+    from flask import current_app
     company, price, signed = company_for(row), price_for(row), datetime.now()
+    # Demo mode skips the 3-business-day wait so visitors can see the letters straight away.
+    deadline_at = signed if current_app.config["DEMO_MODE"] else croa.cancellation_deadline(signed)
     text = croa.contract_text(company, case.consumer.full_name, price, signed, firm=bool(row["org_id"]))
     store.db().execute("INSERT INTO agreements (case_id, signed_name, signed_at, ip, contract_text,"
                        " price_cents, cancel_deadline) VALUES (?,?,?,?,?,?,?)",
                        (row["id"], name, signed.isoformat(timespec="seconds"), ip,
                         text + "\n\n" + croa.cancellation_notice(company, signed), price,
-                        croa.cancellation_deadline(signed).isoformat()))
+                        deadline_at.isoformat()))
     store.db().commit()
     return None
 
@@ -388,8 +404,9 @@ def register_routes(app):
                 flash("Use a password of at least 10 characters.")
             else:
                 try:
-                    cur = store.db().execute("INSERT INTO users (email, pw_hash, created_at) VALUES (?,?,?)",
-                                             (email, generate_password_hash(pw), store.now()))
+                    cur = store.db().execute("INSERT INTO users (email, pw_hash, created_at, email_verified)"
+                                             " VALUES (?,?,?,?)", (email, generate_password_hash(pw), store.now(),
+                                                                   1 if app.config["DEMO_MODE"] else 0))
                     store.db().commit()
                     session.clear()
                     session["uid"] = cur.lastrowid
