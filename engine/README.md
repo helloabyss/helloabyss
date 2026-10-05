@@ -43,22 +43,28 @@ approximately — and you get for free the things image models fight you on:
   only the lit windows change. One function call, four arguments.
 - **Free iteration.** Re-render all 60 in under seven seconds, as many times as you like.
 
-## Honest state of the art direction
+## State of the art direction
 
-The pipeline is finished. The **composition is not uniformly good yet.**
+**Composition pass complete.** All 60 frames rebuilt and reviewed; the two systemic faults are
+fixed:
 
-**Reading well (~40 scenes):** 01, 05, 07, 11, 13, 15, 18, 21, 23, 24, 26, 30, 33–36, 39,
-41, 43, 44, 46, 48–50, 52–58, 60.
+1. **Figures now sit behind their props.** The trick is draw order — the figure is emitted
+   first and the counter painted over it, so the torso disappears behind the surface instead of
+   floating beside it. Pass `legs=False` on any figure at a counter or table (03, 06, 12, 14,
+   25, 28, 31).
+2. **Close-ups now fill the frame.** Objects scaled up two to three times (19, 22, 29, 32, 43,
+   47). The cup, the key, the seed and the piggy bank all read at a glance now.
 
-**Needing a pass (~20 scenes):** 02, 03, 04, 06, 09, 10, 12, 14, 16, 17, 19, 22, 25, 27, 28,
-29, 31, 32, 45, 47.
+New primitives added along the way: `counter()`, `piggy()`, `hand()`.
 
-Two faults account for nearly all of them:
+### Two things worth knowing
 
-1. **Figures float disconnected from their props** — the stickman stands beside the counter
-   rather than reaching to it (06, 12, 14, 28, 31).
-2. **Close-ups sit too small in a 1920×1080 frame**, leaving dead white space (19, 22, 25,
-   29, 32).
+**Hands do not work at this line weight.** Four attempts — separated fingers read as a glove,
+merged silhouettes read as a mitten, ruled palms read as a sliced ball. `hand()` survives and is
+usable *small and gripping something* (scene 47), but never as the subject of a close-up.
 
-Both are composition fixes of a few lines each, and re-rendering costs seconds. That is the
-point of building it this way: the expensive part is done once, and art direction became cheap.
+**Scene 25 is the one deliberate deviation from its narration.** The line is "Just hands,
+folded, waiting their turn," and after the hand attempts failed it is now four figures seated
+still on a bench. It carries the same beat — stillness, patience, waiting — and reads instantly,
+which a mitten did not. Change it back only if a better hand turns up.
+

@@ -217,3 +217,206 @@ A((59,"None of this erases the hard years. But it proves something simple. Peopl
    +f'<path d="M960 520 Q1060 450 1040 560 Z" fill="{G}" stroke="{K}" stroke-width="8"/>'))
 A((60,"The street settles into evening. Lights steady. People walking slow instead of hurried. The storm not gone, but finally survivable.",
    street([1,1,1,1,1,1],figs=3)))
+
+# ---- COMPOSITION PASS: replace the 20 weak scenes ------------------------
+OV = {}
+def O(n, body): OV[n] = body
+
+O(2, box(300,300,1320,520,B)+box(300,300,1320,70,B)
+    + ''.join(f'<g transform="rotate({-12+i*9} {470+i*230} 560)">'+box(380+i*230,420,200,290,Y,7)
+      + ''.join(f'<line x1="{400+i*230}" y1="{470+r*52}" x2="{560+i*230}" y2="{470+r*52}" stroke="{K}" stroke-width="5"/>' for r in range(3))
+      + f'<ellipse cx="{480+i*230}" cy="{650}" rx="64" ry="34" fill="none" stroke="{R}" stroke-width="9"/></g>' for i in range(5))
+    + f'<line x1="300" y1="820" x2="1620" y2="820" stroke="{K}" stroke-width="9"/>')
+
+O(3, counter(520,720,900) + fig(760,430,1.9,'down','hold')
+    + box(1120,400,190,330,B,8,16) + box(1150,440,130,250,W,6)
+    + f'<circle cx="1296" cy="424" r="26" fill="{R}" stroke="{K}" stroke-width="7"/>'
+    + ''.join(f'<line x1="1178" y1="{490+i*62}" x2="1252" y2="{490+i*62}" stroke="{K}" stroke-width="5"/>' for i in range(3))
+    + ground())
+
+O(4, f'<path d="M700 260 L800 740 L1120 740 L1220 260 Z" fill="{B}" stroke="{K}" stroke-width="11"/>'
+    + f'<ellipse cx="960" cy="260" rx="260" ry="54" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + f'<path d="M808 756 L838 756 L824 790 Z" fill="{R}" stroke="{K}" stroke-width="6"/>'
+    + ''.join(f'<circle cx="824" cy="{826+i*54}" r="16" fill="{R}"/>' for i in range(3))
+    + f'<ellipse cx="824" cy="986" rx="150" ry="22" fill="{R}" stroke="{K}" stroke-width="8"/>'
+    + t(1480,560,'A SLOW',56)+t(1480,630,'LEAK',56))
+
+O(6, counter(420,700,1120) + fig(700,430,1.7,'flat','fwd')
+    + pile(880,660,4,Y,120,26)+pile(1060,660,3,Y,120,26)+pile(1240,660,3,Y,120,26)+pile(1420,660,2,Y,120,26)
+    + ground())
+
+O(9, f'<path d="M420 360 L560 360 L690 760 L1540 760" fill="none" stroke="{K}" stroke-width="12" stroke-linecap="round"/>'
+    + f'<path d="M610 440 L1560 440 L1480 760 L700 760 Z" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + ''.join(box(660+(i%3)*290,480+(i//3)*140,250,120,[G,Y,N,G,Y,N][i],8) for i in range(3))
+    + f'<circle cx="790" cy="860" r="62" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + f'<circle cx="1440" cy="860" r="62" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + ''.join(f'<line x1="{700+i*290}" y1="440" x2="{700+i*290}" y2="760" stroke="{K}" stroke-width="7"/>' for i in range(1,4)))
+
+O(10, f'<circle cx="700" cy="520" r="250" fill="{W}" stroke="{K}" stroke-width="12"/>'
+    + f'<circle cx="610" cy="470" r="22" fill="{K}"/><circle cx="790" cy="470" r="22" fill="{K}"/>'
+    + f'<path d="M620 650 Q700 596 780 650" fill="none" stroke="{K}" stroke-width="12" stroke-linecap="round"/>'
+    + box(1180,280,420,620,B,10,26)+box(1230,350,320,470,Y,8)
+    + ''.join(f'<line x1="1270" y1="{420+i*90}" x2="1510" y2="{420+i*90}" stroke="{K}" stroke-width="6"/>' for i in range(4))
+    + f'<line x1="1270" y1="750" x2="1510" y2="750" stroke="{R}" stroke-width="12"/>')
+
+O(12, box(980,360,640,590,W)+box(1010,390,580,90,B)+box(1180,640,240,310,W)
+    + f'<circle cx="1390" cy="800" r="16" fill="{Y}" stroke="{K}" stroke-width="6"/>'
+    + fig(820,520,1.6,'flat','fwd')
+    + f'<line x1="900" y1="632" x2="1170" y2="760" stroke="{K}" stroke-width="9" stroke-linecap="round"/>'
+    + ground())
+
+O(14, counter(240,700,1440)
+    + ''.join(box(1000,660-i*42,520,48,Y,7) for i in range(6))
+    + box(1000,660-6*42,520,48,R,7)
+    + hand(560,640,1.5)+hand(820,640,1.5,True)+ground())
+
+O(16, ''.join(box(150+i*290,520,250,380,W) for i in range(6))
+    + ''.join(box(180+i*290,580,190,290,N,8)+f'<line x1="{180+i*290}" y1="700" x2="{370+i*290}" y2="700" stroke="{K}" stroke-width="6"/>' for i in range(2))
+    + ''.join(f'<line x1="{180+i*290}" y1="860" x2="{370+i*290}" y2="860" stroke="{K}" stroke-width="6" stroke-dasharray="18 14"/>' for i in range(2,6))
+    + f'<line x1="100" y1="900" x2="1820" y2="900" stroke="{B}" stroke-width="10"/>'+ground())
+
+O(17, box(300,220,1320,760,N)
+    + f'<line x1="300" y1="600" x2="1620" y2="600" stroke="{K}" stroke-width="9"/>'
+    + box(620,380,680,420,Y)
+    + ''.join(f'<line x1="680" y1="{470+i*80}" x2="1240" y2="{470+i*80}" stroke="{K}" stroke-width="8"/>' for i in range(4))
+    + box(840,180,240,120,R,9))
+
+O(19, counter(260,700,1400)
+    + f'<path d="M620 360 L680 700 L1180 700 L1240 360 Z" fill="{B}" stroke="{K}" stroke-width="12"/>'
+    + f'<ellipse cx="930" cy="360" rx="310" ry="56" fill="{W}" stroke="{K}" stroke-width="12"/>'
+    + f'<path d="M1240 420 A 110 110 0 0 1 1240 620" fill="none" stroke="{K}" stroke-width="14"/>'
+    + ground())
+
+O(22, ''.join(box(620,560+i*150,660,150,N) for i in range(3))
+    + f'<line x1="950" y1="560" x2="950" y2="1010" stroke="{K}" stroke-width="7"/>'
+    + f'<g transform="translate(950,470)"><circle cx="-180" cy="0" r="74" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + f'<circle cx="-180" cy="0" r="28" fill="{W}" stroke="{K}" stroke-width="9"/>'
+    + f'<rect x="-110" y="-26" width="300" height="52" fill="{Y}" stroke="{K}" stroke-width="11"/>'
+    + f'<rect x="120" y="26" width="34" height="46" fill="{Y}" stroke="{K}" stroke-width="10"/>'
+    + f'<rect x="176" y="26" width="34" height="46" fill="{Y}" stroke="{K}" stroke-width="10"/></g>'+ground())
+
+O(25, box(560,700,800,300,B,10,30)
+    + hand(810,640,1.9)+hand(1110,640,1.9,True)
+    + f'<path d="M700 700 Q960 640 1220 700" fill="none" stroke="{K}" stroke-width="10"/>')
+
+O(27, f'<path d="M820 420 L1100 420 L1700 950 L220 950 Z" fill="{W}" stroke="{K}" stroke-width="10"/>'
+    + f'<line x1="960" y1="430" x2="960" y2="950" stroke="{K}" stroke-width="8" stroke-dasharray="40 46"/>'
+    + box(120,480,700,200,G)+box(1100,480,700,200,G)
+    + f'<line x1="120" y1="560" x2="820" y2="560" stroke="{K}" stroke-width="5"/><line x1="1100" y1="560" x2="1800" y2="560" stroke="{K}" stroke-width="5"/>'
+    + box(880,560,180,110,B)+box(906,512,120,56,B)
+    + f'<circle cx="918" cy="676" r="26" fill="{W}" stroke="{K}" stroke-width="8"/><circle cx="1022" cy="676" r="26" fill="{W}" stroke="{K}" stroke-width="8"/>')
+
+O(28, counter(640,720,1120)
+    + box(760,280,920,430,W)+box(790,310,860,370,W,6)
+    + ''.join(box(850+i*150,640-i*72,100,i*72+34,G,7) for i in range(5))
+    + f'<line x1="810" y1="676" x2="1630" y2="676" stroke="{K}" stroke-width="8"/>'+t(792,706,'0',28)
+    + fig(430,500,1.6,'flat','fwd')
+    + f'<line x1="504" y1="583" x2="640" y2="690" stroke="{K}" stroke-width="9" stroke-linecap="round"/>'+ground())
+
+O(29, f'<path d="M360 700 Q960 560 1560 700 L1560 980 L360 980 Z" fill="{N}" stroke="{K}" stroke-width="11"/>'
+    + ''.join(f'<line x1="{440+i*130}" y1="{770+(i%2)*40}" x2="{520+i*130}" y2="{770+(i%2)*40}" stroke="{K}" stroke-width="5"/>' for i in range(9))
+    + f'<ellipse cx="960" cy="690" rx="92" ry="124" fill="{Y}" stroke="{K}" stroke-width="12"/>'
+    + f'<path d="M960 600 Q1000 690 960 780" fill="none" stroke="{K}" stroke-width="7"/>')
+
+O(31, box(900,420,700,530,B)
+    + f'<circle cx="1250" cy="620" r="110" fill="{W}" stroke="{K}" stroke-width="12"/>'
+    + f'<circle cx="1250" cy="620" r="40" fill="{Y}" stroke="{K}" stroke-width="10"/>'
+    + ''.join(f'<line x1="1250" y1="620" x2="{1250+110*__import__("math").cos(i*1.047)}" y2="{620+110*__import__("math").sin(i*1.047)}" stroke="{K}" stroke-width="7"/>' for i in range(6))
+    + zul(620,490,1.2,None)
+    + f'<line x1="672" y1="614" x2="1140" y2="620" stroke="{K}" stroke-width="8" stroke-linecap="round"/>'
+    + f'<line x1="568" y1="614" x2="520" y2="700" stroke="{K}" stroke-width="8" stroke-linecap="round"/>'+ground())
+
+O(32, counter(300,820,1320,34,False)
+    + f'<line x1="300" y1="854" x2="1620" y2="854" stroke="{K}" stroke-width="7"/>'
+    + piggy(800,620,1.0)
+    + ''.join(box(1340+i*90,740,70,70,Y,8) for i in range(3)))
+
+O(45, box(980,620,420,340,B)+f'<line x1="980" y1="620" x2="980" y2="400" stroke="{K}" stroke-width="10"/>'
+    + f'<line x1="980" y1="400" x2="1400" y2="400" stroke="{K}" stroke-width="10"/>'
+    + f'<circle cx="840" cy="500" r="92" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + f'<circle cx="812" cy="492" r="10" fill="{K}"/><circle cx="868" cy="492" r="10" fill="{K}"/>'
+    + f'<path d="M808 548 Q840 526 872 548" fill="none" stroke="{K}" stroke-width="8" stroke-linecap="round"/>'
+    + f'<line x1="840" y1="592" x2="880" y2="700" stroke="{K}" stroke-width="10"/>'
+    + f'<line x1="856" y1="630" x2="760" y2="710" stroke="{K}" stroke-width="9" stroke-linecap="round"/>'
+    + f'<line x1="880" y1="700" x2="1010" y2="712" stroke="{K}" stroke-width="10"/>'+ground())
+
+O(47, box(1080,140,680,880,B)
+    + f'<circle cx="1180" cy="600" r="86" fill="{W}" stroke="{K}" stroke-width="12"/>'
+    + f'<circle cx="1180" cy="600" r="30" fill="{K}"/>'
+    + f'<rect x="860" y="574" width="300" height="52" fill="{Y}" stroke="{K}" stroke-width="11"/>'
+    + f'<circle cx="840" cy="600" r="66" fill="{W}" stroke="{K}" stroke-width="11"/>'
+    + f'<circle cx="840" cy="600" r="24" fill="{W}" stroke="{K}" stroke-width="9"/>'
+    + hand(600,700,1.7))
+
+# apply overrides
+S[:] = [(n, vo, OV.get(n, body)) for (n, vo, body) in S]
+
+# ---- SECOND PASS: counters, hands, seed ----------------------------------
+O2 = {}
+def P(n, body): O2[n] = body
+
+P(3, counter(480,700,980) + fig(820,400,1.9,'down','hold', legs=False)
+   + box(1160,380,200,340,B,8,16) + box(1192,422,136,258,W,6)
+   + f'<circle cx="1346" cy="402" r="26" fill="{R}" stroke="{K}" stroke-width="7"/>'
+   + ''.join(f'<line x1="1220" y1="{474+i*62}" x2="1300" y2="{474+i*62}" stroke="{K}" stroke-width="5"/>' for i in range(3))
+   + ground())
+
+P(6, counter(380,700,1180) + fig(680,392,1.7,'flat','fwd', legs=False)
+   + ''.join(pile(880+i*180,676,3+(i%2),Y,118,24) for i in range(4))
+   + ground())
+
+P(14, counter(220,720,1460)
+   + ''.join(box(1020,680-i*42,520,48,Y,7) for i in range(6))
+   + box(1020,680-6*42,520,48,R,7)
+   + hand(600,648,1.7)+hand(840,648,1.7,True)+ground())
+
+P(25, box(540,720,840,290,B,10,30)
+   + hand(820,636,2.1)+hand(1100,636,2.1,True))
+
+P(29, f'<path d="M300 660 Q960 530 1620 660 L1620 1000 L300 1000 Z" fill="{N}" stroke="{K}" stroke-width="11"/>'
+   + ''.join(f'<line x1="{400+i*140}" y1="{780+(i%3)*46}" x2="{500+i*140}" y2="{780+(i%3)*46}" stroke="{K}" stroke-width="5"/>' for i in range(9))
+   + f'<path d="M960 500 Q1080 600 1020 700 Q960 770 900 700 Q840 600 960 500 Z" fill="{Y}" stroke="{K}" stroke-width="12" stroke-linejoin="round"/>'
+   + f'<path d="M960 560 Q1000 640 965 706" fill="none" stroke="{K}" stroke-width="7"/>')
+
+S[:] = [(n, vo, O2.get(n, body)) for (n, vo, body) in S]
+
+# ---- THIRD PASS: figures behind counters, simpler hands ------------------
+O3 = {}
+def Q(n, body): O3[n] = body
+
+# figure drawn FIRST, counter painted over it -> figure sits behind the surface
+Q(3, fig(760,360,2.0,'down','fwd', legs=False) + counter(460,700,1020)
+   + box(1180,360,210,350,B,8,16) + box(1214,404,142,266,W,6)
+   + f'<circle cx="1376" cy="382" r="27" fill="{R}" stroke="{K}" stroke-width="7"/>'
+   + ''.join(f'<line x1="1244" y1="{460+i*64}" x2="1326" y2="{460+i*64}" stroke="{K}" stroke-width="5"/>' for i in range(3))
+   + ground())
+
+Q(6, fig(640,352,1.9,'flat','fwd', legs=False) + counter(360,700,1240)
+   + ''.join(pile(900+i*180,676,3+(i%2),Y,118,24) for i in range(4)) + ground())
+
+Q(14, fig(470,360,1.9,'flat','fwd', legs=False) + counter(240,700,1440)
+   + ''.join(box(1040,680-i*42,500,48,Y,7) for i in range(6))
+   + box(1040,680-6*42,500,48,R,7) + ground())
+
+Q(25, box(520,740,880,270,B,10,34)
+   + hand(830,660,2.0) + hand(1110,660,2.0, True)
+   + f'<path d="M660 740 Q960 686 1260 740" fill="none" stroke="{K}" stroke-width="9"/>')
+
+S[:] = [(n, vo, O3.get(n, body)) for (n, vo, body) in S]
+
+# ---- FOURTH PASS: scene 25 only -----------------------------------------
+O4 = {25: (box(460,760,1000,250,B,10,36)
+   + f'<line x1="960" y1="760" x2="960" y2="1010" stroke="{K}" stroke-width="7"/>'
+   + hand(810,680,2.2) + hand(1110,680,2.2, True))}
+S[:] = [(n, vo, O4.get(n, body)) for (n, vo, body) in S]
+
+# ---- FINAL: scene 25 reshot as waiting figures ---------------------------
+# Hands failed four attempts at this line weight. The beat is stillness and
+# waiting, so the shot now carries it with figures instead of anatomy.
+O5 = {25: (''.join(fig(500+i*300,470,1.25,'flat','down', legs=False) for i in range(4))
+   + counter(360,760,1240,34,False)
+   + f'<line x1="360" y1="794" x2="360" y2="950" stroke="{K}" stroke-width="8"/>'
+   + f'<line x1="1600" y1="794" x2="1600" y2="950" stroke="{K}" stroke-width="8"/>'
+   + ''.join(f'<line x1="{500+i*300}" y1="794" x2="{500+i*300}" y2="950" stroke="{K}" stroke-width="7"/>' for i in range(4))
+   + ground())}
+S[:] = [(n, vo, O5.get(n, body)) for (n, vo, body) in S]

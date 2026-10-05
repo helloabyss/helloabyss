@@ -77,3 +77,37 @@ def page(body,w=1920,h=1080):
     return ('<style>*{margin:0;padding:0}html,body{background:#fff}svg{display:block}</style>'
             f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg">'
             f'<rect width="{w}" height="{h}" fill="{W}"/>{body}</svg>')
+
+def hand(x, y, sc=1.0, flip=False):
+    """Silhouette hand: paddle palm + separate thumb, no interior ruling.
+    Interior detail is what fails at this line weight; silhouette reads."""
+    f = -1 if flip else 1
+    return (f'<g transform="translate({x},{y}) scale({sc*f},{sc})">'
+            f'<path d="M-62 -58 Q-14 -76 36 -58 Q62 -48 62 -8 L62 34'
+            f' Q62 76 14 76 L-24 76 Q-62 76 -62 36 Z"'
+            f' fill="{W}" stroke="{K}" stroke-width="9" stroke-linejoin="round"/>'
+            f'<path d="M-62 -14 Q-96 -6 -94 26 Q-92 56 -62 56"'
+            f' fill="{W}" stroke="{K}" stroke-width="9"/>'
+            f'<line x1="-6" y1="-66" x2="-6" y2="-14" stroke="{K}" stroke-width="6"/>'
+            f'<line x1="30" y1="-62" x2="30" y2="-14" stroke="{K}" stroke-width="6"/></g>')
+
+def piggy(x, y, sc=1.0, cracked=True):
+    c = (f'<path d="M{-40} {-96} L{-8} {10} L{-56} {96}" fill="none" stroke="{K}" stroke-width="8"/>'
+         f'<rect x="-74" y="-66" width="104" height="38" fill="{Y}" stroke="{K}" stroke-width="7" transform="rotate(-20 -22 -47)"/>'
+         f'<rect x="-86" y="34" width="104" height="38" fill="{Y}" stroke="{K}" stroke-width="7" transform="rotate(22 -34 53)"/>') if cracked else ''
+    return (f'<g transform="translate({x},{y}) scale({sc})">'
+            f'<ellipse cx="0" cy="0" rx="210" ry="140" fill="{R}" stroke="{K}" stroke-width="10"/>'
+            f'<ellipse cx="196" cy="14" rx="62" ry="52" fill="{R}" stroke="{K}" stroke-width="10"/>'
+            f'<circle cx="214" cy="4" r="9" fill="{K}"/><circle cx="238" cy="18" r="9" fill="{K}"/>'
+            f'<path d="M60 -120 L104 -142 L116 -92 Z" fill="{R}" stroke="{K}" stroke-width="9" stroke-linejoin="round"/>'
+            f'<circle cx="92" cy="-36" r="11" fill="{K}"/>'
+            f'<rect x="-70" y="-132" width="140" height="22" rx="11" fill="{K}"/>'
+            ''.join(f'<rect x="{-150+i*96}" y="118" width="52" height="56" rx="10" fill="{R}" stroke="{K}" stroke-width="9"/>' for i in range(4))
+            + c + '</g>')
+
+def counter(x, y, w, h=34, legs=True):
+    s = box(x, y, w, h, N)
+    if legs:
+        s += (f'<line x1="{x+40}" y1="{y+h}" x2="{x+40}" y2="950" stroke="{K}" stroke-width="8"/>'
+              f'<line x1="{x+w-40}" y1="{y+h}" x2="{x+w-40}" y2="950" stroke="{K}" stroke-width="8"/>')
+    return s
