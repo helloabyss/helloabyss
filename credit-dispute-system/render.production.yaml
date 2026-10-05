@@ -1,6 +1,7 @@
 # PRODUCTION Render Blueprint (paid Starter plan with a permanent disk), for real customers.
 # To switch from the free demo: replace render.yaml at the repository root with this file.
 # In Render: Blueprints > your blueprint > it re-syncs from render.yaml.
+services:
   - type: web
     name: credit-dispute-letters
     runtime: docker
