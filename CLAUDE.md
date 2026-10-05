@@ -133,6 +133,7 @@ Channel-level documents:
 | `PROVENANCE.md` | **What is verified vs asserted.** Read this before trusting any claim in the repo. Unchecked claims must be labelled in the sentence that states them. |
 | `SERIES-ONE-NUMBER.md` | **Prepared series brief, awaiting a decision (T8).** Zero-credit stickman format aimed at the §2 cadence constraint. §6 states the case against it as well as for it. |
 | `CHARACTER-ZUL.md` | **Zul**, the host that series would use. Locked design, built by `engine/zul.py`, never drawn by hand. Transferred from the parked PARADOCS10X channel — a deliberate reuse, not continuity. |
+| `PROCREATE-PIPELINE.md` | **How hand-drawn iPad art gets in and how it animates.** Canvas sizes and pivots are a contract, not a convention. Proven end to end. |
 | `engine/` | Zero-credit deterministic still renderer (SVG → PNG via headless Chromium). Composed for 1920×1080; `engine/portrait/proof.png` shows it reframing to 9:16. |
 | `.claude/agents/` | scout · fact-checker · scriptwriter · **retention-editor** · art-director · packager |
 

@@ -21,3 +21,9 @@ final-thumb.jpg
 zulcheck/
 __pycache__/
 *.pyc
+
+# Rig working files
+rigchk_*.png
+rig.html
+rig-demo.webm
+probe/

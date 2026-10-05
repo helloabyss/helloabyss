@@ -17,7 +17,8 @@ Model sheets: `engine/zulsheet/` (beanie) · `engine/zulbare/` (bare-headed).
 | **Beanie** | Three-band knit cap — **red crown, yellow middle, green brim**, in that order top to bottom. Roughly 47 / 21 / 32 of its height. Sits ~12 above the head top |
 | **Hair** | Tight black spiral coils, 5 per side, each ~6.5 radius, on an arc just outside the head edge from under the brim down to cheek level |
 | **Glasses** | Rectangular frames, rounded corners, **light blue-grey tinted lenses** (`#b9c7d0`). Black dot eyes visible through them |
-| **Face** | Dot eyes, single-line mouth. Nothing else — no nose, no brows |
+| **Face** | Dot eyes, single-line mouth, **a straight low brow bar**, and a **short jaw-line beard**. No nose |
+| **Jaw** | Not a circle — straight temples, an angular turn and a flat wide chin |
 | **Shirt** | White polo: cap sleeves, V-shaped collar band, short placket, two buttons |
 | **Limbs** | Plain stick lines. Hands are **three short strokes**, never a filled shape |
 | **Legs** | Two lines with a small outward foot |
@@ -67,6 +68,7 @@ zul(300, 400, view='back')
 | `mood` | `neutral` · `worried` · `wry` · `talking` · `flat` |
 | `glasses` | `True` (default) · `False` |
 | `beanie` | `True` (default) · `False` — full head of curls instead |
+| `beard` | `True` (default) · `False` |
 | `legs` | `False` (default, bust) · `True` |
 
 ### Bare-headed variant — `beanie=False, glasses=False`
@@ -104,12 +106,31 @@ float him as a bust — don't copy that pattern into a new video.
   he does not go in the video. A one-off hand-drawn Zul is how a character
   stops being a character.
 - **Never recolour the beanie.** Red over yellow over green, always.
-- **Never add facial detail.** No nose, eyebrows, ears, or mouth shapes beyond
-  the five moods. The face carries meaning through the mouth alone.
+- **Never add facial detail** beyond what is listed: no nose, no ears, no mouth
+  shapes outside the five moods.
 - **Never draw a detailed hand.** Filled mittens, gloves and five-finger hands
   were all tried and all read as a blob at this line weight. Three strokes.
 - He is **faceless-channel compatible**: a drawn stick figure is not an
   identifiable person, and no real logos appear on him.
+
+### Making him read masculine — what actually worked
+
+Four changes, in order of how much each one did:
+
+1. **The beard.** A filled jaw-line shape. The strongest cue the style allows.
+   It must follow the jaw and stop at the cheek — an earlier version climbed to
+   eye level and ringed the face in black, closing it in.
+2. **The brow bar.** Two straight low strokes. Worth checking it is actually
+   visible: the first attempt was drawn correctly and completely hidden behind
+   the inner ring of crown curls.
+3. **The jaw.** Replacing the plain circle with straight temples and a flat
+   wide chin. Subtle alone, decisive combined with the brow.
+4. **Shoulders out to ±46 and a straighter torso.** The neck went with it —
+   but 11pt read as a pillar at thumbnail scale, so it is 9.
+
+**The beanie hides the brow bar**, because the brim sits lower than the brow.
+That is what a beanie pulled down does, and it is left alone rather than
+fought — but it means the cap version reads slightly softer than the bare one.
 
 ## Known limits
 

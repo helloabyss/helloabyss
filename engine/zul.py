@@ -24,6 +24,11 @@ G = '#2e9e3e'   # beanie green
 LENS = '#b9c7d0'  # glass tint
 
 HEAD_R = 46
+# Jawed head: temples at full width, a flatter and wider chin. Replaces the
+# plain circle, which read soft at every size.
+HEAD_PATH = ('M 0 -46 C 28 -46 46 -30 46 -4 L 46 10 '
+             'C 46 27 38 39 22 45 C 14 48 -14 48 -22 45 '
+             'C -38 39 -46 27 -46 10 L -46 -4 C -46 -30 -28 -46 0 -46 Z')
 LW     = 7      # main line weight
 LW_FINE = 5     # curls, collar, small detail
 
@@ -33,7 +38,7 @@ def _nid(p):
     return '%s%d' % (p, _uid[0])
 
 
-def _curl(cx, cy, r=9.5, turns=1.55, rot=0.0, pts=26):
+def _curl(cx, cy, r=9.5, turns=1.55, rot=0.0, pts=26, sw=LW_FINE):
     """One hair coil, as an Archimedean spiral. Tight at the centre, open at
     the rim — this is what reads as 'curl' rather than 'circle' at 1080p."""
     d = []
@@ -43,7 +48,7 @@ def _curl(cx, cy, r=9.5, turns=1.55, rot=0.0, pts=26):
         rad = r * (0.16 + 0.84 * t)
         d.append('%s%.1f %.1f' % ('M' if i == 0 else 'L', cx + rad * cos(ang), cy + rad * sin(ang)))
     return ('<path d="%s" fill="none" stroke="%s" stroke-width="%d" '
-            'stroke-linecap="round" stroke-linejoin="round"/>' % (' '.join(d), K, LW_FINE))
+            'stroke-linecap="round" stroke-linejoin="round"/>' % (' '.join(d), K, sw))
 
 
 # Curls sit on an arc just outside the head edge, from under the brim down to
@@ -68,14 +73,19 @@ def _curls(view, beanie=True):
                 out.append(_curl(cx, cy, _CURL_R, rot=0.9))
                 out.append(_curl(-cx, cy, _CURL_R, rot=pi - 0.9))
             return ''.join(out)
-        # Bare head from behind. A filled grid of coils packs tighter than the
-        # 5pt stroke and collapses into a solid black disc, which is off-style
-        # for flat line art; scattered interior coils read as a colander. So:
-        # a dense perimeter ring defines the hair and the crown stays white,
-        # exactly as the hairline works in the front view.
-        for i in range(17):
-            a = 2 * pi * i / 17.0
-            out.append(_curl(48 * cos(a), -48 * sin(a) + 2, 7.5, rot=a * 2.1))
+        # Bare head from behind: the whole skull is hair. 5pt coils packed
+        # tightly merge into a solid black disc, so these are drawn at 3pt,
+        # which lets them sit close enough to cover the crown and still read
+        # as separate coils. A perimeter ring alone leaves it looking bald.
+        for gy in range(-5, 6):
+            for gx in range(-5, 6):
+                cx = gx * 14.0 + (7.0 if gy % 2 else 0)
+                cy = gy * 12.6 - 2
+                if (cx / 48.0) ** 2 + ((cy + 2) / 47.0) ** 2 > 1.0:
+                    continue
+                j = (gx * 7 + gy * 13) % 5 - 2
+                out.append(_curl(cx + j * 0.8, cy + j * 0.6, 7.6,
+                                 rot=(gx * 1.3 + gy * 0.9), sw=3))
         return ''.join(out)
 
     if not beanie:
@@ -84,9 +94,9 @@ def _curls(view, beanie=True):
             a = (166 - 152 * i / 12.0) * pi / 180.0
             out.append(_curl(50 * cos(a), -50 * sin(a), 7.0, rot=a * 2.2))
         # Inner ring to fill the crown.
-        for i in range(8):
-            a = (150 - 120 * i / 7.0) * pi / 180.0
-            out.append(_curl(31 * cos(a), -31 * sin(a) - 6, 6.5, rot=a * 1.7 + 1.0))
+        for i in range(7):
+            a = (136 - 92 * i / 6.0) * pi / 180.0
+            out.append(_curl(30 * cos(a), -30 * sin(a) - 13, 6.5, rot=a * 1.7 + 1.0))
 
     for i, (cx, cy) in enumerate(_CURLS_SIDE):
         out.append(_curl(cx, cy, _CURL_R, rot=0.5 + 0.4 * i))
@@ -143,6 +153,10 @@ def _face(view, mood, glasses):
             g.append('<line x1="-4" y1="0" x2="4" y2="0"/>')
             g.append('<line x1="-40" y1="-6" x2="-46" y2="-8"/><line x1="40" y1="-6" x2="46" y2="-8"/>')
         g.append('</g>')
+    g.append('<path d="M %d -21 L %d -24" stroke="%s" stroke-width="7" stroke-linecap="round"/>'
+             % (-35 + dx, -11 + dx, K))
+    g.append('<path d="M %d -24 L %d -21" stroke="%s" stroke-width="7" stroke-linecap="round"/>'
+             % (11 + dx, 35 + dx, K))
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % (-22 + dx, K))
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % ((12 if view == 'three_quarter' else 22) + dx, K))
     m = _MOUTHS.get(mood, _MOUTHS['neutral'])
@@ -151,6 +165,16 @@ def _face(view, mood, glasses):
             m = m.replace(a, 'M %d' % (int(a.split()[1]) + dx))
     g.append('<path d="%s" fill="none" stroke="%s" stroke-width="%d" stroke-linecap="round"/>' % (m, K, LW))
     return ''.join(g)
+
+
+def _beard():
+    """Short beard following the jaw. Filled, because at this line weight a
+    hatched or stippled stubble reads as noise rather than hair — the same
+    reason the hands are three strokes and not a drawn palm."""
+    return ('<path d="M -44 13 C -43 28 -35 40 -21 45 C -13 48 13 48 21 45 '
+            'C 35 40 43 28 44 13 L 33 13 C 31 25 24 32 14 35 '
+            'C 5 37 -5 37 -14 35 C -24 32 -31 25 -33 13 Z" '
+            'fill="%s" stroke="%s" stroke-width="5" stroke-linejoin="round"/>' % (K, K))
 
 
 def _hand(x, y, flip=1):
@@ -167,22 +191,23 @@ def _hand(x, y, flip=1):
 
 
 _ARMS = {
-    'down':  ((-57, 152, -65, 230), (57, 152, 65, 230)),
-    'table': ((-57, 150, -116, 196), (57, 150, 116, 196)),
-    'up':    ((-56, 148, -102, 86),  (56, 148, 102, 86)),
-    'point': ((-57, 152, -65, 230),  (56, 148, 124, 124)),
-    'shrug': ((-57, 150, -98, 118),  (57, 150, 98, 118)),
+    'down':  ((-66, 156, -74, 234), (66, 156, 74, 234)),
+    'table': ((-65, 154, -122, 198), (65, 154, 122, 198)),
+    'up':    ((-64, 152, -108, 88),  (64, 152, 108, 88)),
+    'point': ((-66, 156, -74, 234),  (64, 152, 130, 126)),
+    'shrug': ((-65, 154, -104, 120), (65, 154, 104, 120)),
 }
 
 # Shoulders y=104, hem y=244 (torso 140 = 1.5 head-diameters), feet y=400.
-_SIL_FRONT = ('M -38 104 L -68 124 L -57 154 L -45 146 L -50 244 '
-              'L 50 244 L 45 146 L 57 154 L 68 124 L 38 104 Z')
-_SIL_34    = ('M -32 104 L -60 124 L -50 154 L -40 146 L -44 244 '
-              'L 46 244 L 42 146 L 52 154 L 62 124 L 34 104 Z')
+# Broader, straighter torso: shoulders out to 46, minimal flare to the hem.
+_SIL_FRONT = ('M -46 104 L -78 126 L -66 158 L -52 149 L -54 244 '
+              'L 54 244 L 52 149 L 66 158 L 78 126 L 46 104 Z')
+_SIL_34    = ('M -39 104 L -70 126 L -59 158 L -46 149 L -48 244 '
+              'L 50 244 L 48 149 L 61 158 L 72 126 L 41 104 Z')
 
 def _body(view, arms, legs):
     out = []
-    out.append('<line x1="0" y1="%d" x2="0" y2="110" stroke="%s" stroke-width="%d"/>' % (HEAD_R, K, LW))
+    out.append('<line x1="0" y1="40" x2="0" y2="110" stroke="%s" stroke-width="9"/>' % K)
     out.append('<path d="%s" fill="%s" stroke="%s" stroke-width="%d" stroke-linejoin="round"/>'
                % (_SIL_34 if view == 'three_quarter' else _SIL_FRONT, W, K, LW))
     if view == 'back':
@@ -212,18 +237,21 @@ def _body(view, arms, legs):
 
 
 def zul(x, y, sc=1.0, arms='down', view='front', mood='neutral',
-        glasses=True, legs=False, beanie=True):
+        glasses=True, legs=False, beanie=True, beard=True):
     """Zul, positioned by the centre of his head.
 
     arms    None | 'down' | 'table' | 'up' | 'point' | 'shrug'
     view    'front' | 'three_quarter' | 'back'
     mood    'neutral' | 'worried' | 'wry' | 'talking' | 'flat'
     beanie  True for the knit cap; False draws the full head of curls instead
+    beard   short jaw beard; the strongest masculine cue the style allows
     """
     return ('<g transform="translate(%s,%s) scale(%s)">'
-            '<circle cx="0" cy="0" r="%d" fill="%s" stroke="%s" stroke-width="%d"/>'
-            '%s%s%s%s</g>'
-            % (x, y, sc, HEAD_R, W, K, LW,
+            '<path d="%s" fill="%s" stroke="%s" stroke-width="%d" stroke-linejoin="round"/>'
+            '%s%s%s%s%s</g>'
+            % (x, y, sc, HEAD_PATH, W, K, LW,
                _body(view, arms, legs),
                _beanie() if beanie else '',
-               _curls(view, beanie), _face(view, mood, glasses)))
+               _curls(view, beanie),
+               _beard() if (beard and view != 'back') else '',
+               _face(view, mood, glasses)))
