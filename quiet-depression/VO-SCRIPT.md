@@ -189,3 +189,33 @@ If you want it to hold up, the natural places for evidence are the "wages flat, 
 climbing" line, the warehouse orders beat, and the food bank line. Those three claims are
 checkable, and one real figure in each would change the piece from atmosphere to argument.
 Say the word and I'll verify and work them in.
+
+---
+
+## Recorded voiceover — ElevenLabs
+
+| | |
+|---|---|
+| **Voice** | Aaron — `ESDuPqgyZIDDVZTlIrH7`, British RP, library voice built for documentary narration |
+| **Model** | `eleven_multilingual_v2` |
+| **Files** | `vo-part1.mp3` (scenes 1–30, 243.16s) · `vo-part2.mp3` (scenes 31–60, 241.39s) |
+| **Total** | **484.55s — 8m04.5s** |
+| **Cost** | 6,783 credits ≈ **$2.47**, one take (not the default 4, which would have been ~$10) |
+| **Flow** | https://elevenlabs.io/app/flows/sQbQNeWLD40kbZHo9Mqx |
+
+### Why it is two files
+`creative_generate_speech` caps a prompt at **5,000 characters**; the script is 6,784. The
+first attempt failed on that limit. The split is at the **scene 30/31 beat** — part 1 ends
+"...running on the fumes of old orders," part 2 opens "Zul tightens a bolt..." — so the seam
+falls on a cut rather than mid-sentence. Place them back to back; no crossfade needed.
+
+### Sync
+The VO came in at 484.55s against a video built at 480s. Rather than stretch the audio, the
+video was re-rendered with **per-scene durations weighted by each line's length** (6.0s to
+9.7s, totalling 484.55s exactly) so each image lasts as long as the sentence spoken over it.
+`out/timing.srt` was regenerated to match.
+
+### Not muxed here
+This container's ffmpeg has **no audio encoder or decoder at all** — video codecs only. The
+voiceover cannot be combined with the video in-session. Drop both into CapCut: video on V1,
+the two MP3s end to end on A1.

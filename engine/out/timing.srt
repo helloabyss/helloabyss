@@ -1,239 +1,239 @@
 1
-00:00:00,000 --> 00:00:08,000
+00:00:00,000 --> 00:00:09,152
 Nobody is calling it a depression. But look at your street. Half the shops are dark, and the lights still on are barely paying rent.
 
 2
-00:00:08,000 --> 00:00:16,000
+00:00:09,152 --> 00:00:17,331
 Then look at the receipts stuffed in a kitchen drawer. Every one is higher than last year, for the same groceries.
 
 3
-00:00:16,000 --> 00:00:24,000
+00:00:17,331 --> 00:00:25,997
 A woman stares at her banking app. The balance hasn't moved in days, but the little red notification keeps blinking anyway.
 
 4
-00:00:24,000 --> 00:00:32,000
+00:00:25,997 --> 00:00:34,176
 This is the quiet collapse nobody put on the news. Not a crash. A slow leak that drains everyone at the same time.
 
 5
-00:00:32,000 --> 00:00:40,000
+00:00:34,176 --> 00:00:41,545
 On the wall, a calendar. Dates circled in red where bills fall due. Three circles in a single week.
 
 6
-00:00:40,000 --> 00:00:48,000
+00:00:41,545 --> 00:00:50,373
 A man counts coins on his kitchen counter, sorting them into small stacks, as if each one still has somewhere important to go.
 
 7
-00:00:48,000 --> 00:00:56,000
+00:00:50,373 --> 00:00:59,957
 To understand why this feels different, you have to see the whole picture. Wages flat. Prices climbing. And nobody saying the word out loud.
 
 8
-00:00:56,000 --> 00:01:04,000
+00:00:59,957 --> 00:01:09,650
 So follow one household through it. Zul and their partner. Two incomes, one mortgage, and a budget spreadsheet that used to balance just fine.
 
 9
-00:01:04,000 --> 00:01:12,000
+00:01:09,650 --> 00:01:17,451
 Normal used to look like this. A grocery cart, half full, and a total that matched the number in your head.
 
 10
-00:01:12,000 --> 00:01:20,000
+00:01:17,451 --> 00:01:25,414
 Watch her face as she scrolls past the total this time. Something small has shifted, and she already knows it.
 
 11
-00:01:20,000 --> 00:01:28,000
+00:01:25,414 --> 00:01:34,296
 Widen out to the whole neighbourhood. Same houses. Same cars in the driveways. But the porch lights go out earlier every month.
 
 12
-00:01:28,000 --> 00:01:36,000
+00:01:34,296 --> 00:01:43,070
 On the corner, a small business owner. He hasn't taken a paycheck in two months, and he still unlocks the door every morning.
 
 13
-00:01:36,000 --> 00:01:44,000
+00:01:43,070 --> 00:01:49,088
 A year ago his till was full and orderly. Today he counts it coin by coin.
 
 14
-00:01:44,000 --> 00:01:52,000
+00:01:49,088 --> 00:01:57,538
 He glances at the stack of unopened envelopes by the register. He knows exactly what's inside. He just isn't ready yet.
 
 15
-00:01:52,000 --> 00:02:00,000
+00:01:57,538 --> 00:02:06,258
 Multiply that one shop by every main street in the country, and the picture stops looking small. It starts looking systemic.
 
 16
-00:02:00,000 --> 00:02:08,000
+00:02:06,258 --> 00:02:14,491
 Inside a warehouse loading dock, supply orders have quietly shrunk for six months straight. Pallet by empty pallet.
 
 17
-00:02:08,000 --> 00:02:16,000
+00:02:14,491 --> 00:02:22,238
 On the last box out the door, the shipping label carries an order number smaller than the one it replaced.
 
 18
-00:02:16,000 --> 00:02:24,000
+00:02:22,238 --> 00:02:29,553
 Downtown, the office tower still blazes. Bonuses still announced. As if none of this touches them.
 
 19
-00:02:24,000 --> 00:02:32,000
+00:02:29,553 --> 00:02:36,814
 And on a desk up there, one empty coffee cup. The only object left after everyone else went home.
 
 20
-00:02:32,000 --> 00:02:40,000
+00:02:36,814 --> 00:02:45,156
 Across town, a delivery driver checks his app for the next job. The queue that used to be full is mostly silence now.
 
 21
-00:02:40,000 --> 00:02:48,000
+00:02:45,156 --> 00:02:53,714
 That night, Zul sits at the kitchen table, spreading bills into careful piles, choosing which ones can wait another week.
 
 22
-00:02:48,000 --> 00:02:56,000
+00:02:53,714 --> 00:03:02,326
 Beside them, a single house key rests on a stack of moving boxes. It says more about this economy than any headline could.
 
 23
-00:02:56,000 --> 00:03:04,000
+00:03:02,326 --> 00:03:10,992
 Two streets over, an eviction notice is taped to a door, the ink still fresh, the deadline printed in bold, unmovable type.
 
 24
-00:03:04,000 --> 00:03:12,000
+00:03:10,992 --> 00:03:18,145
 By morning, the line at the food bank stretches around the building before the doors even open.
 
 25
-00:03:12,000 --> 00:03:20,000
+00:03:18,145 --> 00:03:26,703
 And for a moment, everything is still. Just hands, folded, waiting their turn, patient in a way that's almost unbearable.
 
 26
-00:03:20,000 --> 00:03:28,000
+00:03:26,703 --> 00:03:33,694
 In a rural town, the only bank branch for fifty miles posts a sign. It will close by autumn.
 
 27
-00:03:28,000 --> 00:03:36,000
+00:03:33,694 --> 00:03:40,901
 The farmer who banked there for thirty years now drives an extra hour to deposit a single check.
 
 28
-00:03:36,000 --> 00:03:44,000
+00:03:40,901 --> 00:03:48,594
 The same afternoon, a trader in the city watches numbers climb on a screen and calls this an opportunity.
 
 29
-00:03:44,000 --> 00:03:52,000
+00:03:48,594 --> 00:03:56,773
 Somewhere between them, a single seed sits in open soil. Patient. Waiting for conditions that haven't arrived yet.
 
 30
-00:03:52,000 --> 00:04:00,000
+00:03:56,773 --> 00:04:05,331
 On a factory floor, half the machines are covered in tarps. The other half still hum, running on the fumes of old orders.
 
 31
-00:04:00,000 --> 00:04:08,000
+00:04:05,331 --> 00:04:13,186
 Zul tightens a bolt on one of the working machines. Steady hands. Refusing to let this one stop running too.
 
 32
-00:04:08,000 --> 00:04:16,000
+00:04:13,186 --> 00:04:21,149
 At home, a cracked piggy bank sits on a shelf, taped back together, still holding the coins nobody will spend.
 
 33
-00:04:16,000 --> 00:04:24,000
+00:04:21,149 --> 00:04:29,599
 Ignore this pattern long enough and whole towns hollow out. Storefronts empty. Streetlights buzzing over nobody at all.
 
 34
-00:04:24,000 --> 00:04:32,000
+00:04:29,599 --> 00:04:36,481
 In a shared apartment, three strangers now split rent that one person used to cover alone.
 
 35
-00:04:32,000 --> 00:04:40,000
+00:04:36,481 --> 00:04:44,552
 One detail says all of it. Three toothbrushes in a single cup, lined up like strangers learning to share a life.
 
 36
-00:04:40,000 --> 00:04:48,000
+00:04:44,552 --> 00:04:52,029
 In a college town, graduates once queued for job fairs that now sit half empty in echoing gymnasiums.
 
 37
-00:04:48,000 --> 00:04:56,000
+00:04:52,029 --> 00:04:59,884
 One of them holds a diploma rolled tight, still tied with ribbon. Not yet framed. Maybe never framed at all.
 
 38
-00:04:56,000 --> 00:05:04,000
+00:04:59,884 --> 00:05:07,253
 An older worker, thirty years of experience, scrolls the same job board and finds the same silence.
 
 39
-00:05:04,000 --> 00:05:12,000
+00:05:07,253 --> 00:05:13,703
 Outside, an open park at midday. The only crowd left is pigeons and empty benches.
 
 40
-00:05:12,000 --> 00:05:20,000
+00:05:13,703 --> 00:05:20,856
 A freelancer works three gig apps at once, stacking small jobs just to equal one full paycheck.
 
 41
-00:05:20,000 --> 00:05:28,000
+00:05:20,856 --> 00:05:30,332
 Back at the house, Zul writes a single number on a sticky note and presses it to the fridge. A quiet promise to save that much this month.
 
 42
-00:05:28,000 --> 00:05:36,000
+00:05:30,332 --> 00:05:38,782
 All of these braid into one picture. An entire economy balanced on paper-thin margins, dressed up as business as usual.
 
 43
-00:05:36,000 --> 00:05:44,000
+00:05:38,782 --> 00:05:47,880
 Then it happens. One envelope stamped final notice, held in trembling hands. The moment the quiet depression stops being invisible.
 
 44
-00:05:44,000 --> 00:05:52,000
+00:05:47,880 --> 00:05:55,465
 It falls open on the table. Pages scattered. Numbers circled in red that no amount of hoping will undo.
 
 45
-00:05:52,000 --> 00:06:00,000
+00:05:55,465 --> 00:06:04,077
 A face finally breaks. Not loudly. Just a long exhale, the kind that comes after holding something in for too many months.
 
 46
-00:06:00,000 --> 00:06:08,000
+00:06:04,077 --> 00:06:11,770
 The room has changed too. Boxes half packed. Furniture tagged. A life folded down into something smaller.
 
 47
-00:06:08,000 --> 00:06:16,000
+00:06:11,770 --> 00:06:19,733
 Outside, the shop owner turns his key one last time, and the lock clicks shut on a door that won't open again.
 
 48
-00:06:16,000 --> 00:06:24,000
+00:06:19,733 --> 00:06:26,615
 The closed sign swings gently, the paint already peeling at its corners from years of use.
 
 49
-00:06:24,000 --> 00:06:32,000
+00:06:26,615 --> 00:06:34,578
 Neighbours gather on the sidewalk, not to shop, just to stand together, the way people do when something ends.
 
 50
-00:06:32,000 --> 00:06:40,000
+00:06:34,578 --> 00:06:42,379
 And there's the whole street now. One more storefront gone dark. The pattern complete, impossible to unsee.
 
 51
-00:06:40,000 --> 00:06:48,000
+00:06:42,379 --> 00:06:50,721
 But here, finally, a hand reaches for a pen instead of another bill, and starts writing a plan instead of an apology.
 
 52
-00:06:48,000 --> 00:06:56,000
+00:06:50,721 --> 00:06:57,495
 The first line reads simple and clear. Cut what we can. Save what we must. Ask for help.
 
 53
-00:06:56,000 --> 00:07:04,000
+00:06:57,495 --> 00:07:06,053
 Zul stands at the window, notebook in hand, watching the street below with something steadier than fear in their posture.
 
 54
-00:07:04,000 --> 00:07:12,000
+00:07:06,053 --> 00:07:14,827
 Slowly, a community garden fills an empty lot. Neighbours trade vegetables instead of cash, rebuilding value a different way.
 
 55
-00:07:12,000 --> 00:07:20,000
+00:07:14,827 --> 00:07:22,790
 A family sits down to a modest dinner. Simple food. But the tension at the table has finally eased into quiet.
 
 56
-00:07:20,000 --> 00:07:28,000
+00:07:22,790 --> 00:07:30,591
 That main street reopens one shop at a time, hand-painted signs replacing the glossy ones that came before.
 
 57
-00:07:28,000 --> 00:07:36,000
+00:07:30,591 --> 00:07:37,906
 The shop owner stands in his doorway again. Not rich. Steady. His ledger balanced in his own hand.
 
 58
-00:07:36,000 --> 00:07:44,000
+00:07:37,906 --> 00:07:46,302
 Across the country, small signs repeat. Fuller carts. Shorter lines. Porch lights staying on a little later each week.
 
 59
-00:07:44,000 --> 00:07:52,000
+00:07:46,302 --> 00:07:55,454
 None of this erases the hard years. But it proves something simple. People adapt, and quiet collapses can have quiet recoveries too.
 
 60
-00:07:52,000 --> 00:08:00,000
+00:07:55,454 --> 00:08:04,552
 The street settles into evening. Lights steady. People walking slow instead of hurried. The storm not gone, but finally survivable.
