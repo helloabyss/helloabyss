@@ -14,6 +14,11 @@ Include the disconfirming data. An explainer that admits where the thesis is wea
 more honest and better content than a promo. Every video carries an on-screen
 "Educational only. Not financial advice." card in the first 4 seconds.
 
+**Every video description carries the full disclaimer from `DISCLAIMER.md`, pasted verbatim.**
+The 4-second on-screen card and the written disclaimer are both required — neither replaces
+the other. `DISCLAIMER.md` also holds the extra lines to add for options, crypto and
+videos naming a real person.
+
 ## House style — apply to every short
 
 **Read `STYLE-GUIDE.md` and build the brief from its template.** It is the channel's

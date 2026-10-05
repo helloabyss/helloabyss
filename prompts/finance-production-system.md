@@ -679,6 +679,10 @@ Paragraph two: the sources behind the main claims, named.
 
 Paragraph three: any caveat the video carries — unverified figures, estimates, or contested data. Where the video covers derivatives, state plainly that options can lose their entire value and are not suitable for everyone. Where it covers crypto, state that the asset is volatile and total loss is possible. Where it discusses a named individual, confirm that every statement is drawn from the public record and link the primary source.
 
+Then the channel's full legal disclaimer, pasted verbatim from DISCLAIMER.md in the repository root. Never reword, shorten or regenerate it — copy it exactly.
+
+Where the video covers options, crypto, or a named individual, add the matching topic-specific line from that file immediately above the disclaimer.
+
 Final line, always, exactly:
 
 Educational only. Not financial advice.
