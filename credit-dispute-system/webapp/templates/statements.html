@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block body %}
+<h1>4. Your statements</h1>
+<p>For each item, say what's wrong <strong>in your own words</strong>, and attach the documents that prove it. Leave an item
+on "Nothing wrong" if it's accurate. The app's own checks (dates, balances, 7-year limits) run either way.</p>
+<p class="small muted">Only state what's true. Disputing accurate information is not allowed, and false disputes can backfire.</p>
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+{% for key, a in accounts.items() %}{% set cur = current.get(key, {}) %}
+<div class="card"><strong>{{ a.label }}</strong> <span class="small muted">({{ a.bureaus|join(', ') }})</span>
+<label>What's wrong?</label><select name="type__{{ key }}"><option value="">Nothing wrong / not sure</option>
+{% for t, d in ASSERTION_TYPES.items() %}{% if (a.kind == 'inquiry') == (t == 'not_my_inquiry') and t != 'personal_info_wrong' %}
+<option value="{{ t }}" {{ 'selected' if cur.type == t }}>{{ d }}</option>{% endif %}{% endfor %}</select>
+<label>Explain the facts (dates, amounts, how you know)</label><textarea name="statement__{{ key }}">{{ cur.statement }}</textarea>
+<label>Date sent, if you already disputed directly (YYYY-MM-DD)</label><input name="detail__{{ key }}" value="{{ (cur.details or {}).get('date_sent') or (cur.details or {}).get('note') or '' }}">
+{% if evidence %}<label>Supporting documents</label>{% for e in evidence %}
+<label style="font-weight:400"><input type="checkbox" name="evidence__{{ key }}" value="{{ e.id }}" {{ 'checked' if e.id in (cur.evidence_ids or []) }}> {{ e.description }}</label>{% endfor %}{% endif %}
+</div>{% else %}<p class="muted">Add accounts in step 3 first.</p>{% endfor %}
+<button>Save and review</button></form>
+{% endblock %}

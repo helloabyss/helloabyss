@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block body %}
+<h1>1. About you</h1><p class="muted">Bureaus use these details to find your file. We only store the last 4 digits of your SSN.</p>
+<form class="card" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<div class="grid"><div><label>Full legal name</label><input name="full_name" value="{{ c.full_name }}" required></div>
+<div><label>Other names you've used (comma separated)</label><input name="aliases" value="{{ (c.aliases or [])|join(', ') }}"></div>
+<div><label>Date of birth</label><input name="date_of_birth" type="date" value="{{ c.date_of_birth }}" required></div>
+<div><label>SSN, last 4 digits</label><input name="ssn_last4" inputmode="numeric" maxlength="4" value="{{ c.ssn_last4 }}" required></div></div>
+<h2>Current address</h2>{% set a = c.current_address or {} %}
+<div class="grid"><div><label>Street</label><input name="line1" value="{{ a.line1 }}" required></div>
+<div><label>Apt / unit</label><input name="line2" value="{{ a.line2 }}"></div>
+<div><label>City</label><input name="city" value="{{ a.city }}" required></div>
+<div><label>State (2 letters)</label><input name="state" maxlength="2" value="{{ a.state }}" required></div>
+<div><label>ZIP</label><input name="zip" value="{{ a.zip }}" required></div>
+<div><label>Phone (optional)</label><input name="phone" value="{{ c.phone }}"></div></div>
+<label>Addresses in the last 2 years, one per line: 12 Main St, City, ST 12345</label>
+<textarea name="prior">{% for p in c.prior_addresses or [] %}{{ p.line1 }}, {{ p.city }}, {{ p.state }} {{ p.zip }}
+{% endfor %}</textarea>
+<button>Save and continue</button></form>
+{% endblock %}

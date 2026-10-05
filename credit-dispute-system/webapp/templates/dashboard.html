@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block body %}
+<h1>My cases</h1>
+{% for c in cases %}<div class="card"><a href="{{ url_for('case_home', case_id=c.id) }}"><strong>{{ c.title }}</strong></a>
+<span class="muted small"> · {{ c.status }} · updated {{ c.updated_at[:10] }}</span></div>
+{% else %}<p class="muted">No cases yet.</p>{% endfor %}
+<form class="card" method="post" action="{{ url_for('case_new') }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<label>Name for a new case</label><input name="title" placeholder="My credit dispute"><button>Start a new case</button></form>
+<form method="post" action="{{ url_for('account_delete') }}" onsubmit="return confirm('Delete your account and all case data permanently?')">
+<input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="danger">Delete my account and data</button></form>
+{% endblock %}

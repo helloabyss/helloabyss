@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block body %}
+<h1>{{ row.title }}</h1>
+{% if p.error %}<div class="flash">Problem with your information: {{ p.error }}</div>{% endif %}
+<div class="card"><table>
+<tr><td>1. About you</td><td>{{ '✓ done' if p.about else 'to do' }}</td></tr>
+<tr><td>2. Documents</td><td>{% if p.about and not p.missing_id %}✓ ID and proof of address{% else %}needs ID and proof of address{% endif %}</td></tr>
+<tr><td>3. Reports</td><td>{{ '✓ accounts entered' if p.reports else 'to do' }}</td></tr>
+<tr><td>4. Your statements</td><td>{{ '✓ reviewed' if p.statements else 'to do' }}</td></tr>
+<tr><td>5. Review</td><td>{{ p.letters|length }} letter(s) planned{% if p.letters and not p.ready_to_agree %}, some need documents{% endif %}</td></tr>
+<tr><td>6. Agreement</td><td>{% if p.cancelled %}cancelled{% elif p.signed %}signed{% if not p.cancel_period_over %}; cancellation period ends {{ p.agreement.cancel_deadline[:10] }}{% endif %}{% else %}not signed{% endif %}</td></tr>
+<tr><td>7. Payment</td><td>{{ '✓ paid' if p.paid else 'not paid' }}</td></tr></table></div>
+{% if p.paid %}<a class="btn" href="{{ url_for('case_letters', case_id=row.id) }}">Download your letters (.zip)</a>
+<a class="btn secondary" href="{{ url_for('case_tracker', case_id=row.id) }}">Track your disputes</a>
+{% elif p.can_pay %}<form method="post" action="{{ url_for('case_checkout', case_id=row.id) }}"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<button>Pay ${{ '%.2f' % (p.agreement.price_cents/100) }} and download letters</button></form>
+{% elif p.signed %}<p>Your letters will be available to pay for and download after your cancellation period ends.</p>
+{% else %}<a class="btn" href="{{ url_for('case_about', case_id=row.id) }}">Continue</a>{% endif %}
+{% if p.signed and not p.cancel_period_over %}<form method="post" action="{{ url_for('case_cancel', case_id=row.id) }}" onsubmit="return confirm('Cancel your agreement?')">
+<input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="secondary">Cancel my agreement</button></form>{% endif %}
+<h2>Delete this case</h2><form method="post" action="{{ url_for('case_delete', case_id=row.id) }}" onsubmit="return confirm('Delete this case and all its documents?')">
+<input type="hidden" name="csrf" value="{{ csrf_token() }}"><button class="danger">Delete case and documents</button></form>
+{% endblock %}

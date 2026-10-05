@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block body %}
+<h1>Find errors in your credit reports and write accurate dispute letters</h1>
+<p>Enter what your Equifax, Experian and TransUnion reports show, upload your documents, and tell us what's wrong.
+The app checks each account against the Fair Credit Reporting Act and related laws, then prepares dispute letters
+for you to sign and mail yourself.</p>
+<div class="card"><h2 style="margin-top:0">What it does</h2><ul>
+<li>Flags accounts reported differently across bureaus, debts past the 7-year limit, re-aged collections, paid accounts still showing balances, and more.</li>
+<li>Builds identity-theft block requests when you have an FTC Identity Theft Report.</li>
+<li>Cites the specific law for every item and tracks the bureaus' legal deadlines.</li></ul>
+<h2>What it doesn't do</h2><ul>
+<li>It won't dispute information you tell us is accurate. Nobody can lawfully remove accurate, current information.</li>
+<li>It doesn't promise deletions or a higher score.</li>
+<li>It isn't a law firm and doesn't give legal advice.</li></ul>
+<p><strong>${{ '%.2f' % (price/100) }} one time</strong>, charged only when your letters are ready, after your 3-business-day cancellation period. No subscription.</p>
+<p>You can dispute errors yourself for free by writing to the bureaus. This app saves you the research and paperwork.</p>
+<a class="btn" href="{{ url_for('register') }}">Start</a> <a class="btn secondary" href="{{ url_for('legal_rights') }}">Read your rights</a></div>
+{% endblock %}

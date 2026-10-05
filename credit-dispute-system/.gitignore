@@ -2,3 +2,5 @@ cases/
 letters/
 *.private.json
 __pycache__/
+instance/
+.env

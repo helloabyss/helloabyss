@@ -1,0 +1,54 @@
+{% extends "base.html" %}{% block body %}
+<h1>3. Your credit reports</h1>
+<p>Get free reports from all three bureaus at <strong>AnnualCreditReport.com</strong>. Enter each account <em>exactly as the
+report shows it</em>. Skip accounts that are correct and positive unless something about them is wrong.
+<strong>Use the same nickname for the same account on each bureau</strong> so the app can compare them.</p>
+{% for b in BUREAUS %}{% set r = reports.get(b) %}
+<div class="card" id="{{ b }}"><h2 style="margin-top:0">{{ b|title }}</h2>
+{% if r and r.tradelines %}<table><tr><th>Account</th><th>Status</th><th>Balance</th><th>First delinquency</th><th></th></tr>
+{% for t in r.tradelines %}<tr><td>{{ t.furnisher }} #{{ t.account_number }}<br><span class="small muted">nickname: {{ t.account_key }}</span></td>
+<td>{{ t.status_text or ACCOUNT_STATUS.get(t.status_code, '') }}</td><td>{{ t.balance or '' }}</td><td>{{ t.date_of_first_delinquency or '' }}</td>
+<td><form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="delete">
+<input type="hidden" name="bureau" value="{{ b }}"><input type="hidden" name="index" value="{{ loop.index0 }}"><button class="secondary" style="margin:0;padding:2px 8px">remove</button></form></td></tr>{% endfor %}</table>{% endif %}
+{% if r and r.inquiries %}<p class="small"><strong>Inquiries:</strong> {% for q in r.inquiries %}{{ q.creditor }} ({{ q.date }}){{ ', ' if not loop.last }}{% endfor %}</p>{% endif %}
+<details><summary><strong>Add an account</strong></summary>
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="account"><input type="hidden" name="bureau" value="{{ b }}">
+<div class="grid">
+<div><label>Nickname (same on every bureau)</label><input name="nickname" list="keys" placeholder="e.g. capital-one-card"></div>
+<div><label>Company name</label><input name="furnisher" required></div>
+<div><label>Account number (as shown)</label><input name="account_number" required></div>
+<div><label>Account type</label><input name="account_type" placeholder="Credit card, auto loan, collection…"></div>
+<div><label>Status (as shown)</label><input name="status_text" placeholder="e.g. Charged off, Collection, Pays as agreed"></div>
+<div><label>Date opened</label><input name="date_opened" placeholder="YYYY-MM"></div>
+<div><label>Date of first delinquency</label><input name="date_of_first_delinquency" placeholder="YYYY-MM"></div>
+<div><label>Date of last payment</label><input name="date_last_payment" placeholder="YYYY-MM"></div>
+<div><label>Date reported / updated</label><input name="date_reported" placeholder="YYYY-MM"></div>
+<div><label>Date closed</label><input name="date_closed" placeholder="YYYY-MM"></div>
+<div><label>Balance</label><input name="balance" inputmode="decimal"></div>
+<div><label>Credit limit</label><input name="credit_limit" inputmode="decimal"></div>
+<div><label>High credit / original amount</label><input name="high_credit" inputmode="decimal"></div>
+<div><label>Amount past due</label><input name="past_due" inputmode="decimal"></div>
+<div><label>Original creditor (collections)</label><input name="original_creditor"></div>
+<div><label>Remarks / comments</label><input name="remarks"></div></div>
+<details><summary class="small">Advanced: payment history grid</summary><div class="grid">
+<div><label>Payment history codes, newest month first (e.g. 000123LL)</label><input name="payment_history"></div>
+<div><label>Month of the newest code</label><input name="payment_history_start" placeholder="YYYY-MM"></div>
+<div><label>Compliance condition (e.g. XB)</label><input name="compliance_condition"></div></div></details>
+<label><input type="checkbox" name="is_collection"> This is a collection account</label>
+<label><input type="checkbox" name="is_medical"> This is a medical debt</label>
+<button>Add account</button></form></details>
+<details><summary><strong>Add a hard inquiry</strong></summary>
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="inquiry"><input type="hidden" name="bureau" value="{{ b }}">
+<div class="grid"><div><label>Company</label><input name="creditor" required></div><div><label>Date</label><input type="date" name="date" required></div></div><button>Add inquiry</button></form></details>
+<details><summary><strong>Personal information section</strong></summary>
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="personal"><input type="hidden" name="bureau" value="{{ b }}">
+<label>Report date</label><input type="date" name="report_date" value="{{ r.report_date if r else '' }}">
+<label>Names listed (one per line)</label><textarea name="names">{{ (r.names if r else [])|join('\n') }}</textarea>
+<label>Addresses listed (one per line: 12 Main St, City, ST 12345)</label><textarea name="addresses">{% for a in (r.addresses if r else []) %}{{ a.line1 }}, {{ a.city }}, {{ a.state }} {{ a.zip }}
+{% endfor %}</textarea>
+<label>SSNs listed (as shown, e.g. XXX-XX-1234; one per line)</label><textarea name="ssns">{{ (r.ssn_variations if r else [])|join('\n') }}</textarea>
+<label>Dates of birth listed (YYYY-MM-DD, one per line)</label><textarea name="dobs">{{ (r.dates_of_birth if r else [])|join('\n') }}</textarea>
+<button>Save</button></form></details></div>{% endfor %}
+<datalist id="keys">{% for k in keys %}<option value="{{ k }}">{% endfor %}</datalist>
+<a class="btn" href="{{ url_for('case_statements', case_id=row.id) }}">Next: your statements →</a>
+{% endblock %}

@@ -9,7 +9,44 @@ and other evidence first, and it refuses to write any dispute that has no factua
 
 Pure Python 3.10+ standard library. Optional: `pypdf` or `pdftotext` for reading PDFs.
 
-## Quick start
+## Hosted web app (for customers)
+
+`webapp/` is a self-service website: customers create an account, enter their details, upload ID,
+proof of address and supporting documents, enter what their reports show, explain what's wrong,
+review the audit, sign the CROA rights statement and contract, and, after the 3-business-day
+cancellation period, pay once and download their letters as PDFs. A tracker records mailing dates
+and results, counts the legal deadlines, and adds follow-up letters to the download.
+
+```bash
+pip install -r requirements.txt
+DEV_PAYMENTS=1 flask --app webapp.app run      # local test; payments are simulated
+```
+
+Production: copy `.env.example`, fill in real keys, and run the Docker image (`docker build -t cfads .`)
+behind HTTPS on any host (Render, Fly.io, Railway, a VPS). Mount `/data` on a persistent, backed-up disk.
+
+**How the app follows the Credit Repair Organizations Act**
+
+| Requirement | Where |
+|---|---|
+| § 1679c(a) rights statement, verbatim, before any contract | `webapp/croa.py` `DISCLOSURE`; step 6 |
+| § 1679c(b) given as a separate document | its own page and PDF, signed before the contract appears |
+| § 1679c(c) signed copy kept 2 years | `acknowledgments` table; survives case deletion; purged after 2 years |
+| § 1679d contract terms, price, services, cancellation statement | `croa.contract_text` |
+| § 1679e 3-business-day cancellation and notice form | `croa.cancellation_notice`; Cancel button |
+| § 1679b(b) no payment before services fully performed | payment opens only when letters are ready and the cancellation period has ended |
+| § 1679b(a) no false claims | no result promises anywhere; accurate items are never disputed |
+
+**Before taking real customers:** have a consumer-finance lawyer confirm the items in
+`croa.VERIFY_BEFORE_LAUNCH`, register in any state that requires credit services organizations to
+register or post a bond, and publish a privacy policy and terms of service.
+
+**Security:** case data and documents are encrypted at rest (Fernet, `DATA_KEY`); passwords are hashed;
+every form has a CSRF token; users can only reach their own cases; users can delete cases or their
+whole account. Still to do before launch: login rate limiting, email verification, password reset,
+and off-site encrypted backups.
+
+## Command-line quick start
 
 ```bash
 python3 -m cfads audit examples/sample_case.json        # findings, planned letters, deadlines
@@ -132,5 +169,6 @@ cfads/letters.py   letter planning (guardrails) and rendering
 cfads/pipeline.py  deadlines (business days, federal holidays) and escalation loop
 cfads/states.py    state-law modules
 cfads/ingest.py    JSON loading and draft PDF parsing
-cfads/web.py       local web app
+cfads/web.py       minimal local web app (no accounts)
+webapp/            hosted customer app (Flask): accounts, intake, CROA flow, Stripe, PDFs, tracker
 ```

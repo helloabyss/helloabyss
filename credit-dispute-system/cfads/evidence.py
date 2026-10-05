@@ -65,6 +65,8 @@ def check_identity_document(ev, consumer, today):
         if ev.issued_date and today - parse_date(ev.issued_date) > timedelta(days=ADDRESS_PROOF_MAX_AGE_DAYS):
             problems.append(f"{ev.id}: proof of address dated {ev.issued_date} is more than "
                             f"{ADDRESS_PROOF_MAX_AGE_DAYS} days old; use a recent bill or statement")
+        if ev.issued_date and parse_date(ev.issued_date) > today:
+            problems.append(f"{ev.id}: proof of address is dated in the future ({ev.issued_date}); check the date")
         if not ev.issued_date:
             problems.append(f"{ev.id}: proof of address has no issue date; bureaus expect a recent document")
         if ev.address_on_document:

@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block body %}
+<h1>5. Review</h1>
+{% if p.error %}<div class="flash">{{ p.error }}</div>{% endif %}
+{% for m in p.missing_id %}<div class="flash">Missing: {{ EVIDENCE_TYPES[m] }}. Add it in step 2.</div>{% endfor %}
+{% for m in p.doc_problems or [] %}<div class="flash">{{ m }}</div>{% endfor %}
+<h2>What we found ({{ (p.findings or [])|length }})</h2>
+{% for f in p.findings or [] %}<div class="card"><span class="tag {{ f.severity }}">{{ f.severity|upper }}</span>
+<strong>{{ f.title }}</strong><br><span class="small muted">{{ f.account_label or f.furnisher }} · {{ f.bureaus|join(', ') }}</span>
+<ul class="small">{% for x in f.facts %}<li>{{ x }}</li>{% endfor %}</ul>
+<p class="small"><strong>Law:</strong> {% for k in f.laws %}{{ LAWS[k].cite }}{{ '; ' if not loop.last }}{% endfor %}<br><strong>Asking for:</strong> {{ f.remedy }}</p>
+{% if not f.disputable %}<p class="small bad">Not included: {{ f.blocked_reason }}</p>{% endif %}</div>
+{% else %}<p class="muted">No issues found yet.</p>{% endfor %}
+{% if p.blocked %}<h2>Not included in letters</h2><ul class="small">{% for f, why in p.blocked %}<li><strong>{{ f.title }}</strong>: {{ why }}</li>{% endfor %}</ul>{% endif %}
+<h2>Letters ({{ p.letters|length }})</h2><ul>{% for L in p.letters %}
+<li>{{ L.letter_type.replace('_', ' ')|capitalize }} → {{ L.target|title }} {% if L.ready %}<span class="ok small">ready</span>{% else %}<span class="bad small">needs {{ L.missing_documents|join(', ') }}</span>{% endif %}</li>{% endfor %}</ul>
+{% if state %}<details class="card"><summary>Your state's law</summary><pre>{{ state }}</pre></details>{% endif %}
+{% if p.ready_to_agree %}<a class="btn" href="{{ url_for('case_disclosure', case_id=row.id) }}">Continue to agreement →</a>
+{% else %}<p class="muted">Fix the items above to continue.</p>{% endif %}
+{% endblock %}

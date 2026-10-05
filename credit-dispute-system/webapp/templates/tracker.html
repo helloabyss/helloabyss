@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block body %}
+<h1>7. Track your disputes</h1>
+<p>Record each letter when you mail it and when it's delivered (from the certified-mail green card). The app counts the
+legal deadlines and tells you what to send next. Follow-up letters appear in your download automatically.</p>
+{% if actions %}<div class="card"><h2 style="margin-top:0">What to do next</h2><ul>{% for lbl, msg in actions %}<li><strong>{{ lbl }}</strong>: {{ msg }}</li>{% endfor %}</ul></div>{% endif %}
+{% for d in disputes %}<div class="card"><strong>{{ d.id }}</strong> {{ d.letter_type.replace('_',' ') }} → {{ d.target|title }} · sent {{ d.sent_date }}{% if d.received_date %} · delivered {{ d.received_date }}{% endif %}
+{% for r in d.results or [] %}<br><span class="small">{{ r.account_key }}: <strong>{{ r.outcome }}</strong></span>{% endfor %}
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="did" value="{{ d.id }}">
+<div class="grid"><div><label>Delivered on</label><input type="date" name="received_date"></div>
+<div><label>Result for account</label><select name="account_key"><option value=""></option>{% for k in keys %}<option>{{ k }}</option>{% endfor %}</select></div>
+<div><label>Outcome</label><select name="outcome"><option value=""></option><option>deleted</option><option>modified</option><option>verified</option><option>frivolous</option></select></div>
+<div><label>Result letter date</label><input type="date" name="result_date"></div></div><button class="secondary">Update</button></form></div>{% endfor %}
+<form class="card" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}"><input type="hidden" name="kind" value="new">
+<h2 style="margin-top:0">Record a letter you mailed</h2><div class="grid">
+<div><label>Letter type</label><select name="letter_type">{% for t in LETTER_TYPES_TRACKED %}<option value="{{ t }}">{{ t.replace('_',' ') }}</option>{% endfor %}</select></div>
+<div><label>Sent to</label><input name="target" placeholder="equifax, experian, transunion or company name"></div>
+<div><label>Mailed on</label><input type="date" name="sent_date" required></div>
+<div><label>Delivered on (if known)</label><input type="date" name="received_date"></div></div><button>Add</button></form>
+{% if paid %}<a class="btn" href="{{ url_for('case_letters', case_id=row.id) }}">Download letters including follow-ups</a>{% endif %}
+{% endblock %}

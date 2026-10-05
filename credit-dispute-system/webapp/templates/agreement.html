@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block body %}
+<h1>6. Agreement</h1>
+<pre>{{ contract }}</pre>
+{% if signed %}<p class="ok">Signed {{ p.agreement.signed_at }}.</p>
+<a class="btn secondary" href="{{ url_for('case_agreement_pdf', case_id=row.id) }}">Download agreement and cancellation notice (PDF)</a>
+<a class="btn" href="{{ url_for('case_home', case_id=row.id) }}">Back to overview</a>
+{% else %}<h2>Notice of cancellation (2 copies are included in your PDF)</h2><pre>{{ notice }}</pre>
+<form class="card" method="post"><input type="hidden" name="csrf" value="{{ csrf_token() }}">
+<label style="font-weight:400"><input type="checkbox" name="agree" value="1"> I agree to this contract. I understand I am not charged until my letters are ready and my cancellation period has ended.</label>
+<label>Type your full name to sign</label><input name="signature" required><button>Sign agreement</button></form>{% endif %}
+{% endblock %}
