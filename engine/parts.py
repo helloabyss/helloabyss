@@ -9,7 +9,7 @@ artwork in Procreate at the same pixel dimensions and the rig keeps working.
     python3 parts.py && node shoot_alpha.js parts
 """
 import io, os, json
-from zul import (HEAD_PATH, _beanie, _curls, _beard, _face, _body, _hand,
+from zul import (HEAD_CIRCLE, _beanie, _curls, _beard, _face, _body, _hand,
                  K, W, LW, LW_FINE)
 
 # name -> (canvas w, h, pivot x, y, local-origin x, y)
@@ -28,13 +28,13 @@ def _wrap(name, inner):
             'xmlns="http://www.w3.org/2000/svg">'
             f'<g transform="translate({ox},{oy})">{inner}</g></svg>')
 
-def head_svg(beanie=False, glasses=False, beard=True, mood='neutral'):
-    return (f'<path d="{HEAD_PATH}" fill="{W}" stroke="{K}" stroke-width="{LW}" '
+def head_svg(beanie=True, glasses=True, beard=False, mood='neutral'):
+    return (f'<path d="{HEAD_CIRCLE}" fill="{W}" stroke="{K}" stroke-width="{LW}" '
             'stroke-linejoin="round"/>'
             + (_beanie() if beanie else '')
             + _curls('front', beanie)
             + (_beard() if beard else '')
-            + _face('front', mood, glasses))
+            + _face('front', mood, glasses, False))
 
 def torso_svg():
     # Body without arms or legs — those are their own parts.

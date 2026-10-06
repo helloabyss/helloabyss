@@ -24,11 +24,14 @@ G = '#2e9e3e'   # beanie green
 LENS = '#b9c7d0'  # glass tint
 
 HEAD_R = 46
-# Jawed head: temples at full width, a flatter and wider chin. Replaces the
-# plain circle, which read soft at every size.
-HEAD_PATH = ('M 0 -46 C 28 -46 46 -30 46 -4 L 46 10 '
-             'C 46 27 38 39 22 45 C 14 48 -14 48 -22 45 '
-             'C -38 39 -46 27 -46 10 L -46 -4 C -46 -30 -28 -46 0 -46 Z')
+# The canonical artwork (art/zul-sheet.jpg) has a plain round head, so that is
+# the default. The jawed variant below is opt-in via jaw=True; it reads more
+# masculine but does NOT match the originals, and mixing the two in one video
+# is what a character bible exists to prevent.
+HEAD_CIRCLE = 'M -46 0 A 46 46 0 1 0 46 0 A 46 46 0 1 0 -46 0 Z'
+HEAD_JAWED  = ('M 0 -46 C 28 -46 46 -30 46 -4 L 46 10 '
+               'C 46 27 38 39 22 45 C 14 48 -14 48 -22 45 '
+               'C -38 39 -46 27 -46 10 L -46 -4 C -46 -30 -28 -46 0 -46 Z')
 LW     = 7      # main line weight
 LW_FINE = 5     # curls, collar, small detail
 
@@ -136,7 +139,7 @@ _MOUTHS = {
     'flat':    'M -12 23 L 12 23',
 }
 
-def _face(view, mood, glasses):
+def _face(view, mood, glasses, brows=False):
     if view == 'back':
         return ''
     dx = 9 if view == 'three_quarter' else 0      # features shift toward camera
@@ -154,10 +157,11 @@ def _face(view, mood, glasses):
             g.append('<line x1="-4" y1="0" x2="4" y2="0"/>')
             g.append('<line x1="-40" y1="-6" x2="-46" y2="-8"/><line x1="40" y1="-6" x2="46" y2="-8"/>')
         g.append('</g>')
-    g.append('<path d="M %d -21 L %d -24" stroke="%s" stroke-width="7" stroke-linecap="round"/>'
-             % (-35 + dx, -11 + dx, K))
-    g.append('<path d="M %d -24 L %d -21" stroke="%s" stroke-width="7" stroke-linecap="round"/>'
-             % (11 + dx, 35 + dx, K))
+    if brows:
+        g.append('<path d="M %d -21 L %d -24" stroke="%s" stroke-width="7" stroke-linecap="round"/>'
+                 % (-35 + dx, -11 + dx, K))
+        g.append('<path d="M %d -24 L %d -21" stroke="%s" stroke-width="7" stroke-linecap="round"/>'
+                 % (11 + dx, 35 + dx, K))
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % (-22 + dx, K))
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % ((12 if view == 'three_quarter' else 22) + dx, K))
     m = _MOUTHS.get(mood, _MOUTHS['neutral'])
@@ -192,25 +196,29 @@ def _hand(x, y, flip=1):
 
 
 _ARMS = {
-    'down':  ((-66, 156, -74, 234), (66, 156, 74, 234)),
-    'table': ((-65, 154, -122, 198), (65, 154, 122, 198)),
-    'up':    ((-64, 152, -108, 88),  (64, 152, 108, 88)),
-    'point': ((-66, 156, -74, 234),  (64, 152, 130, 126)),
-    'shrug': ((-65, 154, -104, 120), (65, 154, 104, 120)),
+    'down':  ((-57, 152, -65, 230), (57, 152, 65, 230)),
+    'table': ((-57, 150, -116, 196), (57, 150, 116, 196)),
+    'up':    ((-56, 148, -102, 86),  (56, 148, 102, 86)),
+    'point': ((-57, 152, -65, 230),  (56, 148, 124, 124)),
+    'shrug': ((-57, 150, -98, 118),  (57, 150, 98, 118)),
 }
 
 # Shoulders y=104, hem y=244 (torso 140 = 1.5 head-diameters), feet y=400.
-# Broader, straighter torso: shoulders out to 46, minimal flare to the hem.
-_SIL_FRONT = ('M -46 104 L -78 126 L -66 158 L -52 149 L -54 244 '
-              'L 54 244 L 52 149 L 66 158 L 78 126 L 46 104 Z')
-_SIL_34    = ('M -39 104 L -70 126 L -59 158 L -46 149 L -48 244 '
-              'L 50 244 L 48 149 L 61 158 L 72 126 L 41 104 Z')
+# Canonical build, matching art/zul-sheet.jpg.
+_SIL_FRONT = ('M -38 104 L -68 124 L -57 154 L -45 146 L -50 244 '
+              'L 50 244 L 45 146 L 57 154 L 68 124 L 38 104 Z')
+_SIL_34    = ('M -32 104 L -60 124 L -50 154 L -40 146 L -44 244 '
+              'L 46 244 L 42 146 L 52 154 L 62 124 L 34 104 Z')
+# Broader build, pairs with jaw=True. Not the originals.
+_SIL_FRONT_BROAD = ('M -46 104 L -78 126 L -66 158 L -52 149 L -54 244 '
+                    'L 54 244 L 52 149 L 66 158 L 78 126 L 46 104 Z')
 
-def _body(view, arms, legs):
+def _body(view, arms, legs, broad=False):
     out = []
-    out.append('<line x1="0" y1="40" x2="0" y2="110" stroke="%s" stroke-width="9"/>' % K)
+    out.append('<line x1="0" y1="40" x2="0" y2="110" stroke="%s" stroke-width="7"/>' % K)
     out.append('<path d="%s" fill="%s" stroke="%s" stroke-width="%d" stroke-linejoin="round"/>'
-               % (_SIL_34 if view == 'three_quarter' else _SIL_FRONT, W, K, LW))
+               % (_SIL_34 if view == 'three_quarter'
+                  else (_SIL_FRONT_BROAD if broad else _SIL_FRONT), W, K, LW))
     if view == 'back':
         out.append('<path d="M -20 105 Q 0 117 20 105" fill="none" stroke="%s" stroke-width="%d"/>' % (K, LW_FINE))
     else:
@@ -238,21 +246,24 @@ def _body(view, arms, legs):
 
 
 def zul(x, y, sc=1.0, arms='down', view='front', mood='neutral',
-        glasses=True, legs=False, beanie=True, beard=True):
+        glasses=True, legs=False, beanie=True,
+        beard=False, brows=False, jaw=False):
     """Zul, positioned by the centre of his head.
 
     arms    None | 'down' | 'table' | 'up' | 'point' | 'shrug'
     view    'front' | 'three_quarter' | 'back'
     mood    'neutral' | 'worried' | 'wry' | 'talking' | 'flat'
     beanie  True for the knit cap; False draws the full head of curls instead
-    beard   short jaw beard; the strongest masculine cue the style allows
+    beard   short jaw beard  } all three default OFF because the canonical
+    brows   straight brow bar  } artwork in art/ has none of them. Turning them
+    jaw     squarer head       } on reads more masculine but leaves the originals
     """
     return ('<g transform="translate(%s,%s) scale(%s)">'
             '<path d="%s" fill="%s" stroke="%s" stroke-width="%d" stroke-linejoin="round"/>'
             '%s%s%s%s%s</g>'
-            % (x, y, sc, HEAD_PATH, W, K, LW,
-               _body(view, arms, legs),
+            % (x, y, sc, HEAD_JAWED if jaw else HEAD_CIRCLE, W, K, LW,
+               _body(view, arms, legs, broad=jaw),
                _beanie() if beanie else '',
                _curls(view, beanie),
                _beard() if (beard and view != 'back') else '',
-               _face(view, mood, glasses)))
+               _face(view, mood, glasses, brows)))

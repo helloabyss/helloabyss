@@ -58,7 +58,10 @@ def card(x,y,s,w=760,h=84,size=32):
     return box(x,y,w,h) + t(x+w//2, y+h//2+11, s, size)
 
 def page(body,w=1920,h=1080):
-    return ('<style>*{margin:0;padding:0}html,body{background:#fff}svg{display:block}</style>'
+    # Without the charset meta the browser falls back to latin-1 and any
+    # non-ASCII character in a label renders as mojibake.
+    return ('<meta charset="utf-8">'
+            '<style>*{margin:0;padding:0}html,body{background:#fff}svg{display:block}</style>'
             f'<svg width="{w}" height="{h}" viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg">'
             f'<rect width="{w}" height="{h}" fill="{W}"/>{body}</svg>')
 

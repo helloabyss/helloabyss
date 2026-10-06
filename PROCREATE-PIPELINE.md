@@ -6,6 +6,17 @@ by this pipeline.
 
 ---
 
+## Before anything: the originals are canonical
+
+`engine/art/zul-sheet.jpg` and `engine/art/zul-face.jpg` are the character.
+Anything drawn in Procreate must **match them**, not reinterpret them. Trace
+over the supplied figure rather than redrawing from memory — see
+`CHARACTER-ZUL.md`.
+
+For a still, you do not need Procreate at all: place the original directly with
+`art.zul_art()`. Procreate earns its place when a part has to **move**, or when
+a pose is needed that the three supplied views do not cover.
+
 ## The short answer
 
 Procreate exports transparent PNGs. The engine composites PNGs and animates
@@ -48,8 +59,9 @@ is what produced a floating head on the first attempt.
 - **New canvas at the size above.** Not "a bit bigger and crop later" — the
   crop is the registration.
 - Delete the background layer, or hide it, so the export has real alpha.
-- Draw the existing part PNG in as a reference layer at 100% opacity, trace
-  over it, then delete that layer. That guarantees the pivot still works.
+- Import the canonical art AND the existing part PNG as reference layers,
+  trace over them, then delete both. The part PNG guarantees the pivot still
+  works; the canonical art guarantees he still looks like himself.
 - **Share → PNG.** Not JPEG (no alpha), not Share Layers.
 - Drop the file into `engine/parts/`, overwriting. Nothing else changes.
 

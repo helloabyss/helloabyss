@@ -1,0 +1,17 @@
+{
+  "_note": "CANONICAL Zul artwork, supplied by Sheldon. These files are the character. Crop boxes are measured from the source pixels by art_bounds.js, not estimated. Do not redraw, recolour or regenerate these.",
+  "zul-sheet.jpg": {
+    "w": 1376, "h": 768,
+    "figures": {
+      "front":         { "x": 142,  "y": 60, "w": 197, "h": 638 },
+      "three_quarter": { "x": 594,  "y": 59, "w": 179, "h": 638 },
+      "back":          { "x": 1032, "y": 59, "w": 197, "h": 636 }
+    }
+  },
+  "zul-face.jpg": {
+    "w": 1376, "h": 768,
+    "figures": {
+      "face": { "x": 506, "y": 104, "w": 365, "h": 577 }
+    }
+  }
+}

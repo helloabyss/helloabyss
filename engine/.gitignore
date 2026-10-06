@@ -30,3 +30,5 @@ probe/
 
 # Thumbnail working dirs
 thumbsd/*.html
+
+artcheck/*.html
