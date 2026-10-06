@@ -27,3 +27,6 @@ rigchk_*.png
 rig.html
 rig-demo.webm
 probe/
+
+# Thumbnail working dirs
+thumbsd/*.html

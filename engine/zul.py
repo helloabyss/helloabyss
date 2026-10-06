@@ -98,7 +98,8 @@ def _curls(view, beanie=True):
             a = (136 - 92 * i / 6.0) * pi / 180.0
             out.append(_curl(30 * cos(a), -30 * sin(a) - 13, 6.5, rot=a * 1.7 + 1.0))
 
-    for i, (cx, cy) in enumerate(_CURLS_SIDE):
+    side = _CURLS_SIDE[1:] if beanie else _CURLS_SIDE   # top coil buries the brim
+    for i, (cx, cy) in enumerate(side):
         out.append(_curl(cx, cy, _CURL_R, rot=0.5 + 0.4 * i))
         out.append(_curl(-cx, cy, _CURL_R, rot=pi - 0.5 - 0.4 * i))   # mirrored
     if view == 'three_quarter':
