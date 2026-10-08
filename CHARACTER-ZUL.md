@@ -62,8 +62,20 @@ separating them punches holes in the supplied drawing. The pose library makes
 both obsolete. If a pose is needed that is not in the 30, it gets **drawn** —
 that is what `PROCREATE-PIPELINE.md` is for.
 
+### The ground is white
+
+Zul is black line on white paper. **Never put him on a dark background.** The
+line art inverts, the white polo glows, and the figure reads as a hole in the
+frame. `STYLE-GUIDE.md`'s "imagery graded dark and desaturated" is a rule for
+the PHOTOGRAPHIC base layer of the HeyGen format and does not transfer to line
+art. This was got wrong once; the fix is in `engine/pose_anim.py`.
+
+Photography can still appear — as a framed insert on the white page, or
+full-bleed while he is off screen. Not as a bed behind him.
+
 ### Do not
 
+- Put him on a dark ground.
 - Redraw, recolour, restyle or "improve" the sheets.
 - Let anything generated drift from them. If the two disagree, the art wins.
 - Mix the glasses and no-glasses sets inside one video.

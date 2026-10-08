@@ -183,10 +183,20 @@ python3 -c "import io,re;s=io.open('SCRIPT.md',encoding='utf-8').read();b=s[s.in
 
 ## Shot list
 
-**Three-layer stack**, per `STYLE-GUIDE.md`: photographic b-roll is the BASE
-layer, Zul and motion graphics sit over it, type and captions on top. Zul is
-placed with `art.zul_art()` for held frames and the cut-out rig when he moves
-(`CHARACTER-ZUL.md`).
+**The ground is WHITE.** Zul is black line on white paper. He does **not** sit
+on a dark photographic bed — on one the line art inverts, the white polo glows
+and the figure reads as a hole. `STYLE-GUIDE.md`'s "graded dark and
+desaturated" governs the photographic base layer of the HeyGen format; it does
+not apply to line art, and an earlier version of this shot list got that
+wrong.
+
+So the stack is inverted from the HeyGen house style:
+
+- **BASE: white page.** Zul lives here, placed with `art.zul_pose()`.
+- **b-roll arrives as framed inserts** on that page — a dark, desaturated
+  photograph in a white frame, cut to full-bleed only when Zul is off screen.
+  The plates already generated still work; they are inserts now, not a bed.
+- **Type on top**, near-black, with the red rule as the only accent.
 
 **Ticker rule: `SPCX`, `BE` and `MU` are always set BOLD, always uppercase,
 always in the accent red** `#d81e28` on first appearance in a section and
@@ -195,7 +205,7 @@ near-black thereafter. They are the only words in the video allowed the accent.
 **Caption rule** (finding #13): every row label below is a verbatim substring
 of the VO. Re-check after any VO edit — captions burn in word by word.
 
-| # | ~t | VO anchor (verbatim) | Base layer — b-roll | Over it |
+| # | ~t | VO anchor (verbatim) | Insert / cutaway | On the white page |
 |---|---|---|---|---|
 | 1 | 0:00 | "SpaceX burned fourteen billion dollars of cash last year" | satellite integration clean room, cold, wide, very dark grade | **−$14,000,000,000** counting up; compliance strip bottom edge 0:00–0:04 |
 | 2 | 0:07 | "The market says it is worth two trillion." | hard cut: exchange floor, long lens, out of focus | **$2,100,000,000,000** replacing it |

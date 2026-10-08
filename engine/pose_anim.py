@@ -7,13 +7,20 @@ this does NOT bend limbs — the poses are drawn, so the animation cuts between
 them and adds only a float and a settle. Limited animation, done the way it is
 actually done.
 
+GROUND IS WHITE. Zul is black line on white paper and that is not negotiable:
+on a dark plate the line art inverts, the white polo glows, and the figure
+reads as a hole. STYLE-GUIDE.md's "graded dark and desaturated" governs the
+PHOTOGRAPHIC base layer of the HeyGen format — it does not apply to line art,
+and applying it here was a straight error.
+
     python3 pose_anim.py && node render_pose.js
 """
 import base64, io, json, os
 
 M = json.load(open('art/poses/manifest.json'))
 W, H = 1920, 1080
-R, K = '#d81e28', '#000'
+R, K = '#d81e28', '#111314'
+PAPER = '#ffffff'
 
 # (set, pose) per beat. Real drawn poses, in the order the VO needs them.
 BEATS = [
@@ -38,19 +45,23 @@ for i, (st, pose, _) in enumerate(BEATS):
         f'style="left:{430 - w/2:.1f}px;top:{140}px;width:{w:.1f}px;height:{FIG_H}px">')
 
 cards = ''.join(
-    f'<div class="tk" id="tk{i}" style="top:{250 + i*198}px">'
-    f'<span class="sym">{s}</span><span class="ex">{e}</span></div>'
+    f'<div class="tk" id="tk{i}" style="top:{232 + i*206}px">'
+    f'<span class="sym">{s}</span><span class="ex">{e}</span>'
+    f'<div class="rule"></div></div>'
     for i, (s, e) in enumerate(TICKERS))
 
 CSS = f'''*{{margin:0;padding:0;box-sizing:border-box}}
-html,body{{background:#0b0d0e;width:{W}px;height:{H}px;overflow:hidden;
+html,body{{background:{PAPER};width:{W}px;height:{H}px;overflow:hidden;
   font-family:Liberation Sans,Arial,sans-serif}}
 .pz{{position:absolute;opacity:0}}
-.tk{{position:absolute;left:940px;width:800px;padding:20px 34px;background:#fff;
-  display:flex;align-items:baseline;gap:30px;opacity:0;border-left:14px solid {R}}}
-.sym{{font-size:108px;font-weight:700;letter-spacing:2px;color:{R}}}
-.ex{{font-size:32px;font-weight:700;color:#5b6670;letter-spacing:4px}}
-#strip{{position:absolute;left:0;top:{H-74}px;width:{W}px;height:74px;background:#000;
+/* On white, a filled card fights the line art. The ticker is set as type with
+   a red rule under it — editorial, and it keeps the three-colour palette. */
+.tk{{position:absolute;left:980px;width:820px;opacity:0}}
+.sym{{font-size:116px;font-weight:700;letter-spacing:1px;color:{K};line-height:1}}
+.ex{{font-size:30px;font-weight:700;color:#8a9199;letter-spacing:5px;
+  margin-left:22px;vertical-align:14px}}
+.rule{{height:11px;background:{R};margin-top:16px;width:100%}}
+#strip{{position:absolute;left:0;top:{H-74}px;width:{W}px;height:74px;background:{K};
   color:#fff;font-size:30px;font-weight:700;text-align:center;line-height:74px;letter-spacing:1px}}'''
 
 JS = '''
