@@ -5,38 +5,68 @@ this file is that he looks **identical every time**.
 
 ## The artwork is the character
 
-**`engine/art/zul-sheet.jpg` and `engine/art/zul-face.jpg` are canonical.**
-They are the supplied originals. Everything else — the vector rig in
-`engine/zul.py`, the cut-out parts in `engine/parts/` — is **secondary and must
+**The supplied sheets in `engine/art/` are canonical.** Everything generated —
+the vector rig in `engine/zul.py`, any cut-out parts — is **secondary and must
 match them, never the other way round.**
 
-| | |
-|---|---|
-| `art/zul-sheet.jpg` | front · three-quarter · back, with glasses |
-| `art/zul-face.jpg` | close-up, no glasses |
-| `art/manifest.json` | per-figure crop boxes, **measured from the pixels** by `art_bounds.js`, not estimated |
+Locked **2026-10-06**. ID: R/Y/G beanie · **Meta Ray-Ban smart glasses (black
+Wayfarer)** · curls · white polo.
 
-Place a figure with the helper rather than hard-coding offsets, so a redrawn
-sheet only needs the manifest updated:
+| Sheet | Contents |
+|---|---|
+| `art/zul-body.jpg` | Official turnaround + 11 full-figure views and poses |
+| `art/zul-bust-glasses.jpg` | 9 bust poses, with glasses |
+| `art/zul-bust-plain.jpg` | 9 bust poses, no glasses |
+| `art/zul-turnaround.jpg` | Front / three-quarter / back |
+| `art/zul-face.jpg` | Close-up, no glasses |
+
+### The pose library
+
+`extract_poses.js` cuts all 30 named poses off the sheets into `art/poses/`,
+keyed to transparency, and writes `art/poses/manifest.json`.
+
+| Set | Poses |
+|---|---|
+| `glasses` | official · idle-deadpan · point-right · point-left · present-palm · shock · skeptical · thumbs-up · thinking |
+| `plain` | the same nine, without glasses |
+| `body` | body-front · body-3q-right · body-3q-left · body-back · full-point-right · full-point-left · full-present-palm · full-shock · full-skeptical · full-thumbs-up · full-shrug · turnaround |
 
 ```python
-from art import zul_art
-svg += zul_art('face',  x=60,  y=28, h=680)    # thumbnail panel
-svg += zul_art('front', x=120, y=80, h=900)    # full figure in a scene
+from art import zul_pose, POSES
+svg += zul_pose('body', 'full-point-right', x=120, y=80, h=900)
+svg += zul_pose('glasses', 'skeptical', x=18, y=58, h=600)
 ```
 
-Figures: `front` · `three_quarter` · `back` · `face`.
+### Three rules the extraction depends on
 
-**Use the originals wherever a still will do** — thumbnails, title cards, hero
-shots, any held frame. Reach for the rig only when something has to *move* or
-be posed in a way the three supplied views do not cover.
+- **Panels keep their full uniform size. Never trim a pose to its ink.** The
+  sheets are drawn at one crop and scale, so the poses are registered to each
+  other; trimming destroys that and makes a pose swap jump on screen.
+- **The background comes off by flood fill, not a luminance key.** The polo is
+  white on a white page — a key deletes the shirt along with the page.
+- **Seed the fill only from edges the figure does not cross.** A bust is
+  cropped at the chest, so the shirt's interior touches the bottom edge; seed
+  there and the fill leaks straight into the polo. This one shipped broken
+  once and was caught by rendering the poses onto a dark plate.
+
+### Animate by cutting between poses
+
+The poses are **drawn**, so animation cuts between them and adds only a float
+and a settle — limited animation, done the way it is actually done. See
+`engine/pose_anim.py`.
+
+**Do not bend the limbs of a drawn pose.** An earlier rig synthesised poses
+from generated parts and the result was not Zul; a later one cut a head off
+the official art and could only nod, because the arms overlap the torso and
+separating them punches holes in the supplied drawing. The pose library makes
+both obsolete. If a pose is needed that is not in the 30, it gets **drawn** —
+that is what `PROCREATE-PIPELINE.md` is for.
 
 ### Do not
 
-- Redraw, recolour, restyle or "improve" the originals.
-- Let the rig drift from them. If the two disagree, the originals win and the
-  rig is wrong.
-- Mix the two looks inside one video.
+- Redraw, recolour, restyle or "improve" the sheets.
+- Let anything generated drift from them. If the two disagree, the art wins.
+- Mix the glasses and no-glasses sets inside one video.
 
 ## The look
 

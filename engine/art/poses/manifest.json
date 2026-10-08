@@ -1,0 +1,347 @@
+{
+ "glasses": {
+  "source": "art/zul-bust-glasses.jpg",
+  "poses": {
+   "official": {
+    "file": "glasses/official.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     196,
+     385
+    ]
+   },
+   "idle-deadpan": {
+    "file": "glasses/idle-deadpan.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     196,
+     385
+    ]
+   },
+   "point-right": {
+    "file": "glasses/point-right.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     289,
+     385
+    ]
+   },
+   "point-left": {
+    "file": "glasses/point-left.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     4,
+     8,
+     290,
+     385
+    ]
+   },
+   "present-palm": {
+    "file": "glasses/present-palm.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     285,
+     385
+    ]
+   },
+   "shock": {
+    "file": "glasses/shock.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     196,
+     385
+    ]
+   },
+   "skeptical": {
+    "file": "glasses/skeptical.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     196,
+     385
+    ]
+   },
+   "thumbs-up": {
+    "file": "glasses/thumbs-up.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     235,
+     385
+    ]
+   },
+   "thinking": {
+    "file": "glasses/thinking.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     98,
+     8,
+     238,
+     385
+    ]
+   }
+  }
+ },
+ "plain": {
+  "source": "art/zul-bust-plain.jpg",
+  "poses": {
+   "official": {
+    "file": "plain/official.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     228,
+     361
+    ]
+   },
+   "idle-deadpan": {
+    "file": "plain/idle-deadpan.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     228,
+     361
+    ]
+   },
+   "point-right": {
+    "file": "plain/point-right.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     227,
+     361
+    ]
+   },
+   "point-left": {
+    "file": "plain/point-left.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     81,
+     16,
+     229,
+     361
+    ]
+   },
+   "present-palm": {
+    "file": "plain/present-palm.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     245,
+     361
+    ]
+   },
+   "shock": {
+    "file": "plain/shock.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     228,
+     361
+    ]
+   },
+   "skeptical": {
+    "file": "plain/skeptical.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     228,
+     361
+    ]
+   },
+   "thumbs-up": {
+    "file": "plain/thumbs-up.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     221,
+     361
+    ]
+   },
+   "thinking": {
+    "file": "plain/thinking.png",
+    "w": 393,
+    "h": 393,
+    "ink": [
+     82,
+     16,
+     221,
+     361
+    ]
+   }
+  }
+ },
+ "body": {
+  "source": "art/zul-body.jpg",
+  "poses": {
+   "body-front": {
+    "file": "body/body-front.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     95,
+     309
+    ]
+   },
+   "body-3q-right": {
+    "file": "body/body-3q-right.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     117,
+     11,
+     88,
+     309
+    ]
+   },
+   "body-3q-left": {
+    "file": "body/body-3q-left.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     117,
+     11,
+     88,
+     309
+    ]
+   },
+   "body-back": {
+    "file": "body/body-back.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     95,
+     307
+    ]
+   },
+   "full-point-right": {
+    "file": "body/full-point-right.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     140,
+     309
+    ]
+   },
+   "full-point-left": {
+    "file": "body/full-point-left.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     68,
+     11,
+     141,
+     309
+    ]
+   },
+   "full-present-palm": {
+    "file": "body/full-present-palm.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     138,
+     309
+    ]
+   },
+   "full-shock": {
+    "file": "body/full-shock.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     95,
+     309
+    ]
+   },
+   "full-skeptical": {
+    "file": "body/full-skeptical.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     95,
+     309
+    ]
+   },
+   "full-thumbs-up": {
+    "file": "body/full-thumbs-up.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     114,
+     11,
+     114,
+     309
+    ]
+   },
+   "full-shrug": {
+    "file": "body/full-shrug.png",
+    "w": 323,
+    "h": 323,
+    "ink": [
+     80,
+     11,
+     162,
+     309
+    ]
+   },
+   "turnaround": {
+    "file": "body/turnaround.png",
+    "w": 1349,
+    "h": 749,
+    "ink": [
+     136,
+     55,
+     1070,
+     628
+    ]
+   }
+  }
+ }
+}
