@@ -103,6 +103,28 @@ minute, so this never justifies a re-render.
 question from verifying level, and only the second one tells you whether a viewer will
 hear it.
 
+## Waiting on a long render — do not let pgrep match itself
+
+A render takes ~21 minutes, so it gets backgrounded and waited on. `pgrep -f` matches
+against **full command lines, including the waiting shell's own**, so this never exits:
+
+```
+while pgrep -f "node render_anim.js" >/dev/null; do sleep 20; done   # WRONG: waits on itself
+```
+
+The same bug makes `pkill -f render_anim.js` kill the shell that runs it, losing whatever
+came after in that command. Both happened here. Match on something the waiter's own
+command line does not contain, or check the output instead:
+
+```
+while pgrep -f "[n]ode render_anim" >/dev/null; do sleep 20; done    # bracket breaks self-match
+until [ -s out.mp4 ] && ! pgrep -f "[n]ode render_anim" >/dev/null; do sleep 20; done
+```
+
+A stuck waiter is harmless — it expires — but it reports nothing, so the render looks
+unfinished long after it is done. Check the output file's size and `ffmpeg -i` on it
+before believing a waiter that has gone quiet.
+
 ## Verification
 
 Renders cannot be watched from the agent environment; the HeyGen and Higgsfield CDNs are
