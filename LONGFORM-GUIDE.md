@@ -54,15 +54,34 @@ Zul starts left of it. Do not relax the guard to fit a line — shorten the line
 
 ```
 cd engine
-python3 anim_aip.py                               # build + run the layout guard
-NODE_PATH=/opt/node22/lib/node_modules node render_anim.js stills   # sample frames, LOOK AT THEM
-NODE_PATH=/opt/node22/lib/node_modules node render_anim.js 20       # full render -> aip-silent.webm
+python3 anim_aip.py                                                  # build + run both guards
+NODE_PATH=/opt/node22/lib/node_modules node render_anim.js stills    # sample frames, LOOK AT THEM
+NODE_PATH=/opt/node22/lib/node_modules node render_anim.js 20        # -> ai-picks-longform.mp4
 ```
 
-Local ffmpeg is Playwright's build: **webm out only**, no audio codecs, no MP4 muxer. The
-mux to H.264/AAC MP4 happens on the ElevenLabs composition node, which costs **0 credits**.
-Each audio source there starts its own track at 0 — tracks are parallel, not sequential —
-so concatenate audio *before* uploading, not in the composition.
+The render writes the **finished deliverable in one pass**: frames out of headless
+Chromium into ffmpeg over `image2pipe`, narration muxed in the same command, H.264 +
+AAC in an MP4 with `+faststart`. About 21 minutes for 10,587 frames at 20fps.
+
+**Use imageio-ffmpeg's binary, not Playwright's.** Playwright bundles a cut-down ffmpeg
+that can write only VP8 webm and has **no audio codecs at all** — it cannot mux a
+soundtrack, so for a while the only route to a finished file was an external service.
+It is not needed:
+
+```
+pip install imageio-ffmpeg
+python3 -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())'
+```
+
+gives a full static ffmpeg 7.0.2 with `libx264`, `aac` and an mp3 decoder. PyPI is
+reachable directly here (it is in the proxy's `noProxy` list), so this works offline of
+every connector. `render_anim.js` resolves the path itself.
+
+**Do not route the mux through ElevenLabs.** The composition node did work once and
+costs 0 credits, but as of 2026-10-08 the MCP bridge returns a schema-validation error
+for `creative_create_asset_upload`, so the video cannot be put on a flow in the first
+place. More importantly it is an unnecessary dependency: the mux is a local operation
+and should stay one.
 
 ## Verification
 

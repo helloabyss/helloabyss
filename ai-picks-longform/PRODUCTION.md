@@ -198,3 +198,37 @@ compounded a substitution into a false record.
   auditioned; doing so is the cheaper route if HeyGen stays unavailable.
 - Cost of the error: **$2.99** of ElevenLabs generation in a voice that is not the
   channel's. Not recoverable.
+
+
+## Pipeline change — 2026-10-08, the mux is local now
+
+The first cut was muxed on an ElevenLabs composition node because Playwright's bundled
+ffmpeg has no audio codecs. That dependency is gone and should not come back.
+
+**`pip install imageio-ffmpeg`** puts a full static **ffmpeg 7.0.2** on the box —
+`libx264`, `aac`, mp3 decode, mp4 muxer. PyPI is in the agent proxy's `noProxy` list so
+it installs directly. `engine/render_anim.js` now pipes Chromium's frames into it and
+muxes `vo-full.mp3` in the **same pass**, writing `engine/ai-picks-longform.mp4`
+(H.264 + AAC, `+faststart`). One command, one pass, no service in the loop.
+
+This was forced as well as preferable: on 2026-10-08 the ElevenLabs MCP bridge began
+returning `missing required resultType` for `creative_create_asset_upload`,
+`creative_attach_reference_file`, `creative_generate_image`, `creative_get_model_guide`
+and `creative_get_available_assets`, while `creative_list_voices` and `creative_get_flow`
+kept working. The upload path being dead means the composition node is unreachable
+regardless of its zero cost. **Tested before committing an hour of render time to it** —
+check the delivery path before the long job, not after.
+
+### Second cut, what changed
+
+| | First cut | Second cut |
+|---|---|---|
+| Picture | 42 static stills, uniform push | per-frame animation: counting numbers, growing bars, wiping rules, staggered type |
+| Zul | overlapped the type, unreadable | left band, separated by a build-time assertion; cuts between drawn poses |
+| Imagery | none | 9 beats on licensed Adobe Stock plates, slow push, graded near-monochrome |
+| Charts | fixed-length bars regardless of value | length proportional to the figure above it |
+| Encode | VP8 webm, then muxed on a service | H.264 + AAC MP4, muxed locally in the render pass |
+| Narration | Aaron, 529.40s | unchanged — same file, not regenerated |
+
+Narration was **not** re-run for the second cut. `vo-full.mp3` is the same 529.40s file,
+so no further ElevenLabs spend was incurred on this episode.
