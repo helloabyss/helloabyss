@@ -232,3 +232,60 @@ check the delivery path before the long job, not after.
 
 Narration was **not** re-run for the second cut. `vo-full.mp3` is the same 529.40s file,
 so no further ElevenLabs spend was incurred on this episode.
+
+
+## Verification record — second cut, 2026-10-08
+
+`engine/ai-picks-longform.mp4`, built by `engine/render_anim.js` at 20fps.
+**Complete, not verified** — see the limit at the bottom.
+
+What ffmpeg reported on the finished file, verbatim:
+
+```
+  Duration: 00:08:49.35, start: 0.000000, bitrate: 863 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive),
+      1920x1080 [SAR 1:1 DAR 16:9], 698 kb/s, 20 fps, 20 tbr, 10240 tbn (default)
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, mono, fltp,
+      159 kb/s (default)
+```
+
+The audio track carries actual speech rather than silence:
+
+```
+  n_samples: 23345152
+  mean_volume: -24.6 dB
+  max_volume: -2.4 dB
+```
+
+23,345,152 samples at 44,100 Hz is **529.37s**, matching the measured narration length of
+529.40s to within the frame quantisation of the picture (529.35s, 10,587 frames at 20fps).
+Peak at −2.4 dB means nothing is clipped.
+
+The renderer's own last line:
+
+```
+ai-picks-longform.mp4 — 10587 frames @ 20fps = 529.35s
+```
+
+Five frames were decoded back out of the finished MP4 (t = 5, 200, 330, 420, 528s) and
+looked at. Two were checked closely: at 330s Zul stands clear in his left band with the
+type starting at x=620 and the second line caught mid-stagger; at 200s the SPCX turn card
+sits over the night-sky dish plate with the rail correctly restyled for a dark scene.
+Those frames are **not committed** — two of them are substantially the licensed stock
+photographs, and `engine/broll/MANIFEST.md` explains why plate imagery stays out of the
+repository.
+
+A 720p/14MB preview (`ai-picks-longform-preview.mp4`) was derived for review only; the
+1080p file is the one that gets uploaded.
+
+### The limit on all of the above
+
+**Nobody has watched it.** Stream metadata, sample counts and decoded stills are what can
+be checked from this environment; playback cannot. Picture/voice sync across the full nine
+minutes, the pacing of Zul's pose cuts and the feel of the plate pushes are unverified and
+need a human pass before upload.
+
+**Known soft spot to watch for:** beat durations are weight-derived (turn cards 0.42, all
+others 1.0, scaled to the measured VO length), **not force-aligned to the audio**. The
+three turn cards are intended to land at the end of each company's section but nothing
+enforces it. If they drift against the narration, that is the first thing to fix.
