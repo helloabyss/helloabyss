@@ -82,6 +82,36 @@ a body breathe is what the artwork actually supports. A fuller rig needs the
 limbs **drawn as separate layers** — which is exactly what
 `PROCREATE-PIPELINE.md` is for.
 
+## The video was actually built
+
+| | |
+|---|---|
+| **Narration** | Aaron (`ESDuPqgyZIDDVZTlIrH7`), the locked channel voice, `eleven_multilingual_v2`. Two parts: **292.85s + 236.43s**. Joined by raw MP3 frame concat to `vo-full.mp3`, measured **529.40s**, clean frame boundaries |
+| **Cost** | 4,639 + 3,574 = **8,213 credits ≈ $2.99**. `generations_count: 1`, not the default 4 — the default would have cost ~$12 for three takes nobody asked for |
+| **Scenes** | 42 stills, white page, rendered by `engine/scenes_aip.py` |
+| **Timeline** | `engine/build_aip.py` pins the total to the MEASURED VO length and weights the beats: turn cards 5.5s, everything else 13.1s |
+| **Video** | 6,360 frames @ 12fps = **530.00s** — 0.6s over the audio, pure frame quantisation |
+| **Mux** | ElevenLabs composition node, **0 credits** |
+
+### A real finding for the long-form guide
+
+**Aaron reads at ≈158.7 wpm, not 166.** 1,400 words came back as 529.3 seconds.
+The 166 wpm figure carried over from `LONGFORM-GUIDE.md` predicted 8:26; the
+actual is **8:49** — a 23-second under-estimate on a 9-minute video, and it
+would have been worse at length.
+
+Scene timings are therefore computed from the **measured** audio, never the
+predicted runtime. The quiet-depression video needed a full re-render for
+exactly this reason. **When `LONGFORM-GUIDE.md` is ported to this branch, its
+wpm figure should be 158.7 for this voice, measured, not 166 assumed.**
+
+### Why 42 scenes and not 32
+
+32 stills across 8m49s is a 17-second hold, well outside the "new information
+every 10–15s" rule. Rather than pad, the multi-line statements became
+two-beat progressive reveals — 42 scenes, 12.6s average. Each still also
+carries a slow push so a held frame still moves.
+
 ## Constraints hit
 
 | | |

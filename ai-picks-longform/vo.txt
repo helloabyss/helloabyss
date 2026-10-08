@@ -1,0 +1,160 @@
+SpaceX burned fourteen billion dollars of cash last year. The market says it is worth two trillion.
+
+Both of those numbers come from the same filing. Only one of them made it into
+the videos.
+
+Here is another. Micron's gross margin doubled in twelve months — forty percent
+to eighty-one. And Bloom Energy raised its own revenue forecast three times in
+nine months, which is the corporate equivalent of repeatedly underestimating
+how hungry you are.
+
+All three companies are real. All three are genuinely wired into the biggest
+capital build-out in a generation, and I am not here to talk you out of any of
+them.
+
+I am here because each one has a number its fans do not mention. All three of
+those numbers are sitting in public filings. And all three took about ten
+minutes to find.
+
+So: the bull case, from the documents. Then the line underneath it.
+
+SpaceX listed on the Nasdaq on the twelfth of June, twenty twenty-six, under
+the ticker S-P-C-X. It priced at a hundred and thirty-five dollars, opened
+at a hundred and fifty, and closed its first day at a hundred and sixty-one.
+That put it at roughly two point one trillion dollars on day one.
+
+Most people still file SpaceX under "rocket company". The filing does not
+agree. In twenty twenty-five the company booked eighteen point seven billion
+dollars of revenue, and eleven point four billion of that — about sixty-one
+percent — came from connectivity. That is Starlink. SpaceX is a broadband
+company with a very good launch division attached.
+
+And the launch division is good. Before twenty-fifteen the standard way to end
+a rocket launch was to throw the rocket away. Imagine buying a jet, flying it
+to Paris, and leaving it there. Reusability is the reason the economics changed
+at all.
+
+But Starlink is the engine. Subscribers went two point three million in
+twenty twenty-three, four point four million in twenty-four, eight point nine
+million in twenty-five. Ten point three million by March. Around twelve million
+by June. Starlink made four point four billion dollars of operating income last
+year on a thirty-nine percent margin.
+
+The number the bull case leaves out.
+
+Two of them, actually.
+
+The first is in the company's own quarterly discussion. In the first quarter of
+twenty twenty-six, subscribers grew a hundred and five percent. Revenue per
+subscriber fell almost twenty-three percent. Monthly revenue per user has gone
+from about ninety-nine dollars in twenty twenty-three to about sixty-six
+dollars. Growth is real, and some of it is being bought with price cuts.
+
+The second is larger. In twenty twenty-five SpaceX generated six point eight
+billion dollars of cash from operations and spent twenty point seven billion on
+capital expenditure. That is negative fourteen billion dollars of free cash
+flow in a single year.
+
+Satellites are not a one-off purchase. They de-orbit, and they have to be
+replaced. A constellation is a subscription the company pays, not just one it
+collects. None of that makes S P C X a bad business. It makes it a business
+that is still buying its own future, in cash, right now.
+
+Bloom Energy joined the S&P 500 on the twenty-first of September.
+
+What it sells is unglamorous and currently in violent demand: on-site fuel
+cells. A data centre needs power, the grid queue is long, and Bloom sells a box
+that generates electricity next to the building instead of waiting for a
+utility.
+
+The growth is not subtle. First quarter revenue was about seven hundred and
+fifty-one million dollars, up a hundred and thirty percent. Second quarter was
+about one point zero seven billion, up a hundred and sixty-six percent. The
+company raised full-year guidance three times — three point one to three point
+three billion in February, three point four to three point eight in April,
+three point nine to four point two in July. Raising guidance twice in a year is
+unusual. Three times is a company being overtaken by its own order book.
+
+The number the bull case leaves out.
+
+That order book is the thing to look at properly.
+
+The backlog is about twenty billion dollars. You will hear that number a lot.
+About six billion of it is product orders; the other fourteen billion is
+long-term service. Those service contracts run five to twenty years — and
+customers can cancel annually.
+
+A backlog is not a bank balance. It is a list of people who currently intend to
+buy something. Twenty billion dollars of intent, cancellable once a year, is a
+genuinely strong position and it is not the same thing as twenty billion
+dollars. Anyone quoting the backlog without the cancellation clause is quoting
+half a sentence.
+
+Back to the number we opened with.
+
+Micron's financial year twenty twenty-six ended on the third of September.
+Revenue was a hundred and thirty-three point two billion dollars. The year
+before, it was thirty-seven point four billion. That is growth of two hundred
+and fifty-six percent — in one year, at a company more than forty years old.
+
+Net income was eighty-five billion dollars. Earnings per share, seventy-four
+dollars and thirty-three cents. Gross margin went from thirty-nine point eight
+percent to eighty point seven percent.
+
+The reason is high-bandwidth memory. An AI accelerator is useless without
+memory sitting next to it, very few companies can make the high-end kind, and
+demand has outrun supply.
+
+The number the bull case leaves out.
+
+Here I want to correct something, because it is circulating and it is wrong.
+
+Eighty-one percent is Micron's gross margin. It is not what the company
+keeps. After everything, net margin is about sixty-four percent — I calculated
+that from net income over revenue, it is not a line in the release. Sixty-four
+percent is a remarkable number. It is not eighty-one, and if you are modelling
+on eighty-one you are modelling a company that does not exist.
+
+And here is the comparison that should make you careful rather than excited.
+
+Nvidia — the company every one of these chips plugs into, and the one the
+market is pricing to be the first ever worth six trillion dollars — ran a
+seventy-five percent gross margin last quarter. Micron ran eighty-one across
+the whole year. That is a year against a quarter, and it still holds: Nvidia's
+own full year was seventy-one.
+
+So a memory manufacturer is currently earning more per dollar of sales than
+the company whose accelerators it exists to feed. That is genuinely true today.
+Ask what has to stay true for it to last. Memory has to remain scarcer than
+the chips that need it — in an industry where every producer on earth is
+currently building capacity as fast as it can pour concrete.
+
+The second thing is the shape of the business. Memory is the most reliably
+cyclical industry in technology. It has made people rich roughly every seven
+years and then quietly un-made them, because the cure for high prices is high
+prices: every producer expands at the top, supply arrives late, and margins go
+back down. Eighty percent gross margins are not a new normal. They are what the
+top of a cycle looks like.
+
+And note what the next number actually is. Micron guided to sixty-one and a
+half billion dollars for the coming quarter. Guidance is a forecast. It is the
+company's estimate, not money it has made, and it should never be quoted as
+though it already happened.
+
+Three companies, three real theses, three numbers the enthusiasm skips: a
+cash-flow deficit, a cancellation clause, and a cycle.
+
+None of those make these bad businesses. S P C X, B E and M U are all
+genuinely plugged into the largest capital build-out in a generation. The point
+is narrower and more useful than that: the bull case and the risk come from the
+same document, and only one of them tends to make it into the video you watched
+about it.
+
+Here is the thing you can actually do. All three figures I used as the
+counterweight — the free cash flow line, the cancellation terms, the difference
+between gross and net margin — are in filings that take about ten minutes to
+find and are free to read. Before you buy anything off the back of a video,
+including this one, open the last quarterly release and find the number nobody
+quoted.
+
+If it is not there, that is your answer.

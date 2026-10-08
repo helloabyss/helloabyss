@@ -47,3 +47,9 @@ pose-demo.webm
 posechk_*.png
 posecheck.html
 posecheck.png
+
+# Long-form render working files
+aip-silent.webm
+aip-player.html
+aip-final.mp4
+aipscenes/*.html
