@@ -126,6 +126,30 @@ vidIQ research (T4) is unblocked with ~24 calls of headroom at the pessimistic 5
   not indexed. Two `channel_search` attempts cost 10 credits and returned nothing. **Do not
   search for it again**, and do not try to resolve its `UC…` ID: `www.youtube.com` is
   egress-blocked here, and nothing in the pipeline needs the ID anyway.
+- **B-roll sourcing — established 2026-10-08. Read before spending on imagery.**
+  **Higgsfield output cannot be retrieved from this environment.** Its CDN
+  (`d8j0ntlcm91z4.cloudfront.net`) returns **403 on CONNECT** at the agent proxy — a policy
+  denial, not a transient failure, and `curl -sS "$HTTPS_PROXY/__agentproxy/status"` logs it
+  as `connect_rejected`. Three usable plates generated on 2026-10-08 are stranded in the
+  account. Routing the URL through ElevenLabs' server-side fetch
+  (`creative_attach_reference_file`) was tried twice and added no node. **Generating b-roll
+  on Higgsfield is money for files you cannot download. Do not do it** until the host is
+  allowed.
+  **ElevenLabs creative generation is broken through the MCP bridge**, which returns a
+  schema-validation error (`missing required resultType`) for `creative_generate_image`,
+  `creative_attach_reference_file`, `creative_get_model_guide` and
+  `creative_get_available_assets`. `creative_list_voices` and `creative_get_flow` return
+  normally, so the bridge is up and the fault is tool-specific. A call that errors this way
+  may still have run server-side, so **do not retry these in a loop** — each attempt can
+  spend without returning anything retrievable.
+  **What does work: Adobe Stock's free collection.** `adobe_mandatory_init` → `asset_search`
+  with `entityScope: "StockAsset"` → `asset_license_and_download_stock` → download the
+  presigned URL. Assets marked `"pricing":"free"` license at **no cost** and the file lands
+  locally. The free collection is uneven — "rocket launch" returned an Iron Dome battery and
+  an aircraft carrier — so read each result's name and reject anything off-subject; industrial
+  and technology subjects (data centres, substations, wafers, dish arrays) are well covered.
+  See `engine/broll/MANIFEST.md`. **Plate files are gitignored**: an Adobe Stock licence
+  covers use in a work, not redistribution, and this repository may be public.
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
 

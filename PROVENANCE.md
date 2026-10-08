@@ -155,3 +155,25 @@ Short list, and it is short on purpose.
 If you want enforcement rather than convention, the honest options are a pre-commit hook that
 rejects a `SCRIPT.md` without a fact table, or a CI check on the same. Neither exists. Say the
 word and it can.
+
+
+## 16. B-roll sourcing, measured 2026-10-08
+
+**OBSERVED, not inferred.** Each of these was tested in-session, not reasoned about:
+
+| Claim | Status | Evidence |
+|---|---|---|
+| Higgsfield CDN unreachable from here | **CONFIRMED** | `curl` → `CONNECT tunnel failed, response 403`; proxy status logs `connect_rejected` for `d8j0ntlcm91z4.cloudfront.net:443` |
+| Three Higgsfield video plates exist in the account | **CONFIRMED** | `show_generations` returned ids `a62e5510`, `e3d5aa00`, `a102afdc`, all `status: completed` |
+| ElevenLabs server-side fetch routes around it | **FALSE** | `creative_attach_reference_file` called twice; `creative_get_flow` showed no node added either time |
+| ElevenLabs image generation available | **FALSE via this bridge** | schema-validation error on `creative_generate_image`; same on three sibling tools; `creative_list_voices` and `creative_get_flow` fine |
+| Adobe Stock free assets license and download | **CONFIRMED** | 5 assets, `state: just_purchased`, HTTP 200 on each presigned URL, files verified with `file` |
+| Higgsfield balance | **181.85, starter** | `higgsfield balance`, 2026-10-08 — down from 242.35 earlier the same day |
+
+**Unresolved:** whether the failed `creative_generate_image` call spent ElevenLabs credits
+server-side. The bridge error arrives after the request, so a charge is possible and was
+not confirmed either way. Check the ElevenLabs usage page before trusting any credit figure
+for that account.
+
+**Consequence for the task board:** T5 (Higgsfield hero plates) is not merely unaffordable,
+it is **undeliverable from this environment** regardless of balance. Re-read that row.

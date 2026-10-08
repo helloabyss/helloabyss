@@ -24,6 +24,27 @@ TYPE_X = 620          # type column, clear of Zul's ink
 FULL_X = 150          # type column when no Zul is present
 ZUL_X, ZUL_Y, ZUL_H = 10, 176, 760
 
+# Licensed Adobe Stock plates, graded to the palette by prep_broll.js. Keys are the
+# beat index they sit under. Photography is the BASE layer (STYLE-GUIDE.md); the type
+# sits on top of it. Never under a beat containing Zul -- his line art needs white.
+PLATES = {
+    0:  'dish-array',   # SPCX  -- the cash-burn hook, over the ground segment
+    14: 'dish-array',   # SPCX  -- Starlink subscriber series
+    15: 'dish-array',   # SPCX  -- turn card
+    22: 'datacentre',   # BE    -- quarterly revenue, over the demand it serves
+    24: 'substation',   # BE    -- turn card, the grid
+    25: 'datacentre',   # BE    -- backlog
+    28: 'wafer',        # MU    -- revenue, over silicon
+    31: 'wafer',        # MU    -- turn card
+    37: 'racks',        # MU    -- next-quarter guidance
+}
+
+def plate_html(name, i):
+    b = base64.b64encode(open('broll/%s-graded.jpg' % name, 'rb').read()).decode()
+    d = 1 if i % 2 else -1   # alternate the push so it never feels mechanical
+    return (f'<div class="plate" data-a="kb" data-dir="{d}">'
+            f'<img src="data:image/jpeg;base64,{b}"></div><div class="scrim"></div><div class="scrimv"></div>')
+
 _cache = {}
 def b64(rel):
     if rel not in _cache:
@@ -114,25 +135,36 @@ def b_lines(lines, zul=None, size=62):
                     a='rise', t0=round(t0, 3), t1=round(t0 + 0.20, 3)))
     return ''.join(o)
 
-def b_bars(series, label, zul=None):
-    """A small column series that grows — subscriber history, revenue steps."""
+def b_bars(series, label, zul=None, dec=1):
+    """A column series that grows. The group is centred and the gap is tied to the
+    bar width -- spreading N bars across the full span flung a two-bar chart to the
+    frame edges."""
     x = TYPE_X if zul else FULL_X
-    o = [zul_imgs(*zul) if zul else '']
-    span = (1840 - x) if not zul else 1180
+    span = 1180 if zul else (1840 - x)
     n = len(series)
-    bw = min(150, int(span / (n * 1.6)))
-    gap = int((span - n * bw) / max(1, n - 1))
+    bw = int(min(230, span / (n * 1.75)))
+    gap = int(bw * 0.62)
+    group = n * bw + (n - 1) * gap
+    x0 = x + max(0, (span - group) // 2)
+    base, top = 620, 300
     mx = max(v for _, v in series)
+    o = [zul_imgs(*zul) if zul else '']
+    o.append(el('lab', f'left:{x}px;top:{top-74}px;width:{span}px', label, a='rise', t0=0.02, t1=0.20))
+    o.append(el('zline', f'left:{x0-30}px;top:{base}px;width:{group+60}px;height:3px', '',
+                a='wipe', t0=0.06, t1=0.30))
     for i, (lbl, v) in enumerate(series):
-        h = int(300 * v / mx)
-        bx = x + i * (bw + gap)
-        o.append(el('vbar', f'left:{bx}px;top:{560-h}px;width:{bw}px;height:{h}px', '',
-                    a='growup', t0=0.05 + i*0.11, t1=0.35 + i*0.11))
-        o.append(el('lab', f'left:{bx-20}px;top:578px;width:{bw+40}px;text-align:center;font-size:26px',
-                    lbl, a='rise', t0=0.12 + i*0.11, t1=0.30 + i*0.11))
-    o.append(el('note', f'left:{x}px;top:650px', label, a='rise', t0=0.70, t1=0.88))
+        h = max(6, int((base - top) * v / mx))
+        bx = x0 + i * (bw + gap)
+        o.append(el('vbar', f'left:{bx}px;top:{base-h}px;width:{bw}px;height:{h}px', '',
+                    a='growup', t0=0.14 + i*0.13, t1=0.46 + i*0.13))
+        o.append(el('chipv', f'left:{bx-50}px;top:{base-h-82}px;width:{bw+100}px;'
+                    f'text-align:center;font-size:46px', '', a='count', to=v,
+                    dec=dec, pre='', suf='',
+                    t0=0.14 + i*0.13, t1=0.50 + i*0.13))
+        o.append(el('lab', f'left:{bx-50}px;top:{base+22}px;width:{bw+100}px;'
+                    f'text-align:center;font-size:28px', lbl,
+                    a='rise', t0=0.22 + i*0.13, t1=0.42 + i*0.13))
     return ''.join(o)
-
 
 def b_spark(a, b_, la, lb, label, note, zul):
     """Two REAL observed prices and the move between them. No invented series."""
@@ -248,8 +280,10 @@ BEATS = [
            ('BACKLOG', 'about $20bn')]),
  b_lines(['A data centre needs power.','The grid queue is long.'], PALM),
  b_lines(['A data centre needs power.','The grid queue is long.','Bloom sells the box','that skips the queue.'], TUP),
- b_bars([('Q1 26', 0.751), ('Q2 26', 1.07)], 'QUARTERLY REVENUE, $BN — +130%, THEN +166%'),
- b_bars([('FEB', 3.2), ('APR', 3.6), ('JUL', 4.05)], 'FULL-YEAR GUIDANCE, $BN — RAISED THREE TIMES'),
+ b_bars([('Q1 26', 0.751), ('Q2 26', 1.07)],
+        'BLOOM QUARTERLY REVENUE, $BN \u2014 +130%, THEN +166% YEAR ON YEAR', dec=2),
+ b_bars([('FEB', 3.2), ('APR', 3.6), ('JUL', 4.05)],
+        'FY26 GUIDANCE, $BN \u2014 RAISED THREE TIMES. MIDPOINT OF EACH RANGE', dec=2),
  b_turn('BE'),
  b_num(20.0, '$', 'bn', 1, 'BACKLOG', 'Contracts run 5–20 years — cancellable annually'),
  b_lines(['A backlog is not','a bank balance.'], SKEP, size=76),
@@ -309,6 +343,23 @@ html,body{{background:{PAPER};width:{W}px;height:{H}px;overflow:hidden;
 .wbar.pos{{background:{K}}} .wbar.neg{{background:{R}}}
 .wnum{{font-weight:700;font-size:56px;letter-spacing:-1px}}
 .card~.lab{{color:{GREY}}} .card~.tn{{color:#fff}}
+.plate{{position:absolute;inset:0;overflow:hidden}}
+.plate img{{position:absolute;left:0;top:0;width:{W}px;height:{H}px;transform-origin:center}}
+.scrim{{position:absolute;inset:0;background:linear-gradient(100deg,
+  rgba(10,11,12,.74) 0%,rgba(10,11,12,.52) 46%,rgba(10,11,12,.22) 100%)}}
+.scrimv{{position:absolute;inset:0;background:linear-gradient(180deg,
+  rgba(10,11,12,.62) 0%,rgba(10,11,12,.10) 34%,rgba(10,11,12,.12) 62%,rgba(10,11,12,.66) 100%)}}
+.sc.photo .card{{display:none}}
+.sc.photo .num,.sc.photo .ln,.sc.photo .tn,.sc.photo .chipv,.sc.photo .wnum,
+.sc.photo .note,.sc.photo .lab{{text-shadow:0 2px 18px rgba(0,0,0,.85)}}
+body.photo #sec{{color:#e4e9ee;text-shadow:0 2px 14px rgba(0,0,0,.9)}}
+.sc.photo .num,.sc.photo .ln,.sc.photo .note,.sc.photo .chipv,.sc.photo .wnum,
+.sc.photo .tn{{color:#fff}}
+.sc.photo .lab{{color:#dfe4e9}} .sc.photo .scale{{color:#aeb5bc}}
+.sc.photo .vbar,.sc.photo .gbar,.sc.photo .vdiv,.sc.photo .zline{{background:#fff}}
+.sc.photo .track{{background:rgba(255,255,255,.20)}}
+body.photo #rail{{background:#111314;border-top-color:#30353b}}
+body.photo #railin{{color:#aeb5bc}}
 #prog{{position:absolute;left:0;top:0;height:6px;background:{R};z-index:50}}
 #rail{{position:absolute;left:0;top:{H-74-62}px;width:{W}px;height:62px;overflow:hidden;
   border-top:2px solid #e4e7ea;z-index:30;background:{PAPER}}}
@@ -318,7 +369,7 @@ html,body{{background:{PAPER};width:{W}px;height:{H}px;overflow:hidden;
 #sec{{position:absolute;right:48px;top:40px;font-size:28px;font-weight:700;letter-spacing:6px;
   color:{GREY};z-index:30}}
 body.dark #rail,body.dark #sec{{display:none}}
-body.dark #strip{{border-top:3px solid {R}}}
+body.dark #strip,body.photo #strip{{border-top:3px solid {R}}}
 #strip{{position:absolute;left:0;top:{H-74}px;width:{W}px;height:74px;background:{K};
   color:#fff;font-size:30px;font-weight:700;text-align:center;line-height:74px;letter-spacing:1px;z-index:40}}'''
 
@@ -345,6 +396,10 @@ window.setFrame=function(s,t){
     } else if(a==='growv'){ e.style.transform='scaleY('+p+')';
     } else if(a==='growup'){ e.style.transform='scaleY('+p+')';
     } else if(a==='rise'){ e.style.opacity=p; e.style.transform='translateY('+(26*(1-p))+'px)';
+    } else if(a==='kb'){
+      const d=+e.dataset.dir, z=1.06+0.09*t;
+      e.firstElementChild.style.transform=
+        'scale('+z.toFixed(4)+') translate('+(d*1.6*(t-0.5)).toFixed(3)+'%,'+(-d*0.9*(t-0.5)).toFixed(3)+'%)';
     } else if(a==='pop'){
       e.setAttribute('r', (15*(0.2+0.8*p)).toFixed(1)); e.style.opacity=p;
     } else if(a==='dash'){
@@ -359,7 +414,9 @@ window.setFrame=function(s,t){
   });
   const g=CUM[s]+TOT[s]*t, dur=CUM[CUM.length-1];
   document.getElementById('prog').style.width=((g/dur)*1920).toFixed(1)+'px';
-  document.body.classList.toggle('dark', sc.querySelector('.card')!==null);
+  const photo=sc.classList.contains('photo');
+  document.body.classList.toggle('photo', photo);
+  document.body.classList.toggle('dark', !photo && sc.querySelector('.card')!==null);
   const ri=document.getElementById('railin');
   ri.style.left=(-((g*58)%(ri.scrollWidth/4)))+'px';
   document.getElementById('sec').textContent=SEC[s];
@@ -377,7 +434,16 @@ if __name__ == '__main__':
     for d in durs: cum.append(cum[-1] + d)
     json.dump({'durations': [round(d, 3) for d in durs], 'total': round(sum(durs), 3)},
               open('aip-durations.json', 'w'), indent=1)
-    body = ''.join(f'<div class="sc" id="sc{i}">{b}</div>' for i, b in enumerate(BEATS))
+    body = ''
+    for i, b in enumerate(BEATS):
+        if i in PLATES:
+            if 'class="zul"' in b:
+                raise SystemExit('beat %d has both a plate and Zul; his line art '
+                                 'disappears on a dark plate' % i)
+            body += f'<div class="sc photo" id="sc{i}">{plate_html(PLATES[i], i)}{b}</div>'
+        else:
+            body += f'<div class="sc" id="sc{i}">{b}</div>'
+    print('%d of %d beats carry a photographic plate' % (len(PLATES), len(BEATS)))
     sec = []
     cur = 'THE SETUP'
     for b in BEATS:
