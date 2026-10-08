@@ -344,3 +344,20 @@ ffmpeg -i <file> -af loudnorm=I=-14:TP=-1.5:print_format=json -f null -
 
 If `input_i` is more than about 1.5 dB from −14, normalise before delivering. A level
 check is cheap and this failure cost a full delivery cycle.
+
+
+## Regression: the renderer still used the quiet stem (2026-10-08)
+
+The loudness fix above was applied by **remuxing the finished master**. The renderer's own
+audio input was never changed, so the next render pulled `vo-full.mp3` again and came out
+at **−24.67 LUFS, mono** — the original defect, reintroduced in full.
+
+The standing loudness check caught it before delivery. That is exactly what it is for: a
+fix applied downstream of the thing that produces the problem will be undone the next time
+that thing runs.
+
+**Fixed at the source.** `engine/render_anim.js` now reads
+`ai-picks-longform/vo-master.wav` and **throws if it is missing** rather than silently
+falling back. `engine/make_vo_master.sh` rebuilds that stem from `vo-full.mp3` in one
+command and verifies the result (`input_i` should read ≈ −14.0). The `.wav` is gitignored
+at 97MB, so run it after a fresh clone.

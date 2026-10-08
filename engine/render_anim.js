@@ -7,7 +7,12 @@ const { spawn, execSync } = require('child_process');
 const fs = require('fs'), path = require('path');
 const FF = execSync("python3 -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())'")
             .toString().trim();
-const VO = path.resolve('../ai-picks-longform/vo-full.mp3');
+// vo-master.wav is the LOUDNESS-NORMALISED stem (-14 LUFS, stereo). vo-full.mp3 is the
+// raw ElevenLabs output at -24.66 LUFS and must never be muxed directly: a cut built
+// from it sounds like it has no narration at all. Regenerate the master per
+// ai-picks-longform/PRODUCTION.md if it is missing.
+const VO = path.resolve('../ai-picks-longform/vo-master.wav');
+if (!fs.existsSync(VO)) throw new Error('missing ' + VO + ' -- see PRODUCTION.md, do NOT fall back to vo-full.mp3');
 const OUT = 'ai-picks-longform.mp4';
 const W = 1920, H = 1080;
 const D = JSON.parse(fs.readFileSync('aip-durations.json')).durations;
