@@ -1,6 +1,6 @@
 # Three AI Picks — long-form
 
-**Runtime ~7:15** at ~166 wpm (computed, not estimated) · **16:9** · host: Zul · every figure
+**Runtime ~7:35** at ~166 wpm (computed, not estimated) · **16:9** · host: Zul · every figure
 traceable to `FACTS.md`. Bracketed notes are direction, not spoken.
 
 **Compliance:** "Educational only. Not financial advice." as a thin bottom-edge
@@ -10,17 +10,25 @@ strip from 0:00 to 0:04 — a strip, never a full card, per `STYLE-GUIDE.md` §5
 
 ## VO — verbatim
 
-> Micron's gross margin went from forty percent to eighty-one percent in twelve months.
+> SpaceX burned fourteen billion dollars of cash last year. The market says it is worth two trillion.
 
-That is not a rounding error and it is not a typo. It happened, it is in the
-audited filing, and it is the single most dramatic thing in this video.
+Both of those numbers come from the same filing. Only one of them made it into
+the videos.
 
-It is also the number most likely to lose you money, and I will explain why
-before the end.
+Here is another. Micron's gross margin doubled in twelve months — forty percent
+to eighty-one. And Bloom Energy raised its own revenue forecast three times in
+nine months, which is the corporate equivalent of repeatedly underestimating
+how hungry you are.
 
-Three companies. All three are genuinely attached to the AI build-out. For each
-one I will give you the bull case using only figures from the filings — and
-then the number the bull case leaves out. Every company here has one.
+All three companies are real. All three are genuinely wired into the biggest
+capital build-out in a generation, and I am not here to talk you out of any of
+them.
+
+I am here because each one has a number its fans do not mention. All three of
+those numbers are sitting in public filings. And all three took about ten
+minutes to find.
+
+So: the bull case, from the documents. Then the line underneath it.
 
 ### One. **SPCX**
 
@@ -161,7 +169,7 @@ If it is not there, that is your answer.
 
 ## Word count
 
-**1,193 spoken words ≈ 7:12 at 166 wpm.** Computed from the VO lines only,
+**1,260 spoken words ≈ 7:35 at 166 wpm.** Computed from the VO lines only,
 not estimated by eye — `PROVENANCE.md` finding #9 exists because every
 `SCRIPT.md` in this repo once carried a word count nobody had actually counted.
 
@@ -189,10 +197,10 @@ of the VO. Re-check after any VO edit — captions burn in word by word.
 
 | # | ~t | VO anchor (verbatim) | Base layer — b-roll | Over it |
 |---|---|---|---|---|
-| 1 | 0:00 | "Micron's gross margin went from forty percent" | macro, memory die on a wafer, raking light, dark + desaturated | compliance strip, bottom edge, 0:00–0:04 |
-| 2 | 0:12 | "it is in the audited filing" | close on printed financial statement, shallow depth | — |
-| 3 | 0:22 | "Three companies." | empty server hall, cold, wide | Zul enters, `arms='down'` |
-| 4 | 0:36 | "and then the number the bull case leaves out" | same hall, one light switching off | **three ticker cards**, stacked |
+| 1 | 0:00 | "SpaceX burned fourteen billion dollars of cash last year" | satellite integration clean room, cold, wide, very dark grade | **−$14,000,000,000** counting up; compliance strip bottom edge 0:00–0:04 |
+| 2 | 0:07 | "The market says it is worth two trillion." | hard cut: exchange floor, long lens, out of focus | **$2,100,000,000,000** replacing it |
+| 3 | 0:14 | "Both of those numbers come from the same filing." | one printed filing page, raking light, shallow depth | both figures, side by side, one circled red |
+| 4 | 0:26 | "Micron's gross margin doubled in twelve months" | empty server hall, cold, wide | Zul enters on the rig; **three ticker cards** land in sequence |
 | 5 | 0:48 | "SpaceX listed on the Nasdaq" | exchange floor, long lens, out of focus crowd | **SPCX** card, red |
 | 6 | 1:02 | "closed its first day at a hundred and sixty-one" | — | price chart, day one only |
 | 7 | 1:16 | "Most people still file SpaceX under rocket company" | rocket on pad at dusk, wide, dark grade | Zul `mood='wry'` |
@@ -224,10 +232,13 @@ of the VO. Re-check after any VO edit — captions burn in word by word.
 
 **Title** — flat declarative, no question mark, per `GROWTH-PLAN.md` §3:
 
-> Micron's Gross Margin Went From 40% To 81% In One Year
+> SpaceX Burned $14 Billion In Cash Last Year
 
-Alternates: *The Number Missing From Every SpaceX Video* · *SpaceX Lost $14
-Billion In Cash Last Year*
+Alternates: *Micron's Gross Margin Went From 40% To 81% In One Year* ·
+*The Number Missing From Every SpaceX Video*
+
+The hook IS the title, per §5A — both halves of the opening line are verified
+(`FACTS.md` rows 16 and 3) and neither is a question.
 
 **Thumbnail** — Zul from `art/zul-face.jpg` left; right, **80.7% → ?** with the
 red rule. Build with `engine/thumb_*.py`. Do not chase the vidIQ score.
