@@ -53,13 +53,14 @@ on earth is adding capacity as fast as it can pour concrete.
 
 CHAPTERS
 0:00 SpaceX burned $14bn. The market says $2 trillion
-1:32 SPCX — the bull case
-3:17 SPCX — the number the bull case leaves out
-4:02 BE — the bull case
-5:07 BE — the number the bull case leaves out
-5:39 MU — the bull case
-6:32 MU — the number the bull case leaves out
-8:09 What to do with this
+0:56 SPCX — the bull case
+2:15 SPCX — the number the bull case leaves out
+3:17 BE — the bull case
+4:10 BE — the number the bull case leaves out
+4:54 MU — the bull case
+5:39 MU — the number the bull case leaves out
+7:47 Three numbers the enthusiasm skips
+8:18 What you can actually do
 
 ON THE NUMBERS
 Every figure is from a company filing, an IR release or an S&P Dow Jones Indices
@@ -85,10 +86,14 @@ Run the checklist in `DISCLAIMER.md`. Two items need a fresh answer each time an
 not be copied forward: **the positions line** (re-confirm it is still true on upload day)
 and **a human watching the render end to end**.
 
-## Chapter timings — a caveat
+## Chapter timings
 
-The times above are read from the built timeline, so they are exactly where the picture
-cuts. They are **not** force-aligned to the narration: beat durations are weight-derived
-and scaled to the measured voiceover length. They should sit within a second or two of
-the spoken section breaks, but confirm them on the watch-through and adjust before upload
-if any chapter lands mid-sentence.
+Read from the built timeline, which is now **aligned to the narration**: every beat
+declares the script paragraphs it illustrates, duration follows word count, and each cut
+is snapped to a real pause detected in the audio. Earlier cuts distributed beats by
+visual weight alone — a flat 13.1s each — and the picture drifted badly against the
+words. See `engine/align_aip.py`.
+
+Still worth confirming on the watch-through: alignment is by word *position* at a
+constant speaking rate, not by forced alignment to the waveform, because no ASR is
+available in the build environment.

@@ -18,6 +18,37 @@ Never pin picture to a *predicted* duration. Generate the VO, measure the file, 
 distribute scene durations against the measured total. `engine/anim_aip.py` does this:
 weights each beat, turn cards at 0.42, and scales so the sum equals the measured seconds.
 
+## Picture must be aligned to the words, not to visual weight
+
+**This is the one that produced the worst-looking defect in the first two cuts.** Beat
+durations were distributed by *weight* — turn cards 0.42, everything else 1.0 — scaled to
+the measured voiceover length. Every ordinary beat therefore ran exactly **13.1s**,
+whether its narration took eight seconds or twenty. The picture drifted against the words
+for nine minutes.
+
+`engine/align_aip.py` is the fix and the contract:
+
+- Every beat declares, in `SRC`, the **script paragraphs it illustrates**. Beats sharing
+  a paragraph split it by word count. The list is asserted to be monotonic and to cover
+  every paragraph, so a beat added or reordered without updating `SRC` fails the build.
+- Duration follows **word position** at the measured speaking rate, not visual weight.
+- Every boundary is **snapped to a real pause** found by
+  `silencedetect=noise=-30dB:d=0.28` (208 of them in this narration), so cuts land between
+  sentences rather than mid-word.
+- `anim_aip.py` refuses to build if the duration count and the beat count disagree.
+
+There is **no ASR here** — `huggingface.co` is egress-blocked, so no Whisper weights and
+no true forced alignment. Word position at a constant rate is the available approximation
+and it is a good one, but it is an approximation: confirm on the watch-through.
+
+**Dense narration needs more beats, not longer ones.** Aligning the first 42-beat cut
+produced a card held for **51.7 seconds**, which breaks the 10–15s rule in `CLAUDE.md`.
+The answer is to add beats where the script is dense, not to let one card sit there. After
+rebuilding to 58 beats: median 9.8s, longest 17.5s, nothing over 18s.
+
+**The closing card holds past the last word.** `OUTRO` seconds of picture run after the
+narration ends, so the render must not pass `-shortest` — that would cut the outro off.
+
 ## Structure
 
 - A **turn card** at the end of each section — hard cut to near-black, the section's

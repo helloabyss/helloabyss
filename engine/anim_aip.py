@@ -29,14 +29,16 @@ ZUL_X, ZUL_Y, ZUL_H = 10, 176, 760
 # sits on top of it. Never under a beat containing Zul -- his line art needs white.
 PLATES = {
     0:  'dish-array',   # SPCX  -- the cash-burn hook, over the ground segment
-    14: 'dish-array',   # SPCX  -- Starlink subscriber series
-    15: 'dish-array',   # SPCX  -- turn card
-    22: 'datacentre',   # BE    -- quarterly revenue, over the demand it serves
-    24: 'substation',   # BE    -- turn card, the grid
-    25: 'datacentre',   # BE    -- backlog
-    28: 'wafer',        # MU    -- revenue, over silicon
-    31: 'wafer',        # MU    -- turn card
-    37: 'racks',        # MU    -- next-quarter guidance
+    15: 'dish-array',   # SPCX  -- Starlink subscriber series
+    17: 'dish-array',   # SPCX  -- turn card
+    26: 'datacentre',   # BE    -- quarterly revenue, over the demand it serves
+    28: 'substation',   # BE    -- turn card, the grid
+    29: 'datacentre',   # BE    -- the backlog
+    33: 'wafer',        # MU    -- FY26 revenue, over silicon
+    38: 'wafer',        # MU    -- turn card
+    43: 'wafer',        # MU    -- the margin comparison
+    49: 'racks',        # MU    -- next-quarter guidance
+    57: 'dish-array',   # close -- back to the opening image, as the script loops back
 }
 
 def plate_html(name, i):
@@ -243,6 +245,23 @@ def b_dial(pct, label, note, cmp_pct=None, cmp_label=''):
         o.append(el('lab', 'left:900px;top:666px', cmp_label, a='rise', t0=0.74, t1=0.90))
     return ''.join(o)
 
+def b_stats(label, rows):
+    """Three figures side by side. For a passage that reads out several numbers in a
+    row and would otherwise sit on one card for half a minute."""
+    o = [el('lab', f'left:{FULL_X}px;top:250px;width:1620px', label, a='rise', t0=0.02, t1=0.18)]
+    n = len(rows)
+    w = int(1620 / n)
+    for i, (k, v) in enumerate(rows):
+        x = FULL_X + i * w
+        o.append(el('chiprule', f'left:{x}px;top:360px;width:8px;height:150px', '',
+                    a='growv', t0=0.10 + i*0.14, t1=0.26 + i*0.14))
+        o.append(el('num', f'left:{x+34}px;top:352px;width:{w-60}px;font-size:92px;'
+                    f'white-space:nowrap', v,
+                    a='rise', t0=0.16 + i*0.14, t1=0.34 + i*0.14))
+        o.append(el('lab', f'left:{x+34}px;top:470px;width:{w-60}px;font-size:27px', k,
+                    a='rise', t0=0.22 + i*0.14, t1=0.38 + i*0.14))
+    return ''.join(o)
+
 # ---------- the beats --------------------------------------------------------
 BODY = 'body'
 PT  = (BODY, ['body-front', 'full-point-right'])
@@ -253,28 +272,39 @@ SHRG= (BODY, ['body-front', 'full-shrug'])
 TUP = (BODY, ['body-front', 'full-thumbs-up'])
 
 BEATS = [
- b_num(14.0, '−$', 'bn', 1, 'SPACEX FREE CASH FLOW, 2025'),
+ # --- the hook -------------------------------------------------------------
+ b_num(14.0, '\u2212$', 'bn', 1, 'SPACEX FREE CASH FLOW, 2025'),
  b_num(2.1, '$', 'tn', 1, 'WHAT THE MARKET SAYS IT IS WORTH'),
  b_lines(['Both numbers come from','the same filing.'], PALM),
  b_lines(['Both numbers come from','the same filing.','Only one made it','into the videos.'], SKEP),
  b_compare('MICRON GROSS MARGIN FY25', 39.8, 'FY26', 80.7),
  b_lines(['Three companies.','Three real theses.'], PT),
  b_lines(['Three companies.','Three real theses.','Three numbers','nobody mentions.'], PALM),
+ b_lines(['The bull case,','from the documents.','Then the line underneath it.'], PALM),
+ # --- SPCX -----------------------------------------------------------------
  b_spark(135, 160.95, 'IPO PRICE', 'CLOSE, DAY ONE', 'SPCX',
          'Listed on NASDAQ, 12 June 2026', PT),
  b_num(2.1, '$', 'tn', 1, 'VALUATION AT THAT CLOSE', 'Up 19% on the first day of trading.'),
  b_lines(['Most people file SpaceX','under "rocket company".'], SKEP),
  b_lines(['Most people file SpaceX','under "rocket company".','The filing disagrees.'], SHOK),
- b_compare('2025 REVENUE', 18.7, 'OF IT, STARLINK', 11.4, note='61% of the company is broadband.', pre='$', suf='bn'),
+ b_compare('2025 REVENUE', 18.7, 'OF IT, STARLINK', 11.4,
+           note='61% of the company is broadband.', pre='$', suf='bn'),
  b_lines(['Before 2015, the way to','end a launch was to','throw the rocket away.'], SHOK),
  b_lines(['Imagine buying a jet,','flying it to Paris,','and leaving it there.'], SHRG),
  b_bars([('2023', 2.3), ('2024', 4.4), ('2025', 8.9), ('MAR 26', 10.3), ('JUN 26', 12.0)],
         'STARLINK SUBSCRIBERS, MILLIONS'),
+ b_num(4.4, '$', 'bn', 1, 'STARLINK OPERATING INCOME, 2025', 'On a 39% margin.'),
  b_turn('SPCX'),
- b_compare('SUBSCRIBERS, Q1 26', 104.7, 'REVENUE PER USER', -22.9, note='Some of the growth is bought with price cuts.', pre='', suf='%'),
- b_waterfall([('CASH FROM OPERATIONS', 6.8), ('CAPITAL EXPENDITURE', -20.7), ('FREE CASH FLOW', -14.0)],
-             'SPACEX, 2025'),
- b_lines(['A constellation is a','subscription the company','pays, not one it collects.'], PALM),
+ b_compare('SUBSCRIBERS, Q1 26', 104.7, 'REVENUE PER USER', -22.9,
+           note='Growth is real.', pre='', suf='%'),
+ b_compare('REVENUE PER USER, 2023', 99, 'MAR 2026', 66,
+           note='Some of the growth is being bought with price cuts.',
+           dec=0, pre='$', suf=''),
+ b_waterfall([('CASH FROM OPERATIONS', 6.8), ('CAPITAL EXPENDITURE', -20.7),
+              ('FREE CASH FLOW', -14.0)], 'SPACEX, 2025'),
+ b_lines(['Satellites are not','a one-off purchase.','They de-orbit, and they','have to be replaced.'], PALM),
+ b_lines(['A constellation is a','subscription the company','pays, not one it collects.'], SKEP),
+ # --- BE -------------------------------------------------------------------
  b_ticker('BE', 'NYSE', 'Joined the S&P 500 on 21 Sept 2026', PT,
           [('Q2 2026 REVENUE', '$1.07bn'), ('FY26 GUIDANCE', 'raised three times'),
            ('BACKLOG', 'about $20bn')]),
@@ -285,24 +315,40 @@ BEATS = [
  b_bars([('FEB', 3.2), ('APR', 3.6), ('JUL', 4.05)],
         'FY26 GUIDANCE, $BN \u2014 RAISED THREE TIMES. MIDPOINT OF EACH RANGE', dec=2),
  b_turn('BE'),
- b_num(20.0, '$', 'bn', 1, 'BACKLOG', 'Contracts run 5–20 years — cancellable annually'),
+ b_num(20.0, '$', 'bn', 1, 'BACKLOG', 'Contracts run 5\u201320 years \u2014 cancellable annually'),
  b_lines(['A backlog is not','a bank balance.'], SKEP, size=76),
+ b_lines(['$20bn of intent,','cancellable once a year.','Quoting it without the clause','is quoting half a sentence.'], SKEP),
+ # --- MU -------------------------------------------------------------------
  b_ticker('MU', 'NASDAQ', 'FY2026 ended 3 September 2026', PT,
           [('FY2026 REVENUE', '$133.19bn'), ('EARNINGS PER SHARE', '$74.33'),
            ('GROSS MARGIN', '80.7%')]),
- b_compare('FY25 REVENUE', 37.4, 'FY26 REVENUE', 133.2, note='Growth of 256% in a single year.', pre='$', suf='bn'),
+ b_compare('FY25 REVENUE', 37.4, 'FY26 REVENUE', 133.2, pre='$', suf='bn'),
+ b_num(256, '', '%', 0, 'GROWTH IN A SINGLE YEAR', 'At a company more than forty years old.'),
+ b_stats('MICRON, FY2026', [('NET INCOME', '$84.97bn'), ('EARNINGS PER SHARE', '$74.33'),
+                            ('GROSS MARGIN, FROM 39.8%', '80.7%')]),
  b_lines(['An AI accelerator is useless','without memory next to it.'], PALM),
  b_lines(['An AI accelerator is useless','without memory next to it.','Very few companies make','the high-end kind.'], SHOK),
  b_turn('MU'),
  b_dial(80.7, 'MICRON GROSS MARGIN FY26', 'Gross margin is not\nwhat the company keeps.',
-        cmp_pct=63.8, cmp_label='NET MARGIN 63.8% — CALCULATED'),
- b_compare('NVIDIA, LAST QUARTER', 75.0, 'MICRON, FULL YEAR', 80.7,
-           note='A memory maker out-earning the chips it feeds.'),
+        cmp_pct=63.8, cmp_label='NET MARGIN 63.8% \u2014 CALCULATED'),
+ b_num(63.8, '', '%', 1, 'NET MARGIN \u2014 CALCULATED',
+       'Net income \u00f7 revenue. Not a line in the release.'),
+ b_lines(['And here is the comparison','that should make you careful','rather than excited.'], SKEP),
+ b_compare('NVIDIA, LAST QUARTER', 75.0, 'MICRON, FULL YEAR', 80.7),
+ b_compare('NVIDIA, FY2026', 71.1, 'MICRON, FY2026', 80.7,
+           note='A year against a quarter \u2014 and it still holds.'),
+ b_lines(['A memory maker earning more','per dollar of sales than the','chips it exists to feed.'], SHOK),
  b_lines(['Every producer on earth','is building capacity as fast','as it can pour concrete.'], SHOK),
+ b_lines(['Memory is the most reliably','cyclical industry in technology.'], SKEP),
  b_lines(['Eighty percent margins','are not a new normal.'], SKEP),
  b_lines(['Eighty percent margins','are not a new normal.','They are what the top','of a cycle looks like.'], SKEP),
  b_num(61.5, '$', 'bn', 1, 'NEXT-QUARTER GUIDANCE', 'An estimate. Not money earned.'),
+ # --- the close ------------------------------------------------------------
  b_lines(['A cash-flow deficit.','A cancellation clause.','A cycle.'], SHRG, size=72),
+ b_lines(['None of those make these','bad businesses.'], PALM, size=76),
+ b_lines(['The bull case and the risk','come from the same document.','Only one tends to make it','into the video you watched.'], SKEP),
+ b_lines(['All three counterweights','are in public filings.'], PALM, size=76),
+ b_num(10, '', '', 0, 'MINUTES TO FIND THEM', 'And free to read.'),
  b_lines(['Open the last quarterly','release and find the number','nobody quoted.'], PALM),
  b_lines(['If it is not there,','that is your answer.'], None, size=84),
  b_num(3.0, '', '', 0, 'COMPANIES', 'Every counterweight came from a public filing.'),
@@ -425,15 +471,16 @@ window.setFrame=function(s,t){
 RAIL = '<b>SPCX</b> \u2212$14.0BN FREE CASH FLOW, 2025 \u00b7 <b>BE</b> $20BN BACKLOG, CANCELLABLE ANNUALLY \u00b7 <b>MU</b> 80.7% GROSS MARGIN, TOP OF A CYCLE \u00b7 '
 
 if __name__ == '__main__':
-    durs = json.load(open('aip-durations.json'))['durations'] if os.path.exists('aip-durations.json') else None
-    # rebuild durations for the new beat count, pinned to the measured VO
-    VO = 529.40
-    w = [0.42 if 'class="card"' in b else 1.0 for b in BEATS]
-    tot = sum(w); durs = [VO * x / tot for x in w]
+    # Durations come from align_aip.py, which maps every beat to the script paragraphs
+    # it illustrates and places each cut at a real pause in the narration. They are NOT
+    # derived from visual weight any more -- that is what made the picture drift.
+    import align_aip
+    durs, _b, _c, _w = align_aip.build()
+    if len(durs) != len(BEATS):
+        raise SystemExit('align_aip gives %d durations for %d beats -- SRC and BEATS '
+                         'have drifted apart' % (len(durs), len(BEATS)))
     cum = [0.0]
     for d in durs: cum.append(cum[-1] + d)
-    json.dump({'durations': [round(d, 3) for d in durs], 'total': round(sum(durs), 3)},
-              open('aip-durations.json', 'w'), indent=1)
     body = ''
     for i, b in enumerate(BEATS):
         if i in PLATES:
@@ -460,5 +507,5 @@ if __name__ == '__main__':
         f'<div id="rail"><div id="railin">{RAIL*4}</div></div>'
         f'<div id="strip">EDUCATIONAL ONLY. NOT FINANCIAL ADVICE.</div>'
         f'<script>{js}</script>')
-    print('%d beats · %.1fs total · turn cards %.1fs · others %.1fs'
+    print('%d beats · %.1fs total · shortest %.1fs · longest %.1fs · aligned to the narration'
           % (len(BEATS), sum(durs), min(durs), max(durs)))

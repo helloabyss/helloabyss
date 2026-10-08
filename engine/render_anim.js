@@ -38,7 +38,8 @@ const FPS = STILLS ? 12 : +(process.argv[2] || 20);
     '-map', '0:v:0', '-map', '1:a:0',
     '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '20', '-pix_fmt', 'yuv420p',
     '-r', String(FPS), '-c:a', 'aac', '-b:a', '160k',
-    '-shortest', '-movflags', '+faststart', OUT,
+    // no -shortest: the closing card deliberately holds past the last word
+    '-movflags', '+faststart', OUT,
   ], { stdio: ['pipe', 'ignore', 'pipe'] });
   let err = '';
   ff.stderr.on('data', d => { err += d; if (err.length > 40000) err = err.slice(-20000); });
