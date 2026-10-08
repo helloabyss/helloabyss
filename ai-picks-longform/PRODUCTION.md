@@ -289,3 +289,58 @@ need a human pass before upload.
 others 1.0, scaled to the measured VO length), **not force-aligned to the audio**. The
 three turn cards are intended to land at the end of each company's section but nothing
 enforces it. If they drift against the narration, that is the first thing to fix.
+
+
+## Defect found after delivery — narration was 11 dB too quiet (2026-10-08)
+
+The first delivered cut was reported as having **no voiceover**. It had one. The audio
+stream was present, full length, and matched the source window for window. It was simply
+**far too quiet to notice**, especially on a phone speaker.
+
+| | Measured |
+|---|---|
+| ElevenLabs output, as delivered | **−24.66 LUFS** integrated, true peak −2.36 dBTP |
+| YouTube / broadcast target | −14 LUFS |
+| Shortfall | **10.7 dB** — roughly a third of normal perceived loudness |
+
+**The narration was never loudness-normalised.** ElevenLabs returns audio at whatever
+level it returns; nothing in the pipeline corrected it.
+
+### Why the earlier verification missed it
+
+The verification record quoted `mean_volume: -24.6 dB` and `max_volume: -2.4 dB` and
+concluded "real speech, not silence". That inference was correct and useless. It answered
+**"is there audio?"** when the question that mattered was **"is it loud enough to hear?"**
+A check that can only return "present" or "absent" cannot catch a level problem, and
+−24.6 dB was sitting in the output the whole time as the answer.
+
+### Fix
+
+Two-pass `loudnorm` to −14 LUFS, converted to stereo, remuxed with `-c:v copy` so no
+re-render was needed:
+
+```
+ffmpeg -i vo-full.mp3 -af loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=-24.66:\
+  measured_TP=-2.36:measured_LRA=3.90:measured_thresh=-35.72:offset=2.62:linear=true,\
+  aformat=channel_layouts=stereo -ar 48000 -c:a pcm_s16le vo-master.wav
+ffmpeg -i <video>.mp4 -i vo-master.wav -map 0:v:0 -map 1:a:0 -c:v copy \
+  -c:a aac -b:a 192k -ac 2 -ar 48000 -shortest -movflags +faststart out.mp4
+```
+
+The linear pass landed at −15.97 LUFS rather than −14, so a flat `volume=1.97dB` closed
+the gap rather than running the dynamics processing a second time.
+
+**Verified on the master:** `input_i: -14.04`, true peak −2.51 dBTP, `48000 Hz, stereo`.
+`ai-picks-longform/vo-master.wav` is the normalised stem and is the one to use from here.
+
+### Standing rule
+
+**Every delivered cut is checked for integrated loudness, not just for the presence of an
+audio stream.** Target −14 LUFS, true peak at or under −1.0 dBTP, stereo.
+
+```
+ffmpeg -i <file> -af loudnorm=I=-14:TP=-1.5:print_format=json -f null -
+```
+
+If `input_i` is more than about 1.5 dB from −14, normalise before delivering. A level
+check is cheap and this failure cost a full delivery cycle.

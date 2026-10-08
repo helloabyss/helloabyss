@@ -83,6 +83,26 @@ for `creative_create_asset_upload`, so the video cannot be put on a flow in the 
 place. More importantly it is an unnecessary dependency: the mux is a local operation
 and should stay one.
 
+## Audio loudness — check this on every cut
+
+**Normalise the narration before it goes anywhere.** ElevenLabs returns audio at whatever
+level it happens to return; on `ai-picks-longform` that was **−24.66 LUFS**, about 10.7 dB
+under the −14 LUFS a published video wants. The cut shipped and was reported as having no
+voiceover at all, because at that level on a phone speaker it may as well not have.
+
+```
+ffmpeg -i <file> -af loudnorm=I=-14:TP=-1.5:print_format=json -f null -   # measure
+```
+
+Target **−14 LUFS integrated**, true peak at or under **−1.0 dBTP**, **stereo**. More than
+~1.5 dB off and it needs a two-pass `loudnorm` (see `ai-picks-longform/PRODUCTION.md` for
+the exact invocation). Normalising the stem and remuxing with `-c:v copy` takes under a
+minute, so this never justifies a re-render.
+
+**"The audio stream exists" is not this check.** Verifying presence answers a different
+question from verifying level, and only the second one tells you whether a viewer will
+hear it.
+
 ## Verification
 
 Renders cannot be watched from the agent environment; the HeyGen and Higgsfield CDNs are

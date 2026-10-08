@@ -62,6 +62,12 @@ Rules that bind all four together:
   stop reading at sidebar size it has failed, whatever it looks like full-bleed.
 - Chapter timings read off the built timeline are where the *picture* cuts, not where
   the *narration* breaks. Say so, and have them confirmed on the watch-through.
+- **Measure the audio loudness of every cut before delivering it.** Target **−14 LUFS**
+  integrated, true peak at or under −1.0 dBTP, stereo:
+  `ffmpeg -i <file> -af loudnorm=I=-14:TP=-1.5:print_format=json -f null -`
+  ElevenLabs output is **not** normalised — `ai-picks-longform` came back at −24.66 LUFS,
+  10.7 dB under target, and was delivered sounding like it had no voiceover at all.
+  Confirming an audio stream *exists* is a different check and will not catch this.
 
 ## Fixed production settings
 
