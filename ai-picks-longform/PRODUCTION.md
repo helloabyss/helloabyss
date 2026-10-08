@@ -92,6 +92,21 @@ limbs **drawn as separate layers** — which is exactly what
 | **Timeline** | `engine/build_aip.py` pins the total to the MEASURED VO length and weights the beats: turn cards 5.5s, everything else 13.1s |
 | **Video** | 6,360 frames @ 12fps = **530.00s** — 0.6s over the audio, pure frame quantisation |
 | **Mux** | ElevenLabs composition node, **0 credits** |
+| **Finished** | **1920×1080 H.264 + AAC MP4, 8m50s.** Master 184.5 MB (gen `cHWjzsvLq5ozaUuuXvej`); 12.3 MB preview alongside it |
+
+**Verified by parsing the container**, not by trusting the API — the local
+ffmpeg cannot open an MP4:
+
+```
+track 1  vide  avc1   6360 samples  530.023s
+track 2  soun  mp4a  22799 samples  529.370s
+```
+
+Both tracks span the full runtime, so nothing is truncated. Signed download
+URLs expire after two hours; re-fetch from the flow, or re-run the composition
+node, which is free and whose source assets stay on the canvas.
+
+Flow: https://elevenlabs.io/app/flows/BMp2LcEqytHYReFUw77r
 
 ### A real finding for the long-form guide
 
