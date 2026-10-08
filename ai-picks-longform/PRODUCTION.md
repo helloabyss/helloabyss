@@ -1,0 +1,92 @@
+# Production — Three AI Picks
+
+## Where this came from
+
+Commissioned from a YouTube video (`EANqywQ3VMk`) supplied by Sheldon.
+Transcript pulled 2026-10-08 with `vidiq_video_transcript`.
+
+**Measured cost: 5 credits** — balance 121 → 116 across the single call. That
+is now a *second* observed vidIQ price alongside `vidiq_youtube_search`, and
+`CLAUDE.md`'s cost table should be updated from "assumed" to "observed" for
+this call.
+
+**The script here is original.** The transcript was used to identify which
+companies were named and which claims needed checking. Every figure in
+`SCRIPT.md` was then verified independently against SEC filings and company
+releases and is recorded in `FACTS.md` with a confidence level. Nothing is a
+reworded version of the source, which matters for two separate reasons: it is
+someone else's work, and — as below — several of its numbers are wrong.
+
+## Source audit — what it got right, and what it got wrong
+
+**Right, and I was wrong to doubt it.** Two claims looked implausible on first
+read and both check out:
+
+- **SpaceX really is public.** Nasdaq, **SPCX**, listed 12 June 2026, priced
+  $135, day-one close $160.95. I had assumed it was still private.
+- **Micron really did do $133.2 bn.** Up 256% from $37.4 bn. An extraordinary
+  figure that is nonetheless in the audited release.
+
+**Wrong, and not carried forward:**
+
+| Source claim | Reality |
+|---|---|
+| "for every $1 Micron earns they keep 81 cents" | **81% is GROSS margin.** Net margin is ≈64%. The video states a gross figure as a retained one — a modelling error large enough to change a valuation |
+| "Q1 guidance, they did 61 billion in revenue" | $61.5 bn is **forward guidance** for Q1 FY27, not revenue earned. Stated as achieved |
+| "full year earnings per share $752%... up 811%" | Garbled. GAAP EPS is **$74.33**; non-GAAP $75.52 |
+| "Nvidia almost worth $6 trillion" | ≈$5.78 tn on 8 Oct. "Almost" is fair; $6 tn is not yet a fact |
+
+**Omitted by the source, and the spine of our version** — all three are in the
+filings the source was quoting from:
+
+1. SpaceX's 2025 free cash flow: **−$14.0 bn** ($6.8 bn operating, $20.7 bn capex).
+2. Bloom's $20 bn backlog is **cancellable annually**; most of it is 5–20 year service.
+3. Starlink ARPU is **down 22.9%** year on year while subscribers doubled.
+
+Eight further claims could not be verified at all and are listed at the foot of
+`FACTS.md` as unspeakable. They include the "$108" SpaceX entry price, the "60%
+of global launch market" share and the "$250 bn" Micron capex figure.
+
+## Constraints hit
+
+| | |
+|---|---|
+| **HeyGen** | ⚠️ **Account is now on the `free` plan; `premium_credits.remaining` is `null`.** It was Pro with a 2026-10-06 reset when last checked on 10-05. The house render path is **gone or severely limited** until that is resolved. Measured 2026-10-08. |
+| **Higgsfield** | **242.35 credits** — up from 0.35 on 10-05. B-roll is affordable again. This is what makes the photographic base layer possible. |
+| **vidIQ** | 116 after the transcript. |
+| **No `LONGFORM-GUIDE.md`** | It is on the parked PARADOCS10X branch, not here. Pacing (~166 wpm, 16:9) was carried over from memory of it; the guide itself should be ported before the next long-form. |
+| **No `DISCLAIMER.md`** | ⚠️ Also only on the parked branch. **A video naming three tickers must not publish without it.** Blocking. |
+| **Higgsfield CDN blocked** | ⚠️ `d8j0ntlcm91z4.cloudfront.net` is refused by the agent proxy (403 on CONNECT) — the same class of block as the HeyGen CDN. Plates **generate** fine and are in the Higgsfield account; they **cannot be downloaded here**. Fetch them from the Higgsfield UI. |
+| **Format departure** | The channel is 9:16 Shorts. This is 16:9 long-form, and it uses the stickman host — which is **T8, still undecided**. See below. |
+
+## This may resolve T8
+
+`SERIES-ONE-NUMBER.md` §6 left open whether the stickman format can live on a
+channel whose style guide mandates photographic imagery. This video is the
+hybrid neither option considered: **photographic b-roll as the base layer, Zul
+composited over it, type on top** — which is precisely the three-layer stack
+`STYLE-GUIDE.md` already specifies. It is plausibly not a departure at all.
+Worth deciding on the strength of this one before committing the series.
+
+## Verification checklist — before upload
+
+- [ ] Re-run the word count. Finding #9: never trust a stated count.
+- [ ] Every shot-list row label still a verbatim VO substring (finding #13).
+- [ ] **`DISCLAIMER.md` ported and pasted into the description in full.**
+- [ ] Compliance renders as a bottom-edge **strip**, not a card (§5A).
+- [ ] **SPCX / BE / MU** bold and uppercase in every on-screen appearance.
+- [ ] $61.5 bn carries the word **ESTIMATE** on screen (scene 28).
+- [ ] ≈64% net margin labelled as calculated, not company-stated (`FACTS.md` #34).
+- [ ] Re-verify prices and market caps on upload day — rows 17, 27, 38 move daily.
+- [ ] A human watches the whole render. Non-negotiable.
+
+## Assets produced
+
+| | |
+|---|---|
+| `engine/rig16-demo.webm` | 16:9 animated beat — Zul on the cut-out rig, three ticker cards landing bold in the accent red, compliance as a bottom-edge strip. 212 frames, 24fps, zero credits. Background is near-black so b-roll drops in behind without relighting. |
+| Higgsfield b-roll | 4 variants of the opening memory-die plate generated (**0.25 credits for all four**). In the Higgsfield account; not downloadable here. |
+
+**B-roll cost is not a constraint.** Measured: 0.25 credits for four 16:9
+variants against a 242-credit balance. The remaining ~26 plates in the shot
+list cost roughly 2 credits in total. The limit is the CDN block, not money.

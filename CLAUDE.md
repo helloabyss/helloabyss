@@ -55,14 +55,16 @@ both directions. In September it understated what was available and the channel 
 it could afford; by 2026-10-05 the same block overstated two balances by three orders of
 magnitude, which is the more expensive failure because it plans spends that cannot clear.**
 
-| Resource | Status 2026-10-05 | Was claimed |
+| Resource | Status **2026-10-08** | On 2026-10-05 |
 |---|---|---|
-| HeyGen | **0 premium credits.** Pro plan; resets **2026-10-06 12:57 UTC** | 372 |
-| Higgsfield | **0.35 credits**, starter — B-roll is **NOT** available | 564.84 |
-| vidIQ | **121** = 120 renewable (of 150) + 1 add-on. Next reset **2026-11-03** | 1, blocked to 10-03 |
+| HeyGen | ⚠️ **Plan is now `free`; premium credits `null`.** The Pro plan and its 10-06 reset are gone. Treat the house render path as unavailable until resolved | Pro, 0 credits, reset due 10-06 |
+| Higgsfield | **242.35 credits**, starter — **B-roll IS available** | 0.35 — unusable |
+| vidIQ | **116** = 115 renewable (of 150) + 1 add-on. Resets **2026-11-03** | 121 |
 
 All three read directly from `vidiq_balance`, `higgsfield balance` and `heygen
-get_current_user` on 2026-10-05 — observed, not inferred.
+get_current_user` on 2026-10-08 — observed, not inferred. **In three days HeyGen
+went Pro → free and Higgsfield went 0.35 → 242.** This block goes stale faster
+than anything else in the file; the session-start re-check is not optional.
 
 **Consequences, which invert three task-board rows:** no HeyGen render can run until the
 2026-10-06 reset; Higgsfield hero plates (T5) are unaffordable, not merely unapproved; and
@@ -91,6 +93,7 @@ vidIQ research (T4) is unblocked with ~24 calls of headroom at the pessimistic 5
   | Call | Cost | Basis |
   |---|---|---|
   | `vidiq_balance` | free | observed — called 3× with no drawdown |
+  | `vidiq_video_transcript` | **5** | **observed 2026-10-08** — balance 121 → 116 on one call |
   | `vidiq_youtube_search` | **5** | **confirmed by API error message** |
   | `channel_stats`, `channel_videos`, `channel_search`, `outliers` | assume **5** | inferred from arithmetic |
   | `keyword_research`, `video_stats` | assume **5** | never called — assumed by analogy |
