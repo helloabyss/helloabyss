@@ -62,7 +62,24 @@ an estimate · UNVERIFIED = could not confirm; **must not be spoken**.
 | # | Claim | Figure | Confidence | Source |
 |---|---|---|---|---|
 | 38 | Market cap 8 Oct 2026 | **≈$5.78 tn — not yet $6 tn** | REPORTED | Capital.com, CompaniesMarketCap |
-| 39 | $6 tn threshold | needs ≈$248/share; Bloomberg 6 Oct called it "on the verge" | REPORTED | Bloomberg via Yahoo |
+| 39 | $6 tn threshold | needs ≈$248/share; Bloomberg 6 Oct called it "on the verge" of being the **first** company there | REPORTED | Bloomberg via Yahoo |
+| 40 | **Gross margin, latest quarter** (Q2 FY27, ended 26 Jul 2026) | **75.0%** GAAP and non-GAAP, on $96.2 bn revenue. Up from 72.4% a year earlier on Blackwell Ultra mix | CONFIRMED | 8-K / 10-Q |
+| 41 | Gross margin, full FY2026 | **71.1%** GAAP (71.3% non-GAAP), **down** from 75.0% in FY2025 | CONFIRMED | 10-K |
+| 42 | Why FY2026 was lower | Hopper HGX → Blackwell transition **plus a $4.5 bn H20 inventory charge** | CONFIRMED | 10-K |
+
+### The comparison that matters
+
+**Micron's gross margin is now higher than Nvidia's**, and it holds on either
+basis — so the beat does not depend on picking a flattering period:
+
+| | Micron | Nvidia |
+|---|---|---|
+| Full year FY2026 | **80.7%** | 71.1% *(depressed by the $4.5 bn charge)* |
+| Most recent quarter | — | 75.0% |
+
+Micron's FY2026 is a full year against Nvidia's quarter, which the VO says out
+loud. Micron's own latest quarter would be **higher** than its 80.7% annual
+figure, not lower, so stating the annual number is the conservative choice.
 
 ## UNVERIFIED — do not speak these
 

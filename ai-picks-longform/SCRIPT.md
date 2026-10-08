@@ -1,6 +1,6 @@
 # Three AI Picks — long-form
 
-**Runtime ~7:35** at ~166 wpm (computed, not estimated) · **16:9** · host: Zul · every figure
+**Runtime ~8:26** at ~166 wpm (computed, not estimated) · **16:9** · host: Zul · every figure
 traceable to `FACTS.md`. Bracketed notes are direction, not spoken.
 
 **Compliance:** "Educational only. Not financial advice." as a thin bottom-edge
@@ -133,6 +133,20 @@ that from net income over revenue, it is not a line in the release. Sixty-four
 percent is a remarkable number. It is not eighty-one, and if you are modelling
 on eighty-one you are modelling a company that does not exist.
 
+And here is the comparison that should make you careful rather than excited.
+
+Nvidia — the company every one of these chips plugs into, and the one the
+market is pricing to be the first ever worth six trillion dollars — ran a
+seventy-five percent gross margin last quarter. Micron ran eighty-one across
+the whole year. That is a year against a quarter, and it still holds: Nvidia's
+own full year was seventy-one.
+
+So a memory manufacturer is currently earning more per dollar of sales than
+the company whose accelerators it exists to feed. That is genuinely true today.
+Ask what has to stay true for it to last. Memory has to remain scarcer than
+the chips that need it — in an industry where every producer on earth is
+currently building capacity as fast as it can pour concrete.
+
 The second thing is the shape of the business. Memory is the most reliably
 cyclical industry in technology. It has made people rich roughly every seven
 years and then quietly un-made them, because the cure for high prices is high
@@ -169,7 +183,7 @@ If it is not there, that is your answer.
 
 ## Word count
 
-**1,260 spoken words ≈ 7:35 at 166 wpm.** Computed from the VO lines only,
+**1400 spoken words ≈ 8:26 at 166 wpm.** Computed from the VO lines only,
 not estimated by eye — `PROVENANCE.md` finding #9 exists because every
 `SCRIPT.md` in this repo once carried a word count nobody had actually counted.
 
@@ -236,7 +250,7 @@ of the VO. Re-check after any VO edit — captions burn in word by word.
 | 27 | 6:40 | "It has made people rich roughly every seven years" | long shot, cyclical sine over a fab skyline | memory price cycle, 40 yrs |
 | 28 | 6:58 | "Guidance is a forecast." | — | **$61.5bn** stamped "ESTIMATE" |
 | 29 | 7:06 | "a cash-flow deficit, a cancellation clause, and a cycle" | three-way split of earlier plates | three bold tickers return |
-| 30 | 7:12 | "find the number nobody quoted" | hands opening a filing on a laptop | closing card |
+| 32 | 7:44 | "find the number nobody quoted" | hands opening a filing on a laptop | closing card |
 
 ## Packaging
 
