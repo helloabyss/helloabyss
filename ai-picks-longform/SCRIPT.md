@@ -252,6 +252,68 @@ of the VO. Re-check after any VO edit — captions burn in word by word.
 | 29 | 7:06 | "a cash-flow deficit, a cancellation clause, and a cycle" | three-way split of earlier plates | three bold tickers return |
 | 32 | 7:44 | "find the number nobody quoted" | hands opening a filing on a laptop | closing card |
 
+
+## What actually shipped — the animated cut
+
+The table above is the **intended** design, with Higgsfield b-roll under the type. Those
+plates exist in the Higgsfield account but **cannot be downloaded here** — the CDN
+(`d8j0ntlcm91z4.cloudfront.net`) returns 403 on CONNECT. The cut that shipped is therefore
+the engine's zero-credit animated render: white page, three-colour palette, Zul cut
+between drawn poses, no photographic layer.
+
+Built by `engine/anim_aip.py`, rendered by `engine/render_anim.js` at 20fps, pinned to the
+**measured** 529.40s of narration. Zul's band and the type column are separated by a
+build-time assertion, not by eye (see `LONGFORM-GUIDE.md`).
+
+| # | ~t | Beat type | Leading element | Zul |
+|---|---|---|---|---|
+| 1 | 0:00 | counting figure | SPACEX FREE CASH FLOW, 2025 | — |
+| 2 | 0:13 | counting figure | WHAT THE MARKET SAYS IT IS WORTH | — |
+| 3 | 0:26 | statement | Both numbers come from | yes |
+| 4 | 0:39 | statement | Both numbers come from | yes |
+| 5 | 0:52 | two-up compare | MICRON GROSS MARGIN FY25 | — |
+| 6 | 1:05 | statement | Three companies. | yes |
+| 7 | 1:18 | statement | Three companies. | yes |
+| 8 | 1:32 | price path | SPCX | yes |
+| 9 | 1:45 | counting figure | VALUATION AT THAT CLOSE | — |
+| 10 | 1:58 | statement | Most people file SpaceX | yes |
+| 11 | 2:11 | statement | Most people file SpaceX | yes |
+| 12 | 2:24 | two-up compare | 2025 REVENUE | — |
+| 13 | 2:37 | statement | Before 2015, the way to | yes |
+| 14 | 2:50 | statement | Imagine buying a jet, | yes |
+| 15 | 3:04 | column series | 2023 | — |
+| 16 | 3:17 | turn card | THE NUMBER THE BULL CASE LEAVES OUT | — |
+| 17 | 3:22 | two-up compare | SUBSCRIBERS, Q1 26 | — |
+| 18 | 3:35 | waterfall | SPACEX, 2025 | — |
+| 19 | 3:49 | statement | A constellation is a | yes |
+| 20 | 4:02 | ticker card | BE | yes |
+| 21 | 4:15 | statement | A data centre needs power. | yes |
+| 22 | 4:28 | statement | A data centre needs power. | yes |
+| 23 | 4:41 | column series | Q1 26 | — |
+| 24 | 4:54 | column series | FEB | — |
+| 25 | 5:07 | turn card | THE NUMBER THE BULL CASE LEAVES OUT | — |
+| 26 | 5:13 | counting figure | BACKLOG | — |
+| 27 | 5:26 | statement | A backlog is not | yes |
+| 28 | 5:39 | ticker card | MU | yes |
+| 29 | 5:52 | two-up compare | FY25 REVENUE | — |
+| 30 | 6:06 | statement | An AI accelerator is useless | yes |
+| 31 | 6:19 | statement | An AI accelerator is useless | yes |
+| 32 | 6:32 | turn card | THE NUMBER THE BULL CASE LEAVES OUT | — |
+| 33 | 6:37 | arc dial | MICRON GROSS MARGIN FY26 | — |
+| 34 | 6:51 | two-up compare | NVIDIA, LAST QUARTER | — |
+| 35 | 7:04 | statement | Every producer on earth | yes |
+| 36 | 7:17 | statement | Eighty percent margins | yes |
+| 37 | 7:30 | statement | Eighty percent margins | yes |
+| 38 | 7:43 | counting figure | NEXT-QUARTER GUIDANCE | — |
+| 39 | 7:56 | statement | A cash-flow deficit. | yes |
+| 40 | 8:09 | statement | Open the last quarterly | yes |
+| 41 | 8:23 | statement | If it is not there, | — |
+| 42 | 8:36 | counting figure | COMPANIES | — |
+
+Beat times are derived from weights (turn cards 0.42, every other beat 1.0) scaled to the
+measured narration length, **not** from forced alignment to the audio. They are
+approximate; a human watching the render is what confirms picture and voice agree.
+
 ## Packaging
 
 **Title** — flat declarative, no question mark, per `GROWTH-PLAN.md` §3:
