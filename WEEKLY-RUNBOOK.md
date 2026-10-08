@@ -109,3 +109,21 @@ Two options, both available:
 
 Option 1 is the one you want for a weekly rhythm. I haven't created it yet because it should
 point at the right channel, and that decision is still open (`GROWTH-PLAN.md` §1).
+
+
+## Definition of done — every video, no exceptions
+
+Standing instruction, 2026-10-08. A cycle is not finished until **all four** exist:
+
+1. **Video** — rendered, and a human has watched it end to end.
+2. **Thumbnail** — 1280×720, checked at ~320px, in the channel palette.
+3. **Title** — the voiceover's opening line, the hook, under ~62 characters.
+4. **Description** — compliance paragraph and positions line first, then chapters,
+   then how the numbers were derived.
+
+Title and description live in `<video-dir>/PACKAGING.md`, ready to paste. The thumbnail
+is built by `engine/make_thumb.py` at zero credits, so there is never a budget reason to
+ship without one.
+
+`packager` is the agent that owns 2–4. Do not treat them as a follow-up task: a video
+delivered without them is delivered incomplete.

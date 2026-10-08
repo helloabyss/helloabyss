@@ -36,6 +36,33 @@ locked visual identity. Summary of the non-negotiables:
 - **No clickbait.** No subscribe animations, no "what they don't want you to know" CTAs.
   Close on something the viewer can act on.
 
+## A video is four things, not one — NON-NEGOTIABLE
+
+**Nothing counts as delivered until all four exist.** Asked for "a video", produce all
+four without being asked again; this standing instruction was given 2026-10-08 and does
+not expire.
+
+| | Where it goes | Built by |
+|---|---|---|
+| **Video** | the render | `engine/render_anim.js` (or the house path) |
+| **Thumbnail** | `engine/thumb.png`, 1280×720 | `engine/make_thumb.py` — zero credits, deterministic |
+| **Title** | `<dir>/PACKAGING.md` | the hook, verbatim from the VO's opening line |
+| **Description** | `<dir>/PACKAGING.md` | disclaimer first, then chapters, then sources |
+
+Rules that bind all four together:
+
+- The **title is the hook**. It is the voiceover's opening sentence, which is the most
+  surprising true thing in the fact table. Not a separate piece of writing, and never
+  clickbait (§ house style).
+- The **thumbnail carries a claim from the fact table**, not a tease. Both halves of a
+  contradiction must be CONFIRMED rows. No arrows, no circles, no shock faces.
+- The **description leads with the compliance paragraph** and the positions line, per
+  `DISCLAIMER.md`. Everything else goes below them.
+- **Check the thumbnail downscaled to ~320px** before calling it done. If the numbers
+  stop reading at sidebar size it has failed, whatever it looks like full-bleed.
+- Chapter timings read off the built timeline are where the *picture* cuts, not where
+  the *narration* breaks. Say so, and have them confirmed on the watch-through.
+
 ## Fixed production settings
 
 | Setting | Value |
