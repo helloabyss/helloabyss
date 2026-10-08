@@ -47,6 +47,16 @@ locked visual identity. Summary of the non-negotiables:
 
 Keep style and voice constant across videos so the channel reads as one series.
 
+**The voice is Alex Wright. It has one recorded exception.** `ai-picks-longform` ships
+narrated by **Aaron** (`ESDuPqgyZIDDVZTlIrH7`, ElevenLabs) because HeyGen was on the free
+plan when it was produced. That was a forced *platform* substitution; reaching for Aaron,
+the parked tech channel's voice, was not forced, and calling it "the locked channel voice"
+in `ai-picks-longform/PRODUCTION.md` was false. The user's call on 2026-10-08 was to keep
+that cut and fix the record. **Alex Wright is still the channel voice**; a second episode
+in Aaron would be a channel-voice change and needs an explicit decision. If HeyGen stays
+unavailable, audition an ElevenLabs match for Alex Wright rather than defaulting to Aaron
+again.
+
 ## Known environment constraints
 
 **Credit figures measured 2026-10-05. Re-check with `vidiq_balance`, `higgsfield balance` and

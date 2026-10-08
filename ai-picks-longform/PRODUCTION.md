@@ -86,7 +86,7 @@ limbs **drawn as separate layers** — which is exactly what
 
 | | |
 |---|---|
-| **Narration** | Aaron (`ESDuPqgyZIDDVZTlIrH7`), the locked channel voice, `eleven_multilingual_v2`. Two parts: **292.85s + 236.43s**. Joined by raw MP3 frame concat to `vo-full.mp3`, measured **529.40s**, clean frame boundaries |
+| **Narration** | Aaron (`ESDuPqgyZIDDVZTlIrH7`) on ElevenLabs, `eleven_multilingual_v2`. **NOT the channel's locked voice** — see the correction note below. Two parts: **292.85s + 236.43s**. Joined by raw MP3 frame concat to `vo-full.mp3`, measured **529.40s**, clean frame boundaries |
 | **Cost** | 4,639 + 3,574 = **8,213 credits ≈ $2.99**. `generations_count: 1`, not the default 4 — the default would have cost ~$12 for three takes nobody asked for |
 | **Scenes** | 42 stills, white page, rendered by `engine/scenes_aip.py` |
 | **Timeline** | `engine/build_aip.py` pins the total to the MEASURED VO length and weights the beats: turn cards 5.5s, everything else 13.1s |
@@ -172,3 +172,29 @@ Worth deciding on the strength of this one before committing the series.
 **B-roll cost is not a constraint.** Measured: 0.25 credits for four 16:9
 variants against a 242-credit balance. The remaining ~26 plates in the shot
 list cost roughly 2 credits in total. The limit is the CDN block, not money.
+
+
+## Correction — narration voice (2026-10-08)
+
+This episode is narrated by **Aaron**, an ElevenLabs voice carried over from the parked
+PARADOCS10X channel. Earlier revisions of this file called Aaron "the locked channel
+voice". **That was wrong.** `CLAUDE.md` fixes the voice for The Meticulous Investor as
+**Alex Wright – Informative** (`0db3abd83c74452fb2460b0dd113daad`, HeyGen), and has done
+throughout. Nothing was ever decided that changed it.
+
+How it happened: the HeyGen account dropped to the free plan on or before 2026-10-08, so
+the house render path was unavailable and narration was produced on ElevenLabs instead.
+Picking a *platform* substitute was forced. Picking Aaron was not — I reached for the
+voice used on the other channel and then described it as this channel's standard, which
+compounded a substitution into a false record.
+
+**The user's decision, given 2026-10-08: keep the Aaron cut, fix the record.** So:
+
+- This episode ships with Aaron. It is a one-off, forced by the HeyGen plan status.
+- **Alex Wright remains the channel voice.** The next episode uses it, via HeyGen once the
+  plan is restored.
+- If a second episode would ship in Aaron, that is a channel-voice change and needs an
+  explicit decision, not a default. An ElevenLabs match for Alex Wright has **not** been
+  auditioned; doing so is the cheaper route if HeyGen stays unavailable.
+- Cost of the error: **$2.99** of ElevenLabs generation in a voice that is not the
+  channel's. Not recoverable.
