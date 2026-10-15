@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="thumbnail.css">
+<style>
+  .pair{margin-top:54px;width:608px}
+  .row{display:flex;align-items:center;gap:18px}
+  .row + .row{margin-top:20px}
+  .tag{
+    width:108px;flex:0 0 108px;text-align:right;white-space:nowrap;
+    font-size:25px;font-weight:700;letter-spacing:.06em;color:var(--mute);
+  }
+  .b{height:46px;border-radius:0 3px 3px 0}
+  .b.loss{width:200px;background:var(--paper)}
+  .b.gain{width:400px;background:var(--red)}
+  .val{font-size:25px;font-weight:700;letter-spacing:.04em}
+  .val.w{color:var(--mute)} .val.r{color:var(--red)}
+  .foot .tag2{color:var(--red)}
+  .note{
+    margin-top:24px;font-size:22px;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--mute);
+  }
+</style>
+<div class="frame">
+  <div class="head">
+    <div class="rule"></div>
+    <div class="kicker">The Recovery Math</div>
+  </div>
+
+  <div class="mid">
+    <span class="line">LOSE 50%.</span>
+    <span class="line red">NEED 100%.</span>
+    <div class="sub">$100 &rarr; $50 &rarr; back to $100</div>
+
+    <div class="pair">
+      <div class="row"><span class="tag">Lost</span><span class="b loss"></span><span class="val w">50%</span></div>
+      <div class="row"><span class="tag">Recover</span><span class="b gain"></span><span class="val r">100%</span></div>
+      <div class="note">Twice the climb, to undo the fall</div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Educational only</span><span class="tag2">The Meticulous Investor</span></div>
+</div>
