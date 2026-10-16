@@ -23,3 +23,7 @@ videos/*/f/
 videos/*/renders/
 videos/*/shot.mjs
 videos/*/work-*/
+
+# Owner screen/voice recordings — private, never commit
+videos/*/raw/
+*.mov
