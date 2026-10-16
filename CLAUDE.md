@@ -41,6 +41,15 @@ locked visual identity. Summary of the non-negotiables:
 
 Keep style and voice constant across videos so the channel reads as one series.
 
+## Owner's working rules
+
+- **Don't waste credits.** Ask before any step that spends HeyGen, Higgsfield, vidIQ,
+  ElevenLabs or AgentOpus credits. Prefer free local tools (HyperFrames, ffmpeg).
+- **If something can't be done from here, say so up front** — in one or two lines, before
+  researching or building. Example: Claude cannot screen-record the owner's real brokerage
+  account (no login; fidelity.com doesn't resolve here). Offer the free alternative instead
+  (the owner records; Claude scripts and edits).
+
 ## Known environment constraints
 
 - **HeyGen CDN egress is blocked** (`files2.heygen.ai`, `resource2.heygen.ai`). Renders
