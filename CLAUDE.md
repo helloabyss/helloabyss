@@ -75,8 +75,16 @@ Keep style, voice and host constant across videos so the channel reads as one se
   Source videos cannot be fetched, watched or transcribed directly. The only server-side
   routes are vidIQ (`vidiq_video_transcript`, 5 credits) and Higgsfield
   (`video_analysis_create`, accepts a YouTube URL) — both need credits.
-- **HeyGen `create_speech` needs separate `api` credits**, which the Creator plan lacks.
-  No detached VO stem is available; narration is baked into the render.
+- ~~**HeyGen `create_speech` needs separate `api` credits**~~ — **CORRECTED 2026-10-21. It
+  works.** Called on the `creator` plan today and it returned audio **plus word-level
+  timestamps**. A detached VO stem IS available. The word timestamps are the valuable part:
+  they give true forced alignment of picture to narration, which no other route here does.
+  (Narrator policy is unchanged — Aaron is the channel voice. Alex Wright is the shorts
+  strand and adding it to a long-form would deepen the two-narrator defect, not fix it.)
+- **The blocked HeyGen CDN can be routed around.** `resource2.heygen.ai` still 403s on
+  CONNECT, but ElevenLabs will fetch it server-side: `creative_attach_reference_file`
+  with the HeyGen URL → `creative_get_available_assets` → download the `preview_url` from
+  `storage.googleapis.com`, which **is** reachable. Verified end to end 2026-10-21.
 - **Higgsfield: 0 credits** (plan `starter`). Unusable for B-roll or video analysis.
 - **ElevenLabs can mux audio onto video, in-session and free.** A `composition` node takes a
   video input plus audio inputs and returns a single **H.264 + AAC MP4** — verified 2026-10-05 on
@@ -86,12 +94,22 @@ Keep style, voice and host constant across videos so the channel reads as one se
   source gets **its own track starting at 0** (so sequential VO parts must be concatenated into
   one file first — no `set_clip_property` is exposed to offset them), and the signed download
   URLs expire after 2 hours.
-- **The bundled ffmpeg is Playwright's** (`/opt/pw-browsers/ffmpeg-1011/ffmpeg-linux`): exactly
-  two muxers (`webm`, `image2`) and two demuxers (`image2pipe`, `matroska,webm`). No audio codecs,
-  no MP3 demuxer, no MP4 muxer. Anything involving audio must go server-side.
-- **vidIQ: 1 credit** as of 2026-09-09 (0 renewable + 1 add-on); resets to 150 on 2026-10-03.
-  Transcript costs 5, video-watch 25, thumbnail 22, scoring 5 — **all currently unaffordable**.
-- **HeyGen: 54 premium credits** as of 2026-09-09 (down from 129), resets 2026-10-06.
+- ~~**Anything involving audio must go server-side**~~ — **CORRECTED 2026-10-21.** Playwright's
+  bundled ffmpeg is indeed crippled (two muxers, no audio codecs), but it is not the only one:
+  `pip install imageio-ffmpeg` puts a full static **ffmpeg 7.0.2** on the box with `libx264`,
+  `aac` and an mp3 decoder. PyPI is in the proxy's `noProxy` list so it installs directly.
+  Audio mux, loudness normalisation and H.264 MP4 output are all local now, in one pass.
+  **Note:** two interpreters exist here — install with `/usr/local/bin/python3 -m pip` so the
+  default `python3` can find it.
+- **vidIQ: 106 credits** measured 2026-10-21 (105 renewable of 150 + 1 add-on; resets 2026-11-03).
+  Affordable again. **Observed costs today:** `vidiq_channel_analytics` **5**,
+  `vidiq_channel_videos` **5**, `vidiq_user_channels` **0** (the tool's own docs say 0 — this
+  repo previously listed it as unverified), `vidiq_balance` **0**.
+- **HeyGen: 600 premium credits**, plan `creator`, measured 2026-10-21 (resets 2026-11-15).
+  Was 54 on 2026-09-09. **Higgsfield: 350.57**, plan `starter` — the "0 credits, unusable"
+  line below is stale; B-roll generation is affordable again, though note its CDN
+  (`d8j0ntlcm91z4.cloudfront.net`) 403s on CONNECT, so generated plates cannot be
+  downloaded here. The old figure:
   ⚠️ **A long-form render appears to cost ~45 credits and can fail with no error message,
   consuming them anyway** — see `paradocs-longform-2/PRODUCTION.md`. At this balance there is
   roughly **one** long-form attempt left. Shorts are cheap by comparison.
