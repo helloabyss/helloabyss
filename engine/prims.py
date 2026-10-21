@@ -95,3 +95,75 @@ def counter(x, y, w, h=34, legs=True):
         s += (f'<line x1="{x+40}" y1="{y+h}" x2="{x+40}" y2="950" stroke="{K}" stroke-width="8"/>'
               f'<line x1="{x+w-40}" y1="{y+h}" x2="{x+w-40}" y2="950" stroke="{K}" stroke-width="8"/>')
     return s
+
+
+# ---- interface recreations -------------------------------------------------
+# For tutorials about an app we cannot screen-record. There is no network path to
+# a broker from the build box, and filming a live brokerage account would put real
+# balances into a public video. These draw the interface instead, and `panel()`
+# stamps a RECREATION tag so no viewer mistakes a drawing for a capture.
+
+def toggle(x, y, on=True, w=104, h=52):
+    knob = x + w - h + 6 if on else x + 6
+    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{h//2}" '
+            f'fill="{R if on else "#d3d8dd"}" stroke="{K}" stroke-width="6"/>'
+            f'<circle cx="{knob + (h-12)//2}" cy="{y+h//2}" r="{(h-18)//2}" '
+            f'fill="{W}" stroke="{K}" stroke-width="5"/>')
+
+def uirow(x, y, w, label, state='', on=True, size=40):
+    s = t(x + 26, y + 60, label, size, anchor='start')
+    s += toggle(x + w - 300, y + 24, on)
+    if state:
+        s += t(x + w - 26, y + 60, state, 30, anchor='end', fill=R if on else D)
+    return s
+
+def panel(x, y, w, rows, header='', tag='RECREATION', rh=96):
+    """rows = [(label, state, on), ...]"""
+    hh = 92 if header else 0
+    h = hh + len(rows) * rh + 20
+    s = box(x, y, w, h, W, SW, 18)
+    if tag:
+        s += box(x + w - 250, y - 46, 250, 56, R, 6, 6) + t(x + w - 125, y - 8, tag, 28, fill=W)
+    if header:
+        s += t(x + 26, y + 58, header, 44, anchor='start')
+        s += f'<line x1="{x}" y1="{y+hh}" x2="{x+w}" y2="{y+hh}" stroke="{K}" stroke-width="5"/>'
+    for i, (lab, st, on) in enumerate(rows):
+        ry = y + hh + i * rh
+        s += uirow(x, ry, w, lab, st, on)
+        if i < len(rows) - 1:
+            s += (f'<line x1="{x+26}" y1="{ry+rh}" x2="{x+w-26}" y2="{ry+rh}" '
+                  f'stroke="{D}" stroke-width="3"/>')
+    return s
+
+def phone(x, y, w=360, h=700):
+    return (box(x, y, w, h, W, 10, 46)
+            + f'<rect x="{x+26}" y="{y+70}" width="{w-52}" height="{h-130}" rx="10" '
+              f'fill="{W}" stroke="{D}" stroke-width="4"/>'
+            + f'<circle cx="{x+w//2}" cy="{y+h-40}" r="18" fill="none" stroke="{K}" stroke-width="6"/>')
+
+def arrow(x1, y1, x2, y2, col=None, sw=9):
+    col = col or K
+    import math
+    a = math.atan2(y2 - y1, x2 - x1)
+    hx, hy = x2 - 26 * math.cos(a), y2 - 26 * math.sin(a)
+    return (f'<line x1="{x1}" y1="{y1}" x2="{hx:.0f}" y2="{hy:.0f}" stroke="{col}" stroke-width="{sw}"/>'
+            f'<polygon points="{x2},{y2} {hx-13*math.sin(a):.0f},{hy+13*math.cos(a):.0f} '
+            f'{hx+13*math.sin(a):.0f},{hy-13*math.cos(a):.0f}" fill="{col}"/>')
+
+def acctbox(x, y, w, h, name, perm, live=False):
+    s = box(x, y, w, h, W, 8, 14)
+    if live:
+        s += f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="none" stroke="{R}" stroke-width="10"/>'
+    s += t(x + w // 2, y + 70, name, 36)
+    s += t(x + w // 2, y + 150, perm, 34, fill=R if live else D)
+    return s
+
+def xmark(x, y, r=40, col=None):
+    col = col or R
+    return (f'<line x1="{x-r}" y1="{y-r}" x2="{x+r}" y2="{y+r}" stroke="{col}" stroke-width="12"/>'
+            f'<line x1="{x+r}" y1="{y-r}" x2="{x-r}" y2="{y+r}" stroke="{col}" stroke-width="12"/>')
+
+def tick(x, y, r=40, col=None):
+    col = col or K
+    return (f'<polyline points="{x-r},{y} {x-r//3},{y+r*2//3} {x+r},{y-r*2//3}" '
+            f'fill="none" stroke="{col}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>')

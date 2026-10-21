@@ -1,0 +1,27 @@
+{
+ "durations": [
+  22.465,
+  23.084,
+  20.532,
+  21.34,
+  21.674,
+  20.728,
+  19.713,
+  23.126,
+  19.787,
+  17.602,
+  22.393,
+  26.355,
+  23.437,
+  26.158,
+  19.112,
+  24.957,
+  22.197,
+  19.419,
+  22.835,
+  20.316
+ ],
+ "total": 437.23,
+ "split_at": 210.05,
+ "method": "word-count within each generated part, snapped to silencedetect pauses; the part boundary is an exact measured anchor"
+}

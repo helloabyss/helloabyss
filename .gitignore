@@ -1,0 +1,19 @@
+# Repo-root ignores. Note that an ignore file only governs its own directory and
+# below, so paths for other directories must live HERE, not in engine/.gitignore.
+
+# Finished renders and the normalised narration stem. Both are large and both
+# rebuild from what IS tracked:
+#   vo-master.wav  <- concatenate p1.mp3 + p2.mp3, then loudnorm to -14 LUFS
+#                     (see the video's PRODUCTION.md for the exact invocation)
+#   the .mp4       <- engine/render_rh.js against the stills and vo-master.wav
+# The narration MP3s themselves ARE tracked: they cost money to generate and the
+# ElevenLabs signed URLs expire after two hours.
+*/*.mp4
+*/*.webm
+*/*.wav
+*/preview.mp4
+
+# Intermediates
+*/pauses.txt
+__pycache__/
+*.pyc

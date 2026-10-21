@@ -1,0 +1,19 @@
+Robinhood will now let an artificial intelligence place real trades in your account. Before you set it up, three things are worth knowing. The agent can read every Robinhood account you own. It can only place orders in one of them. And Robinhood's own position, as reported, is that it does not control, supervise, monitor, recommend or audit the agent you connect.
+
+This video is the setup, and the settings that decide how much damage it can do. Agentic trading launched in beta for United States customers. Instead of you opening the app and placing an order, an agent does it. Robinhood runs its own in-app agent, and it also exposes a Trading M C P server, which is how an outside agent reaches your account.
+
+It is worth separating this from the thing people usually picture. This is not a trading bot you buy, with a strategy baked in. It is a connection. You are granting a general purpose model the ability to act inside a brokerage account. What it does depends entirely on what it decides to do, and what you have allowed.
+
+Beta matters here, because the boundaries have moved. At launch the feature was stock only. Later coverage describes long equities, options and supported crypto. Margin borrowing is reported as not currently enabled. Which of those applies to you depends on when you are watching this and what has actually reached your account, so treat any list, including mine, as a snapshot.
+
+Step one is naming the agent. This sounds cosmetic. It is not. The name is how that agent's activity is identified in your account. That matters the moment you are looking at an order you do not recognise and trying to work out which of your connected tools placed it. If you only ever connect one, name it anyway.
+
+Step two is the one that actually protects you. You open a dedicated agentic trading account. Not your main account. A separate one. This is the real safety boundary of the entire system, and almost every write-up mentions it in passing and then moves on, which is a mistake, because the shape of the boundary is not what most people assume.
+
+Here is the shape. A connected agent can read all of your Robinhood accounts. Your balances, your positions, your history, across everything you hold there. What it cannot do is place an order anywhere except the dedicated account. So the boundary caps what the agent can trade. It does not cap what the agent can see.
+
+That distinction is the whole safety model, so sit with it. Fund the dedicated account with an amount you would be prepared to lose entirely, because that is the realistic worst case for the money inside it. But do not imagine that ring-fencing the money has also ring-fenced the information. The rest of your portfolio is still visible to whatever you connect.
+
+Step three is connecting the model. For Robinhood's own in-app agent, that happens inside the app. For an outside agent, you are connecting through the M C P server, and the agent then has whatever access the account grants it. The practical difference is who wrote the thing making decisions, and how much you know about it.
+
+Now the setting that matters more than any other. Trade approvals. With trade approvals on, the agent cannot place an order. It can only propose one. The order surfaces, and you place it yourself in the app. Every single trade passes through a human being, and that human being is you.
