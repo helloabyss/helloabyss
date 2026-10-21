@@ -1,0 +1,39 @@
+Robinhood will now let an artificial intelligence place real trades in your account. Before you set it up, three things are worth knowing. The agent can read every Robinhood account you own. It can only place orders in one of them. And Robinhood's own position, as reported, is that it does not control, supervise, monitor, recommend or audit the agent you connect.
+
+This video is the setup, and the settings that decide how much damage it can do. Agentic trading launched in beta for United States customers. Instead of you opening the app and placing an order, an agent does it. Robinhood runs its own in-app agent, and it also exposes a Trading M C P server, which is how an outside agent reaches your account.
+
+It is worth separating this from the thing people usually picture. This is not a trading bot you buy, with a strategy baked in. It is a connection. You are granting a general purpose model the ability to act inside a brokerage account. What it does depends entirely on what it decides to do, and what you have allowed.
+
+Beta matters here, because the boundaries have moved. At launch the feature was stock only. Later coverage describes long equities, options and supported crypto. Margin borrowing is reported as not currently enabled. Which of those applies to you depends on when you are watching this and what has actually reached your account, so treat any list, including mine, as a snapshot.
+
+Step one is naming the agent. This sounds cosmetic. It is not. The name is how that agent's activity is identified in your account. That matters the moment you are looking at an order you do not recognise and trying to work out which of your connected tools placed it. If you only ever connect one, name it anyway.
+
+Step two is the one that actually protects you. You open a dedicated agentic trading account. Not your main account. A separate one. This is the real safety boundary of the entire system, and almost every write-up mentions it in passing and then moves on, which is a mistake, because the shape of the boundary is not what most people assume.
+
+Here is the shape. A connected agent can read all of your Robinhood accounts. Your balances, your positions, your history, across everything you hold there. What it cannot do is place an order anywhere except the dedicated account. So the boundary caps what the agent can trade. It does not cap what the agent can see.
+
+That distinction is the whole safety model, so sit with it. Fund the dedicated account with an amount you would be prepared to lose entirely, because that is the realistic worst case for the money inside it. But do not imagine that ring-fencing the money has also ring-fenced the information. The rest of your portfolio is still visible to whatever you connect.
+
+Step three is connecting the model. For Robinhood's own in-app agent, that happens inside the app. For an outside agent, you are connecting through the M C P server, and the agent then has whatever access the account grants it. The practical difference is who wrote the thing making decisions, and how much you know about it.
+
+Now the setting that matters more than any other. Trade approvals. With trade approvals on, the agent cannot place an order. It can only propose one. The order surfaces, and you place it yourself in the app. Every single trade passes through a human being, and that human being is you.
+
+With trade approvals off, it does not. The agent decides, and the order goes. There is no second look, no confirmation step, and nothing between the model's reasoning and your actual money. That is the entire difference between the two states of one toggle, which is why it deserves more attention than the rest of the setup combined.
+
+Here is where I have to be careful, and where a lot of coverage is not. Sources disagree about what this setting defaults to. One report says approvals are off by default for externally connected agents. Another describes per-order confirmation as optional. Robinhood's support material says the approvals setting is still rolling out for M C P accounts, and that not all customers have access yet.
+
+I could not open Robinhood's own documentation to settle it. So I am not going to tell you what your default is, because I genuinely do not know, and neither does anyone asserting it confidently over a thumbnail. What I will tell you is the only thing that is actually reliable here, and it costs you about thirty seconds.
+
+Go into Agent Settings and look at that toggle with your own eyes, before the agent's first session. Do not infer it from a video. Do not assume the safe option was chosen on your behalf. A default you have not verified is not a setting you have chosen. It is a guess you are funding, and the market does not grade guesses generously.
+
+Which brings us to the part the setup guides leave out. Robinhood's position is that the customer assumes the risk. Its own wording, as reported, is that it does not control, supervise, monitor, recommend or audit third party agents. Read that list again slowly, because every verb in it is doing work.
+
+The company providing the trading connection is declining to vouch for the thing on the other end of it. There is no vetting layer. No approved-agent list. If you connect something that behaves badly, whether that is badly coded, badly prompted, or simply confidently wrong about a position, the loss is yours, and the supervision you assumed existed was never there.
+
+That is not a scandal. It is a normal division of responsibility and it is stated up front rather than buried. But it inverts the intuition most people carry into a regulated brokerage, which is that somebody, somewhere, is checking. For this particular feature, nobody is. That is not a flaw in the product. That is the product.
+
+So, before the first session, four things. One. Open the dedicated account and fund it with money you could lose outright, not money you are counting on. Two. Open Agent Settings and confirm the trade approvals toggle with your own eyes, whatever any video told you the default was.
+
+Three. Know what your agent is actually permitted to trade, because that list has moved during the beta and will likely move again. And four, the one people skip. Decide in advance what you do when an order appears that you did not authorise. Specifically, how you disconnect the agent, and how fast you can do it.
+
+The feature is genuinely useful and it is genuinely new, and none of this is an argument against using it. But the part worth your attention was never the setup. It is one toggle, and one sentence where Robinhood tells you plainly that it is not watching. Go and look at the toggle.

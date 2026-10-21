@@ -1,0 +1,12 @@
+0:00 An AI can place real trades in your account
+1:06 What it can and cannot trade
+1:27 Step 1 — name the agent
+1:49 Step 2 — the dedicated account
+2:09 What the agent can reach
+2:52 Step 3 — connect the model
+3:12 The setting that matters: trade approvals
+3:52 Where the sources disagree
+4:42 Go and look at the toggle
+5:08 Robinhood does not supervise it
+6:14 Before your first session
+6:56 One toggle

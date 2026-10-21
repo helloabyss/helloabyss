@@ -1,0 +1,19 @@
+With trade approvals off, it does not. The agent decides, and the order goes. There is no second look, no confirmation step, and nothing between the model's reasoning and your actual money. That is the entire difference between the two states of one toggle, which is why it deserves more attention than the rest of the setup combined.
+
+Here is where I have to be careful, and where a lot of coverage is not. Sources disagree about what this setting defaults to. One report says approvals are off by default for externally connected agents. Another describes per-order confirmation as optional. Robinhood's support material says the approvals setting is still rolling out for M C P accounts, and that not all customers have access yet.
+
+I could not open Robinhood's own documentation to settle it. So I am not going to tell you what your default is, because I genuinely do not know, and neither does anyone asserting it confidently over a thumbnail. What I will tell you is the only thing that is actually reliable here, and it costs you about thirty seconds.
+
+Go into Agent Settings and look at that toggle with your own eyes, before the agent's first session. Do not infer it from a video. Do not assume the safe option was chosen on your behalf. A default you have not verified is not a setting you have chosen. It is a guess you are funding, and the market does not grade guesses generously.
+
+Which brings us to the part the setup guides leave out. Robinhood's position is that the customer assumes the risk. Its own wording, as reported, is that it does not control, supervise, monitor, recommend or audit third party agents. Read that list again slowly, because every verb in it is doing work.
+
+The company providing the trading connection is declining to vouch for the thing on the other end of it. There is no vetting layer. No approved-agent list. If you connect something that behaves badly, whether that is badly coded, badly prompted, or simply confidently wrong about a position, the loss is yours, and the supervision you assumed existed was never there.
+
+That is not a scandal. It is a normal division of responsibility and it is stated up front rather than buried. But it inverts the intuition most people carry into a regulated brokerage, which is that somebody, somewhere, is checking. For this particular feature, nobody is. That is not a flaw in the product. That is the product.
+
+So, before the first session, four things. One. Open the dedicated account and fund it with money you could lose outright, not money you are counting on. Two. Open Agent Settings and confirm the trade approvals toggle with your own eyes, whatever any video told you the default was.
+
+Three. Know what your agent is actually permitted to trade, because that list has moved during the beta and will likely move again. And four, the one people skip. Decide in advance what you do when an order appears that you did not authorise. Specifically, how you disconnect the agent, and how fast you can do it.
+
+The feature is genuinely useful and it is genuinely new, and none of this is an argument against using it. But the part worth your attention was never the setup. It is one toggle, and one sentence where Robinhood tells you plainly that it is not watching. Go and look at the toggle.
