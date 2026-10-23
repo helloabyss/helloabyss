@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Meticulous Poll Admin</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><a href="./" class="brand">The Meticulous Investor</a><span class="tag">Poll admin</span></header>
+  <div class="bar" id="auth"><span class="empty">Loading…</span></div>
+  <div id="panel" hidden>
+    <section class="card" aria-labelledby="newTitle">
+      <h1 id="newTitle">New poll</h1>
+      <div class="field"><label for="fQ">Question</label><input id="fQ" maxlength="160" placeholder="Which title should the next video use?"></div>
+      <div class="field"><label for="fCtx">Context for voters (optional)</label><input id="fCtx" maxlength="400" placeholder="What the video covers"></div>
+      <div class="field"><label for="fOpts">Options, one per line (2–8)</label><textarea id="fOpts" placeholder="Option A&#10;Option B"></textarea><span class="hint">Voters see results only after they vote.</span></div>
+      <div class="bar"><button class="btn" id="createBtn" type="button">Create poll</button><span class="status" id="formStatus"></span></div>
+    </section>
+    <h2 class="sec-label" style="margin-top:22px">Your polls</h2>
+    <p class="status" id="listStatus"></p>
+    <ul class="plist" id="adminList"></ul>
+  </div>
+</div>
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

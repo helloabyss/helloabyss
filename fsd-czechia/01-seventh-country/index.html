@@ -1,0 +1,80 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=1080,height=1920"><script src="vendor/gsap.min.js"></script><style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B1A2E}
+#root{width:100%;height:100%;position:relative;background:#0B1A2E;font-family:"Liberation Sans",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+.kick{position:absolute;left:100px;top:300px;color:#8FA6C0;font-size:30px;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+.hero{position:absolute;left:100px;top:470px;color:#FFFFFF;font-weight:800;letter-spacing:-.03em;line-height:.95}
+.sub{position:absolute;left:100px;top:700px;color:#C9D6E6;font-size:44px;font-weight:600;letter-spacing:-.01em;width:880px;line-height:1.25}
+.rule{position:absolute;left:100px;top:370px;width:150px;height:5px;background:#FFFFFF;transform-origin:left center}
+.slug{position:absolute;right:100px;top:200px;color:#8299B4;font-size:22px;letter-spacing:.22em}
+.capline{position:absolute;left:90px;top:1500px;width:900px;text-align:center;font-size:42px;font-weight:800;
+  opacity:0;line-height:1.24;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.capline span{color:rgba(255,255,255,.5);margin:0 .15em}
+#disc{position:absolute;left:100px;top:1716px;color:#8FA6C0;font-size:27px;font-weight:700;letter-spacing:.02em;line-height:1.4}
+#prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:#FFFFFF;transform-origin:left;transform:scaleX(0)}
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="13.483" data-width="1080" data-height="1920">
+<div id="c0" class="clip" data-start="0.0" data-duration="3.961" data-track-index="0"><div class="slug">CZECHIA CLEARS TESLA FSD</div><div class="rule" id="r0"></div><div class="kick" id="k0">Prague · 21 September 2026</div><div class="hero" id="h0" style="top:470px;font-size:150px">7TH</div><div class="sub" id="s0" style="top:697px">EU COUNTRY</div></div>
+<div id="c1" class="clip" data-start="3.961" data-duration="3.961" data-track-index="0"><div class="slug">CZECHIA CLEARS TESLA FSD</div><div class="rule" id="r1"></div><div class="kick" id="k1">Recognised</div><div class="hero" id="h1" style="top:470px;font-size:150px">DUTCH RDW</div><div class="sub" id="s1" style="top:697px">approval of 10 April 2026</div></div>
+<div id="c2" class="clip" data-start="7.922" data-duration="5.561" data-track-index="0"><div class="slug">CZECHIA CLEARS TESLA FSD</div><div class="rule" id="r2"></div><div class="kick" id="k2">Tesla says</div><div class="hero" id="h2" style="top:470px;font-size:150px">ROLLOUT</div><div class="sub" id="s2" style="top:697px">begins soon</div></div>
+<div id="caps"><div class="capline" id="g0"><span id="w0_0">Czechia</span><span id="w0_1">is</span><span id="w0_2">now</span><span id="w0_3">the</span></div>
+<div class="capline" id="g1"><span id="w1_0">seventh</span><span id="w1_1">EU</span><span id="w1_2">country</span><span id="w1_3">to</span></div>
+<div class="capline" id="g2"><span id="w2_0">approve</span><span id="w2_1">Tesla</span><span id="w2_2">FSD</span><span id="w2_3">Supervised.</span></div>
+<div class="capline" id="g3"><span id="w3_0">The</span><span id="w3_1">ministry</span><span id="w3_2">recognised</span><span id="w3_3">the</span></div>
+<div class="capline" id="g4"><span id="w4_0">Dutch</span><span id="w4_1">approval</span><span id="w4_2">on</span><span id="w4_3">the</span></div>
+<div class="capline" id="g5"><span id="w5_0">twenty-first</span><span id="w5_1">of</span><span id="w5_2">September.</span></div>
+<div class="capline" id="g6"><span id="w6_0">Rollout</span><span id="w6_1">begins</span><span id="w6_2">soon.</span></div></div>
+<div id="disc">Not financial advice.<br>FSD Supervised is supervised.</div>
+<div id="prog"></div>
+<audio id="vo" src="vo.wav" data-start="0" data-duration="11.883" data-track-index="9" data-volume="1"></audio>
+</div><script>
+const tl=gsap.timeline({paused:true}),E="power3.out";
+const up=(s,at,d=.55,y=36)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:13.483,ease:"none"},0);
+tl.fromTo("#r0",{scaleX:0},{scaleX:1,duration:.5,ease:E},0.05);
+up("#k0",0.15);
+up("#h0",0.35,.6,46);
+up("#s0",0.75);
+tl.fromTo("#r1",{scaleX:0},{scaleX:1,duration:.5,ease:E},4.011);
+up("#k1",4.111);
+up("#h1",4.311,.6,46);
+up("#s1",4.711);
+tl.fromTo("#r2",{scaleX:0},{scaleX:1,duration:.5,ease:E},7.9719999999999995);
+up("#k2",8.072);
+up("#h2",8.272,.6,46);
+up("#s2",8.672);
+tl.set("#g0",{opacity:1},0.000).set("#g0",{opacity:0},1.365);
+tl.set("#w0_0",{color:"#FFFFFF"},0.000).set("#w0_0",{color:"rgba(255,255,255,.5)"},0.601);
+tl.set("#w0_1",{color:"#FFFFFF"},0.601).set("#w0_1",{color:"rgba(255,255,255,.5)"},0.826);
+tl.set("#w0_2",{color:"#FFFFFF"},0.826).set("#w0_2",{color:"rgba(255,255,255,.5)"},1.127);
+tl.set("#w0_3",{color:"#FFFFFF"},1.127).set("#w0_3",{color:"rgba(255,255,255,.5)"},1.427);
+tl.set("#g1",{opacity:1},1.377).set("#g1",{opacity:0},3.018);
+tl.set("#w1_0",{color:"#FFFFFF"},1.427).set("#w1_0",{color:"rgba(255,255,255,.5)"},2.028);
+tl.set("#w1_1",{color:"#FFFFFF"},2.028).set("#w1_1",{color:"rgba(255,255,255,.5)"},2.254);
+tl.set("#w1_2",{color:"#FFFFFF"},2.254).set("#w1_2",{color:"rgba(255,255,255,.5)"},2.854);
+tl.set("#w1_3",{color:"#FFFFFF"},2.854).set("#w1_3",{color:"rgba(255,255,255,.5)"},3.080);
+tl.set("#g2",{opacity:1},3.030).set("#g2",{opacity:0},5.431);
+tl.set("#w2_0",{color:"#FFFFFF"},3.080).set("#w2_0",{color:"rgba(255,255,255,.5)"},3.681);
+tl.set("#w2_1",{color:"#FFFFFF"},3.681).set("#w2_1",{color:"rgba(255,255,255,.5)"},4.131);
+tl.set("#w2_2",{color:"#FFFFFF"},4.131).set("#w2_2",{color:"rgba(255,255,255,.5)"},4.432);
+tl.set("#w2_3",{color:"#FFFFFF"},4.432).set("#w2_3",{color:"rgba(255,255,255,.5)"},5.333);
+tl.set("#g3",{opacity:1},5.443).set("#g3",{opacity:0},7.154);
+tl.set("#w3_0",{color:"#FFFFFF"},5.493).set("#w3_0",{color:"rgba(255,255,255,.5)"},5.739);
+tl.set("#w3_1",{color:"#FFFFFF"},5.739).set("#w3_1",{color:"rgba(255,255,255,.5)"},6.293);
+tl.set("#w3_2",{color:"#FFFFFF"},6.293).set("#w3_2",{color:"rgba(255,255,255,.5)"},6.969);
+tl.set("#w3_3",{color:"#FFFFFF"},6.969).set("#w3_3",{color:"rgba(255,255,255,.5)"},7.216);
+tl.set("#g4",{opacity:1},7.166).set("#g4",{opacity:0},8.507);
+tl.set("#w4_0",{color:"#FFFFFF"},7.216).set("#w4_0",{color:"rgba(255,255,255,.5)"},7.585);
+tl.set("#w4_1",{color:"#FFFFFF"},7.585).set("#w4_1",{color:"rgba(255,255,255,.5)"},8.138);
+tl.set("#w4_2",{color:"#FFFFFF"},8.138).set("#w4_2",{color:"rgba(255,255,255,.5)"},8.323);
+tl.set("#w4_3",{color:"#FFFFFF"},8.323).set("#w4_3",{color:"rgba(255,255,255,.5)"},8.569);
+tl.set("#g5",{opacity:1},8.519).set("#g5",{opacity:0},10.327);
+tl.set("#w5_0",{color:"#FFFFFF"},8.569).set("#w5_0",{color:"rgba(255,255,255,.5)"},9.368);
+tl.set("#w5_1",{color:"#FFFFFF"},9.368).set("#w5_1",{color:"rgba(255,255,255,.5)"},9.553);
+tl.set("#w5_2",{color:"#FFFFFF"},9.553).set("#w5_2",{color:"rgba(255,255,255,.5)"},10.229);
+tl.set("#g6",{opacity:1},10.339).set("#g6",{opacity:0},12.183);
+tl.set("#w6_0",{color:"#FFFFFF"},10.389).set("#w6_0",{color:"rgba(255,255,255,.5)"},10.958);
+tl.set("#w6_1",{color:"#FFFFFF"},10.958).set("#w6_1",{color:"rgba(255,255,255,.5)"},11.456);
+tl.set("#w6_2",{color:"#FFFFFF"},11.456).set("#w6_2",{color:"rgba(255,255,255,.5)"},11.883);
+window.__timelines["main"]=tl;tl.seek(0);</script></body></html>

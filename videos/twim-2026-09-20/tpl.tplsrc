@@ -1,0 +1,228 @@
+<!doctype html>
+<!-- THIS WEEK IN THE MARKET — ep.1, week of 2026-09-14 → 09-18
+     Editorial data-motion. No photography/faces/logos. Three colours.
+     Timings derive from measured TTS audio (vo_timing.json). Captions are word-timed. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+      :root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E;--grid:#242427}
+      #root{width:100%;height:100%;position:relative;background:var(--ink);
+        font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+      .clip{position:absolute;inset:0}
+
+      /* ---- editorial frame furniture (quiet, persistent) ---- */
+      .frame{position:absolute;inset:0;pointer-events:none}
+      .fr-t{position:absolute;left:110px;right:110px;top:190px;height:1px;background:rgba(245,245,243,.09)}
+      .fr-b{position:absolute;left:110px;right:110px;top:1790px;height:1px;background:rgba(245,245,243,.09)}
+      .slug{position:absolute;right:110px;top:152px;color:#797979;font-size:21px;letter-spacing:.24em}
+      .num{position:absolute;right:110px;top:1812px;color:#797979;font-size:21px;letter-spacing:.2em}
+      .tick{position:absolute;width:16px;height:16px;border-color:rgba(245,245,243,.18);border-style:solid;border-width:0}
+      .tick.tl{left:110px;top:190px;border-left-width:1px;border-top-width:1px}
+      .tick.tr{right:110px;top:190px;border-right-width:1px;border-top-width:1px}
+
+      .kicker{position:absolute;left:110px;top:250px;color:var(--muted);font-size:27px;
+        letter-spacing:.38em;text-transform:uppercase;font-weight:700}
+      .stamp{position:absolute;left:110px;top:1722px;color:var(--muted);font-size:24px;letter-spacing:.03em}
+      .rulebar{position:absolute;left:110px;top:310px;width:180px;height:5px;background:var(--accent);
+        transform-origin:left center}
+      .lbl{color:var(--muted);font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+      .big{color:var(--paper);font-weight:800;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+      .red{color:var(--accent)}
+      .tag{display:inline-block;color:var(--accent);font-size:30px;font-weight:800;
+        letter-spacing:.14em;text-transform:uppercase}
+
+      /* light sweep across hero type after it settles */
+      .sweepwrap{position:absolute;overflow:hidden}
+      .sweep{position:absolute;inset:0;pointer-events:none;transform:translateX(-130%);
+        background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%)}
+
+      #compliance{position:absolute;left:110px;top:1620px;color:var(--accent);
+        font-size:29px;font-weight:700;letter-spacing:.05em}
+      #discCard{position:absolute;inset:0;background:var(--ink);display:flex;
+        flex-direction:column;justify-content:center;padding:0 110px}
+      #discCard .dl1{color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.18}
+      #discCard .dl2{color:var(--muted);font-size:31px;line-height:1.5;margin-top:38px}
+      #discCard .dbar{width:180px;height:5px;background:var(--accent);margin-bottom:46px}
+
+      .thLabel{position:absolute;color:var(--muted);font-size:27px;letter-spacing:.06em}
+      .rowName{position:absolute;color:var(--paper);font-size:40px;font-weight:800;letter-spacing:.02em}
+      .rowVal{position:absolute;color:var(--paper);font-size:52px;font-weight:800;
+        font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+      .bar{position:absolute;height:26px;transform-origin:left center}
+      .bar.neg{transform-origin:right center;background:var(--accent)}
+      .bar.pos{background:var(--paper)}
+      .tileL{position:absolute;color:var(--muted);font-size:29px;letter-spacing:.2em;font-weight:700}
+      .tileV{position:absolute;color:var(--paper);font-size:112px;font-weight:800;
+        letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+
+      /* ---- burned-in word-by-word captions ---- */
+      .capline{position:absolute;left:100px;top:1466px;width:880px;text-align:center;
+        font-size:43px;font-weight:800;letter-spacing:.004em;line-height:1.25;opacity:0;
+        text-shadow:0 2px 10px rgba(0,0,0,.85)}
+      .capline span{color:rgba(245,245,243,.48);margin:0 .16em}
+      #flash{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none}
+      #prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--accent);
+        transform-origin:left center;transform:scaleX(0)}
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="__TOTAL__"
+         data-width="1080" data-height="1920">
+
+/*SCENES*/
+
+      <!-- caption layer (untimed: persists across scene cuts) -->
+      <div id="caps">
+/*CAPS*/
+      </div>
+      <div id="flash"></div>
+      <div id="prog"></div>
+      <audio id="vo" src="vo.wav" data-start="0" data-duration="__AUDIODUR__"
+             data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const B = [__B1__,__B2__,__B3__,__B4__,__B5__,__B6__,__B7__,__B8__,__B9__];
+
+      function count(sel,to,at,dur,dp,suf,comma){
+        const el=document.querySelector(sel), o={v:0};
+        tl.set(el,{opacity:0},0); tl.to(el,{opacity:1,duration:.3,ease:E},at);
+        tl.to(o,{v:to,duration:dur,ease:"power2.out",onUpdate(){
+          let n=o.v.toFixed(dp);
+          if(comma){const p=n.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");n=p.join(".");}
+          el.textContent=n+(suf||"");
+        }},at);
+      }
+      const inUp=(s,at,d=.55,y=34)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+      const bar=(s,at,d=.7)=>tl.fromTo(s,{scaleX:0},{scaleX:1,duration:d,ease:"power3.inOut"},at);
+      const punch=(s,at,d,to=1.045)=>tl.fromTo(s,{scale:1},{scale:to,duration:d,ease:"none",
+        transformOrigin:"20% 50%",immediateRender:false},at);
+      const sweep=(s,at)=>tl.fromTo(s,{x:"-130%"},{x:"130%",duration:1.05,ease:"power2.inOut",immediateRender:false},at);
+      // 2-frame white flash + a short kick on the hero — used on 3 landings only
+      function impact(sel,at){
+        tl.set("#flash",{opacity:.5},at).set("#flash",{opacity:.18},at+0.034)
+          .set("#flash",{opacity:0},at+0.067);
+        tl.fromTo(sel,{x:-9},{x:0,duration:.34,ease:"power3.out",immediateRender:false},at);
+      }
+      tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:__TOTAL__,ease:"none"},0);
+
+      /* 1 · COLD OPEN */
+      bar("#s1bar",B[0]+.05,.5); inUp("#s1k",B[0]+.15); inUp("#s1lbl",B[0]+.45);
+      count("#s1num",5.006,B[0]+.7,1.9,3,"%");
+      tl.fromTo("#s1th",{opacity:0},{opacity:1,duration:.4},B[0]+1.1);
+      tl.fromTo("#s1thl",{opacity:0},{opacity:1,duration:.4},B[0]+1.2);
+      tl.fromTo("#s1drop",{scaleY:0,transformOrigin:"bottom"},{scaleY:1,duration:.4,ease:E},B[0]+2.5);
+      tl.fromTo("#s1dot",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},B[0]+2.75);
+      sweep("#s1sw",B[0]+2.8);
+      inUp("#s1tag",B[0]+3.1,.5,20);
+      tl.fromTo("#s1st",{opacity:0},{opacity:1,duration:.4},B[0]+3.4);
+      tl.fromTo("#compliance",{opacity:0},{opacity:1,duration:.35},B[0]+.3);
+      tl.to("#compliance",{opacity:0,duration:.3},B[0]+3.9);
+      punch("#s1num",B[0]+3.3,4.2);
+
+      /* 2 · THE TAPE */
+      bar("#s2 .rulebar",B[1]+.05,.5); inUp("#s2 .kicker",B[1]+.15);
+      inUp("#n1",B[1]+.5,.45,22); bar("#b1",B[1]+.8,.6); inUp("#v1",B[1]+1.1,.45,18); inUp("#t1",B[1]+1.5,.45,14);
+      inUp("#n2",B[1]+2.3,.45,22); bar("#b2",B[1]+2.6,.6); inUp("#v2",B[1]+2.9,.45,18);
+      inUp("#n3",B[1]+3.9,.45,22); bar("#b3",B[1]+4.2,.6); inUp("#v3",B[1]+4.5,.45,18);
+      tl.fromTo("#s2 .stamp",{opacity:0},{opacity:1,duration:.4},B[1]+5.2);
+      punch("#b1",B[1]+5.6,6.5,1.02);
+
+      /* 3 · CLOSES */
+      bar("#s3 .rulebar",B[2]+.05,.5); inUp("#s3 .kicker",B[2]+.15);
+      inUp("#c1l",B[2]+.5,.4,18); count("#c1v",7650.50,B[2]+.6,1.5,2,"",true);
+      inUp("#c2l",B[2]+3.1,.4,18); count("#c2v",26522.55,B[2]+3.2,1.5,2,"",true);
+      inUp("#c3l",B[2]+6.2,.4,18); count("#c3v",51682.64,B[2]+6.3,1.5,2,"",true);
+      tl.fromTo("#s3 .stamp",{opacity:0},{opacity:1,duration:.4},B[2]+8.2);
+      punch("#c3v",B[2]+8.4,3.8);
+
+      /* 4 · THE HIKE  (impact landing) */
+      bar("#s4 .rulebar",B[3]+.05,.5); inUp("#s4 .kicker",B[3]+.15);
+      tl.fromTo("#s4bp",{opacity:0,scale:1.5,transformOrigin:"0% 50%"},
+        {opacity:1,scale:1,duration:.7,ease:"power4.out"},B[3]+2.0);
+      impact("#s4bp",B[3]+2.62);
+      inUp("#s4bpl",B[3]+2.9,.45,20);
+      tl.fromTo("#s4old",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:E},B[3]+4.6);
+      inUp("#s4o",B[3]+4.9,.4,14);
+      tl.fromTo("#s4new",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.55,ease:"power3.inOut"},B[3]+6.0);
+      inUp("#s4n",B[3]+6.4,.4,14);
+      inUp("#s4tag",B[3]+9.4,.5,22);
+      tl.fromTo("#s4 .stamp",{opacity:0},{opacity:1,duration:.4},B[3]+10.0);
+      punch("#s4bp",B[3]+3.1,5.0);
+
+      /* 5 · THE VOTE */
+      bar("#s5 .rulebar",B[4]+.05,.5); inUp("#s5 .kicker",B[4]+.15);
+      tl.fromTo("#s5v",{opacity:0,y:60},{opacity:1,y:0,duration:.75,ease:"power4.out"},B[4]+.5);
+      sweep("#s5sw",B[4]+1.5);
+      inUp("#s5u",B[4]+1.6,.5,24);
+      tl.fromTo("#s5rule",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.6,ease:E},B[4]+2.6);
+      inUp("#s5n",B[4]+2.9,.45,20);
+      inUp("#s5q",B[4]+4.4,.6,28);
+      tl.fromTo("#s5 .stamp",{opacity:0},{opacity:1,duration:.4},B[4]+5.4);
+      punch("#s5v",B[4]+1.4,4.0);
+
+      /* 6 · THE COMPLICATION  (impact landing) */
+      bar("#s6 .rulebar",B[5]+.05,.5); inUp("#s6 .kicker",B[5]+.15);
+      inUp("#s6l",B[5]+.6,.45,20);
+      tl.fromTo("#s6d1",{scale:0,transformOrigin:"center"},{scale:1,duration:.3,ease:"back.out(2)"},B[5]+3.4);
+      tl.fromTo("#s6a",{opacity:0},{opacity:1,duration:.35},B[5]+3.6);
+      tl.fromTo("#s6line",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:1.0,ease:"none"},B[5]+3.9);
+      tl.fromTo("#s6d2",{scale:0,transformOrigin:"center"},{scale:1,duration:.3,ease:"back.out(2)"},B[5]+4.9);
+      tl.fromTo("#s6b",{opacity:0},{opacity:1,duration:.35},B[5]+5.1);
+      inUp("#s6c",B[5]+7.0,.5,18);
+      tl.fromTo("#s6slam",{opacity:0,y:44},{opacity:1,y:0,duration:.6,ease:"power4.out"},B[5]+13.3);
+      impact("#s6slam",B[5]+13.5);
+      tl.fromTo("#s6 .stamp",{opacity:0},{opacity:1,duration:.4},B[5]+14.4);
+      punch("#s6slam",B[5]+14.1,2.2,1.05);
+
+      /* 7 · THE SPLIT */
+      bar("#s7 .rulebar",B[6]+.05,.5); inUp("#s7 .kicker",B[6]+.15);
+      inUp("#s7c",B[6]+.6,.45,16);
+      tl.set("#s7up",{strokeDasharray:400,strokeDashoffset:400},B[6]+3.0)
+        .to("#s7up",{strokeDashoffset:0,duration:.9,ease:"power2.out"},B[6]+3.2);
+      inUp("#s7ul",B[6]+3.8,.45,22); inUp("#s7uv",B[6]+4.0,.45,22);
+      tl.set("#s7dn",{strokeDasharray:400,strokeDashoffset:400},B[6]+6.0)
+        .to("#s7dn",{strokeDashoffset:0,duration:.9,ease:"power2.out"},B[6]+6.2);
+      inUp("#s7dl",B[6]+6.8,.45,22); inUp("#s7dv",B[6]+7.0,.45,22);
+      tl.fromTo("#s7 .stamp",{opacity:0},{opacity:1,duration:.4},B[6]+8.0);
+      punch("#s7uv",B[6]+8.4,5.0); punch("#s7dv",B[6]+8.4,5.0);
+
+      /* 8 · WEEK AHEAD */
+      bar("#s8 .rulebar",B[7]+.05,.5); inUp("#s8 .kicker",B[7]+.15);
+      tl.fromTo("#s8d",{opacity:0,y:50},{opacity:1,y:0,duration:.65,ease:"power4.out"},B[7]+1.2);
+      tl.fromTo("#s8r",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.6,ease:E},B[7]+2.1);
+      inUp("#s8n",B[7]+2.4,.5,24);
+      inUp("#s8s",B[7]+4.6,.45,20);
+      tl.fromTo("#s8 .stamp",{opacity:0},{opacity:1,duration:.4},B[7]+5.6);
+      punch("#s8d",B[7]+1.9,5.0);
+
+      /* 9 · CLOSE  (impact landing, bookend of scene 1) */
+      bar("#s9 .rulebar",B[8]+.05,.5); inUp("#s9 .kicker",B[8]+.15);
+      tl.fromTo("#s9num",{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:"power4.out"},B[8]+.7);
+      tl.fromTo("#s9drop",{scaleY:0,transformOrigin:"bottom"},{scaleY:1,duration:.4,ease:E},B[8]+1.4);
+      tl.fromTo("#s9dot",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},B[8]+1.6);
+      tl.fromTo("#s9slam",{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:"power4.out"},B[8]+7.2);
+      impact("#s9slam",B[8]+7.4);
+      punch("#s9num",B[8]+1.2,4.6);
+
+      /* 10 · DISCLAIMER */
+      const D=__TOTAL__-4.5;
+      tl.fromTo("#dbar",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:E},D+.2);
+      tl.fromTo("#dl1",{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},D+.4);
+      tl.fromTo("#dl2",{opacity:0},{opacity:1,duration:.6},D+1.0);
+
+      /* captions — word-timed from the measured VO */
+/*CAPTW*/
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

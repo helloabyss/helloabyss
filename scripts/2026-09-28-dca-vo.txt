@@ -1,0 +1,31 @@
+Imagine putting six thousand dollars into Nvidia every January for the last ten years. That's five hundred dollars a month, sixty thousand dollars in total. Today it would be worth about one point seven million dollars. Now here's the catch. In every example in this video, dollar cost averaging made less money than the alternative. By the end, you'll see why it's still one of the most useful habits in investing.
+
+Dollar cost averaging means investing a fixed amount on a fixed schedule, no matter what the price is doing. Same dollars, same day, every time. When prices are high, your money buys fewer shares. When prices are low, the same money buys more. Over time, that pulls your average cost toward the cheaper days. You don't have to predict anything. You just have to keep showing up.
+
+To keep the math visible, we'll make one purchase a year, on the first trading day of January, at the previous year's closing price. Buying monthly would shift the numbers a little, but not the lesson.
+
+Start with QQQ, the fund that tracks the Nasdaq one hundred, the hundred largest non-financial companies listed on the Nasdaq. Six thousand dollars every January, from 2017 through 2026. Ten purchases, sixty thousand dollars in.
+
+Your average cost works out to about two hundred and thirty-two dollars a share. On September twenty-fifth, QQQ closed around seven hundred and forty. That's roughly three times your average cost. With dividends reinvested, your sixty thousand would be worth about one hundred and ninety-one thousand dollars.
+
+And you'd have held through 2022, when QQQ fell almost thirty-three percent in a single year. The dollar cost averager didn't stop in January 2023. They bought anyway, at two hundred and sixty-two dollars, a third cheaper than the year before.
+
+Now the same plan with Nvidia. Six thousand every January, ten purchases, sixty thousand dollars.
+
+Adjusted for stock splits, your average cost is under eight dollars a share. Nvidia closed September twenty-fifth at two hundred and twenty-five. That's about twenty-eight times your money. Sixty thousand dollars becomes roughly one point seven million.
+
+But look at what you had to sit through. In 2018, the stock fell thirty-one percent. In 2022, it fell by half. And that's where dollar cost averaging does its real work. In January 2022, six thousand dollars bought about two hundred and four shares. One year later, after the crash, the same six thousand bought about four hundred and eleven. Twice the shares, for the same money, at the exact moment it felt worst to buy.
+
+So what if you started at the worst possible time, right before that crash? Five purchases, January 2022 through January 2026. Thirty thousand dollars.
+
+In QQQ, your average cost is about four hundred and two dollars, and that thirty thousand is worth around fifty-five thousand today. In Nvidia, your average cost is about thirty-seven dollars, and it's worth around one hundred and eighty-three thousand. Even starting at the top, steady buying through the drop came back, and then some.
+
+Now the honest part. In every example we just ran, putting all the money in on day one would have made more. Sixty thousand dollars into QQQ in January 2017 would be worth nearly four hundred thousand today, about twice the dollar cost averaging result. That isn't a fluke. Vanguard studied decades of market history and found that a lump sum beat twelve months of dollar cost averaging about two thirds of the time. Markets rise more often than they fall, so cash waiting on the sidelines usually costs you.
+
+And Nvidia is the example we picked because we already know how it ended. That's hindsight. For every stock that went up twenty-eight times, plenty of others went sideways or disappeared. Even QQQ fell eighty-three percent after the dot-com peak, and it didn't close above its 2000 high again until 2016.
+
+So why use dollar cost averaging at all? Because most people don't have a lump sum. They have a paycheck. For most of us, investing a fixed amount every month isn't a strategy we choose. It's how money actually arrives. And it removes the hardest decision in investing, which is when to buy. It kept buying in January 2023, when every headline said stop. That discipline is the whole point.
+
+What could it look like from here? Nobody knows, so this is pure math, not a forecast. Five hundred dollars a month for twenty years is one hundred and twenty thousand dollars of contributions. At six percent a year, that grows to about two hundred and thirty thousand. At ten percent, about three hundred and eighty thousand. At fourteen percent, about six hundred and fifty thousand. The rate isn't up to you. Showing up is.
+
+Pick an amount you could keep investing while the market is falling. That's the one that works. Nothing here is a recommendation to buy QQQ or Nvidia. This is educational content, not financial advice.

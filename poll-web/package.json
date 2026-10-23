@@ -1,0 +1,23 @@
+{
+  "name": "meticulous-poll",
+  "version": "1.0.0",
+  "description": "Public audience polls for The Meticulous Investor",
+  "scripts": {
+    "build": "esbuild src/app.js src/admin.js --bundle --minify --format=esm --target=es2020 --outdir=public/js",
+    "rules": "node scripts/make-rules.mjs",
+    "icons": "node scripts/icons.mjs",
+    "test": "ADMIN_EMAIL=admin@example.com node scripts/make-rules.mjs && firebase emulators:exec --project demo-meticulous-poll --only firestore \"node --test test/rules.test.mjs\"",
+    "dev": "npm run build && ADMIN_EMAIL=admin@example.com node scripts/make-rules.mjs && firebase emulators:start --project demo-meticulous-poll",
+    "deploy": "npm run rules && npm run build && firebase deploy --only hosting,firestore:rules"
+  },
+  "dependencies": {
+    "firebase": "^12.19.0"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "esbuild": "^0.28.2",
+    "firebase-tools": "^15.32.0"
+  },
+  "private": true,
+  "type": "module"
+}

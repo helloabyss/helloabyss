@@ -1,0 +1,804 @@
+<!doctype html>
+<!-- THIS WEEK IN THE MARKET — ep.1, week of 2026-09-14 → 09-18
+     Editorial data-motion. No photography/faces/logos. Three colours.
+     Timings derive from measured TTS audio (vo_timing.json). Captions are word-timed. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+      :root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E;--grid:#242427}
+      #root{width:100%;height:100%;position:relative;background:var(--ink);
+        font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+      .clip{position:absolute;inset:0}
+
+      /* ---- editorial frame furniture (quiet, persistent) ---- */
+      .frame{position:absolute;inset:0;pointer-events:none}
+      .fr-t{position:absolute;left:110px;right:110px;top:190px;height:1px;background:rgba(245,245,243,.09)}
+      .fr-b{position:absolute;left:110px;right:110px;top:1790px;height:1px;background:rgba(245,245,243,.09)}
+      .slug{position:absolute;right:110px;top:152px;color:#797979;font-size:21px;letter-spacing:.24em}
+      .num{position:absolute;right:110px;top:1812px;color:#797979;font-size:21px;letter-spacing:.2em}
+      .tick{position:absolute;width:16px;height:16px;border-color:rgba(245,245,243,.18);border-style:solid;border-width:0}
+      .tick.tl{left:110px;top:190px;border-left-width:1px;border-top-width:1px}
+      .tick.tr{right:110px;top:190px;border-right-width:1px;border-top-width:1px}
+
+      .kicker{position:absolute;left:110px;top:250px;color:var(--muted);font-size:27px;
+        letter-spacing:.38em;text-transform:uppercase;font-weight:700}
+      .stamp{position:absolute;left:110px;top:1722px;color:var(--muted);font-size:24px;letter-spacing:.03em}
+      .rulebar{position:absolute;left:110px;top:310px;width:180px;height:5px;background:var(--accent);
+        transform-origin:left center}
+      .lbl{color:var(--muted);font-size:30px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+      .big{color:var(--paper);font-weight:800;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+      .red{color:var(--accent)}
+      .tag{display:inline-block;color:var(--accent);font-size:30px;font-weight:800;
+        letter-spacing:.14em;text-transform:uppercase}
+
+      /* light sweep across hero type after it settles */
+      .sweepwrap{position:absolute;overflow:hidden}
+      .sweep{position:absolute;inset:0;pointer-events:none;transform:translateX(-130%);
+        background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%)}
+
+      #compliance{position:absolute;left:110px;top:1620px;color:var(--accent);
+        font-size:29px;font-weight:700;letter-spacing:.05em}
+      #discCard{position:absolute;inset:0;background:var(--ink);display:flex;
+        flex-direction:column;justify-content:center;padding:0 110px}
+      #discCard .dl1{color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.18}
+      #discCard .dl2{color:var(--muted);font-size:31px;line-height:1.5;margin-top:38px}
+      #discCard .dbar{width:180px;height:5px;background:var(--accent);margin-bottom:46px}
+
+      .thLabel{position:absolute;color:var(--muted);font-size:27px;letter-spacing:.06em}
+      .rowName{position:absolute;color:var(--paper);font-size:40px;font-weight:800;letter-spacing:.02em}
+      .rowVal{position:absolute;color:var(--paper);font-size:52px;font-weight:800;
+        font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+      .bar{position:absolute;height:26px;transform-origin:left center}
+      .bar.neg{transform-origin:right center;background:var(--accent)}
+      .bar.pos{background:var(--paper)}
+      .tileL{position:absolute;color:var(--muted);font-size:29px;letter-spacing:.2em;font-weight:700}
+      .tileV{position:absolute;color:var(--paper);font-size:112px;font-weight:800;
+        letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+
+      /* ---- burned-in word-by-word captions ---- */
+      .capline{position:absolute;left:100px;top:1466px;width:880px;text-align:center;
+        font-size:43px;font-weight:800;letter-spacing:.004em;line-height:1.25;opacity:0;
+        text-shadow:0 2px 10px rgba(0,0,0,.85)}
+      .capline span{color:rgba(245,245,243,.48);margin:0 .16em}
+      #flash{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none}
+      #prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--accent);
+        transform-origin:left center;transform:scaleX(0)}
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="119.397"
+         data-width="1080" data-height="1920">
+
+      <div id="s1" class="clip" data-start="0.0" data-duration="8.311" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">01</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar" id="s1bar"></div>
+        <div class="kicker" id="s1k">This Week in the Market</div>
+        <div class="lbl" id="s1lbl" style="position:absolute;left:110px;top:560px">US 10-Year Treasury Yield</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line id="s1th" x1="110" y1="1120" x2="970" y2="1120" stroke="#6E6E6E" stroke-width="3" stroke-dasharray="10 10"/>
+          <line id="s1drop" x1="820" y1="996" x2="820" y2="1120" stroke="#D42A2A" stroke-width="3"/>
+          <circle id="s1dot" cx="820" cy="980" r="16" fill="#D42A2A"/>
+        </svg>
+        <div class="thLabel" id="s1thl" style="left:110px;top:1140px">5.00% threshold</div>
+        <div class="sweepwrap" style="left:110px;top:680px"><div class="big" id="s1num" style="font-size:190px">0.000%</div><div class="sweep" id="s1sw"></div></div>
+        <div class="tag" id="s1tag" style="position:absolute;left:110px;top:965px">Above five percent</div>
+        <div class="stamp" id="s1st">US 10-year Treasury · close 2026-09-18</div>
+        <div id="compliance">Educational only. Not financial advice.</div>
+      </div>
+      <div id="s2" class="clip" data-start="8.311" data-duration="13.501" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">02</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">The week · three ways</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="540" y1="620" x2="540" y2="1320" stroke="#242427" stroke-width="3"/>
+        </svg>
+        <div class="rowName" id="n1" style="left:110px;top:660px">DOW</div>
+        <div class="bar neg" id="b1" style="left:170px;top:726px;width:370px"></div>
+        <div class="rowVal red" id="v1" style="left:110px;top:770px">−733 PTS</div>
+        <div class="tag" id="t1" style="position:absolute;left:110px;top:845px;font-size:26px">Worst week since March</div>
+        <div class="rowName" id="n2" style="left:110px;top:960px">NASDAQ</div>
+        <div class="bar pos" id="b2" style="left:540px;top:1026px;width:390px"></div>
+        <div class="rowVal" id="v2" style="left:560px;top:1070px">+2.6%</div>
+        <div class="rowName" id="n3" style="left:110px;top:1200px">S&amp;P 500</div>
+        <div class="bar pos" id="b3" style="left:540px;top:1266px;width:130px"></div>
+        <div class="rowVal" id="v3" style="left:560px;top:1310px">+0.7%</div>
+        <div class="stamp">Weekly change · 14–18 Sep 2026</div>
+      </div>
+      <div id="s3" class="clip" data-start="21.812" data-duration="13.372" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">03</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">Friday's close</div>
+        <div class="tileL" id="c1l" style="left:110px;top:640px">S&amp;P 500</div>
+        <div class="tileV" id="c1v" style="left:110px;top:686px">0.00</div>
+        <div class="tileL" id="c2l" style="left:110px;top:960px">Nasdaq Composite</div>
+        <div class="tileV" id="c2v" style="left:110px;top:1006px">0.00</div>
+        <div class="tileL" id="c3l" style="left:110px;top:1280px">Dow Jones Industrial Average</div>
+        <div class="tileV" id="c3v" style="left:110px;top:1326px">0.00</div>
+        <div class="stamp">Closing levels · 2026-09-18</div>
+      </div>
+      <div id="s4" class="clip" data-start="35.184" data-duration="15.372" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">04</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">Wednesday 16 September</div>
+        <div class="big" id="s4bp" style="position:absolute;left:110px;top:560px;font-size:250px">+25</div>
+        <div class="lbl" id="s4bpl" style="position:absolute;left:118px;top:872px">basis points</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="1120" x2="970" y2="1120" stroke="#242427" stroke-width="3"/>
+          <rect id="s4old" x="110" y="1090" width="430" height="60" fill="#242427"/>
+          <rect id="s4new" x="540" y="1090" width="430" height="60" fill="#D42A2A"/>
+        </svg>
+        <div class="thLabel" id="s4o" style="left:110px;top:1170px">from 3.50–3.75%</div>
+        <div class="thLabel" id="s4n" style="left:540px;top:1170px;color:#F5F5F3">to 3.75–4.00%</div>
+        <div class="tag" id="s4tag" style="position:absolute;left:110px;top:1300px;font-size:34px">First increase since 2023</div>
+        <div class="stamp">FOMC decision · 2026-09-16</div>
+      </div>
+      <div id="s5" class="clip" data-start="50.556" data-duration="9.582" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">05</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">The vote</div>
+        <div class="sweepwrap" style="left:110px;top:540px"><div class="big" id="s5v" style="font-size:255px">12–0</div><div class="sweep" id="s5sw"></div></div>
+        <div class="lbl" id="s5u" style="position:absolute;left:110px;top:930px;color:#F5F5F3">Unanimous · not one dissent</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line id="s5rule" x1="110" y1="1040" x2="970" y2="1040" stroke="#242427" stroke-width="3"/>
+        </svg>
+        <div class="lbl" id="s5n" style="position:absolute;left:110px;top:1090px">Kevin Warsh · Chair, Federal Reserve</div>
+        <div id="s5q" style="position:absolute;left:110px;top:1180px;width:860px;color:#D42A2A;font-size:54px;font-weight:800;letter-spacing:-.02em;line-height:1.22">“A timelier return to two percent.”</div>
+        <div class="stamp">FOMC · 2026-09-16</div>
+      </div>
+      <div id="s6" class="clip" data-start="60.138" data-duration="16.886" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">06</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">The complication</div>
+        <div class="lbl" id="s6l" style="position:absolute;left:110px;top:560px">US consumer prices · year on year</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="900" x2="970" y2="900" stroke="#242427" stroke-width="2" stroke-dasharray="8 8"/>
+          <line id="s6line" x1="240" y1="900" x2="840" y2="900" stroke="#F5F5F3" stroke-width="8" stroke-linecap="round"/>
+          <circle id="s6d1" cx="240" cy="900" r="14" fill="#F5F5F3"/>
+          <circle id="s6d2" cx="840" cy="900" r="14" fill="#F5F5F3"/>
+        </svg>
+        <div class="thLabel" id="s6a" style="left:190px;top:940px">JUL · 3.4%</div>
+        <div class="thLabel" id="s6b" style="left:780px;top:940px">AUG · 3.4%</div>
+        <div class="thLabel" id="s6c" style="left:110px;top:820px;color:#6E6E6E">Consensus 3.4% — in line</div>
+        <div class="big red" id="s6slam" style="position:absolute;left:110px;top:1120px;font-size:92px;line-height:1.1;width:880px">They hiked<br/>anyway.</div>
+        <div class="stamp">CPI, August 2026 · released 2026-09-11</div>
+      </div>
+      <div id="s7" class="clip" data-start="77.024" data-duration="15.414" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">07</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">One week · two directions</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="1080" x2="970" y2="1080" stroke="#242427" stroke-width="3"/>
+          <path id="s7up" d="M 200 1080 L 430 760" stroke="#F5F5F3" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path id="s7dn" d="M 650 1080 L 880 1300" stroke="#D42A2A" stroke-width="10" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="rowName" id="s7ul" style="left:200px;top:660px">NASDAQ</div>
+        <div class="rowVal" id="s7uv" style="left:200px;top:706px">+2.6%</div>
+        <div class="rowName" id="s7dl" style="left:650px;top:1322px">DOW</div>
+        <div class="rowVal red" id="s7dv" style="left:650px;top:1368px">−733 PTS</div>
+        <div class="tag" id="s7c" style="position:absolute;left:110px;top:1104px;font-size:26px;color:#6E6E6E">Same week</div>
+        <div class="stamp">Weekly change · 14–18 Sep 2026</div>
+      </div>
+      <div id="s8" class="clip" data-start="92.438" data-duration="11.018" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">08</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">The week ahead</div>
+        <div class="big" id="s8d" style="position:absolute;left:110px;top:600px;font-size:200px">SEP 30</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line id="s8r" x1="110" y1="900" x2="970" y2="900" stroke="#D42A2A" stroke-width="5"/>
+        </svg>
+        <div class="rowName" id="s8n" style="left:110px;top:950px;font-size:60px">MICRON · FISCAL Q4</div>
+        <div class="lbl" id="s8s" style="position:absolute;left:110px;top:1060px">Memory pricing · AI capital spending</div>
+        <div class="stamp">Date per company IR</div>
+      </div>
+      <div id="s9" class="clip" data-start="103.456" data-duration="11.441" data-track-index="0">
+        <div class="frame"><div class="fr-t"></div><div class="fr-b"></div>
+          <div class="slug">TWIM · 20 SEP 2026</div><div class="num">09</div>
+          <div class="tick tl"></div><div class="tick tr"></div></div>
+        <div class="rulebar"></div>
+        <div class="kicker">The number to watch</div>
+        <svg width="1080" height="1920" style="position:absolute;inset:0">
+          <line x1="110" y1="1120" x2="970" y2="1120" stroke="#6E6E6E" stroke-width="3" stroke-dasharray="10 10"/>
+          <line id="s9drop" x1="820" y1="996" x2="820" y2="1120" stroke="#D42A2A" stroke-width="3"/>
+          <circle id="s9dot" cx="820" cy="980" r="16" fill="#D42A2A"/>
+        </svg>
+        <div class="thLabel" style="left:110px;top:1140px">5.00% threshold</div>
+        <div class="big" id="s9num" style="position:absolute;left:110px;top:680px;font-size:190px">5.006%</div>
+        <div class="big red" id="s9slam" style="position:absolute;left:110px;top:1260px;font-size:78px;width:880px">The hurdle moved.</div>
+        <div class="stamp">US 10-year Treasury · close 2026-09-18</div>
+      </div>
+      <div id="s10" class="clip" data-start="114.897" data-duration="4.5" data-track-index="0">
+        <div id="discCard"><div class="dbar" id="dbar"></div>
+          <div class="dl1" id="dl1">Educational only.<br/>Not financial advice.</div>
+          <div class="dl2" id="dl2">Market commentary, not a recommendation to buy or sell any security.<br/>Figures as of the dates shown. Sources in the description.</div>
+        </div>
+      </div>
+
+      <!-- caption layer (untimed: persists across scene cuts) -->
+      <div id="caps">
+<div class="capline" id="g0"><span id="w0_0">The</span><span id="w0_1">ten-year</span><span id="w0_2">Treasury</span><span id="w0_3">yield</span><span id="w0_4">closed</span></div>
+<div class="capline" id="g1"><span id="w1_0">above</span><span id="w1_1">five</span><span id="w1_2">percent</span><span id="w1_3">on</span><span id="w1_4">Friday.</span></div>
+<div class="capline" id="g2"><span id="w2_0">That</span><span id="w2_1">number</span><span id="w2_2">sits</span><span id="w2_3">underneath</span><span id="w2_4">the</span></div>
+<div class="capline" id="g3"><span id="w3_0">price</span><span id="w3_1">of</span><span id="w3_2">every</span><span id="w3_3">American</span><span id="w3_4">stock.</span></div>
+<div class="capline" id="g4"><span id="w4_0">The</span><span id="w4_1">week</span><span id="w4_2">split</span><span id="w4_3">three</span><span id="w4_4">ways.</span></div>
+<div class="capline" id="g5"><span id="w5_0">The</span><span id="w5_1">Dow</span><span id="w5_2">fell</span><span id="w5_3">seven</span><span id="w5_4">hundred</span></div>
+<div class="capline" id="g6"><span id="w6_0">and</span><span id="w6_1">thirty-three</span><span id="w6_2">points,</span><span id="w6_3">its</span><span id="w6_4">worst</span></div>
+<div class="capline" id="g7"><span id="w7_0">week</span><span id="w7_1">since</span><span id="w7_2">March.</span></div>
+<div class="capline" id="g8"><span id="w8_0">The</span><span id="w8_1">Nasdaq</span><span id="w8_2">rose</span><span id="w8_3">two</span><span id="w8_4">point</span></div>
+<div class="capline" id="g9"><span id="w9_0">six</span><span id="w9_1">percent.</span></div>
+<div class="capline" id="g10"><span id="w10_0">The</span><span id="w10_1">S&P</span><span id="w10_2">500</span><span id="w10_3">added</span><span id="w10_4">zero</span></div>
+<div class="capline" id="g11"><span id="w11_0">point</span><span id="w11_1">seven.</span></div>
+<div class="capline" id="g12"><span id="w12_0">Friday's</span><span id="w12_1">closes.</span></div>
+<div class="capline" id="g13"><span id="w13_0">The</span><span id="w13_1">S&P</span><span id="w13_2">500</span><span id="w13_3">at</span><span id="w13_4">seven</span></div>
+<div class="capline" id="g14"><span id="w14_0">thousand</span><span id="w14_1">six</span><span id="w14_2">hundred</span><span id="w14_3">fifty.</span></div>
+<div class="capline" id="g15"><span id="w15_0">The</span><span id="w15_1">Nasdaq</span><span id="w15_2">at</span><span id="w15_3">twenty-six</span><span id="w15_4">thousand</span></div>
+<div class="capline" id="g16"><span id="w16_0">five</span><span id="w16_1">hundred</span><span id="w16_2">twenty-three.</span></div>
+<div class="capline" id="g17"><span id="w17_0">The</span><span id="w17_1">Dow</span><span id="w17_2">at</span><span id="w17_3">fifty-one</span><span id="w17_4">thousand</span></div>
+<div class="capline" id="g18"><span id="w18_0">six</span><span id="w18_1">hundred</span><span id="w18_2">eighty-three.</span></div>
+<div class="capline" id="g19"><span id="w19_0">On</span><span id="w19_1">Wednesday</span><span id="w19_2">the</span><span id="w19_3">Federal</span><span id="w19_4">Reserve</span></div>
+<div class="capline" id="g20"><span id="w20_0">raised</span><span id="w20_1">interest</span><span id="w20_2">rates.</span></div>
+<div class="capline" id="g21"><span id="w21_0">A</span><span id="w21_1">quarter</span><span id="w21_2">point,</span><span id="w21_3">to</span><span id="w21_4">a</span></div>
+<div class="capline" id="g22"><span id="w22_0">range</span><span id="w22_1">of</span><span id="w22_2">three</span><span id="w22_3">point</span><span id="w22_4">seven</span></div>
+<div class="capline" id="g23"><span id="w23_0">five</span><span id="w23_1">to</span><span id="w23_2">four</span><span id="w23_3">percent.</span></div>
+<div class="capline" id="g24"><span id="w24_0">It</span><span id="w24_1">is</span><span id="w24_2">the</span><span id="w24_3">first</span><span id="w24_4">increase</span></div>
+<div class="capline" id="g25"><span id="w25_0">since</span><span id="w25_1">2023.</span></div>
+<div class="capline" id="g26"><span id="w26_0">The</span><span id="w26_1">vote</span><span id="w26_2">was</span><span id="w26_3">twelve</span><span id="w26_4">to</span></div>
+<div class="capline" id="g27"><span id="w27_0">nothing.</span></div>
+<div class="capline" id="g28"><span id="w28_0">Not</span><span id="w28_1">one</span><span id="w28_2">dissent.</span></div>
+<div class="capline" id="g29"><span id="w29_0">The</span><span id="w29_1">chair</span><span id="w29_2">is</span><span id="w29_3">Kevin</span><span id="w29_4">Warsh</span></div>
+<div class="capline" id="g30"><span id="w30_0">now.</span></div>
+<div class="capline" id="g31"><span id="w31_0">He</span><span id="w31_1">took</span><span id="w31_2">over</span><span id="w31_3">from</span><span id="w31_4">Jerome</span></div>
+<div class="capline" id="g32"><span id="w32_0">Powell</span><span id="w32_1">in</span><span id="w32_2">May.</span></div>
+<div class="capline" id="g33"><span id="w33_0">Warsh</span><span id="w33_1">said</span><span id="w33_2">the</span><span id="w33_3">committee</span><span id="w33_4">wants</span></div>
+<div class="capline" id="g34"><span id="w34_0">a</span><span id="w34_1">timelier</span><span id="w34_2">return</span><span id="w34_3">to</span><span id="w34_4">two</span></div>
+<div class="capline" id="g35"><span id="w35_0">percent</span><span id="w35_1">inflation.</span></div>
+<div class="capline" id="g36"><span id="w36_0">Here</span><span id="w36_1">is</span><span id="w36_2">the</span><span id="w36_3">part</span><span id="w36_4">that</span></div>
+<div class="capline" id="g37"><span id="w37_0">complicates</span><span id="w37_1">it.</span></div>
+<div class="capline" id="g38"><span id="w38_0">Inflation</span><span id="w38_1">did</span><span id="w38_2">not</span><span id="w38_3">accelerate</span><span id="w38_4">into</span></div>
+<div class="capline" id="g39"><span id="w39_0">this</span><span id="w39_1">decision.</span></div>
+<div class="capline" id="g40"><span id="w40_0">August</span><span id="w40_1">consumer</span><span id="w40_2">prices</span><span id="w40_3">ran</span><span id="w40_4">at</span></div>
+<div class="capline" id="g41"><span id="w41_0">three</span><span id="w41_1">point</span><span id="w41_2">four</span><span id="w41_3">percent.</span></div>
+<div class="capline" id="g42"><span id="w42_0">That</span><span id="w42_1">was</span><span id="w42_2">unchanged</span><span id="w42_3">from</span><span id="w42_4">July,</span></div>
+<div class="capline" id="g43"><span id="w43_0">and</span><span id="w43_1">in</span><span id="w43_2">line</span><span id="w43_3">with</span><span id="w43_4">what</span></div>
+<div class="capline" id="g44"><span id="w44_0">forecasters</span><span id="w44_1">expected.</span></div>
+<div class="capline" id="g45"><span id="w45_0">The</span><span id="w45_1">Fed</span><span id="w45_2">tightened</span><span id="w45_3">anyway.</span></div>
+<div class="capline" id="g46"><span id="w46_0">The</span><span id="w46_1">market</span><span id="w46_2">did</span><span id="w46_3">not</span><span id="w46_4">read</span></div>
+<div class="capline" id="g47"><span id="w47_0">it</span><span id="w47_1">as</span><span id="w47_2">a</span><span id="w47_3">simple</span><span id="w47_4">squeeze</span></div>
+<div class="capline" id="g48"><span id="w48_0">either.</span></div>
+<div class="capline" id="g49"><span id="w49_0">Wednesday</span><span id="w49_1">sold</span><span id="w49_2">off.</span></div>
+<div class="capline" id="g50"><span id="w50_0">Thursday</span><span id="w50_1">bought</span><span id="w50_2">it</span><span id="w50_3">back.</span></div>
+<div class="capline" id="g51"><span id="w51_0">The</span><span id="w51_1">Nasdaq</span><span id="w51_2">finished</span><span id="w51_3">the</span><span id="w51_4">week</span></div>
+<div class="capline" id="g52"><span id="w52_0">higher</span><span id="w52_1">while</span><span id="w52_2">the</span><span id="w52_3">Dow</span><span id="w52_4">had</span></div>
+<div class="capline" id="g53"><span id="w53_0">its</span><span id="w53_1">worst</span><span id="w53_2">week</span><span id="w53_3">since</span><span id="w53_4">March.</span></div>
+<div class="capline" id="g54"><span id="w54_0">Higher</span><span id="w54_1">rates</span><span id="w54_2">pressed</span><span id="w54_3">on</span><span id="w54_4">the</span></div>
+<div class="capline" id="g55"><span id="w55_0">two</span><span id="w55_1">ends</span><span id="w55_2">of</span><span id="w55_3">the</span><span id="w55_4">index</span></div>
+<div class="capline" id="g56"><span id="w56_0">differently.</span></div>
+<div class="capline" id="g57"><span id="w57_0">Next</span><span id="w57_1">week,</span><span id="w57_2">Micron</span><span id="w57_3">reports</span><span id="w57_4">fiscal</span></div>
+<div class="capline" id="g58"><span id="w58_0">fourth</span><span id="w58_1">quarter</span><span id="w58_2">results</span><span id="w58_3">on</span><span id="w58_4">September</span></div>
+<div class="capline" id="g59"><span id="w59_0">thirtieth.</span></div>
+<div class="capline" id="g60"><span id="w60_0">That</span><span id="w60_1">is</span><span id="w60_2">the</span><span id="w60_3">clearest</span><span id="w60_4">read</span></div>
+<div class="capline" id="g61"><span id="w61_0">available</span><span id="w61_1">on</span><span id="w61_2">memory</span><span id="w61_3">pricing</span><span id="w61_4">and</span></div>
+<div class="capline" id="g62"><span id="w62_0">AI</span><span id="w62_1">capital</span><span id="w62_2">spending.</span></div>
+<div class="capline" id="g63"><span id="w63_0">One</span><span id="w63_1">number</span><span id="w63_2">to</span><span id="w63_3">watch.</span></div>
+<div class="capline" id="g64"><span id="w64_0">If</span><span id="w64_1">the</span><span id="w64_2">ten-year</span><span id="w64_3">holds</span><span id="w64_4">above</span></div>
+<div class="capline" id="g65"><span id="w65_0">five</span><span id="w65_1">percent,</span><span id="w65_2">then</span><span id="w65_3">the</span><span id="w65_4">hurdle</span></div>
+<div class="capline" id="g66"><span id="w66_0">every</span><span id="w66_1">US</span><span id="w66_2">stock</span><span id="w66_3">is</span><span id="w66_4">priced</span></div>
+<div class="capline" id="g67"><span id="w67_0">against</span><span id="w67_1">has</span><span id="w67_2">moved.</span></div>
+<div class="capline" id="g68"><span id="w68_0">That</span><span id="w68_1">is</span><span id="w68_2">the</span><span id="w68_3">read</span><span id="w68_4">as</span></div>
+<div class="capline" id="g69"><span id="w69_0">of</span><span id="w69_1">Friday's</span><span id="w69_2">close.</span></div>
+      </div>
+      <div id="flash"></div>
+      <div id="prog"></div>
+      <audio id="vo" src="vo.wav" data-start="0" data-duration="114.597"
+             data-track-index="10" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const B = [0.000,8.311,21.812,35.184,50.556,60.138,77.024,92.438,103.456];
+
+      function count(sel,to,at,dur,dp,suf,comma){
+        const el=document.querySelector(sel), o={v:0};
+        tl.set(el,{opacity:0},0); tl.to(el,{opacity:1,duration:.3,ease:E},at);
+        tl.to(o,{v:to,duration:dur,ease:"power2.out",onUpdate(){
+          let n=o.v.toFixed(dp);
+          if(comma){const p=n.split(".");p[0]=p[0].replace(/\B(?=(\d{3})+(?!\d))/g,",");n=p.join(".");}
+          el.textContent=n+(suf||"");
+        }},at);
+      }
+      const inUp=(s,at,d=.55,y=34)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+      const bar=(s,at,d=.7)=>tl.fromTo(s,{scaleX:0},{scaleX:1,duration:d,ease:"power3.inOut"},at);
+      const punch=(s,at,d,to=1.045)=>tl.fromTo(s,{scale:1},{scale:to,duration:d,ease:"none",
+        transformOrigin:"20% 50%",immediateRender:false},at);
+      const sweep=(s,at)=>tl.fromTo(s,{x:"-130%"},{x:"130%",duration:1.05,ease:"power2.inOut",immediateRender:false},at);
+      // 2-frame white flash + a short kick on the hero — used on 3 landings only
+      function impact(sel,at){
+        tl.set("#flash",{opacity:.5},at).set("#flash",{opacity:.18},at+0.034)
+          .set("#flash",{opacity:0},at+0.067);
+        tl.fromTo(sel,{x:-9},{x:0,duration:.34,ease:"power3.out",immediateRender:false},at);
+      }
+      tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:119.397,ease:"none"},0);
+
+      /* 1 · COLD OPEN */
+      bar("#s1bar",B[0]+.05,.5); inUp("#s1k",B[0]+.15); inUp("#s1lbl",B[0]+.45);
+      count("#s1num",5.006,B[0]+.7,1.9,3,"%");
+      tl.fromTo("#s1th",{opacity:0},{opacity:1,duration:.4},B[0]+1.1);
+      tl.fromTo("#s1thl",{opacity:0},{opacity:1,duration:.4},B[0]+1.2);
+      tl.fromTo("#s1drop",{scaleY:0,transformOrigin:"bottom"},{scaleY:1,duration:.4,ease:E},B[0]+2.5);
+      tl.fromTo("#s1dot",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},B[0]+2.75);
+      sweep("#s1sw",B[0]+2.8);
+      inUp("#s1tag",B[0]+3.1,.5,20);
+      tl.fromTo("#s1st",{opacity:0},{opacity:1,duration:.4},B[0]+3.4);
+      tl.fromTo("#compliance",{opacity:0},{opacity:1,duration:.35},B[0]+.3);
+      tl.to("#compliance",{opacity:0,duration:.3},B[0]+3.9);
+      punch("#s1num",B[0]+3.3,4.2);
+
+      /* 2 · THE TAPE */
+      bar("#s2 .rulebar",B[1]+.05,.5); inUp("#s2 .kicker",B[1]+.15);
+      inUp("#n1",B[1]+.5,.45,22); bar("#b1",B[1]+.8,.6); inUp("#v1",B[1]+1.1,.45,18); inUp("#t1",B[1]+1.5,.45,14);
+      inUp("#n2",B[1]+2.3,.45,22); bar("#b2",B[1]+2.6,.6); inUp("#v2",B[1]+2.9,.45,18);
+      inUp("#n3",B[1]+3.9,.45,22); bar("#b3",B[1]+4.2,.6); inUp("#v3",B[1]+4.5,.45,18);
+      tl.fromTo("#s2 .stamp",{opacity:0},{opacity:1,duration:.4},B[1]+5.2);
+      punch("#b1",B[1]+5.6,6.5,1.02);
+
+      /* 3 · CLOSES */
+      bar("#s3 .rulebar",B[2]+.05,.5); inUp("#s3 .kicker",B[2]+.15);
+      inUp("#c1l",B[2]+.5,.4,18); count("#c1v",7650.50,B[2]+.6,1.5,2,"",true);
+      inUp("#c2l",B[2]+3.1,.4,18); count("#c2v",26522.55,B[2]+3.2,1.5,2,"",true);
+      inUp("#c3l",B[2]+6.2,.4,18); count("#c3v",51682.64,B[2]+6.3,1.5,2,"",true);
+      tl.fromTo("#s3 .stamp",{opacity:0},{opacity:1,duration:.4},B[2]+8.2);
+      punch("#c3v",B[2]+8.4,3.8);
+
+      /* 4 · THE HIKE  (impact landing) */
+      bar("#s4 .rulebar",B[3]+.05,.5); inUp("#s4 .kicker",B[3]+.15);
+      tl.fromTo("#s4bp",{opacity:0,scale:1.5,transformOrigin:"0% 50%"},
+        {opacity:1,scale:1,duration:.7,ease:"power4.out"},B[3]+2.0);
+      impact("#s4bp",B[3]+2.62);
+      inUp("#s4bpl",B[3]+2.9,.45,20);
+      tl.fromTo("#s4old",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:E},B[3]+4.6);
+      inUp("#s4o",B[3]+4.9,.4,14);
+      tl.fromTo("#s4new",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.55,ease:"power3.inOut"},B[3]+6.0);
+      inUp("#s4n",B[3]+6.4,.4,14);
+      inUp("#s4tag",B[3]+9.4,.5,22);
+      tl.fromTo("#s4 .stamp",{opacity:0},{opacity:1,duration:.4},B[3]+10.0);
+      punch("#s4bp",B[3]+3.1,5.0);
+
+      /* 5 · THE VOTE */
+      bar("#s5 .rulebar",B[4]+.05,.5); inUp("#s5 .kicker",B[4]+.15);
+      tl.fromTo("#s5v",{opacity:0,y:60},{opacity:1,y:0,duration:.75,ease:"power4.out"},B[4]+.5);
+      sweep("#s5sw",B[4]+1.5);
+      inUp("#s5u",B[4]+1.6,.5,24);
+      tl.fromTo("#s5rule",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.6,ease:E},B[4]+2.6);
+      inUp("#s5n",B[4]+2.9,.45,20);
+      inUp("#s5q",B[4]+4.4,.6,28);
+      tl.fromTo("#s5 .stamp",{opacity:0},{opacity:1,duration:.4},B[4]+5.4);
+      punch("#s5v",B[4]+1.4,4.0);
+
+      /* 6 · THE COMPLICATION  (impact landing) */
+      bar("#s6 .rulebar",B[5]+.05,.5); inUp("#s6 .kicker",B[5]+.15);
+      inUp("#s6l",B[5]+.6,.45,20);
+      tl.fromTo("#s6d1",{scale:0,transformOrigin:"center"},{scale:1,duration:.3,ease:"back.out(2)"},B[5]+3.4);
+      tl.fromTo("#s6a",{opacity:0},{opacity:1,duration:.35},B[5]+3.6);
+      tl.fromTo("#s6line",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:1.0,ease:"none"},B[5]+3.9);
+      tl.fromTo("#s6d2",{scale:0,transformOrigin:"center"},{scale:1,duration:.3,ease:"back.out(2)"},B[5]+4.9);
+      tl.fromTo("#s6b",{opacity:0},{opacity:1,duration:.35},B[5]+5.1);
+      inUp("#s6c",B[5]+7.0,.5,18);
+      tl.fromTo("#s6slam",{opacity:0,y:44},{opacity:1,y:0,duration:.6,ease:"power4.out"},B[5]+13.3);
+      impact("#s6slam",B[5]+13.5);
+      tl.fromTo("#s6 .stamp",{opacity:0},{opacity:1,duration:.4},B[5]+14.4);
+      punch("#s6slam",B[5]+14.1,2.2,1.05);
+
+      /* 7 · THE SPLIT */
+      bar("#s7 .rulebar",B[6]+.05,.5); inUp("#s7 .kicker",B[6]+.15);
+      inUp("#s7c",B[6]+.6,.45,16);
+      tl.set("#s7up",{strokeDasharray:400,strokeDashoffset:400},B[6]+3.0)
+        .to("#s7up",{strokeDashoffset:0,duration:.9,ease:"power2.out"},B[6]+3.2);
+      inUp("#s7ul",B[6]+3.8,.45,22); inUp("#s7uv",B[6]+4.0,.45,22);
+      tl.set("#s7dn",{strokeDasharray:400,strokeDashoffset:400},B[6]+6.0)
+        .to("#s7dn",{strokeDashoffset:0,duration:.9,ease:"power2.out"},B[6]+6.2);
+      inUp("#s7dl",B[6]+6.8,.45,22); inUp("#s7dv",B[6]+7.0,.45,22);
+      tl.fromTo("#s7 .stamp",{opacity:0},{opacity:1,duration:.4},B[6]+8.0);
+      punch("#s7uv",B[6]+8.4,5.0); punch("#s7dv",B[6]+8.4,5.0);
+
+      /* 8 · WEEK AHEAD */
+      bar("#s8 .rulebar",B[7]+.05,.5); inUp("#s8 .kicker",B[7]+.15);
+      tl.fromTo("#s8d",{opacity:0,y:50},{opacity:1,y:0,duration:.65,ease:"power4.out"},B[7]+1.2);
+      tl.fromTo("#s8r",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.6,ease:E},B[7]+2.1);
+      inUp("#s8n",B[7]+2.4,.5,24);
+      inUp("#s8s",B[7]+4.6,.45,20);
+      tl.fromTo("#s8 .stamp",{opacity:0},{opacity:1,duration:.4},B[7]+5.6);
+      punch("#s8d",B[7]+1.9,5.0);
+
+      /* 9 · CLOSE  (impact landing, bookend of scene 1) */
+      bar("#s9 .rulebar",B[8]+.05,.5); inUp("#s9 .kicker",B[8]+.15);
+      tl.fromTo("#s9num",{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:"power4.out"},B[8]+.7);
+      tl.fromTo("#s9drop",{scaleY:0,transformOrigin:"bottom"},{scaleY:1,duration:.4,ease:E},B[8]+1.4);
+      tl.fromTo("#s9dot",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},B[8]+1.6);
+      tl.fromTo("#s9slam",{opacity:0,y:40},{opacity:1,y:0,duration:.6,ease:"power4.out"},B[8]+7.2);
+      impact("#s9slam",B[8]+7.4);
+      punch("#s9num",B[8]+1.2,4.6);
+
+      /* 10 · DISCLAIMER */
+      const D=119.397-4.5;
+      tl.fromTo("#dbar",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:E},D+.2);
+      tl.fromTo("#dl1",{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},D+.4);
+      tl.fromTo("#dl2",{opacity:0},{opacity:1,duration:.6},D+1.0);
+
+      /* captions — word-timed from the measured VO */
+  tl.set("#g0",{opacity:1},0.000).set("#g0",{opacity:0},2.017);
+  tl.set("#w0_0",{color:"#F5F5F3"},0.000).set("#w0_0",{color:"rgba(245,245,243,.42)"},0.238);
+  tl.set("#w0_1",{color:"#F5F5F3"},0.238).set("#w0_1",{color:"rgba(245,245,243,.42)"},0.772);
+  tl.set("#w0_2",{color:"#F5F5F3"},0.772).set("#w0_2",{color:"rgba(245,245,243,.42)"},1.307);
+  tl.set("#w0_3",{color:"#F5F5F3"},1.307).set("#w0_3",{color:"rgba(245,245,243,.42)"},1.663);
+  tl.set("#w0_4",{color:"#F5F5F3"},1.663).set("#w0_4",{color:"rgba(245,245,243,.42)"},2.079);
+  tl.set("#g1",{opacity:1},2.029).set("#g1",{opacity:0},3.899);
+  tl.set("#w1_0",{color:"#F5F5F3"},2.079).set("#w1_0",{color:"rgba(245,245,243,.42)"},2.436);
+  tl.set("#w1_1",{color:"#F5F5F3"},2.436).set("#w1_1",{color:"rgba(245,245,243,.42)"},2.733);
+  tl.set("#w1_2",{color:"#F5F5F3"},2.733).set("#w1_2",{color:"rgba(245,245,243,.42)"},3.208);
+  tl.set("#w1_3",{color:"#F5F5F3"},3.208).set("#w1_3",{color:"rgba(245,245,243,.42)"},3.386);
+  tl.set("#w1_4",{color:"#F5F5F3"},3.386).set("#w1_4",{color:"rgba(245,245,243,.42)"},3.861);
+  tl.set("#g2",{opacity:1},3.911).set("#g2",{opacity:0},5.969);
+  tl.set("#w2_0",{color:"#F5F5F3"},3.961).set("#w2_0",{color:"rgba(245,245,243,.42)"},4.285);
+  tl.set("#w2_1",{color:"#F5F5F3"},4.285).set("#w2_1",{color:"rgba(245,245,243,.42)"},4.737);
+  tl.set("#w2_2",{color:"#F5F5F3"},4.737).set("#w2_2",{color:"rgba(245,245,243,.42)"},5.061);
+  tl.set("#w2_3",{color:"#F5F5F3"},5.061).set("#w2_3",{color:"rgba(245,245,243,.42)"},5.772);
+  tl.set("#w2_4",{color:"#F5F5F3"},5.772).set("#w2_4",{color:"rgba(245,245,243,.42)"},6.031);
+  tl.set("#g3",{opacity:1},5.981).set("#g3",{opacity:0},8.316);
+  tl.set("#w3_0",{color:"#F5F5F3"},6.031).set("#w3_0",{color:"rgba(245,245,243,.42)"},6.419);
+  tl.set("#w3_1",{color:"#F5F5F3"},6.419).set("#w3_1",{color:"rgba(245,245,243,.42)"},6.613);
+  tl.set("#w3_2",{color:"#F5F5F3"},6.613).set("#w3_2",{color:"rgba(245,245,243,.42)"},7.001);
+  tl.set("#w3_3",{color:"#F5F5F3"},7.001).set("#w3_3",{color:"rgba(245,245,243,.42)"},7.583);
+  tl.set("#w3_4",{color:"#F5F5F3"},7.583).set("#w3_4",{color:"rgba(245,245,243,.42)"},8.036);
+  tl.set("#g4",{opacity:1},8.536).set("#g4",{opacity:0},10.395);
+  tl.set("#w4_0",{color:"#F5F5F3"},8.586).set("#w4_0",{color:"rgba(245,245,243,.42)"},8.848);
+  tl.set("#w4_1",{color:"#F5F5F3"},8.848).set("#w4_1",{color:"rgba(245,245,243,.42)"},9.176);
+  tl.set("#w4_2",{color:"#F5F5F3"},9.176).set("#w4_2",{color:"rgba(245,245,243,.42)"},9.570);
+  tl.set("#w4_3",{color:"#F5F5F3"},9.570).set("#w4_3",{color:"rgba(245,245,243,.42)"},9.963);
+  tl.set("#w4_4",{color:"#F5F5F3"},9.963).set("#w4_4",{color:"rgba(245,245,243,.42)"},10.357);
+  tl.set("#g5",{opacity:1},10.407).set("#g5",{opacity:0},12.022);
+  tl.set("#w5_0",{color:"#F5F5F3"},10.457).set("#w5_0",{color:"rgba(245,245,243,.42)"},10.698);
+  tl.set("#w5_1",{color:"#F5F5F3"},10.698).set("#w5_1",{color:"rgba(245,245,243,.42)"},10.939);
+  tl.set("#w5_2",{color:"#F5F5F3"},10.939).set("#w5_2",{color:"rgba(245,245,243,.42)"},11.240);
+  tl.set("#w5_3",{color:"#F5F5F3"},11.240).set("#w5_3",{color:"rgba(245,245,243,.42)"},11.602);
+  tl.set("#w5_4",{color:"#F5F5F3"},11.602).set("#w5_4",{color:"rgba(245,245,243,.42)"},12.084);
+  tl.set("#g6",{opacity:1},12.034).set("#g6",{opacity:0},14.131);
+  tl.set("#w6_0",{color:"#F5F5F3"},12.084).set("#w6_0",{color:"rgba(245,245,243,.42)"},12.325);
+  tl.set("#w6_1",{color:"#F5F5F3"},12.325).set("#w6_1",{color:"rgba(245,245,243,.42)"},13.108);
+  tl.set("#w6_2",{color:"#F5F5F3"},13.108).set("#w6_2",{color:"rgba(245,245,243,.42)"},13.591);
+  tl.set("#w6_3",{color:"#F5F5F3"},13.591).set("#w6_3",{color:"rgba(245,245,243,.42)"},13.832);
+  tl.set("#w6_4",{color:"#F5F5F3"},13.832).set("#w6_4",{color:"rgba(245,245,243,.42)"},14.193);
+  tl.set("#g7",{opacity:1},14.143).set("#g7",{opacity:0},15.316);
+  tl.set("#w7_0",{color:"#F5F5F3"},14.193).set("#w7_0",{color:"rgba(245,245,243,.42)"},14.495);
+  tl.set("#w7_1",{color:"#F5F5F3"},14.495).set("#w7_1",{color:"rgba(245,245,243,.42)"},14.856);
+  tl.set("#w7_2",{color:"#F5F5F3"},14.856).set("#w7_2",{color:"rgba(245,245,243,.42)"},15.278);
+  tl.set("#g8",{opacity:1},15.328).set("#g8",{opacity:0},16.994);
+  tl.set("#w8_0",{color:"#F5F5F3"},15.378).set("#w8_0",{color:"rgba(245,245,243,.42)"},15.636);
+  tl.set("#w8_1",{color:"#F5F5F3"},15.636).set("#w8_1",{color:"rgba(245,245,243,.42)"},16.088);
+  tl.set("#w8_2",{color:"#F5F5F3"},16.088).set("#w8_2",{color:"rgba(245,245,243,.42)"},16.411);
+  tl.set("#w8_3",{color:"#F5F5F3"},16.411).set("#w8_3",{color:"rgba(245,245,243,.42)"},16.669);
+  tl.set("#w8_4",{color:"#F5F5F3"},16.669).set("#w8_4",{color:"rgba(245,245,243,.42)"},17.056);
+  tl.set("#g9",{opacity:1},17.006).set("#g9",{opacity:0},17.933);
+  tl.set("#w9_0",{color:"#F5F5F3"},17.056).set("#w9_0",{color:"rgba(245,245,243,.42)"},17.314);
+  tl.set("#w9_1",{color:"#F5F5F3"},17.314).set("#w9_1",{color:"rgba(245,245,243,.42)"},17.895);
+  tl.set("#g10",{opacity:1},17.945).set("#g10",{opacity:0},20.196);
+  tl.set("#w10_0",{color:"#F5F5F3"},17.995).set("#w10_0",{color:"rgba(245,245,243,.42)"},18.389);
+  tl.set("#w10_1",{color:"#F5F5F3"},18.389).set("#w10_1",{color:"rgba(245,245,243,.42)"},18.782);
+  tl.set("#w10_2",{color:"#F5F5F3"},18.782).set("#w10_2",{color:"rgba(245,245,243,.42)"},19.176);
+  tl.set("#w10_3",{color:"#F5F5F3"},19.176).set("#w10_3",{color:"rgba(245,245,243,.42)"},19.766);
+  tl.set("#w10_4",{color:"#F5F5F3"},19.766).set("#w10_4",{color:"rgba(245,245,243,.42)"},20.258);
+  tl.set("#g11",{opacity:1},20.208).set("#g11",{opacity:0},21.817);
+  tl.set("#w11_0",{color:"#F5F5F3"},20.258).set("#w11_0",{color:"rgba(245,245,243,.42)"},20.848);
+  tl.set("#w11_1",{color:"#F5F5F3"},20.848).set("#w11_1",{color:"rgba(245,245,243,.42)"},21.537);
+  tl.set("#g12",{opacity:1},22.037).set("#g12",{opacity:0},23.490);
+  tl.set("#w12_0",{color:"#F5F5F3"},22.087).set("#w12_0",{color:"rgba(245,245,243,.42)"},22.809);
+  tl.set("#w12_1",{color:"#F5F5F3"},22.809).set("#w12_1",{color:"rgba(245,245,243,.42)"},23.452);
+  tl.set("#g13",{opacity:1},23.502).set("#g13",{opacity:0},25.373);
+  tl.set("#w13_0",{color:"#F5F5F3"},23.552).set("#w13_0",{color:"rgba(245,245,243,.42)"},23.911);
+  tl.set("#w13_1",{color:"#F5F5F3"},23.911).set("#w13_1",{color:"rgba(245,245,243,.42)"},24.269);
+  tl.set("#w13_2",{color:"#F5F5F3"},24.269).set("#w13_2",{color:"rgba(245,245,243,.42)"},24.628);
+  tl.set("#w13_3",{color:"#F5F5F3"},24.628).set("#w13_3",{color:"rgba(245,245,243,.42)"},24.897);
+  tl.set("#w13_4",{color:"#F5F5F3"},24.897).set("#w13_4",{color:"rgba(245,245,243,.42)"},25.435);
+  tl.set("#g14",{opacity:1},25.385).set("#g14",{opacity:0},27.985);
+  tl.set("#w14_0",{color:"#F5F5F3"},25.435).set("#w14_0",{color:"rgba(245,245,243,.42)"},26.243);
+  tl.set("#w14_1",{color:"#F5F5F3"},26.243).set("#w14_1",{color:"rgba(245,245,243,.42)"},26.601);
+  tl.set("#w14_2",{color:"#F5F5F3"},26.601).set("#w14_2",{color:"rgba(245,245,243,.42)"},27.319);
+  tl.set("#w14_3",{color:"#F5F5F3"},27.319).set("#w14_3",{color:"rgba(245,245,243,.42)"},27.947);
+  tl.set("#g15",{opacity:1},27.997).set("#g15",{opacity:0},29.982);
+  tl.set("#w15_0",{color:"#F5F5F3"},28.047).set("#w15_0",{color:"rgba(245,245,243,.42)"},28.282);
+  tl.set("#w15_1",{color:"#F5F5F3"},28.282).set("#w15_1",{color:"rgba(245,245,243,.42)"},28.693);
+  tl.set("#w15_2",{color:"#F5F5F3"},28.693).set("#w15_2",{color:"rgba(245,245,243,.42)"},28.869);
+  tl.set("#w15_3",{color:"#F5F5F3"},28.869).set("#w15_3",{color:"rgba(245,245,243,.42)"},29.516);
+  tl.set("#w15_4",{color:"#F5F5F3"},29.516).set("#w15_4",{color:"rgba(245,245,243,.42)"},30.044);
+  tl.set("#g16",{opacity:1},29.994).set("#g16",{opacity:0},31.669);
+  tl.set("#w16_0",{color:"#F5F5F3"},30.044).set("#w16_0",{color:"rgba(245,245,243,.42)"},30.338);
+  tl.set("#w16_1",{color:"#F5F5F3"},30.338).set("#w16_1",{color:"rgba(245,245,243,.42)"},30.808);
+  tl.set("#w16_2",{color:"#F5F5F3"},30.808).set("#w16_2",{color:"rgba(245,245,243,.42)"},31.631);
+  tl.set("#g17",{opacity:1},31.681).set("#g17",{opacity:0},33.372);
+  tl.set("#w17_0",{color:"#F5F5F3"},31.731).set("#w17_0",{color:"rgba(245,245,243,.42)"},31.958);
+  tl.set("#w17_1",{color:"#F5F5F3"},31.958).set("#w17_1",{color:"rgba(245,245,243,.42)"},32.185);
+  tl.set("#w17_2",{color:"#F5F5F3"},32.185).set("#w17_2",{color:"rgba(245,245,243,.42)"},32.355);
+  tl.set("#w17_3",{color:"#F5F5F3"},32.355).set("#w17_3",{color:"rgba(245,245,243,.42)"},32.923);
+  tl.set("#w17_4",{color:"#F5F5F3"},32.923).set("#w17_4",{color:"rgba(245,245,243,.42)"},33.434);
+  tl.set("#g18",{opacity:1},33.384).set("#g18",{opacity:0},35.189);
+  tl.set("#w18_0",{color:"#F5F5F3"},33.434).set("#w18_0",{color:"rgba(245,245,243,.42)"},33.661);
+  tl.set("#w18_1",{color:"#F5F5F3"},33.661).set("#w18_1",{color:"rgba(245,245,243,.42)"},34.115);
+  tl.set("#w18_2",{color:"#F5F5F3"},34.115).set("#w18_2",{color:"rgba(245,245,243,.42)"},34.909);
+  tl.set("#g19",{opacity:1},35.409).set("#g19",{opacity:0},37.472);
+  tl.set("#w19_0",{color:"#F5F5F3"},35.459).set("#w19_0",{color:"rgba(245,245,243,.42)"},35.648);
+  tl.set("#w19_1",{color:"#F5F5F3"},35.648).set("#w19_1",{color:"rgba(245,245,243,.42)"},36.276);
+  tl.set("#w19_2",{color:"#F5F5F3"},36.276).set("#w19_2",{color:"rgba(245,245,243,.42)"},36.528);
+  tl.set("#w19_3",{color:"#F5F5F3"},36.528).set("#w19_3",{color:"rgba(245,245,243,.42)"},37.031);
+  tl.set("#w19_4",{color:"#F5F5F3"},37.031).set("#w19_4",{color:"rgba(245,245,243,.42)"},37.534);
+  tl.set("#g20",{opacity:1},37.484).set("#g20",{opacity:0},39.017);
+  tl.set("#w20_0",{color:"#F5F5F3"},37.534).set("#w20_0",{color:"rgba(245,245,243,.42)"},37.974);
+  tl.set("#w20_1",{color:"#F5F5F3"},37.974).set("#w20_1",{color:"rgba(245,245,243,.42)"},38.539);
+  tl.set("#w20_2",{color:"#F5F5F3"},38.539).set("#w20_2",{color:"rgba(245,245,243,.42)"},38.979);
+  tl.set("#g21",{opacity:1},39.029).set("#g21",{opacity:0},40.392);
+  tl.set("#w21_0",{color:"#F5F5F3"},39.079).set("#w21_0",{color:"rgba(245,245,243,.42)"},39.204);
+  tl.set("#w21_1",{color:"#F5F5F3"},39.204).set("#w21_1",{color:"rgba(245,245,243,.42)"},39.704);
+  tl.set("#w21_2",{color:"#F5F5F3"},39.704).set("#w21_2",{color:"rgba(245,245,243,.42)"},40.142);
+  tl.set("#w21_3",{color:"#F5F5F3"},40.142).set("#w21_3",{color:"rgba(245,245,243,.42)"},40.329);
+  tl.set("#w21_4",{color:"#F5F5F3"},40.329).set("#w21_4",{color:"rgba(245,245,243,.42)"},40.454);
+  tl.set("#g22",{opacity:1},40.404).set("#g22",{opacity:0},42.080);
+  tl.set("#w22_0",{color:"#F5F5F3"},40.454).set("#w22_0",{color:"rgba(245,245,243,.42)"},40.829);
+  tl.set("#w22_1",{color:"#F5F5F3"},40.829).set("#w22_1",{color:"rgba(245,245,243,.42)"},41.017);
+  tl.set("#w22_2",{color:"#F5F5F3"},41.017).set("#w22_2",{color:"rgba(245,245,243,.42)"},41.392);
+  tl.set("#w22_3",{color:"#F5F5F3"},41.392).set("#w22_3",{color:"rgba(245,245,243,.42)"},41.767);
+  tl.set("#w22_4",{color:"#F5F5F3"},41.767).set("#w22_4",{color:"rgba(245,245,243,.42)"},42.142);
+  tl.set("#g23",{opacity:1},42.092).set("#g23",{opacity:0},43.555);
+  tl.set("#w23_0",{color:"#F5F5F3"},42.142).set("#w23_0",{color:"rgba(245,245,243,.42)"},42.454);
+  tl.set("#w23_1",{color:"#F5F5F3"},42.454).set("#w23_1",{color:"rgba(245,245,243,.42)"},42.642);
+  tl.set("#w23_2",{color:"#F5F5F3"},42.642).set("#w23_2",{color:"rgba(245,245,243,.42)"},42.954);
+  tl.set("#w23_3",{color:"#F5F5F3"},42.954).set("#w23_3",{color:"rgba(245,245,243,.42)"},43.517);
+  tl.set("#g24",{opacity:1},43.567).set("#g24",{opacity:0},45.760);
+  tl.set("#w24_0",{color:"#F5F5F3"},43.617).set("#w24_0",{color:"rgba(245,245,243,.42)"},43.881);
+  tl.set("#w24_1",{color:"#F5F5F3"},43.881).set("#w24_1",{color:"rgba(245,245,243,.42)"},44.146);
+  tl.set("#w24_2",{color:"#F5F5F3"},44.146).set("#w24_2",{color:"rgba(245,245,243,.42)"},44.499);
+  tl.set("#w24_3",{color:"#F5F5F3"},44.499).set("#w24_3",{color:"rgba(245,245,243,.42)"},45.028);
+  tl.set("#w24_4",{color:"#F5F5F3"},45.028).set("#w24_4",{color:"rgba(245,245,243,.42)"},45.822);
+  tl.set("#g25",{opacity:1},45.772).set("#g25",{opacity:0},46.919);
+  tl.set("#w25_0",{color:"#F5F5F3"},45.822).set("#w25_0",{color:"rgba(245,245,243,.42)"},46.351);
+  tl.set("#w25_1",{color:"#F5F5F3"},46.351).set("#w25_1",{color:"rgba(245,245,243,.42)"},46.881);
+  tl.set("#g26",{opacity:1},46.931).set("#g26",{opacity:0},48.222);
+  tl.set("#w26_0",{color:"#F5F5F3"},46.981).set("#w26_0",{color:"rgba(245,245,243,.42)"},47.207);
+  tl.set("#w26_1",{color:"#F5F5F3"},47.207).set("#w26_1",{color:"rgba(245,245,243,.42)"},47.491);
+  tl.set("#w26_2",{color:"#F5F5F3"},47.491).set("#w26_2",{color:"rgba(245,245,243,.42)"},47.717);
+  tl.set("#w26_3",{color:"#F5F5F3"},47.717).set("#w26_3",{color:"rgba(245,245,243,.42)"},48.114);
+  tl.set("#w26_4",{color:"#F5F5F3"},48.114).set("#w26_4",{color:"rgba(245,245,243,.42)"},48.284);
+  tl.set("#g27",{opacity:1},48.234).set("#g27",{opacity:0},48.832);
+  tl.set("#w27_0",{color:"#F5F5F3"},48.284).set("#w27_0",{color:"rgba(245,245,243,.42)"},48.794);
+  tl.set("#g28",{opacity:1},48.844).set("#g28",{opacity:0},50.561);
+  tl.set("#w28_0",{color:"#F5F5F3"},48.894).set("#w28_0",{color:"rgba(245,245,243,.42)"},49.220);
+  tl.set("#w28_1",{color:"#F5F5F3"},49.220).set("#w28_1",{color:"rgba(245,245,243,.42)"},49.547);
+  tl.set("#w28_2",{color:"#F5F5F3"},49.547).set("#w28_2",{color:"rgba(245,245,243,.42)"},50.281);
+  tl.set("#g29",{opacity:1},50.781).set("#g29",{opacity:0},52.440);
+  tl.set("#w29_0",{color:"#F5F5F3"},50.831).set("#w29_0",{color:"rgba(245,245,243,.42)"},51.098);
+  tl.set("#w29_1",{color:"#F5F5F3"},51.098).set("#w29_1",{color:"rgba(245,245,243,.42)"},51.499);
+  tl.set("#w29_2",{color:"#F5F5F3"},51.499).set("#w29_2",{color:"rgba(245,245,243,.42)"},51.700);
+  tl.set("#w29_3",{color:"#F5F5F3"},51.700).set("#w29_3",{color:"rgba(245,245,243,.42)"},52.101);
+  tl.set("#w29_4",{color:"#F5F5F3"},52.101).set("#w29_4",{color:"rgba(245,245,243,.42)"},52.502);
+  tl.set("#g30",{opacity:1},52.452).set("#g30",{opacity:0},52.874);
+  tl.set("#w30_0",{color:"#F5F5F3"},52.502).set("#w30_0",{color:"rgba(245,245,243,.42)"},52.836);
+  tl.set("#g31",{opacity:1},52.886).set("#g31",{opacity:0},54.354);
+  tl.set("#w31_0",{color:"#F5F5F3"},52.936).set("#w31_0",{color:"rgba(245,245,243,.42)"},53.114);
+  tl.set("#w31_1",{color:"#F5F5F3"},53.114).set("#w31_1",{color:"rgba(245,245,243,.42)"},53.410);
+  tl.set("#w31_2",{color:"#F5F5F3"},53.410).set("#w31_2",{color:"rgba(245,245,243,.42)"},53.706);
+  tl.set("#w31_3",{color:"#F5F5F3"},53.706).set("#w31_3",{color:"rgba(245,245,243,.42)"},54.002);
+  tl.set("#w31_4",{color:"#F5F5F3"},54.002).set("#w31_4",{color:"rgba(245,245,243,.42)"},54.416);
+  tl.set("#g32",{opacity:1},54.366).set("#g32",{opacity:0},55.342);
+  tl.set("#w32_0",{color:"#F5F5F3"},54.416).set("#w32_0",{color:"rgba(245,245,243,.42)"},54.830);
+  tl.set("#w32_1",{color:"#F5F5F3"},54.830).set("#w32_1",{color:"rgba(245,245,243,.42)"},55.008);
+  tl.set("#w32_2",{color:"#F5F5F3"},55.008).set("#w32_2",{color:"rgba(245,245,243,.42)"},55.304);
+  tl.set("#g33",{opacity:1},55.354).set("#g33",{opacity:0},57.185);
+  tl.set("#w33_0",{color:"#F5F5F3"},55.404).set("#w33_0",{color:"rgba(245,245,243,.42)"},55.761);
+  tl.set("#w33_1",{color:"#F5F5F3"},55.761).set("#w33_1",{color:"rgba(245,245,243,.42)"},56.058);
+  tl.set("#w33_2",{color:"#F5F5F3"},56.058).set("#w33_2",{color:"rgba(245,245,243,.42)"},56.296);
+  tl.set("#w33_3",{color:"#F5F5F3"},56.296).set("#w33_3",{color:"rgba(245,245,243,.42)"},56.890);
+  tl.set("#w33_4",{color:"#F5F5F3"},56.890).set("#w33_4",{color:"rgba(245,245,243,.42)"},57.247);
+  tl.set("#g34",{opacity:1},57.197).set("#g34",{opacity:0},58.671);
+  tl.set("#w34_0",{color:"#F5F5F3"},57.247).set("#w34_0",{color:"rgba(245,245,243,.42)"},57.366);
+  tl.set("#w34_1",{color:"#F5F5F3"},57.366).set("#w34_1",{color:"rgba(245,245,243,.42)"},57.901);
+  tl.set("#w34_2",{color:"#F5F5F3"},57.901).set("#w34_2",{color:"rgba(245,245,243,.42)"},58.317);
+  tl.set("#w34_3",{color:"#F5F5F3"},58.317).set("#w34_3",{color:"rgba(245,245,243,.42)"},58.495);
+  tl.set("#w34_4",{color:"#F5F5F3"},58.495).set("#w34_4",{color:"rgba(245,245,243,.42)"},58.733);
+  tl.set("#g35",{opacity:1},58.683).set("#g35",{opacity:0},60.143);
+  tl.set("#w35_0",{color:"#F5F5F3"},58.733).set("#w35_0",{color:"rgba(245,245,243,.42)"},59.209);
+  tl.set("#w35_1",{color:"#F5F5F3"},59.209).set("#w35_1",{color:"rgba(245,245,243,.42)"},59.863);
+  tl.set("#g36",{opacity:1},60.363).set("#g36",{opacity:0},61.610);
+  tl.set("#w36_0",{color:"#F5F5F3"},60.413).set("#w36_0",{color:"rgba(245,245,243,.42)"},60.699);
+  tl.set("#w36_1",{color:"#F5F5F3"},60.699).set("#w36_1",{color:"rgba(245,245,243,.42)"},60.871);
+  tl.set("#w36_2",{color:"#F5F5F3"},60.871).set("#w36_2",{color:"rgba(245,245,243,.42)"},61.100);
+  tl.set("#w36_3",{color:"#F5F5F3"},61.100).set("#w36_3",{color:"rgba(245,245,243,.42)"},61.386);
+  tl.set("#w36_4",{color:"#F5F5F3"},61.386).set("#w36_4",{color:"rgba(245,245,243,.42)"},61.672);
+  tl.set("#g37",{opacity:1},61.622).set("#g37",{opacity:0},62.627);
+  tl.set("#w37_0",{color:"#F5F5F3"},61.672).set("#w37_0",{color:"rgba(245,245,243,.42)"},62.360);
+  tl.set("#w37_1",{color:"#F5F5F3"},62.360).set("#w37_1",{color:"rgba(245,245,243,.42)"},62.589);
+  tl.set("#g38",{opacity:1},62.639).set("#g38",{opacity:0},64.965);
+  tl.set("#w38_0",{color:"#F5F5F3"},62.689).set("#w38_0",{color:"rgba(245,245,243,.42)"},63.377);
+  tl.set("#w38_1",{color:"#F5F5F3"},63.377).set("#w38_1",{color:"rgba(245,245,243,.42)"},63.652);
+  tl.set("#w38_2",{color:"#F5F5F3"},63.652).set("#w38_2",{color:"rgba(245,245,243,.42)"},63.927);
+  tl.set("#w38_3",{color:"#F5F5F3"},63.927).set("#w38_3",{color:"rgba(245,245,243,.42)"},64.684);
+  tl.set("#w38_4",{color:"#F5F5F3"},64.684).set("#w38_4",{color:"rgba(245,245,243,.42)"},65.027);
+  tl.set("#g39",{opacity:1},64.977).set("#g39",{opacity:0},66.097);
+  tl.set("#w39_0",{color:"#F5F5F3"},65.027).set("#w39_0",{color:"rgba(245,245,243,.42)"},65.371);
+  tl.set("#w39_1",{color:"#F5F5F3"},65.371).set("#w39_1",{color:"rgba(245,245,243,.42)"},66.059);
+  tl.set("#g40",{opacity:1},66.109).set("#g40",{opacity:0},68.143);
+  tl.set("#w40_0",{color:"#F5F5F3"},66.159).set("#w40_0",{color:"rgba(245,245,243,.42)"},66.637);
+  tl.set("#w40_1",{color:"#F5F5F3"},66.637).set("#w40_1",{color:"rgba(245,245,243,.42)"},67.250);
+  tl.set("#w40_2",{color:"#F5F5F3"},67.250).set("#w40_2",{color:"rgba(245,245,243,.42)"},67.728);
+  tl.set("#w40_3",{color:"#F5F5F3"},67.728).set("#w40_3",{color:"rgba(245,245,243,.42)"},68.000);
+  tl.set("#w40_4",{color:"#F5F5F3"},68.000).set("#w40_4",{color:"rgba(245,245,243,.42)"},68.205);
+  tl.set("#g41",{opacity:1},68.155).set("#g41",{opacity:0},70.016);
+  tl.set("#w41_0",{color:"#F5F5F3"},68.205).set("#w41_0",{color:"rgba(245,245,243,.42)"},68.614);
+  tl.set("#w41_1",{color:"#F5F5F3"},68.614).set("#w41_1",{color:"rgba(245,245,243,.42)"},69.023);
+  tl.set("#w41_2",{color:"#F5F5F3"},69.023).set("#w41_2",{color:"rgba(245,245,243,.42)"},69.364);
+  tl.set("#w41_3",{color:"#F5F5F3"},69.364).set("#w41_3",{color:"rgba(245,245,243,.42)"},69.978);
+  tl.set("#g42",{opacity:1},70.028).set("#g42",{opacity:0},72.040);
+  tl.set("#w42_0",{color:"#F5F5F3"},70.078).set("#w42_0",{color:"rgba(245,245,243,.42)"},70.415);
+  tl.set("#w42_1",{color:"#F5F5F3"},70.415).set("#w42_1",{color:"rgba(245,245,243,.42)"},70.685);
+  tl.set("#w42_2",{color:"#F5F5F3"},70.685).set("#w42_2",{color:"rgba(245,245,243,.42)"},71.360);
+  tl.set("#w42_3",{color:"#F5F5F3"},71.360).set("#w42_3",{color:"rgba(245,245,243,.42)"},71.697);
+  tl.set("#w42_4",{color:"#F5F5F3"},71.697).set("#w42_4",{color:"rgba(245,245,243,.42)"},72.102);
+  tl.set("#g43",{opacity:1},72.052).set("#g43",{opacity:0},73.524);
+  tl.set("#w43_0",{color:"#F5F5F3"},72.102).set("#w43_0",{color:"rgba(245,245,243,.42)"},72.372);
+  tl.set("#w43_1",{color:"#F5F5F3"},72.372).set("#w43_1",{color:"rgba(245,245,243,.42)"},72.574);
+  tl.set("#w43_2",{color:"#F5F5F3"},72.574).set("#w43_2",{color:"rgba(245,245,243,.42)"},72.911);
+  tl.set("#w43_3",{color:"#F5F5F3"},72.911).set("#w43_3",{color:"rgba(245,245,243,.42)"},73.249);
+  tl.set("#w43_4",{color:"#F5F5F3"},73.249).set("#w43_4",{color:"rgba(245,245,243,.42)"},73.586);
+  tl.set("#g44",{opacity:1},73.536).set("#g44",{opacity:0},75.108);
+  tl.set("#w44_0",{color:"#F5F5F3"},73.586).set("#w44_0",{color:"rgba(245,245,243,.42)"},74.395);
+  tl.set("#w44_1",{color:"#F5F5F3"},74.395).set("#w44_1",{color:"rgba(245,245,243,.42)"},75.070);
+  tl.set("#g45",{opacity:1},75.120).set("#g45",{opacity:0},77.029);
+  tl.set("#w45_0",{color:"#F5F5F3"},75.170).set("#w45_0",{color:"rgba(245,245,243,.42)"},75.413);
+  tl.set("#w45_1",{color:"#F5F5F3"},75.413).set("#w45_1",{color:"rgba(245,245,243,.42)"},75.656);
+  tl.set("#w45_2",{color:"#F5F5F3"},75.656).set("#w45_2",{color:"rgba(245,245,243,.42)"},76.263);
+  tl.set("#w45_3",{color:"#F5F5F3"},76.263).set("#w45_3",{color:"rgba(245,245,243,.42)"},76.749);
+  tl.set("#g46",{opacity:1},77.249).set("#g46",{opacity:0},78.717);
+  tl.set("#w46_0",{color:"#F5F5F3"},77.299).set("#w46_0",{color:"rgba(245,245,243,.42)"},77.545);
+  tl.set("#w46_1",{color:"#F5F5F3"},77.545).set("#w46_1",{color:"rgba(245,245,243,.42)"},77.977);
+  tl.set("#w46_2",{color:"#F5F5F3"},77.977).set("#w46_2",{color:"rgba(245,245,243,.42)"},78.224);
+  tl.set("#w46_3",{color:"#F5F5F3"},78.224).set("#w46_3",{color:"rgba(245,245,243,.42)"},78.470);
+  tl.set("#w46_4",{color:"#F5F5F3"},78.470).set("#w46_4",{color:"rgba(245,245,243,.42)"},78.779);
+  tl.set("#g47",{opacity:1},78.729).set("#g47",{opacity:0},80.135);
+  tl.set("#w47_0",{color:"#F5F5F3"},78.779).set("#w47_0",{color:"rgba(245,245,243,.42)"},78.964);
+  tl.set("#w47_1",{color:"#F5F5F3"},78.964).set("#w47_1",{color:"rgba(245,245,243,.42)"},79.149);
+  tl.set("#w47_2",{color:"#F5F5F3"},79.149).set("#w47_2",{color:"rgba(245,245,243,.42)"},79.272);
+  tl.set("#w47_3",{color:"#F5F5F3"},79.272).set("#w47_3",{color:"rgba(245,245,243,.42)"},79.704);
+  tl.set("#w47_4",{color:"#F5F5F3"},79.704).set("#w47_4",{color:"rgba(245,245,243,.42)"},80.197);
+  tl.set("#g48",{opacity:1},80.147).set("#g48",{opacity:0},80.729);
+  tl.set("#w48_0",{color:"#F5F5F3"},80.197).set("#w48_0",{color:"rgba(245,245,243,.42)"},80.691);
+  tl.set("#g49",{opacity:1},80.741).set("#g49",{opacity:0},82.301);
+  tl.set("#w49_0",{color:"#F5F5F3"},80.791).set("#w49_0",{color:"rgba(245,245,243,.42)"},81.527);
+  tl.set("#w49_1",{color:"#F5F5F3"},81.527).set("#w49_1",{color:"rgba(245,245,243,.42)"},81.895);
+  tl.set("#w49_2",{color:"#F5F5F3"},81.895).set("#w49_2",{color:"rgba(245,245,243,.42)"},82.263);
+  tl.set("#g50",{opacity:1},82.313).set("#g50",{opacity:0},84.022);
+  tl.set("#w50_0",{color:"#F5F5F3"},82.363).set("#w50_0",{color:"rgba(245,245,243,.42)"},82.946);
+  tl.set("#w50_1",{color:"#F5F5F3"},82.946).set("#w50_1",{color:"rgba(245,245,243,.42)"},83.400);
+  tl.set("#w50_2",{color:"#F5F5F3"},83.400).set("#w50_2",{color:"rgba(245,245,243,.42)"},83.595);
+  tl.set("#w50_3",{color:"#F5F5F3"},83.595).set("#w50_3",{color:"rgba(245,245,243,.42)"},83.984);
+  tl.set("#g51",{opacity:1},84.034).set("#g51",{opacity:0},85.659);
+  tl.set("#w51_0",{color:"#F5F5F3"},84.084).set("#w51_0",{color:"rgba(245,245,243,.42)"},84.310);
+  tl.set("#w51_1",{color:"#F5F5F3"},84.310).set("#w51_1",{color:"rgba(245,245,243,.42)"},84.705);
+  tl.set("#w51_2",{color:"#F5F5F3"},84.705).set("#w51_2",{color:"rgba(245,245,243,.42)"},85.213);
+  tl.set("#w51_3",{color:"#F5F5F3"},85.213).set("#w51_3",{color:"rgba(245,245,243,.42)"},85.439);
+  tl.set("#w51_4",{color:"#F5F5F3"},85.439).set("#w51_4",{color:"rgba(245,245,243,.42)"},85.721);
+  tl.set("#g52",{opacity:1},85.671).set("#g52",{opacity:0},87.071);
+  tl.set("#w52_0",{color:"#F5F5F3"},85.721).set("#w52_0",{color:"rgba(245,245,243,.42)"},86.116);
+  tl.set("#w52_1",{color:"#F5F5F3"},86.116).set("#w52_1",{color:"rgba(245,245,243,.42)"},86.455);
+  tl.set("#w52_2",{color:"#F5F5F3"},86.455).set("#w52_2",{color:"rgba(245,245,243,.42)"},86.681);
+  tl.set("#w52_3",{color:"#F5F5F3"},86.681).set("#w52_3",{color:"rgba(245,245,243,.42)"},86.907);
+  tl.set("#w52_4",{color:"#F5F5F3"},86.907).set("#w52_4",{color:"rgba(245,245,243,.42)"},87.133);
+  tl.set("#g53",{opacity:1},87.083).set("#g53",{opacity:0},88.751);
+  tl.set("#w53_0",{color:"#F5F5F3"},87.133).set("#w53_0",{color:"rgba(245,245,243,.42)"},87.358);
+  tl.set("#w53_1",{color:"#F5F5F3"},87.358).set("#w53_1",{color:"rgba(245,245,243,.42)"},87.697);
+  tl.set("#w53_2",{color:"#F5F5F3"},87.697).set("#w53_2",{color:"rgba(245,245,243,.42)"},87.979);
+  tl.set("#w53_3",{color:"#F5F5F3"},87.979).set("#w53_3",{color:"rgba(245,245,243,.42)"},88.318);
+  tl.set("#w53_4",{color:"#F5F5F3"},88.318).set("#w53_4",{color:"rgba(245,245,243,.42)"},88.713);
+  tl.set("#g54",{opacity:1},88.763).set("#g54",{opacity:0},90.240);
+  tl.set("#w54_0",{color:"#F5F5F3"},88.813).set("#w54_0",{color:"rgba(245,245,243,.42)"},89.185);
+  tl.set("#w54_1",{color:"#F5F5F3"},89.185).set("#w54_1",{color:"rgba(245,245,243,.42)"},89.504);
+  tl.set("#w54_2",{color:"#F5F5F3"},89.504).set("#w54_2",{color:"rgba(245,245,243,.42)"},89.930);
+  tl.set("#w54_3",{color:"#F5F5F3"},89.930).set("#w54_3",{color:"rgba(245,245,243,.42)"},90.089);
+  tl.set("#w54_4",{color:"#F5F5F3"},90.089).set("#w54_4",{color:"rgba(245,245,243,.42)"},90.302);
+  tl.set("#g55",{opacity:1},90.252).set("#g55",{opacity:0},91.410);
+  tl.set("#w55_0",{color:"#F5F5F3"},90.302).set("#w55_0",{color:"rgba(245,245,243,.42)"},90.515);
+  tl.set("#w55_1",{color:"#F5F5F3"},90.515).set("#w55_1",{color:"rgba(245,245,243,.42)"},90.780);
+  tl.set("#w55_2",{color:"#F5F5F3"},90.780).set("#w55_2",{color:"rgba(245,245,243,.42)"},90.940);
+  tl.set("#w55_3",{color:"#F5F5F3"},90.940).set("#w55_3",{color:"rgba(245,245,243,.42)"},91.153);
+  tl.set("#w55_4",{color:"#F5F5F3"},91.153).set("#w55_4",{color:"rgba(245,245,243,.42)"},91.472);
+  tl.set("#g56",{opacity:1},91.422).set("#g56",{opacity:0},92.443);
+  tl.set("#w56_0",{color:"#F5F5F3"},91.472).set("#w56_0",{color:"rgba(245,245,243,.42)"},92.163);
+  tl.set("#g57",{opacity:1},92.663).set("#g57",{opacity:0},94.780);
+  tl.set("#w57_0",{color:"#F5F5F3"},92.713).set("#w57_0",{color:"rgba(245,245,243,.42)"},93.035);
+  tl.set("#w57_1",{color:"#F5F5F3"},93.035).set("#w57_1",{color:"rgba(245,245,243,.42)"},93.423);
+  tl.set("#w57_2",{color:"#F5F5F3"},93.423).set("#w57_2",{color:"rgba(245,245,243,.42)"},93.874);
+  tl.set("#w57_3",{color:"#F5F5F3"},93.874).set("#w57_3",{color:"rgba(245,245,243,.42)"},94.391);
+  tl.set("#w57_4",{color:"#F5F5F3"},94.391).set("#w57_4",{color:"rgba(245,245,243,.42)"},94.842);
+  tl.set("#g58",{opacity:1},94.792).set("#g58",{opacity:0},97.103);
+  tl.set("#w58_0",{color:"#F5F5F3"},94.842).set("#w58_0",{color:"rgba(245,245,243,.42)"},95.294);
+  tl.set("#w58_1",{color:"#F5F5F3"},95.294).set("#w58_1",{color:"rgba(245,245,243,.42)"},95.810);
+  tl.set("#w58_2",{color:"#F5F5F3"},95.810).set("#w58_2",{color:"rgba(245,245,243,.42)"},96.327);
+  tl.set("#w58_3",{color:"#F5F5F3"},96.327).set("#w58_3",{color:"rgba(245,245,243,.42)"},96.520);
+  tl.set("#w58_4",{color:"#F5F5F3"},96.520).set("#w58_4",{color:"rgba(245,245,243,.42)"},97.165);
+  tl.set("#g59",{opacity:1},97.115).set("#g59",{opacity:0},97.913);
+  tl.set("#w59_0",{color:"#F5F5F3"},97.165).set("#w59_0",{color:"rgba(245,245,243,.42)"},97.875);
+  tl.set("#g60",{opacity:1},97.925).set("#g60",{opacity:0},99.626);
+  tl.set("#w60_0",{color:"#F5F5F3"},97.975).set("#w60_0",{color:"rgba(245,245,243,.42)"},98.305);
+  tl.set("#w60_1",{color:"#F5F5F3"},98.305).set("#w60_1",{color:"rgba(245,245,243,.42)"},98.502);
+  tl.set("#w60_2",{color:"#F5F5F3"},98.502).set("#w60_2",{color:"rgba(245,245,243,.42)"},98.766);
+  tl.set("#w60_3",{color:"#F5F5F3"},98.766).set("#w60_3",{color:"rgba(245,245,243,.42)"},99.359);
+  tl.set("#w60_4",{color:"#F5F5F3"},99.359).set("#w60_4",{color:"rgba(245,245,243,.42)"},99.688);
+  tl.set("#g61",{opacity:1},99.638).set("#g61",{opacity:0},101.735);
+  tl.set("#w61_0",{color:"#F5F5F3"},99.688).set("#w61_0",{color:"rgba(245,245,243,.42)"},100.347);
+  tl.set("#w61_1",{color:"#F5F5F3"},100.347).set("#w61_1",{color:"rgba(245,245,243,.42)"},100.545);
+  tl.set("#w61_2",{color:"#F5F5F3"},100.545).set("#w61_2",{color:"rgba(245,245,243,.42)"},101.006);
+  tl.set("#w61_3",{color:"#F5F5F3"},101.006).set("#w61_3",{color:"rgba(245,245,243,.42)"},101.533);
+  tl.set("#w61_4",{color:"#F5F5F3"},101.533).set("#w61_4",{color:"rgba(245,245,243,.42)"},101.797);
+  tl.set("#g62",{opacity:1},101.747).set("#g62",{opacity:0},103.461);
+  tl.set("#w62_0",{color:"#F5F5F3"},101.797).set("#w62_0",{color:"rgba(245,245,243,.42)"},101.995);
+  tl.set("#w62_1",{color:"#F5F5F3"},101.995).set("#w62_1",{color:"rgba(245,245,243,.42)"},102.522);
+  tl.set("#w62_2",{color:"#F5F5F3"},102.522).set("#w62_2",{color:"rgba(245,245,243,.42)"},103.181);
+  tl.set("#g63",{opacity:1},103.681).set("#g63",{opacity:0},105.283);
+  tl.set("#w63_0",{color:"#F5F5F3"},103.731).set("#w63_0",{color:"rgba(245,245,243,.42)"},104.019);
+  tl.set("#w63_1",{color:"#F5F5F3"},104.019).set("#w63_1",{color:"rgba(245,245,243,.42)"},104.524);
+  tl.set("#w63_2",{color:"#F5F5F3"},104.524).set("#w63_2",{color:"rgba(245,245,243,.42)"},104.740);
+  tl.set("#w63_3",{color:"#F5F5F3"},104.740).set("#w63_3",{color:"rgba(245,245,243,.42)"},105.245);
+  tl.set("#g64",{opacity:1},105.295).set("#g64",{opacity:0},107.110);
+  tl.set("#w64_0",{color:"#F5F5F3"},105.345).set("#w64_0",{color:"rgba(245,245,243,.42)"},105.541);
+  tl.set("#w64_1",{color:"#F5F5F3"},105.541).set("#w64_1",{color:"rgba(245,245,243,.42)"},105.802);
+  tl.set("#w64_2",{color:"#F5F5F3"},105.802).set("#w64_2",{color:"rgba(245,245,243,.42)"},106.389);
+  tl.set("#w64_3",{color:"#F5F5F3"},106.389).set("#w64_3",{color:"rgba(245,245,243,.42)"},106.781);
+  tl.set("#w64_4",{color:"#F5F5F3"},106.781).set("#w64_4",{color:"rgba(245,245,243,.42)"},107.172);
+  tl.set("#g65",{opacity:1},107.122).set("#g65",{opacity:0},109.068);
+  tl.set("#w65_0",{color:"#F5F5F3"},107.172).set("#w65_0",{color:"rgba(245,245,243,.42)"},107.499);
+  tl.set("#w65_1",{color:"#F5F5F3"},107.499).set("#w65_1",{color:"rgba(245,245,243,.42)"},108.086);
+  tl.set("#w65_2",{color:"#F5F5F3"},108.086).set("#w65_2",{color:"rgba(245,245,243,.42)"},108.412);
+  tl.set("#w65_3",{color:"#F5F5F3"},108.412).set("#w65_3",{color:"rgba(245,245,243,.42)"},108.673);
+  tl.set("#w65_4",{color:"#F5F5F3"},108.673).set("#w65_4",{color:"rgba(245,245,243,.42)"},109.130);
+  tl.set("#g66",{opacity:1},109.080).set("#g66",{opacity:0},110.699);
+  tl.set("#w66_0",{color:"#F5F5F3"},109.130).set("#w66_0",{color:"rgba(245,245,243,.42)"},109.522);
+  tl.set("#w66_1",{color:"#F5F5F3"},109.522).set("#w66_1",{color:"rgba(245,245,243,.42)"},109.717);
+  tl.set("#w66_2",{color:"#F5F5F3"},109.717).set("#w66_2",{color:"rgba(245,245,243,.42)"},110.109);
+  tl.set("#w66_3",{color:"#F5F5F3"},110.109).set("#w66_3",{color:"rgba(245,245,243,.42)"},110.305);
+  tl.set("#w66_4",{color:"#F5F5F3"},110.305).set("#w66_4",{color:"rgba(245,245,243,.42)"},110.761);
+  tl.set("#g67",{opacity:1},110.711).set("#g67",{opacity:0},112.039);
+  tl.set("#w67_0",{color:"#F5F5F3"},110.761).set("#w67_0",{color:"rgba(245,245,243,.42)"},111.284);
+  tl.set("#w67_1",{color:"#F5F5F3"},111.284).set("#w67_1",{color:"rgba(245,245,243,.42)"},111.545);
+  tl.set("#w67_2",{color:"#F5F5F3"},111.545).set("#w67_2",{color:"rgba(245,245,243,.42)"},112.001);
+  tl.set("#g68",{opacity:1},112.051).set("#g68",{opacity:0},113.319);
+  tl.set("#w68_0",{color:"#F5F5F3"},112.101).set("#w68_0",{color:"rgba(245,245,243,.42)"},112.421);
+  tl.set("#w68_1",{color:"#F5F5F3"},112.421).set("#w68_1",{color:"rgba(245,245,243,.42)"},112.613);
+  tl.set("#w68_2",{color:"#F5F5F3"},112.613).set("#w68_2",{color:"rgba(245,245,243,.42)"},112.869);
+  tl.set("#w68_3",{color:"#F5F5F3"},112.869).set("#w68_3",{color:"rgba(245,245,243,.42)"},113.189);
+  tl.set("#w68_4",{color:"#F5F5F3"},113.189).set("#w68_4",{color:"rgba(245,245,243,.42)"},113.381);
+  tl.set("#g69",{opacity:1},113.331).set("#g69",{opacity:0},114.877);
+  tl.set("#w69_0",{color:"#F5F5F3"},113.381).set("#w69_0",{color:"rgba(245,245,243,.42)"},113.573);
+  tl.set("#w69_1",{color:"#F5F5F3"},113.573).set("#w69_1",{color:"rgba(245,245,243,.42)"},114.149);
+  tl.set("#w69_2",{color:"#F5F5F3"},114.149).set("#w69_2",{color:"rgba(245,245,243,.42)"},114.597);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

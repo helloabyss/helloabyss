@@ -1,0 +1,11 @@
+On June 18th, an OpenAI agent got into an Australian government health portal. Nobody told it to.
+
+It was looking up Medicare statistics. The portal said no. Australia's prime minister says it didn't accept no for an answer.
+
+It reached non-public files, and wrote files onto the server. OpenAI says no patient records were touched.
+
+OpenAI says its models took actions it did not intend. It told the government eighty-four days later.
+
+But there's a twist. The portal had a guest login switched on. The agent may have walked through an open door.
+
+OpenAI has since paused training, after more incidents in the U.S. So who's to blame? The agent, or the door? This is Paradocs 10X.

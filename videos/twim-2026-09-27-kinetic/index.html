@@ -1,0 +1,265 @@
+<!doctype html>
+<!-- The Meticulous Investor · kinetic weekly. Type IS the motion. Silent by design:
+     built to read with the sound off. Three colours, no photography, no faces, no logos.
+     Every figure traceable to ../../research/2026-09-27.md -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="vendor/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+:root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E}
+#root{width:100%;height:100%;position:relative;background:var(--ink);
+  font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+/* ---- chrome ---- */
+.frame{position:absolute;inset:0;pointer-events:none}
+.fr-t{position:absolute;left:96px;right:96px;top:176px;height:1px;background:rgba(245,245,243,.09)}
+.fr-b{position:absolute;left:96px;right:96px;top:1800px;height:1px;background:rgba(245,245,243,.09)}
+.slug{position:absolute;left:96px;top:138px;color:#8A8A8A;font-size:20px;letter-spacing:.30em;font-weight:700}
+.num{position:absolute;right:96px;top:138px;color:#8A8A8A;font-size:20px;letter-spacing:.20em;font-weight:700}
+.stamp{position:absolute;left:96px;top:1740px;color:var(--muted);font-size:25px;letter-spacing:.02em}
+.kicker{position:absolute;left:96px;top:244px;color:var(--accent);font-size:28px;letter-spacing:.34em;
+  text-transform:uppercase;font-weight:800}
+.rule{position:absolute;left:96px;top:306px;width:168px;height:6px;background:var(--accent);transform-origin:left center}
+/* ---- kinetic type ---- */
+.mega{position:absolute;left:96px;color:var(--paper);font-weight:800;letter-spacing:-.045em;
+  line-height:.94;font-variant-numeric:tabular-nums}
+.big{position:absolute;left:96px;color:var(--paper);font-weight:800;letter-spacing:-.03em;line-height:1.02;
+  font-variant-numeric:tabular-nums}
+.lbl{position:absolute;color:var(--muted);font-size:29px;letter-spacing:.22em;text-transform:uppercase;font-weight:800}
+.red{color:var(--accent)}
+.dim{color:var(--muted)}
+.word{display:inline-block}
+/* ---- bar race ---- */
+.barRow{position:absolute;left:96px;width:888px;height:104px}
+.barName{position:absolute;left:0;top:6px;color:var(--paper);font-size:34px;font-weight:800;letter-spacing:.10em}
+.barTrack{position:absolute;left:0;top:52px;height:34px;width:790px;background:rgba(245,245,243,.06)}
+.barFill{position:absolute;left:0;top:52px;height:34px;width:790px;background:var(--paper);transform-origin:left center}
+.barFill.acc{background:var(--accent)}
+.barVal{position:absolute;top:44px;color:var(--paper);font-size:44px;font-weight:800;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+/* ---- calendar strip ---- */
+.calRow{position:absolute;left:96px;width:888px;height:112px;border-top:1px solid rgba(245,245,243,.12)}
+.calDay{position:absolute;left:0;top:30px;color:var(--accent);font-size:30px;font-weight:800;letter-spacing:.20em}
+.calWhat{position:absolute;left:210px;top:24px;color:var(--paper);font-size:46px;font-weight:800;letter-spacing:-.015em}
+.calNote{position:absolute;left:210px;top:76px;color:var(--muted);font-size:26px;letter-spacing:.03em}
+/* ---- if/then ---- */
+.ifRow{position:absolute;left:96px;width:888px}
+.ifCond{color:var(--accent);font-size:42px;font-weight:800;letter-spacing:.02em}
+.ifThen{color:var(--paper);font-size:42px;font-weight:800;letter-spacing:-.01em;margin-top:8px}
+/* ---- compliance ---- */
+#compliance{position:absolute;left:96px;top:1660px;color:var(--accent);font-size:29px;font-weight:800;letter-spacing:.04em}
+#discCard{position:absolute;inset:0;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 96px}
+#discCard .dbar{width:168px;height:6px;background:var(--accent);margin-bottom:46px}
+#discCard .dl1{color:var(--paper);font-size:54px;font-weight:800;letter-spacing:-.02em;line-height:1.16}
+#discCard .dl2{color:var(--muted);font-size:30px;line-height:1.5;margin-top:36px}
+#discCard .dl3{color:var(--accent);font-size:26px;letter-spacing:.24em;font-weight:800;margin-top:52px}
+#prog{position:absolute;left:0;bottom:0;height:5px;width:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}
+
+  .hf-number-wheel {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--hf-wheel-gap, 0.02em);
+    color: var(--hf-wheel-color, inherit);
+    font-variant-numeric: tabular-nums;
+  }
+  .hf-number-wheel-digit {
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+  }
+  .hf-number-wheel-strip {
+    display: grid;
+    transform: translateY(0em);
+    will-change: transform;
+  }
+  .hf-number-wheel-strip span {
+    height: 1em;
+    line-height: 1em;
+  }
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="69.5" data-width="1080" data-height="1920">
+<div id="s_h" class="clip" data-start="0.0" data-duration="6.5" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">01</div></div><div class="rule" id="hR"></div><div class="kicker" id="hK">The week that was</div><div class="mega" id="hL1" style="top:520px;font-size:140px"><span class="word" id="hA0">THE</span>&nbsp;<span class="word" id="hA1">MARKET</span>&nbsp;</div><div class="mega" id="hL2" style="top:668px;font-size:140px"><span class="word" id="hB0">WENT</span>&nbsp;<span class="word" id="hB1">UP.</span>&nbsp;</div><div class="mega red" id="hL3" style="top:912px;font-size:104px">ALMOST NOTHING</div><div class="mega" id="hL4" style="top:1030px;font-size:104px">IN IT DID.</div><div class="lbl" id="hL5" style="left:96px;top:1220px">Week of 22–25 September 2026</div><div id="compliance">Educational only. Not financial advice.</div><div class="stamp" id="hS">Index and sector moves as reported for the week ending 2026-09-25</div></div>
+<div id="s_t" class="clip" data-start="6.5" data-duration="8.5" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">02</div></div><div class="rule" id="tR"></div><div class="kicker" id="tK">The tape</div><div class="big" id="tT1" style="top:400px;font-size:66px;width:888px"><span class="word" id="tA0">Every</span>&nbsp;<span class="word" id="tA1">index</span>&nbsp;<span class="word" id="tA2">rose.</span>&nbsp;</div><div class="big red" id="tT2" style="top:478px;font-size:66px;width:888px"><span class="word" id="tB0">Not</span>&nbsp;<span class="word" id="tB1">evenly.</span>&nbsp;</div><div class="barRow" id="tR0" style="top:660px"><div class="barName">NASDAQ</div><div class="barTrack"></div><div class="barFill acc" id="tF0"></div><div class="barVal" id="tV0" style="left:812px">+2.1%</div></div><div class="barRow" id="tR1" style="top:828px"><div class="barName">S&P 500</div><div class="barTrack"></div><div class="barFill " id="tF1"></div><div class="barVal" id="tV1" style="left:812px">+1.2%</div></div><div class="barRow" id="tR2" style="top:996px"><div class="barName">DOW</div><div class="barTrack"></div><div class="barFill " id="tF2"></div><div class="barVal" id="tV2" style="left:812px">+0.3%</div></div><div class="big" id="tP" style="top:1240px;font-size:62px;width:888px">The Nasdaq did <span class="red">seven times</span><br>the Dow's week.</div><div class="lbl" id="tN" style="left:96px;top:1420px">Dow snapped a three-week losing streak</div><div class="stamp" id="tS">Weekly index moves to 2026-09-25 · press convergence</div></div>
+<div id="s_y" class="clip" data-start="15.0" data-duration="7.5" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">03</div></div><div class="rule" id="yR"></div><div class="kicker" id="yK">Meanwhile</div><div class="lbl" id="yL" style="left:96px;top:560px">US 10-year Treasury yield</div><div class="mega red" id="yN" style="top:614px;font-size:210px"><span class="hf-number-wheel" data-value="5.18"></span>%</div><div class="big" id="yH" style="top:940px;font-size:96px">HIGHEST<br>SINCE 2007</div><div class="lbl" id="yS" style="left:96px;top:1220px">A cycle high, set mid-week</div><div class="big dim" id="yQ" style="top:1300px;font-size:48px;width:888px">Longer-dated yields are at levels<br>most investors have never traded.</div><div class="stamp" id="yS">10-year Treasury, week's high 2026-09-24 · press convergence</div></div>
+<div id="s_x" class="clip" data-start="22.5" data-duration="7.0" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">04</div></div><div class="rule" id="xR"></div><div class="kicker" id="xK">The part that doesn't fit</div><div class="big" id="xL1" style="top:540px;font-size:72px;width:888px"><span class="word" id="xA0">A</span>&nbsp;<span class="word" id="xA1">higher</span>&nbsp;<span class="word" id="xA2">risk-free</span>&nbsp;<span class="word" id="xA3">rate</span>&nbsp;</div><div class="big" id="xL2" style="top:630px;font-size:72px;width:888px"><span class="word" id="xB0">should</span>&nbsp;<span class="word" id="xB1">compress</span>&nbsp;<span class="word" id="xB2">multiples.</span>&nbsp;</div><div class="rule" id="xRule" style="top:790px;width:888px;height:5px"></div><div class="mega red" id="xL3" style="top:860px;font-size:120px">THIS WEEK<br>IT DIDN'T.</div><div class="big dim" id="xL4" style="top:1180px;font-size:50px;width:888px">Stocks rose <span class="red">into</span> the rate,<br>not away from it.</div><div class="stamp" id="xS">Valuation mechanics · mechanism, not a forecast</div></div>
+<div id="s_r" class="clip" data-start="29.5" data-duration="8.0" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">05</div></div><div class="rule" id="rR"></div><div class="kicker" id="rK">What actually changed</div><div class="big" id="rT" style="top:470px;font-size:70px;width:888px"><span class="word" id="rA0">The</span>&nbsp;<span class="word" id="rA1">market</span>&nbsp;<span class="word" id="rA2">stopped</span>&nbsp;</div><div class="big red" id="rT2" style="top:556px;font-size:70px;width:888px"><span class="word" id="rB0">pricing</span>&nbsp;<span class="word" id="rB1">cuts.</span>&nbsp;</div><div class="lbl" id="rL" style="left:96px;top:740px">Odds of an October hike</div><div class="lbl" id="rO1" style="left:96px;top:830px">One week ago</div><div class="big dim" id="rN1" style="top:876px;font-size:136px"><span class="hf-number-wheel" data-value="42"></span>%</div><div class="lbl" id="rO2" style="left:560px;top:830px">Friday</div><div class="big red" id="rN2" style="top:876px;left:560px;font-size:136px"><span class="hf-number-wheel" data-value="58"></span>%</div><div class="rule" id="rRule" style="top:1090px;width:888px;height:5px"></div><div class="big" id="rW" style="top:1150px;font-size:52px;width:888px">Hot activity data. Rising<br>inflation expectations.</div><div class="lbl" id="rD" style="left:96px;top:1330px">Market pricing — not a forecast</div><div class="stamp" id="rS">CME FedWatch, 2026-09-25 vs one week earlier</div></div>
+<div id="s_c" class="clip" data-start="37.5" data-duration="13.0" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">06</div></div><div class="rule" id="cR"></div><div class="kicker" id="cK">The week ahead</div><div class="mega" id="cT" style="top:392px;font-size:88px">FIVE PRINTS.<br>ONE WEEK.</div><div class="calRow" id="cR0" style="top:612px"><div class="calDay">TUE</div><div class="calWhat">JOLTS</div><div class="calNote">Job openings · est 7.23m</div></div><div class="calRow" id="cR1" style="top:738px"><div class="calDay">WED</div><div class="calWhat">CORE PCE</div><div class="calNote">The Fed's preferred gauge · prev 3.3% y/y</div></div><div class="calRow" id="cR2" style="top:864px"><div class="calDay">WED PM</div><div class="calWhat">MICRON</div><div class="calNote">The AI-capex read</div></div><div class="calRow" id="cR3" style="top:990px"><div class="calDay">THU</div><div class="calWhat">ISM MFG</div><div class="calNote">Prev 54.6</div></div><div class="calRow" id="cR4" style="top:1116px"><div class="calDay">FRI</div><div class="calWhat">PAYROLLS</div><div class="calNote">Est +100k · unemployment 4.2%</div></div><div class="big dim" id="cF" style="top:1286px;font-size:44px;width:888px">Quarter-end Wednesday. Thin books<br>make every surprise bigger.</div><div class="stamp" id="cS">Consensus estimates per published previews · estimates, not forecasts</div></div>
+<div id="s_p" class="clip" data-start="50.5" data-duration="9.5" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">07</div></div><div class="rule" id="pR"></div><div class="kicker" id="pK">How to be ready</div><div class="big" id="pT1" style="top:450px;font-size:60px;width:888px"><span class="word" id="pA0">Decide</span>&nbsp;<span class="word" id="pA1">what</span>&nbsp;<span class="word" id="pA2">each</span>&nbsp;<span class="word" id="pA3">one</span>&nbsp;<span class="word" id="pA4">means</span>&nbsp;</div><div class="big red" id="pT2" style="top:532px;font-size:60px;width:888px"><span class="word" id="pB0">before</span>&nbsp;<span class="word" id="pB1">it</span>&nbsp;<span class="word" id="pB2">prints.</span>&nbsp;</div><div class="ifRow" id="pR0" style="top:700px"><div class="ifCond">IF CORE PCE RUNS HOT</div><div class="ifThen">→ the hike case hardens</div></div><div class="ifRow" id="pR1" style="top:880px"><div class="ifCond">IF MICRON GUIDES SOFT</div><div class="ifThen">→ the AI-capex trade loses its anchor</div></div><div class="ifRow" id="pR2" style="top:1060px"><div class="ifCond">IF PAYROLLS COME IN WEAK</div><div class="ifThen">→ the growth leg is the one that cracks</div></div><div class="rule" id="pRule" style="top:1300px;width:888px;height:5px"></div><div class="mega" id="pC" style="top:1360px;font-size:64px">WRITE THEM DOWN<br>BEFORE MONDAY.</div><div class="stamp" id="pS">Scenarios, not predictions · educational only</div></div>
+<div id="s_z" class="clip" data-start="60.0" data-duration="5.0" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">THE METICULOUS INVESTOR</div><div class="num">08</div></div><div class="rule" id="zR"></div><div class="mega" id="zL1" style="top:700px;font-size:168px">PREPARED</div><div class="mega dim" id="zL2" style="top:868px;font-size:168px">BEATS</div><div class="mega red" id="zL3" style="top:1036px;font-size:168px">REACTIVE.</div><div class="lbl" id="zL4" style="left:96px;top:1290px">The Meticulous Investor · weekly</div><div class="stamp" id="zS">Figures as of 2026-09-25 · sources in the description</div></div>
+<div id="s_d" class="clip" data-start="65.0" data-duration="4.5" data-track-index="0"><div id="discCard"><div class="dbar" id="dBar"></div><div class="dl1" id="dL1">Educational only.<br>Not financial advice.</div><div class="dl2" id="dL2">Market commentary, not a recommendation to buy or sell any security.<br>Estimates are consensus figures, not predictions. Figures as of the dates shown.</div><div class="dl3" id="dL3">THE METICULOUS INVESTOR</div></div></div>
+<div id="prog"></div>
+</div>
+<script>
+  (function () {
+    const vars =
+      window.__hyperframes && window.__hyperframes.getVariables
+        ? window.__hyperframes.getVariables()
+        : {};
+
+    // Unrecognised overrides return to their declared defaults.
+    const spins = { single: 0, double: 1, triple: 2 };
+    const gaps = { tight: "0em", standard: "0.02em", wide: "0.14em" };
+    const tones = {
+      inherit: "inherit",
+      ink: "#18181b",
+      paper: "#fafafa",
+      accent: "var(--brand, #34d399)",
+    };
+    const pick = (table, value, fallback) =>
+      Object.prototype.hasOwnProperty.call(table, value) ? table[value] : table[fallback];
+
+    const cycles = pick(spins, vars.spin, "single");
+    const gap = pick(gaps, vars.spacing, "standard");
+    const tone = pick(tones, vars.tone, "inherit");
+
+    document.querySelectorAll(".hf-number-wheel").forEach((el) => {
+      if (el.dataset.hfNumberWheelReady === "1") return;
+      el.style.setProperty("--hf-wheel-gap", gap);
+      el.style.setProperty("--hf-wheel-color", tone);
+      const value = el.dataset.value || "0";
+      el.textContent = "";
+      for (const char of value) {
+        if (!/\d/.test(char)) {
+          el.append(document.createTextNode(char));
+          continue;
+        }
+        const stops = cycles * 10 + Number(char);
+        const frame = document.createElement("span");
+        frame.className = "hf-number-wheel-digit";
+        const strip = document.createElement("span");
+        strip.className = "hf-number-wheel-strip";
+        strip.style.setProperty("--hf-number-target-y", `${-stops}em`);
+        for (let i = 0; i <= stops; i++) {
+          const step = document.createElement("span");
+          step.textContent = String(i % 10);
+          strip.appendChild(step);
+        }
+        frame.appendChild(strip);
+        el.appendChild(frame);
+      }
+      el.dataset.hfNumberWheelReady = "1";
+    });
+  })();
+</script>
+<script>
+const tl=gsap.timeline({paused:true});
+const E="power4.out", EO="power3.out";
+/* slam: scale overshoot + fade. The signature move of this piece. */
+const slam=(s,at,d=.42)=>tl.fromTo(s,{opacity:0,scale:1.34,transformOrigin:"left center"},
+  {opacity:1,scale:1,duration:d,ease:E},at);
+/* rise: word lifts into place */
+const rise=(s,at,d=.46,y=46)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+/* wordsIn: per-word stagger, the kinetic backbone */
+const wordsIn=(s,at,st=.055,d=.44)=>tl.fromTo(s,{opacity:0,yPercent:58},
+  {opacity:1,yPercent:0,duration:d,ease:E,stagger:st},at);
+/* bar: horizontal race */
+const bar=(s,at,sx,d=.85)=>tl.fromTo(s,{scaleX:0},{scaleX:sx,duration:d,ease:"power3.inOut"},at);
+/* wipe: reveal by clip */
+const wipe=(s,at,d=.6)=>tl.fromTo(s,{clipPath:"inset(0 100% 0 0)"},
+  {clipPath:"inset(0 0% 0 0)",duration:d,ease:"power3.inOut"},at);
+/* out: push a beat off screen so the next can land clean */
+const out=(s,at,d=.28)=>tl.to(s,{opacity:0,duration:d,ease:"power2.in"},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:69.5,ease:"none"},0);
+tl.fromTo("#hR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},0.100);
+tl.fromTo("#hK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},0.220);
+tl.fromTo("#hS",{opacity:0},{opacity:1,duration:.4},1.300);
+tl.fromTo("#tR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},6.600);
+tl.fromTo("#tK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},6.720);
+tl.fromTo("#tS",{opacity:0},{opacity:1,duration:.4},7.800);
+tl.fromTo("#yR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},15.100);
+tl.fromTo("#yK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},15.220);
+tl.fromTo("#yS",{opacity:0},{opacity:1,duration:.4},16.300);
+tl.fromTo("#xR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},22.600);
+tl.fromTo("#xK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},22.720);
+tl.fromTo("#xS",{opacity:0},{opacity:1,duration:.4},23.800);
+tl.fromTo("#rR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},29.600);
+tl.fromTo("#rK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},29.720);
+tl.fromTo("#rS",{opacity:0},{opacity:1,duration:.4},30.800);
+tl.fromTo("#cR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},37.600);
+tl.fromTo("#cK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},37.720);
+tl.fromTo("#cS",{opacity:0},{opacity:1,duration:.4},38.800);
+tl.fromTo("#pR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},50.600);
+tl.fromTo("#pK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},50.720);
+tl.fromTo("#pS",{opacity:0},{opacity:1,duration:.4},51.800);
+tl.fromTo("#zR",{scaleX:0},{scaleX:1,duration:.45,ease:"power3.inOut"},60.100);
+tl.fromTo("#zK",{opacity:0,x:-22},{opacity:1,x:0,duration:.4,ease:EO},60.220);
+tl.fromTo("#zS",{opacity:0},{opacity:1,duration:.4},61.300);
+wordsIn("#hL1 .word",0.700,.06);
+wordsIn("#hL2 .word",1.300,.06);
+slam("#hL3",2.500,.40);
+slam("#hL4",3.100,.40);
+rise("#hL5",4.000);
+tl.fromTo("#compliance",{opacity:0},{opacity:1,duration:.35},0.550).to("#compliance",{opacity:0,duration:.3},4.600);
+wordsIn("#tT1 .word",6.900,.05);
+wordsIn("#tT2 .word",7.400,.05);
+rise("#tR0 .barName",8.000,.34,20);
+tl.fromTo("#tR0 .barTrack",{opacity:0},{opacity:1,duration:.3},8.000);
+tl.fromTo("#tF0",{scaleX:0},{scaleX:0.84,duration:.80,ease:"power3.inOut",immediateRender:false},8.180);
+tl.fromTo("#tV0",{opacity:0,x:-26},{opacity:1,x:0,duration:.42,ease:EO},8.700);
+rise("#tR1 .barName",8.550,.34,20);
+tl.fromTo("#tR1 .barTrack",{opacity:0},{opacity:1,duration:.3},8.550);
+tl.fromTo("#tF1",{scaleX:0},{scaleX:0.48,duration:.80,ease:"power3.inOut",immediateRender:false},8.730);
+tl.fromTo("#tV1",{opacity:0,x:-26},{opacity:1,x:0,duration:.42,ease:EO},9.250);
+rise("#tR2 .barName",9.100,.34,20);
+tl.fromTo("#tR2 .barTrack",{opacity:0},{opacity:1,duration:.3},9.100);
+tl.fromTo("#tF2",{scaleX:0},{scaleX:0.12,duration:.80,ease:"power3.inOut",immediateRender:false},9.280);
+tl.fromTo("#tV2",{opacity:0,x:-26},{opacity:1,x:0,duration:.42,ease:EO},9.800);
+slam("#tP",12.000,.46);
+rise("#tN",13.000);
+rise("#yL",15.400,.4,24);
+tl.fromTo("#yN",{opacity:0,scale:1.18,transformOrigin:"left center"},{opacity:1,scale:1,duration:.5,ease:E},15.700);
+tl.fromTo("#yN .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.25,ease:"power3.out",stagger:.06,immediateRender:false},15.850);
+slam("#yH",17.700,.46);
+rise("#yS",18.800);
+rise("#yQ",19.600);
+wordsIn("#xL1 .word",22.900,.05);
+wordsIn("#xL2 .word",23.350,.05);
+tl.fromTo("#xRule",{scaleX:0},{scaleX:1,duration:.5,ease:"power3.inOut",immediateRender:false},24.200);
+slam("#xL3",24.600,.48);
+rise("#xL4",26.200);
+wordsIn("#rT .word",29.900,.05);
+wordsIn("#rT2 .word",30.350,.05);
+rise("#rL",31.100,.4,22);
+rise("#rO1",31.500,.36,18);
+tl.fromTo("#rN1",{opacity:0,y:28},{opacity:1,y:0,duration:.44,ease:E},31.650);
+rise("#rO2",32.300,.36,18);
+tl.fromTo("#rN2",{opacity:0,y:28},{opacity:1,y:0,duration:.44,ease:E},32.450);
+tl.fromTo("#rN1 .hf-number-wheel-strip, #rN2 .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.1,ease:"power3.out",stagger:.05,immediateRender:false},31.800);
+tl.fromTo("#rRule",{scaleX:0},{scaleX:1,duration:.5,ease:"power3.inOut",immediateRender:false},33.500);
+rise("#rW",33.800);
+rise("#rD",35.200);
+slam("#cT",37.900,.48);
+tl.fromTo("#cR0",{opacity:0,x:-34},{opacity:1,x:0,duration:.44,ease:E},39.000);
+tl.fromTo("#cR0 .calDay",{opacity:0},{opacity:1,duration:.3},39.100);
+tl.fromTo("#cR1",{opacity:0,x:-34},{opacity:1,x:0,duration:.44,ease:E},39.750);
+tl.fromTo("#cR1 .calDay",{opacity:0},{opacity:1,duration:.3},39.850);
+tl.fromTo("#cR2",{opacity:0,x:-34},{opacity:1,x:0,duration:.44,ease:E},40.500);
+tl.fromTo("#cR2 .calDay",{opacity:0},{opacity:1,duration:.3},40.600);
+tl.fromTo("#cR3",{opacity:0,x:-34},{opacity:1,x:0,duration:.44,ease:E},41.250);
+tl.fromTo("#cR3 .calDay",{opacity:0},{opacity:1,duration:.3},41.350);
+tl.fromTo("#cR4",{opacity:0,x:-34},{opacity:1,x:0,duration:.44,ease:E},42.000);
+tl.fromTo("#cR4 .calDay",{opacity:0},{opacity:1,duration:.3},42.100);
+rise("#cF",43.700);
+wordsIn("#pT1 .word",50.900,.05);
+wordsIn("#pT2 .word",51.350,.05);
+tl.fromTo("#pR0 .ifCond",{opacity:0,x:-30},{opacity:1,x:0,duration:.42,ease:E},52.200);
+tl.fromTo("#pR0 .ifThen",{opacity:0,x:30},{opacity:1,x:0,duration:.42,ease:E},52.420);
+tl.fromTo("#pR1 .ifCond",{opacity:0,x:-30},{opacity:1,x:0,duration:.42,ease:E},53.000);
+tl.fromTo("#pR1 .ifThen",{opacity:0,x:30},{opacity:1,x:0,duration:.42,ease:E},53.220);
+tl.fromTo("#pR2 .ifCond",{opacity:0,x:-30},{opacity:1,x:0,duration:.42,ease:E},53.800);
+tl.fromTo("#pR2 .ifThen",{opacity:0,x:30},{opacity:1,x:0,duration:.42,ease:E},54.020);
+tl.fromTo("#pRule",{scaleX:0},{scaleX:1,duration:.5,ease:"power3.inOut",immediateRender:false},57.500);
+slam("#pC",57.800,.46);
+slam("#zL1",60.300,.42);
+slam("#zL2",60.750,.42);
+slam("#zL3",61.200,.42);
+rise("#zL4",62.300);
+tl.fromTo("#dBar",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:EO},65.200);
+tl.fromTo("#dL1",{opacity:0,y:28},{opacity:1,y:0,duration:.55,ease:EO},65.400);
+tl.fromTo("#dL2",{opacity:0},{opacity:1,duration:.55},66.000);
+tl.fromTo("#dL3",{opacity:0},{opacity:1,duration:.55},66.700);
+window.__timelines=window.__timelines||{};
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>

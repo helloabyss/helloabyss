@@ -1,0 +1,445 @@
+<title>Meticulous Poll Booth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: poll list rail + one poll at a time; ballot above, live results below, AI panel as a second view. */
+:root{
+  --bg:#F3F3F1; --surface:#FFFFFF; --sunk:#EAEAE6; --fg:#0B0B0C; --muted:#5C5D63; --line:#DADAD5;
+  --accent:#C8201F; --accent-soft:rgba(200,32,31,.10); --bar:#0B0B0C; --ok:#1F7A4D; --warn:#9A5B00;
+  --f-display:"Anton","Impact","Arial Narrow",sans-serif;
+  --f-body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B0B0C; --surface:#151518; --sunk:#1D1D21; --fg:#F2F2EF; --muted:#9C9CA4; --line:#2B2B31;
+  --accent:#EF4644; --accent-soft:rgba(239,70,68,.16); --bar:#F2F2EF; --ok:#46C38A; --warn:#E3A83A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B0B0C; --surface:#151518; --sunk:#1D1D21; --fg:#F2F2EF; --muted:#9C9CA4; --line:#2B2B31;
+  --accent:#EF4644; --accent-soft:rgba(239,70,68,.16); --bar:#F2F2EF; --ok:#46C38A; --warn:#E3A83A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body);margin:0;padding-inline:clamp(16px,3vw,32px);padding-block:20px 48px}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--fg);padding-bottom:12px}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand b{font:28px/1 var(--f-display);letter-spacing:.02em;text-transform:uppercase}
+.brand span{font:600 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.chip{font:700 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.chip.open{color:var(--ok);border-color:currentColor}
+.chip.closed{color:var(--muted)}
+.btn{border:1px solid var(--fg);background:var(--fg);color:var(--bg);padding:9px 14px;border-radius:8px;font-weight:700}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn.danger{background:transparent;color:var(--accent);border-color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.notice{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r);padding:12px 14px}
+.grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:minmax(0,1fr)}}
+aside h2,.sec-label{font:700 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.plist{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.plist button{width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.plist button:hover{background:var(--sunk)}
+.plist button[aria-current="true"]{background:var(--surface);border-color:var(--line);box-shadow:inset 3px 0 0 var(--accent)}
+.plist .q{font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+.plist .meta{font:500 12px/1 var(--f-mono);color:var(--muted)}
+.empty{color:var(--muted);padding:12px 0}
+.poll{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,30px);display:flex;flex-direction:column;gap:22px;min-width:0}
+.poll-head{display:flex;flex-direction:column;gap:10px}
+.eyebrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font:500 12px/1 var(--f-mono);color:var(--muted)}
+.poll h1{font:clamp(26px,3.4vw,38px)/1.08 var(--f-display);letter-spacing:.01em;margin:0;text-wrap:balance;overflow-wrap:anywhere}
+.ctx{color:var(--muted);max-width:65ch;margin:0}
+.ballot{display:flex;flex-direction:column;gap:8px}
+.opt{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:12px;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:var(--r);padding:12px 14px;transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--fg)}
+.opt .key{font:700 13px/1 var(--f-mono);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);color:var(--muted)}
+.opt .lbl{font-weight:600;overflow-wrap:anywhere}
+.opt .mine{font:700 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] .key{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt:disabled{cursor:default}
+.voteline{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.linkbtn{background:none;border:none;padding:0;color:var(--fg);text-decoration:underline;text-underline-offset:3px;font-size:13px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs button{background:none;border:none;border-bottom:3px solid transparent;padding:8px 12px 10px;font-weight:700;color:var(--muted);margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.tabs .n{font:500 12px/1 var(--f-mono);margin-left:6px}
+.results{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:34px minmax(0,1fr) 88px;gap:12px;align-items:center}
+.row .key{font:700 13px/1 var(--f-mono);color:var(--muted);text-align:center}
+.row .body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.row .lbl{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.track{height:12px;background:var(--sunk);border-radius:6px;overflow:hidden}
+.fill{height:100%;background:var(--bar);border-radius:6px;transition:width .5s ease}
+.row.lead .fill{background:var(--accent)}
+.row .num{text-align:right;font:700 14px/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.row .num small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.row.lead .num{color:var(--accent)}
+.ballots{width:100%;border-collapse:collapse;font-size:13px}
+.tablewrap{overflow-x:auto}
+.ballots th{font:700 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+.ballots td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.ballots td.pick{font:700 13px/1.2 var(--f-mono);white-space:nowrap;color:var(--accent)}
+.ballots td.rank{font:500 12px/1.2 var(--f-mono);color:var(--muted);white-space:nowrap}
+.panelbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.status{font-size:13px;color:var(--muted)}
+.status.err{color:var(--accent)}
+.foot{display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,26px);display:flex;flex-direction:column;gap:14px}
+.form h2{font:26px/1 var(--f-display);margin:0;text-transform:uppercase}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font:700 11px/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea{background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
+.field textarea{min-height:130px;resize:vertical}
+.hint{font-size:12px;color:var(--muted)}
+.method{font-size:12px;color:var(--muted);max-width:70ch;margin:0}
+@media (prefers-reduced-motion:reduce){.fill,.opt{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><b>The Meticulous Investor</b><span>Poll booth</span></div>
+    <div class="hdr-right">
+      <span class="chip" id="roleChip">Connecting…</span>
+      <button class="btn" id="newBtn" hidden>New poll</button>
+    </div>
+  </header>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <section class="form" id="newForm" hidden aria-labelledby="newTitle">
+    <h2 id="newTitle">New poll</h2>
+    <div class="field"><label for="fQ">Question</label><input id="fQ" maxlength="160" placeholder="Which title should the NVDA vs QQQ video use?"></div>
+    <div class="field"><label for="fCtx">Context for voters (optional)</label><input id="fCtx" maxlength="400" placeholder="What the video covers, who it's for"></div>
+    <div class="field"><label for="fOpts">Options, one per line (2–8)</label><textarea id="fOpts" placeholder="Title A&#10;Title B&#10;Title C"></textarea><span class="hint">Voters see these in this order. The AI panel sees them shuffled.</span></div>
+    <div class="panelbar"><button class="btn" id="createBtn">Create poll</button><button class="btn ghost" id="cancelBtn">Cancel</button><span class="status" id="formStatus"></span></div>
+  </section>
+
+  <div class="grid">
+    <aside>
+      <h2>Polls</h2>
+      <ul class="plist" id="plist"><li class="empty">Loading polls from the shared store…</li></ul>
+    </aside>
+
+    <section class="poll" id="poll" aria-live="polite">
+      <div class="poll-head">
+        <div class="eyebrow"><span class="chip">Loading</span></div>
+        <h1>Polls load here</h1>
+        <p class="ctx">Pick a poll on the left to vote and see live results. Editors can start a new one with New poll.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const KEYS = "ABCDEFGH";
+
+  const S = { db:null, user:null, sample:null, uid:null, canEdit:false, isOwner:false,
+              polls:[], votes:{}, panels:{}, sel:null, tab:"people", voteBlocked:false,
+              loaded:{polls:false, votes:false, panels:false}, panelRun:null, delArm:false };
+  try { S.sel = localStorage.getItem("pollbooth.sel"); } catch (e) {}
+
+  // AI panel: the same five perspectives used for the channel's first title poll.
+  const PERSONAS = [
+    ["SEO specialist", "a YouTube SEO specialist who optimises for search discovery: keyword placement, search intent, and title truncation around 60 characters on mobile"],
+    ["Click-through strategist", "a YouTube packaging strategist who optimises click-through rate on the home feed and suggested videos: curiosity gap, specificity, and how the title pairs with the thumbnail"],
+    ["Beginner viewer", "a 26-year-old beginner investor scrolling YouTube who has heard of the big names but is unsure of the jargon; you pick what you would actually click"],
+    ["Experienced investor", "an experienced self-directed investor who has watched hundreds of finance videos, dislikes hype, and clicks when a title promises real data or a counter-intuitive finding"],
+    ["Algorithm analyst", "a YouTube growth analyst focused on how the algorithm rewards an option over time: click-through and satisfaction together, since over-promising loses watch time, plus long-tail search"]
+  ];
+
+  function notice(msg) { const n = $("#notice"); n.hidden = !msg; n.textContent = msg || ""; }
+
+  const poll = () => S.polls.find(p => p.id === S.sel) || null;
+
+  function tally(p) {
+    const counts = Object.fromEntries(p.options.map(o => [o.id, 0]));
+    let total = 0;
+    for (const v of Object.values(S.votes)) {
+      const pick = v && v.picks && v.picks[p.id];
+      if (pick && pick in counts) { counts[pick]++; total++; }
+    }
+    return { counts, total };
+  }
+
+  function borda(p, ballots) {
+    const n = p.options.length, pts = Object.fromEntries(p.options.map(o => [o.id, 0])), firsts = {...pts};
+    for (const b of ballots) {
+      (b.rank || []).forEach((id, i) => { if (id in pts) pts[id] += n - i; });
+      if (b.vote in firsts) firsts[b.vote]++;
+    }
+    return { pts, firsts, max: n * ballots.length };
+  }
+
+  function renderList() {
+    const ul = $("#plist"); ul.replaceChildren();
+    if (!S.loaded.polls) { ul.append(el("li", "empty", "Loading polls from the shared store…")); return; }
+    if (!S.polls.length) { ul.append(el("li", "empty", S.canEdit ? "No polls yet. Start one with New poll." : "No polls yet. The owner hasn't started one.")); return; }
+    for (const p of S.polls) {
+      const li = el("li"), b = el("button");
+      b.type = "button"; b.setAttribute("aria-current", String(p.id === S.sel));
+      const { total } = tally(p);
+      b.append(el("span", "q", p.question || "Untitled poll"),
+               el("span", "meta", `${p.status === "closed" ? "Closed" : "Open"} · ${total} vote${total === 1 ? "" : "s"}`));
+      b.onclick = () => { S.sel = p.id; S.delArm = false; try { localStorage.setItem("pollbooth.sel", p.id); } catch (e) {} render(); };
+      li.append(b); ul.append(li);
+    }
+  }
+
+  function resultRows(p, values, fmt) {
+    const box = el("div", "results");
+    const max = Math.max(1, ...Object.values(values));
+    const top = Math.max(...Object.values(values));
+    const order = p.options.map((o, i) => ({ o, i })).sort((a, b) => values[b.o.id] - values[a.o.id] || a.i - b.i);
+    for (const { o, i } of order) {
+      const v = values[o.id];
+      const row = el("div", "row" + (v > 0 && v === top ? " lead" : ""));
+      const body = el("div", "body"); const tr = el("div", "track"); const f = el("div", "fill");
+      f.style.width = (100 * v / max) + "%"; tr.append(f); body.append(el("span", "lbl", o.label), tr);
+      const num = el("div", "num"); const [a, sub] = fmt(v); num.append(document.createTextNode(a)); if (sub) num.append(el("small", null, sub));
+      row.append(el("span", "key", KEYS[i]), body, num); box.append(row);
+    }
+    return box;
+  }
+
+  function renderPoll() {
+    const sec = $("#poll"); sec.replaceChildren();
+    const p = poll();
+    if (!p) {
+      const h = el("div", "poll-head");
+      h.append(el("h1", null, S.loaded.polls ? (S.polls.length ? "Pick a poll" : "No polls yet") : "Polls load here"),
+               el("p", "ctx", S.canEdit ? "Start a poll with New poll. Your team votes here and results update live." : "Pick a poll on the left to vote and see live results."));
+      sec.append(h); return;
+    }
+    const open = p.status !== "closed";
+    const mine = S.uid && S.votes[S.uid] && S.votes[S.uid].picks ? S.votes[S.uid].picks[p.id] : null;
+    const { counts, total } = tally(p);
+
+    const head = el("div", "poll-head");
+    const eb = el("div", "eyebrow");
+    eb.append(el("span", "chip " + (open ? "open" : "closed"), open ? "Open" : "Closed"));
+    if (p.createdAt) eb.append(el("span", null, "Started " + new Date(p.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })));
+    head.append(eb, el("h1", null, p.question || "Untitled poll"));
+    if (p.context) head.append(el("p", "ctx", p.context));
+    sec.append(head);
+
+    // Ballot
+    const ballot = el("div", "ballot"); ballot.setAttribute("role", "group"); ballot.setAttribute("aria-label", "Your vote");
+    p.options.forEach((o, i) => {
+      const b = el("button", "opt"); b.type = "button";
+      b.setAttribute("aria-pressed", String(mine === o.id));
+      b.disabled = !open || !S.uid || S.voteBlocked;
+      b.append(el("span", "key", KEYS[i]), el("span", "lbl", o.label), el("span", "mine", mine === o.id ? "Your vote" : ""));
+      b.onclick = () => castVote(p, o.id);
+      ballot.append(b);
+    });
+    sec.append(ballot);
+
+    const vl = el("div", "voteline");
+    if (!S.uid) vl.append(el("span", null, "Sign in to claude.ai to vote. You can still see the results."));
+    else if (S.voteBlocked) vl.append(el("span", null, "You can see results but not vote. Ask the owner to give you Contributor access."));
+    else if (!open) vl.append(el("span", null, "Voting is closed."));
+    else vl.append(el("span", null, mine ? "Tap another option to change your vote." : "One vote per person. You can change it while the poll is open."));
+    if (mine && open && !S.voteBlocked) { const c = el("button", "linkbtn", "Clear my vote"); c.type = "button"; c.onclick = () => castVote(p, null); vl.append(c); }
+    const vs = el("span", "status"); vs.id = "voteStatus"; vl.append(vs);
+    sec.append(vl);
+
+    // Results tabs
+    const panel = S.panels[p.id]; const ballots = panel && Array.isArray(panel.ballots) ? panel.ballots : [];
+    const tabs = el("div", "tabs"); tabs.setAttribute("role", "tablist");
+    for (const [key, label, n] of [["people", "People", total], ["panel", "AI panel", ballots.length]]) {
+      const t = el("button", null, label); t.type = "button"; t.setAttribute("role", "tab"); t.setAttribute("aria-selected", String(S.tab === key));
+      t.append(el("span", "n", String(n))); t.onclick = () => { S.tab = key; render(); }; tabs.append(t);
+    }
+    sec.append(tabs);
+
+    if (S.tab === "people") {
+      if (!total) sec.append(el("p", "empty", open ? "No votes yet. Share this page with people who have Contributor access and results appear here live." : "No votes were cast."));
+      else sec.append(resultRows(p, counts, v => [String(v), Math.round(100 * v / total) + "%"]));
+    } else {
+      const bar = el("div", "panelbar");
+      if (S.canEdit && S.sample) {
+        const run = el("button", "btn", S.panelRun ? "Asking…" : (ballots.length ? "Ask a new AI panel" : "Ask the AI panel")); run.type = "button";
+        run.disabled = !!S.panelRun; run.onclick = () => runPanel(p); bar.append(run);
+        if (S.panelRun) { const stop = el("button", "btn ghost", "Stop"); stop.type = "button"; stop.onclick = () => S.panelRun && S.panelRun.abort(); bar.append(stop); }
+      }
+      const st = el("span", "status"); st.id = "panelStatus";
+      st.textContent = S.panelMsg || (panel && panel.ranAt ? `Five independent voters, each shown the options in a different order. Last run ${new Date(panel.ranAt).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}.` : "");
+      if (S.panelErr) st.classList.add("err");
+      bar.append(st); sec.append(bar);
+      if (!ballots.length) sec.append(el("p", "empty", S.canEdit ? "No AI panel yet. Ask one and five Claude voters rank the options from different angles." : "No AI panel has voted on this poll yet."));
+      else {
+        const { pts, firsts, max } = borda(p, ballots);
+        sec.append(resultRows(p, pts, v => [String(v), `of ${max} pts`]));
+        const byId = Object.fromEntries(p.options.map((o, i) => [o.id, KEYS[i]]));
+        const tw = el("div", "tablewrap"), tb = el("table", "ballots"), th = el("thead"), hr = el("tr");
+        for (const h of ["Voter", "1st pick", "Full ranking", "Why"]) hr.append(el("th", null, h));
+        th.append(hr); tb.append(th); const body = el("tbody");
+        for (const b of ballots) {
+          const r = el("tr");
+          r.append(el("td", null, b.persona || "Voter"), el("td", "pick", byId[b.vote] || "?"),
+                   el("td", "rank", (b.rank || []).map(id => byId[id] || "?").join(" › ")), el("td", null, b.reason || ""));
+          body.append(r);
+        }
+        tb.append(body); tw.append(tb); sec.append(tw);
+        const firstLead = Object.entries(firsts).sort((a, b) => b[1] - a[1])[0];
+        sec.append(el("p", "method", `Points: a voter's 1st choice earns ${p.options.length}, last earns 1 (Borda count). Most 1st-place votes: option ${byId[firstLead[0]]} with ${firstLead[1]}. AI opinions are a shortlist tool, not audience data. Real click-through decides.`));
+      }
+    }
+
+    if (S.canEdit) {
+      const foot = el("div", "foot");
+      const tog = el("button", "btn ghost", open ? "Close voting" : "Reopen voting"); tog.type = "button";
+      tog.onclick = () => updatePoll(p, { status: open ? "closed" : "open" });
+      const del = el("button", "btn danger", S.delArm ? "Confirm delete" : "Delete poll"); del.type = "button";
+      del.onclick = () => { if (!S.delArm) { S.delArm = true; render(); } else deletePoll(p); };
+      foot.append(tog, del);
+      if (S.delArm) { const c = el("button", "btn ghost", "Keep it"); c.type = "button"; c.onclick = () => { S.delArm = false; render(); }; foot.append(c); }
+      sec.append(foot);
+    }
+  }
+
+  function render() {
+    if (!S.sel || !S.polls.some(p => p.id === S.sel)) S.sel = (S.polls.find(p => p.status !== "closed") || S.polls[0] || {}).id || null;
+    renderList(); renderPoll();
+  }
+
+  // ---- writes -------------------------------------------------------------
+  let chain = Promise.resolve();
+  const queue = (fn) => (chain = chain.then(fn, fn));
+
+  function castVote(p, optId) {
+    if (!S.db || !S.uid || p.status === "closed") return;
+    const cur = (S.votes[S.uid] && S.votes[S.uid].picks) || {};
+    if ((cur[p.id] || null) === optId) return;
+    const picks = { ...cur }; if (optId) picks[p.id] = optId; else delete picks[p.id];
+    S.votes[S.uid] = { picks, updatedAt: Date.now() }; render();
+    queue(async () => {
+      try { await S.db.doc("votes/" + S.uid).set({ picks, updatedAt: Date.now() }); }
+      catch (e) {
+        if (e && e.code === "invalid_argument") { S.voteBlocked = true; }
+        else { const s = $("#voteStatus"); if (s) { s.textContent = "Your vote didn't save. Check your connection and try again."; s.classList.add("err"); } }
+        render();
+      }
+    });
+  }
+
+  function updatePoll(p, patch) {
+    queue(async () => { try { await S.db.doc("polls/" + p.id).update(patch); } catch (e) { notice("That change didn't save. Only the owner and editors can change a poll."); } });
+  }
+
+  function deletePoll(p) {
+    S.delArm = false;
+    queue(async () => {
+      try { await S.db.doc("polls/" + p.id).delete(); await S.db.doc("panels/" + p.id).delete(); S.sel = null; }
+      catch (e) { notice("The poll wasn't deleted. Only the owner and editors can delete polls."); }
+    });
+  }
+
+  async function createPoll() {
+    const q = $("#fQ").value.trim(), ctx = $("#fCtx").value.trim();
+    const labels = [...new Set($("#fOpts").value.split("\n").map(s => s.trim()).filter(Boolean))];
+    const st = $("#formStatus"); st.classList.remove("err");
+    if (!q) { st.textContent = "Add a question."; st.classList.add("err"); return; }
+    if (labels.length < 2 || labels.length > 8) { st.textContent = "Add between 2 and 8 different options, one per line."; st.classList.add("err"); return; }
+    const ref = S.db.collection("polls").doc();
+    const body = { question: q, context: ctx, options: labels.map((label, i) => ({ id: "o" + (i + 1), label })), status: "open", createdAt: Date.now() };
+    if (S.uid) body.createdBy = S.uid;
+    $("#createBtn").disabled = true; st.textContent = "Creating…";
+    try {
+      await ref.set(body); S.sel = ref.id; S.tab = "people";
+      $("#fQ").value = ""; $("#fCtx").value = ""; $("#fOpts").value = ""; st.textContent = "";
+      $("#newForm").hidden = true;
+    } catch (e) {
+      st.textContent = e && e.code === "quota_exceeded" ? "The poll store is full. Delete an old poll, then try again." : "The poll wasn't created. Only the owner and editors can create polls.";
+      st.classList.add("err");
+    } finally { $("#createBtn").disabled = false; }
+  }
+
+  // ---- AI panel -----------------------------------------------------------
+  function panelPrompt(p, persona, k) {
+    const n = p.options.length, order = p.options.map((_, i) => p.options[(i + k) % n]);
+    return [
+      `You are voting in a blind poll. Perspective: ${persona}.`,
+      `QUESTION: ${p.question}`,
+      p.context ? `CONTEXT: ${p.context}` : "",
+      "OPTIONS (vote on the IDs, not the order shown):",
+      ...order.map(o => `${o.id}: ${o.label}`),
+      "Judge only which option will perform best from your perspective. Every claim must be honest; penalise clickbait that the content would not pay off.",
+      `Reply with only a JSON object: {"vote": "<id>", "rank": ["<id>", ...all ${n} ids best to worst], "reason": "<one sentence, max 30 words>"}`
+    ].filter(Boolean).join("\n");
+  }
+
+  const SAMPLE_COPY = {
+    not_granted: "The AI panel needs your permission to use Claude. Allow it when asked, then try again.",
+    rate_limited: "Too many requests right now. Wait a minute, then try again.",
+    cancelled: "Stopped. Nothing was saved.",
+    invalid_json: "The voters' answers came back unreadable. Try again."
+  };
+
+  async function runPanel(p) {
+    const ctl = new AbortController(); S.panelRun = ctl; S.panelErr = false;
+    let done = 0; S.panelMsg = "Thinking… each voter takes up to a minute."; render();
+    const ids = p.options.map(o => o.id);
+    const jobs = PERSONAS.map(([name, desc], k) =>
+      S.sample.json(panelPrompt(p, desc, k), { signal: ctl.signal, modelTier: "default" }).then(r => {
+        done++; S.panelMsg = `${done} of ${PERSONAS.length} voters answered…`; const s = $("#panelStatus"); if (s) s.textContent = S.panelMsg;
+        const vote = ids.includes(r && r.vote) ? r.vote : null;
+        const rank = Array.isArray(r && r.rank) ? [...new Set(r.rank.filter(id => ids.includes(id)))] : [];
+        for (const id of ids) if (!rank.includes(id)) rank.push(id);
+        if (!vote) throw { code: "invalid_json" };
+        if (rank[0] !== vote) { rank.splice(rank.indexOf(vote), 1); rank.unshift(vote); }
+        return { persona: name, vote, rank, reason: String((r && r.reason) || "").slice(0, 240) };
+      }));
+    const settled = await Promise.allSettled(jobs);
+    const ballots = settled.filter(s => s.status === "fulfilled").map(s => s.value);
+    const firstErr = settled.find(s => s.status === "rejected");
+    S.panelRun = null;
+    if (ballots.length >= 3 && !ctl.signal.aborted) {
+      try {
+        await S.db.doc("panels/" + p.id).set({ ballots, ranAt: Date.now() });
+        S.panelMsg = ballots.length < PERSONAS.length ? `${ballots.length} of ${PERSONAS.length} voters answered; results saved.` : "";
+      } catch (e) { S.panelMsg = "The panel voted, but the results didn't save. Only the owner and editors can save a panel."; S.panelErr = true; }
+    } else {
+      const code = firstErr && firstErr.reason && firstErr.reason.code;
+      S.panelMsg = SAMPLE_COPY[code] || (ballots.length ? "Too few voters answered to count. Try again." : "The AI panel didn't answer. Try again in a moment.");
+      S.panelErr = code !== "cancelled";
+    }
+    render();
+  }
+
+  // ---- boot ---------------------------------------------------------------
+  $("#newBtn").onclick = () => { $("#newForm").hidden = false; $("#fQ").focus(); };
+  $("#cancelBtn").onclick = () => { $("#newForm").hidden = true; $("#formStatus").textContent = ""; };
+  $("#createBtn").onclick = createPoll;
+
+  async function boot() {
+    if (!window.claude || !window.claude.use) { $("#roleChip").textContent = "Offline"; notice("Open this page on claude.ai to vote. The poll data lives in its shared store."); S.loaded.polls = true; render(); return; }
+    const [db, user, sample] = await Promise.all(["db", "user", "sample"].map(n => window.claude.use(n).catch(() => null)));
+    S.db = db; S.user = user; S.sample = sample;
+    if (user) { S.uid = await user.id(); S.canEdit = await user.canEdit(); S.isOwner = await user.isOwner(); }
+    $("#roleChip").textContent = S.isOwner ? "Owner" : S.canEdit ? "Editor" : (S.uid ? "Voter" : "Guest");
+    $("#newBtn").hidden = !(S.canEdit && db);
+    if (!db) { notice("Voting needs the shared poll store, which isn't available in this view. Open the page on claude.ai while signed in."); S.loaded.polls = true; render(); return; }
+    const fail = (what) => (e) => { if (e && e.code === "revoked") notice("Your access to this poll changed. Reload the page."); else notice(`Live ${what} stopped updating. Reload the page.`); };
+    db.collection("polls").orderBy("createdAt", "desc").onSnapshot(snap => {
+      S.polls = snap.docs.map(d => ({ id: d.id, ...d.data() })).filter(p => Array.isArray(p.options) && p.options.length >= 2);
+      S.loaded.polls = true; render();
+    }, fail("polls"));
+    db.collection("votes").onSnapshot(snap => {
+      const v = {}; for (const d of snap.docs) v[d.id] = d.data(); S.votes = v; S.loaded.votes = true; render();
+    }, fail("votes"));
+    db.collection("panels").onSnapshot(snap => {
+      const v = {}; for (const d of snap.docs) v[d.id] = d.data(); S.panels = v; S.loaded.panels = true; render();
+    }, fail("AI panel results"));
+  }
+  boot();
+})();
+</script>

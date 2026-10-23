@@ -1,0 +1,637 @@
+<!doctype html>
+<!-- $MSTR · how the bitcoin move hit the math. Editorial data-motion, three colours.
+     No photography/faces/logos. Figures traceable to FACTS.md. Rolling digits use the
+     HyperFrames registry `number-wheel` primitive, inlined verbatim. -->
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="vendor/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#0B0B0C}
+:root{--ink:#0B0B0C;--paper:#F5F5F3;--accent:#D42A2A;--muted:#6E6E6E;--brand:#D42A2A}
+#root{width:100%;height:100%;position:relative;background:var(--ink);font-family:"Liberation Sans","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.clip{position:absolute;inset:0}
+.frame{position:absolute;inset:0;pointer-events:none}
+.fr-t{position:absolute;left:110px;right:110px;top:190px;height:1px;background:rgba(245,245,243,.09)}
+.fr-b{position:absolute;left:110px;right:110px;top:1790px;height:1px;background:rgba(245,245,243,.09)}
+.slug{position:absolute;right:110px;top:152px;color:#797979;font-size:21px;letter-spacing:.24em}
+.num{position:absolute;right:110px;top:1812px;color:#797979;font-size:21px;letter-spacing:.2em}
+.tick{position:absolute;width:16px;height:16px;border-color:rgba(245,245,243,.18);border-style:solid;border-width:0}
+.tick.tl{left:110px;top:190px;border-left-width:1px;border-top-width:1px}
+.tick.tr{right:110px;top:190px;border-right-width:1px;border-top-width:1px}
+.kicker{position:absolute;left:110px;top:250px;color:var(--muted);font-size:27px;letter-spacing:.34em;text-transform:uppercase;font-weight:700}
+.stamp{position:absolute;left:110px;top:1722px;color:var(--muted);font-size:25px;letter-spacing:.03em}
+.rulebar{position:absolute;left:110px;top:310px;width:180px;height:5px;background:var(--accent);transform-origin:left center}
+.lbl{color:var(--muted);font-size:29px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;line-height:1.35}
+.big{color:var(--paper);font-weight:800;letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
+.red{color:var(--accent)}
+.tag{display:inline-block;color:var(--accent);font-size:30px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.thLabel{position:absolute;color:var(--muted);font-size:27px;letter-spacing:.05em}
+.rowName{position:absolute;color:var(--paper);font-size:38px;font-weight:800;letter-spacing:.02em}
+.rowVal{position:absolute;color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em}
+#compliance{position:absolute;left:110px;top:1620px;color:var(--accent);font-size:29px;font-weight:700;letter-spacing:.05em}
+#discCard{position:absolute;inset:0;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 110px}
+#discCard .dl1{color:var(--paper);font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.18}
+#discCard .dl2{color:var(--muted);font-size:31px;line-height:1.5;margin-top:38px}
+#discCard .dbar{width:180px;height:5px;background:var(--accent);margin-bottom:46px}
+.capline{position:absolute;left:100px;top:1466px;width:880px;text-align:center;font-size:43px;font-weight:800;
+  letter-spacing:.004em;line-height:1.25;opacity:0;visibility:hidden;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+.capline span{color:rgba(245,245,243,.46);margin:0 .15em}
+#prog{position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--accent);transform-origin:left center;transform:scaleX(0)}
+
+  .hf-number-wheel {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--hf-wheel-gap, 0.02em);
+    color: var(--hf-wheel-color, inherit);
+    font-variant-numeric: tabular-nums;
+  }
+  .hf-number-wheel-digit {
+    display: inline-block;
+    height: 1em;
+    overflow: hidden;
+  }
+  .hf-number-wheel-strip {
+    display: grid;
+    transform: translateY(0em);
+    will-change: transform;
+  }
+  .hf-number-wheel-strip span {
+    height: 1em;
+    line-height: 1em;
+  }
+
+</style></head><body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="117.535" data-width="1080" data-height="1920">
+<div id="s1" class="clip" data-start="0.0" data-duration="5.474" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">01</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar" id="r1"></div><div class="kicker" id="k1">The divergence</div><div class="lbl" id="a1" style="position:absolute;left:110px;top:560px">Bitcoin</div><div class="big" id="a2" style="position:absolute;left:110px;top:606px;font-size:130px">HIGHEST<br>SINCE JAN</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="a3" x1="110" y1="960" x2="970" y2="960" stroke="#242427" stroke-width="3"/></svg><div class="lbl" id="a4" style="position:absolute;left:110px;top:1010px">Strategy stock · 12 months</div><div class="big red" id="a5" style="position:absolute;left:110px;top:1056px;font-size:150px">−79%</div><div class="stamp">Prices as of 2026-09-21</div><div id="compliance">Educational only. Not financial advice.</div></div>
+<div id="s2" class="clip" data-start="5.474" data-duration="18.45" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">02</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">What it owns</div><div class="lbl" id="b1" style="position:absolute;left:110px;top:560px">Bitcoin held</div><div class="big" id="b2" style="position:absolute;left:110px;top:612px;font-size:132px"><span class="hf-number-wheel " data-value="845,256"></span></div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="b3" x1="110" y1="860" x2="970" y2="860" stroke="#242427" stroke-width="3"/></svg><div class="lbl" id="b4" style="position:absolute;left:110px;top:910px">Average cost per coin</div><div class="big" id="b5" style="position:absolute;left:110px;top:956px;font-size:108px">$75,400</div><div class="lbl" id="b6" style="position:absolute;left:110px;top:1150px">Bitcoin this week</div><div class="big" id="b7" style="position:absolute;left:110px;top:1196px;font-size:108px">$<span class="hf-number-wheel " data-value="86,000"></span></div><div class="tag" id="b8" style="position:absolute;left:110px;top:1350px">Coins above cost</div><div class="stamp">Holdings per bitcointreasuries · price 2026-09-21</div></div>
+<div id="s3" class="clip" data-start="23.924" data-duration="6.595" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">03</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">But the stock</div><div class="big red" id="c1" style="position:absolute;left:110px;top:600px;font-size:190px">−38%</div><div class="lbl" id="c2" style="position:absolute;left:110px;top:840px">Year to date</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="c3" x1="110" y1="960" x2="970" y2="960" stroke="#D42A2A" stroke-width="5"/></svg><div class="big" id="c4" style="position:absolute;left:110px;top:1010px;font-size:76px;width:880px">The coins are up.<br>The equity is not.</div><div class="stamp">As of 2026-09-21</div></div>
+<div id="s4" class="clip" data-start="30.519" data-duration="11.367" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">04</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">The number that matters</div><div class="lbl" id="d1" style="position:absolute;left:110px;top:600px">Market value</div><div class="big" id="d2" style="position:absolute;left:110px;top:660px;font-size:96px">÷ BITCOIN HELD</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="d3" x1="110" y1="820" x2="970" y2="820" stroke="#242427" stroke-width="3"/></svg><div class="big red" id="d4" style="position:absolute;left:110px;top:870px;font-size:180px">mNAV</div><div class="lbl" id="d5" style="position:absolute;left:110px;top:1100px;width:880px">What the market pays<br>for each coin it owns</div><div class="stamp">Definition per public mNAV trackers</div></div>
+<div id="s5" class="clip" data-start="41.886" data-duration="18.145" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">05</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">The collapse</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line x1="110" y1="1180" x2="970" y2="1180" stroke="#6E6E6E" stroke-width="3" stroke-dasharray="10 10"/><polyline id="e1" points="150,700 400,830 650,1090 900,1210" fill="none" stroke="#D42A2A" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><circle id="e2" cx="150" cy="700" r="13" fill="#F5F5F3"/><circle id="e3" cx="900" cy="1210" r="13" fill="#D42A2A"/></svg><div class="thLabel" id="e4" style="left:110px;top:640px">2024 · 3.4×</div><div class="thLabel" id="e5" style="left:700px;top:1238px;color:#F5F5F3">now · 1.16×</div><div class="thLabel" id="e6" style="left:110px;top:1200px">1.0× — parity with the coins</div><div class="big" id="e7" style="position:absolute;left:110px;top:1296px;font-size:56px;width:880px">Fully diluted, some trackers<br>put it <span class="red">under one</span>.</div><div class="stamp">Multiples per public mNAV trackers · 2026-09-21</div></div>
+<div id="s6" class="clip" data-start="60.031" data-duration="14.077" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">06</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">Why the premium was the engine</div><div class="lbl" id="f1" style="position:absolute;left:110px;top:580px">Above 1.0×</div><div class="big" id="f2" style="position:absolute;left:110px;top:626px;font-size:82px;width:880px">Issue shares → buy coins →<br>bitcoin per share rises</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="f3" x1="110" y1="900" x2="970" y2="900" stroke="#242427" stroke-width="3"/></svg><div class="lbl" id="f4" style="position:absolute;left:110px;top:950px;color:#D42A2A">Below 1.0×</div><div class="big red" id="f5" style="position:absolute;left:110px;top:996px;font-size:82px;width:880px">The same move<br>works in reverse</div><div class="tag" id="f6" style="position:absolute;left:110px;top:1260px;font-size:34px">The flywheel ran on the premium</div><div class="stamp">Mechanism, not a forecast</div></div>
+<div id="s7" class="clip" data-start="74.108" data-duration="17.959" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">07</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">So it started selling</div><div class="lbl" id="n1" style="position:absolute;left:110px;top:580px">Reported in a July filing</div><div class="big red" id="n2" style="position:absolute;left:110px;top:632px;font-size:150px"><span class="hf-number-wheel " data-value="3,588"></span></div><div class="lbl" id="n3" style="position:absolute;left:110px;top:840px">coins sold · about $216 million</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="n4" x1="110" y1="960" x2="970" y2="960" stroke="#242427" stroke-width="3"/></svg><div class="lbl" id="n5" style="position:absolute;left:110px;top:1010px">Across 2026</div><div class="big" id="n6" style="position:absolute;left:110px;top:1056px;font-size:104px">~6,900 coins</div><div class="tag" id="n7" style="position:absolute;left:110px;top:1240px;font-size:32px">Most of it below average cost</div><div class="stamp">Per company 8-K, 2026-07-06</div></div>
+<div id="s8" class="clip" data-start="92.067" data-duration="8.189" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">08</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">The part people miss</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line x1="110" y1="1040" x2="970" y2="1040" stroke="#242427" stroke-width="3"/><path id="h1" d="M 180 1040 L 430 720" stroke="#F5F5F3" stroke-width="10" fill="none" stroke-linecap="round"/><path id="h2" d="M 640 1120 L 900 1120" stroke="#D42A2A" stroke-width="10" fill="none" stroke-linecap="round"/></svg><div class="rowName" id="h3" style="left:180px;top:620px">BITCOIN</div><div class="rowVal" id="h4" style="left:180px;top:666px">RALLIED</div><div class="rowName" id="h5" style="left:640px;top:1180px">THE PREMIUM</div><div class="rowVal red" id="h6" style="left:640px;top:1226px">DID NOT</div><div class="stamp">Weekly move to 2026-09-21</div></div>
+<div id="s9" class="clip" data-start="100.256" data-duration="12.779" data-track-index="0"><div class="frame"><div class="fr-t"></div><div class="fr-b"></div><div class="slug">$MSTR · BITCOIN MATH</div><div class="num">09</div><div class="tick tl"></div><div class="tick tr"></div></div><div class="rulebar"></div><div class="kicker">What to actually watch</div><div class="big" id="i1" style="position:absolute;left:110px;top:600px;font-size:92px">BITCOIN<br>PER SHARE</div><div class="lbl" id="i2" style="position:absolute;left:110px;top:840px">what they own</div><svg width="1080" height="1920" style="position:absolute;inset:0"><line id="i3" x1="110" y1="940" x2="970" y2="940" stroke="#D42A2A" stroke-width="5"/></svg><div class="big red" id="i4" style="position:absolute;left:110px;top:990px;font-size:92px">THE<br>MULTIPLE</div><div class="lbl" id="i5" style="position:absolute;left:110px;top:1230px">what you pay for it</div><div class="stamp">Educational only · not investment advice</div></div>
+<div id="s10" class="clip" data-start="113.035" data-duration="4.5" data-track-index="0"><div id="discCard"><div class="dbar" id="dbar"></div><div class="dl1" id="dl1">Educational only.<br>Not financial advice.</div><div class="dl2" id="dl2">Market commentary, not a recommendation to buy or sell any security.<br>Figures as of the dates shown. Sources in the description.</div></div></div>
+<div id="caps">
+<div class="capline" id="g0"><span id="w0_0">Bitcoin</span><span id="w0_1">is</span><span id="w0_2">at</span><span id="w0_3">its</span><span id="w0_4">highest</span></div>
+<div class="capline" id="g1"><span id="w1_0">since</span><span id="w1_1">January.</span></div>
+<div class="capline" id="g2"><span id="w2_0">Strategy's</span><span id="w2_1">stock</span><span id="w2_2">fell</span><span id="w2_3">nearly</span><span id="w2_4">eighty</span></div>
+<div class="capline" id="g3"><span id="w3_0">percent.</span></div>
+<div class="capline" id="g4"><span id="w4_0">Strategy</span><span id="w4_1">holds</span><span id="w4_2">eight</span><span id="w4_3">hundred</span><span id="w4_4">forty</span></div>
+<div class="capline" id="g5"><span id="w5_0">five</span><span id="w5_1">thousand</span><span id="w5_2">bitcoin.</span></div>
+<div class="capline" id="g6"><span id="w6_0">Its</span><span id="w6_1">average</span><span id="w6_2">cost</span><span id="w6_3">is</span><span id="w6_4">about</span></div>
+<div class="capline" id="g7"><span id="w7_0">seventy</span><span id="w7_1">five</span><span id="w7_2">thousand</span><span id="w7_3">four</span><span id="w7_4">hundred</span></div>
+<div class="capline" id="g8"><span id="w8_0">dollars</span><span id="w8_1">a</span><span id="w8_2">coin.</span></div>
+<div class="capline" id="g9"><span id="w9_0">Bitcoin</span><span id="w9_1">traded</span><span id="w9_2">near</span><span id="w9_3">eighty</span><span id="w9_4">six</span></div>
+<div class="capline" id="g10"><span id="w10_0">thousand</span><span id="w10_1">this</span><span id="w10_2">week,</span><span id="w10_3">up</span><span id="w10_4">almost</span></div>
+<div class="capline" id="g11"><span id="w11_0">six</span><span id="w11_1">percent,</span><span id="w11_2">its</span><span id="w11_3">highest</span><span id="w11_4">since</span></div>
+<div class="capline" id="g12"><span id="w12_0">late</span><span id="w12_1">January.</span></div>
+<div class="capline" id="g13"><span id="w13_0">So</span><span id="w13_1">the</span><span id="w13_2">coins</span><span id="w13_3">are</span><span id="w13_4">above</span></div>
+<div class="capline" id="g14"><span id="w14_0">water.</span></div>
+<div class="capline" id="g15"><span id="w15_0">The</span><span id="w15_1">stock</span><span id="w15_2">is</span><span id="w15_3">not.</span></div>
+<div class="capline" id="g16"><span id="w16_0">It</span><span id="w16_1">is</span><span id="w16_2">down</span><span id="w16_3">about</span><span id="w16_4">thirty</span></div>
+<div class="capline" id="g17"><span id="w17_0">eight</span><span id="w17_1">percent</span><span id="w17_2">this</span><span id="w17_3">year.</span></div>
+<div class="capline" id="g18"><span id="w18_0">Here</span><span id="w18_1">is</span><span id="w18_2">the</span><span id="w18_3">math</span><span id="w18_4">that</span></div>
+<div class="capline" id="g19"><span id="w19_0">broke.</span></div>
+<div class="capline" id="g20"><span id="w20_0">Strategy</span><span id="w20_1">never</span><span id="w20_2">traded</span><span id="w20_3">on</span><span id="w20_4">the</span></div>
+<div class="capline" id="g21"><span id="w21_0">coins</span><span id="w21_1">alone.</span></div>
+<div class="capline" id="g22"><span id="w22_0">It</span><span id="w22_1">traded</span><span id="w22_2">on</span><span id="w22_3">a</span><span id="w22_4">premium</span></div>
+<div class="capline" id="g23"><span id="w23_0">to</span><span id="w23_1">them.</span></div>
+<div class="capline" id="g24"><span id="w24_0">Analysts</span><span id="w24_1">call</span><span id="w24_2">it</span><span id="w24_3">mNAV.</span></div>
+<div class="capline" id="g25"><span id="w25_0">Market</span><span id="w25_1">value,</span><span id="w25_2">divided</span><span id="w25_3">by</span><span id="w25_4">the</span></div>
+<div class="capline" id="g26"><span id="w26_0">bitcoin</span><span id="w26_1">it</span><span id="w26_2">holds.</span></div>
+<div class="capline" id="g27"><span id="w27_0">In</span><span id="w27_1">2024</span><span id="w27_2">that</span><span id="w27_3">multiple</span><span id="w27_4">ran</span></div>
+<div class="capline" id="g28"><span id="w28_0">near</span><span id="w28_1">three</span><span id="w28_2">point</span><span id="w28_3">four.</span></div>
+<div class="capline" id="g29"><span id="w29_0">Trackers</span><span id="w29_1">now</span><span id="w29_2">put</span><span id="w29_3">it</span><span id="w29_4">around</span></div>
+<div class="capline" id="g30"><span id="w30_0">one</span><span id="w30_1">point</span><span id="w30_2">one</span><span id="w30_3">six.</span></div>
+<div class="capline" id="g31"><span id="w31_0">And</span><span id="w31_1">that</span><span id="w31_2">is</span><span id="w31_3">the</span><span id="w31_4">headline</span></div>
+<div class="capline" id="g32"><span id="w32_0">number.</span></div>
+<div class="capline" id="g33"><span id="w33_0">On</span><span id="w33_1">a</span><span id="w33_2">fully</span><span id="w33_3">diluted</span><span id="w33_4">basis,</span></div>
+<div class="capline" id="g34"><span id="w34_0">some</span><span id="w34_1">trackers</span><span id="w34_2">put</span><span id="w34_3">it</span><span id="w34_4">under</span></div>
+<div class="capline" id="g35"><span id="w35_0">one</span><span id="w35_1">already.</span></div>
+<div class="capline" id="g36"><span id="w36_0">In</span><span id="w36_1">June,</span><span id="w36_2">the</span><span id="w36_3">whole</span><span id="w36_4">company</span></div>
+<div class="capline" id="g37"><span id="w37_0">was</span><span id="w37_1">worth</span><span id="w37_2">less</span><span id="w37_3">than</span><span id="w37_4">its</span></div>
+<div class="capline" id="g38"><span id="w38_0">coins.</span></div>
+<div class="capline" id="g39"><span id="w39_0">That</span><span id="w39_1">premium</span><span id="w39_2">was</span><span id="w39_3">the</span><span id="w39_4">engine.</span></div>
+<div class="capline" id="g40"><span id="w40_0">Above</span><span id="w40_1">one,</span><span id="w40_2">the</span><span id="w40_3">company</span><span id="w40_4">could</span></div>
+<div class="capline" id="g41"><span id="w41_0">issue</span><span id="w41_1">shares,</span><span id="w41_2">buy</span><span id="w41_3">more</span><span id="w41_4">bitcoin,</span></div>
+<div class="capline" id="g42"><span id="w42_0">and</span><span id="w42_1">raise</span><span id="w42_2">bitcoin</span><span id="w42_3">per</span><span id="w42_4">share.</span></div>
+<div class="capline" id="g43"><span id="w43_0">Below</span><span id="w43_1">one,</span><span id="w43_2">issuing</span><span id="w43_3">shares</span><span id="w43_4">does</span></div>
+<div class="capline" id="g44"><span id="w44_0">the</span><span id="w44_1">opposite.</span></div>
+<div class="capline" id="g45"><span id="w45_0">The</span><span id="w45_1">flywheel</span><span id="w45_2">ran</span><span id="w45_3">on</span><span id="w45_4">the</span></div>
+<div class="capline" id="g46"><span id="w46_0">premium,</span><span id="w46_1">not</span><span id="w46_2">on</span><span id="w46_3">the</span><span id="w46_4">coin.</span></div>
+<div class="capline" id="g47"><span id="w47_0">So</span><span id="w47_1">the</span><span id="w47_2">company</span><span id="w47_3">started</span><span id="w47_4">selling.</span></div>
+<div class="capline" id="g48"><span id="w48_0">A</span><span id="w48_1">July</span><span id="w48_2">filing</span><span id="w48_3">reported</span><span id="w48_4">three</span></div>
+<div class="capline" id="g49"><span id="w49_0">thousand</span><span id="w49_1">five</span><span id="w49_2">hundred</span><span id="w49_3">eighty</span><span id="w49_4">eight</span></div>
+<div class="capline" id="g50"><span id="w50_0">coins</span><span id="w50_1">sold,</span><span id="w50_2">for</span><span id="w50_3">about</span><span id="w50_4">two</span></div>
+<div class="capline" id="g51"><span id="w51_0">hundred</span><span id="w51_1">sixteen</span><span id="w51_2">million</span><span id="w51_3">dollars.</span></div>
+<div class="capline" id="g52"><span id="w52_0">Across</span><span id="w52_1">2026,</span><span id="w52_2">roughly</span><span id="w52_3">six</span><span id="w52_4">thousand</span></div>
+<div class="capline" id="g53"><span id="w53_0">nine</span><span id="w53_1">hundred</span><span id="w53_2">coins.</span></div>
+<div class="capline" id="g54"><span id="w54_0">Most</span><span id="w54_1">of</span><span id="w54_2">it</span><span id="w54_3">below</span><span id="w54_4">its</span></div>
+<div class="capline" id="g55"><span id="w55_0">own</span><span id="w55_1">average</span><span id="w55_2">cost.</span></div>
+<div class="capline" id="g56"><span id="w56_0">Here</span><span id="w56_1">is</span><span id="w56_2">the</span><span id="w56_3">part</span><span id="w56_4">people</span></div>
+<div class="capline" id="g57"><span id="w57_0">miss.</span></div>
+<div class="capline" id="g58"><span id="w58_0">Bitcoin</span><span id="w58_1">rallying</span><span id="w58_2">does</span><span id="w58_3">not</span><span id="w58_4">repair</span></div>
+<div class="capline" id="g59"><span id="w59_0">this.</span></div>
+<div class="capline" id="g60"><span id="w60_0">The</span><span id="w60_1">coin</span><span id="w60_2">went</span><span id="w60_3">up.</span></div>
+<div class="capline" id="g61"><span id="w61_0">The</span><span id="w61_1">premium</span><span id="w61_2">did</span><span id="w61_3">not</span><span id="w61_4">come</span></div>
+<div class="capline" id="g62"><span id="w62_0">back.</span></div>
+<div class="capline" id="g63"><span id="w63_0">So</span><span id="w63_1">if</span><span id="w63_2">you</span><span id="w63_3">follow</span><span id="w63_4">this</span></div>
+<div class="capline" id="g64"><span id="w64_0">company,</span><span id="w64_1">the</span><span id="w64_2">number</span><span id="w64_3">to</span><span id="w64_4">watch</span></div>
+<div class="capline" id="g65"><span id="w65_0">is</span><span id="w65_1">not</span><span id="w65_2">the</span><span id="w65_3">bitcoin</span><span id="w65_4">price.</span></div>
+<div class="capline" id="g66"><span id="w66_0">It</span><span id="w66_1">is</span><span id="w66_2">bitcoin</span><span id="w66_3">per</span><span id="w66_4">share,</span></div>
+<div class="capline" id="g67"><span id="w67_0">and</span><span id="w67_1">the</span><span id="w67_2">multiple.</span></div>
+<div class="capline" id="g68"><span id="w68_0">One</span><span id="w68_1">tells</span><span id="w68_2">you</span><span id="w68_3">what</span><span id="w68_4">they</span></div>
+<div class="capline" id="g69"><span id="w69_0">own.</span></div>
+<div class="capline" id="g70"><span id="w70_0">The</span><span id="w70_1">other</span><span id="w70_2">tells</span><span id="w70_3">you</span><span id="w70_4">what</span></div>
+<div class="capline" id="g71"><span id="w71_0">you</span><span id="w71_1">are</span><span id="w71_2">paying</span><span id="w71_3">for</span><span id="w71_4">it.</span></div>
+</div>
+<div id="prog"></div>
+<audio id="vo" src="vo.wav" data-start="0" data-duration="112.835" data-track-index="10" data-volume="1"></audio>
+</div>
+<script>
+  (function () {
+    const vars =
+      window.__hyperframes && window.__hyperframes.getVariables
+        ? window.__hyperframes.getVariables()
+        : {};
+
+    // Unrecognised overrides return to their declared defaults.
+    const spins = { single: 0, double: 1, triple: 2 };
+    const gaps = { tight: "0em", standard: "0.02em", wide: "0.14em" };
+    const tones = {
+      inherit: "inherit",
+      ink: "#18181b",
+      paper: "#fafafa",
+      accent: "var(--brand, #34d399)",
+    };
+    const pick = (table, value, fallback) =>
+      Object.prototype.hasOwnProperty.call(table, value) ? table[value] : table[fallback];
+
+    const cycles = pick(spins, vars.spin, "single");
+    const gap = pick(gaps, vars.spacing, "standard");
+    const tone = pick(tones, vars.tone, "inherit");
+
+    document.querySelectorAll(".hf-number-wheel").forEach((el) => {
+      if (el.dataset.hfNumberWheelReady === "1") return;
+      el.style.setProperty("--hf-wheel-gap", gap);
+      el.style.setProperty("--hf-wheel-color", tone);
+      const value = el.dataset.value || "0";
+      el.textContent = "";
+      for (const char of value) {
+        if (!/\d/.test(char)) {
+          el.append(document.createTextNode(char));
+          continue;
+        }
+        const stops = cycles * 10 + Number(char);
+        const frame = document.createElement("span");
+        frame.className = "hf-number-wheel-digit";
+        const strip = document.createElement("span");
+        strip.className = "hf-number-wheel-strip";
+        strip.style.setProperty("--hf-number-target-y", `${-stops}em`);
+        for (let i = 0; i <= stops; i++) {
+          const step = document.createElement("span");
+          step.textContent = String(i % 10);
+          strip.appendChild(step);
+        }
+        frame.appendChild(strip);
+        el.appendChild(frame);
+      }
+      el.dataset.hfNumberWheelReady = "1";
+    });
+  })();
+</script>
+<script>
+const tl=gsap.timeline({paused:true}),E="power3.out";
+const up=(s,at,d=.55,y=34)=>tl.fromTo(s,{opacity:0,y},{opacity:1,y:0,duration:d,ease:E},at);
+const bar=(s,at,d=.7)=>tl.fromTo(s,{scaleX:0},{scaleX:1,duration:d,ease:"power3.inOut"},at);
+tl.fromTo("#prog",{scaleX:0},{scaleX:1,duration:117.535,ease:"none"},0);
+bar("#s1 .rulebar",0.050,.5); up("#s1 .kicker",0.150);
+tl.fromTo("#s1 .stamp",{opacity:0},{opacity:1,duration:.4},2.200);
+bar("#s2 .rulebar",5.524,.5); up("#s2 .kicker",5.624);
+tl.fromTo("#s2 .stamp",{opacity:0},{opacity:1,duration:.4},7.674);
+tl.fromTo("#s2 .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.15,ease:"power3.out",stagger:.055,immediateRender:false},6.124);
+bar("#s3 .rulebar",23.974,.5); up("#s3 .kicker",24.074);
+tl.fromTo("#s3 .stamp",{opacity:0},{opacity:1,duration:.4},26.124);
+bar("#s4 .rulebar",30.569,.5); up("#s4 .kicker",30.669);
+tl.fromTo("#s4 .stamp",{opacity:0},{opacity:1,duration:.4},32.719);
+bar("#s5 .rulebar",41.936,.5); up("#s5 .kicker",42.036);
+tl.fromTo("#s5 .stamp",{opacity:0},{opacity:1,duration:.4},44.086);
+bar("#s6 .rulebar",60.081,.5); up("#s6 .kicker",60.181);
+tl.fromTo("#s6 .stamp",{opacity:0},{opacity:1,duration:.4},62.231);
+bar("#s7 .rulebar",74.158,.5); up("#s7 .kicker",74.258);
+tl.fromTo("#s7 .stamp",{opacity:0},{opacity:1,duration:.4},76.308);
+tl.fromTo("#s7 .hf-number-wheel-strip",{y:0},{y:(_,s)=>s.style.getPropertyValue("--hf-number-target-y"),duration:1.15,ease:"power3.out",stagger:.055,immediateRender:false},74.758);
+bar("#s8 .rulebar",92.117,.5); up("#s8 .kicker",92.217);
+tl.fromTo("#s8 .stamp",{opacity:0},{opacity:1,duration:.4},94.267);
+bar("#s9 .rulebar",100.306,.5); up("#s9 .kicker",100.406);
+tl.fromTo("#s9 .stamp",{opacity:0},{opacity:1,duration:.4},102.456);
+up("#a1",0.450,.55,30);
+up("#a2",1.200,.55,30);
+up("#a4",1.950,.55,30);
+up("#a5",2.700,.55,30);
+up("#b1",5.924,.55,30);
+up("#b2",6.674,.55,30);
+up("#b4",7.424,.55,30);
+up("#b5",8.174,.55,30);
+up("#b6",8.924,.55,30);
+up("#b7",9.674,.55,30);
+up("#b8",10.424,.55,30);
+up("#c1",24.374,.55,30);
+up("#c2",25.124,.55,30);
+up("#c4",25.874,.55,30);
+up("#d1",30.969,.55,30);
+up("#d2",31.719,.55,30);
+up("#d4",32.469,.55,30);
+up("#d5",33.219,.55,30);
+up("#e4",42.336,.55,30);
+up("#e7",43.086,.55,30);
+up("#f1",60.481,.55,30);
+up("#f2",61.231,.55,30);
+up("#f4",61.981,.55,30);
+up("#f5",62.731,.55,30);
+up("#f6",63.481,.55,30);
+up("#n1",74.558,.55,30);
+up("#n2",75.308,.55,30);
+up("#n3",76.058,.55,30);
+up("#n5",76.808,.55,30);
+up("#n6",77.558,.55,30);
+up("#n7",78.308,.55,30);
+up("#h3",92.517,.55,30);
+up("#h4",93.267,.55,30);
+up("#h5",94.017,.55,30);
+up("#h6",94.767,.55,30);
+up("#i1",100.706,.55,30);
+up("#i2",101.456,.55,30);
+up("#i4",102.206,.55,30);
+up("#i5",102.956,.55,30);
+tl.fromTo("#compliance",{opacity:0},{opacity:1,duration:.35},0.300).to("#compliance",{opacity:0,duration:.3},4.400);
+tl.set("#e1",{strokeDasharray:1000,strokeDashoffset:1000},41.886).to("#e1",{strokeDashoffset:0,duration:1.6,ease:"power2.inOut"},42.586);
+tl.fromTo("#e2",{scale:0,transformOrigin:"center"},{scale:1,duration:.3,ease:"back.out(2)"},42.586);
+tl.fromTo("#e3",{scale:0,transformOrigin:"center"},{scale:1,duration:.35,ease:"back.out(2.5)"},44.186);
+up("#e5",44.386);up("#e6",44.986);
+tl.set("#h1",{strokeDasharray:420,strokeDashoffset:420},92.867).to("#h1",{strokeDashoffset:0,duration:.85,ease:"power2.out"},92.967);
+tl.set("#h2",{strokeDasharray:420,strokeDashoffset:420},94.467).to("#h2",{strokeDashoffset:0,duration:.85,ease:"power2.out"},94.567);
+tl.fromTo("#dbar",{scaleX:0,transformOrigin:"left"},{scaleX:1,duration:.5,ease:E},113.235);
+tl.fromTo("#dl1",{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:E},113.435);
+tl.fromTo("#dl2",{opacity:0},{opacity:1,duration:.6},114.035);
+tl.to("#g0",{autoAlpha:1,duration:.01},0.000).to("#g0",{autoAlpha:0,duration:.01},1.534);
+tl.to("#w0_0",{color:"#F5F5F3",duration:.01},0.000).to("#w0_0",{color:"rgba(245,245,243,.46)",duration:.01},0.491);
+tl.to("#w0_1",{color:"#F5F5F3",duration:.01},0.491).to("#w0_1",{color:"rgba(245,245,243,.46)",duration:.01},0.675);
+tl.to("#w0_2",{color:"#F5F5F3",duration:.01},0.675).to("#w0_2",{color:"rgba(245,245,243,.46)",duration:.01},0.860);
+tl.to("#w0_3",{color:"#F5F5F3",duration:.01},0.860).to("#w0_3",{color:"rgba(245,245,243,.46)",duration:.01},1.105);
+tl.to("#w0_4",{color:"#F5F5F3",duration:.01},1.105).to("#w0_4",{color:"rgba(245,245,243,.46)",duration:.01},1.596);
+tl.to("#g1",{autoAlpha:1,duration:.01},1.546).to("#g1",{autoAlpha:0,duration:.01},2.555);
+tl.to("#w1_0",{color:"#F5F5F3",duration:.01},1.596).to("#w1_0",{color:"rgba(245,245,243,.46)",duration:.01},1.965);
+tl.to("#w1_1",{color:"#F5F5F3",duration:.01},1.965).to("#w1_1",{color:"rgba(245,245,243,.46)",duration:.01},2.517);
+tl.to("#g2",{autoAlpha:1,duration:.01},2.567).to("#g2",{autoAlpha:0,duration:.01},4.620);
+tl.to("#w2_0",{color:"#F5F5F3",duration:.01},2.617).to("#w2_0",{color:"rgba(245,245,243,.46)",duration:.01},3.248);
+tl.to("#w2_1",{color:"#F5F5F3",duration:.01},3.248).to("#w2_1",{color:"rgba(245,245,243,.46)",duration:.01},3.593);
+tl.to("#w2_2",{color:"#F5F5F3",duration:.01},3.593).to("#w2_2",{color:"rgba(245,245,243,.46)",duration:.01},3.879);
+tl.to("#w2_3",{color:"#F5F5F3",duration:.01},3.879).to("#w2_3",{color:"rgba(245,245,243,.46)",duration:.01},4.281);
+tl.to("#w2_4",{color:"#F5F5F3",duration:.01},4.281).to("#w2_4",{color:"rgba(245,245,243,.46)",duration:.01},4.682);
+tl.to("#g3",{autoAlpha:1,duration:.01},4.632).to("#g3",{autoAlpha:0,duration:.01},5.499);
+tl.to("#w3_0",{color:"#F5F5F3",duration:.01},4.682).to("#w3_0",{color:"rgba(245,245,243,.46)",duration:.01},5.199);
+tl.to("#g4",{autoAlpha:1,duration:.01},5.699).to("#g4",{autoAlpha:0,duration:.01},7.888);
+tl.to("#w4_0",{color:"#F5F5F3",duration:.01},5.749).to("#w4_0",{color:"rgba(245,245,243,.46)",duration:.01},6.315);
+tl.to("#w4_1",{color:"#F5F5F3",duration:.01},6.315).to("#w4_1",{color:"rgba(245,245,243,.46)",duration:.01},6.692);
+tl.to("#w4_2",{color:"#F5F5F3",duration:.01},6.692).to("#w4_2",{color:"rgba(245,245,243,.46)",duration:.01},7.069);
+tl.to("#w4_3",{color:"#F5F5F3",duration:.01},7.069).to("#w4_3",{color:"rgba(245,245,243,.46)",duration:.01},7.573);
+tl.to("#w4_4",{color:"#F5F5F3",duration:.01},7.573).to("#w4_4",{color:"rgba(245,245,243,.46)",duration:.01},7.950);
+tl.to("#g5",{autoAlpha:1,duration:.01},7.900).to("#g5",{autoAlpha:0,duration:.01},9.435);
+tl.to("#w5_0",{color:"#F5F5F3",duration:.01},7.950).to("#w5_0",{color:"rgba(245,245,243,.46)",duration:.01},8.265);
+tl.to("#w5_1",{color:"#F5F5F3",duration:.01},8.265).to("#w5_1",{color:"rgba(245,245,243,.46)",duration:.01},8.831);
+tl.to("#w5_2",{color:"#F5F5F3",duration:.01},8.831).to("#w5_2",{color:"rgba(245,245,243,.46)",duration:.01},9.397);
+tl.to("#g6",{autoAlpha:1,duration:.01},9.447).to("#g6",{autoAlpha:0,duration:.01},11.106);
+tl.to("#w6_0",{color:"#F5F5F3",duration:.01},9.497).to("#w6_0",{color:"rgba(245,245,243,.46)",duration:.01},9.754);
+tl.to("#w6_1",{color:"#F5F5F3",duration:.01},9.754).to("#w6_1",{color:"rgba(245,245,243,.46)",duration:.01},10.268);
+tl.to("#w6_2",{color:"#F5F5F3",duration:.01},10.268).to("#w6_2",{color:"rgba(245,245,243,.46)",duration:.01},10.589);
+tl.to("#w6_3",{color:"#F5F5F3",duration:.01},10.589).to("#w6_3",{color:"rgba(245,245,243,.46)",duration:.01},10.782);
+tl.to("#w6_4",{color:"#F5F5F3",duration:.01},10.782).to("#w6_4",{color:"rgba(245,245,243,.46)",duration:.01},11.168);
+tl.to("#g7",{autoAlpha:1,duration:.01},11.118).to("#g7",{autoAlpha:0,duration:.01},13.356);
+tl.to("#w7_0",{color:"#F5F5F3",duration:.01},11.168).to("#w7_0",{color:"rgba(245,245,243,.46)",duration:.01},11.682);
+tl.to("#w7_1",{color:"#F5F5F3",duration:.01},11.682).to("#w7_1",{color:"rgba(245,245,243,.46)",duration:.01},12.003);
+tl.to("#w7_2",{color:"#F5F5F3",duration:.01},12.003).to("#w7_2",{color:"rgba(245,245,243,.46)",duration:.01},12.582);
+tl.to("#w7_3",{color:"#F5F5F3",duration:.01},12.582).to("#w7_3",{color:"rgba(245,245,243,.46)",duration:.01},12.903);
+tl.to("#w7_4",{color:"#F5F5F3",duration:.01},12.903).to("#w7_4",{color:"rgba(245,245,243,.46)",duration:.01},13.418);
+tl.to("#g8",{autoAlpha:1,duration:.01},13.368).to("#g8",{autoAlpha:0,duration:.01},14.484);
+tl.to("#w8_0",{color:"#F5F5F3",duration:.01},13.418).to("#w8_0",{color:"rgba(245,245,243,.46)",duration:.01},13.932);
+tl.to("#w8_1",{color:"#F5F5F3",duration:.01},13.932).to("#w8_1",{color:"rgba(245,245,243,.46)",duration:.01},14.060);
+tl.to("#w8_2",{color:"#F5F5F3",duration:.01},14.060).to("#w8_2",{color:"rgba(245,245,243,.46)",duration:.01},14.446);
+tl.to("#g9",{autoAlpha:1,duration:.01},14.496).to("#g9",{autoAlpha:0,duration:.01},16.555);
+tl.to("#w9_0",{color:"#F5F5F3",duration:.01},14.546).to("#w9_0",{color:"rgba(245,245,243,.46)",duration:.01},15.081);
+tl.to("#w9_1",{color:"#F5F5F3",duration:.01},15.081).to("#w9_1",{color:"rgba(245,245,243,.46)",duration:.01},15.548);
+tl.to("#w9_2",{color:"#F5F5F3",duration:.01},15.548).to("#w9_2",{color:"rgba(245,245,243,.46)",duration:.01},15.882);
+tl.to("#w9_3",{color:"#F5F5F3",duration:.01},15.882).to("#w9_3",{color:"rgba(245,245,243,.46)",duration:.01},16.350);
+tl.to("#w9_4",{color:"#F5F5F3",duration:.01},16.350).to("#w9_4",{color:"rgba(245,245,243,.46)",duration:.01},16.617);
+tl.to("#g10",{autoAlpha:1,duration:.01},16.567).to("#g10",{autoAlpha:0,duration:.01},18.560);
+tl.to("#w10_0",{color:"#F5F5F3",duration:.01},16.617).to("#w10_0",{color:"rgba(245,245,243,.46)",duration:.01},17.219);
+tl.to("#w10_1",{color:"#F5F5F3",duration:.01},17.219).to("#w10_1",{color:"rgba(245,245,243,.46)",duration:.01},17.553);
+tl.to("#w10_2",{color:"#F5F5F3",duration:.01},17.553).to("#w10_2",{color:"rgba(245,245,243,.46)",duration:.01},17.954);
+tl.to("#w10_3",{color:"#F5F5F3",duration:.01},17.954).to("#w10_3",{color:"rgba(245,245,243,.46)",duration:.01},18.154);
+tl.to("#w10_4",{color:"#F5F5F3",duration:.01},18.154).to("#w10_4",{color:"rgba(245,245,243,.46)",duration:.01},18.622);
+tl.to("#g11",{autoAlpha:1,duration:.01},18.572).to("#g11",{autoAlpha:0,duration:.01},20.631);
+tl.to("#w11_0",{color:"#F5F5F3",duration:.01},18.622).to("#w11_0",{color:"rgba(245,245,243,.46)",duration:.01},18.889);
+tl.to("#w11_1",{color:"#F5F5F3",duration:.01},18.889).to("#w11_1",{color:"rgba(245,245,243,.46)",duration:.01},19.491);
+tl.to("#w11_2",{color:"#F5F5F3",duration:.01},19.491).to("#w11_2",{color:"rgba(245,245,243,.46)",duration:.01},19.758);
+tl.to("#w11_3",{color:"#F5F5F3",duration:.01},19.758).to("#w11_3",{color:"rgba(245,245,243,.46)",duration:.01},20.292);
+tl.to("#w11_4",{color:"#F5F5F3",duration:.01},20.292).to("#w11_4",{color:"rgba(245,245,243,.46)",duration:.01},20.693);
+tl.to("#g12",{autoAlpha:1,duration:.01},20.643).to("#g12",{autoAlpha:0,duration:.01},21.667);
+tl.to("#w12_0",{color:"#F5F5F3",duration:.01},20.693).to("#w12_0",{color:"rgba(245,245,243,.46)",duration:.01},21.027);
+tl.to("#w12_1",{color:"#F5F5F3",duration:.01},21.027).to("#w12_1",{color:"rgba(245,245,243,.46)",duration:.01},21.629);
+tl.to("#g13",{autoAlpha:1,duration:.01},21.679).to("#g13",{autoAlpha:0,duration:.01},23.139);
+tl.to("#w13_0",{color:"#F5F5F3",duration:.01},21.729).to("#w13_0",{color:"rgba(245,245,243,.46)",duration:.01},21.921);
+tl.to("#w13_1",{color:"#F5F5F3",duration:.01},21.921).to("#w13_1",{color:"rgba(245,245,243,.46)",duration:.01},22.177);
+tl.to("#w13_2",{color:"#F5F5F3",duration:.01},22.177).to("#w13_2",{color:"rgba(245,245,243,.46)",duration:.01},22.561);
+tl.to("#w13_3",{color:"#F5F5F3",duration:.01},22.561).to("#w13_3",{color:"rgba(245,245,243,.46)",duration:.01},22.817);
+tl.to("#w13_4",{color:"#F5F5F3",duration:.01},22.817).to("#w13_4",{color:"rgba(245,245,243,.46)",duration:.01},23.201);
+tl.to("#g14",{autoAlpha:1,duration:.01},23.151).to("#g14",{autoAlpha:0,duration:.01},23.949);
+tl.to("#w14_0",{color:"#F5F5F3",duration:.01},23.201).to("#w14_0",{color:"rgba(245,245,243,.46)",duration:.01},23.649);
+tl.to("#g15",{autoAlpha:1,duration:.01},24.149).to("#g15",{autoAlpha:0,duration:.01},25.581);
+tl.to("#w15_0",{color:"#F5F5F3",duration:.01},24.199).to("#w15_0",{color:"rgba(245,245,243,.46)",duration:.01},24.497);
+tl.to("#w15_1",{color:"#F5F5F3",duration:.01},24.497).to("#w15_1",{color:"rgba(245,245,243,.46)",duration:.01},24.945);
+tl.to("#w15_2",{color:"#F5F5F3",duration:.01},24.945).to("#w15_2",{color:"rgba(245,245,243,.46)",duration:.01},25.169);
+tl.to("#w15_3",{color:"#F5F5F3",duration:.01},25.169).to("#w15_3",{color:"rgba(245,245,243,.46)",duration:.01},25.543);
+tl.to("#g16",{autoAlpha:1,duration:.01},25.593).to("#g16",{autoAlpha:0,duration:.01},26.897);
+tl.to("#w16_0",{color:"#F5F5F3",duration:.01},25.643).to("#w16_0",{color:"rgba(245,245,243,.46)",duration:.01},25.807);
+tl.to("#w16_1",{color:"#F5F5F3",duration:.01},25.807).to("#w16_1",{color:"rgba(245,245,243,.46)",duration:.01},25.972);
+tl.to("#w16_2",{color:"#F5F5F3",duration:.01},25.972).to("#w16_2",{color:"rgba(245,245,243,.46)",duration:.01},26.246);
+tl.to("#w16_3",{color:"#F5F5F3",duration:.01},26.246).to("#w16_3",{color:"rgba(245,245,243,.46)",duration:.01},26.575);
+tl.to("#w16_4",{color:"#F5F5F3",duration:.01},26.575).to("#w16_4",{color:"rgba(245,245,243,.46)",duration:.01},26.959);
+tl.to("#g17",{autoAlpha:1,duration:.01},26.909).to("#g17",{autoAlpha:0,duration:.01},28.369);
+tl.to("#w17_0",{color:"#F5F5F3",duration:.01},26.959).to("#w17_0",{color:"rgba(245,245,243,.46)",duration:.01},27.288);
+tl.to("#w17_1",{color:"#F5F5F3",duration:.01},27.288).to("#w17_1",{color:"rgba(245,245,243,.46)",duration:.01},27.727);
+tl.to("#w17_2",{color:"#F5F5F3",duration:.01},27.727).to("#w17_2",{color:"rgba(245,245,243,.46)",duration:.01},28.002);
+tl.to("#w17_3",{color:"#F5F5F3",duration:.01},28.002).to("#w17_3",{color:"rgba(245,245,243,.46)",duration:.01},28.331);
+tl.to("#g18",{autoAlpha:1,duration:.01},28.381).to("#g18",{autoAlpha:0,duration:.01},29.744);
+tl.to("#w18_0",{color:"#F5F5F3",duration:.01},28.431).to("#w18_0",{color:"rgba(245,245,243,.46)",duration:.01},28.743);
+tl.to("#w18_1",{color:"#F5F5F3",duration:.01},28.743).to("#w18_1",{color:"rgba(245,245,243,.46)",duration:.01},28.931);
+tl.to("#w18_2",{color:"#F5F5F3",duration:.01},28.931).to("#w18_2",{color:"rgba(245,245,243,.46)",duration:.01},29.181);
+tl.to("#w18_3",{color:"#F5F5F3",duration:.01},29.181).to("#w18_3",{color:"rgba(245,245,243,.46)",duration:.01},29.494);
+tl.to("#w18_4",{color:"#F5F5F3",duration:.01},29.494).to("#w18_4",{color:"rgba(245,245,243,.46)",duration:.01},29.806);
+tl.to("#g19",{autoAlpha:1,duration:.01},29.756).to("#g19",{autoAlpha:0,duration:.01},30.544);
+tl.to("#w19_0",{color:"#F5F5F3",duration:.01},29.806).to("#w19_0",{color:"rgba(245,245,243,.46)",duration:.01},30.244);
+tl.to("#g20",{autoAlpha:1,duration:.01},30.744).to("#g20",{autoAlpha:0,duration:.01},32.721);
+tl.to("#w20_0",{color:"#F5F5F3",duration:.01},30.794).to("#w20_0",{color:"rgba(245,245,243,.46)",duration:.01},31.411);
+tl.to("#w20_1",{color:"#F5F5F3",duration:.01},31.411).to("#w20_1",{color:"rgba(245,245,243,.46)",duration:.01},31.823);
+tl.to("#w20_2",{color:"#F5F5F3",duration:.01},31.823).to("#w20_2",{color:"rgba(245,245,243,.46)",duration:.01},32.303);
+tl.to("#w20_3",{color:"#F5F5F3",duration:.01},32.303).to("#w20_3",{color:"rgba(245,245,243,.46)",duration:.01},32.508);
+tl.to("#w20_4",{color:"#F5F5F3",duration:.01},32.508).to("#w20_4",{color:"rgba(245,245,243,.46)",duration:.01},32.783);
+tl.to("#g21",{autoAlpha:1,duration:.01},32.733).to("#g21",{autoAlpha:0,duration:.01},33.712);
+tl.to("#w21_0",{color:"#F5F5F3",duration:.01},32.783).to("#w21_0",{color:"rgba(245,245,243,.46)",duration:.01},33.194);
+tl.to("#w21_1",{color:"#F5F5F3",duration:.01},33.194).to("#w21_1",{color:"rgba(245,245,243,.46)",duration:.01},33.674);
+tl.to("#g22",{autoAlpha:1,duration:.01},33.724).to("#g22",{autoAlpha:0,duration:.01},35.215);
+tl.to("#w22_0",{color:"#F5F5F3",duration:.01},33.774).to("#w22_0",{color:"rgba(245,245,243,.46)",duration:.01},33.970);
+tl.to("#w22_1",{color:"#F5F5F3",duration:.01},33.970).to("#w22_1",{color:"rgba(245,245,243,.46)",duration:.01},34.427);
+tl.to("#w22_2",{color:"#F5F5F3",duration:.01},34.427).to("#w22_2",{color:"rgba(245,245,243,.46)",duration:.01},34.623);
+tl.to("#w22_3",{color:"#F5F5F3",duration:.01},34.623).to("#w22_3",{color:"rgba(245,245,243,.46)",duration:.01},34.754);
+tl.to("#w22_4",{color:"#F5F5F3",duration:.01},34.754).to("#w22_4",{color:"rgba(245,245,243,.46)",duration:.01},35.277);
+tl.to("#g23",{autoAlpha:1,duration:.01},35.227).to("#g23",{autoAlpha:0,duration:.01},35.903);
+tl.to("#w23_0",{color:"#F5F5F3",duration:.01},35.277).to("#w23_0",{color:"rgba(245,245,243,.46)",duration:.01},35.473);
+tl.to("#w23_1",{color:"#F5F5F3",duration:.01},35.473).to("#w23_1",{color:"rgba(245,245,243,.46)",duration:.01},35.865);
+tl.to("#g24",{autoAlpha:1,duration:.01},35.915).to("#g24",{autoAlpha:0,duration:.01},38.264);
+tl.to("#w24_0",{color:"#F5F5F3",duration:.01},35.965).to("#w24_0",{color:"rgba(245,245,243,.46)",duration:.01},36.850);
+tl.to("#w24_1",{color:"#F5F5F3",duration:.01},36.850).to("#w24_1",{color:"rgba(245,245,243,.46)",duration:.01},37.341);
+tl.to("#w24_2",{color:"#F5F5F3",duration:.01},37.341).to("#w24_2",{color:"rgba(245,245,243,.46)",duration:.01},37.636);
+tl.to("#w24_3",{color:"#F5F5F3",duration:.01},37.636).to("#w24_3",{color:"rgba(245,245,243,.46)",duration:.01},38.226);
+tl.to("#g25",{autoAlpha:1,duration:.01},38.276).to("#g25",{autoAlpha:0,duration:.01},40.291);
+tl.to("#w25_0",{color:"#F5F5F3",duration:.01},38.326).to("#w25_0",{color:"rgba(245,245,243,.46)",duration:.01},38.815);
+tl.to("#w25_1",{color:"#F5F5F3",duration:.01},38.815).to("#w25_1",{color:"rgba(245,245,243,.46)",duration:.01},39.305);
+tl.to("#w25_2",{color:"#F5F5F3",duration:.01},39.305).to("#w25_2",{color:"rgba(245,245,243,.46)",duration:.01},39.864);
+tl.to("#w25_3",{color:"#F5F5F3",duration:.01},39.864).to("#w25_3",{color:"rgba(245,245,243,.46)",duration:.01},40.074);
+tl.to("#w25_4",{color:"#F5F5F3",duration:.01},40.074).to("#w25_4",{color:"rgba(245,245,243,.46)",duration:.01},40.353);
+tl.to("#g26",{autoAlpha:1,duration:.01},40.303).to("#g26",{autoAlpha:0,duration:.01},41.911);
+tl.to("#w26_0",{color:"#F5F5F3",duration:.01},40.353).to("#w26_0",{color:"rgba(245,245,243,.46)",duration:.01},40.912);
+tl.to("#w26_1",{color:"#F5F5F3",duration:.01},40.912).to("#w26_1",{color:"rgba(245,245,243,.46)",duration:.01},41.122);
+tl.to("#w26_2",{color:"#F5F5F3",duration:.01},41.122).to("#w26_2",{color:"rgba(245,245,243,.46)",duration:.01},41.611);
+tl.to("#g27",{autoAlpha:1,duration:.01},42.111).to("#g27",{autoAlpha:0,duration:.01},44.420);
+tl.to("#w27_0",{color:"#F5F5F3",duration:.01},42.161).to("#w27_0",{color:"rgba(245,245,243,.46)",duration:.01},42.429);
+tl.to("#w27_1",{color:"#F5F5F3",duration:.01},42.429).to("#w27_1",{color:"rgba(245,245,243,.46)",duration:.01},42.875);
+tl.to("#w27_2",{color:"#F5F5F3",duration:.01},42.875).to("#w27_2",{color:"rgba(245,245,243,.46)",duration:.01},43.322);
+tl.to("#w27_3",{color:"#F5F5F3",duration:.01},43.322).to("#w27_3",{color:"rgba(245,245,243,.46)",duration:.01},44.125);
+tl.to("#w27_4",{color:"#F5F5F3",duration:.01},44.125).to("#w27_4",{color:"rgba(245,245,243,.46)",duration:.01},44.482);
+tl.to("#g28",{autoAlpha:1,duration:.01},44.432).to("#g28",{autoAlpha:0,duration:.01},46.573);
+tl.to("#w28_0",{color:"#F5F5F3",duration:.01},44.482).to("#w28_0",{color:"rgba(245,245,243,.46)",duration:.01},44.928);
+tl.to("#w28_1",{color:"#F5F5F3",duration:.01},44.928).to("#w28_1",{color:"rgba(245,245,243,.46)",duration:.01},45.464);
+tl.to("#w28_2",{color:"#F5F5F3",duration:.01},45.464).to("#w28_2",{color:"rgba(245,245,243,.46)",duration:.01},45.999);
+tl.to("#w28_3",{color:"#F5F5F3",duration:.01},45.999).to("#w28_3",{color:"rgba(245,245,243,.46)",duration:.01},46.535);
+tl.to("#g29",{autoAlpha:1,duration:.01},46.585).to("#g29",{autoAlpha:0,duration:.01},48.263);
+tl.to("#w29_0",{color:"#F5F5F3",duration:.01},46.635).to("#w29_0",{color:"rgba(245,245,243,.46)",duration:.01},47.198);
+tl.to("#w29_1",{color:"#F5F5F3",duration:.01},47.198).to("#w29_1",{color:"rgba(245,245,243,.46)",duration:.01},47.449);
+tl.to("#w29_2",{color:"#F5F5F3",duration:.01},47.449).to("#w29_2",{color:"rgba(245,245,243,.46)",duration:.01},47.699);
+tl.to("#w29_3",{color:"#F5F5F3",duration:.01},47.699).to("#w29_3",{color:"rgba(245,245,243,.46)",duration:.01},47.887);
+tl.to("#w29_4",{color:"#F5F5F3",duration:.01},47.887).to("#w29_4",{color:"rgba(245,245,243,.46)",duration:.01},48.325);
+tl.to("#g30",{autoAlpha:1,duration:.01},48.275).to("#g30",{autoAlpha:0,duration:.01},49.553);
+tl.to("#w30_0",{color:"#F5F5F3",duration:.01},48.325).to("#w30_0",{color:"rgba(245,245,243,.46)",duration:.01},48.576);
+tl.to("#w30_1",{color:"#F5F5F3",duration:.01},48.576).to("#w30_1",{color:"rgba(245,245,243,.46)",duration:.01},48.951);
+tl.to("#w30_2",{color:"#F5F5F3",duration:.01},48.951).to("#w30_2",{color:"rgba(245,245,243,.46)",duration:.01},49.202);
+tl.to("#w30_3",{color:"#F5F5F3",duration:.01},49.202).to("#w30_3",{color:"rgba(245,245,243,.46)",duration:.01},49.515);
+tl.to("#g31",{autoAlpha:1,duration:.01},49.565).to("#g31",{autoAlpha:0,duration:.01},51.007);
+tl.to("#w31_0",{color:"#F5F5F3",duration:.01},49.615).to("#w31_0",{color:"rgba(245,245,243,.46)",duration:.01},49.847);
+tl.to("#w31_1",{color:"#F5F5F3",duration:.01},49.847).to("#w31_1",{color:"rgba(245,245,243,.46)",duration:.01},50.138);
+tl.to("#w31_2",{color:"#F5F5F3",duration:.01},50.138).to("#w31_2",{color:"rgba(245,245,243,.46)",duration:.01},50.313);
+tl.to("#w31_3",{color:"#F5F5F3",duration:.01},50.313).to("#w31_3",{color:"rgba(245,245,243,.46)",duration:.01},50.546);
+tl.to("#w31_4",{color:"#F5F5F3",duration:.01},50.546).to("#w31_4",{color:"rgba(245,245,243,.46)",duration:.01},51.069);
+tl.to("#g32",{autoAlpha:1,duration:.01},51.019).to("#g32",{autoAlpha:0,duration:.01},51.573);
+tl.to("#w32_0",{color:"#F5F5F3",duration:.01},51.069).to("#w32_0",{color:"rgba(245,245,243,.46)",duration:.01},51.535);
+tl.to("#g33",{autoAlpha:1,duration:.01},51.585).to("#g33",{autoAlpha:0,duration:.01},53.329);
+tl.to("#w33_0",{color:"#F5F5F3",duration:.01},51.635).to("#w33_0",{color:"rgba(245,245,243,.46)",duration:.01},51.837);
+tl.to("#w33_1",{color:"#F5F5F3",duration:.01},51.837).to("#w33_1",{color:"rgba(245,245,243,.46)",duration:.01},51.972);
+tl.to("#w33_2",{color:"#F5F5F3",duration:.01},51.972).to("#w33_2",{color:"rgba(245,245,243,.46)",duration:.01},52.378);
+tl.to("#w33_3",{color:"#F5F5F3",duration:.01},52.378).to("#w33_3",{color:"rgba(245,245,243,.46)",duration:.01},52.918);
+tl.to("#w33_4",{color:"#F5F5F3",duration:.01},52.918).to("#w33_4",{color:"rgba(245,245,243,.46)",duration:.01},53.391);
+tl.to("#g34",{autoAlpha:1,duration:.01},53.341).to("#g34",{autoAlpha:0,duration:.01},55.153);
+tl.to("#w34_0",{color:"#F5F5F3",duration:.01},53.391).to("#w34_0",{color:"rgba(245,245,243,.46)",duration:.01},53.729);
+tl.to("#w34_1",{color:"#F5F5F3",duration:.01},53.729).to("#w34_1",{color:"rgba(245,245,243,.46)",duration:.01},54.337);
+tl.to("#w34_2",{color:"#F5F5F3",duration:.01},54.337).to("#w34_2",{color:"rgba(245,245,243,.46)",duration:.01},54.607);
+tl.to("#w34_3",{color:"#F5F5F3",duration:.01},54.607).to("#w34_3",{color:"rgba(245,245,243,.46)",duration:.01},54.810);
+tl.to("#w34_4",{color:"#F5F5F3",duration:.01},54.810).to("#w34_4",{color:"rgba(245,245,243,.46)",duration:.01},55.215);
+tl.to("#g35",{autoAlpha:1,duration:.01},55.165).to("#g35",{autoAlpha:0,duration:.01},56.131);
+tl.to("#w35_0",{color:"#F5F5F3",duration:.01},55.215).to("#w35_0",{color:"rgba(245,245,243,.46)",duration:.01},55.485);
+tl.to("#w35_1",{color:"#F5F5F3",duration:.01},55.485).to("#w35_1",{color:"rgba(245,245,243,.46)",duration:.01},56.093);
+tl.to("#g36",{autoAlpha:1,duration:.01},56.143).to("#g36",{autoAlpha:0,duration:.01},57.790);
+tl.to("#w36_0",{color:"#F5F5F3",duration:.01},56.193).to("#w36_0",{color:"rgba(245,245,243,.46)",duration:.01},56.378);
+tl.to("#w36_1",{color:"#F5F5F3",duration:.01},56.378).to("#w36_1",{color:"rgba(245,245,243,.46)",duration:.01},56.746);
+tl.to("#w36_2",{color:"#F5F5F3",duration:.01},56.746).to("#w36_2",{color:"rgba(245,245,243,.46)",duration:.01},56.992);
+tl.to("#w36_3",{color:"#F5F5F3",duration:.01},56.992).to("#w36_3",{color:"rgba(245,245,243,.46)",duration:.01},57.360);
+tl.to("#w36_4",{color:"#F5F5F3",duration:.01},57.360).to("#w36_4",{color:"rgba(245,245,243,.46)",duration:.01},57.852);
+tl.to("#g37",{autoAlpha:1,duration:.01},57.802).to("#g37",{autoAlpha:0,duration:.01},59.264);
+tl.to("#w37_0",{color:"#F5F5F3",duration:.01},57.852).to("#w37_0",{color:"rgba(245,245,243,.46)",duration:.01},58.098);
+tl.to("#w37_1",{color:"#F5F5F3",duration:.01},58.098).to("#w37_1",{color:"rgba(245,245,243,.46)",duration:.01},58.466);
+tl.to("#w37_2",{color:"#F5F5F3",duration:.01},58.466).to("#w37_2",{color:"rgba(245,245,243,.46)",duration:.01},58.773);
+tl.to("#w37_3",{color:"#F5F5F3",duration:.01},58.773).to("#w37_3",{color:"rgba(245,245,243,.46)",duration:.01},59.080);
+tl.to("#w37_4",{color:"#F5F5F3",duration:.01},59.080).to("#w37_4",{color:"rgba(245,245,243,.46)",duration:.01},59.326);
+tl.to("#g38",{autoAlpha:1,duration:.01},59.276).to("#g38",{autoAlpha:0,duration:.01},60.056);
+tl.to("#w38_0",{color:"#F5F5F3",duration:.01},59.326).to("#w38_0",{color:"rgba(245,245,243,.46)",duration:.01},59.756);
+tl.to("#g39",{autoAlpha:1,duration:.01},60.256).to("#g39",{autoAlpha:0,duration:.01},62.051);
+tl.to("#w39_0",{color:"#F5F5F3",duration:.01},60.306).to("#w39_0",{color:"rgba(245,245,243,.46)",duration:.01},60.600);
+tl.to("#w39_1",{color:"#F5F5F3",duration:.01},60.600).to("#w39_1",{color:"rgba(245,245,243,.46)",duration:.01},61.071);
+tl.to("#w39_2",{color:"#F5F5F3",duration:.01},61.071).to("#w39_2",{color:"rgba(245,245,243,.46)",duration:.01},61.306);
+tl.to("#w39_3",{color:"#F5F5F3",duration:.01},61.306).to("#w39_3",{color:"rgba(245,245,243,.46)",duration:.01},61.542);
+tl.to("#w39_4",{color:"#F5F5F3",duration:.01},61.542).to("#w39_4",{color:"rgba(245,245,243,.46)",duration:.01},62.013);
+tl.to("#g40",{autoAlpha:1,duration:.01},62.063).to("#g40",{autoAlpha:0,duration:.01},63.838);
+tl.to("#w40_0",{color:"#F5F5F3",duration:.01},62.113).to("#w40_0",{color:"rgba(245,245,243,.46)",duration:.01},62.482);
+tl.to("#w40_1",{color:"#F5F5F3",duration:.01},62.482).to("#w40_1",{color:"rgba(245,245,243,.46)",duration:.01},62.791);
+tl.to("#w40_2",{color:"#F5F5F3",duration:.01},62.791).to("#w40_2",{color:"rgba(245,245,243,.46)",duration:.01},63.037);
+tl.to("#w40_3",{color:"#F5F5F3",duration:.01},63.037).to("#w40_3",{color:"rgba(245,245,243,.46)",duration:.01},63.530);
+tl.to("#w40_4",{color:"#F5F5F3",duration:.01},63.530).to("#w40_4",{color:"rgba(245,245,243,.46)",duration:.01},63.900);
+tl.to("#g41",{autoAlpha:1,duration:.01},63.850).to("#g41",{autoAlpha:0,duration:.01},65.810);
+tl.to("#w41_0",{color:"#F5F5F3",duration:.01},63.900).to("#w41_0",{color:"rgba(245,245,243,.46)",duration:.01},64.270);
+tl.to("#w41_1",{color:"#F5F5F3",duration:.01},64.270).to("#w41_1",{color:"rgba(245,245,243,.46)",duration:.01},64.763);
+tl.to("#w41_2",{color:"#F5F5F3",duration:.01},64.763).to("#w41_2",{color:"rgba(245,245,243,.46)",duration:.01},65.009);
+tl.to("#w41_3",{color:"#F5F5F3",duration:.01},65.009).to("#w41_3",{color:"rgba(245,245,243,.46)",duration:.01},65.317);
+tl.to("#w41_4",{color:"#F5F5F3",duration:.01},65.317).to("#w41_4",{color:"rgba(245,245,243,.46)",duration:.01},65.872);
+tl.to("#g42",{autoAlpha:1,duration:.01},65.822).to("#g42",{autoAlpha:0,duration:.01},67.697);
+tl.to("#w42_0",{color:"#F5F5F3",duration:.01},65.872).to("#w42_0",{color:"rgba(245,245,243,.46)",duration:.01},66.119);
+tl.to("#w42_1",{color:"#F5F5F3",duration:.01},66.119).to("#w42_1",{color:"rgba(245,245,243,.46)",duration:.01},66.488);
+tl.to("#w42_2",{color:"#F5F5F3",duration:.01},66.488).to("#w42_2",{color:"rgba(245,245,243,.46)",duration:.01},66.981);
+tl.to("#w42_3",{color:"#F5F5F3",duration:.01},66.981).to("#w42_3",{color:"rgba(245,245,243,.46)",duration:.01},67.228);
+tl.to("#w42_4",{color:"#F5F5F3",duration:.01},67.228).to("#w42_4",{color:"rgba(245,245,243,.46)",duration:.01},67.659);
+tl.to("#g43",{autoAlpha:1,duration:.01},67.709).to("#g43",{autoAlpha:0,duration:.01},69.608);
+tl.to("#w43_0",{color:"#F5F5F3",duration:.01},67.759).to("#w43_0",{color:"rgba(245,245,243,.46)",duration:.01},68.129);
+tl.to("#w43_1",{color:"#F5F5F3",duration:.01},68.129).to("#w43_1",{color:"rgba(245,245,243,.46)",duration:.01},68.437);
+tl.to("#w43_2",{color:"#F5F5F3",duration:.01},68.437).to("#w43_2",{color:"rgba(245,245,243,.46)",duration:.01},68.930);
+tl.to("#w43_3",{color:"#F5F5F3",duration:.01},68.930).to("#w43_3",{color:"rgba(245,245,243,.46)",duration:.01},69.362);
+tl.to("#w43_4",{color:"#F5F5F3",duration:.01},69.362).to("#w43_4",{color:"rgba(245,245,243,.46)",duration:.01},69.670);
+tl.to("#g44",{autoAlpha:1,duration:.01},69.620).to("#g44",{autoAlpha:0,duration:.01},70.571);
+tl.to("#w44_0",{color:"#F5F5F3",duration:.01},69.670).to("#w44_0",{color:"rgba(245,245,243,.46)",duration:.01},69.916);
+tl.to("#w44_1",{color:"#F5F5F3",duration:.01},69.916).to("#w44_1",{color:"rgba(245,245,243,.46)",duration:.01},70.533);
+tl.to("#g45",{autoAlpha:1,duration:.01},70.583).to("#g45",{autoAlpha:0,duration:.01},72.107);
+tl.to("#w45_0",{color:"#F5F5F3",duration:.01},70.633).to("#w45_0",{color:"rgba(245,245,243,.46)",duration:.01},70.889);
+tl.to("#w45_1",{color:"#F5F5F3",duration:.01},70.889).to("#w45_1",{color:"rgba(245,245,243,.46)",duration:.01},71.465);
+tl.to("#w45_2",{color:"#F5F5F3",duration:.01},71.465).to("#w45_2",{color:"rgba(245,245,243,.46)",duration:.01},71.721);
+tl.to("#w45_3",{color:"#F5F5F3",duration:.01},71.721).to("#w45_3",{color:"rgba(245,245,243,.46)",duration:.01},71.913);
+tl.to("#w45_4",{color:"#F5F5F3",duration:.01},71.913).to("#w45_4",{color:"rgba(245,245,243,.46)",duration:.01},72.169);
+tl.to("#g46",{autoAlpha:1,duration:.01},72.119).to("#g46",{autoAlpha:0,duration:.01},74.133);
+tl.to("#w46_0",{color:"#F5F5F3",duration:.01},72.169).to("#w46_0",{color:"rgba(245,245,243,.46)",duration:.01},72.745);
+tl.to("#w46_1",{color:"#F5F5F3",duration:.01},72.745).to("#w46_1",{color:"rgba(245,245,243,.46)",duration:.01},73.001);
+tl.to("#w46_2",{color:"#F5F5F3",duration:.01},73.001).to("#w46_2",{color:"rgba(245,245,243,.46)",duration:.01},73.193);
+tl.to("#w46_3",{color:"#F5F5F3",duration:.01},73.193).to("#w46_3",{color:"rgba(245,245,243,.46)",duration:.01},73.449);
+tl.to("#w46_4",{color:"#F5F5F3",duration:.01},73.449).to("#w46_4",{color:"rgba(245,245,243,.46)",duration:.01},73.833);
+tl.to("#g47",{autoAlpha:1,duration:.01},74.333).to("#g47",{autoAlpha:0,duration:.01},76.298);
+tl.to("#w47_0",{color:"#F5F5F3",duration:.01},74.383).to("#w47_0",{color:"rgba(245,245,243,.46)",duration:.01},74.559);
+tl.to("#w47_1",{color:"#F5F5F3",duration:.01},74.559).to("#w47_1",{color:"rgba(245,245,243,.46)",duration:.01},74.793);
+tl.to("#w47_2",{color:"#F5F5F3",duration:.01},74.793).to("#w47_2",{color:"rgba(245,245,243,.46)",duration:.01},75.263);
+tl.to("#w47_3",{color:"#F5F5F3",duration:.01},75.263).to("#w47_3",{color:"rgba(245,245,243,.46)",duration:.01},75.732);
+tl.to("#w47_4",{color:"#F5F5F3",duration:.01},75.732).to("#w47_4",{color:"rgba(245,245,243,.46)",duration:.01},76.260);
+tl.to("#g48",{autoAlpha:1,duration:.01},76.310).to("#g48",{autoAlpha:0,duration:.01},78.194);
+tl.to("#w48_0",{color:"#F5F5F3",duration:.01},76.360).to("#w48_0",{color:"rgba(245,245,243,.46)",duration:.01},76.491);
+tl.to("#w48_1",{color:"#F5F5F3",duration:.01},76.491).to("#w48_1",{color:"rgba(245,245,243,.46)",duration:.01},76.818);
+tl.to("#w48_2",{color:"#F5F5F3",duration:.01},76.818).to("#w48_2",{color:"rgba(245,245,243,.46)",duration:.01},77.275);
+tl.to("#w48_3",{color:"#F5F5F3",duration:.01},77.275).to("#w48_3",{color:"rgba(245,245,243,.46)",duration:.01},77.864);
+tl.to("#w48_4",{color:"#F5F5F3",duration:.01},77.864).to("#w48_4",{color:"rgba(245,245,243,.46)",duration:.01},78.256);
+tl.to("#g49",{autoAlpha:1,duration:.01},78.206).to("#g49",{autoAlpha:0,duration:.01},80.483);
+tl.to("#w49_0",{color:"#F5F5F3",duration:.01},78.256).to("#w49_0",{color:"rgba(245,245,243,.46)",duration:.01},78.845);
+tl.to("#w49_1",{color:"#F5F5F3",duration:.01},78.845).to("#w49_1",{color:"rgba(245,245,243,.46)",duration:.01},79.172);
+tl.to("#w49_2",{color:"#F5F5F3",duration:.01},79.172).to("#w49_2",{color:"rgba(245,245,243,.46)",duration:.01},79.695);
+tl.to("#w49_3",{color:"#F5F5F3",duration:.01},79.695).to("#w49_3",{color:"rgba(245,245,243,.46)",duration:.01},80.152);
+tl.to("#w49_4",{color:"#F5F5F3",duration:.01},80.152).to("#w49_4",{color:"rgba(245,245,243,.46)",duration:.01},80.545);
+tl.to("#g50",{autoAlpha:1,duration:.01},80.495).to("#g50",{autoAlpha:0,duration:.01},82.183);
+tl.to("#w50_0",{color:"#F5F5F3",duration:.01},80.545).to("#w50_0",{color:"rgba(245,245,243,.46)",duration:.01},80.937);
+tl.to("#w50_1",{color:"#F5F5F3",duration:.01},80.937).to("#w50_1",{color:"rgba(245,245,243,.46)",duration:.01},81.329);
+tl.to("#w50_2",{color:"#F5F5F3",duration:.01},81.329).to("#w50_2",{color:"rgba(245,245,243,.46)",duration:.01},81.591);
+tl.to("#w50_3",{color:"#F5F5F3",duration:.01},81.591).to("#w50_3",{color:"rgba(245,245,243,.46)",duration:.01},81.983);
+tl.to("#w50_4",{color:"#F5F5F3",duration:.01},81.983).to("#w50_4",{color:"rgba(245,245,243,.46)",duration:.01},82.245);
+tl.to("#g51",{autoAlpha:1,duration:.01},82.195).to("#g51",{autoAlpha:0,duration:.01},84.441);
+tl.to("#w51_0",{color:"#F5F5F3",duration:.01},82.245).to("#w51_0",{color:"rgba(245,245,243,.46)",duration:.01},82.768);
+tl.to("#w51_1",{color:"#F5F5F3",duration:.01},82.768).to("#w51_1",{color:"rgba(245,245,243,.46)",duration:.01},83.291);
+tl.to("#w51_2",{color:"#F5F5F3",duration:.01},83.291).to("#w51_2",{color:"rgba(245,245,243,.46)",duration:.01},83.814);
+tl.to("#w51_3",{color:"#F5F5F3",duration:.01},83.814).to("#w51_3",{color:"rgba(245,245,243,.46)",duration:.01},84.403);
+tl.to("#g52",{autoAlpha:1,duration:.01},84.453).to("#g52",{autoAlpha:0,duration:.01},87.355);
+tl.to("#w52_0",{color:"#F5F5F3",duration:.01},84.503).to("#w52_0",{color:"rgba(245,245,243,.46)",duration:.01},85.103);
+tl.to("#w52_1",{color:"#F5F5F3",duration:.01},85.103).to("#w52_1",{color:"rgba(245,245,243,.46)",duration:.01},85.617);
+tl.to("#w52_2",{color:"#F5F5F3",duration:.01},85.617).to("#w52_2",{color:"rgba(245,245,243,.46)",duration:.01},86.303);
+tl.to("#w52_3",{color:"#F5F5F3",duration:.01},86.303).to("#w52_3",{color:"rgba(245,245,243,.46)",duration:.01},86.646);
+tl.to("#w52_4",{color:"#F5F5F3",duration:.01},86.646).to("#w52_4",{color:"rgba(245,245,243,.46)",duration:.01},87.417);
+tl.to("#g53",{autoAlpha:1,duration:.01},87.367).to("#g53",{autoAlpha:0,duration:.01},89.170);
+tl.to("#w53_0",{color:"#F5F5F3",duration:.01},87.417).to("#w53_0",{color:"rgba(245,245,243,.46)",duration:.01},87.846);
+tl.to("#w53_1",{color:"#F5F5F3",duration:.01},87.846).to("#w53_1",{color:"rgba(245,245,243,.46)",duration:.01},88.532);
+tl.to("#w53_2",{color:"#F5F5F3",duration:.01},88.532).to("#w53_2",{color:"rgba(245,245,243,.46)",duration:.01},89.132);
+tl.to("#g54",{autoAlpha:1,duration:.01},89.182).to("#g54",{autoAlpha:0,duration:.01},90.548);
+tl.to("#w54_0",{color:"#F5F5F3",duration:.01},89.232).to("#w54_0",{color:"rgba(245,245,243,.46)",duration:.01},89.560);
+tl.to("#w54_1",{color:"#F5F5F3",duration:.01},89.560).to("#w54_1",{color:"rgba(245,245,243,.46)",duration:.01},89.757);
+tl.to("#w54_2",{color:"#F5F5F3",duration:.01},89.757).to("#w54_2",{color:"rgba(245,245,243,.46)",duration:.01},89.954);
+tl.to("#w54_3",{color:"#F5F5F3",duration:.01},89.954).to("#w54_3",{color:"rgba(245,245,243,.46)",duration:.01},90.348);
+tl.to("#w54_4",{color:"#F5F5F3",duration:.01},90.348).to("#w54_4",{color:"rgba(245,245,243,.46)",duration:.01},90.610);
+tl.to("#g55",{autoAlpha:1,duration:.01},90.560).to("#g55",{autoAlpha:0,duration:.01},92.092);
+tl.to("#w55_0",{color:"#F5F5F3",duration:.01},90.610).to("#w55_0",{color:"rgba(245,245,243,.46)",duration:.01},90.873);
+tl.to("#w55_1",{color:"#F5F5F3",duration:.01},90.873).to("#w55_1",{color:"rgba(245,245,243,.46)",duration:.01},91.398);
+tl.to("#w55_2",{color:"#F5F5F3",duration:.01},91.398).to("#w55_2",{color:"rgba(245,245,243,.46)",duration:.01},91.792);
+tl.to("#g56",{autoAlpha:1,duration:.01},92.292).to("#g56",{autoAlpha:0,duration:.01},93.748);
+tl.to("#w56_0",{color:"#F5F5F3",duration:.01},92.342).to("#w56_0",{color:"rgba(245,245,243,.46)",duration:.01},92.648);
+tl.to("#w56_1",{color:"#F5F5F3",duration:.01},92.648).to("#w56_1",{color:"rgba(245,245,243,.46)",duration:.01},92.831);
+tl.to("#w56_2",{color:"#F5F5F3",duration:.01},92.831).to("#w56_2",{color:"rgba(245,245,243,.46)",duration:.01},93.076);
+tl.to("#w56_3",{color:"#F5F5F3",duration:.01},93.076).to("#w56_3",{color:"rgba(245,245,243,.46)",duration:.01},93.382);
+tl.to("#w56_4",{color:"#F5F5F3",duration:.01},93.382).to("#w56_4",{color:"rgba(245,245,243,.46)",duration:.01},93.810);
+tl.to("#g57",{autoAlpha:1,duration:.01},93.760).to("#g57",{autoAlpha:0,duration:.01},94.215);
+tl.to("#w57_0",{color:"#F5F5F3",duration:.01},93.810).to("#w57_0",{color:"rgba(245,245,243,.46)",duration:.01},94.177);
+tl.to("#g58",{autoAlpha:1,duration:.01},94.227).to("#g58",{autoAlpha:0,duration:.01},96.218);
+tl.to("#w58_0",{color:"#F5F5F3",duration:.01},94.277).to("#w58_0",{color:"rgba(245,245,243,.46)",duration:.01},94.762);
+tl.to("#w58_1",{color:"#F5F5F3",duration:.01},94.762).to("#w58_1",{color:"rgba(245,245,243,.46)",duration:.01},95.309);
+tl.to("#w58_2",{color:"#F5F5F3",duration:.01},95.309).to("#w58_2",{color:"rgba(245,245,243,.46)",duration:.01},95.612);
+tl.to("#w58_3",{color:"#F5F5F3",duration:.01},95.612).to("#w58_3",{color:"rgba(245,245,243,.46)",duration:.01},95.855);
+tl.to("#w58_4",{color:"#F5F5F3",duration:.01},95.855).to("#w58_4",{color:"rgba(245,245,243,.46)",duration:.01},96.280);
+tl.to("#g59",{autoAlpha:1,duration:.01},96.230).to("#g59",{autoAlpha:0,duration:.01},96.683);
+tl.to("#w59_0",{color:"#F5F5F3",duration:.01},96.280).to("#w59_0",{color:"rgba(245,245,243,.46)",duration:.01},96.645);
+tl.to("#g60",{autoAlpha:1,duration:.01},96.695).to("#g60",{autoAlpha:0,duration:.01},97.977);
+tl.to("#w60_0",{color:"#F5F5F3",duration:.01},96.745).to("#w60_0",{color:"rgba(245,245,243,.46)",duration:.01},97.010);
+tl.to("#w60_1",{color:"#F5F5F3",duration:.01},97.010).to("#w60_1",{color:"rgba(245,245,243,.46)",duration:.01},97.342);
+tl.to("#w60_2",{color:"#F5F5F3",duration:.01},97.342).to("#w60_2",{color:"rgba(245,245,243,.46)",duration:.01},97.674);
+tl.to("#w60_3",{color:"#F5F5F3",duration:.01},97.674).to("#w60_3",{color:"rgba(245,245,243,.46)",duration:.01},97.939);
+tl.to("#g61",{autoAlpha:1,duration:.01},97.989).to("#g61",{autoAlpha:0,duration:.01},99.543);
+tl.to("#w61_0",{color:"#F5F5F3",duration:.01},98.039).to("#w61_0",{color:"rgba(245,245,243,.46)",duration:.01},98.290);
+tl.to("#w61_1",{color:"#F5F5F3",duration:.01},98.290).to("#w61_1",{color:"rgba(245,245,243,.46)",duration:.01},98.791);
+tl.to("#w61_2",{color:"#F5F5F3",duration:.01},98.791).to("#w61_2",{color:"rgba(245,245,243,.46)",duration:.01},99.041);
+tl.to("#w61_3",{color:"#F5F5F3",duration:.01},99.041).to("#w61_3",{color:"rgba(245,245,243,.46)",duration:.01},99.292);
+tl.to("#w61_4",{color:"#F5F5F3",duration:.01},99.292).to("#w61_4",{color:"rgba(245,245,243,.46)",duration:.01},99.605);
+tl.to("#g62",{autoAlpha:1,duration:.01},99.555).to("#g62",{autoAlpha:0,duration:.01},100.281);
+tl.to("#w62_0",{color:"#F5F5F3",duration:.01},99.605).to("#w62_0",{color:"rgba(245,245,243,.46)",duration:.01},99.981);
+tl.to("#g63",{autoAlpha:1,duration:.01},100.481).to("#g63",{autoAlpha:0,duration:.01},101.864);
+tl.to("#w63_0",{color:"#F5F5F3",duration:.01},100.531).to("#w63_0",{color:"rgba(245,245,243,.46)",duration:.01},100.721);
+tl.to("#w63_1",{color:"#F5F5F3",duration:.01},100.721).to("#w63_1",{color:"rgba(245,245,243,.46)",duration:.01},100.911);
+tl.to("#w63_2",{color:"#F5F5F3",duration:.01},100.911).to("#w63_2",{color:"rgba(245,245,243,.46)",duration:.01},101.165);
+tl.to("#w63_3",{color:"#F5F5F3",duration:.01},101.165).to("#w63_3",{color:"rgba(245,245,243,.46)",duration:.01},101.609);
+tl.to("#w63_4",{color:"#F5F5F3",duration:.01},101.609).to("#w63_4",{color:"rgba(245,245,243,.46)",duration:.01},101.926);
+tl.to("#g64",{autoAlpha:1,duration:.01},101.876).to("#g64",{autoAlpha:0,duration:.01},103.704);
+tl.to("#w64_0",{color:"#F5F5F3",duration:.01},101.926).to("#w64_0",{color:"rgba(245,245,243,.46)",duration:.01},102.497);
+tl.to("#w64_1",{color:"#F5F5F3",duration:.01},102.497).to("#w64_1",{color:"rgba(245,245,243,.46)",duration:.01},102.751);
+tl.to("#w64_2",{color:"#F5F5F3",duration:.01},102.751).to("#w64_2",{color:"rgba(245,245,243,.46)",duration:.01},103.195);
+tl.to("#w64_3",{color:"#F5F5F3",duration:.01},103.195).to("#w64_3",{color:"rgba(245,245,243,.46)",duration:.01},103.386);
+tl.to("#w64_4",{color:"#F5F5F3",duration:.01},103.386).to("#w64_4",{color:"rgba(245,245,243,.46)",duration:.01},103.766);
+tl.to("#g65",{autoAlpha:1,duration:.01},103.716).to("#g65",{autoAlpha:0,duration:.01},105.454);
+tl.to("#w65_0",{color:"#F5F5F3",duration:.01},103.766).to("#w65_0",{color:"rgba(245,245,243,.46)",duration:.01},103.957);
+tl.to("#w65_1",{color:"#F5F5F3",duration:.01},103.957).to("#w65_1",{color:"rgba(245,245,243,.46)",duration:.01},104.211);
+tl.to("#w65_2",{color:"#F5F5F3",duration:.01},104.211).to("#w65_2",{color:"rgba(245,245,243,.46)",duration:.01},104.464);
+tl.to("#w65_3",{color:"#F5F5F3",duration:.01},104.464).to("#w65_3",{color:"rgba(245,245,243,.46)",duration:.01},104.972);
+tl.to("#w65_4",{color:"#F5F5F3",duration:.01},104.972).to("#w65_4",{color:"rgba(245,245,243,.46)",duration:.01},105.416);
+tl.to("#g66",{autoAlpha:1,duration:.01},105.466).to("#g66",{autoAlpha:0,duration:.01},106.992);
+tl.to("#w66_0",{color:"#F5F5F3",duration:.01},105.516).to("#w66_0",{color:"rgba(245,245,243,.46)",duration:.01},105.701);
+tl.to("#w66_1",{color:"#F5F5F3",duration:.01},105.701).to("#w66_1",{color:"rgba(245,245,243,.46)",duration:.01},105.885);
+tl.to("#w66_2",{color:"#F5F5F3",duration:.01},105.885).to("#w66_2",{color:"rgba(245,245,243,.46)",duration:.01},106.377);
+tl.to("#w66_3",{color:"#F5F5F3",duration:.01},106.377).to("#w66_3",{color:"rgba(245,245,243,.46)",duration:.01},106.623);
+tl.to("#w66_4",{color:"#F5F5F3",duration:.01},106.623).to("#w66_4",{color:"rgba(245,245,243,.46)",duration:.01},107.054);
+tl.to("#g67",{autoAlpha:1,duration:.01},107.004).to("#g67",{autoAlpha:0,duration:.01},108.199);
+tl.to("#w67_0",{color:"#F5F5F3",duration:.01},107.054).to("#w67_0",{color:"rgba(245,245,243,.46)",duration:.01},107.300);
+tl.to("#w67_1",{color:"#F5F5F3",duration:.01},107.300).to("#w67_1",{color:"rgba(245,245,243,.46)",duration:.01},107.546);
+tl.to("#w67_2",{color:"#F5F5F3",duration:.01},107.546).to("#w67_2",{color:"rgba(245,245,243,.46)",duration:.01},108.161);
+tl.to("#g68",{autoAlpha:1,duration:.01},108.211).to("#g68",{autoAlpha:0,duration:.01},109.682);
+tl.to("#w68_0",{color:"#F5F5F3",duration:.01},108.261).to("#w68_0",{color:"rgba(245,245,243,.46)",duration:.01},108.509);
+tl.to("#w68_1",{color:"#F5F5F3",duration:.01},108.509).to("#w68_1",{color:"rgba(245,245,243,.46)",duration:.01},108.879);
+tl.to("#w68_2",{color:"#F5F5F3",duration:.01},108.879).to("#w68_2",{color:"rgba(245,245,243,.46)",duration:.01},109.126);
+tl.to("#w68_3",{color:"#F5F5F3",duration:.01},109.126).to("#w68_3",{color:"rgba(245,245,243,.46)",duration:.01},109.435);
+tl.to("#w68_4",{color:"#F5F5F3",duration:.01},109.435).to("#w68_4",{color:"rgba(245,245,243,.46)",duration:.01},109.744);
+tl.to("#g69",{autoAlpha:1,duration:.01},109.694).to("#g69",{autoAlpha:0,duration:.01},110.091);
+tl.to("#w69_0",{color:"#F5F5F3",duration:.01},109.744).to("#w69_0",{color:"rgba(245,245,243,.46)",duration:.01},110.053);
+tl.to("#g70",{autoAlpha:1,duration:.01},110.103).to("#g70",{autoAlpha:0,duration:.01},111.436);
+tl.to("#w70_0",{color:"#F5F5F3",duration:.01},110.153).to("#w70_0",{color:"rgba(245,245,243,.46)",duration:.01},110.368);
+tl.to("#w70_1",{color:"#F5F5F3",duration:.01},110.368).to("#w70_1",{color:"rgba(245,245,243,.46)",duration:.01},110.691);
+tl.to("#w70_2",{color:"#F5F5F3",duration:.01},110.691).to("#w70_2",{color:"rgba(245,245,243,.46)",duration:.01},111.014);
+tl.to("#w70_3",{color:"#F5F5F3",duration:.01},111.014).to("#w70_3",{color:"rgba(245,245,243,.46)",duration:.01},111.229);
+tl.to("#w70_4",{color:"#F5F5F3",duration:.01},111.229).to("#w70_4",{color:"rgba(245,245,243,.46)",duration:.01},111.498);
+tl.to("#g71",{autoAlpha:1,duration:.01},111.448).to("#g71",{autoAlpha:0,duration:.01},113.035);
+tl.to("#w71_0",{color:"#F5F5F3",duration:.01},111.498).to("#w71_0",{color:"rgba(245,245,243,.46)",duration:.01},111.713);
+tl.to("#w71_1",{color:"#F5F5F3",duration:.01},111.713).to("#w71_1",{color:"rgba(245,245,243,.46)",duration:.01},111.928);
+tl.to("#w71_2",{color:"#F5F5F3",duration:.01},111.928).to("#w71_2",{color:"rgba(245,245,243,.46)",duration:.01},112.304);
+tl.to("#w71_3",{color:"#F5F5F3",duration:.01},112.304).to("#w71_3",{color:"rgba(245,245,243,.46)",duration:.01},112.520);
+tl.to("#w71_4",{color:"#F5F5F3",duration:.01},112.520).to("#w71_4",{color:"rgba(245,245,243,.46)",duration:.01},112.735);
+window.__timelines["main"]=tl;tl.seek(0);
+</script></body></html>
