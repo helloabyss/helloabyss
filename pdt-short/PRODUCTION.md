@@ -30,7 +30,16 @@ downloaded into the repo and **I have not watched the render**. Check these on f
 2. **All four layers live** — chart background, hero type, captions, overlay FX. Watch for
    stretches that are just a plain background with captions.
 3. **Cut rhythm** — no shot held past ~2s.
-4. **Compliance card** — "Educational only. Not financial advice." visible in the first 4s.
+4. **THE HOOK — watch the first 5 seconds first, before anything else.** The video must open
+   on the hook line over the most arresting shot, already in motion. No title card, no slow
+   push, no establishing shot, no build-up. If the first 5 seconds are soft, the render fails
+   regardless of how good the rest is — send it back.
+5. **Compliance strip, not card** — "Educational only. Not financial advice." as a thin strip
+   along the bottom edge, 0:00–0:05. If it rendered as a full-frame card or a hold, it ate the
+   hook. Send it back.
+6. **Retention** — new information or a reversal every 10–15s. Flag any stretch that restates.
+   The counter-evidence turn must be signposted out loud.
+7. **Loop** — the closing line should make the opening line land differently.
 5. **The close** — should be "Check with your broker before you plan around it", with no
    subscribe/follow animation.
 

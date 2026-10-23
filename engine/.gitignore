@@ -1,0 +1,56 @@
+# Rendered video: 98 MB. Too large for git; regenerate with VIDEO.md in ~8 min.
+*.webm
+rec*/
+player.html
+render.log
+
+# Scratch frames pulled out of an encode for spot-checks
+qc*.png
+v_*.png
+chk_*.png
+p_*.png
+q_*.png
+a[0-9].png
+
+# Muxed MP4 masters: ~107 MB. Re-fetch from the ElevenLabs flow (see
+# quiet-depression/VO-SCRIPT.md) or re-run the composition node — it is free.
+*.mp4
+final-thumb.jpg
+
+# Working renders — regenerate with sheet_zul.py / thumb_qd.py
+zulcheck/
+__pycache__/
+*.pyc
+
+# Rig working files
+rigchk_*.png
+rig.html
+rig-demo.webm
+probe/
+
+# Thumbnail working dirs
+thumbsd/*.html
+
+artcheck/*.html
+
+rig16.html
+rig16-demo.webm
+rig16chk_*.png
+
+rigo.html
+rigo-demo.webm
+rigochk_*.png
+_prof.html
+
+poseanim.html
+pose-demo.webm
+posechk_*.png
+posecheck.html
+posecheck.png
+
+# Long-form render working files
+aip-silent.webm
+aip-player.html
+aip-final.mp4
+aipscenes/*.html
+aip-preview.mp4

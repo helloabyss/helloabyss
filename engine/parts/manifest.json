@@ -1,0 +1,54 @@
+{
+ "head": {
+  "file": "head.png",
+  "w": 300,
+  "h": 300,
+  "pivot": [
+   150,
+   196
+  ],
+  "pivot_local": [
+   0,
+   46
+  ]
+ },
+ "torso": {
+  "file": "torso.png",
+  "w": 380,
+  "h": 200,
+  "pivot": [
+   190,
+   14
+  ],
+  "pivot_local": [
+   0,
+   104
+  ]
+ },
+ "arm": {
+  "file": "arm.png",
+  "w": 110,
+  "h": 210,
+  "pivot": [
+   55,
+   22
+  ],
+  "pivot_local": [
+   0,
+   0
+  ]
+ },
+ "leg": {
+  "file": "leg.png",
+  "w": 110,
+  "h": 250,
+  "pivot": [
+   55,
+   18
+  ],
+  "pivot_local": [
+   0,
+   0
+  ]
+ }
+}
