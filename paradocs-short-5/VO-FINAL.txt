@@ -1,15 +1,39 @@
-This AI agent scores eighty-two percent on its coding benchmark.
+Eighty-two percent.
 
-Berkeley gave it real professional work. It scored twenty-five.
+One AI agent. Its coding benchmark.
 
-Agents' Last Exam. Fourteen hundred real tasks, from three hundred working professionals.
+Berkeley gave it real professional work.
 
-Every one graded against what the human actually delivered.
+Twenty-five.
 
-On the hardest tier, the leading agents scored zero. Not low. Zero.
+Same agent.
 
-Three quarters of the failures weren't broken tools. The agent didn't know the job.
+Agents' Last Exam.
 
-Now the other side. In June, the best score was twenty-four percent. By October, fifty-nine.
+Fourteen hundred real tasks.
 
-The gap is real. It's also closing fast.
+From three hundred working professionals.
+
+Their own finished work.
+
+Graded against what the human delivered.
+
+Match it or fail.
+
+Hardest tier: the leaders scored zero.
+
+Not low. Zero.
+
+The tools worked.
+
+Three quarters of failures: missing domain knowledge.
+
+The agent didn't know the job.
+
+Now the other side.
+
+June: twenty-four percent.
+
+October: fifty-nine.
+
+The gap is real. It's closing fast.
