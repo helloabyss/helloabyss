@@ -24,6 +24,13 @@ G = '#2e9e3e'   # beanie green
 LENS = '#ffffff'  # clear. Sheet 2026-10-06: black Wayfarer, lenses not tinted
 
 HEAD_R = 46
+
+# Below this the glasses, curls and mouth merge into a dark blob on a dark
+# plate -- the same failure recorded for hands. Measured on the 2026-10-06
+# sheet against a 1080x1920 frame: the reference corner host sits at about 22%
+# of frame height, which is scale ~1.2 here, NOT the 0.6 that looks right in a
+# layout sketch. Treat 0.8 as the floor for anything on screen.
+MIN_SC = 0.8
 LW     = 7      # main line weight
 LW_FINE = 5     # curls, collar, small detail
 
@@ -55,7 +62,7 @@ _CURL_R = 6.5
 _CURLS_SIDE = [(-46.5, -13.0), (-49.8, -2.0), (-50.2, 9.5), (-47.6, 20.0),
                (-42.4, 29.5), (-34.5, 36.8)]
 
-def _curls(view):
+def _curls(view, sparse=False):
     out = []
     if view == 'back':
         # Seen from behind the coils ring the whole brim.
@@ -68,7 +75,8 @@ def _curls(view):
             out.append(_curl(cx, cy, _CURL_R, rot=0.9))
             out.append(_curl(-cx, cy, _CURL_R, rot=pi - 0.9))
         return ''.join(out)
-    for i, (cx, cy) in enumerate(_CURLS_SIDE):
+    side = _CURLS_SIDE[::2] if sparse else _CURLS_SIDE
+    for i, (cx, cy) in enumerate(side):
         out.append(_curl(cx, cy, _CURL_R, rot=0.5 + 0.4 * i))
         out.append(_curl(-cx, cy, _CURL_R, rot=pi - 0.5 - 0.4 * i))   # mirrored
     if view == 'three_quarter':
@@ -217,12 +225,18 @@ def zul(x, y, sc=1.0, arms='down', view='front', mood='neutral',
     view    'front' | 'three_quarter' | 'back'
     mood    'neutral' | 'worried' | 'wry' | 'talking' | 'flat'
     """
+    if sc < 0.6:
+        raise ValueError(
+            'Zul at scale %.2f is illegible — features merge into a blob. '
+            'Floor for on-screen use is %.1f; the reference corner host is ~1.2.'
+            % (sc, MIN_SC))
     # Head group is rotated separately from the body so a tilt reads as a neck
     # movement rather than the whole figure leaning.
     head = ('<g transform="rotate(%.2f)">'
             '<circle cx="0" cy="0" r="%d" fill="%s" stroke="%s" stroke-width="%d"/>'
             '%s%s%s</g>'
             % (tilt, HEAD_R, W, K, LW,
-               _beanie(), _curls(view), _face(view, mood, glasses, mouth)))
+               _beanie(), _curls(view, sparse=(sc < 0.75)),
+               _face(view, mood, glasses, mouth)))
     return ('<g transform="translate(%s,%s) scale(%s)">%s%s</g>'
             % (x, y, sc, _body(view, arms, legs, arm_xy), head))

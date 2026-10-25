@@ -24,6 +24,17 @@ failure the proportions note below warns about. All four corrected.
 
 Still not built: the **no-beanie variant** (full afro, same glasses, curls and polo).
 
+### Minimum legible scale — measured 2026-10-25
+
+**Do not draw him below `sc=0.8`.** Below that the glasses, curls and mouth merge into a
+dark blob on a dark plate — the same failure already recorded for hands. `zul.py` raises
+below 0.6 rather than letting it ship.
+
+He was placed at `0.62` in a first composite and read as a smudge. The error was size, not
+detail: measured against the reference, the corner host occupies about **22% of frame
+height**, which in this coordinate space is **`sc≈1.2`** on a 1080×1920 frame — roughly
+double what looks right in a layout sketch. Curl count also thins automatically below 0.75.
+
 ---
 
 ## The look
