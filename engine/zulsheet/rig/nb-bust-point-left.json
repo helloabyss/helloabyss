@@ -1,0 +1,27 @@
+{
+ "w": 243,
+ "h": 321,
+ "cut": 160,
+ "pivot": [
+  159.4,
+  160
+ ],
+ "head": {
+  "file": "nb-bust-point-left-head.png",
+  "w": 243,
+  "h": 166
+ },
+ "body": {
+  "file": "nb-bust-point-left-body.png",
+  "w": 243,
+  "h": 167,
+  "top": 154
+ },
+ "mouth": [
+  145,
+  115,
+  174,
+  121
+ ],
+ "head_nomouth": "nb-bust-point-left-head-nomouth.png"
+}

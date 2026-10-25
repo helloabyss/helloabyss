@@ -17,6 +17,18 @@ const words = JSON.parse(fs.readFileSync(CAPS_F)).words;
 // Per-channel notice. The money channel needs the legal card; a PARADOCS10X
 // video with no financial claim needs a sourcing line, not a disclaimer.
 const NOTICE = JSON.parse(fs.readFileSync(BEATS_F)).notice || '';
+// Host rig: the owner's sheet artwork, cut at the neck so the head can bob,
+// tilt and lip-sync over a body that breathes. Pose swaps happen on beats.
+const HOST = JSON.parse(fs.readFileSync(BEATS_F)).host || null;
+const RIGDIR = path.join(__dirname, 'zulsheet', 'rig');
+let RIG = null;
+if (HOST) {
+  RIG = {};
+  for (const p of HOST.poses.map(p => p[1])) {
+    if (!RIG[p]) RIG[p] = JSON.parse(fs.readFileSync(path.join(RIGDIR, p + '.json')));
+  }
+}
+const rigUrl = f => 'file://' + path.join(RIGDIR, f);
 const W = 1080, H = 1920;
 const DUR = beats[beats.length - 1].t1;
 const abs = p => 'file://' + path.resolve(PLATES, p);
@@ -60,6 +72,13 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
 #cap span{color:#fff;-webkit-text-stroke:9px #000;paint-order:stroke fill;
   text-shadow:0 5px 18px rgba(0,0,0,.95)}
 #cap span.now{color:#d81e28}
+/* Host rig. Each pose is a stack: body, then head on its own transform. */
+#host{position:absolute;left:0;top:0;transform-origin:0 0}
+.zp{position:absolute;left:0;top:0;display:none}
+.zp.on{display:block}
+.zp img{position:absolute;left:0;top:0;display:block}
+.zp .zh{position:absolute;left:0;top:0;will-change:transform}
+.zp .zm{position:absolute;left:0;top:0;pointer-events:none}
 #flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
 #card{position:absolute;left:0;top:118px;width:${W}px;text-align:center}
 #card b{display:inline-block;font-size:27px;font-weight:700;color:rgba(255,255,255,.93);
@@ -73,12 +92,21 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
   ${plates.map((p, i) => `<video class="plate" id="p${i}" src="${abs(p)}" muted preload="auto" playsinline></video>`).join('')}
   <div id="vig"></div><div id="mid"></div>
   <div id="sub"></div><div id="hero"></div><div id="note"></div>
-  <div id="mask"></div><div id="flash"></div><div id="cap"></div><div id="card"></div>
-</div>
+  <div id="mask"></div>
+  <div id="flash"></div></div>  ${HOST ? `<div id="host">${Object.entries(RIG).map(([k, m]) => `
+    <div class="zp" id="zp-${k}">
+      <img class="zb" src="${rigUrl(m.body.file)}" style="top:${m.body.top}px">
+      <div class="zh" style="transform-origin:${m.pivot[0]}px ${m.pivot[1]}px">
+        <img src="${rigUrl(m.head_nomouth || m.head.file)}">
+        ${m.mouth ? `<svg class="zm" width="${m.w}" height="${m.h}"><path/></svg>` : ''}
+      </div>
+    </div>`).join('')}</div>` : ''}<div id="cap"></div><div id="card"></div>
 <script>
 const BEATS = ${JSON.stringify(beats)};
 const WORDS = ${JSON.stringify(words)};
 const NOTICE = ${JSON.stringify(NOTICE)};
+const HOST = ${JSON.stringify(HOST)};
+const RIG  = ${JSON.stringify(RIG)};
 const PLATES = ${JSON.stringify(plates)};
 const CARD = 4.0;
 const ease = t => 1 - Math.pow(1 - t, 3);
@@ -192,6 +220,52 @@ window.setFrame = async function (t) {
   const card = document.getElementById('card');
   if (NOTICE && t < CARD) { card.innerHTML = '<b>' + NOTICE + '</b>'; card.style.display = 'block'; }
   else { card.style.display = 'none'; }
+
+  // ---- host -------------------------------------------------------------
+  if (HOST) {
+    let pose = HOST.poses[0][1];
+    for (const [pt, pn] of HOST.poses) if (t >= pt) pose = pn;
+    const m = RIG[pose];
+    document.querySelectorAll('.zp').forEach(e =>
+      e.classList.toggle('on', e.id === 'zp-' + pose));
+    const host = document.getElementById('host');
+    const sc = (HOST.h || 420) / m.h;
+    host.style.transform = 'translate(' + (HOST.x - (HOST.anchor === 'right' ? m.w * sc : 0))
+      + 'px,' + (HOST.y - m.h * sc) + 'px) scale(' + sc.toFixed(4) + ')';
+    const el = document.getElementById('zp-' + pose);
+    // Breathe, and let the head lead it slightly so the neck reads as a joint.
+    const br = Math.sin(t * 2.0) * 1.6 + Math.sin(t * 3.7) * 0.6;
+    const tilt = Math.sin(t * 1.15) * 1.6;
+    el.querySelector('.zb').style.transform = 'translateY(' + (br * 0.45).toFixed(2) + 'px)';
+    el.querySelector('.zh').style.transform =
+      'translateY(' + br.toFixed(2) + 'px) rotate(' + tilt.toFixed(2) + 'deg)';
+    const sv = el.querySelector('.zm');
+    if (sv && m.mouth) {
+      // Lip-flap off the measured word timings, drawn where the sheet's own
+      // mouth was. Closed is the flat line; open is a lens.
+      let o = 0;
+      for (const wd of WORDS) {
+        if (t >= wd.t0 && t < wd.t1) {
+          const u = (t - wd.t0) / Math.max(0.08, wd.t1 - wd.t0);
+          o = Math.pow(Math.sin(Math.PI * Math.min(1, u)), 0.6) *
+              (0.72 + 0.28 * Math.abs(Math.sin(t * 27)));
+          break;
+        }
+        if (wd.t0 > t) break;
+      }
+      const [mx0, my0, mx1, my1] = m.mouth;
+      const cx = (mx0 + mx1) / 2, cy = (my0 + my1) / 2;
+      const hw = Math.max(7, (mx1 - mx0) * 0.42);
+      const hh = 1.4 + o * (my1 - my0) * 0.95;
+      sv.querySelector('path').setAttribute('d',
+        'M ' + (cx - hw) + ' ' + cy + ' Q ' + cx + ' ' + (cy + hh) + ' ' + (cx + hw) + ' ' + cy +
+        ' Q ' + cx + ' ' + (cy - hh * 0.55) + ' ' + (cx - hw) + ' ' + cy + ' Z');
+      sv.querySelector('path').setAttribute('fill', o > 0.12 ? '#111' : 'none');
+      sv.querySelector('path').setAttribute('stroke', '#111');
+      sv.querySelector('path').setAttribute('stroke-width', '5');
+      sv.querySelector('path').setAttribute('stroke-linecap', 'round');
+    }
+  }
 
   // Captions: the sentence the current word is in, white with heavy black stroke.
   let cur = -1;
