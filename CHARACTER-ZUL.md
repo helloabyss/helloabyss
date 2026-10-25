@@ -1,6 +1,11 @@
-# ZUL — channel host
+# ZUL — host of The Meticulous Investor
 
-Zul is the recurring host of PARADOCS10X. He appears in every stickman video.
+**Zul belongs to the money channel (The Meticulous Investor). He is NOT a PARADOCS10X
+host.** Corrected 2026-10-25 by the channel owner; this file previously said the opposite
+and that error put him into a PARADOCS10X short.
+
+PARADOCS10X has no on-screen host. It is imagery-first per `STYLE-GUIDE.md` — a line-art
+stickman on that channel is an off-brand import, not a style.
 The point of this file is that he looks and sounds **identical every time** —
 treat it the way `STYLE-GUIDE.md` is treated, as locked.
 

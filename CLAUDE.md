@@ -147,10 +147,15 @@ Keep style, voice and host constant across videos so the channel reads as one se
 
 ## The host
 
-Every stickman video is hosted by **Zul**. Read **`CHARACTER-ZUL.md`** before
-drawing him or writing a scene he appears in — he is locked the same way the
-palette is. He is built by `engine/zul.py` and positioned by the centre of his
-head; the model sheet is `engine/zulsheet/`.
+**Zul hosts The Meticulous Investor — the money channel — and only that channel.**
+Corrected 2026-10-25 by the channel owner. Read **`CHARACTER-ZUL.md`** before drawing him;
+he is locked the same way the palette is, built by `engine/zul.py` and positioned by the
+centre of his head, model sheet `engine/zulsheet/`.
+
+**PARADOCS10X has no host and no stickman.** It is imagery-first: real footage as the base
+layer, graphics over it, type on top, per `STYLE-GUIDE.md`. The stickman engine is for the
+money channel. Reaching for it on a PARADOCS10X short produced a white-background slide
+deck that was rejected — the tool was wrong for the channel, not just for the format.
 
 ## Repo layout
 

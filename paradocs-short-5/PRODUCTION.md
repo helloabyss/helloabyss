@@ -2,98 +2,82 @@
 
 | | |
 |---|---|
-| Channel | **PARADOCS10X** — AI/tech lane |
-| Runtime | **39.00s**, 8 scenes, 3.35–6.32s each |
-| Format | **1080x1920 portrait (9:16)**, 24 fps, H.264 + AAC |
-| Narrator | **Aaron** `ESDuPqgyZIDDVZTlIrH7`, `eleven_multilingual_v2` — the locked channel voice |
-| Host | Zul, from `engine/zul.py` |
-| Picture | `engine/scenes-ale.py` on the house `prims.py` kit |
-| Cost | **$0.21** ElevenLabs (571 credits) + **5 vidIQ credits** for the shorts pull. Zero HeyGen, zero Higgsfield |
+| Channel | **PARADOCS10X** — AI/tech lane. **No host, no stickman** |
+| Runtime | **39.07s**, 20 VO beats cut into **30 shots**, 0.98–1.96s each |
+| Format | **1080×1920 (9:16)**, 30 fps, H.264 + AAC |
+| Narrator | **Alex Wright – Informative** `0db3abd83c74452fb2460b0dd113daad` (HeyGen) |
+| Picture | 7 licensed Adobe Stock **video** plates, graded on ingest; `engine/reel.js` |
+| Cost | **7 Adobe Stock licences** + HeyGen `create_speech`. Zero Higgsfield, zero ElevenLabs generation |
 
-## Balances measured at the start of this cycle (2026-10-25)
+## The version this replaces
 
-`CLAUDE.md` was wrong again, in both directions:
-
-| | file said | measured |
-|---|---|---|
-| HeyGen | 600 premium | **1,573** (resets 2026-11-15) |
-| vidIQ | 106 | **101** (100 renewable + 1 add-on; 96 after the shorts pull) |
-| Higgsfield | 350.57 | 350.57 ✓ |
-
-`CLAUDE.md` corrected in the same commit.
+The first attempt was a white-background typographic slideshow built on the money
+channel's stickman engine. It was rejected, correctly. Against `STYLE-GUIDE.md` it broke
+the first rule in the document — imagery is the BASE layer, never typography on flat
+ground — plus shot length (3.35–6.32s against "no shot past 2s"), continuous motion,
+counting numbers, no-plain-cuts, caption styling and the dark grade. It also put **Zul**
+on PARADOCS10X; Zul belongs to the money channel. `CHARACTER-ZUL.md` said otherwise and
+has been corrected.
 
 ## Narration
 
-Single generation, 89 words, 38.96s — comfortably inside the 5,000-character limit that
-forced the long-form into two parts.
+Alex Wright via HeyGen `create_speech`, which returns **word-level timestamps**. That is
+true forced alignment — every cut in this video sits on a measured word boundary, with no
+estimation anywhere. The previous method (map sentences 1:1 onto `silencedetect` pauses)
+would have failed on this script: 23 sentences across 20 paragraphs of 1–7 words, and the
+detector does not reliably fire between "Not low." and "Zero."
 
-Loudness: raw output measured **−23.10 LUFS**. Two-pass `loudnorm` landed at −15.63, which
-is 1.6 LU short of target, so a `volume=1.63dB` pass with a limiter followed.
-**Final: −14.02 LUFS integrated, true peak −2.21 dBTP, measured by decoding the finished
-MP4** — not the intermediate stem. A fix measured on the stem instead of the delivered
-file is how the loudness regression happened last time.
+`resource2.heygen.ai` is blocked (403 on CONNECT), so the audio came back through the
+recorded workaround: `creative_attach_reference_file` → `creative_get_available_assets` →
+download the `preview_url` from `storage.googleapis.com`. Verified again today.
 
-## Timing — sentence alignment, not word allocation
+Loudness: raw **−16.42 LUFS**, two-pass `loudnorm` landed **−14.66**, a +0.66 dB gain pass
+brought it to target. **Final −13.97 LUFS, true peak −3.10 dBTP, measured by decoding the
+finished MP4.**
 
-The first attempt allocated scene durations by word count and snapped to the nearest
-pause. It put the scene-3 cut on a comma, because speaking rate is not uniform and
-"nearest pause" cannot tell a comma from a full stop.
+## Plates
 
-`align.py` does it structurally instead. The script is **16 sentences in 8 paragraphs**, so
-the read must contain exactly **15 major breaks**. Filtering `silencedetect` to pauses
-≥0.55s returned **exactly 15**. The mapping is then 1:1 and ordered, with no estimation at
-all, and the script aborts rather than guessing if the counts ever disagree.
+Seven Adobe Stock **video** clips, not stills. Stills with a CSS zoom is Ken Burns, which
+is what made the first version a slide deck. `getplate.sh` licenses, downloads, crops to
+1080×1920, grades dark and desaturated, and **deletes the master**: Stock ships ProRes and
+one 15s clip is ~1 GB, so ten would exhaust the session's disk.
 
-`captions.py` times words inside each *sentence* rather than each scene, so caption drift
-resets 16 times across the video and cannot accumulate past one sentence.
+`checkplate.py` gates every plate on mean luma. It earned itself immediately — the first
+bookend plate graded to **mean luma 0.0, pure black**, and would have shipped as an
+invisible layer. Brightness is now per-plate, because an already-dark source needs lifting
+where a bright one needs pulling down.
 
-## Layout guard
+Plates are **gitignored**: the licence covers use in a work, not redistribution, and this
+repo may be public. Asset IDs and search strings are in `SHOTLIST.md` so the set can be
+re-sourced.
 
-Zul's extent was computed by hand from the proportions in `CHARACTER-ZUL.md` and the answer
-was wrong by about 200px, which put a caption straight across his legs — the collision this
-channel has already rejected once. `engine/checkband.py` now measures the actual ink in
-each rendered frame and fails the build if anything enters the caption band (y≥1415). Four
-scenes were caught and fixed this way.
+## Two environment findings worth keeping
 
-Two further collisions were found by looking at decoded frames, not by the guard: the
-series card drawn over Zul's legs, and a rule through his eyeline, both in scene 8. The
-guard only checks the caption band; it does not detect type over art elsewhere in frame.
-**Looking at every scene is still required.**
+- **This Chromium has no H.264 decoder.** `canPlayType('video/mp4; codecs="avc1…")`
+  returns empty; VP9 returns "probably". Plates must be **VP9 WebM** for the compositor to
+  see them. The first render with video plates produced a perfectly valid, perfectly black
+  MP4 because `<img>` cannot display an mp4 and nothing errored.
+- **Subagents get balance-reader tools only.** Every Adobe, ElevenLabs and Higgsfield
+  generation tool is main-session only. Sourcing and generation cannot be delegated.
 
 ## Verification
 
 ```
-1080x1920 · h264 · 24 fps · 9:16 · 39.00s
+1080x1920 · h264 · 30 fps · 9:16 · 39.07s
 aac 48000 Hz stereo 191 kb/s
-−14.02 LUFS integrated, true peak −2.21 dBTP   (decoded from ale-short.mp4)
-0 silences longer than 1.5s                    (no dead tail)
-8/8 scenes clear of the caption band
-compliance card present in the decoded frame at t=1s
-caption sync spot-checked: at t=2.0s the highlighted word is "on", timed 1.90–2.22s
+−13.97 LUFS integrated, true peak −3.10 dBTP   (decoded from ale-reel.mp4)
+30/30 shots carry visible footage; luma spread 7.4–86.5 across the cut
+beats validated by engine/checkbeats.py: shot length, plate presence, layout collisions
 ```
 
-**Complete, not verified.** Stream metadata, decoded stills and measured loudness are all
-checkable here. Playback is not. Nobody has watched this end to end, and that is the one
-thing that cannot be delegated: picture/voice sync across the full 39s, and whether Aaron's
-read lands the way the cuts assume, need a human pass before upload.
-
-## Constraints hit
-
-- **Every primary source was DNS-blocked.** `WebFetch` returned `getaddrinfo ENOTFOUND`
-  for arxiv.org, metr.org, agents-last-exam.org and dailycal.org. This is a harder block
-  than the 403-on-CONNECT the repo had recorded — only server-side web search works.
-  Nothing in `FACTS.md` is graded CONFIRMED and none of it can be from here.
-- **The first-pass headline number was wrong.** See `FACTS.md`; re-checking caught a 10x
-  error before it was scripted.
-- **`build.py` and `shoot.js` hardcoded 1920x1080** and silently cropped the portrait
-  build. Both now read a canvas from `canvas.json`, which `build.py` writes; landscape
-  remains the default so the long-form pipeline is unchanged.
+**Complete, not verified.** Nobody has watched it end to end, and that is still the one
+thing that cannot be delegated.
 
 ## Upload checklist (human)
 
-1. Watch all 39s with sound. Confirm picture changes land on the sentence they belong to.
-2. Confirm the compliance card is readable in the first 4 seconds.
-3. Confirm the captions do not collide with Shorts' own UI on a real phone.
-4. Title, description and hashtags from `PACKAGING.md`; disclaimer pasted verbatim.
-5. Upload `thumbnail.png` as the cover.
-6. **Positions line** — needs a fresh answer for this upload; never copied forward.
+1. Watch all 39s with sound on a phone.
+2. Confirm the compliance strip is readable inside the first 4 seconds.
+3. Confirm captions clear YouTube's own Shorts UI.
+4. Title, description and hashtags from `PACKAGING.md`; disclaimer verbatim.
+5. Upload `thumbnail.png`.
+6. **Positions line** — fresh answer for this upload; never copied forward.

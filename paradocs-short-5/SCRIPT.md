@@ -1,13 +1,31 @@
 # PARADOCS10X — SHORT 5: "82% / 25%"
 
-**Runtime:** 39.0s · 9:16 portrait · 8 scenes · 89 words
-**Status:** rendered — `ale-short.mp4`. Complete, **not verified** (see PRODUCTION.md).
+**Target runtime:** ~28–30s · 9:16 portrait · **20 beats · 84 words**
+**Status:** ❌ **REBUILD IN PROGRESS.** The rendered `ale-short.mp4` (39.0s, 8 scenes) was
+**rejected** — see "Why the first cut failed" below. Script, packaging and shot list are
+rewritten; picture is not built.
+
+## Why the first cut failed
+
+It shipped a **white-background typographic slideshow**, which `STYLE-GUIDE.md` §1 bans by
+name: *"text floating on abstract textures … reads flat and cheap. Imagery is the
+foundation."* Also broken, all from §2–§3:
+
+| Spec | First cut |
+|---|---|
+| Cut or punch every 1.2–1.8s, nothing past 2s | 8 scenes at **3.35–6.32s** |
+| Continuous motion in every frame | static cards |
+| Numbers physically count up | numbers appeared |
+| No plain cuts — match-cut / type-as-mask / whip | plain cuts throughout |
+| Captions white with **black stroke** | wrong styling |
+| Imagery graded dark and desaturated, near-black | **white background** |
+
+The research was not the problem. **`FACTS.md` stands unchanged** and is not being redone.
 
 ## Why this topic and this length
 
-Shorts data for this channel was pulled for the first time on 2026-10-25
-(`vidiq_channel_videos`, format=short, 5 credits). Fourteen shorts since September; exactly
-one cleared 1,000 views:
+Shorts data pulled 2026-10-25 (`vidiq_channel_videos`, format=short). Fourteen shorts since
+September; exactly one cleared 1,000 views:
 
 | Short | Len | Views |
 |---|---|---|
@@ -19,71 +37,79 @@ one cleared 1,000 views:
 | THE SI AGENT RACE | 30s | 3 |
 | ANTHROPIC'S OPUS 5.5 IS HERE | 51s | 3 |
 
-The winner is the only one carrying **a named thing, a hard number, and the cost that
-number hides** — and it is also the shortest. The dead ones cluster at 38–58s with vague
-category titles. This short is built to that shape: 39s, two numbers, and the gap between
-them. It is the same structure as the channel's one long-form breakout, DOTS VS GROK BOT
-(a named thing with a trust question attached), compressed.
+The winner carries **a named thing, a hard number, and the cost that number hides** — and
+it is the shortest. The dead ones cluster at 38–58s behind vague category titles. The first
+cut of this short ran 39s, in the dead cluster. The rebuild targets **28–30s**.
 
 ## VO (verbatim — the authoritative copy is `VO-FINAL.txt`)
 
-The picture builder reads `VO-FINAL.txt` directly and asserts one composition per
-paragraph, so the script and the frames cannot drift apart.
+One paragraph per **beat**, 20 beats, ~1.5s each. Short clauses are deliberate: every
+paragraph boundary is a cut point, and the spec wants a cut every 1.2–1.8s. Beats over
+~1.8s carry an in-beat punch-in (marked `»` in `SHOTLIST.md`).
 
-| # | Line | Dur |
-|---|---|---|
-| 1 | This AI agent scores eighty-two percent on its coding benchmark. | 3.50s |
-| 2 | Berkeley gave it real professional work. It scored twenty-five. | 4.21s |
-| 3 | Agents' Last Exam. Fourteen hundred real tasks, from three hundred working professionals. | 6.30s |
-| 4 | Every one graded against what the human actually delivered. | 3.35s |
-| 5 | On the hardest tier, the leading agents scored zero. Not low. Zero. | 6.32s |
-| 6 | Three quarters of the failures weren't broken tools. The agent didn't know the job. | 5.48s |
-| 7 | Now the other side. In June, the best score was twenty-four percent. By October, fifty-nine. | 5.03s |
-| 8 | The gap is real. It's also closing fast. | 4.78s |
+| # | Beat | w | Act |
+|---|---|---|---|
+| 1 | Eighty-two percent. | 2 | hook |
+| 2 | One AI agent. Its coding benchmark. | 6 | hook |
+| 3 | Berkeley gave it real professional work. | 6 | hook |
+| 4 | Twenty-five. | 1 | hook |
+| 5 | Same agent. | 2 | hook |
+| 6 | Agents' Last Exam. | 3 | define |
+| 7 | Fourteen hundred real tasks. | 4 | define |
+| 8 | From three hundred working professionals. | 5 | define |
+| 9 | Their own finished work. | 4 | define |
+| 10 | Graded against what the human delivered. | 6 | define ★ hero shot |
+| 11 | Match it or fail. | 4 | define |
+| 12 | Hardest tier: the leaders scored zero. | 6 | case |
+| 13 | Not low. Zero. | 3 | case |
+| 14 | The tools worked. | 3 | case |
+| 15 | Three quarters of failures: missing domain knowledge. | 7 | case |
+| 16 | The agent didn't know the job. | 6 | case |
+| 17 | Now the other side. | 4 | **counter** |
+| 18 | June: twenty-four percent. | 3 | **counter** |
+| 19 | October: fifty-nine. | 2 | **counter** |
+| 20 | The gap is real. It's closing fast. | 7 | **counter / close** |
 
-Beats 7 and 8 are the mandatory counter-evidence and they get 25% of the runtime. The
-thesis is that agents fail real work; the honest qualifier is that the failure is shrinking
-fast, and it is given the same weight of frame as the thesis.
+Beats 17–20 are the mandatory counter-evidence: **5 of 20 beats, 25% of runtime**, at the
+same hero-type scale and camera energy as the thesis. The thesis is that agents fail real
+work; the honest qualifier is that the failure is shrinking fast, and it gets equal frame.
 
 ## Fact table
 
 Full grading, including what was rejected, is in `FACTS.md`. Summary:
 
-| Claim in the VO | Grade |
-|---|---|
-| 82% Terminal-Bench vs 25.2% ALE-CLI, same configuration | Medium-high |
-| 1,400+ real tasks, 300 working professionals | High / Medium-high |
-| Graded against the expert's own deliverable | High |
-| Leading agents score 0.0% on the hardest tier | Medium-high |
-| ~3/4 of failures are domain knowledge, not tools | **Medium — single source, and load-bearing** |
-| 24% June → 59% October | Medium — different boards, different scoring |
+| Claim in the VO | Beat | Grade |
+|---|---|---|
+| 82% Terminal-Bench vs 25% ALE-CLI, same configuration | 1, 4, 5 | Medium-high (Schmid says 23%; 25.2% better sourced) |
+| 1,400+ real tasks | 7 | High |
+| 300 working professionals, their own completed work | 8, 9 | Medium-high (abstract reportedly says 250+) |
+| Graded against the expert's own deliverable | 10, 11 | High |
+| Leading agents score 0.0% on the **hardest tier** | 12, 13 | Medium-high |
+| Tools executed fine; ~3/4 of failures are domain knowledge | 14, 15, 16 | **Medium — single source, and load-bearing** |
+| 24% June → 59% October | 18, 19 | Medium — different boards, different scoring |
 
-**Nothing is CONFIRMED.** Every primary source (arxiv.org, metr.org,
-agents-last-exam.org, dailycal.org) was DNS-blocked from this environment.
+**Nothing is CONFIRMED.** Every primary source (arxiv.org, metr.org, agents-last-exam.org,
+dailycal.org) was DNS-blocked from this environment.
 
 **Rejected before scripting:** the widely-shared headline "AI agents pass just 2.6% of
-real-world tasks." 2.6% is the hardest tier only, and is a cross-configuration average;
-the overall rate is ~24%. Scripting the first search result would have published a 10x
-error. The VO says "on the hardest tier" explicitly because of this.
+real-world tasks." 2.6% is the hardest tier only, and is a cross-configuration average; the
+overall rate is ~24%. Scripting the first search result would have published a 10x error.
+The VO says **"hardest tier"** explicitly (beat 12) because of this.
+
+⚠ **On-screen cards read `1,400+`, never `1,490`.** The spoken figure is "fourteen hundred";
+the card must not out-precise the read.
 
 ## Shot list
 
-| # | Frame |
-|---|---|
-| 1 | TERMINAL-BENCH / **82%** / CODING BENCHMARK · Zul points at a PASSED tag |
-| 2 | 82% greyed → **25%** in red · "A 57-POINT DROP ON THE SAME MODEL" |
-| 3 | **1,400+** REAL TASKS · 140-square grid · UC BERKELEY RDI · SNORKEL AI |
-| 4 | Two documents, HUMAN vs AGENT · "GRADED AGAINST THE EXPERT'S OWN DELIVERABLE" |
-| 5 | **0.0%** filling the frame in red · Zul shrugs |
-| 6 | Proportional split bar — "DIDN'T KNOW THE JOB" ~75% red vs TOOLS |
-| 7 | Rising line JUN 24% → AUG 38% → OCT 59% · footnote on scoring methods |
-| 8 | The two boxes side by side · THE GAP IS REAL / AND IT IS CLOSING · Zul · series card |
+**See `SHOTLIST.md`** — 20 beats, each with its photographic base plate, mid-layer graphic,
+hero word, camera move and named transition, plus the 10 plate families and the bookend /
+hero / match-cut chain.
 
-Impact words: **82% · 25% · 0.0% · THE GAP IS REAL**.
-Compliance card held over the first 4.0 seconds.
+Impact words: **82% · 25% · 0.0% · DIDN'T KNOW THE JOB · THE GAP IS CLOSING**
 
 ## Compliance
 
-- On-screen 0:00–0:04: **"Educational only. Not financial advice."** — burned in, verified
-  present in the decoded frame at t=1s.
+- On screen 0.0–4.2s: **"Educational only. Not financial advice."** — a thin white-on-black
+  strip above the caption band, **not** a full card. The hook window is not given away to a
+  legal notice; see the hook-veto section of `PACKAGING.md`.
 - Description carries `DISCLAIMER.md` verbatim, plus the named-company line.

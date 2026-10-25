@@ -20,3 +20,8 @@ __pycache__/
 
 # Frames decoded out of a finished render for spot-checks
 */qc/
+
+# Licensed Adobe Stock footage. The licence covers use in a work, not
+# redistribution, and this repo may be public. Plate IDs and the exact search
+# strings live in SHOTLIST.md so the set can be re-sourced.
+*/plates/

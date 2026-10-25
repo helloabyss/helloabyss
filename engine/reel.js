@@ -24,10 +24,10 @@ const html = `<!doctype html><meta charset="utf-8"><style>
 html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
   font-family:"Liberation Sans Narrow","Liberation Sans",Arial,sans-serif}
 #stage{position:absolute;inset:0;overflow:hidden}
-/* BASE -- photographic plate, graded dark and desaturated. Never a texture. */
+/* BASE -- live photographic footage, graded on ingest by getplate.sh. The
+   first version of this file used <img> and silently rendered black plates. */
 .plate{position:absolute;left:-10%;top:-10%;width:120%;height:120%;
-  object-fit:cover;display:none;will-change:transform;
-  filter:grayscale(.82) contrast(1.32) brightness(.46) saturate(.45)}
+  object-fit:cover;display:none;will-change:transform}
 .plate.on{display:block}
 /* Near-black vignette so type always has something to sit on */
 #vig{position:absolute;inset:0;pointer-events:none;
@@ -67,7 +67,7 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
   -webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-repeat:no-repeat;mask-position:center}
 </style>
 <div id="stage">
-  ${plates.map((p, i) => `<img class="plate" id="p${i}" src="${abs(p)}">`).join('')}
+  ${plates.map((p, i) => `<video class="plate" id="p${i}" src="${abs(p)}" muted preload="auto" playsinline></video>`).join('')}
   <div id="vig"></div><div id="mid"></div>
   <div id="sub"></div><div id="hero"></div><div id="note"></div>
   <div id="mask"></div><div id="flash"></div><div id="cap"></div><div id="card"><b>Educational only. Not financial advice.</b></div>
@@ -107,7 +107,7 @@ function setMid(b, u) {
   m.innerHTML = h;
 }
 
-window.setFrame = function (t) {
+window.setFrame = async function (t) {
   let bi = 0;
   for (let i = 0; i < BEATS.length; i++) if (t >= BEATS[i].t0) bi = i;
   const b = BEATS[bi], len = b.t1 - b.t0, u = clamp((t - b.t0) / len, 0, 1);
@@ -117,6 +117,18 @@ window.setFrame = function (t) {
     e.classList.toggle('on', PLATES[i] === b.plate));
   const el = document.querySelector('.plate.on');
   if (el) {
+    // Seek the plate to this beat's in-point plus elapsed, and WAIT for it.
+    const want = Math.min(((b.pt0 || 0) + (t - b.t0)) % Math.max(0.1, el.duration || 6),
+                          (el.duration || 6) - 0.05);
+    if (Math.abs(el.currentTime - want) > 0.008) {
+      el.currentTime = want;
+      await new Promise(r => {
+        let done = false;
+        const fin = () => { if (!done) { done = true; el.removeEventListener('seeked', fin); r(); } };
+        el.addEventListener('seeked', fin);
+        setTimeout(fin, 400);
+      });
+    }
     const amp = b.move === 'pull' ? -1 : 1;
     const sc = 1.0 + (b.move === 'pull' ? 0.14 - 0.14 * u : 0.14 * u);
     const dx = (b.move === 'driftL' ? -40 : b.move === 'driftR' ? 40 : 0) * u;
@@ -199,7 +211,9 @@ fs.writeFileSync(page, html);
   const b = await chromium.launch({ args: ['--no-sandbox'] });
   const p = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   await p.goto('file://' + path.resolve(page), { waitUntil: 'load' });
-  await p.waitForFunction('Array.from(document.images).every(i=>i.complete)');
+  // Every plate must have real pixels before a single frame is captured.
+  await p.waitForFunction(`Array.from(document.querySelectorAll('video'))
+      .every(v => v.readyState >= 2 && v.videoWidth > 0)`, { timeout: 60000 });
   const ff = spawn(FF, [
     '-y', '-f', 'image2pipe', '-c:v', 'mjpeg', '-framerate', String(FPS), '-i', 'pipe:0',
     '-i', path.resolve(AUDIO), '-map', '0:v:0', '-map', '1:a:0',
@@ -210,7 +224,7 @@ fs.writeFileSync(page, html);
   let err = ''; ff.stderr.on('data', d => { err = (err + d).slice(-4000); });
   const total = Math.round(DUR * FPS), t0 = Date.now();
   for (let n = 0; n < total; n++) {
-    await p.evaluate(t => window.setFrame(t), n / FPS);
+    await p.evaluate(async t => await window.setFrame(t), n / FPS);
     const buf = await p.screenshot({ type: 'jpeg', quality: 90 });
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     if (n % 60 === 0) console.log(`  ${n}/${total}  ${(n / ((Date.now() - t0) / 1000)).toFixed(1)} fps`);

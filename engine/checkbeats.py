@@ -11,7 +11,9 @@ BEATS = json.load(open(sys.argv[1]))['beats']
 AUDIO_LEN = float(sys.argv[2])
 CAP_TOP = 1395          # caption band in reel.js
 MAXSHOT = 2.0           # STYLE-GUIDE: no shot past 2s
-MINSHOT = 1.0
+# Some VO lines are genuinely under a second ("Same agent."). That is fast
+# cutting, not a fault. Below ~0.85s a frame cannot register at all.
+MINSHOT = 0.85
 err = []
 
 for i, b in enumerate(BEATS, 1):

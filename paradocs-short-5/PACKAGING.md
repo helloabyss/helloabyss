@@ -1,21 +1,71 @@
-# PACKAGING — PARADOCS10X short 5
+# PACKAGING — PARADOCS10X short 5 ("82% / 25%") — REBUILD
+
+## Hook veto — exercised BEFORE the script was locked
+
+The previous build failed the silent test. Shorts autoplay muted and the first frame was a
+sentence. **Veto conditions on the rebuild, all now met by `SHOTLIST.md`:**
+
+1. **`82%` is on screen in frame one.** Not faded in, not typed on, not waiting for the
+   voice. The counter runs up *under* an already-legible number.
+2. **Both halves of the contrast land inside 5 seconds.** B01 `82%` at ~0.0–1.2s, B04 `25%`
+   at ~5.0–6.0s. A muted viewer gets the entire premise — two numbers, same agent — without
+   a word of audio. The red first appears on `25%`, so the colour carries the meaning too.
+3. **The compliance line is a strip, not a card.** `Educational only. Not financial advice.`
+   runs as a thin white-on-black strip above the caption band for 0.0–4.2s. A full-frame
+   card in the first four seconds would hand the hook window to a legal notice. The strip
+   satisfies `DISCLAIMER.md` (on-screen, first 4s, legible) without taking the frame.
+4. **No question opener, no "here's why", no second-person address.** The channel's one
+   breakout short opens on a thing and a number. So does this.
+
+**Rejected opens:** "AI agents are failing at real work" (claim before evidence, nothing to
+look at); "What happens when you give an AI a real job?" (question openers test worst on
+this channel); opening on the benchmark's name (nobody knows it — the number is the hook,
+the name is beat 6).
+
+---
 
 ## Title
 
-**Pick: `This AI Scores 82% On Its Benchmark. 25% On Real Work.`**
+**Pick: `Berkeley's AI Exam: 82% On The Benchmark, 25% On Real Work`**
 
-It is built to the one shape that works on this channel. The only short since September
-to clear 1,000 views was *"New Tesla Roadster Thrust: 0-60 Under 0.9s, Half the Range"*
-(2,960 views, breakout 23.37) — **a named thing, one hard number, and the cost that number
-hides.** The dead ones are vague category titles: "Compute Maxing" (10 views), "THE SI
-AGENT RACE" (3), "ANTHROPIC'S OPUS 5.5 IS HERE" (3).
+Built to the only shape that has worked here. The one short since September to clear 1,000
+views was *"New Tesla Roadster Thrust: 0-60 Under 0.9s, Half the Range"* (27s, 2,960 views,
+breakout 23.4) — **a named thing, one hard number, and the cost that number hides.** Map:
 
-Alternatives:
-2. `Berkeley Gave AI Agents Real Jobs. They Passed 25%.`
-3. `The Benchmark Where The Best AI Agents Score Zero`
+| Tesla winner | This title |
+|---|---|
+| named thing — `Tesla Roadster` | `Berkeley` |
+| hard number — `0-60 Under 0.9s` | `82% On The Benchmark` |
+| the cost it hides — `Half the Range` | `25% On Real Work` |
 
-No vendor is named in the title or the video. Sources conflict on model ranking and the
-boards use different scoring, so a leaderboard claim is not defensible here.
+`Berkeley` is the recognisable name here, not the benchmark — nobody searches "Agents' Last
+Exam" yet. 57 characters, so it survives the mobile feed truncation.
+
+Alternatives, in order:
+2. `Agents' Last Exam: The Test Where The Best AI Scores Zero`
+3. `Berkeley Gave AI Agents Real Jobs. They Passed 25%.`
+
+**No vendor and no model is named in the title or the video.** Sources conflict on ranking
+and the boards use different scoring, so a leaderboard claim is not defensible here.
+
+## Thumbnail
+
+⚠ **`thumbnail.png` on disk was built for the rejected typographic cut and must be rebuilt.**
+It is a white-background type card and is now off-identity.
+
+**Concept — 1080x1920, three elements, nothing else:**
+- **BASE:** a frame lifted from plate **A** (the night desk, laptop the only light), graded
+  to near-black. Photographic, per `STYLE-GUIDE.md` §1 — the thumbnail obeys the same
+  layer-stack rule as the video.
+- **`82%`** in heavy condensed white, upper third, large.
+- **`25%`** in the red accent, lower third, with a thin red rule between them reading
+  `SAME AGENT`.
+
+Test at 180px wide before shipping: `82` and `25` must both still read. Lowest ink stays
+≥82px clear of the bottom edge (Shorts UI). Three-colour palette only.
+
+Deliberately **not** chasing the vidIQ thumbnail score, which rewards saturation and would
+cost the channel's identity — per `CLAUDE.md`.
 
 ## Description
 
@@ -23,9 +73,9 @@ boards use different scoring, so a leaderboard claim is not defensible here.
 The same agent configuration scores 82% on Terminal-Bench and 25.2% on Agents' Last Exam
 — UC Berkeley RDI and Snorkel AI's benchmark built from real professional work.
 
-1,490 task instances, drawn from 960 real workflows across 55 professional subfields,
+1,400+ task instances, drawn from 960 real workflows across 55 professional subfields,
 sourced from the completed work of 300+ practitioners. Every task graded by deterministic
-scripts against the expert's own deliverable, with no partial credit.
+scripts against the expert's own deliverable.
 
 On the hardest "Last Exam" tier, the leading configurations score 0.0%. The average across
 mainstream configurations on that tier is 2.6%.
@@ -38,6 +88,10 @@ The other side, which belongs in the same video: the scores are climbing fast. 2
 the June launch, 38.2% on one later board, 59.3% on another in October 2026. Different
 boards use different scoring, so these are directional, not like-for-like.
 
+Where this is weak: the three-quarters failure split comes from a single analysis of the
+paper, and it is the claim the video's payoff rests on. Treat it as the least solid number
+here.
+
 Figures are corroborated secondary reporting — arxiv.org, metr.org and the benchmark's own
 site were unreachable at the time of writing, so nothing here is confirmed against the
 primary paper (arXiv:2606.05405). Where sources conflicted, the conflict is noted rather
@@ -49,16 +103,11 @@ sources linked above.
 Disclaimer: The information provided in this video and on this channel (collectively, the “Content”) is for informational, educational, and entertainment purposes only and does not constitute investment, financial, legal, or tax advice, nor a recommendation to buy, sell, or hold any security or investment strategy. Investing involves risk and you must do your own research. Nothing in the Content should be interpreted as creating a fiduciary relationship, financial advisory relationship, or client relationship of any kind. The host, the channel, and all affiliated entities expressly disclaim any and all liability for any direct or consequential loss or damage arising directly or indirectly from the use of, reliance upon, or interpretation of the Content. By viewing or interacting with the Content, you acknowledge and agree to these terms and release the host and all related parties from any and all claims related to your reliance on the information provided.
 ```
 
+Disclaimer block is `DISCLAIMER.md` verbatim. The line above it is the required
+**named individual or company** addition from `DISCLAIMER.md` — Berkeley RDI and Snorkel AI
+are named in the video.
+
 **Hashtags:** `#ai #aiagents #benchmark #berkeley #agi #technology #shorts`
-
-## Thumbnail
-
-`thumbnail.png`, 1080x1920. Three things only, because that is all that survives at feed
-size: **SAME AI MODEL**, 82% over 25%, and what the test was. Checked downscaled to 180px.
-Lowest ink sits 82px clear of the bottom edge.
-
-Deliberately not chasing the vidIQ thumbnail score, which rewards saturation and would
-cost the channel's three-colour identity — per `CLAUDE.md`.
 
 ## Pinned comment
 
@@ -67,3 +116,12 @@ Reserved for the strongest objection to the weakest claim:
 > The 2.6% figure gets quoted as "AI agents pass 2.6% of real work." It doesn't mean that.
 > 2.6% is the average across mainstream configurations on the hardest tier only; the
 > overall pass rate is around 24%. The headline number people share is off by roughly 10x.
+
+## Definition of done
+
+| Artefact | State |
+|---|---|
+| Video | **not built** — rebuild per `SHOTLIST.md` |
+| Title | ✅ above |
+| Description | ✅ above |
+| Thumbnail | ❌ **must be rebuilt** on a photographic base; the file on disk is the rejected type card |
