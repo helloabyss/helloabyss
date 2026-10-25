@@ -25,3 +25,8 @@ __pycache__/
 # redistribution, and this repo may be public. Plate IDs and the exact search
 # strings live in SHOTLIST.md so the set can be re-sourced.
 */plates/
+
+# Scratch page the reel compositor writes on every render
+*/_reel.html
+*/_short.html
+*/_player.html
