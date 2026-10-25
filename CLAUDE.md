@@ -170,6 +170,9 @@ Keep style, voice and host constant across videos so the channel reads as one se
 ## The host
 
 **Zul hosts The Meticulous Investor — the money channel — and only that channel.**
+**He appears WITHOUT the beanie** (owner, 2026-10-25): full afro, glasses, white polo.
+Pure black and white, so the one red accent stays the only colour in frame. Poses come
+from `engine/zulsheet/poses/nb-*.png` via `engine/zulpose.py`, never redrawn.
 Corrected 2026-10-25 by the channel owner. Read **`CHARACTER-ZUL.md`** before drawing him;
 he is locked the same way the palette is, built by `engine/zul.py` and positioned by the
 centre of his head, model sheet `engine/zulsheet/`.

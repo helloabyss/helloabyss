@@ -17,6 +17,28 @@ Code: `engine/zul.py`.
 `no-beanie-2026-10-06.jpg` (the off-duty variant).
 Earlier `01.png` / `02.png` are superseded.
 
+### Default look: NO BEANIE
+
+**Set by the owner 2026-10-25.** Zul appears without the beanie — full afro, glasses,
+white polo. The beanie set stays on the sheet and stays extracted, but it is not the
+default.
+
+There is a palette reason as well as a preference one: the beanie carries red, yellow and
+green, and `STYLE-GUIDE.md` locks the channel to near-black, white and **one** red accent.
+The beanie quietly puts two extra colours in frame and competes with the accent. The
+no-beanie variant is pure black and white, so the red stays the only colour on screen.
+
+**Coverage is thinner and that is a real constraint:** 10 no-beanie poses against 21 with
+the beanie. Available: `nb-bust-idle`, `nb-bust-point-right`, `nb-bust-point-left`
+(mirrored), `nb-bust-shock`, `nb-bust-skeptical`, `nb-body-front`, `nb-body-3q-right`,
+`nb-body-3q-left`, `nb-body-back`, `nobeanie-full-front`.
+
+**Missing, and needed before a Zul-heavy video:** `present-palm` (the gesture that points
+at a data panel, used constantly in the reference), `thinking`, `thumbs-up`, and every
+full-body action pose. A mirror is honest because the artwork is symmetric; inventing a
+gesture is not. Either add them to the sheet, or accept that a no-beanie video is built
+from idle, point, shock and skeptical.
+
 ### Use the sheet artwork, not a redrawing of it
 
 For anything composited over footage, use the **cells cut from the sheets themselves** —

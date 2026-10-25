@@ -107,6 +107,13 @@
   "sheet": "no-beanie-2026-10-06.jpg",
   "w": 166
  },
+ "nb-bust-point-left": {
+  "derived": "mirror of nb-bust-point-right",
+  "file": "poses/nb-bust-point-left.png",
+  "h": 321,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 243
+ },
  "nb-bust-point-right": {
   "file": "poses/nb-bust-point-right.png",
   "h": 321,
