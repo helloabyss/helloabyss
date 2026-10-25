@@ -17,3 +17,6 @@
 */pauses.txt
 __pycache__/
 *.pyc
+
+# Frames decoded out of a finished render for spot-checks
+*/qc/

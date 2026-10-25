@@ -11,6 +11,9 @@ durf = sys.argv[3] if len(sys.argv) > 3 else None
 _sp = importlib.util.spec_from_file_location('_scenes', mod)
 _m = importlib.util.module_from_spec(_sp); _sp.loader.exec_module(_m)
 S = _m.S
+# Portrait shorts and landscape long-form share this runner; a scenes module
+# declares its own canvas via SIZE and landscape stays the default.
+SIZE = getattr(_m, 'SIZE', (1920, 1080))
 # Per-scene durations measured from the narration beat the flat 8s, which is what
 # makes picture drift against voice over a long runtime.
 DUR = json.load(open(durf))['durations'] if durf else [8] * len(S)
@@ -20,11 +23,14 @@ os.makedirs(out, exist_ok=True)
 manifest = []
 for n, vo, body in S:
     f = os.path.join(out, '%02d.html' % n)
-    io.open(f, 'w', encoding='utf-8').write(page(body))
+    io.open(f, 'w', encoding='utf-8').write(page(body, SIZE[0], SIZE[1]))
     manifest.append({'n': n, 'png': '%02d.png' % n, 'vo': vo,
                      'seconds': round(DUR[n - 1], 3)})
 io.open(os.path.join(out, 'manifest.json'), 'w', encoding='utf-8').write(
     json.dumps(manifest, indent=1, ensure_ascii=False))
+# The renderers used to hardcode 1920x1080 and silently cropped portrait builds.
+io.open(os.path.join(out, 'canvas.json'), 'w', encoding='utf-8').write(
+    json.dumps({'w': SIZE[0], 'h': SIZE[1]}))
 # CapCut/Premiere-friendly SRT so the VO lines up without eyeballing
 def ts(total):
     h = int(total // 3600); mi = int(total % 3600 // 60); sec = total % 60

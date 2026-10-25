@@ -71,6 +71,11 @@ Keep style, voice and host constant across videos so the channel reads as one se
   `static.heygen.ai`, which holds scene background images). Renders and stills cannot be
   downloaded or watched from here. Always report a render as *complete, not verified*, and
   give the user a verification checklist.
+- **Primary sources are DNS-blocked, not just 403.** Verified 2026-10-25: `WebFetch` returns
+  `getaddrinfo ENOTFOUND` for arxiv.org, metr.org, dailycal.org and others. Only server-side
+  web search works, so nothing can be graded CONFIRMED. Corroborate across independent
+  outlets and record the conflicts — a single search's headline number was wrong by 10x on
+  2026-10-25 and re-checking is what caught it.
 - **YouTube egress is blocked** (`www.youtube.com`, `googleapis.com`) — verified 2026-09-09.
   Source videos cannot be fetched, watched or transcribed directly. The only server-side
   routes are vidIQ (`vidiq_video_transcript`, 5 credits) and Higgsfield
@@ -101,11 +106,12 @@ Keep style, voice and host constant across videos so the channel reads as one se
   Audio mux, loudness normalisation and H.264 MP4 output are all local now, in one pass.
   **Note:** two interpreters exist here — install with `/usr/local/bin/python3 -m pip` so the
   default `python3` can find it.
-- **vidIQ: 106 credits** measured 2026-10-21 (105 renewable of 150 + 1 add-on; resets 2026-11-03).
+- **vidIQ: 101 credits** measured 2026-10-25 (100 renewable of 150 + 1 add-on; resets 2026-11-03).
   Affordable again. **Observed costs today:** `vidiq_channel_analytics` **5**,
   `vidiq_channel_videos` **5**, `vidiq_user_channels` **0** (the tool's own docs say 0 — this
   repo previously listed it as unverified), `vidiq_balance` **0**.
-- **HeyGen: 600 premium credits**, plan `creator`, measured 2026-10-21 (resets 2026-11-15).
+- **HeyGen: 1,573 premium credits**, plan `creator`, measured 2026-10-25 (resets 2026-11-15).
+  Was listed as 600 on 2026-10-21; measure, do not trust this line.
   Was 54 on 2026-09-09. **Higgsfield: 350.57**, plan `starter` — the "0 credits, unusable"
   line below is stale; B-roll generation is affordable again, though note its CDN
   (`d8j0ntlcm91z4.cloudfront.net`) 403s on CONNECT, so generated plates cannot be
@@ -128,6 +134,14 @@ Keep style, voice and host constant across videos so the channel reads as one se
   Generate mode skips blueprint approval, so **harden the prompt before firing**: state the
   caption requirement on its own line, ban typography over flat colour explicitly, and make the
   palette absolute.
+- **What works on this channel's SHORTS**, measured 2026-10-25 (`vidiq_channel_videos`,
+  format=short). Of 14 shorts since September, exactly one cleared 1,000 views: *Tesla
+  Roadster: 0-60 Under 0.9s, Half the Range* — **27s, 2,960 views, breakout 23.4**.
+  Everything else ran 3–521. The winner is the only title carrying **a named thing, one
+  hard number, and the cost that number hides**, and it is also the shortest; the dead
+  ones cluster at 38–58s behind vague category titles ("Compute Maxing" 10 views, "THE SI
+  AGENT RACE" 3). Same shape as the long-form breakout DOTS VS GROK BOT. **Build shorts to
+  that shape and keep them under ~40s.**
 - vidIQ thumbnail scores penalise low saturation and reward vibrancy. That conflicts with
   this channel's editorial palette. **Do not chase the score** at the cost of the identity.
 
@@ -144,7 +158,9 @@ One directory per video: `SCRIPT.md` (VO, fact table, shot list, packaging) and
 `PRODUCTION.md` (session IDs, settings, verification checklist, constraints hit).
 
 Shorts: `moat-short`, `pdt-short`, `paradocs-short-1`, `paradocs-short-3` ("The $30,000
-Wafer"), `paradocs-short-4` ("Moore's Law Was Never About Speed").
+Wafer"), `paradocs-short-4` ("Moore's Law Was Never About Speed"), `paradocs-short-5`
+("82% / 25%" — Agents' Last Exam; **first portrait short built on the local engine**, with
+burned-in captions, sentence-aligned cuts and a measured layout guard).
 Long-form: `paradocs-longform-1` (the 11m07s Cybercab video — format precedent, with its
 defects listed), `paradocs-longform-2` (Apple/2nm; **scripted, fact-checked against confirmed
 post-keynote reporting, thumbnails built — but the API render FAILED**. Build it in the HeyGen
