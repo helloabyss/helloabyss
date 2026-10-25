@@ -17,6 +17,24 @@ Code: `engine/zul.py`.
 `no-beanie-2026-10-06.jpg` (the off-duty variant).
 Earlier `01.png` / `02.png` are superseded.
 
+### Use the sheet artwork, not a redrawing of it
+
+For anything composited over footage, use the **cells cut from the sheets themselves** —
+`engine/zulsheet/poses/*.png`, 30 transparent poses produced by `engine/extract_zul.py`,
+loaded through `engine/zulpose.py`. That is the artwork, not an approximation of it.
+
+`engine/zul.py` still draws him from scratch and still drives the stickman scene engine,
+where a vector Zul has to sit inside generated SVG scenes. It is a second rendering of the
+same character and it will always drift; two passes of hand-matching coordinates to the
+sheet got closer but never got there.
+
+Notes on the extraction, because both were real failures: the background is removed by a
+**flood fill from the panel edge**, never a white-to-alpha threshold — his polo and face
+are white and thresholding punches holes through him. The bottom edge is seeded only at
+the outer quarters, because a bust pose is cropped at the chest and flooding from there
+walks up inside the shirt. JPEG leaves a light fringe that shows as a halo on a dark
+plate, so the fill grows two pixels into it.
+
 **When the code and a sheet disagree, the sheet is right.** Checked 2026-10-25 and the
 code had drifted in four ways: tinted lenses instead of clear, too few curls, a single
 collar band instead of two flaps, and a torso wide enough to read squat — the exact
