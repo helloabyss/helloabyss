@@ -88,7 +88,11 @@ for i, d in enumerate(D):
             b['count'] = {'from': c['from_'], 'to': c['to'], 'suf': c.get('suf', ''), 'pre': c.get('pre', '')}
         beats.append(b)
 
-json.dump({'beats': beats}, open('beats.json', 'w'), indent=1)
+# PARADOCS10X carries no financial disclaimer: this video names no ticker,
+# values no company and implies no trade. It carries what actually earns trust
+# here -- what the figures are and how good they are. See CLAUDE.md.
+NOTICE = 'SECONDARY REPORTING \u00b7 SOURCES IN DESCRIPTION'
+json.dump({'notice': NOTICE, 'beats': beats}, open('beats.json', 'w'), indent=1)
 ds = [b['t1'] - b['t0'] for b in beats]
 print('%d VO beats -> %d shots, %.2fs' % (len(D), len(beats), beats[-1]['t1']))
 print('shot length %.2f-%.2fs, mean %.2f' % (min(ds), max(ds), sum(ds) / len(ds)))

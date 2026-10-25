@@ -11,13 +11,33 @@ market-share numbers change. Record each claim in a fact table in `SCRIPT.md` wi
 confidence level, and mark analyst estimates as estimates, never as market prices.
 
 Include the disconfirming data. An explainer that admits where the thesis is weak is both
-more honest and better content than a promo. Every video carries an on-screen
-"Educational only. Not financial advice." card in the first 4 seconds.
+more honest and better content than a promo.
 
-**Every video description carries the full disclaimer from `DISCLAIMER.md`, pasted verbatim.**
-The 4-second on-screen card and the written disclaimer are both required — neither replaces
-the other. `DISCLAIMER.md` also holds the extra lines to add for options, crypto and
-videos naming a real person.
+## Compliance is per channel, not per repo
+
+This file began as a single money channel and the compliance rules were written for it.
+There are two channels now, and applying the finance rules to both put **"Educational only.
+Not financial advice."** on a video about AI benchmark pass rates. Nobody trades off a
+benchmark score; a disclaimer with nothing to disclaim reads as boilerplate and costs
+credibility on a channel whose whole pitch is accuracy. Corrected 2026-10-25 by the owner.
+
+**The Meticulous Investor (money) — always, no judgement call:**
+- On-screen card in the first 4 seconds: `Educational only. Not financial advice.`
+- The full `DISCLAIMER.md` text in the description, verbatim. Both are required; neither
+  replaces the other. `DISCLAIMER.md` holds the extra lines for options, crypto and videos
+  naming a real person.
+
+**PARADOCS10X (AI/tech) — only when the video gives a viewer something to trade on.**
+Apply the test: does it name a ticker, value a company, quote a share price, or imply
+buy / sell / hold? If yes, it carries the full money-channel treatment. If no — a
+benchmark, a chip process, a robot, a launch — it carries **no financial disclaimer at
+all**, because there is no financial claim.
+
+What it carries instead is an **on-frame sourcing strip**, which is the thing that actually
+earns trust here: what the figures are, and how good they are. For example
+`Secondary reporting · sources in description`. The competitor teardown in
+`reference/GROK-BOT-TEARDOWN.md` prints sourcing on the frame and it reads as more
+rigorous than a legal card, not less.
 
 ## House style — apply to every short
 

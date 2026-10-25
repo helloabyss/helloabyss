@@ -10,10 +10,11 @@ sentence. **Veto conditions on the rebuild, all now met by `SHOTLIST.md`:**
 2. **Both halves of the contrast land inside 5 seconds.** B01 `82%` at ~0.0–1.2s, B04 `25%`
    at ~5.0–6.0s. A muted viewer gets the entire premise — two numbers, same agent — without
    a word of audio. The red first appears on `25%`, so the colour carries the meaning too.
-3. **The compliance line is a strip, not a card.** `Educational only. Not financial advice.`
-   runs as a thin white-on-black strip above the caption band for 0.0–4.2s. A full-frame
-   card in the first four seconds would hand the hook window to a legal notice. The strip
-   satisfies `DISCLAIMER.md` (on-screen, first 4s, legible) without taking the frame.
+3. **The notice is a strip, not a card — and it is not a disclaimer.**
+   `SECONDARY REPORTING · SOURCES IN DESCRIPTION` runs as a thin strip for 0.0–4.0s.
+   A full-frame card in the first four seconds would hand the hook window away. This
+   video makes no financial claim, so it carries no financial disclaimer; what it owes
+   the viewer is the quality of its figures, not a legal line. See **Compliance** below.
 4. **No question opener, no "here's why", no second-person address.** The channel's one
    breakout short opens on a thing and a number. So does this.
 
@@ -100,7 +101,12 @@ than resolved in the video's favour.
 All statements about named people and companies are drawn from the public record, with
 sources linked above.
 
-Disclaimer: The information provided in this video and on this channel (collectively, the “Content”) is for informational, educational, and entertainment purposes only and does not constitute investment, financial, legal, or tax advice, nor a recommendation to buy, sell, or hold any security or investment strategy. Investing involves risk and you must do your own research. Nothing in the Content should be interpreted as creating a fiduciary relationship, financial advisory relationship, or client relationship of any kind. The host, the channel, and all affiliated entities expressly disclaim any and all liability for any direct or consequential loss or damage arising directly or indirectly from the use of, reliance upon, or interpretation of the Content. By viewing or interacting with the Content, you acknowledge and agree to these terms and release the host and all related parties from any and all claims related to your reliance on the information provided.
+Figures are corroborated secondary reporting. Every primary source for this topic
+(arxiv.org, metr.org, the benchmark's own site) was unreachable at the time of writing, so
+nothing here is confirmed against the paper itself (arXiv:2606.05405). Where sources
+conflicted, the conflict is noted rather than resolved in the video's favour.
+
+All statements about named organisations are drawn from the public record.
 ```
 
 Disclaimer block is `DISCLAIMER.md` verbatim. The line above it is the required
@@ -125,3 +131,20 @@ Reserved for the strongest objection to the weakest claim:
 | Title | ✅ above |
 | Description | ✅ above |
 | Thumbnail | ❌ **must be rebuilt** on a photographic base; the file on disk is the rejected type card |
+
+
+## Compliance — why there is no financial disclaimer
+
+This video names no ticker, values no company, quotes no share price and implies no
+buy / sell / hold. There is nothing to disclaim. Per the per-channel test in `CLAUDE.md`,
+PARADOCS10X carries the money channel's legal card **only** when a viewer is given
+something to trade on.
+
+It previously carried `Educational only. Not financial advice.` over a video about AI
+benchmark pass rates, plus the full investment disclaimer in the description. That was
+inherited from the money channel and it was wrong: an investment disclaimer on a
+non-investment video is boilerplate, and boilerplate is a credibility cost on a channel
+selling accuracy.
+
+**On-frame notice, first 4 seconds:** `SECONDARY REPORTING · SOURCES IN DESCRIPTION` —
+a thin strip, not a full card, so it does not eat the hook window.

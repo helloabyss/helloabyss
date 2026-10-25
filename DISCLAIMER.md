@@ -1,7 +1,16 @@
-# Channel Disclaimer
+# Channel Disclaimer — The Meticulous Investor (money channel)
 
 **Canonical text. Saved verbatim as supplied — do not reword, shorten or "improve" it.**
-Paste it exactly as written below into every video description.
+
+⚠️ **Scope, corrected 2026-10-25.** This is the **money channel's** disclaimer. It goes in
+every Meticulous Investor description, verbatim.
+
+It does **not** belong on a PARADOCS10X video unless that video gives the viewer something
+to trade on — a ticker, a valuation, a share price, a buy/sell/hold implication. It was
+put on a short about AI benchmark scores, where there is no financial claim to disclaim,
+and that is a defect: an investment disclaimer on a non-investment video reads as
+boilerplate and undercuts the accuracy the channel sells. See the per-channel test in
+`CLAUDE.md`.
 
 ---
 

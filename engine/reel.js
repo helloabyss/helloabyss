@@ -14,6 +14,9 @@ const FF = execSync("python3 -c 'import imageio_ffmpeg;print(imageio_ffmpeg.get_
             .toString().trim();
 const beats = JSON.parse(fs.readFileSync(BEATS_F)).beats;
 const words = JSON.parse(fs.readFileSync(CAPS_F)).words;
+// Per-channel notice. The money channel needs the legal card; a PARADOCS10X
+// video with no financial claim needs a sourcing line, not a disclaimer.
+const NOTICE = JSON.parse(fs.readFileSync(BEATS_F)).notice || '';
 const W = 1080, H = 1920;
 const DUR = beats[beats.length - 1].t1;
 const abs = p => 'file://' + path.resolve(PLATES, p);
@@ -58,10 +61,10 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
   text-shadow:0 5px 18px rgba(0,0,0,.95)}
 #cap span.now{color:#d81e28}
 #flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
-#card{position:absolute;left:0;top:112px;width:${W}px;text-align:center}
-#card b{display:inline-block;font-size:31px;font-weight:700;color:#fff;
-  border:3px solid rgba(255,255,255,.92);padding:11px 24px;letter-spacing:1px;
-  background:rgba(7,8,10,.55)}
+#card{position:absolute;left:0;top:118px;width:${W}px;text-align:center}
+#card b{display:inline-block;font-size:27px;font-weight:700;color:rgba(255,255,255,.93);
+  padding:7px 20px;letter-spacing:2px;background:rgba(7,8,10,.62);
+  border-left:4px solid #d81e28}
 /* type-as-mask wipe: a giant word reveals the next beat through its counters */
 #mask{position:absolute;inset:0;background:#07080a;display:none;
   -webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-repeat:no-repeat;mask-position:center}
@@ -70,11 +73,12 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
   ${plates.map((p, i) => `<video class="plate" id="p${i}" src="${abs(p)}" muted preload="auto" playsinline></video>`).join('')}
   <div id="vig"></div><div id="mid"></div>
   <div id="sub"></div><div id="hero"></div><div id="note"></div>
-  <div id="mask"></div><div id="flash"></div><div id="cap"></div><div id="card"><b>Educational only. Not financial advice.</b></div>
+  <div id="mask"></div><div id="flash"></div><div id="cap"></div><div id="card"></div>
 </div>
 <script>
 const BEATS = ${JSON.stringify(beats)};
 const WORDS = ${JSON.stringify(words)};
+const NOTICE = ${JSON.stringify(NOTICE)};
 const PLATES = ${JSON.stringify(plates)};
 const CARD = 4.0;
 const ease = t => 1 - Math.pow(1 - t, 3);
@@ -185,7 +189,9 @@ window.setFrame = async function (t) {
   }
   // 1-2 frame white impact flash on the biggest landings
   document.getElementById('flash').style.opacity = (b.flash && u < 0.035) ? 0.82 : 0;
-  document.getElementById('card').style.display = t < CARD ? 'block' : 'none';
+  const card = document.getElementById('card');
+  if (NOTICE && t < CARD) { card.innerHTML = '<b>' + NOTICE + '</b>'; card.style.display = 'block'; }
+  else { card.style.display = 'none'; }
 
   // Captions: the sentence the current word is in, white with heavy black stroke.
   let cur = -1;

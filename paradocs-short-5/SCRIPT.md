@@ -107,9 +107,18 @@ hero / match-cut chain.
 
 Impact words: **82% · 25% · 0.0% · DIDN'T KNOW THE JOB · THE GAP IS CLOSING**
 
-## Compliance
+## Compliance — no financial disclaimer, and why
 
-- On screen 0.0–4.2s: **"Educational only. Not financial advice."** — a thin white-on-black
-  strip above the caption band, **not** a full card. The hook window is not given away to a
-  legal notice; see the hook-veto section of `PACKAGING.md`.
-- Description carries `DISCLAIMER.md` verbatim, plus the named-company line.
+This video names no ticker, values no company, quotes no price and implies no trade, so
+there is nothing to disclaim. `CLAUDE.md` now scopes the money channel's legal card to
+videos that actually give a viewer something to trade on.
+
+The earlier cut carried `Educational only. Not financial advice.` plus the full investment
+disclaimer in the description. Both were inherited from the money channel and neither
+belonged on a video about benchmark pass rates.
+
+- **On-frame, first 4s:** `SECONDARY REPORTING · SOURCES IN DESCRIPTION`, as a thin strip.
+- **Description:** the sourcing-and-limits note, the named-organisation line, and an
+  explicit paragraph on the weakest claim. No investment disclaimer.
+- **On-frame qualifiers** stay on the beats that need them: `hardest tier · not the
+  overall score`, `single-source analysis`, `different boards · not like-for-like`.
