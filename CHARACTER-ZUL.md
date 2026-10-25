@@ -9,7 +9,20 @@ stickman on that channel is an off-brand import, not a style.
 The point of this file is that he looks and sounds **identical every time** —
 treat it the way `STYLE-GUIDE.md` is treated, as locked.
 
-Code: `engine/zul.py`. Model sheet: `engine/zulsheet/01.png`, `02.png`.
+Code: `engine/zul.py`.
+
+**Authoritative model sheets — supplied by the owner, locked 2026-10-06:**
+`engine/zulsheet/bust-kit-2026-10-06.jpg` (nine bust poses),
+`body-profile-2026-10-06.jpg` (turnaround, cut views, full poses),
+`no-beanie-2026-10-06.jpg` (the off-duty variant).
+Earlier `01.png` / `02.png` are superseded.
+
+**When the code and a sheet disagree, the sheet is right.** Checked 2026-10-25 and the
+code had drifted in four ways: tinted lenses instead of clear, too few curls, a single
+collar band instead of two flaps, and a torso wide enough to read squat — the exact
+failure the proportions note below warns about. All four corrected.
+
+Still not built: the **no-beanie variant** (full afro, same glasses, curls and polo).
 
 ---
 
@@ -20,9 +33,9 @@ Code: `engine/zul.py`. Model sheet: `engine/zulsheet/01.png`, `02.png`.
 | **Head** | Plain circle, radius 46, white fill, 7pt black line |
 | **Beanie** | Three-band knit cap — **red crown, yellow middle, green brim**, in that order top to bottom. Roughly 47 / 21 / 32 of its height. Sits ~12 above the head top |
 | **Hair** | Tight black spiral coils, 5 per side, each ~6.5 radius, on an arc just outside the head edge from under the brim down to cheek level |
-| **Glasses** | Rectangular frames, rounded corners, **light blue-grey tinted lenses** (`#b9c7d0`). Black dot eyes visible through them |
+| **Glasses** | **Meta Ray-Ban smart glasses — black Wayfarer.** Heavy black frames, rounded corners, **clear lenses, not tinted**. Black dot eyes read plainly through them. *Corrected 2026-10-25 from the locked 2026-10-06 sheet: the code and this file both carried a blue-grey tint (`#b9c7d0`) that made them read as safety goggles.* |
 | **Face** | Dot eyes, single-line mouth. Nothing else — no nose, no brows |
-| **Shirt** | White polo: cap sleeves, V-shaped collar band, short placket, two buttons |
+| **Shirt** | White polo: cap sleeves, **two folded collar flaps** forming the V, short placket, two buttons centred on it. *The code drew the collar as a single V band for thumbnail legibility; the sheet shows two flaps and the sheet wins.* |
 | **Limbs** | Plain stick lines. Hands are **three short strokes**, never a filled shape |
 | **Legs** | Two lines with a small outward foot |
 

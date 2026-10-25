@@ -21,7 +21,7 @@ W = '#fff'      # fill / paper
 R = '#d81e28'   # beanie red
 Y = '#f2c200'   # beanie yellow
 G = '#2e9e3e'   # beanie green
-LENS = '#b9c7d0'  # glass tint
+LENS = '#ffffff'  # clear. Sheet 2026-10-06: black Wayfarer, lenses not tinted
 
 HEAD_R = 46
 LW     = 7      # main line weight
@@ -50,7 +50,10 @@ def _curl(cx, cy, r=9.5, turns=1.55, rot=0.0, pts=26):
 # the cheek. Measured off the reference: each coil is ~0.14 x head radius, which
 # is roughly half the size that "looks right" when guessed.
 _CURL_R = 6.5
-_CURLS_SIDE = [(-47.0, -17.1), (-49.7, -5.2), (-49.5, 7.0), (-46.4, 18.7), (-40.5, 29.4)]
+# Coils start BELOW the beanie brim. Pushed any higher they climb over the
+# red crown and the hat stops reading as three bands.
+_CURLS_SIDE = [(-46.5, -13.0), (-49.8, -2.0), (-50.2, 9.5), (-47.6, 20.0),
+               (-42.4, 29.5), (-34.5, 36.8)]
 
 def _curls(view):
     out = []
@@ -108,17 +111,17 @@ def _face(view, mood, glasses, mouth=None):
     dx = 9 if view == 'three_quarter' else 0      # features shift toward camera
     g = []
     if glasses:
-        g.append('<g stroke="%s" stroke-width="6" stroke-linejoin="round">' % K)
+        g.append('<g stroke="%s" stroke-width="7" stroke-linejoin="round">' % K)
         if view == 'three_quarter':
-            g.append('<rect x="%d" y="-12" width="30" height="24" rx="5" fill="%s"/>' % (-38 + dx, LENS))
-            g.append('<rect x="%d" y="-12" width="34" height="24" rx="5" fill="%s"/>' % (-2 + dx, LENS))
+            g.append('<rect x="%d" y="-13" width="32" height="26" rx="6" fill="%s"/>' % (-39 + dx, LENS))
+            g.append('<rect x="%d" y="-13" width="36" height="26" rx="6" fill="%s"/>' % (-2 + dx, LENS))
             g.append('<line x1="%d" y1="0" x2="%d" y2="0"/>' % (-8 + dx, -2 + dx))
             g.append('<line x1="%d" y1="-6" x2="-45" y2="-8"/>' % (-38 + dx))
         else:
-            g.append('<rect x="-40" y="-12" width="36" height="24" rx="5" fill="%s"/>' % LENS)
-            g.append('<rect x="4" y="-12" width="36" height="24" rx="5" fill="%s"/>' % LENS)
-            g.append('<line x1="-4" y1="0" x2="4" y2="0"/>')
-            g.append('<line x1="-40" y1="-6" x2="-46" y2="-8"/><line x1="40" y1="-6" x2="46" y2="-8"/>')
+            g.append('<rect x="-43" y="-13" width="39" height="26" rx="6" fill="%s"/>' % LENS)
+            g.append('<rect x="4" y="-13" width="39" height="26" rx="6" fill="%s"/>' % LENS)
+            g.append('<line x1="-4" y1="-4" x2="4" y2="-4"/>')
+            g.append('<line x1="-43" y1="-8" x2="-50" y2="-10"/><line x1="43" y1="-8" x2="50" y2="-10"/>')
         g.append('</g>')
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % (-22 + dx, K))
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % ((12 if view == 'three_quarter' else 22) + dx, K))
@@ -164,10 +167,10 @@ _ARMS = {
 }
 
 # Shoulders y=104, hem y=244 (torso 140 = 1.5 head-diameters), feet y=400.
-_SIL_FRONT = ('M -38 104 L -68 124 L -57 154 L -45 146 L -50 244 '
-              'L 50 244 L 45 146 L 57 154 L 68 124 L 38 104 Z')
-_SIL_34    = ('M -32 104 L -60 124 L -50 154 L -40 146 L -44 244 '
-              'L 46 244 L 42 146 L 52 154 L 62 124 L 34 104 Z')
+_SIL_FRONT = ('M -34 104 L -62 126 L -53 155 L -42 147 L -41 246 '
+              'L 41 246 L 42 147 L 53 155 L 62 126 L 34 104 Z')
+_SIL_34    = ('M -29 104 L -55 126 L -47 155 L -37 147 L -37 246 '
+              'L 39 246 L 39 147 L 49 155 L 57 126 L 31 104 Z')
 
 def _body(view, arms, legs, arm_xy=None):
     out = []
@@ -181,12 +184,17 @@ def _body(view, arms, legs, arm_xy=None):
         # One V-shaped collar band, drawn as a single closed path. Two separate
         # flaps plus a placket converge into an unreadable dark wedge once the
         # head is scaled up for a thumbnail, so the band is drawn as one shape.
-        out.append('<path d="M %d 102 L %d 143 L %d 102 L %d 102 L %d 123 L %d 102 Z" '
-                   'fill="%s" stroke="%s" stroke-width="%d" stroke-linejoin="round"/>'
-                   % (-32 + c, c, 32 + c, 15 + c, c, -15 + c, W, K, LW_FINE))
-        out.append('<line x1="%d" y1="143" x2="%d" y2="173" stroke="%s" stroke-width="4"/>' % (c, c, K))
-        out.append('<circle cx="%d" cy="152" r="3.6" fill="none" stroke="%s" stroke-width="3"/>' % (c, K))
-        out.append('<circle cx="%d" cy="166" r="3.6" fill="none" stroke="%s" stroke-width="3"/>' % (c, K))
+        out.append('<path d="M %d 103 L %d 108 L %d 141 Z" fill="%s" stroke="%s" '
+                   'stroke-width="%d" stroke-linejoin="round"/>'
+                   % (-6 + c, -31 + c, -2 + c, W, K, LW_FINE))
+        out.append('<path d="M %d 103 L %d 108 L %d 141 Z" fill="%s" stroke="%s" '
+                   'stroke-width="%d" stroke-linejoin="round"/>'
+                   % (6 + c, 31 + c, 2 + c, W, K, LW_FINE))
+        out.append('<line x1="%d" y1="141" x2="%d" y2="176" stroke="%s" stroke-width="%d" '
+                   'stroke-linecap="round"/>' % (c, c, K, LW_FINE - 1))
+        # Buttons sit ON the placket line, as drawn on the sheet.
+        out.append('<circle cx="%d" cy="152" r="3.4" fill="%s" stroke="%s" stroke-width="3"/>' % (c, W, K))
+        out.append('<circle cx="%d" cy="168" r="3.4" fill="%s" stroke="%s" stroke-width="3"/>' % (c, W, K))
     pair = arm_xy if arm_xy is not None else _ARMS.get(arms)
     if pair:
         (lx1, ly1, lx2, ly2), (rx1, ry1, rx2, ry2) = pair
