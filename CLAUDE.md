@@ -48,20 +48,20 @@ no logos, compliance card, mandatory counter-evidence) are unchanged at any runt
 
 | Setting | Value |
 |---|---|
-| **Channel narrator** | **Aaron — `ESDuPqgyZIDDVZTlIrH7`** (ElevenLabs). British RP, warm, documentary. Saved in the workspace, not a library voice, so it cannot vanish |
-| **Narrator model** | `eleven_multilingual_v2` |
+| **PARADOCS10X narrator** | **Alex Wright – Informative — `0db3abd83c74452fb2460b0dd113daad`** (HeyGen). Confirmed by the channel owner 2026-10-25 |
+| **TMI narrator** | **Alex Wright**, or **Sheldon** — a HeyGen voice. Sheldon does not surface through `list_voices` (the `search`/`voice_type` filters are ignored and it returns the public list); get the id from the HeyGen app |
+| **Aaron** | `ESDuPqgyZIDDVZTlIrH7` (ElevenLabs). **Not the channel voice.** Used on the stickman long-form; superseded |
 | **Channel host** | **Zul** — see `CHARACTER-ZUL.md`. Code in `engine/zul.py`; never drawn by hand |
 | HeyGen style | Economist — `e7f9a12679ec426099db7646b70a4639` |
-| HeyGen voice | Alex Wright – Informative — `0db3abd83c74452fb2460b0dd113daad` |
 | Mode | `chat` (revisable — send follow-ups into the session) |
-| Orientation | `portrait` (9:16) for HeyGen shorts · `landscape` (16:9) for stickman long-form |
+| Orientation | `portrait` (9:16) for shorts · `landscape` (16:9) for long-form |
 
-⚠️ **Two narrators are currently on record and that is a defect, not a choice.**
-HeyGen renders bake in Alex Wright; the stickman videos use Aaron. A viewer moving
-between them hears two different channels. Aaron is the one to keep — he is on the
-most recent video and on the format Zul hosts. Either run narration through
-ElevenLabs and mux it (free, see the constraint below), or accept that HeyGen
-shorts are a separate strand. **Do not add a third voice.**
+✅ **Narrator settled 2026-10-25 by the channel owner: Alex Wright for PARADOCS10X.**
+This file previously recorded Aaron as the locked narrator and called a second voice "a
+defect, not a choice." That was wrong and it caused a real misbuild — a short was narrated
+in Aaron on the strength of this line. **Alex Wright is the PARADOCS10X voice.** Use HeyGen
+`create_speech`, which also returns **word-level timestamps** — true forced alignment, which
+is what the Shorts cutting rhythm (a cut every 1.2–1.8s) needs.
 
 Keep style, voice and host constant across videos so the channel reads as one series.
 
