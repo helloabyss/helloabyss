@@ -16,7 +16,10 @@ hard way; it is not a summary you can skip them for.
 This channel publishes finance and technology content people act on. **Never script from
 memory.** Regulatory dates, ticker figures, product limits and market-share numbers move.
 
-Before writing, search every claim and build the fact table. Then write only from it.
+**If a graded `FACTS.md` already exists for this video, write from it and do not re-search
+from scratch** — `researcher` owns that step. Check it covers every claim you intend to
+make, and send it back if it does not. Only when there is no fact table do you build one
+yourself, to the standard below.
 
 **You will usually not be able to open a primary source.** The agent proxy returns
 `connect_rejected` (403 on CONNECT) for most external hosts — filings, SEC, Bloomberg,
