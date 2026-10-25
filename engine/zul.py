@@ -102,7 +102,7 @@ _MOUTHS = {
     'flat':    'M -12 23 L 12 23',
 }
 
-def _face(view, mood, glasses):
+def _face(view, mood, glasses, mouth=None):
     if view == 'back':
         return ''
     dx = 9 if view == 'three_quarter' else 0      # features shift toward camera
@@ -122,7 +122,19 @@ def _face(view, mood, glasses):
         g.append('</g>')
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % (-22 + dx, K))
     g.append('<circle cx="%d" cy="0" r="5" fill="%s"/>' % ((12 if view == 'three_quarter' else 22) + dx, K))
-    m = _MOUTHS.get(mood, _MOUTHS['neutral'])
+    if mouth is None:
+        m = _MOUTHS.get(mood, _MOUTHS['neutral'])
+    else:
+        # Driven mouth for lip-flap: 0 is the flat neutral line, 1 is the open
+        # lens. Interpolating the control points keeps the line weight and the
+        # corner positions identical to the hand-drawn mouths.
+        o = max(0.0, min(1.0, mouth))
+        # Narrow. A mouth spanning the full ±13 of the 'talking' pose reads as a
+        # grin at thumbnail scale, not as speech.
+        w = 8.0 + 1.5 * o
+        top, bot = 22.0, 22.0 + 8.5 * o
+        m = 'M %.1f %.1f Q 0 %.1f %.1f %.1f Q 0 %.1f %.1f %.1f' % (
+            -w, top, bot, w, top, top - 3.2 * o, -w, top)
     if dx:
         for a in ('M -16', 'M -13', 'M -12'):
             m = m.replace(a, 'M %d' % (int(a.split()[1]) + dx))
@@ -157,7 +169,7 @@ _SIL_FRONT = ('M -38 104 L -68 124 L -57 154 L -45 146 L -50 244 '
 _SIL_34    = ('M -32 104 L -60 124 L -50 154 L -40 146 L -44 244 '
               'L 46 244 L 42 146 L 52 154 L 62 124 L 34 104 Z')
 
-def _body(view, arms, legs):
+def _body(view, arms, legs, arm_xy=None):
     out = []
     out.append('<line x1="0" y1="%d" x2="0" y2="110" stroke="%s" stroke-width="%d"/>' % (HEAD_R, K, LW))
     out.append('<path d="%s" fill="%s" stroke="%s" stroke-width="%d" stroke-linejoin="round"/>'
@@ -175,10 +187,11 @@ def _body(view, arms, legs):
         out.append('<line x1="%d" y1="143" x2="%d" y2="173" stroke="%s" stroke-width="4"/>' % (c, c, K))
         out.append('<circle cx="%d" cy="152" r="3.6" fill="none" stroke="%s" stroke-width="3"/>' % (c, K))
         out.append('<circle cx="%d" cy="166" r="3.6" fill="none" stroke="%s" stroke-width="3"/>' % (c, K))
-    if arms in _ARMS:
-        (lx1, ly1, lx2, ly2), (rx1, ry1, rx2, ry2) = _ARMS[arms]
+    pair = arm_xy if arm_xy is not None else _ARMS.get(arms)
+    if pair:
+        (lx1, ly1, lx2, ly2), (rx1, ry1, rx2, ry2) = pair
         for (x1, y1, x2, y2, f) in ((lx1, ly1, lx2, ly2, -1), (rx1, ry1, rx2, ry2, 1)):
-            out.append('<line x1="%d" y1="%d" x2="%d" y2="%d" stroke="%s" stroke-width="%d" stroke-linecap="round"/>'
+            out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="%d" stroke-linecap="round"/>'
                        % (x1, y1, x2, y2, K, LW))
             out.append(_hand(x2, y2, f))
     if legs:
@@ -189,15 +202,19 @@ def _body(view, arms, legs):
 
 
 def zul(x, y, sc=1.0, arms='down', view='front', mood='neutral',
-        glasses=True, legs=False):
+        glasses=True, legs=False, arm_xy=None, mouth=None, tilt=0.0):
     """Zul, positioned by the centre of his head.
 
     arms    None | 'down' | 'table' | 'up' | 'point' | 'shrug'
     view    'front' | 'three_quarter' | 'back'
     mood    'neutral' | 'worried' | 'wry' | 'talking' | 'flat'
     """
-    return ('<g transform="translate(%s,%s) scale(%s)">'
+    # Head group is rotated separately from the body so a tilt reads as a neck
+    # movement rather than the whole figure leaning.
+    head = ('<g transform="rotate(%.2f)">'
             '<circle cx="0" cy="0" r="%d" fill="%s" stroke="%s" stroke-width="%d"/>'
-            '%s%s%s%s</g>'
-            % (x, y, sc, HEAD_R, W, K, LW,
-               _body(view, arms, legs), _beanie(), _curls(view), _face(view, mood, glasses)))
+            '%s%s%s</g>'
+            % (tilt, HEAD_R, W, K, LW,
+               _beanie(), _curls(view), _face(view, mood, glasses, mouth)))
+    return ('<g transform="translate(%s,%s) scale(%s)">%s%s</g>'
+            % (x, y, sc, _body(view, arms, legs, arm_xy), head))

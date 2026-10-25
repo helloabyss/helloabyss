@@ -126,11 +126,13 @@ Keep style, voice and host constant across videos so the channel reads as one se
   Audio mux, loudness normalisation and H.264 MP4 output are all local now, in one pass.
   **Note:** two interpreters exist here — install with `/usr/local/bin/python3 -m pip` so the
   default `python3` can find it.
-- **vidIQ: 101 credits** measured 2026-10-25 (100 renewable of 150 + 1 add-on; resets 2026-11-03).
+- **vidIQ: 96 credits** re-measured 2026-10-25, later the same day (95 renewable of 150 + 1
+  add-on of 60; resets 2026-11-03). It read **101** earlier on this same date — five credits
+  went somewhere unlogged between the two reads. **Measure, never remember.**
   Affordable again. **Observed costs today:** `vidiq_channel_analytics` **5**,
   `vidiq_channel_videos` **5**, `vidiq_user_channels` **0** (the tool's own docs say 0 — this
   repo previously listed it as unverified), `vidiq_balance` **0**.
-- **HeyGen: 1,573 premium credits**, plan `creator`, measured 2026-10-25 (resets 2026-11-15).
+- **HeyGen: 1,571 premium credits**, plan `creator`, re-measured 2026-10-25 (resets 2026-11-15).
   Was listed as 600 on 2026-10-21; measure, do not trust this line.
   Was 54 on 2026-09-09. **Higgsfield: 350.57**, plan `starter` — the "0 credits, unusable"
   line below is stale; B-roll generation is affordable again, though note its CDN
