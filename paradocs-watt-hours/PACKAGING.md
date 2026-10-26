@@ -1,5 +1,9 @@
 # Packaging — 0.24 Wh. Or 0.10.
 
+> **Rebuilt 2026-10-26.** Cut is `watt-hours-v2.mp4`, thumbnail is
+> `thumbnail-v2.png`. The title and description below were already
+> fact-checked and are unchanged; only the look changed. See `SHOTLIST.md`.
+
 ## Title
 
 **Pick:** `A Gemini Prompt Uses 0.24 Wh. Or 0.10. Same Paper.`
@@ -37,6 +41,16 @@ When you see one number for anything measured, ask where they drew the line.
 **Hashtags:** `#ai #gemini #google #energy #datacenter #shorts`
 
 ## Thumbnail
+
+`thumbnail-v2.png` (1080x1920). Versus columns in the WARM DARK palette over
+the sunset power-line plate: 0.10 against 0.24, with "Same paper. Both
+correct." underneath. It makes the title's claim legible at list size, which
+the previous near-black thumbnail did not.
+
+vidIQ scores low saturation badly and this will not score well. Per CLAUDE.md
+that is not a reason to change it.
+
+### Previous
 
 `thumbnail.png` 1080×1920. `0.24 Wh` white over `0.10 Wh` red, `BOTH ARE TRUE / THE
 BOUNDARY MOVED`, on the graded rack-LED plate. No host — PARADOCS10X has none.
