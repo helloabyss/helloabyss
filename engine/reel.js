@@ -31,13 +31,25 @@ if (HOST) {
 }
 const rigUrl = f => 'file://' + path.join(RIGDIR, f);
 const W = 1080, H = 1920;
+// Palette. The three-colour near-black + red scheme was rejected by the owner
+// on 2026-10-26 ("makes me sick"), so the look is a named token set chosen per
+// video in beats.json rather than hex literals scattered through the CSS.
+const LOOKS = {
+  warmdark:  { ground:'#141118', ink:'#f7f3ec', mute:'#9b9186', accent:'#e0a008',
+               card:'#221d26', vig:'rgba(20,17,24,' },
+  light:     { ground:'#f4f1ea', ink:'#15171a', mute:'#6b7280', accent:'#c8102e',
+               card:'#ffffff', vig:'rgba(244,241,234,' },
+  editorial: { ground:'#0e1a2b', ink:'#f2f6fb', mute:'#8fa3bd', accent:'#ffb020',
+               card:'#16263d', vig:'rgba(14,26,43,' },
+};
+const LOOK = LOOKS[JSON.parse(fs.readFileSync(BEATS_F)).look || 'warmdark'];
 const DUR = beats[beats.length - 1].t1;
 const abs = p => 'file://' + path.resolve(PLATES, p);
 const plates = [...new Set(beats.map(b => b.plate).filter(Boolean))];
 
 const html = `<!doctype html><meta charset="utf-8"><style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
+html,body{width:${W}px;height:${H}px;background:${LOOK.ground};overflow:hidden;
   font-family:"Liberation Sans Narrow","Liberation Sans",Arial,sans-serif}
 #stage{position:absolute;inset:0;overflow:hidden}
 /* BASE -- live photographic footage, graded on ingest by getplate.sh. The
@@ -47,23 +59,37 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
 .plate.on{display:block}
 /* Near-black vignette so type always has something to sit on */
 #vig{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 42%,rgba(7,8,10,.12) 0%,rgba(7,8,10,.62) 58%,rgba(7,8,10,.93) 100%)}
+  background:radial-gradient(ellipse at 50% 42%,${LOOK.vig}.10) 0%,${LOOK.vig}.52) 58%,${LOOK.vig}.90) 100%)}
 #grain{position:absolute;inset:0;opacity:.055;pointer-events:none;mix-blend-mode:overlay}
 /* MID -- motion graphics over the imagery */
 #mid{position:absolute;inset:0}
-.bar{position:absolute;height:26px;background:#d81e28}
+/* LAYOUT -- the furniture a composition needs: a flat ground panel, a floating
+   card, an accent band, comparison columns. Previously every beat was the same
+   full-bleed plate with a centred word at y=430, 28 times in a row, which read
+   as a slide deck. */
+#chrome{position:absolute;inset:0}
+#chrome .pane{position:absolute;background:${LOOK.ground}}
+#chrome .cardbox{position:absolute;background:${LOOK.card};border-radius:20px;
+  box-shadow:0 24px 70px rgba(0,0,0,.34)}
+#chrome .band{position:absolute;background:${LOOK.accent}}
+#chrome .lab{position:absolute;font-weight:700;letter-spacing:5px;
+  text-transform:uppercase;color:${LOOK.mute}}
+#chrome .big{position:absolute;font-weight:800;letter-spacing:-2px;
+  line-height:.9;color:${LOOK.ink}}
+#chrome .qt{position:absolute;font-weight:800;line-height:1.08;color:${LOOK.ink}}
+.bar{position:absolute;height:26px;background:${LOOK.accent}}
 .barbg{position:absolute;height:26px;border:4px solid rgba(255,255,255,.65)}
 .tick{position:absolute;width:3px;background:rgba(255,255,255,.30)}
 .rule{position:absolute;height:8px;background:#fff}
-.rule.r{background:#d81e28}
+.rule.r{background:${LOOK.accent}}
 /* TOP -- hero type and captions */
-#hero{position:absolute;left:40px;width:${W - 80}px;text-align:center;color:#fff;
-  font-weight:800;letter-spacing:-2px;line-height:.92;
+#hero{position:absolute;left:40px;width:${W - 80}px;text-align:center;color:${LOOK.ink};
+  font-weight:800;letter-spacing:-2px;line-height:.92;white-space:nowrap;
   text-shadow:0 10px 60px rgba(0,0,0,.85)}
 #hero .fit{display:inline-block;white-space:nowrap}
 #hero .l{display:inline-block;will-change:transform,opacity}
-#hero.red{color:#d81e28}
-#sub{position:absolute;left:0;width:${W}px;text-align:center;color:#fff;
+#hero.red{color:${LOOK.accent}}
+#sub{position:absolute;left:0;width:${W}px;text-align:center;color:${LOOK.mute};
   font-weight:700;letter-spacing:5px;text-transform:uppercase;
   text-shadow:0 4px 24px rgba(0,0,0,.9)}
 #note{position:absolute;left:0;width:${W}px;text-align:center;color:rgba(255,255,255,.72);
@@ -73,7 +99,7 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
   font-size:58px;font-weight:800;line-height:1.1;text-align:center}
 #cap span{color:#fff;-webkit-text-stroke:9px #000;paint-order:stroke fill;
   text-shadow:0 5px 18px rgba(0,0,0,.95)}
-#cap span.now{color:#d81e28}
+#cap span.now{color:${LOOK.accent}}
 /* Host rig. Each pose is a stack: body, then head on its own transform. */
 #host{position:absolute;left:0;top:0;transform-origin:0 0}
 .zp{position:absolute;left:0;top:0;display:none}
@@ -85,14 +111,14 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
 #card{position:absolute;left:0;top:118px;width:${W}px;text-align:center}
 #card b{display:inline-block;font-size:27px;font-weight:700;color:rgba(255,255,255,.93);
   padding:7px 20px;letter-spacing:2px;background:rgba(7,8,10,.62);
-  border-left:4px solid #d81e28}
+  border-left:4px solid ${LOOK.accent}}
 /* type-as-mask wipe: a giant word reveals the next beat through its counters */
 #mask{position:absolute;inset:0;background:#07080a;display:none;
   -webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-repeat:no-repeat;mask-position:center}
 </style>
 <div id="stage">
   ${plates.map((p, i) => `<video class="plate" id="p${i}" src="${abs(p)}" muted preload="auto" playsinline></video>`).join('')}
-  <div id="vig"></div><div id="mid"></div>
+  <div id="vig"></div><div id="chrome"></div><div id="mid"></div>
   <div id="sub"></div><div id="hero"></div><div id="note"></div>
   <div id="mask"></div>
   <div id="flash"></div></div>  ${HOST ? `<div id="host">${Object.entries(RIG).map(([k, m]) => `
@@ -111,6 +137,7 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
       </div>
     </div>`).join('')}</div>` : ''}<div id="cap"></div><div id="card"></div>
 <script>
+const LOOK  = ${JSON.stringify(LOOK)};
 const BEATS = ${JSON.stringify(beats)};
 const WORDS = ${JSON.stringify(words)};
 const NOTICE = ${JSON.stringify(NOTICE)};
@@ -155,7 +182,7 @@ function setMid(b, u) {
     let d = '';
     for (let i = 0; i < shown; i++) d += (i ? ' L ' : 'M ') + sx(i).toFixed(1) + ' ' + sy(vs[i]).toFixed(1);
     h += '<svg style="position:absolute;left:0;top:0" width="1080" height="1920">' +
-         '<path d="' + d + '" fill="none" stroke="#d81e28" stroke-width="6" ' +
+         '<path d="' + d + '" fill="none" stroke="' + LOOK.accent + '" stroke-width="6" ' +
          'stroke-linejoin="round" stroke-linecap="round"/>' +
          '<line x1="' + x0 + '" y1="' + sy(100) + '" x2="' + (x0 + W0) + '" y2="' + sy(100) +
          '" stroke="rgba(255,255,255,.45)" stroke-width="3" stroke-dasharray="8 7"/></svg>';
@@ -172,33 +199,116 @@ function setMid(b, u) {
   m.innerHTML = h;
 }
 
-const SAFE_W = ${W} - 96;
-function fitHero(el, want) {
+function fitHero(el, want, boxW) {
+  // Shrink the hero until the laid-out LETTERS fit the box.
+  //
+  // Two earlier versions got this wrong. The first compared el.scrollWidth
+  // against a width smaller than the element's own box, so every hero bottomed
+  // out at the 28px floor. The second measured the string with a probe span --
+  // but the hero renders as one inline-block per letter, which loses kerning
+  // and rounds each box up, so the real line is wider than any probe of it and
+  // "DREW THE LINE" still lost its last letter off the frame.
+  //
+  // So measure what is actually on screen: the union of the letter rects.
+  const span = () => {
+    const ls = el.children;
+    if (!ls.length) return 0;
+    let lo = Infinity, hi = -Infinity;
+    for (const l of ls) {
+      const r = l.getBoundingClientRect();
+      if (r.width === 0) continue;
+      if (r.left < lo) lo = r.left;
+      if (r.right > hi) hi = r.right;
+    }
+    return hi > lo ? hi - lo : 0;
+  };
   let size = want;
   el.style.fontSize = size + 'px';
-  // Two passes: a nowrap measure, then shrink. Wrapping is allowed for multi
-  // word heroes, so only the longest single word forces a reduction.
-  const probe = document.createElement('span');
-  probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font-weight:800;'
-    + 'letter-spacing:-2px;font-family:inherit;font-size:' + size + 'px';
-  probe.textContent = el.textContent;
-  document.body.appendChild(probe);
-  let full = probe.getBoundingClientRect().width;
-  const words = el.textContent.split(/\s+/);
-  probe.textContent = words.reduce((a, w) => w.length > a.length ? w : a, '');
-  let longest = probe.getBoundingClientRect().width;
-  document.body.removeChild(probe);
-  // A single line that fits is best; otherwise allow wrapping, and only scale
-  // down if even the longest word is too wide.
-  if (full > SAFE_W && longest > SAFE_W) size = Math.floor(size * SAFE_W / longest);
+  let w = span();
+  if (w > boxW) size = Math.max(28, Math.floor(size * boxW / w));
   el.style.fontSize = size + 'px';
-  // Final guard: if the laid-out block still overflows its box, step it down.
+  // #hero is nowrap, so the line can never break mid-word -- an earlier fix
+  // let it wrap and produced "DREW TH / E LINE". The estimate is close but not
+  // exact (rounding moves with the size), so step down until it really fits.
   let guard = 0;
-  while (el.scrollWidth > SAFE_W + 2 && size > 28 && guard++ < 40) {
-    size -= Math.max(2, Math.round(size * 0.04));
+  while (span() > boxW && size > 28 && guard++ < 40) {
+    size -= Math.max(1, Math.round(size * 0.03));
     el.style.fontSize = size + 'px';
   }
 }
+
+// Composition templates. A beat names one in "layout"; it draws its own
+// furniture into #chrome and returns where the hero type goes, so the frame
+// changes shape between beats instead of only changing content.
+//   full   -- full-bleed plate, stat low (the original, kept for hooks)
+//   split  -- plate top, flat ground panel below, type left-aligned in it
+//   card   -- plate behind, the number on a floating card
+//   quote  -- vox-pop caption card; b.quote + b.who carry it, hero unused
+//   versus -- two columns from b.vs = (la, va, lb, vb); hero unused
+//   band   -- one word reversed out of a full-width accent band
+const LAY = {
+  // The plates are bright now, so the foot scrim is what makes type readable
+  // over bare picture -- and the type sits IN it rather than up at y=520 over
+  // the lit part of the frame, where cream on 170-luma footage disappears.
+  full: (b, u) => ({ chrome:
+      '<div class="pane" style="left:0;top:0;width:1080px;height:1920px;background:' +
+      'linear-gradient(transparent 26%,' + LOOK.ground + '66 46%,' + LOOK.ground +
+      'ee 62%,' + LOOK.ground + ' 76%)"></div>',
+    heroTop: b.heroY || 1150, align: 'left', left: 70, width: 940 }),
+
+  split: (b, u) => ({ chrome:
+      '<div class="pane" style="left:0;top:1020px;width:1080px;height:900px"></div>' +
+      '<div class="band" style="left:0;top:1014px;width:' +
+        (1080 * ease(clamp(u / .35, 0, 1))).toFixed(0) + 'px;height:6px"></div>',
+    heroTop: 1140, align: 'left', left: 70, width: 940 }),
+
+  card: (b, u) => {
+    const g = ease(clamp(u / .3, 0, 1));
+    return { chrome:
+      '<div class="cardbox" style="left:70px;top:' + (640 + (1 - g) * 40).toFixed(0) +
+        'px;width:940px;height:600px;opacity:' + g.toFixed(3) + '"></div>',
+      heroTop: 760, align: 'left', left: 130, width: 820 };
+  },
+
+  quote: (b, u) => {
+    const g = ease(clamp(u / .3, 0, 1));
+    const n = (b.quote || '').length;
+    const shown = (b.quote || '').slice(0, Math.ceil(n * clamp((u - .08) / .45, 0, 1)));
+    return { chrome:
+      '<div class="cardbox" style="left:60px;top:' + (700 + (1 - g) * 40).toFixed(0) +
+        'px;width:960px;height:' + (b.quoteH || 420) + 'px;opacity:' + g.toFixed(3) + '"></div>' +
+      '<div class="big" style="left:118px;top:' + (712 + (1 - g) * 40).toFixed(0) +
+        'px;font-size:120px;color:' + LOOK.accent + ';opacity:' + g.toFixed(3) + '">“</div>' +
+      '<div class="qt" style="left:118px;top:' + (800 + (1 - g) * 40).toFixed(0) +
+        'px;width:844px;font-size:' + (b.quoteSize || 72) + 'px">' + shown + '</div>' +
+      '<div class="lab" style="left:118px;top:' + (700 + (b.quoteH || 420) - 70) +
+        'px;font-size:30px;opacity:' + ease(clamp((u - .5) / .3, 0, 1)).toFixed(3) +
+        '">— ' + (b.who || '') + '</div>',
+      heroTop: -9999, align: 'center', left: 40, width: 1000 };
+  },
+
+  versus: (b, u) => {
+    const v = b.vs || {}, g = ease(clamp(u / .3, 0, 1)), g2 = ease(clamp((u - .25) / .3, 0, 1));
+    const col = (x, lab, val, hot, o) =>
+      '<div class="cardbox" style="left:' + x + 'px;top:' + (660 + (1 - o) * 36).toFixed(0) +
+        'px;width:452px;height:540px;opacity:' + o.toFixed(3) +
+        (hot ? ';border:5px solid ' + LOOK.accent : '') + '"></div>' +
+      '<div class="lab" style="left:' + (x + 48) + 'px;top:' + (708 + (1 - o) * 36).toFixed(0) +
+        'px;font-size:30px;opacity:' + o.toFixed(3) + (hot ? ';color:' + LOOK.accent : '') + '">' + lab + '</div>' +
+      '<div class="big" style="left:' + (x + 48) + 'px;top:' + (766 + (1 - o) * 36).toFixed(0) +
+        'px;font-size:140px;opacity:' + o.toFixed(3) + (hot ? ';color:' + LOOK.accent : '') + '">' + val + '</div>';
+    return { chrome: col(56, v.la || '', v.va || '', false, g) + col(572, v.lb || '', v.vb || '', true, g2),
+      heroTop: -9999, align: 'center', left: 40, width: 1000 };
+  },
+
+  band: (b, u) => {
+    const w = 1080 * ease(clamp(u / .28, 0, 1));
+    return { chrome: '<div class="band" style="left:0;top:' + (b.bandY || 780) +
+        'px;width:' + w.toFixed(0) + 'px;height:330px"></div>',
+      heroTop: (b.bandY || 780) + 42, align: 'center', left: 40, width: 1000,
+      subTop: (b.bandY || 780) - 96, color: LOOK.ground };
+  },
+};
 
 window.setFrame = async function (t) {
   let bi = 0;
@@ -228,6 +338,8 @@ window.setFrame = async function (t) {
     const dy = (b.move === 'up' ? -34 : b.move === 'down' ? 34 : 0) * u * amp;
     el.style.transform = 'scale(' + (1.06 + sc * .9).toFixed(4) + ') translate(' + dx + 'px,' + dy + 'px)';
   }
+  const lay = (LAY[b.layout] || LAY.full)(b, u);
+  document.getElementById('chrome').innerHTML = lay.chrome;
   setMid(b, u);
 
   // TOP: hero letters arrive individually with overshoot. Never a whole-word fade.
@@ -244,7 +356,11 @@ window.setFrame = async function (t) {
   }
   hero.className = b.red ? 'red' : '';
   hero.style.fontSize = (b.heroSize || 250) + 'px';
-  hero.style.top = (b.heroY || 520) + 'px';
+  hero.style.top = lay.heroTop + 'px';
+  hero.style.left = lay.left + 'px';
+  hero.style.width = lay.width + 'px';
+  hero.style.textAlign = lay.align;
+  hero.style.color = lay.color || '';
   if (b.count) {
     hero.innerHTML = '<span class="l">' + txt + '</span>';
   } else {
@@ -258,16 +374,23 @@ window.setFrame = async function (t) {
   }
   // Fit check. Words running off the frame is the single worst defect this
   // renderer has shipped, so the size is measured, never trusted.
-  fitHero(hero, b.heroSize || 250);
+  fitHero(hero, b.heroSize || 250, lay.width - 16);
 
   const sub = document.getElementById('sub');
   sub.textContent = b.sub || '';
   sub.style.fontSize = (b.subSize || 40) + 'px';
-  sub.style.top = ((b.heroY || 520) - (b.subSize || 40) - 30) + 'px';
+  sub.style.top = (lay.subTop !== undefined ? lay.subTop
+                   : lay.heroTop - (b.subSize || 40) - 30) + 'px';
+  sub.style.left = lay.left + 'px';
+  sub.style.width = lay.width + 'px';
+  sub.style.textAlign = lay.align;
   sub.style.opacity = ease(clamp(u / .18, 0, 1));
   const note = document.getElementById('note');
   note.textContent = b.note || '';
-  note.style.top = ((b.heroY || 520) + (b.heroSize || 250) * 0.92 + 26) + 'px';
+  note.style.top = (lay.heroTop + (b.heroSize || 250) * 0.92 + 26) + 'px';
+  note.style.left = lay.left + 'px';
+  note.style.width = lay.width + 'px';
+  note.style.textAlign = lay.align;
   note.style.opacity = ease(clamp((u - .18) / .25, 0, 1));
 
   // Transitions. No plain cuts: whip out, or a giant word wipes the frame.
@@ -377,6 +500,19 @@ fs.writeFileSync(page, html);
   // Every plate must have real pixels before a single frame is captured.
   await p.waitForFunction(`Array.from(document.querySelectorAll('video'))
       .every(v => v.readyState >= 2 && v.videoWidth > 0)`, { timeout: 60000 });
+  // PROBE=t1,t2,... dumps stills at those times and exits. A layout change can
+  // then be checked in seconds rather than by sitting through a full render.
+  if (process.env.PROBE) {
+    const dir = path.join(path.dirname(OUT), 'qc');
+    fs.mkdirSync(dir, { recursive: true });
+    for (const t of process.env.PROBE.split(',').map(Number)) {
+      await p.evaluate(async tt => await window.setFrame(tt), t);
+      await p.screenshot({ path: path.join(dir, 'probe-' + t.toFixed(2) + '.png') });
+    }
+    await b.close();
+    console.log('probe stills in ' + dir);
+    return;
+  }
   const ff = spawn(FF, [
     '-y', '-f', 'image2pipe', '-c:v', 'mjpeg', '-framerate', String(FPS), '-i', 'pipe:0',
     '-i', path.resolve(AUDIO), '-map', '0:v:0', '-map', '1:a:0',
