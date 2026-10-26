@@ -94,7 +94,7 @@
   {
    "t0": 9.057,
    "t1": 10.208,
-   "plate": "W5.webm",
+   "plate": "HW1.webm",
    "heroSize": 200,
    "move": "driftR",
    "trans": "whip",
@@ -106,7 +106,7 @@
   {
    "t0": 10.208,
    "t1": 11.36,
-   "plate": "W5.webm",
+   "plate": "HW1.webm",
    "heroSize": 200,
    "move": "push",
    "trans": "whip",
@@ -154,7 +154,7 @@
   {
    "t0": 14.385,
    "t1": 15.517,
-   "plate": "W2.webm",
+   "plate": "HW2.webm",
    "heroSize": 230,
    "move": "push",
    "trans": "whip",
@@ -174,7 +174,7 @@
   {
    "t0": 15.517,
    "t1": 16.65,
-   "plate": "W2.webm",
+   "plate": "HW2.webm",
    "heroSize": 230,
    "move": "pull",
    "trans": "whip",
