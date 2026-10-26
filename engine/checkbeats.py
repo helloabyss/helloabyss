@@ -43,7 +43,7 @@ for i, b in enumerate(BEATS, 1):
     g = b.get('mid')
     if g:
         gy = g['y']
-        gh = {'bar': 98, 'grid': 8 * 52, 'rule': 8}[g['type']]
+        gh = {'bar': 98, 'grid': 8 * 52, 'rule': 8, 'line_series': 340}[g['type']]
         if not (gy + gh < htop or gy > hbot):
             err.append('beat %d mid-layer %s spans y=%d-%d, overlapping the hero (y=%d-%d)'
                        % (i, g['type'], gy, gy + gh, htop, hbot))
@@ -51,7 +51,7 @@ for i, b in enumerate(BEATS, 1):
             err.append('beat %d mid-layer %s reaches y=%d, inside the caption band'
                        % (i, g['type'], gy + gh))
     if b.get('note') and g:
-        if not (g['y'] + {'bar': 98, 'grid': 8 * 52, 'rule': 8}[g['type']] < ny or g['y'] > ny + 36):
+        if not (g['y'] + {'bar': 98, 'grid': 8*52, 'rule': 8, 'line_series': 340}[g['type']] < ny or g['y'] > ny + 36):
             err.append('beat %d note and mid-layer %s collide at y=%d' % (i, g['type'], ny))
 
 for i in range(len(BEATS) - 1):

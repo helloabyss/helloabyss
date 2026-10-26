@@ -24,8 +24,9 @@ const RIGDIR = path.join(__dirname, 'zulsheet', 'rig');
 let RIG = null;
 if (HOST) {
   RIG = {};
+  const sfx = HOST.warm ? '-warm' : '';
   for (const p of HOST.poses.map(p => p[1])) {
-    if (!RIG[p]) RIG[p] = JSON.parse(fs.readFileSync(path.join(RIGDIR, p + '.json')));
+    if (!RIG[p]) RIG[p] = JSON.parse(fs.readFileSync(path.join(RIGDIR, p + sfx + '.json')));
   }
 }
 const rigUrl = f => 'file://' + path.join(RIGDIR, f);
@@ -98,7 +99,14 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
       <img class="zb" src="${rigUrl(m.body.file)}" style="top:${m.body.top}px">
       <div class="zh" style="transform-origin:${m.pivot[0]}px ${m.pivot[1]}px">
         <img src="${rigUrl(m.head_nomouth || m.head.file)}">
-        ${m.mouth ? `<svg class="zm" width="${m.w}" height="${m.h}"><path/></svg>` : ''}
+        ${m.mouth ? `<svg class="zm" width="${m.w}" height="${m.h}">
+          <defs><filter id="bl-${k}" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="${Math.max(2, (m.cheeks ? m.cheeks[0][2] : 10) * 0.42)}"/>
+          </filter></defs>
+          ${m.cheeks ? `<g class="zc" filter="url(#bl-${k})" opacity="0">
+            ${m.cheeks.map(c => `<ellipse cx="${c[0]}" cy="${c[1]}" rx="${c[2]}" ry="${(c[2]*0.7).toFixed(1)}" fill="#f0a096"/>`).join('')}
+          </g>` : ''}
+          <path/></svg>` : ''}
       </div>
     </div>`).join('')}</div>` : ''}<div id="cap"></div><div id="card"></div>
 <script>
@@ -132,6 +140,30 @@ function setMid(b, u) {
       h += '<div style="position:absolute;left:' + x + 'px;top:' + y + 'px;width:36px;height:36px;border:3px solid '
         + (i < lit ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.18)') + '"></div>';
     }
+  } else if (g.type === 'line_series') {
+    // A decay curve drawn from real numbers, not a swoosh. Draws itself in.
+    const rows = g.rows, n = rows.length;
+    const vs = rows.map(r => r[1]), lo = Math.min(...vs), hi = Math.max(...vs);
+    const W0 = 820, H0 = 300, x0 = 130, y0 = g.y;
+    const sx = i => x0 + W0 * i / (n - 1);
+    const sy = v => y0 + H0 - (v - lo) / Math.max(1e-6, hi - lo) * H0;
+    const shown = Math.max(2, Math.round(n * Math.min(1, u / 0.72)));
+    h += '<div style="position:absolute;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W0 +
+         'px;height:' + H0 + 'px;border-left:3px solid rgba(255,255,255,.5);' +
+         'border-bottom:3px solid rgba(255,255,255,.5)"></div>';
+    let d = '';
+    for (let i = 0; i < shown; i++) d += (i ? ' L ' : 'M ') + sx(i).toFixed(1) + ' ' + sy(vs[i]).toFixed(1);
+    h += '<svg style="position:absolute;left:0;top:0" width="1080" height="1920">' +
+         '<path d="' + d + '" fill="none" stroke="#d81e28" stroke-width="6" ' +
+         'stroke-linejoin="round" stroke-linecap="round"/>' +
+         '<line x1="' + x0 + '" y1="' + sy(100) + '" x2="' + (x0 + W0) + '" y2="' + sy(100) +
+         '" stroke="rgba(255,255,255,.45)" stroke-width="3" stroke-dasharray="8 7"/></svg>';
+    h += '<div style="position:absolute;left:' + x0 + 'px;top:' + (y0 + H0 + 10) +
+         'px;font-size:21px;color:#8d97a3;font-family:Liberation Mono,monospace">' +
+         (g.label || '') + '</div>';
+    h += '<div style="position:absolute;left:' + (x0 + W0 - 220) + 'px;top:' + (y0 + H0 + 10) +
+         'px;width:220px;text-align:right;font-size:21px;color:#8d97a3;' +
+         'font-family:Liberation Mono,monospace">' + (g.src || '') + '</div>';
   } else if (g.type === 'rule') {
     const w = 700 * ease(clamp(u / .4, 0, 1));
     h += '<div class="rule' + (g.red ? ' r' : '') + '" style="left:' + (540 - w / 2) + 'px;top:' + g.y + 'px;width:' + w + 'px"></div>';
@@ -171,9 +203,16 @@ window.setFrame = async function (t) {
 
   // TOP: hero letters arrive individually with overshoot. Never a whole-word fade.
   const hero = document.getElementById('hero');
-  const txt = b.count ? (b.count.pre || '') +
-      Math.round(b.count.from + (b.count.to - b.count.from) * ease(clamp(u / .55, 0, 1))) +
-      (b.count.suf || '') : (b.hero || '');
+  let txt;
+  if (b.count) {
+    const dv = b.count.div || 1;
+    const raw = (b.count.from + (b.count.to - b.count.from) * ease(clamp(u / .55, 0, 1))) / dv;
+    const dp = dv >= 100 ? 2 : (dv >= 10 ? 1 : 0);
+    txt = (b.count.pre || '') + (raw >= 0 ? '' : '\u2212') +
+          Math.abs(raw).toFixed(dp) + (b.count.suf || '');
+  } else {
+    txt = b.hero || '';
+  }
   hero.className = b.red ? 'red' : '';
   hero.style.fontSize = (b.heroSize || 250) + 'px';
   hero.style.top = (b.heroY || 520) + 'px';
@@ -239,6 +278,17 @@ window.setFrame = async function (t) {
     el.querySelector('.zb').style.transform = 'translateY(' + (br * 0.45).toFixed(2) + 'px)';
     el.querySelector('.zh').style.transform =
       'translateY(' + br.toFixed(2) + 'px) rotate(' + tilt.toFixed(2) + 'deg)';
+    // Blush comes and goes rather than sitting there: a constant flush reads
+    // as a painted doll. A cubed slow sine spends most of its ~15s cycle near
+    // zero and swells once, and emphatic poses add to it.
+    const zc = el.querySelector('.zc');
+    if (zc) {
+      const sw = Math.max(0, Math.sin(t * 0.42 + 1.1));
+      let bl = Math.pow(sw, 3) * 0.5;
+      if (pose.indexOf('shock') >= 0) bl += 0.45;
+      else if (pose.indexOf('skeptical') >= 0) bl += 0.18;
+      zc.setAttribute('opacity', Math.min(0.8, bl).toFixed(3));
+    }
     const sv = el.querySelector('.zm');
     if (sv && m.mouth) {
       // Lip-flap off the measured word timings, drawn where the sheet's own

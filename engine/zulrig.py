@@ -86,13 +86,21 @@ def mouth_box(a, face_top_frac=0.12, face_bot_frac=0.46):
     return best[:4] if best else None
 
 
-def build(name, force=False):
+def build(name, force=False, warm=False):
     """Split one pose into head + body with a pivot. Cached on disk."""
     os.makedirs(RIG, exist_ok=True)
-    meta_p = os.path.join(RIG, name + '.json')
+    suffix = '-warm' if warm else ''
+    meta_p = os.path.join(RIG, name + suffix + '.json')
     if os.path.exists(meta_p) and not force:
         return json.load(open(meta_p))
     im = Image.open(os.path.join(POSES, name + '.png')).convert('RGBA')
+    cheeks = None
+    if warm:
+        # The Meticulous Investor runs a warm face. The skin tint is constant
+        # so it is baked here; the blush is NOT, because it has to come and go.
+        import thumb
+        _, cheeks = thumb.face_region(im)
+        im = thumb.tint_face(im, cheeks=False)
     a = np.asarray(im)
     nk = neck(a)
     if nk is None:
@@ -103,7 +111,7 @@ def build(name, force=False):
     # rotates a degree or two.
     head = im.crop((0, 0, im.width, min(im.height, cut + 6)))
     body = im.crop((0, max(0, cut - 6), im.width, im.height))
-    head.save(os.path.join(RIG, name + '-head.png'))
+    head.save(os.path.join(RIG, name + suffix + '-head.png'))
     # A head with the drawn mouth painted out, so a driven mouth can take its
     # place. The fill colour is sampled just above the mouth, which is face
     # whether or not the skin tint has been applied.
@@ -116,16 +124,17 @@ def build(name, force=False):
         ha[max(0, hy0-pad):hy1+pad, max(0, hx0-pad):hx1+pad, 0] = samp[0]
         ha[max(0, hy0-pad):hy1+pad, max(0, hx0-pad):hx1+pad, 1] = samp[1]
         ha[max(0, hy0-pad):hy1+pad, max(0, hx0-pad):hx1+pad, 2] = samp[2]
-        Image.fromarray(ha, 'RGBA').save(os.path.join(RIG, name + '-head-nomouth.png'))
-    body.save(os.path.join(RIG, name + '-body.png'))
+        Image.fromarray(ha, 'RGBA').save(os.path.join(RIG, name + suffix + '-head-nomouth.png'))
+    body.save(os.path.join(RIG, name + suffix + '-body.png'))
     mb = mouth_box(a)
     meta = {'w': im.width, 'h': im.height, 'cut': cut,
             'pivot': [round(nx, 1), cut],
-            'head': {'file': name + '-head.png', 'w': head.width, 'h': head.height},
-            'body': {'file': name + '-body.png', 'w': body.width, 'h': body.height,
+            'head': {'file': name + suffix + '-head.png', 'w': head.width, 'h': head.height},
+            'body': {'file': name + suffix + '-body.png', 'w': body.width, 'h': body.height,
                      'top': max(0, cut - 6)},
+            'cheeks': cheeks,
             'mouth': list(mb) if mb else None,
-            'head_nomouth': (name + '-head-nomouth.png') if mb else None}
+            'head_nomouth': (name + suffix + '-head-nomouth.png') if mb else None}
     json.dump(meta, open(meta_p, 'w'), indent=1)
     return meta
 
@@ -135,6 +144,8 @@ if __name__ == '__main__':
     for n in (sys.argv[1:] or ['nb-bust-idle', 'nb-bust-point-right',
                                'nb-bust-point-left', 'nb-bust-shock',
                                'nb-bust-skeptical']):
-        m = build(n, force=True)
-        print('%-22s neck@%-5s cut y=%-4d mouth=%s'
-              % (n, m['pivot'][0], m['cut'], m['mouth']))
+        for warm in (False, True):
+            m = build(n, force=True, warm=warm)
+            print('%-22s %-5s neck@%-5s mouth=%-22s cheeks=%s'
+                  % (n, 'warm' if warm else 'line', m['pivot'][0],
+                     m['mouth'], m.get('cheeks')))

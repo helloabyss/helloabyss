@@ -53,6 +53,36 @@ def _components(mask):
     return out
 
 
+def face_region(img, head_frac=0.40):
+    """The face mask and the two cheek centres, measured off the art.
+
+    Returned so an animated blush can be drawn at the right place every frame.
+    Baking cheeks into the head PNG would freeze them, and a blush that never
+    changes reads as painted on rather than as a person.
+    """
+    im = img.convert('RGBA')
+    a = np.asarray(im)
+    h, w, _ = a.shape
+    alpha, rgb = a[:, :, 3], a[:, :, :3]
+    light = ((rgb[:, :, 0] >= 232) & (rgb[:, :, 1] >= 232) & (rgb[:, :, 2] >= 232)
+             & (alpha > 0))
+    face = np.zeros((h, w), bool)
+    for pix in _components(light):
+        if len(pix) < 25:
+            continue
+        if sum(p[0] for p in pix) / len(pix) < h * head_frac:
+            for (y, x) in pix:
+                face[y, x] = True
+    if face.sum() < 40:
+        return None, None
+    ys, xs = np.where(face)
+    x0, x1, y0, y1 = int(xs.min()), int(xs.max()), int(ys.min()), int(ys.max())
+    cy = int(y0 + (y1 - y0) * 0.78)
+    r = max(4, int((x1 - x0) * 0.13))
+    return face, [[int(x0 + (x1-x0) * 0.20), cy, r],
+                  [int(x0 + (x1-x0) * 0.80), cy, r]]
+
+
 def tint_face(img, skin=SKIN, cheeks=True, head_frac=0.40):
     """Fill the face with skin tone.
 
