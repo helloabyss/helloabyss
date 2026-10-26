@@ -110,6 +110,19 @@ Keep style, voice and host constant across videos so the channel reads as one se
   CONNECT, but ElevenLabs will fetch it server-side: `creative_attach_reference_file`
   with the HeyGen URL → `creative_get_available_assets` → download the `preview_url` from
   `storage.googleapis.com`, which **is** reachable. Verified end to end 2026-10-21.
+- ~~**Higgsfield's CDN is blocked, so generated plates cannot be downloaded here**~~ —
+  **SOLVED 2026-10-26, verified end to end.** `d8j0ntlcm91z4.cloudfront.net` still 403s on
+  CONNECT, but the same ElevenLabs bridge that rescues the HeyGen CDN works on it, with one
+  extra step, because a *video* asset's `preview_url` is only a poster frame:
+    1. `creative_attach_reference_file` with the cloudfront URL → `asset_id`
+    2. `creative_create_flow` → `creative_add_flow_asset_node` (modality `video`)
+    3. `creative_add_flow_node` type `composition`, model `eleven_composition`,
+       `connect_from` the asset node — **0 credits**, confirmed with `estimate_only`
+    4. `creative_run_flow_nodes` → poll → take `media[].master_url` (`content.mp4`),
+       NOT `preview_url`, and curl it from `storage.googleapis.com`
+  Round trip is about 90 seconds for a 5s 720p clip. **This makes Higgsfield B-roll
+  generation fully usable**, which changes the shot-sourcing strategy: the exact shot a
+  narration line needs can be generated rather than hunted for in stock.
 - **Higgsfield: 0 credits** (plan `starter`). Unusable for B-roll or video analysis.
 - **ElevenLabs can mux audio onto video, in-session and free.** A `composition` node takes a
   video input plus audio inputs and returns a single **H.264 + AAC MP4** — verified 2026-10-05 on
