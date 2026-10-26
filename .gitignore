@@ -33,3 +33,12 @@ __pycache__/
 
 # Tempo-fitted intermediate; vo-raw.mp3 + the tempo in PRODUCTION.md regenerate it
 */vo-fit.mp3
+
+# HyperFrames skills, installed 2026-10-26 with
+#   npx skills add heygen-com/hyperframes
+# 301 files of HeyGen's own repo. Not ours to redistribute, and the same rule
+# the licensed plates follow: record how to re-source it, do not vendor it.
+# skills-lock.json IS tracked and pins every skill by content hash, so the
+# command above restores this exact set.
+.agents/
+.claude/skills/
