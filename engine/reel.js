@@ -57,9 +57,10 @@ html,body{width:${W}px;height:${H}px;background:#07080a;overflow:hidden;
 .rule{position:absolute;height:8px;background:#fff}
 .rule.r{background:#d81e28}
 /* TOP -- hero type and captions */
-#hero{position:absolute;left:0;width:${W}px;text-align:center;color:#fff;
-  font-weight:800;letter-spacing:-2px;line-height:.92;white-space:nowrap;
+#hero{position:absolute;left:40px;width:${W - 80}px;text-align:center;color:#fff;
+  font-weight:800;letter-spacing:-2px;line-height:.92;
   text-shadow:0 10px 60px rgba(0,0,0,.85)}
+#hero .fit{display:inline-block;white-space:nowrap}
 #hero .l{display:inline-block;will-change:transform,opacity}
 #hero.red{color:#d81e28}
 #sub{position:absolute;left:0;width:${W}px;text-align:center;color:#fff;
@@ -171,6 +172,34 @@ function setMid(b, u) {
   m.innerHTML = h;
 }
 
+const SAFE_W = ${W} - 96;
+function fitHero(el, want) {
+  let size = want;
+  el.style.fontSize = size + 'px';
+  // Two passes: a nowrap measure, then shrink. Wrapping is allowed for multi
+  // word heroes, so only the longest single word forces a reduction.
+  const probe = document.createElement('span');
+  probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font-weight:800;'
+    + 'letter-spacing:-2px;font-family:inherit;font-size:' + size + 'px';
+  probe.textContent = el.textContent;
+  document.body.appendChild(probe);
+  let full = probe.getBoundingClientRect().width;
+  const words = el.textContent.split(/\s+/);
+  probe.textContent = words.reduce((a, w) => w.length > a.length ? w : a, '');
+  let longest = probe.getBoundingClientRect().width;
+  document.body.removeChild(probe);
+  // A single line that fits is best; otherwise allow wrapping, and only scale
+  // down if even the longest word is too wide.
+  if (full > SAFE_W && longest > SAFE_W) size = Math.floor(size * SAFE_W / longest);
+  el.style.fontSize = size + 'px';
+  // Final guard: if the laid-out block still overflows its box, step it down.
+  let guard = 0;
+  while (el.scrollWidth > SAFE_W + 2 && size > 28 && guard++ < 40) {
+    size -= Math.max(2, Math.round(size * 0.04));
+    el.style.fontSize = size + 'px';
+  }
+}
+
 window.setFrame = async function (t) {
   let bi = 0;
   for (let i = 0; i < BEATS.length; i++) if (t >= BEATS[i].t0) bi = i;
@@ -227,6 +256,10 @@ window.setFrame = async function (t) {
         (c === ' ' ? '&nbsp;' : c) + '</span>';
     }).join('');
   }
+  // Fit check. Words running off the frame is the single worst defect this
+  // renderer has shipped, so the size is measured, never trusted.
+  fitHero(hero, b.heroSize || 250);
+
   const sub = document.getElementById('sub');
   sub.textContent = b.sub || '';
   sub.style.fontSize = (b.subSize || 40) + 'px';
