@@ -1,0 +1,20 @@
+{
+  "name": "satscompute",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Share idle compute for real AI work, get paid in sats over Lightning. Not a miner.",
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "npm run test -w @satscompute/core",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "coordinator": "npm run dev -w @satscompute/coordinator",
+    "mobile": "npm run start -w @satscompute/mobile"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

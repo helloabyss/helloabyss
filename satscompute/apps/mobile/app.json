@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "SatsCompute",
+    "slug": "satscompute",
+    "scheme": "satscompute",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "backgroundColor": "#0B0D10",
+    "ios": {
+      "bundleIdentifier": "com.satscompute.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": ["processing"],
+        "BGTaskSchedulerPermittedIdentifiers": ["com.expo.modules.backgroundtask.processing"],
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.satscompute.app",
+      "edgeToEdgeEnabled": true,
+      "permissions": ["android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"],
+      "blockedPermissions": ["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"]
+    },
+    "plugins": ["expo-router", "expo-secure-store", "expo-background-task"],
+    "experiments": { "typedRoutes": true }
+  }
+}
