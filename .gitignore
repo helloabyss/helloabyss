@@ -30,3 +30,6 @@ __pycache__/
 */_reel.html
 */_short.html
 */_player.html
+
+# Tempo-fitted intermediate; vo-raw.mp3 + the tempo in PRODUCTION.md regenerate it
+*/vo-fit.mp3
