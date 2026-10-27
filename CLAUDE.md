@@ -195,6 +195,41 @@ layer, graphics over it, type on top, per `STYLE-GUIDE.md`. The stickman engine 
 money channel. Reaching for it on a PARADOCS10X short produced a white-background slide
 deck that was rejected — the tool was wrong for the channel, not just for the format.
 
+## Every render is gated — do not hand-check instead
+
+**Build with `engine/build.sh <dir> <out.mp4>`, never `reel.js` directly.** It
+renders and then runs `engine/qc.py`, and a blocking finding is a non-zero exit.
+
+This exists because on 2026-10-27 a review found **nine blocking defects** in a
+cut that had already been through four render passes and my own eyes every
+time. Among them: a bar chart whose amber bar *shrank* from 482px to 341px
+while the value it represented grew from 0.17 to 0.24, and a first frame — the
+thumbnail the whole feed sees — that was an 82%-white blank. Looking at contact
+sheets does not catch these. Measuring does.
+
+`qc.py` checks only defect classes that have actually shipped, and each check
+cites the one it came from, so nobody deletes a check without knowing what it
+caught:
+
+- frame 0 usable (it is the feed thumbnail), and no blown or black frame anywhere
+- bar graphics on one explicit scale, and labelled
+- a quote spanning beats reveals once across the group, not per beat
+- nothing set as a sourced quotation — primary sources are DNS-blocked here, so
+  a verbatim quote cannot be verified and must not be implied
+- no single plate carrying more than ~22% of the runtime (the b-roll rule)
+- no `flash` on beat 0, and `heroInstant` on it
+- type not touching the frame gutter
+- no frozen beat, and never a frozen closing beat
+- integrated loudness within 1 LU of −14, and dead air measured
+
+**To waive a finding, write which and why in that video's `PRODUCTION.md`.**
+Silently ignoring one puts the repo back where it was.
+
+`engine/bed.sh <in.wav> <out.wav>` lays a room-tone bed. QC measured 6.26s of
+digital silence on a 38s short — 16% of it, every gap at a sentence boundary,
+which is where people swipe. The bed is filtered noise about 30 dB down, not
+music; a real music bed is a separate decision.
+
 ## Repo layout
 
 One directory per video: `SCRIPT.md` (VO, fact table, shot list, packaging) and

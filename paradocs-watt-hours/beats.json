@@ -8,7 +8,6 @@
    "move": "push",
    "trans": "whip",
    "sub": "GOOGLE SAYS",
-   "flash": true,
    "pt0": 1.6,
    "layout": "full",
    "hero": "0.24 Wh",
