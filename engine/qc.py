@@ -165,6 +165,34 @@ def run(root, mp4, d, caps):
     longest = max(b['t1'] - b['t0'] for b in beats)
     row('V6', 'No single beat longer than 4.7s', longest <= 4.7, 'longest beat %.2fs' % longest)
 
+    # --- RUNTIME. The competitor playbook builds 60.000s Shorts. This
+    # channel's own vidIQ data says that length is where its videos die: of 14
+    # shorts, the one that cleared 1,000 views was 27s, and the 3-to-521-view
+    # failures cluster at 38-58s. Build to the measured evidence, not to the
+    # competitor's house format.
+    row('V11', 'Runtime under 40s (channel data: the one breakout was 27s; '
+               'the failures cluster 38-58s)',
+        script_dur <= 40.0, '%.2fs' % script_dur, warn_only=script_dur <= 45.0)
+
+    # --- COMPOSITION VARIETY. The competitor gate counts words on a frame but
+    # never asks whether the frame keeps the same shape. A review of this
+    # engine found "six layouts" was really three: full, split and card are one
+    # arrangement -- muted label, left hero, bottom third -- across 65% of the
+    # runtime, which is what "PowerPoint-like" meant.
+    FAMILY = {'full': 'lower-third', 'split': 'lower-third', 'card': 'lower-third',
+              'band': 'band', 'quote': 'card', 'versus': 'columns',
+              'topper': 'topper', 'fullbleed': 'fullbleed'}
+    fam = {}
+    for b in beats:
+        k = FAMILY.get(b.get('layout', 'full'), b.get('layout', 'full'))
+        fam[k] = fam.get(k, 0) + (b['t1'] - b['t0'])
+    topf, fsec = max(fam.items(), key=lambda kv: kv[1])
+    row('V12', 'No composition family over 55% of runtime',
+        fsec / script_dur <= 0.55,
+        '%s at %.0f%% (%d families: %s)'
+        % (topf, 100 * fsec / script_dur, len(fam),
+           ', '.join('%s %.0f%%' % (k, 100*v/script_dur) for k, v in sorted(fam.items(), key=lambda kv:-kv[1]))))
+
     # --- b-roll reuse. Playbook gate 12 is 0 reused clips. This engine loops
     # plates deliberately, so the gate is share-of-runtime instead.
     share = {}

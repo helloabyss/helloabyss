@@ -302,6 +302,32 @@ const LAY = {
       'ee 62%,' + LOOK.ground + ' 76%)"></div>',
     heroTop: b.heroY || 1035, align: 'left', left: 70, width: 940 }),
 
+  // Two layouts that put the eye somewhere other than the bottom third.
+  // A QC gate measured 68% of runtime in one arrangement -- muted label, left
+  // hero, lower third -- which is what "still PowerPoint-like" meant. A
+  // seventh variation of the same shape would not have fixed it.
+  //
+  //   topper     -- scrim and type at the TOP, picture owning the frame below
+  //   fullbleed  -- type alone on the picture, no panel, no card, no band
+  topper: (b, u) => ({ chrome:
+      '<div class="pane" style="left:0;top:0;width:1080px;height:1920px;background:' +
+      'linear-gradient(' + LOOK.ground + ' 0%,' + LOOK.ground + 'ee 22%,' +
+      LOOK.ground + '55 36%,transparent 52%)"></div>' +
+      '<div class="band" style="left:70px;top:' + (150 + (1 - ease(clamp(u / .3, 0, 1))) * 14).toFixed(0) +
+        'px;width:' + (110 * ease(clamp(u / .3, 0, 1))).toFixed(0) + 'px;height:7px"></div>',
+    heroTop: 250, align: 'left', left: 70, width: 940, subTop: 196 }),
+
+  fullbleed: (b, u) => ({ chrome:
+      // Light touch only. The first version scrimmed at 73-96% and left the
+      // type floating on near-black, which is the "typography on an abstract
+      // background" STYLE-GUIDE.md section 1 forbids. The picture has to stay
+      // the base layer; the type earns its legibility from its own shadow.
+      '<div class="pane" style="left:0;top:0;width:1080px;height:1920px;background:' +
+      'radial-gradient(ellipse at 50% 46%,' + LOOK.ground + '26 0%,' +
+      LOOK.ground + '70 58%,' + LOOK.ground + 'b0 100%)"></div>',
+    heroTop: b.heroY || 760, align: 'center', left: 40, width: 1000, subTop: 660,
+    heroShadow: '0 6px 18px rgba(0,0,0,.95),0 14px 70px rgba(0,0,0,.9)' }),
+
   split: (b, u) => ({ chrome:
       '<div class="pane" style="left:0;top:1020px;width:1080px;height:900px"></div>' +
       '<div class="band" style="left:0;top:1014px;width:' +
@@ -427,6 +453,7 @@ window.setFrame = async function (t) {
   hero.style.textAlign = lay.align;
   hero.style.color = lay.color || '';
   hero.style.opacity = lay.heroOpacity !== undefined ? lay.heroOpacity : 1;
+  hero.style.textShadow = lay.heroShadow || '';
   if (b.count) {
     hero.innerHTML = '<span class="l">' + txt + '</span>';
   } else {
