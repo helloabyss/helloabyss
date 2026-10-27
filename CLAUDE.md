@@ -195,6 +195,33 @@ layer, graphics over it, type on top, per `STYLE-GUIDE.md`. The stickman engine 
 money channel. Reaching for it on a PARADOCS10X short produced a white-background slide
 deck that was rejected — the tool was wrong for the channel, not just for the format.
 
+## Build to the owner's playbook — `reference/build-playbook/`
+
+The owner supplied his own build playbook on 2026-10-27, from two finished PX
+Shorts. **It is the standard; match it.** It is stricter than anything this
+repo had, and reading it immediately found two defects in a cut that had just
+passed my own gate: captions sitting below the y1535 safe line (under the
+Shorts UI) and 12 words on a frame against its ceiling of 8.
+
+What to copy, not just admire:
+
+- **One document set per video**, same filenames every time: `package.md`
+  (context, files, upload settings, credits), `script.md`, `numbers.md` (every
+  on-screen figure with its source, plus a "Not used" list), `TOOLS_USED.md`
+  (every tool, its credits, and what was deliberately skipped at 0),
+  `QA-GATE.md`, `build-state.md`, `paste-in.md` (**all** public text, nothing
+  internal).
+- **A numbered gate table with Result AND Evidence**, every row citing the
+  artefact that proves it. "PASS" with no evidence column is not a gate.
+- **Script gates before VO.** A SAY-LIST and a pronunciation check run *before*
+  spending narration credits, not after.
+- **A separate editorial pass that can HOLD**, with numbered fixes that are
+  re-verified individually, and advisories kept distinct from holds.
+- **The QA report must be newer than the master.** A stale report is no report.
+- **Credits logged with the cap and the unspent balance**, per build.
+- **Hard stops and staleness dates** written down where a claim goes off.
+- **Nothing is posted by the builder.** A human posts.
+
 ## Every render is gated — do not hand-check instead
 
 **Build with `engine/build.sh <dir> <out.mp4>`, never `reel.js` directly.** It
@@ -220,7 +247,14 @@ caught:
 - no `flash` on beat 0, and `heroInstant` on it
 - type not touching the frame gutter
 - no frozen beat, and never a frozen closing beat
-- integrated loudness within 1 LU of −14, and dead air measured
+- integrated loudness within 1 LU of −14, **true peak ≤ −1 dBTP**, dead air
+  measured, and no digital-zero gaps at −70 dB
+- exact frame count against the beat sheet; `freezedetect`
+- **max 8 words on a frame**, captions ≤ 3 words
+- **nothing below y=1535** — the Shorts UI covers the bottom of the frame — and
+  nothing against the side gutters
+- every beat cut within 0.3s of a word onset; no beat longer than 4.7s
+- a number on screen inside the first 2 seconds
 
 **To waive a finding, write which and why in that video's `PRODUCTION.md`.**
 Silently ignoring one puts the repo back where it was.

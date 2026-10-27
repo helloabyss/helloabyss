@@ -126,7 +126,10 @@ html,body{width:${W}px;height:${H}px;background:${LOOK.ground};overflow:hidden;
   text-shadow:0 2px 6px rgba(0,0,0,.95),0 4px 24px rgba(0,0,0,.85)}
 #note{position:absolute;left:0;width:${W}px;text-align:center;color:rgba(255,255,255,.72);
   font-weight:700;font-size:30px;letter-spacing:1px;text-shadow:0 3px 14px rgba(0,0,0,.9)}
-#cap{position:absolute;left:60px;top:1395px;width:${W - 120}px;height:200px;
+/* Captions sat at y1395-1595. The bottom of a Shorts frame is covered by the
+   title, channel row and action buttons, and the playbook puts every text
+   element above y~1535. The lower stack is lifted to clear it. */
+#cap{position:absolute;left:60px;top:1316px;width:${W - 120}px;height:180px;
   display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 15px;
   font-size:58px;font-weight:800;line-height:1.1;text-align:center}
 #cap span{color:#fff;-webkit-text-stroke:9px #000;paint-order:stroke fill;
@@ -297,13 +300,13 @@ const LAY = {
       '<div class="pane" style="left:0;top:0;width:1080px;height:1920px;background:' +
       'linear-gradient(transparent 26%,' + LOOK.ground + '66 46%,' + LOOK.ground +
       'ee 62%,' + LOOK.ground + ' 76%)"></div>',
-    heroTop: b.heroY || 1150, align: 'left', left: 70, width: 940 }),
+    heroTop: b.heroY || 1035, align: 'left', left: 70, width: 940 }),
 
   split: (b, u) => ({ chrome:
       '<div class="pane" style="left:0;top:1020px;width:1080px;height:900px"></div>' +
       '<div class="band" style="left:0;top:1014px;width:' +
         (1080 * ease(clamp(u / .35, 0, 1))).toFixed(0) + 'px;height:6px"></div>',
-    heroTop: 1140, align: 'left', left: 70, width: 940 }),
+    heroTop: 1070, align: 'left', left: 70, width: 940 }),
 
   card: (b, u) => {
     const g = ease(clamp(u / .3, 0, 1));
