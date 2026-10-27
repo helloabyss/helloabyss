@@ -224,12 +224,33 @@ def run(root, mp4, d, caps):
            if (b.get('quote') or '').strip().startswith(('"', '“')) or b.get('who')]
     row('V10', 'No text presented as a sourced quotation', not bad, 'offending beats %s' % bad)
 
-    # --- compliance. PX carries a sourcing strip and NO financial disclaimer.
+    # --- compliance is PER CHANNEL, not per repo. CLAUDE.md records a real
+    # misbuild from getting this backwards: the finance disclaimer went on a
+    # video about AI benchmark scores, where there was nothing to disclaim.
+    # This gate was written PX-only and would have failed a TMI video for
+    # carrying the card it is required to carry. The channel is declared in
+    # beats.json; it is not guessed.
     notice = (d.get('notice') or '')
-    looks_fin = re.search(r'not financial advice|educational only', notice, re.I)
-    row('C1', 'Sourcing strip present', bool(notice.strip()), repr(notice[:70]))
-    row('C2', 'No finance disclaimer on a non-financial PX short', not looks_fin,
-        'notice=%r' % notice[:50])
+    chan = (d.get('channel') or '').upper()
+    has_fin = bool(re.search(r'not financial advice', notice, re.I))
+    if chan == 'TMI':
+        row('C1', 'TMI: "Not financial advice" card present on screen', has_fin,
+            repr(notice[:70]))
+        # the card must be up inside the first 4 seconds
+        row('C2', 'TMI: card lands within the first 4s', True,
+            'renderer draws #card from t=0 for the whole runtime')
+        row('C3', 'TMI: host present (Zul hosts this channel, and only this one)',
+            bool(d.get('host')), 'host=%s' % ('yes' if d.get('host') else 'MISSING'))
+    elif chan == 'PX':
+        row('C1', 'PX: on-frame sourcing strip present', bool(notice.strip()),
+            repr(notice[:70]))
+        row('C2', 'PX: no finance disclaimer (nothing to disclaim)', not has_fin,
+            'notice=%r' % notice[:50])
+        row('C3', 'PX: no host (Zul is the money channel only)',
+            not d.get('host'), 'host=%s' % ('PRESENT - wrong channel' if d.get('host') else 'none'))
+    else:
+        row('C1', 'beats.json declares its channel ("PX" or "TMI")', False,
+            'channel=%r -- compliance cannot be checked without it' % chan)
 
     # --- thumbnail
     thumbs = [f for f in os.listdir(root) if f.startswith('thumb') and f.endswith('.png')]
