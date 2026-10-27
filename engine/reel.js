@@ -89,9 +89,11 @@ html,body{width:${W}px;height:${H}px;background:${LOOK.ground};overflow:hidden;
 #hero .fit{display:inline-block;white-space:nowrap}
 #hero .l{display:inline-block;will-change:transform,opacity}
 #hero.red{color:${LOOK.accent}}
-#sub{position:absolute;left:0;width:${W}px;text-align:center;color:${LOOK.mute};
+/* #sub was LOOK.mute on plates running 115-178 mean luma -- effectively
+   invisible. Ink-coloured with a real shadow instead. */
+#sub{position:absolute;left:0;width:${W}px;text-align:center;color:${LOOK.ink};
   font-weight:700;letter-spacing:5px;text-transform:uppercase;
-  text-shadow:0 4px 24px rgba(0,0,0,.9)}
+  text-shadow:0 2px 6px rgba(0,0,0,.95),0 4px 24px rgba(0,0,0,.85)}
 #note{position:absolute;left:0;width:${W}px;text-align:center;color:rgba(255,255,255,.72);
   font-weight:700;font-size:30px;letter-spacing:1px;text-shadow:0 3px 14px rgba(0,0,0,.9)}
 #cap{position:absolute;left:60px;top:1395px;width:${W - 120}px;height:200px;
@@ -153,13 +155,22 @@ function setMid(b, u) {
   if (!b.mid) { m.innerHTML = ''; return; }
   const g = b.mid; let h = '';
   if (g.type === 'bar') {
-    // Proportional, always. Equal bars for unequal values is a lie this repo has told once.
-    const mx = Math.max(g.a, g.b), wA = 820 * (g.a / mx), wB = 820 * (g.b / mx);
+    // Proportional, always -- and on a FIXED scale across the whole sequence.
+    // Normalising to each beat's own max pinned the white bar at full width and
+    // made the amber bar SHRINK from 482px to 341px while the number it stands
+    // for grew from 0.17 to 0.24. A chart that animates the opposite of the
+    // narration is worse than no chart. g.max is the scale for every beat.
+    const mx = g.max || Math.max(g.a, g.b), wA = 820 * (g.a / mx), wB = 820 * (g.b / mx);
     const gw = ease(clamp(u / .55, 0, 1));
     h += '<div class="barbg" style="left:130px;top:' + g.y + 'px;width:820px"></div>';
     h += '<div class="bar" style="left:130px;top:' + g.y + 'px;width:' + (wA * gw) + 'px;background:#fff"></div>';
     h += '<div class="barbg" style="left:130px;top:' + (g.y + 72) + 'px;width:820px"></div>';
     h += '<div class="bar" style="left:130px;top:' + (g.y + 72) + 'px;width:' + (wB * gw) + 'px"></div>';
+    // Unlabelled bars are unreadable: the viewer cannot recover which is which.
+    const lab = (txt, y) => '<div style="position:absolute;left:130px;top:' + y +
+      'px;font-size:26px;font-weight:700;letter-spacing:3px;color:' + LOOK.ink +
+      ';text-shadow:0 3px 14px rgba(0,0,0,.9)">' + txt + '</div>';
+    h += lab(g.la || '', g.y - 36) + lab(g.lb || '', g.y + 72 - 36);
   } else if (g.type === 'grid') {
     // 1,400+ tasks -- a readable sample, not one square per task.
     const n = 120, lit = Math.floor(n * clamp(u / .7, 0, 1));
@@ -270,20 +281,31 @@ const LAY = {
       heroTop: 760, align: 'left', left: 130, width: 820 };
   },
 
-  quote: (b, u) => {
+  quote: (b, u, t) => {
     const g = ease(clamp(u / .3, 0, 1));
     const n = (b.quote || '').length;
-    const shown = (b.quote || '').slice(0, Math.ceil(n * clamp((u - .08) / .45, 0, 1)));
+    // Reveal across the whole quote GROUP, in absolute time. Keyed to u it
+    // restarted on every beat, so a two-beat quote typed out, cut, and typed
+    // again -- the thesis line read "never one numb" for half its screen time.
+    const q0 = b.qt0 !== undefined ? b.qt0 : b.t0;
+    const q1 = b.qt1 !== undefined ? b.qt1 : b.t1;
+    const qu = clamp((t - q0) / Math.max(0.1, q1 - q0), 0, 1);
+    const shown = (b.quote || '').slice(0, Math.ceil(n * clamp((qu - .04) / .26, 0, 1)));
     return { chrome:
       '<div class="cardbox" style="left:60px;top:' + (700 + (1 - g) * 40).toFixed(0) +
         'px;width:960px;height:' + (b.quoteH || 420) + 'px;opacity:' + g.toFixed(3) + '"></div>' +
-      '<div class="big" style="left:118px;top:' + (712 + (1 - g) * 40).toFixed(0) +
-        'px;font-size:120px;color:' + LOOK.accent + ';opacity:' + g.toFixed(3) + '">“</div>' +
-      '<div class="qt" style="left:118px;top:' + (800 + (1 - g) * 40).toFixed(0) +
+      // A statement card, NOT a quotation. It previously set the script's own
+      // paraphrase in quote marks under an attribution rule, inventing a sourced
+      // quote -- on a channel whose whole pitch is accuracy, in a video about
+      // people misreading a published number. The primary source is DNS-blocked
+      // here, so a real verbatim quote is not available either.
+      '<div style="position:absolute;left:118px;top:' + (742 + (1 - g) * 40).toFixed(0) +
+        'px;width:92px;height:7px;background:' + LOOK.accent + ';opacity:' + g.toFixed(3) + '"></div>' +
+      '<div class="qt" style="left:118px;top:' + (790 + (1 - g) * 40).toFixed(0) +
         'px;width:844px;font-size:' + (b.quoteSize || 72) + 'px">' + shown + '</div>' +
-      '<div class="lab" style="left:118px;top:' + (700 + (b.quoteH || 420) - 70) +
-        'px;font-size:30px;opacity:' + ease(clamp((u - .5) / .3, 0, 1)).toFixed(3) +
-        '">— ' + (b.who || '') + '</div>',
+      (b.who ? '<div class="lab" style="left:118px;top:' + (700 + (b.quoteH || 420) - 70) +
+        'px;font-size:30px;opacity:' + ease(clamp((qu - .5) / .3, 0, 1)).toFixed(3) +
+        '">' + b.who + '</div>' : ''),
       heroTop: -9999, align: 'center', left: 40, width: 1000 };
   },
 
@@ -302,13 +324,24 @@ const LAY = {
   },
 
   band: (b, u) => {
-    const w = 1080 * ease(clamp(u / .28, 0, 1));
+    // The hero is near-black by design, reversed out of the amber band. While
+    // the band wiped in, the uncovered part of the word was near-black type on
+    // a 170-luma plate -- about 2.2s of unreadable hero across five beats. The
+    // wipe is quicker now and the hero waits for it.
+    const w = 1080 * ease(clamp(u / .16, 0, 1));
     return { chrome: '<div class="band" style="left:0;top:' + (b.bandY || 780) +
         'px;width:' + w.toFixed(0) + 'px;height:330px"></div>',
       heroTop: (b.bandY || 780) + 42, align: 'center', left: 40, width: 1000,
-      subTop: (b.bandY || 780) - 96, color: LOOK.ground };
+      subTop: (b.bandY || 780) - 96, color: LOOK.ground,
+      heroOpacity: ease(clamp((u - 0.14) / 0.10, 0, 1)) };
   },
 };
+
+// Resolve only after the browser has actually painted. Without this the first
+// frame of a render captures an unpainted stage: a white blank, which on a
+// Short is the thumbnail the whole feed sees.
+window.painted = () => new Promise(r =>
+  requestAnimationFrame(() => requestAnimationFrame(r)));
 
 window.setFrame = async function (t) {
   let bi = 0;
@@ -331,6 +364,15 @@ window.setFrame = async function (t) {
         el.addEventListener('seeked', fin);
         setTimeout(fin, 400);
       });
+      // Wait for the frame to be presentable, not merely sought.
+      if (el.requestVideoFrameCallback) {
+        await new Promise(r => {
+          let done = false;
+          const fin = () => { if (!done) { done = true; r(); } };
+          el.requestVideoFrameCallback(fin);
+          setTimeout(fin, 300);
+        });
+      }
     }
     const amp = b.move === 'pull' ? -1 : 1;
     const sc = 1.0 + (b.move === 'pull' ? 0.14 - 0.14 * u : 0.14 * u);
@@ -338,7 +380,7 @@ window.setFrame = async function (t) {
     const dy = (b.move === 'up' ? -34 : b.move === 'down' ? 34 : 0) * u * amp;
     el.style.transform = 'scale(' + (1.06 + sc * .9).toFixed(4) + ') translate(' + dx + 'px,' + dy + 'px)';
   }
-  const lay = (LAY[b.layout] || LAY.full)(b, u);
+  const lay = (LAY[b.layout] || LAY.full)(b, u, t);
   document.getElementById('chrome').innerHTML = lay.chrome;
   setMid(b, u);
 
@@ -361,11 +403,12 @@ window.setFrame = async function (t) {
   hero.style.width = lay.width + 'px';
   hero.style.textAlign = lay.align;
   hero.style.color = lay.color || '';
+  hero.style.opacity = lay.heroOpacity !== undefined ? lay.heroOpacity : 1;
   if (b.count) {
     hero.innerHTML = '<span class="l">' + txt + '</span>';
   } else {
     hero.innerHTML = [...txt].map((c, i) => {
-      const s = clamp((u - i * 0.022) / 0.16, 0, 1), o = ease(s);
+      const s = b.heroInstant ? 1 : clamp((u - i * 0.022) / 0.16, 0, 1), o = ease(s);
       const over = 1 + 0.16 * Math.sin(Math.PI * s) * (1 - s);
       return '<span class="l" style="opacity:' + o.toFixed(3) +
         ';transform:translateY(' + ((1 - o) * 46).toFixed(1) + 'px) scale(' + over.toFixed(3) + ')">' +
@@ -384,7 +427,7 @@ window.setFrame = async function (t) {
   sub.style.left = lay.left + 'px';
   sub.style.width = lay.width + 'px';
   sub.style.textAlign = lay.align;
-  sub.style.opacity = ease(clamp(u / .18, 0, 1));
+  sub.style.opacity = b.heroInstant ? 1 : ease(clamp(u / .18, 0, 1));
   const note = document.getElementById('note');
   note.textContent = b.note || '';
   note.style.top = (lay.heroTop + (b.heroSize || 250) * 0.92 + 26) + 'px';
@@ -411,9 +454,17 @@ window.setFrame = async function (t) {
     st.style.filter = 'blur(' + ((1 - ease(head)) * 14).toFixed(1) + 'px)';
   }
   // 1-2 frame white impact flash on the biggest landings
-  document.getElementById('flash').style.opacity = (b.flash && u < 0.035) ? 0.82 : 0;
+  // The impact flash is a cut accent -- it needs something to cut FROM. On the
+  // opening beat it fired at t=0 and made frame 0 an 82%-white blank, which on
+  // a Short is the thumbnail the entire feed sees.
+  document.getElementById('flash').style.opacity =
+    (b.flash && u < 0.035 && bi > 0) ? 0.82 : 0;
   const card = document.getElementById('card');
-  if (NOTICE && t < CARD) { card.innerHTML = '<b>' + NOTICE + '</b>'; card.style.display = 'block'; }
+  // The sourcing strip is what a PARADOCS10X video carries INSTEAD of a
+  // disclaimer, so it runs the whole way. It previously died at the first plate
+  // change 3.9s in -- on screen for 10% of the runtime, which is worse than a
+  // considered decision not to have it.
+  if (NOTICE) { card.innerHTML = '<b>' + NOTICE + '</b>'; card.style.display = 'block'; }
   else { card.style.display = 'none'; }
 
   // ---- host -------------------------------------------------------------
@@ -500,6 +551,22 @@ fs.writeFileSync(page, html);
   // Every plate must have real pixels before a single frame is captured.
   await p.waitForFunction(`Array.from(document.querySelectorAll('video'))
       .every(v => v.readyState >= 2 && v.videoWidth > 0)`, { timeout: 60000 });
+  // Prime every plate so each one has actually presented a frame. A paused
+  // <video> that has never painted composites as white, and requestVideoFrame-
+  // Callback does not fire for it -- which is why frame 0 of a render kept
+  // coming out as a white blank. Frame 0 is the thumbnail on a Short.
+  await p.evaluate(async () => {
+    for (const v of document.querySelectorAll('video')) {
+      v.currentTime = 0.1;
+      await new Promise(r => {
+        let done = false;
+        const fin = () => { if (!done) { done = true; r(); } };
+        if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(fin);
+        v.addEventListener('seeked', fin, { once: true });
+        setTimeout(fin, 1500);
+      });
+    }
+  });
   // PROBE=t1,t2,... dumps stills at those times and exits. A layout change can
   // then be checked in seconds rather than by sitting through a full render.
   if (process.env.PROBE) {
@@ -507,6 +574,7 @@ fs.writeFileSync(page, html);
     fs.mkdirSync(dir, { recursive: true });
     for (const t of process.env.PROBE.split(',').map(Number)) {
       await p.evaluate(async tt => await window.setFrame(tt), t);
+    await p.evaluate(async () => await window.painted());
       await p.screenshot({ path: path.join(dir, 'probe-' + t.toFixed(2) + '.png') });
     }
     await b.close();
@@ -524,6 +592,7 @@ fs.writeFileSync(page, html);
   const total = Math.round(DUR * FPS), t0 = Date.now();
   for (let n = 0; n < total; n++) {
     await p.evaluate(async t => await window.setFrame(t), n / FPS);
+    await p.evaluate(async () => await window.painted());
     const buf = await p.screenshot({ type: 'jpeg', quality: 90 });
     if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
     if (n % 60 === 0) console.log(`  ${n}/${total}  ${(n / ((Date.now() - t0) / 1000)).toFixed(1)} fps`);

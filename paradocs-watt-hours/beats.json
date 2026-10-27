@@ -9,15 +9,10 @@
    "trans": "whip",
    "sub": "GOOGLE SAYS",
    "flash": true,
-   "count": {
-    "from": 0,
-    "to": 24,
-    "suf": " Wh",
-    "pre": "",
-    "div": 100
-   },
-   "pt0": 0.0,
-   "layout": "full"
+   "pt0": 1.6,
+   "layout": "full",
+   "hero": "0.24 Wh",
+   "heroInstant": true
   },
   {
    "t0": 1.301,
@@ -27,15 +22,9 @@
    "move": "pull",
    "trans": "whip",
    "sub": "GOOGLE SAYS",
-   "count": {
-    "from": 0,
-    "to": 24,
-    "suf": " Wh",
-    "pre": "",
-    "div": 100
-   },
-   "pt0": 1.7,
-   "layout": "full"
+   "pt0": 2.6,
+   "layout": "full",
+   "hero": "0.24 Wh"
   },
   {
    "t0": 2.603,
@@ -45,20 +34,14 @@
    "move": "pull",
    "trans": "whip",
    "sub": "GOOGLE SAYS",
-   "count": {
-    "from": 0,
-    "to": 24,
-    "suf": " Wh",
-    "pre": "",
-    "div": 100
-   },
-   "pt0": 3.4,
-   "layout": "full"
+   "pt0": 3.6,
+   "layout": "full",
+   "hero": "0.24 Wh"
   },
   {
    "t0": 3.904,
    "t1": 5.68,
-   "plate": "W4.webm",
+   "plate": "GB.webm",
    "heroSize": 200,
    "move": "pull",
    "trans": "whip",
@@ -70,7 +53,7 @@
   {
    "t0": 5.68,
    "t1": 7.456,
-   "plate": "W4.webm",
+   "plate": "GB.webm",
    "heroSize": 200,
    "move": "push",
    "trans": "whipUp",
@@ -82,7 +65,7 @@
   {
    "t0": 7.456,
    "t1": 9.057,
-   "plate": "W3.webm",
+   "plate": "GB.webm",
    "heroSize": 150,
    "move": "push",
    "trans": "whip",
@@ -118,7 +101,7 @@
   {
    "t0": 11.36,
    "t1": 12.872,
-   "plate": "W2.webm",
+   "plate": "GF.webm",
    "heroSize": 230,
    "move": "push",
    "trans": "whip",
@@ -128,7 +111,10 @@
     "type": "bar",
     "y": 790,
     "a": 17,
-    "b": 10
+    "b": 10,
+    "max": 24,
+    "la": "TOTAL",
+    "lb": "CHIP ONLY"
    },
    "pt0": 1.1,
    "layout": "full"
@@ -136,7 +122,7 @@
   {
    "t0": 12.872,
    "t1": 14.385,
-   "plate": "W2.webm",
+   "plate": "GF.webm",
    "heroSize": 230,
    "move": "pull",
    "trans": "whip",
@@ -146,7 +132,10 @@
     "type": "bar",
     "y": 790,
     "a": 17,
-    "b": 10
+    "b": 10,
+    "max": 24,
+    "la": "TOTAL",
+    "lb": "CHIP ONLY"
    },
    "pt0": 2.8,
    "layout": "full"
@@ -164,7 +153,10 @@
     "type": "bar",
     "y": 790,
     "a": 24,
-    "b": 10
+    "b": 10,
+    "max": 24,
+    "la": "TOTAL",
+    "lb": "CHIP ONLY"
    },
    "red": true,
    "flash": true,
@@ -184,7 +176,10 @@
     "type": "bar",
     "y": 790,
     "a": 24,
-    "b": 10
+    "b": 10,
+    "max": 24,
+    "la": "TOTAL",
+    "lb": "CHIP ONLY"
    },
    "red": true,
    "pt0": 1.7,
@@ -229,7 +224,7 @@
   {
    "t0": 18.952,
    "t1": 20.592,
-   "plate": "W4.webm",
+   "plate": "W2.webm",
    "heroSize": 190,
    "move": "push",
    "trans": "whip",
@@ -242,7 +237,7 @@
   {
    "t0": 20.592,
    "t1": 22.232,
-   "plate": "W4.webm",
+   "plate": "W2.webm",
    "heroSize": 190,
    "move": "pull",
    "trans": "whip",
@@ -255,7 +250,7 @@
   {
    "t0": 22.232,
    "t1": 23.324,
-   "plate": "W5.webm",
+   "plate": "GL.webm",
    "heroSize": 140,
    "move": "driftL",
    "trans": "whip",
@@ -267,7 +262,7 @@
   {
    "t0": 23.324,
    "t1": 24.417,
-   "plate": "W5.webm",
+   "plate": "GL.webm",
    "heroSize": 140,
    "move": "push",
    "trans": "whip",
@@ -325,12 +320,15 @@
    "pt0": 0.5,
    "layout": "quote",
    "quote": "Text prompts only. Voice and images were never in it.",
-   "who": "what the footnote actually says"
+   "qt0": 28.087,
+   "qt1": 30.04,
+   "quoteSize": 58,
+   "quoteH": 430
   },
   {
    "t0": 30.04,
    "t1": 31.387,
-   "plate": "W2.webm",
+   "plate": "GC.webm",
    "heroSize": 190,
    "move": "push",
    "trans": "whip",
@@ -343,7 +341,7 @@
   {
    "t0": 31.387,
    "t1": 32.734,
-   "plate": "W2.webm",
+   "plate": "GC.webm",
    "heroSize": 190,
    "move": "pull",
    "trans": "whip",
@@ -356,7 +354,7 @@
   {
    "t0": 32.734,
    "t1": 33.807,
-   "plate": "W2.webm",
+   "plate": "GC.webm",
    "heroSize": 130,
    "move": "pull",
    "trans": "whip",
@@ -369,7 +367,7 @@
   {
    "t0": 33.807,
    "t1": 34.88,
-   "plate": "W2.webm",
+   "plate": "GC.webm",
    "heroSize": 130,
    "move": "push",
    "trans": "whipUp",
@@ -382,7 +380,7 @@
   {
    "t0": 34.88,
    "t1": 35.973,
-   "plate": "W4.webm",
+   "plate": "W2.webm",
    "heroSize": 120,
    "move": "push",
    "trans": "whip",
@@ -390,14 +388,15 @@
    "pt0": 2.8,
    "layout": "quote",
    "quote": "One number is never one number.",
-   "who": "the thing to take away",
    "quoteSize": 86,
-   "quoteH": 360
+   "quoteH": 360,
+   "qt0": 34.88,
+   "qt1": 37.067
   },
   {
    "t0": 35.973,
    "t1": 37.067,
-   "plate": "W4.webm",
+   "plate": "W2.webm",
    "heroSize": 120,
    "move": "pull",
    "trans": "whip",
@@ -405,14 +404,15 @@
    "pt0": 0.5,
    "layout": "quote",
    "quote": "One number is never one number.",
-   "who": "the thing to take away",
    "quoteSize": 86,
-   "quoteH": 360
+   "quoteH": 360,
+   "qt0": 34.88,
+   "qt1": 37.067
   },
   {
    "t0": 37.067,
    "t1": 38.48,
-   "plate": "W5.webm",
+   "plate": "GL.webm",
    "heroSize": 200,
    "move": "pull",
    "trans": "none",
