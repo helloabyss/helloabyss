@@ -42,3 +42,7 @@ __pycache__/
 # command above restores this exact set.
 .agents/
 .claude/skills/
+
+# Plate frames decoded by reel.js on first run; rebuilt automatically when a
+# plate changes. Large and fully derived.
+*/plates/.frames/

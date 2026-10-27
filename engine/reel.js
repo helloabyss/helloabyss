@@ -47,6 +47,36 @@ const DUR = beats[beats.length - 1].t1;
 const abs = p => 'file://' + path.resolve(PLATES, p);
 const plates = [...new Set(beats.map(b => b.plate).filter(Boolean))];
 
+// Plates are decoded to frames on disk BEFORE the browser starts.
+//
+// Profiled 2026-10-27: a per-frame <video> seek cost 481ms of a 561ms frame --
+// 85% of the entire render, and the reason a 38s short took nine minutes. The
+// seek is unavoidable while the plate is a <video>, because every output frame
+// lands at a different source timestamp. So the plate stops being a video: one
+// ffmpeg pass per plate writes the frames out, and the page shows an <img>.
+// Swapping an <img> src costs a JPEG decode instead of a seek.
+//
+// (An <img> pointed at an .mp4 is what produced an entirely black render once
+// before. This points it at real JPEGs.)
+const CACHE = path.join(PLATES, '.frames');
+const plateFrames = {};
+for (const pl of plates) {
+  const dir = path.join(CACHE, pl.replace(/\W/g, '_'));
+  const src = path.resolve(PLATES, pl);
+  const stamp = path.join(dir, '.ok');
+  if (!fs.existsSync(stamp) || fs.statSync(stamp).mtimeMs < fs.statSync(src).mtimeMs) {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.mkdirSync(dir, { recursive: true });
+    execSync(`${FF} -nostdin -v error -y -i ${JSON.stringify(src)} ` +
+             `-vf fps=${FPS} -q:v 3 ${JSON.stringify(path.join(dir, '%05d.jpg'))}`);
+    fs.writeFileSync(stamp, '');
+  }
+  const n = fs.readdirSync(dir).filter(f => f.endsWith('.jpg')).length;
+  if (!n) throw new Error('no frames decoded for plate ' + pl);
+  plateFrames[pl] = { dir, n };
+}
+console.log('  plates cached: ' + plates.map(p => p + '=' + plateFrames[p].n + 'f').join(' '));
+
 const html = `<!doctype html><meta charset="utf-8"><style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:${W}px;height:${H}px;background:${LOOK.ground};overflow:hidden;
@@ -119,7 +149,7 @@ html,body{width:${W}px;height:${H}px;background:${LOOK.ground};overflow:hidden;
   -webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-repeat:no-repeat;mask-position:center}
 </style>
 <div id="stage">
-  ${plates.map((p, i) => `<video class="plate" id="p${i}" src="${abs(p)}" muted preload="auto" playsinline></video>`).join('')}
+  ${plates.map((p, i) => `<img class="plate" id="p${i}">`).join('')}
   <div id="vig"></div><div id="chrome"></div><div id="mid"></div>
   <div id="sub"></div><div id="hero"></div><div id="note"></div>
   <div id="mask"></div>
@@ -146,6 +176,8 @@ const NOTICE = ${JSON.stringify(NOTICE)};
 const HOST = ${JSON.stringify(HOST)};
 const RIG  = ${JSON.stringify(RIG)};
 const PLATES = ${JSON.stringify(plates)};
+const FRAMES = ${JSON.stringify(plateFrames)};
+const FPS = ${FPS};
 const CARD = 4.0;
 const ease = t => 1 - Math.pow(1 - t, 3);
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -353,26 +385,14 @@ window.setFrame = async function (t) {
     e.classList.toggle('on', PLATES[i] === b.plate));
   const el = document.querySelector('.plate.on');
   if (el) {
-    // Seek the plate to this beat's in-point plus elapsed, and WAIT for it.
-    const want = Math.min(((b.pt0 || 0) + (t - b.t0)) % Math.max(0.1, el.duration || 6),
-                          (el.duration || 6) - 0.05);
-    if (Math.abs(el.currentTime - want) > 0.008) {
-      el.currentTime = want;
-      await new Promise(r => {
-        let done = false;
-        const fin = () => { if (!done) { done = true; el.removeEventListener('seeked', fin); r(); } };
-        el.addEventListener('seeked', fin);
-        setTimeout(fin, 400);
-      });
-      // Wait for the frame to be presentable, not merely sought.
-      if (el.requestVideoFrameCallback) {
-        await new Promise(r => {
-          let done = false;
-          const fin = () => { if (!done) { done = true; r(); } };
-          el.requestVideoFrameCallback(fin);
-          setTimeout(fin, 300);
-        });
-      }
+    // Point the plate at the right pre-decoded frame. The clip loops if the
+    // beat outruns it, which is what the old modulo on currentTime did.
+    const f = FRAMES[b.plate];
+    const idx = Math.round(((b.pt0 || 0) + (t - b.t0)) * FPS) % f.n;
+    const src = f.dir + '/' + String(idx + 1).padStart(5, '0') + '.jpg';
+    if (el.getAttribute('src') !== src) {
+      el.src = src;
+      try { await el.decode(); } catch (e) { /* first paint can race; next frame covers it */ }
     }
     const amp = b.move === 'pull' ? -1 : 1;
     const sc = 1.0 + (b.move === 'pull' ? 0.14 - 0.14 * u : 0.14 * u);
@@ -549,32 +569,15 @@ fs.writeFileSync(page, html);
   const p = await b.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   await p.goto('file://' + path.resolve(page), { waitUntil: 'load' });
   // Every plate must have real pixels before a single frame is captured.
-  await p.waitForFunction(`Array.from(document.querySelectorAll('video'))
-      .every(v => v.readyState >= 2 && v.videoWidth > 0)`, { timeout: 60000 });
-  // Prime every plate so each one has actually presented a frame. A paused
-  // <video> that has never painted composites as white, and requestVideoFrame-
-  // Callback does not fire for it -- which is why frame 0 of a render kept
-  // coming out as a white blank. Frame 0 is the thumbnail on a Short.
-  await p.evaluate(async () => {
-    for (const v of document.querySelectorAll('video')) {
-      v.currentTime = 0.1;
-      await new Promise(r => {
-        let done = false;
-        const fin = () => { if (!done) { done = true; r(); } };
-        if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(fin);
-        v.addEventListener('seeked', fin, { once: true });
-        setTimeout(fin, 1500);
-      });
-    }
-  });
+  await p.waitForFunction("document.querySelectorAll('img.plate').length > 0",
+                          { timeout: 30000 });
   // PROBE=t1,t2,... dumps stills at those times and exits. A layout change can
   // then be checked in seconds rather than by sitting through a full render.
   if (process.env.PROBE) {
     const dir = path.join(path.dirname(OUT), 'qc');
     fs.mkdirSync(dir, { recursive: true });
     for (const t of process.env.PROBE.split(',').map(Number)) {
-      await p.evaluate(async tt => await window.setFrame(tt), t);
-    await p.evaluate(async () => await window.painted());
+      await p.evaluate(async tt => { await window.setFrame(tt); await window.painted(); }, t);
       await p.screenshot({ path: path.join(dir, 'probe-' + t.toFixed(2) + '.png') });
     }
     await b.close();
@@ -589,14 +592,46 @@ fs.writeFileSync(page, html);
     '-movflags', '+faststart', OUT,
   ], { stdio: ['pipe', 'ignore', 'pipe'] });
   let err = ''; ff.stderr.on('data', d => { err = (err + d).slice(-4000); });
+  // Capture in parallel. One page is bounded by the screenshot encode (~84ms),
+  // so a single sequential pass can never beat ~12fps however cheap the frame
+  // is to build. Each worker owns a contiguous slice, writes numbered JPEGs,
+  // and ffmpeg assembles them in order afterwards -- which keeps the output
+  // byte-identical to the sequential path.
   const total = Math.round(DUR * FPS), t0 = Date.now();
-  for (let n = 0; n < total; n++) {
-    await p.evaluate(async t => await window.setFrame(t), n / FPS);
-    await p.evaluate(async () => await window.painted());
-    const buf = await p.screenshot({ type: 'jpeg', quality: 90 });
-    if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
-    if (n % 60 === 0) console.log(`  ${n}/${total}  ${(n / ((Date.now() - t0) / 1000)).toFixed(1)} fps`);
+  const WORKERS = Math.max(1, Math.min(+(process.env.WORKERS || 4), 8));
+  const tmp = fs.mkdtempSync(path.join(require('os').tmpdir(), 'reel-'));
+  let done = 0;
+  const slice = Math.ceil(total / WORKERS);
+
+  const worker = async (w, pg) => {
+    const lo = w * slice, hi = Math.min(total, lo + slice);
+    for (let n = lo; n < hi; n++) {
+      await pg.evaluate(async t => { await window.setFrame(t); await window.painted(); }, n / FPS);
+      await pg.screenshot({ path: path.join(tmp, String(n).padStart(6, '0') + '.jpg'),
+                            type: 'jpeg', quality: 90 });
+      if (++done % 60 === 0)
+        console.log(`  ${done}/${total}  ${(done / ((Date.now() - t0) / 1000)).toFixed(1)} fps`);
+    }
+  };
+
+  // Separate BROWSERS, not separate tabs. Four pages in one browser only
+  // reached 0.7 of a core: screenshot capture serialises on the shared
+  // compositor, so the extra pages mostly waited.
+  const browsers = [], pages = [p];
+  for (let w = 1; w < WORKERS; w++) {
+    const bb = await chromium.launch({ args: ['--no-sandbox'] });
+    const pg = await bb.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
+    await pg.goto('file://' + path.resolve(page), { waitUntil: 'load' });
+    browsers.push(bb); pages.push(pg);
   }
+  await Promise.all(pages.map((pg, w) => worker(w, pg)));
+  for (const bb of browsers) await bb.close();
+
+  for (let n = 0; n < total; n++) {
+    const buf = fs.readFileSync(path.join(tmp, String(n).padStart(6, '0') + '.jpg'));
+    if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once('drain', r));
+  }
+  fs.rmSync(tmp, { recursive: true, force: true });
   ff.stdin.end();
   const code = await new Promise(r => ff.on('close', r));
   await b.close();
