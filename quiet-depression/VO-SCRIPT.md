@@ -1,0 +1,268 @@
+# VOICEOVER SCRIPT — The Quiet Depression
+
+**Read this file aloud as-is.** No camera directions, no tags, nothing a voice actor or TTS
+engine has to interpret. 61 lines, matching the original 1:1 so an existing image list still
+lines up.
+
+---
+
+Nobody is calling it a depression.
+
+But look at your street. Half the shops are dark, and the lights still on are barely paying rent.
+
+Then look at the receipts stuffed in a kitchen drawer. Every one is higher than last year, for the same groceries.
+
+A woman stares at her banking app. The balance hasn't moved in days, but the little red notification keeps blinking anyway.
+
+This is the quiet collapse nobody put on the news. Not a crash. A slow leak that drains everyone at the same time.
+
+On the wall, a calendar. Dates circled in red where bills fall due. Three circles in a single week.
+
+A man counts coins on his kitchen counter, sorting them into small stacks, as if each one still has somewhere important to go.
+
+To understand why this feels different, you have to see the whole picture. Wages flat. Prices climbing. And nobody saying the word out loud.
+
+So follow one household through it. Zul and their partner. Two incomes, one mortgage, and a budget spreadsheet that used to balance just fine.
+
+Normal used to look like this. A grocery cart, half full, and a total that matched the number in your head.
+
+Watch her face as she scrolls past the total this time. Something small has shifted, and she already knows it.
+
+Widen out to the whole neighbourhood. Same houses. Same cars in the driveways. But the porch lights go out earlier every month.
+
+On the corner, a small business owner. He hasn't taken a paycheck in two months, and he still unlocks the door every morning.
+
+A year ago his till was full and orderly. Today he counts it coin by coin.
+
+He glances at the stack of unopened envelopes by the register. He knows exactly what's inside. He just isn't ready yet.
+
+Multiply that one shop by every main street in the country, and the picture stops looking small. It starts looking systemic.
+
+Inside a warehouse loading dock, supply orders have quietly shrunk for six months straight. Pallet by empty pallet.
+
+On the last box out the door, the shipping label carries an order number smaller than the one it replaced.
+
+Downtown, the office tower still blazes. Bonuses still announced. As if none of this touches them.
+
+And on a desk up there, one empty coffee cup. The only object left after everyone else went home.
+
+Across town, a delivery driver checks his app for the next job. The queue that used to be full is mostly silence now.
+
+That night, Zul sits at the kitchen table, spreading bills into careful piles, choosing which ones can wait another week.
+
+Beside them, a single house key rests on a stack of moving boxes. It says more about this economy than any headline could.
+
+Two streets over, an eviction notice is taped to a door, the ink still fresh, the deadline printed in bold, unmovable type.
+
+By morning, the line at the food bank stretches around the building before the doors even open.
+
+And for a moment, everything is still. Just hands, folded, waiting their turn, patient in a way that's almost unbearable.
+
+In a rural town, the only bank branch for fifty miles posts a sign. It will close by autumn.
+
+The farmer who banked there for thirty years now drives an extra hour to deposit a single check.
+
+The same afternoon, a trader in the city watches numbers climb on a screen and calls this an opportunity.
+
+Somewhere between them, a single seed sits in open soil. Patient. Waiting for conditions that haven't arrived yet.
+
+On a factory floor, half the machines are covered in tarps. The other half still hum, running on the fumes of old orders.
+
+Zul tightens a bolt on one of the working machines. Steady hands. Refusing to let this one stop running too.
+
+At home, a cracked piggy bank sits on a shelf, taped back together, still holding the coins nobody will spend.
+
+Ignore this pattern long enough and whole towns hollow out. Storefronts empty. Streetlights buzzing over nobody at all.
+
+In a shared apartment, three strangers now split rent that one person used to cover alone.
+
+One detail says all of it. Three toothbrushes in a single cup, lined up like strangers learning to share a life.
+
+In a college town, graduates once queued for job fairs that now sit half empty in echoing gymnasiums.
+
+One of them holds a diploma rolled tight, still tied with ribbon. Not yet framed. Maybe never framed at all.
+
+An older worker, thirty years of experience, scrolls the same job board and finds the same silence.
+
+Outside, an open park at midday. The only crowd left is pigeons and empty benches.
+
+A freelancer works three gig apps at once, stacking small jobs just to equal one full paycheck.
+
+Back at the house, Zul writes a single number on a sticky note and presses it to the fridge. A quiet promise to save that much this month.
+
+All of these braid into one picture. An entire economy balanced on paper-thin margins, dressed up as business as usual.
+
+Then it happens. One envelope stamped final notice, held in trembling hands. The moment the quiet depression stops being invisible.
+
+It falls open on the table. Pages scattered. Numbers circled in red that no amount of hoping will undo.
+
+A face finally breaks. Not loudly. Just a long exhale, the kind that comes after holding something in for too many months.
+
+The room has changed too. Boxes half packed. Furniture tagged. A life folded down into something smaller.
+
+Outside, the shop owner turns his key one last time, and the lock clicks shut on a door that won't open again.
+
+The closed sign swings gently, the paint already peeling at its corners from years of use.
+
+Neighbours gather on the sidewalk, not to shop, just to stand together, the way people do when something ends.
+
+And there's the whole street now. One more storefront gone dark. The pattern complete, impossible to unsee.
+
+But here, finally, a hand reaches for a pen instead of another bill, and starts writing a plan instead of an apology.
+
+The first line reads simple and clear. Cut what we can. Save what we must. Ask for help.
+
+Zul stands at the window, notebook in hand, watching the street below with something steadier than fear in their posture.
+
+Slowly, a community garden fills an empty lot. Neighbours trade vegetables instead of cash, rebuilding value a different way.
+
+A family sits down to a modest dinner. Simple food. But the tension at the table has finally eased into quiet.
+
+That main street reopens one shop at a time, hand-painted signs replacing the glossy ones that came before.
+
+The shop owner stands in his doorway again. Not rich. Steady. His ledger balanced in his own hand.
+
+Across the country, small signs repeat. Fuller carts. Shorter lines. Porch lights staying on a little later each week.
+
+None of this erases the hard years. But it proves something simple. People adapt, and quiet collapses can have quiet recoveries too.
+
+The street settles into evening. Lights steady. People walking slow instead of hurried. The storm not gone, but finally survivable.
+
+---
+
+## What changed, and why
+
+### 1. `@Zul` is gone from the narration
+It's a character-consistency tag for an image generator. A voice engine reads it as **"at Zul"**.
+Tags belong in the **image prompt** field; only spoken words belong in the **voiceover** field.
+Keep `@Zul` in your prompts — just never in the line the voice reads.
+
+### 2. Zul is now one person, introduced before they appear
+In the original, Zul showed up four times with no introduction, in four unconnected places —
+a kitchen, a factory floor, a fridge, a window. A listener meets a stranger who keeps
+reappearing for no reason.
+
+Now Zul is introduced at the household beat ("Zul and their partner. Two incomes, one
+mortgage") and every later appearance is the same person: the bills at the kitchen table, the
+factory where one of those two incomes comes from, the sticky note on their own fridge, the
+window at the turn. **The factory is no longer a random stranger's — it's Zul's job**, which
+is what ties the personal thread to the systemic one.
+
+Pronouns: the original used "their posture" for Zul and never stated a gender, so they/them
+throughout. The woman with the banking app and the grocery total is the partner.
+
+### 3. Camera directions converted to narration
+This is the bigger fix. Roughly fifteen lines were shot instructions, not speech:
+
+| Original | Now |
+|---|---|
+| "Zoom out to the whole neighborhood" | "Widen out to the whole neighbourhood" |
+| "The scene shifts to a food bank parking lot" | "By morning, the line at the food bank stretches…" |
+| "Compare it to the one he counts today" | "Today he counts it coin by coin" |
+| "Contrast that with the gleaming office tower" | "Downtown, the office tower still blazes" |
+| "Touch the shipping label" | "On the last box out the door, the shipping label…" |
+| "Rest on something simple" | "Somewhere between them, a single seed…" |
+| "Pull back and see the whole street" | "And there's the whole street now" |
+| "swings gently in the frame" | "swings gently" |
+| "Travel to a college town" | "In a college town" |
+| "Breathe for a second" | cut — the pause does that work |
+
+Each keeps the same image. The direction moves to the prompt; the narration keeps the picture.
+
+### 4. Small read-aloud fixes
+Broke a few long sentences at natural breath points, cut doubled words ("single" appeared
+eleven times), and removed "Here is" / "Now picture" openers that stack up audibly when heard
+rather than read.
+
+---
+
+## Before you record
+
+This runs about **900–1,000 words, roughly 6 minutes** at documentary pace.
+
+One thing to settle: the piece says "nobody is calling it a depression" and builds a picture
+of systemic decline, but it carries **no dates, figures or sources**. As written it's a mood
+piece, not a documentary — which is fine if that's the intent, but it will attract
+"where's your data" comments.
+
+If you want it to hold up, the natural places for evidence are the "wages flat, prices
+climbing" line, the warehouse orders beat, and the food bank line. Those three claims are
+checkable, and one real figure in each would change the piece from atmosphere to argument.
+Say the word and I'll verify and work them in.
+
+---
+
+## Recorded voiceover — ElevenLabs
+
+| | |
+|---|---|
+| **Voice** | Aaron — `ESDuPqgyZIDDVZTlIrH7`, British RP, library voice built for documentary narration |
+| **Model** | `eleven_multilingual_v2` |
+| **Files** | `vo-part1.mp3` (scenes 1–30) · `vo-part2.mp3` (scenes 31–60) · `vo-full.mp3` (both joined, 484.676s) |
+| **Total** | **484.55s — 8m04.5s** |
+| **Cost** | 6,783 credits ≈ **$2.47**, one take (not the default 4, which would have been ~$10) |
+| **Flow** | https://elevenlabs.io/app/flows/sQbQNeWLD40kbZHo9Mqx |
+
+### Why it is two files
+`creative_generate_speech` caps a prompt at **5,000 characters**; the script is 6,784. The
+first attempt failed on that limit. The split is at the **scene 30/31 beat** — part 1 ends
+"...running on the fumes of old orders," part 2 opens "Zul tightens a bolt..." — so the seam
+falls on a cut rather than mid-sentence. Place them back to back; no crossfade needed.
+
+### Sync
+The VO came in at 484.55s against a video built at 480s. Rather than stretch the audio, the
+video was re-rendered with **per-scene durations weighted by each line's length** (6.0s to
+9.7s, totalling 484.55s exactly) so each image lasts as long as the sentence spoken over it.
+`out/timing.srt` was regenerated to match.
+
+### Muxed — finished file
+The two parts were joined into `vo-full.mp3` and muxed with the render **in-session**, via an
+ElevenLabs **composition** node. Output: **1920×1080 H.264 + AAC MP4, 8m04.69s.**
+
+| | |
+|---|---|
+| **Master** | 106.9 MB — generation `eOfETVjW9wWowJoJXWx7` |
+| **Viewing copy** | 7.8 MB — the same run's `preview_content.mp4` |
+| **Cost** | 0 credits |
+| **Re-download** | https://elevenlabs.io/app/image-video/history?modality=video&generationId=eOfETVjW9wWowJoJXWx7 |
+
+Signed download URLs expire two hours after they are issued; re-fetch from the flow history
+link above, or re-run the composition node (it is free and the source assets stay on the flow).
+
+**Verified in-session** by parsing the MP4 atom tree directly, not by trusting the API:
+
+```
+track 1 vide avc1  5816 samples  484.690s   (5816 / 484.69 = 12.0 fps exactly)
+track 2 soun mp4a 20873 samples  484.648s
+```
+
+Both tracks span the full runtime, so nothing is truncated. A frame of the output was pulled
+and checked visually: artwork correct, compliance card present.
+
+### How the audio was joined
+`vo-part1.mp3` and `vo-part2.mp3` are both ID3v2.4 (17,171-byte tag) wrapping **MPEG-1 Layer III,
+128 kbps CBR, 44.1 kHz** — identical encoder settings, and neither carries an ID3v1 trailer. So
+the two were joined by stripping both tags and concatenating the raw frame streams:
+
+| | frames | duration |
+|---|---|---|
+| part 1 | 9,311 | 243.226s |
+| part 2 | 9,243 | 241.450s |
+| **vo-full.mp3** | **18,554** | **484.676s** |
+
+Each walk ended exactly at EOF, confirming clean frame boundaries. 484.676s of audio against
+484.67s of video — a 6 ms match, no stretching needed.
+
+The join carries ~26 ms of MP3 encoder delay/padding, which lands on the scene 30/31 cut rather
+than mid-sentence, so it is inaudible.
+
+### Why one file rather than two audio nodes
+A composition node gives **each audio source its own track, all starting at 0** — two VO nodes
+would have played on top of each other. No `set_clip_property` tool is exposed through this
+connector, so part 2 could not be offset. Concatenating to a single MP3 sidesteps the problem.
+
+### Local ffmpeg limits (unchanged)
+The bundled Playwright ffmpeg has exactly two muxers (`webm`, `image2`) and two demuxers
+(`image2pipe`, `matroska,webm`) — no MP3 demuxer, so it cannot read the VO at all and cannot
+write MP4. The mux had to happen server-side. CapCut is **no longer required**; use it only if
+you want to cut in event clips.

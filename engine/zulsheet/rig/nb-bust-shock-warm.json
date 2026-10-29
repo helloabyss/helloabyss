@@ -1,0 +1,39 @@
+{
+ "w": 166,
+ "h": 321,
+ "cut": 160,
+ "pivot": [
+  82.6,
+  160
+ ],
+ "head": {
+  "file": "nb-bust-shock-warm-head.png",
+  "w": 166,
+  "h": 166
+ },
+ "body": {
+  "file": "nb-bust-shock-warm-body.png",
+  "w": 166,
+  "h": 167,
+  "top": 154
+ },
+ "cheeks": [
+  [
+   51,
+   119,
+   14
+  ],
+  [
+   120,
+   119,
+   14
+  ]
+ ],
+ "mouth": [
+  76,
+  112,
+  90,
+  127
+ ],
+ "head_nomouth": "nb-bust-shock-warm-head-nomouth.png"
+}

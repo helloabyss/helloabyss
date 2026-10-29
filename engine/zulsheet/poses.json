@@ -1,0 +1,189 @@
+{
+ "beanie-full-front": {
+  "file": "poses/beanie-full-front.png",
+  "h": 633,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 197
+ },
+ "body-3q-left": {
+  "file": "poses/body-3q-left.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 92
+ },
+ "body-3q-right": {
+  "file": "poses/body-3q-right.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 92
+ },
+ "body-back": {
+  "file": "poses/body-back.png",
+  "h": 311,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 99
+ },
+ "body-front": {
+  "file": "poses/body-front.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 99
+ },
+ "full-point-left": {
+  "file": "poses/full-point-left.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 145
+ },
+ "full-point-right": {
+  "file": "poses/full-point-right.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 144
+ },
+ "full-present-palm": {
+  "file": "poses/full-present-palm.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 142
+ },
+ "full-shock": {
+  "file": "poses/full-shock.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 99
+ },
+ "full-shrug": {
+  "file": "poses/full-shrug.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 166
+ },
+ "full-skeptical": {
+  "file": "poses/full-skeptical.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 99
+ },
+ "full-thumbs-up": {
+  "file": "poses/full-thumbs-up.png",
+  "h": 313,
+  "sheet": "body-profile-2026-10-06.jpg",
+  "w": 118
+ },
+ "idle-deadpan": {
+  "file": "poses/idle-deadpan.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 200
+ },
+ "nb-body-3q-left": {
+  "file": "poses/nb-body-3q-left.png",
+  "h": 315,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 94
+ },
+ "nb-body-3q-right": {
+  "file": "poses/nb-body-3q-right.png",
+  "h": 315,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 94
+ },
+ "nb-body-back": {
+  "file": "poses/nb-body-back.png",
+  "h": 313,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 99
+ },
+ "nb-body-front": {
+  "file": "poses/nb-body-front.png",
+  "h": 315,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 99
+ },
+ "nb-bust-idle": {
+  "file": "poses/nb-bust-idle.png",
+  "h": 321,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 166
+ },
+ "nb-bust-point-left": {
+  "derived": "mirror of nb-bust-point-right",
+  "file": "poses/nb-bust-point-left.png",
+  "h": 321,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 243
+ },
+ "nb-bust-point-right": {
+  "file": "poses/nb-bust-point-right.png",
+  "h": 321,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 243
+ },
+ "nb-bust-shock": {
+  "file": "poses/nb-bust-shock.png",
+  "h": 321,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 166
+ },
+ "nb-bust-skeptical": {
+  "file": "poses/nb-bust-skeptical.png",
+  "h": 321,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 166
+ },
+ "nobeanie-full-front": {
+  "file": "poses/nobeanie-full-front.png",
+  "h": 638,
+  "sheet": "no-beanie-2026-10-06.jpg",
+  "w": 197
+ },
+ "official": {
+  "file": "poses/official.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 200
+ },
+ "point-left": {
+  "file": "poses/point-left.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 294
+ },
+ "point-right": {
+  "file": "poses/point-right.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 293
+ },
+ "present-palm": {
+  "file": "poses/present-palm.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 289
+ },
+ "shock": {
+  "file": "poses/shock.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 200
+ },
+ "skeptical": {
+  "file": "poses/skeptical.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 200
+ },
+ "thinking": {
+  "file": "poses/thinking.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 242
+ },
+ "thumbs-up": {
+  "file": "poses/thumbs-up.png",
+  "h": 386,
+  "sheet": "bust-kit-2026-10-06.jpg",
+  "w": 239
+ }
+}

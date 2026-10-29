@@ -1,0 +1,28 @@
+{
+ "w": 166,
+ "h": 321,
+ "cut": 160,
+ "pivot": [
+  82.6,
+  160
+ ],
+ "head": {
+  "file": "nb-bust-skeptical-head.png",
+  "w": 166,
+  "h": 166
+ },
+ "body": {
+  "file": "nb-bust-skeptical-body.png",
+  "w": 166,
+  "h": 167,
+  "top": 154
+ },
+ "cheeks": null,
+ "mouth": [
+  69,
+  113,
+  97,
+  123
+ ],
+ "head_nomouth": "nb-bust-skeptical-head-nomouth.png"
+}

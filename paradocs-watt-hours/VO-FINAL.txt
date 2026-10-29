@@ -1,0 +1,31 @@
+Google says one Gemini prompt costs zero point two four watt-hours.
+
+Same paper. Same prompt. Zero point one zero.
+
+Both numbers are correct.
+
+Ten counts the chip doing the thinking.
+
+Seventeen adds the host machine, idle capacity, cooling.
+
+Twenty-four averages it across the whole fleet.
+
+Two point four times apart. One prompt.
+
+Nothing was hidden. Google printed every line.
+
+The number moved because the boundary moved.
+
+Now what it is not.
+
+It is a median. Text only.
+
+No voice. No images.
+
+And Google never publishes how many prompts it serves.
+
+So nobody outside can total it.
+
+One number is never one number.
+
+Ask where they drew the line.

@@ -1,0 +1,48 @@
+# Repo-root ignores. Note that an ignore file only governs its own directory and
+# below, so paths for other directories must live HERE, not in engine/.gitignore.
+
+# Finished renders and the normalised narration stem. Both are large and both
+# rebuild from what IS tracked:
+#   vo-master.wav  <- concatenate p1.mp3 + p2.mp3, then loudnorm to -14 LUFS
+#                     (see the video's PRODUCTION.md for the exact invocation)
+#   the .mp4       <- engine/render_rh.js against the stills and vo-master.wav
+# The narration MP3s themselves ARE tracked: they cost money to generate and the
+# ElevenLabs signed URLs expire after two hours.
+*/*.mp4
+*/*.webm
+*/*.wav
+*/preview.mp4
+
+# Intermediates
+*/pauses.txt
+__pycache__/
+*.pyc
+
+# Frames decoded out of a finished render for spot-checks
+*/qc/
+
+# Licensed Adobe Stock footage. The licence covers use in a work, not
+# redistribution, and this repo may be public. Plate IDs and the exact search
+# strings live in SHOTLIST.md so the set can be re-sourced.
+*/plates/
+
+# Scratch page the reel compositor writes on every render
+*/_reel.html
+*/_short.html
+*/_player.html
+
+# Tempo-fitted intermediate; vo-raw.mp3 + the tempo in PRODUCTION.md regenerate it
+*/vo-fit.mp3
+
+# HyperFrames skills, installed 2026-10-26 with
+#   npx skills add heygen-com/hyperframes
+# 301 files of HeyGen's own repo. Not ours to redistribute, and the same rule
+# the licensed plates follow: record how to re-source it, do not vendor it.
+# skills-lock.json IS tracked and pins every skill by content hash, so the
+# command above restores this exact set.
+.agents/
+.claude/skills/
+
+# Plate frames decoded by reel.js on first run; rebuilt automatically when a
+# plate changes. Large and fully derived.
+*/plates/.frames/

@@ -1,0 +1,6 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#fff}
+.stage{width:1920px;height:1080px;background:#fff;position:relative;overflow:hidden;
+  font-family:"Liberation Sans",Arial,sans-serif}
+svg{display:block}
+.lbl{font-weight:700;letter-spacing:.02em;fill:#000}
