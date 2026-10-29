@@ -224,6 +224,53 @@ def run(root, mp4, d, caps):
            if (b.get('quote') or '').strip().startswith(('"', '“')) or b.get('who')]
     row('V10', 'No text presented as a sourced quotation', not bad, 'offending beats %s' % bad)
 
+    # --- HOST COLLISION. The first hosted build passed every gate while the
+    # host sat on top of the hero, the cards, the band and the versus columns
+    # in most frames: nothing measured text against the HOST, only against the
+    # frame.
+    #
+    # Two wrong attempts are recorded because each is instructive. Sniffing
+    # all bright pixels in the host column failed immediately: Zul wears a
+    # white polo, so the detector counted the host as cream type. Replacing it
+    # with "reel.js clamps, therefore PASS" was worse -- a gate that asserts
+    # its own implementation is a tautology, which is the "PASS with caveat"
+    # pattern this repo criticised in the competitor playbook.
+    #
+    # What IS discriminating: the accent. CHARACTER-ZUL.md locks the host to
+    # pure black and white, so ANY amber inside his column is overlay, never
+    # him. That catches bands, accent words and card borders -- the offenders
+    # actually seen. Cream type behind the host remains undetectable this way,
+    # and that limit is stated rather than papered over.
+    h = d.get('host')
+    if h:
+        from PIL import Image
+        hh = h.get('h', 420)
+        hw = int(round(hh * 166.0 / 321.0))
+        hl = h['x'] - hw if h.get('anchor') == 'right' else h['x']
+        ht, hb = h['y'] - hh, h['y']
+        hits = []
+        with tempfile.TemporaryDirectory() as td2:
+            for b in beats[::max(1, len(beats) // 12)]:
+                t = b['t0'] + 0.7 * (b['t1'] - b['t0'])
+                f = os.path.join(td2, 'h%.2f.png' % t)
+                subprocess.run([FF, '-nostdin', '-v', 'error', '-y', '-ss', '%.3f' % t,
+                                '-i', mp4, '-frames:v', '1', f], check=False)
+                if not os.path.exists(f):
+                    continue
+                px = Image.open(f).convert('RGB').load()
+                amber = 0
+                for y in range(max(0, ht + 20), min(H, hb - 20), 5):
+                    for x in range(max(0, hl + 15), min(W, hl + hw - 15), 5):
+                        r, g_, bl = px[x, y]
+                        if r > 170 and 90 < g_ < 200 and bl < 90:
+                            amber += 1
+                if amber > 60:
+                    hits.append('%.2fs (%d amber px)' % (t, amber))
+        row('V13', 'No accent-coloured overlay inside the host column '
+                   '(host is black and white, so any amber there is type)',
+            not hits, ', '.join(hits[:4]) or
+            'clear; host column x %d-%d, y %d-%d' % (hl, hl + hw, ht, hb))
+
     # --- compliance is PER CHANNEL, not per repo. CLAUDE.md records a real
     # misbuild from getting this backwards: the finance disclaimer went on a
     # video about AI benchmark scores, where there was nothing to disclaim.

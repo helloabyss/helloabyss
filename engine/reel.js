@@ -292,6 +292,18 @@ function fitHero(el, want, boxW) {
 //   quote  -- vox-pop caption card; b.quote + b.who carry it, hero unused
 //   versus -- two columns from b.vs = (la, va, lb, vb); hero unused
 //   band   -- one word reversed out of a full-width accent band
+// The host owns a column on one side. Everything else keeps out of it.
+const HOSTW = HOST && RIG ? Math.round((HOST.h || 420) *
+  (RIG[HOST.poses[0][1]].w / RIG[HOST.poses[0][1]].h)) : 0;
+const HOST_L = HOST ? (HOST.anchor === 'right' ? HOST.x - HOSTW : HOST.x) : 1e9;
+const HOST_R = HOST ? (HOST.anchor === 'right' ? HOST.x : HOST.x + HOSTW) : -1e9;
+const HOST_T = HOST ? (HOST.y - (HOST.h || 420)) : 1e9;
+const HOST_B = HOST ? HOST.y : -1e9;
+// Right edge content may use when it shares vertical space with the host.
+const CLEAR_R = HOST ? Math.max(520, HOST_L - 28) : 1040;
+const clearW = (left, want, top, height) =>
+  (HOST && top < HOST_B && top + height > HOST_T) ? Math.min(want, CLEAR_R - left) : want;
+
 const LAY = {
   // The plates are bright now, so the foot scrim is what makes type readable
   // over bare picture -- and the type sits IN it rather than up at y=520 over
@@ -300,7 +312,8 @@ const LAY = {
       '<div class="pane" style="left:0;top:0;width:1080px;height:1920px;background:' +
       'linear-gradient(transparent 26%,' + LOOK.ground + '66 46%,' + LOOK.ground +
       'ee 62%,' + LOOK.ground + ' 76%)"></div>',
-    heroTop: b.heroY || 1035, align: 'left', left: 70, width: 940 }),
+    heroTop: b.heroY || 1035, align: 'left', left: 70,
+    width: clearW(70, 940, b.heroY || 1035, 230) }),
 
   // Two layouts that put the eye somewhere other than the bottom third.
   // A QC gate measured 68% of runtime in one arrangement -- muted label, left
@@ -315,7 +328,7 @@ const LAY = {
       LOOK.ground + '55 36%,transparent 52%)"></div>' +
       '<div class="band" style="left:70px;top:' + (150 + (1 - ease(clamp(u / .3, 0, 1))) * 14).toFixed(0) +
         'px;width:' + (110 * ease(clamp(u / .3, 0, 1))).toFixed(0) + 'px;height:7px"></div>',
-    heroTop: 250, align: 'left', left: 70, width: 940, subTop: 196 }),
+    heroTop: 250, align: 'left', left: 70, width: clearW(70, 940, 196, 260), subTop: 196 }),
 
   fullbleed: (b, u) => ({ chrome:
       // Light touch only. The first version scrimmed at 73-96% and left the
@@ -325,21 +338,23 @@ const LAY = {
       '<div class="pane" style="left:0;top:0;width:1080px;height:1920px;background:' +
       'radial-gradient(ellipse at 50% 46%,' + LOOK.ground + '26 0%,' +
       LOOK.ground + '70 58%,' + LOOK.ground + 'b0 100%)"></div>',
-    heroTop: b.heroY || 760, align: 'center', left: 40, width: 1000, subTop: 660,
+    heroTop: b.heroY || 760, align: 'left', left: 70,
+    width: clearW(70, 970, 660, 320), subTop: 660,
     heroShadow: '0 6px 18px rgba(0,0,0,.95),0 14px 70px rgba(0,0,0,.9)' }),
 
   split: (b, u) => ({ chrome:
       '<div class="pane" style="left:0;top:1020px;width:1080px;height:900px"></div>' +
       '<div class="band" style="left:0;top:1014px;width:' +
         (1080 * ease(clamp(u / .35, 0, 1))).toFixed(0) + 'px;height:6px"></div>',
-    heroTop: 1070, align: 'left', left: 70, width: 940 }),
+    heroTop: 1070, align: 'left', left: 70, width: clearW(70, 940, 1070, 230) }),
 
   card: (b, u) => {
     const g = ease(clamp(u / .3, 0, 1));
     return { chrome:
       '<div class="cardbox" style="left:70px;top:' + (640 + (1 - g) * 40).toFixed(0) +
-        'px;width:940px;height:600px;opacity:' + g.toFixed(3) + '"></div>',
-      heroTop: 760, align: 'left', left: 130, width: 820 };
+        'px;width:' + clearW(70, 940, 640, 600) + 'px;height:600px;opacity:' +
+        g.toFixed(3) + '"></div>',
+      heroTop: 760, align: 'left', left: 130, width: clearW(130, 820, 760, 200) };
   },
 
   quote: (b, u, t) => {
@@ -354,7 +369,8 @@ const LAY = {
     const shown = (b.quote || '').slice(0, Math.ceil(n * clamp((qu - .04) / .26, 0, 1)));
     return { chrome:
       '<div class="cardbox" style="left:60px;top:' + (700 + (1 - g) * 40).toFixed(0) +
-        'px;width:960px;height:' + (b.quoteH || 420) + 'px;opacity:' + g.toFixed(3) + '"></div>' +
+        'px;width:' + clearW(60, 960, 700, (b.quoteH || 420)) + 'px;height:' +
+        (b.quoteH || 420) + 'px;opacity:' + g.toFixed(3) + '"></div>' +
       // A statement card, NOT a quotation. It previously set the script's own
       // paraphrase in quote marks under an attribution rule, inventing a sourced
       // quote -- on a channel whose whole pitch is accuracy, in a video about
@@ -372,15 +388,17 @@ const LAY = {
 
   versus: (b, u) => {
     const v = b.vs || {}, g = ease(clamp(u / .3, 0, 1)), g2 = ease(clamp((u - .25) / .3, 0, 1));
-    const col = (x, lab, val, hot, o) =>
+    const col = (x, lab, val, hot, o, cw) =>
       '<div class="cardbox" style="left:' + x + 'px;top:' + (660 + (1 - o) * 36).toFixed(0) +
-        'px;width:452px;height:540px;opacity:' + o.toFixed(3) +
+        'px;width:' + cw + 'px;height:540px;opacity:' + o.toFixed(3) +
         (hot ? ';border:5px solid ' + LOOK.accent : '') + '"></div>' +
       '<div class="lab" style="left:' + (x + 48) + 'px;top:' + (708 + (1 - o) * 36).toFixed(0) +
         'px;font-size:30px;opacity:' + o.toFixed(3) + (hot ? ';color:' + LOOK.accent : '') + '">' + lab + '</div>' +
       '<div class="big" style="left:' + (x + 48) + 'px;top:' + (766 + (1 - o) * 36).toFixed(0) +
         'px;font-size:140px;opacity:' + o.toFixed(3) + (hot ? ';color:' + LOOK.accent : '') + '">' + val + '</div>';
-    return { chrome: col(56, v.la || '', v.va || '', false, g) + col(572, v.lb || '', v.vb || '', true, g2),
+    const CW = Math.floor((clearW(56, 968, 660, 540) - 64) / 2);
+    return { chrome: col(56, v.la || '', v.va || '', false, g, CW) +
+                     col(56 + CW + 64, v.lb || '', v.vb || '', true, g2, CW),
       heroTop: -9999, align: 'center', left: 40, width: 1000 };
   },
 
@@ -389,10 +407,11 @@ const LAY = {
     // the band wiped in, the uncovered part of the word was near-black type on
     // a 170-luma plate -- about 2.2s of unreadable hero across five beats. The
     // wipe is quicker now and the hero waits for it.
-    const w = 1080 * ease(clamp(u / .16, 0, 1));
+    const w = (HOST ? CLEAR_R + 28 : 1080) * ease(clamp(u / .16, 0, 1));
     return { chrome: '<div class="band" style="left:0;top:' + (b.bandY || 780) +
         'px;width:' + w.toFixed(0) + 'px;height:330px"></div>',
-      heroTop: (b.bandY || 780) + 42, align: 'center', left: 40, width: 1000,
+      heroTop: (b.bandY || 780) + 42, align: 'left', left: 70,
+      width: clearW(70, 970, (b.bandY || 780) + 42, 200),
       subTop: (b.bandY || 780) - 96, color: LOOK.ground,
       heroOpacity: ease(clamp((u - 0.14) / 0.10, 0, 1)) };
   },

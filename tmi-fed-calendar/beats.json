@@ -1,0 +1,327 @@
+{
+ "channel": "TMI",
+ "notice": "EDUCATIONAL ONLY \u00b7 NOT FINANCIAL ADVICE",
+ "look": "warmdark",
+ "host": {
+  "x": 1040,
+  "y": 1000,
+  "h": 380,
+  "anchor": "right",
+  "warm": true,
+  "poses": [
+   [
+    0.0,
+    "nb-bust-idle"
+   ],
+   [
+    4.651,
+    "nb-bust-point-right"
+   ],
+   [
+    12.544,
+    "nb-bust-shock"
+   ],
+   [
+    21.188,
+    "nb-bust-skeptical"
+   ],
+   [
+    28.027,
+    "nb-bust-idle"
+   ]
+  ]
+ },
+ "beats": [
+  {
+   "t0": 0.0,
+   "t1": 1.408,
+   "plate": "TV.webm",
+   "layout": "fullbleed",
+   "move": "push",
+   "trans": "whipUp",
+   "pt0": 0.0,
+   "hero": "3.75% - 4%",
+   "sub": "THE FED HELD",
+   "heroSize": 170,
+   "heroInstant": true
+  },
+  {
+   "t0": 1.408,
+   "t1": 2.56,
+   "plate": "TV.webm",
+   "layout": "fullbleed",
+   "move": "pull",
+   "trans": "whip",
+   "pt0": 0.52,
+   "hero": "3.75% - 4%",
+   "sub": "THE FED HELD",
+   "heroSize": 170
+  },
+  {
+   "t0": 2.56,
+   "t1": 3.499,
+   "plate": "TV.webm",
+   "layout": "fullbleed",
+   "move": "driftR",
+   "trans": "whip",
+   "pt0": 0.95,
+   "hero": "THE FED HELD",
+   "sub": "YESTERDAY",
+   "heroSize": 150
+  },
+  {
+   "t0": 3.499,
+   "t1": 4.651,
+   "plate": "TV.webm",
+   "layout": "full",
+   "move": "driftL",
+   "trans": "whipUp",
+   "pt0": 1.29,
+   "hero": "3.75% - 4%",
+   "sub": "TARGET RANGE",
+   "heroSize": 180
+  },
+  {
+   "t0": 4.651,
+   "t1": 5.675,
+   "plate": "TW.webm",
+   "layout": "topper",
+   "move": "push",
+   "trans": "whip",
+   "pt0": 1.72,
+   "hero": "THE CALENDAR",
+   "sub": "THE BIGGER CHANGE",
+   "heroSize": 150
+  },
+  {
+   "t0": 5.675,
+   "t1": 7.125,
+   "plate": "TW.webm",
+   "layout": "topper",
+   "move": "pull",
+   "trans": "whip",
+   "pt0": 2.1,
+   "hero": "THE CALENDAR",
+   "sub": "THE BIGGER CHANGE",
+   "heroSize": 150
+  },
+  {
+   "t0": 7.125,
+   "t1": 9.088,
+   "plate": "TW.webm",
+   "layout": "full",
+   "move": "driftR",
+   "trans": "whipUp",
+   "pt0": 2.64,
+   "hero": "8 MEETINGS",
+   "sub": "IN 2027",
+   "heroSize": 180
+  },
+  {
+   "t0": 9.088,
+   "t1": 10.795,
+   "plate": "GC.webm",
+   "layout": "versus",
+   "move": "driftL",
+   "trans": "whip",
+   "pt0": 3.36,
+   "vs": {
+    "la": "Meetings",
+    "va": "8",
+    "lb": "Set rates",
+    "vb": "7"
+   }
+  },
+  {
+   "t0": 10.795,
+   "t1": 12.544,
+   "plate": "GC.webm",
+   "layout": "card",
+   "move": "push",
+   "trans": "whip",
+   "pt0": 3.99,
+   "hero": "STRATEGY ONLY",
+   "sub": "ONE MEETING",
+   "heroSize": 140
+  },
+  {
+   "t0": 12.544,
+   "t1": 14.361,
+   "plate": "TD.webm",
+   "layout": "band",
+   "move": "pull",
+   "trans": "whipUp",
+   "pt0": 0.64,
+   "hero": "NO VOTE",
+   "heroSize": 150,
+   "bandY": 760
+  },
+  {
+   "t0": 14.361,
+   "t1": 15.385,
+   "plate": "GC.webm",
+   "layout": "split",
+   "move": "driftR",
+   "trans": "whip",
+   "pt0": 1.31,
+   "hero": "SIX",
+   "sub": "2028 DROPS TO",
+   "heroSize": 200
+  },
+  {
+   "t0": 15.385,
+   "t1": 17.134,
+   "plate": "GC.webm",
+   "layout": "split",
+   "move": "driftL",
+   "trans": "whip",
+   "pt0": 1.69,
+   "hero": "SIX",
+   "sub": "2028 DROPS TO",
+   "heroSize": 200
+  },
+  {
+   "t0": 17.134,
+   "t1": 18.244,
+   "plate": "TD.webm",
+   "layout": "full",
+   "move": "push",
+   "trans": "whipUp",
+   "pt0": 2.34,
+   "hero": "FEWER MOMENTS",
+   "sub": "SCHEDULED",
+   "heroSize": 150
+  },
+  {
+   "t0": 18.244,
+   "t1": 19.907,
+   "plate": "TD.webm",
+   "layout": "full",
+   "move": "pull",
+   "trans": "whip",
+   "pt0": 2.75,
+   "hero": "FEWER MOMENTS",
+   "sub": "SCHEDULED",
+   "heroSize": 150
+  },
+  {
+   "t0": 19.907,
+   "t1": 21.188,
+   "plate": "TD.webm",
+   "layout": "full",
+   "move": "driftR",
+   "trans": "whip",
+   "pt0": 3.37,
+   "hero": "MORE ON EACH",
+   "sub": "AND SO",
+   "heroSize": 160
+  },
+  {
+   "t0": 21.188,
+   "t1": 22.809,
+   "plate": "GB.webm",
+   "layout": "card",
+   "move": "driftL",
+   "trans": "whipUp",
+   "pt0": 3.84,
+   "hero": "NOT A CAP",
+   "sub": "BUT",
+   "heroSize": 170
+  },
+  {
+   "t0": 22.809,
+   "t1": 23.79,
+   "plate": "GB.webm",
+   "layout": "topper",
+   "move": "push",
+   "trans": "whip",
+   "pt0": 0.44,
+   "hero": "BETWEEN MEETINGS",
+   "sub": "IT CAN STILL MOVE",
+   "heroSize": 130
+  },
+  {
+   "t0": 23.79,
+   "t1": 24.643,
+   "plate": "GB.webm",
+   "layout": "topper",
+   "move": "pull",
+   "trans": "whip",
+   "pt0": 0.8,
+   "hero": "BETWEEN MEETINGS",
+   "sub": "IT CAN STILL MOVE",
+   "heroSize": 130
+  },
+  {
+   "t0": 24.643,
+   "t1": 25.924,
+   "plate": "GB.webm",
+   "layout": "topper",
+   "move": "driftR",
+   "trans": "whipUp",
+   "pt0": 1.12,
+   "hero": "BETWEEN MEETINGS",
+   "sub": "IT CAN STILL MOVE",
+   "heroSize": 130
+  },
+  {
+   "t0": 25.924,
+   "t1": 27.118,
+   "plate": "GB.webm",
+   "layout": "band",
+   "move": "driftL",
+   "trans": "whip",
+   "pt0": 1.59,
+   "hero": "CONVENTION",
+   "heroSize": 140,
+   "bandY": 760
+  },
+  {
+   "t0": 27.118,
+   "t1": 28.027,
+   "plate": "GB.webm",
+   "layout": "band",
+   "move": "push",
+   "trans": "whip",
+   "pt0": 2.03,
+   "hero": "CONVENTION",
+   "heroSize": 140,
+   "bandY": 760
+  },
+  {
+   "t0": 28.027,
+   "t1": 29.606,
+   "plate": "GL.webm",
+   "layout": "full",
+   "move": "pull",
+   "trans": "whipUp",
+   "pt0": 2.37,
+   "hero": "CHECK WHICH KIND",
+   "sub": "A 2027 DATE",
+   "heroSize": 140
+  },
+  {
+   "t0": 29.606,
+   "t1": 31.014,
+   "plate": "GL.webm",
+   "layout": "full",
+   "move": "driftR",
+   "trans": "whip",
+   "pt0": 2.95,
+   "hero": "CHECK WHICH KIND",
+   "sub": "A 2027 DATE",
+   "heroSize": 140
+  },
+  {
+   "t0": 31.014,
+   "t1": 32.653,
+   "plate": "GL.webm",
+   "layout": "fullbleed",
+   "move": "driftL",
+   "trans": "whip",
+   "pt0": 3.48,
+   "hero": "WHICH KIND IS IT?",
+   "heroSize": 130
+  }
+ ]
+}
