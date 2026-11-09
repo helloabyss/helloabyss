@@ -84,3 +84,30 @@ Based on Rockstar's own policy pages and its September 2026 mod guidelines:
 - [ ] The storefront's update-email feature is set up
 - [ ] Refund policy written on the store page
 - [ ] Note in your diary: write Edition 1.1 between 20 and 26 Nov
+
+---
+
+## 7. Product two: *The First-Timer's Playbook* (`first-timers/`)
+
+A large-print, no-jargon guide for grown-ups who have never played a video game: whether the
+game is right for them (ESRB M 17+, with content warnings shown up front), what to buy, setup,
+the controller, comfort and accessibility settings, a glossary, and launch-scam safety.
+
+- **Who buys it:** often not the player. It's adult children and grandkids buying it *for* a
+  parent, and gift-buyers in the Black Friday and holiday window. Write the store page for them.
+- **Price:** $4.99, or **bundle both for $7.99**.
+- **Shorts angle:** "My mum has never played a video game. Here's how she's starting GTA VI."
+  (Faceless works: show hands on a controller, the TV and the guide's pages.)
+- **Honest weakness:** it shouldn't oversell the game to people who'd hate the content. Page 3
+  tells them so, and that builds trust for everything else you sell.
+- **Update after launch:** confirm the real control layout, subtitle and accessibility options,
+  and tutorial length, then replace the hedged lines on pages 7–8.
+
+## Rebuilding the PDFs
+
+```
+python3 gta6-guides/day-one/build.py
+python3 gta6-guides/first-timers/build.py
+```
+The layouts live in each `build.py`, and the shared design system is in `design.py`. The build
+prints a warning if any page overflows.
