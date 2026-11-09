@@ -111,3 +111,33 @@ python3 gta6-guides/first-timers/build.py
 ```
 The layouts live in each `build.py`, and the shared design system is in `design.py`. The build
 prints a warning if any page overflows.
+
+---
+
+## 8. Product three: *The Creator Playbook* (`creator/`)
+
+How to make money from GTA VI content: income streams, the YouTube Partner Program bar
+(and the reported **1 Feb 2027** doubling), Rockstar's video policy, YouTube's Sept 2026
+gaming-violence rules (no graphic violence in the first 7 seconds), products, sponsors, a
+faceless workflow and a 90-day plan. **Price: $7.99.** It also works as a lead magnet for other
+GTA creators.
+
+**Line-up:** Day One $4.99 · First-Timer's $4.99 · Creator $7.99 · **all three $12.99**.
+
+## 9. Where to host and sell the PDFs
+
+| Platform | Fee on a $4.99 sale (approx.) | Handles sales tax/VAT? | Best for |
+|---|---|---|---|
+| **Payhip (free plan)** | 5% + card processing (~2.9% + $0.30) ≈ **$0.69** | EU/UK VAT | **Start here.** Cheapest per sale, no monthly fee, bundles and coupons. |
+| Gumroad | 10% + $0.50 ≈ **$1.00** | Yes, worldwide (merchant of record) | Zero tax admin. Easiest to set up. |
+| Lemon Squeezy | 5% + $0.50 ≈ **$0.75** (+1.5% international) | Yes (merchant of record) | Low fee plus tax handled. More software-oriented. |
+| Stan Store | $29/month, 0% per sale | Check current terms | Once you're past roughly $250/month in sales. |
+| Ko-fi | 5% on free plan (0% on Gold) | Check current terms | Tips plus a small shop in one place. |
+
+Fees come from comparison sites (Nov 2026). Confirm on each pricing page before signing up.
+
+**Recommendation:** open a **Payhip** store now, list all three PDFs plus the bundle, and put
+the store link in your YouTube channel's Links section, every description and a pinned comment.
+If you'd rather never think about sales tax, use **Gumroad** and accept the higher fee. Don't
+host paid PDFs on Google Drive or Dropbox links: there's no checkout, no buyer list, and links
+get shared freely.
