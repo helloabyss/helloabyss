@@ -33,8 +33,10 @@ Based on Rockstar's own policy pages and its September 2026 mod guidelines:
 
 - **"Unofficial" goes on the cover, the store page and the video description.**
 - **No Rockstar logos, key art, trailer screenshots or the GTA VI wordmark** on the cover,
-  thumbnail or store page. Make your own art in the channel's style: red, near-black and
-  white, with your own photo or design.
+  thumbnail or store page. Use your own art in the guide's Vice City-at-dusk theme: sunset
+  gradient, striped sun, palm silhouettes, neon pink and teal on night purple. The PDF
+  cover is original CSS/SVG art, so you can reuse it for thumbnails. Don't imitate the
+  official GTA VI logo, its "VI" lettering or its pink-and-orange wordmark style.
 - **Use the game's name only to say what the guide is about** ("a guide *for* GTA VI
   players"), never as your product's brand. Don't name the product "GTA 6 Guide".
 - **No leaked footage, datamined files or anything taken from pre-release builds.**
