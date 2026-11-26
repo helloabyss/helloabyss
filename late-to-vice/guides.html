@@ -1,0 +1,408 @@
+<title>Late to Vice Field Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,800;1,800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticker-led hero, sticky chapter nav, then stacked guide sections of cards. Single dark look by choice, matched to the Late to Vice stickers. */
+:root {
+  --night: #150a2e;      /* sticker ground */
+  --panel: #21123f;
+  --line: #3a2763;
+  --pink: #ff3fbf;
+  --sun: #ffb347;
+  --cyan: #1fd6ff;
+  --text: #f6f1ff;
+  --muted: #b7a9d6;
+  --warn: #ffd166;
+  --display: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --body: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--night); color: var(--text); font-family: var(--body);
+  font-size: 15px; line-height: 1.6;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night); }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; font-style: italic; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--cyan); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+/* Hero */
+.hero { padding-block: 2.5rem 2rem; }
+.hero .wrap { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: center; }
+.hero img { width: 180px; max-width: 100%; height: auto; transform: rotate(-6deg); filter: drop-shadow(0 10px 24px rgba(255,63,191,.25)); }
+.eyebrow { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; font-style: italic; margin-block: .35rem .75rem;
+  background: linear-gradient(180deg, var(--sun), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p.lede { color: var(--muted); max-width: 58ch; }
+.notice { margin-top: 1rem; display: inline-block; font-size: .8rem; color: var(--warn); border: 1px solid #5a4a1c; background: #2a2210; padding: .45rem .7rem; border-radius: 8px; }
+
+/* Nav */
+nav.chap { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--night); border-bottom: 1px solid var(--line); }
+nav.chap .wrap { display: flex; gap: .5rem; overflow-x: auto; padding-block: .6rem; }
+nav.chap a { flex: none; text-decoration: none; color: var(--text); font-weight: 600; font-size: .85rem; padding: .4rem .9rem; border-radius: 999px; border: 1px solid var(--line); }
+nav.chap a:hover { border-color: var(--pink); color: var(--pink); }
+
+section.guide { padding-block: 3rem 1rem; scroll-margin-top: 60px; }
+.sec-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.sec-head .tag { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+.sec-head h2 span { color: var(--cyan); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.1rem; display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+.card p, .card li { color: var(--muted); font-size: .9rem; }
+.card ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; }
+.card strong { color: var(--text); font-weight: 600; }
+
+/* Mini image tiles: original icons + slot for the creator's own capture */
+.shot { aspect-ratio: 16 / 9; max-width: 100%; border-radius: 10px; border: 1.5px dashed var(--line);
+  background: radial-gradient(120% 120% at 80% 0%, #3b1450 0%, var(--night) 60%);
+  display: grid; place-items: center; position: relative; overflow: hidden; }
+.shot svg { width: 46%; height: auto; }
+.shot .cap { position: absolute; left: 8px; bottom: 6px; right: 8px; font-family: var(--mono); font-size: .62rem; color: var(--muted); letter-spacing: .04em; }
+
+.pill { align-self: flex-start; font-family: var(--mono); font-size: .68rem; padding: .15rem .55rem; border-radius: 999px; letter-spacing: .05em; text-transform: uppercase; }
+.pill.ok { color: #0d2b1c; background: #6be3a4; }
+.pill.check { color: #2a2210; background: var(--warn); }
+.pill.miss { color: #fff; background: #d6336c; }
+
+/* Settings table */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 520px; }
+th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--panel); }
+td.val { font-family: var(--mono); color: var(--sun); white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+
+/* Mission flow */
+ol.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; counter-reset: m; }
+ol.flow li { counter-increment: m; display: grid; grid-template-columns: 2.2rem 1fr; gap: .75rem; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: .75rem .9rem; }
+ol.flow li::before { content: counter(m, decimal-leading-zero); font-family: var(--mono); color: var(--pink); font-size: .85rem; padding-top: .1rem; }
+ol.flow li p { color: var(--muted); font-size: .88rem; }
+ol.flow li.lock { border-color: #d6336c; }
+
+.callout { margin-top: 1.25rem; border-left: 3px solid var(--pink); background: #2a1040; padding: 1rem 1.1rem; border-radius: 0 12px 12px 0; }
+.callout h3 { color: var(--pink); margin-bottom: .35rem; }
+.callout p, .callout li { color: var(--text); font-size: .9rem; }
+.callout ul { margin: .3rem 0 0; padding-left: 1.1rem; }
+
+.subhead { margin-block: 2rem 1rem; font-size: 1.2rem; font-weight: 800; font-style: italic; color: var(--sun); }
+
+footer { padding-block: 3rem; color: var(--muted); font-size: .8rem; border-top: 1px solid var(--line); margin-top: 3rem; }
+footer .wrap { display: grid; grid-template-columns: 1fr 140px; gap: 1.5rem; align-items: start; }
+footer ul { padding-left: 1rem; margin: .5rem 0 0; display: grid; gap: .2rem; }
+footer img { width: 140px; max-width: 100%; height: auto; }
+
+@media (max-width: 620px) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 1rem; }
+  .hero img { width: 120px; }
+  footer .wrap { grid-template-columns: 1fr; }
+  footer img { width: 110px; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <img src="assets/sticker-f.png" alt="Late to Vice sticker" width="630" height="944">
+    <div>
+      <div class="eyebrow">Field guide · GTA VI story mode</div>
+      <h1>Broke in Leonida?<br>Start here.</h1>
+      <p class="lede">The catch-up guide for players stuck in Chapter 1: settings that make aiming and driving feel right, free weapons you can grab early, the money that actually pays, and what to do before you're locked into Chapter 2.</p>
+      <p class="notice">Built from community guides one week after launch. Sources disagree on some details, so anything marked "check" needs confirming in your own game.</p>
+    </div>
+  </div>
+</header>
+
+<nav class="chap" aria-label="Guide sections">
+  <div class="wrap">
+    <a href="#settings">Fix your settings</a>
+    <a href="#chapter-1">Chapter 1</a>
+    <a href="#ch1-weapons">Ch1 weapons</a>
+    <a href="#ch1-money">Ch1 money</a>
+    <a href="#chapter-2">Chapter 2</a>
+    <a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<main>
+<!-- SETTINGS -->
+<section class="guide" id="settings">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Step 0: <span>fix your settings</span></h2>
+      <span class="tag">Settings › Controls</span>
+    </div>
+    <p style="color:var(--muted);max-width:65ch;margin-bottom:1.25rem">If missions feel impossible, check your settings before blaming yourself. These are the starting points most guides agree on. Change one thing at a time and play a mission before changing the next.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Setting</th><th>Start at</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Targeting mode</td><td class="val">Partial</td><td>Snaps to targets but still lets you aim for the head. Go to Lock-On if you keep losing fights, and Free Aim once you're comfortable.</td></tr>
+          <tr><td>Aim assist strength</td><td class="val">~4</td><td>The most common recommendation. Go higher if enemies slip away from your crosshair.</td></tr>
+          <tr><td>Look sensitivity</td><td class="val">higher than aim</td><td>Fast camera to spot enemies, slower aim to land the shot. Guides range from 6 to 9 for look.</td></tr>
+          <tr><td>Aim sensitivity</td><td class="val">1–2 below look</td><td>If you overshoot targets, lower this first.</td></tr>
+          <tr><td>Aim response curve</td><td class="val">Standard</td><td>The safe default. Try Linear or Precision later if aiming feels floaty.</td></tr>
+          <tr><td>Stick deadzone</td><td class="val">2–3</td><td>If the camera drifts on its own, raise it one step at a time until it stops.</td></tr>
+          <tr><td>Shooting assist / Drive-by assist</td><td class="val">On</td><td>Makes shooting from a car far less painful in chases.</td></tr>
+          <tr><td>Adaptive trigger resistance (PS5)</td><td class="val">Off</td><td>One guide reports driving feels smoother without the trigger fighting you.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid" style="margin-top:1rem">
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#1fd6ff" stroke-width="4"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="4" fill="#ff3fbf" stroke="none"/><path d="M50 8v18M50 74v18M8 50h18M74 50h18"/></svg>
+          <span class="cap">Your capture: settings screen</span>
+        </div>
+        <h3>Aiming habits</h3>
+        <ul>
+          <li>Keep your crosshair at <strong>head height</strong> as you move. Less adjusting when you aim in.</li>
+          <li>Tap aim on and off to cycle between targets with Partial targeting.</li>
+          <li>Take cover first, then shoot. Standing in the open is how Chapter 1 shootouts go wrong.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#ffb347" stroke-width="4"><circle cx="50" cy="50" r="34"/><circle cx="50" cy="50" r="8"/><path d="M16 50h26M58 50h26M50 58v26"/></svg>
+          <span class="cap">Your capture: a clean chase</span>
+        </div>
+        <h3>Driving habits</h3>
+        <ul>
+          <li><strong>Brake before the corner</strong>, not in it. Then accelerate out.</li>
+          <li>Don't hold full throttle the whole way. Feathering the trigger keeps the car straight.</li>
+          <li>In chases, pick a mid-weight car over the fastest one. It's easier to control.</li>
+          <li>The boat section in Gone Fishing: slow down near the drops. You can't collect packages at full speed.</li>
+        </ul>
+        <span class="pill check">General tips, not from patch notes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="guide" id="chapter-1">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Chapter 1: <span>get out broke-proof</span></h2>
+      <span class="tag">Jason &amp; Lucia · Leonida Keys</span>
+    </div>
+
+    <h3 class="subhead">How the chapter flows</h3>
+    <ol class="flow">
+      <li><div><h3>Prologue</h3><p>Meet Lucia at Hamlet Correctional and learn the basic controls.</p></div></li>
+      <li><div><h3>Gone Fishing</h3><p>Follow a plane by boat, collect the packages it drops, then rescue a contact from the Kingfishers.</p></div></li>
+      <li><div><h3>Brian's errands, any order</h3><p>Gear Up, Just a Scratch, Lab Fees and Unwanted Attention unlock together. Do them in whatever order suits you.</p></div></li>
+      <li><div><h3>Pipework, then Hey Arnold!</h3><p>Hey Arnold! gives you a choice. Guides say sparing Arnold pays an extra $10k later, in Chapter 4.</p></div></li>
+      <li class="lock"><div><h3>Tourist Trap <span class="pill miss">point of no return</span></h3><p>Starting it locks you into the last three missions with no free roam. Do everything in the checklist below first.</p></div></li>
+    </ol>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:.75rem">Guides list 22 or 23 missions and disagree on the order. Your map's Story tab is the real list of what's unlocked.</p>
+
+    <div class="callout">
+      <h3>Before you start Tourist Trap</h3>
+      <ul>
+        <li><strong>Make a separate manual save.</strong> Chapter 1 has no mission replay, so an old save is the only fix if something breaks.</li>
+        <li><strong>Move up to $5,000 into your BuckMe account.</strong> Guides say it's the only account that carries into Chapter 2.</li>
+        <li>Finish Shirley's Rum and Kenton's treasure dives. Both disappear when Tourist Trap starts.</li>
+        <li>Grab the two free boat weapons below.</li>
+      </ul>
+    </div>
+
+    <h3 class="subhead" id="ch1-weapons">Free weapons you can grab early</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 120 70" fill="#1fd6ff"><path d="M8 18h70v14H54l-6 30H34l4-30H8z"/><rect x="78" y="21" width="34" height="8" rx="3" fill="#ff3fbf"/></svg>
+          <span class="cap">Your capture: SE wreck hatch</span>
+        </div>
+        <span class="pill ok">Chapter 1 free roam</span>
+        <h3>Suppressed Nipper .38</h3>
+        <p>Inside a hatch on a wrecked boat on the <strong>southeastern island of the Permit Keys</strong>. Take a boat or jet ski out from Key Lento.</p>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 120 70" fill="#ffb347"><path d="M4 22h92v10H4z"/><path d="M96 20h18v14H96z" fill="#ff3fbf"/><path d="M20 32h34l-8 26H30z"/><path d="M60 32h20v6H60z"/></svg>
+          <span class="cap">Your capture: tilted boat</span>
+        </div>
+        <span class="pill ok">Chapter 1 free roam</span>
+        <h3>Gorse 425 shotgun</h3>
+        <p>On a tilted, abandoned boat on the <strong>northernmost Permit Keys island</strong>. A shotgun this early makes close-range fights much easier.</p>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 120 70" fill="#b7a9d6"><path d="M6 28h100v8H6z"/><circle cx="60" cy="22" r="7" fill="none" stroke="#1fd6ff" stroke-width="3"/><path d="M28 36h20l-4 22H34z"/></svg>
+          <span class="cap">Your capture: Wetman Bay shack</span>
+        </div>
+        <span class="pill check">Check: enemies, chapter</span>
+        <h3>Kingfishers W-22 rifle</h3>
+        <p>In a Wetman Bay building with enemies inside. Another guide says the Pelican Valley and Wetman Bay shacks are unguarded. Go in with full health either way.</p>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 70" fill="none" stroke="#ff3fbf" stroke-width="4"><rect x="14" y="16" width="72" height="44" rx="3"/><path d="M14 30h72M44 16v14"/></svg>
+          <span class="cap">Your capture: storage unit / bunker</span>
+        </div>
+        <span class="pill check">Check: reachable in Ch1?</span>
+        <h3>Bigger stashes to scout</h3>
+        <p><strong>Tequesta storage unit:</strong> grenade launcher, pistol and armor, with an unlocked door and no fight. <strong>RV Park bunker</strong>, through a trailer near Griffin Shooting Range: H-AT rocket launcher and Type 9 SMG. Guides don't say which chapter these open in.</p>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:.75rem">The Laird 350 sniper has two conflicting locations in guides (a Hamlet motel, or a Kelly County lookout tower). It's left out until someone confirms it.</p>
+
+    <h3 class="subhead" id="ch1-money">Money that's worth your time</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 70" fill="none" stroke="#1fd6ff" stroke-width="4"><path d="M10 40c10-8 20-8 30 0s20 8 30 0 20-8 20-8"/><path d="M50 10v26M42 18l8-8 8 8"/><rect x="30" y="48" width="40" height="12" rx="3" fill="#ffb347" stroke="none"/></svg>
+          <span class="cap">Your capture: dive spot</span>
+        </div>
+        <span class="pill miss">Gone after Tourist Trap</span>
+        <h3>Kenton's treasure dives</h3>
+        <p>One guide calls this the best early money: about <strong>$1,400 per early wreck</strong>. It's chapter-only, so do it now.</p>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 70" fill="#ffb347"><path d="M38 8h24v10l8 10v34H30V28l8-10z"/><rect x="34" y="34" width="32" height="14" fill="#ff3fbf"/></svg>
+          <span class="cap">Your capture: Shirley's job</span>
+        </div>
+        <span class="pill miss">Gone after Tourist Trap</span>
+        <h3>Shirley's Rum</h3>
+        <p>A side activity that disappears at Tourist Trap. Payouts weren't confirmed in the guides checked, so note what it pays you.</p>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 70" fill="none" stroke="#6be3a4" stroke-width="4"><rect x="12" y="18" width="76" height="36" rx="4"/><circle cx="50" cy="36" r="9"/></svg>
+          <span class="cap">Your capture: the handoff</span>
+        </div>
+        <span class="pill ok">Chapters 1–2</span>
+        <h3>Illegal operations</h3>
+        <p>Take product from illegal operations and sell it to Brian or Donnie. One guide calls this the fastest early method.</p>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 70" fill="none" stroke="#ff3fbf" stroke-width="4"><path d="M14 56V26l36-14 36 14v30z"/><rect x="40" y="38" width="20" height="18"/></svg>
+          <span class="cap">Your capture: a store hit</span>
+        </div>
+        <span class="pill check">Brings heat</span>
+        <h3>Small robberies</h3>
+        <p>Businesses pay from a few hundred dollars up to about $1,000 per hit. Have a getaway car parked close by.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>Why you're broke (probably)</h3>
+      <ul>
+        <li>Jason has <strong>no ATM access early</strong> and carries his cash. Dying or getting busted with a pocket full of money hurts. Stash it at home.</li>
+        <li>Guides say grinding Chapter 1 is barely worth it. Finish the story missions first: they set up better-paying jobs.</li>
+        <li>Aim for <strong>$5,000 saved</strong> before Tourist Trap. Chapter 2 asks for $15,000 later.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <h3>Stuck on a mission?</h3>
+      <ul>
+        <li>Press <strong>down on the D-pad</strong> to show the current objective. You may have skipped a step.</li>
+        <li>From the mission panel, try <strong>Retry Checkpoint</strong>. If it breaks the same way, use <strong>Restart Mission</strong>.</li>
+        <li>No next mission? Some only unlock after a phone call, a text or some in-game time passing. Do other missions while you wait.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="guide" id="chapter-2">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Chapter 2: <span>Paradise Lost</span></h2>
+      <span class="tag">Port Gellhorn · mostly any order</span>
+    </div>
+
+    <ol class="flow">
+      <li><div><h3>What's in the Bag?</h3><p>Opens the chapter.</p></div></li>
+      <li><div><h3>Get Lucia's vehicle or do Kingpin Bowling Alley first</h3><p>Guides recommend one of these before anything else. Most other missions can be done in any order.</p></div></li>
+      <li><div><h3>Moses, Breakfast Run, Coffee Break</h3><p>The big milestones. After Coffee Break, character switching opens the full map for both characters.</p></div></li>
+      <li class="lock"><div><h3>Prepare for Vice City <span class="pill miss">needs $15,000</span></h3><p>You can't leave Port Gellhorn without the cash. Start saving from day one of the chapter.</p></div></li>
+      <li><div><h3>Checking Out</h3><p>Closes the chapter.</p></div></li>
+    </ol>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:.75rem">Guides count 13 or 18 missions. Some only appear after a phone call. If Slam Dunk is missing, keep playing other missions until Dunk calls.</p>
+
+    <h3 class="subhead">Make the $15,000: sell cars to Moses</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 120 70" fill="#1fd6ff"><path d="M14 40l10-16h52l14 16h16v14H8V40z"/><circle cx="32" cy="56" r="8" fill="#150a2e" stroke="#ff3fbf" stroke-width="4"/><circle cx="88" cy="56" r="8" fill="#150a2e" stroke="#ff3fbf" stroke-width="4"/></svg>
+          <span class="cap">Your capture: Moses drop-off</span>
+        </div>
+        <span class="pill ok">Main Chapter 2 income</span>
+        <h3>How it works</h3>
+        <ul>
+          <li>About <strong>$1,000 or more per car</strong>, with a short cooldown between sales.</li>
+          <li>He <strong>won't take cars with alarms</strong>.</li>
+          <li>Keyless high-end cars can't be opened with the Slim Jim, so skip them.</li>
+          <li>Lucia's first car registration with Moses is <strong>free</strong>. Later ones cost thousands.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="shot" aria-hidden="true">
+          <svg viewBox="0 0 100 70" fill="none" stroke="#ffb347" stroke-width="4"><rect x="20" y="20" width="60" height="34" rx="4"/><path d="M36 20v-8h28v8"/><path d="M20 34h60"/></svg>
+          <span class="cap">Your capture: Kyle's van</span>
+        </div>
+        <span class="pill miss">Money trap</span>
+        <h3>Don't pay Kyle $5,000</h3>
+        <p>In Collect Chemicals for Kyle, one guide says paying him $5,000 only returns about $1,000. If you do the mission, take the van by force instead.</p>
+      </div>
+    </div>
+
+    <h3 class="subhead">Mission tips</h3>
+    <div class="grid">
+      <div class="card"><h3>Girl's Trip</h3><p>Pick the calm (Defuse) dialogue option both times to avoid a fight.</p></div>
+      <div class="card"><h3>Ambulance Chaser</h3><p>Don't waste ammo on the ambulance. It crashes on its own. Your job is just to keep up.</p></div>
+      <div class="card"><h3>Slam Dunk</h3><p>At the docks, reverse out instead of driving forward. Bring healing items.</p></div>
+      <div class="card"><h3>Breakfast Run</h3><p>Watch the timer at every stop, and threaten the diner customers or they may attack you.</p></div>
+    </div>
+
+    <div class="callout">
+      <h3>Missable in Chapter 2</h3>
+      <ul>
+        <li><strong>Vicki</strong> collectible: Starlet Motel office bathroom.</li>
+        <li><strong>Victor Maravilla</strong> collectible: on the kitchen fridge.</li>
+      </ul>
+      <p style="margin-top:.4rem">Both become unreachable after Chapter 2.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="sources">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Sources · checked 26 Nov 2026</div>
+      <p style="margin-top:.4rem">Fan guides published in launch week. Payouts and locations may change with patches. Unofficial guide, not affiliated with Rockstar Games or Take-Two.</p>
+      <ul>
+        <li><a href="https://game8.co/games/GTA-6/archives/638816">Game8: Chapter 1 walkthrough</a></li>
+        <li><a href="https://allthings.how/gta-6-chapter-1-missions-list/">AllThings.How: Chapter 1 mission list</a></li>
+        <li><a href="https://outputlag.com/guides/gta-6-missables/">Output Lag: missables after Chapter 1</a></li>
+        <li><a href="https://outputlag.com/guides/gta-6-make-money-fast/">Output Lag: early money</a></li>
+        <li><a href="https://www.vice.com/en/article/gta-6-how-to-make-money-fast/">Vice: how to make money fast</a></li>
+        <li><a href="https://www.mmogah.com/news/gta6/a-beginners-guide-to-making-money-in-gta-6-practical-early-game-methods">MMOGAH: beginner money methods</a></li>
+        <li><a href="https://www.gtaboom.com/10-best-free-early-game-weapons-in-gta-vi-e01f">GTABoom: free early weapons</a></li>
+        <li><a href="https://games.gg/grand-theft-auto-vi/guides/best-secret-gear-locations-in-gta-6/">games.gg: secret gear locations</a></li>
+        <li><a href="https://gtacheatsheet.com/gta-6/fixes/gta-6-mission-stuck-bugged-retry-skip-checkpoint">GTA Cheat Sheet: stuck missions</a></li>
+        <li><a href="https://www.redbull.com/us-en/gta-6-best-settings-ps5-xbox">Red Bull: best settings</a></li>
+        <li><a href="https://insider-gaming.com/gta-6-best-aim-controller-settings/">Insider Gaming: aim settings</a></li>
+        <li><a href="https://game8.co/games/GTA-6/archives/638834">Game8: Chapter 2 walkthrough</a></li>
+        <li><a href="https://www.iggm.com/news/gta-6-chapter-2-paradise-lost-guide">IGGM: Chapter 2 guide</a></li>
+        <li><a href="https://www.g2a.com/news/gta-6-news/gta-6-money-making-guide/">G2A: money in every chapter</a></li>
+      </ul>
+    </div>
+    <img src="assets/sticker-h.png" alt="Late to Vice badge, Nov 19 2026" width="890" height="944">
+  </div>
+</footer>
