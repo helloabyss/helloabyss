@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;0,800;1,800;1,900&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+/* 1080x1920 TikTok frame. Every element is driven by render(t) below, so frames are deterministic. */
+:root { --night:#150a2e; --panel:#22123f; --line:#3d2868; --pink:#ff3fbf; --sun:#ffb347; --cyan:#1fd6ff; --text:#f6f1ff; --muted:#c3b5e3; --red:#ff4d6d; --green:#6be3a4; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html,body { width:1080px; height:1920px; overflow:hidden; background:var(--night); color:var(--text); font-family:"Poppins",sans-serif; }
+#bg { position:absolute; inset:0; background:
+  radial-gradient(900px 700px at 85% 8%, rgba(255,63,191,.35), transparent 70%),
+  radial-gradient(800px 800px at 0% 100%, rgba(31,214,255,.22), transparent 70%), var(--night); }
+#grid { position:absolute; inset:0; opacity:.12; background-image:linear-gradient(var(--line) 2px, transparent 2px), linear-gradient(90deg, var(--line) 2px, transparent 2px); background-size:120px 120px; }
+.scene { position:absolute; inset:0; padding:200px 150px 330px 80px; display:flex; flex-direction:column; gap:40px; opacity:0; }
+.el { will-change:transform,opacity; }
+.kicker { font-family:"JetBrains Mono",monospace; font-size:34px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); }
+h1 { font-size:116px; line-height:1.02; font-weight:900; font-style:italic; }
+h2 { font-size:92px; line-height:1.05; font-weight:900; font-style:italic; }
+.grad { background:linear-gradient(180deg,var(--sun),var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.row { display:flex; align-items:center; justify-content:space-between; gap:30px; background:var(--panel); border:3px solid var(--line); border-radius:28px; padding:30px 38px; }
+.row .k { font-size:44px; font-weight:700; }
+.row .v { font-family:"JetBrains Mono",monospace; font-size:46px; color:var(--sun); white-space:nowrap; }
+.card { background:var(--panel); border:3px solid var(--line); border-radius:32px; padding:40px 44px; display:flex; flex-direction:column; gap:14px; }
+.card .t { font-size:56px; font-weight:800; line-height:1.1; }
+.card .d { font-size:40px; color:var(--muted); line-height:1.3; font-weight:500; }
+.card .big { font-size:82px; font-weight:900; color:var(--green); font-style:italic; line-height:1; }
+.tag { align-self:flex-start; font-family:"JetBrains Mono",monospace; font-size:28px; padding:8px 20px; border-radius:999px; text-transform:uppercase; letter-spacing:.06em; }
+.tag.ok { background:var(--green); color:#0b2a1b; }
+.tag.miss { background:var(--red); color:#fff; }
+.tag.check { background:#ffd166; color:#2a2210; }
+.alarm { border-color:var(--red); background:#3a0f2c; }
+.foot { position:absolute; left:80px; right:150px; bottom:360px; font-size:30px; color:var(--muted); font-family:"JetBrains Mono",monospace; }
+#handle { position:absolute; left:0; right:0; bottom:250px; text-align:center; font-family:"JetBrains Mono",monospace; font-size:32px; color:var(--muted); opacity:.85; }
+#bar { position:absolute; left:0; top:0; height:12px; background:linear-gradient(90deg,var(--sun),var(--pink)); width:0; }
+/* cover */
+#s0 { align-items:center; text-align:center; justify-content:center; padding:200px 80px 330px; }
+#logo { width:820px; filter:drop-shadow(0 30px 60px rgba(255,63,191,.45)); }
+#s0 .unofficial { font-family:"JetBrains Mono",monospace; font-size:26px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+#sticker { position:absolute; width:180px; right:60px; top:90px; transform:rotate(10deg); }
+#s8 { align-items:center; text-align:center; justify-content:center; }
+#badge { width:560px; }
+</style></head>
+<body>
+<div id="bg"></div><div id="grid"></div><div id="bar"></div>
+
+<!-- 0 COVER -->
+<section class="scene" id="s0" data-in="0" data-out="3.6">
+  <img id="logo" class="el" data-at="0.05" data-fx="pop" src="../assets/gta6-logo-cutout.png" alt="">
+  <h1 class="el" data-at="0.5" data-fx="up">Broke in<br><span class="grad">Chapter 1?</span></h1>
+  <div class="kicker el" data-at="1.0" data-fx="up">The Late to Vice catch-up guide</div>
+  <div class="unofficial el" data-at="1.3" data-fx="fade">Unofficial fan guide</div>
+  <img id="sticker" class="el" data-at="1.1" data-fx="spin" src="../assets/sticker-f.png" alt="">
+</section>
+
+<!-- 1 SETTINGS -->
+<section class="scene" id="s1" data-in="3.6" data-out="9.2">
+  <div class="kicker el" data-at="0" data-fx="up">Step 0 · Settings › Controls</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Fix your <span class="grad">aim</span> first</h2>
+  <div class="row el" data-at="0.6" data-fx="left"><span class="k">Targeting</span><span class="v">Partial</span></div>
+  <div class="row el" data-at="1.0" data-fx="left"><span class="k">Aim assist</span><span class="v">~4</span></div>
+  <div class="row el" data-at="1.4" data-fx="left"><span class="k">Aim sensitivity</span><span class="v">1–2 below look</span></div>
+  <div class="row el" data-at="1.8" data-fx="left"><span class="k">Response curve</span><span class="v">Standard</span></div>
+  <div class="row el" data-at="2.2" data-fx="left"><span class="k">Deadzone</span><span class="v">2–3</span></div>
+  <div class="row el" data-at="2.6" data-fx="left"><span class="k">PS5 trigger resistance</span><span class="v">Off</span></div>
+</section>
+
+<!-- 2 DRIVING -->
+<section class="scene" id="s2" data-in="9.2" data-out="13.6">
+  <div class="kicker el" data-at="0" data-fx="up">Driving</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Brake <span class="grad">before</span> the corner</h2>
+  <div class="card el" data-at="0.7" data-fx="left"><div class="t">Then accelerate out</div><div class="d">Feather the trigger. Full throttle the whole way spins you out.</div></div>
+  <div class="card el" data-at="1.3" data-fx="left"><div class="t">Drive-by assist: ON</div><div class="d">Shooting from the car gets far less painful in chases.</div></div>
+</section>
+
+<!-- 3 FREE GUNS -->
+<section class="scene" id="s3" data-in="13.6" data-out="19.2">
+  <div class="kicker el" data-at="0" data-fx="up">Free weapons · Permit Keys</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Two free guns <span class="grad">on boats</span></h2>
+  <div class="card el" data-at="0.7" data-fx="left"><span class="tag ok">Chapter 1</span><div class="t">Suppressed Nipper .38</div><div class="d">Hatch on a wrecked boat, southeastern island. Take a boat or jet ski from Key Lento.</div></div>
+  <div class="card el" data-at="1.4" data-fx="left"><span class="tag ok">Chapter 1</span><div class="t">Gorse 425 shotgun</div><div class="d">Tilted, abandoned boat on the northernmost island.</div></div>
+</section>
+
+<!-- 4 MONEY -->
+<section class="scene" id="s4" data-in="19.2" data-out="24.6">
+  <div class="kicker el" data-at="0" data-fx="up">Chapter 1 money</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Where the <span class="grad">cash</span> is</h2>
+  <div class="card el" data-at="0.6" data-fx="left"><div class="big">~$1,400</div><div class="t">per early wreck</div><div class="d">Kenton's treasure dives.</div></div>
+  <div class="card el" data-at="1.2" data-fx="left"><div class="t">Shirley's Rum</div><div class="d">Chapter-only side job. Do it now.</div></div>
+  <div class="card el" data-at="1.8" data-fx="left"><div class="t">Sell to Brian or Donnie</div><div class="d">Product from illegal operations.</div></div>
+</section>
+
+<!-- 5 WARNING -->
+<section class="scene" id="s5" data-in="24.6" data-out="30.2">
+  <div class="kicker el" data-at="0" data-fx="up" style="color:var(--red)">Point of no return</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Before <span class="grad">Tourist Trap</span></h2>
+  <div class="card alarm el" data-at="0.6" data-fx="left"><span class="tag miss">Missable</span><div class="t">Dives + Shirley's Rum vanish</div></div>
+  <div class="card el" data-at="1.2" data-fx="left"><div class="t">Move up to $5,000 into BuckMe</div><div class="d">Guides say it's the only account that carries into Chapter 2.</div></div>
+  <div class="card el" data-at="1.8" data-fx="left"><div class="t">Make a separate save</div><div class="d">Chapter 1 has no mission replay.</div></div>
+</section>
+
+<!-- 6 CHAPTER 2 -->
+<section class="scene" id="s6" data-in="30.2" data-out="36.2">
+  <div class="kicker el" data-at="0" data-fx="up">Chapter 2 · Paradise Lost</div>
+  <h2 class="el" data-at="0.15" data-fx="up">You need <span class="grad">$15,000</span> to leave</h2>
+  <div class="card el" data-at="0.7" data-fx="left"><span class="tag ok">Main income</span><div class="t">Sell cars to Moses</div><div class="d">~$1,000+ per car. No cars with alarms.</div></div>
+  <div class="card el" data-at="1.3" data-fx="left"><div class="t">Lucia's first registration is free</div><div class="d">Later ones cost thousands.</div></div>
+  <div class="card alarm el" data-at="1.9" data-fx="left"><span class="tag miss">Money trap</span><div class="t">Don't pay Kyle $5,000</div><div class="d">Guides say it only pays back ~$1,000.</div></div>
+</section>
+
+<!-- 7 OUTRO -->
+<section class="scene" id="s8" data-in="36.2" data-out="40.5">
+  <img id="badge" class="el" data-at="0" data-fx="pop" src="../assets/sticker-h.png" alt="">
+  <h2 class="el" data-at="0.4" data-fx="up">Full guide <span class="grad">in bio</span></h2>
+  <div class="kicker el" data-at="0.8" data-fx="up">Missables, Ch2 tips, sources</div>
+</section>
+
+<div class="foot" id="foot">Community guides, checked 26 Nov 2026. Verify in your game.</div>
+<div id="handle">@LateToVice</div>
+
+<script>
+const DURATION = 40.5;
+const ease = x => 1 - Math.pow(1 - Math.min(Math.max(x,0),1), 3);
+const scenes = [...document.querySelectorAll('.scene')].map(s => ({ s, a:+s.dataset.in, b:+s.dataset.out, els:[...s.querySelectorAll('.el')] }));
+window.DURATION = DURATION;
+window.render = function(t) {
+  document.getElementById('bar').style.width = (t / DURATION * 100) + '%';
+  document.getElementById('foot').style.opacity = (t > 3.6 && t < 36.2) ? 1 : 0;
+  for (const {s,a,b,els} of scenes) {
+    const fadeIn = ease((t - a) / 0.25), fadeOut = 1 - ease((t - (b - 0.3)) / 0.3);
+    const vis = (t >= a && t < b) ? Math.min(fadeIn, b >= DURATION ? 1 : fadeOut) : 0;
+    s.style.opacity = vis;
+    s.style.transform = `translateY(${(1 - fadeIn) * 30}px)`;
+    for (const el of els) {
+      const p = ease((t - a - +el.dataset.at) / 0.45);
+      const fx = el.dataset.fx;
+      let tr = '';
+      if (fx === 'up') tr = `translateY(${(1-p)*60}px)`;
+      else if (fx === 'left') tr = `translateX(${(1-p)*-120}px)`;
+      else if (fx === 'pop') tr = `scale(${0.7 + 0.3*p})`;
+      else if (fx === 'spin') tr = `rotate(${10 - (1-p)*40}deg) scale(${0.6+0.4*p})`;
+      el.style.opacity = p;
+      el.style.transform = tr;
+    }
+  }
+  // slow drift on the cover logo after it lands
+  const lg = document.getElementById('logo');
+  if (t > 0.5 && t < 3.6) lg.style.transform = `scale(${1 + (t-0.5)*0.02})`;
+};
+render(0);
+</script>
+</body></html>
