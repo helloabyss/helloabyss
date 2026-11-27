@@ -1,6 +1,6 @@
-# TikTok: "Stuff GTA 6 never tells you" (40.5s, 1080x1920)
+# TikTok: "Stuff GTA 6 never tells you" (voiced, 1080x1920)
 
-Silent render: add your voice or a trending sound. Cover: `cover.jpg` (frame at 3.0s).
+Voiced: `vo.mp3` (ElevenLabs, "Liam - Energetic, Social Media Creator") is muxed in by `render.js`; scenes are timed to it. Add a quiet trending sound under it in TikTok if you like. Cover: `cover.jpg` (frame at 3.0s).
 Re-render: `node render.js <frames-dir> late-to-vice-tips.mp4`.
 
 ## Voiceover, timed to scenes

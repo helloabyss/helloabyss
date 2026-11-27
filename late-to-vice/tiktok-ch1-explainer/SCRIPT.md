@@ -1,6 +1,6 @@
-# TikTok: "Broke in Chapter 1?" (40.5s, 1080x1920)
+# TikTok: "Broke in Chapter 1?" (voiced, 1080x1920)
 
-Silent render: add your own voice, or TikTok text-to-speech, plus a trending sound.
+Voiced: `vo.mp3` (ElevenLabs, "Liam - Energetic, Social Media Creator") is muxed in by `render.js`; scenes are timed to it. Add a quiet trending sound under it in TikTok if you like.
 Cover: `cover.jpg` (frame at 3.0s). Re-render: `node render.js <frames-dir> late-to-vice-ch1.mp4`.
 
 ## Voiceover, timed to scenes (read at a normal pace)

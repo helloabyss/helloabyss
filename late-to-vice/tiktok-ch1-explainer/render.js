@@ -24,7 +24,7 @@ const out = path.resolve(process.argv[3] || 'late-to-vice-ch1.mp4');
   }
   await browser.close();
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', String(FPS), '-i', path.join(framesDir, 'f%05d.jpg'),
-    '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo', '-shortest',
+    ...(fs.existsSync(path.join(__dirname,'vo.mp3')) ? ['-i', path.join(__dirname,'vo.mp3'), '-af', 'apad', '-shortest'] : ['-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo', '-shortest']),
     '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-preset', 'medium', '-c:a', 'aac', '-movflags', '+faststart', out]);
   console.log('wrote', out, total, 'frames');
 })();
