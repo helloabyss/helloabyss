@@ -1,0 +1,130 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;0,800;1,800;1,900&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+/* 1080x1920 TikTok frame. Every element is driven by render(t) below, so frames are deterministic. */
+:root { --night:#150a2e; --panel:#22123f; --line:#3d2868; --pink:#ff3fbf; --sun:#ffb347; --cyan:#1fd6ff; --text:#f6f1ff; --muted:#c3b5e3; --red:#ff4d6d; --green:#6be3a4; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html,body { width:1080px; height:1920px; overflow:hidden; background:var(--night); color:var(--text); font-family:"Poppins",sans-serif; }
+#bg { position:absolute; inset:0; background:
+  radial-gradient(900px 700px at 85% 8%, rgba(255,63,191,.35), transparent 70%),
+  radial-gradient(800px 800px at 0% 100%, rgba(31,214,255,.22), transparent 70%), var(--night); }
+#grid { position:absolute; inset:0; opacity:.12; background-image:linear-gradient(var(--line) 2px, transparent 2px), linear-gradient(90deg, var(--line) 2px, transparent 2px); background-size:120px 120px; }
+.scene { position:absolute; inset:0; padding:200px 150px 330px 80px; display:flex; flex-direction:column; gap:40px; opacity:0; }
+.el { will-change:transform,opacity; }
+.kicker { font-family:"JetBrains Mono",monospace; font-size:34px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); }
+h1 { font-size:116px; line-height:1.02; font-weight:900; font-style:italic; }
+h2 { font-size:92px; line-height:1.05; font-weight:900; font-style:italic; }
+.grad { background:linear-gradient(180deg,var(--sun),var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.row { display:flex; align-items:center; justify-content:space-between; gap:30px; background:var(--panel); border:3px solid var(--line); border-radius:28px; padding:30px 38px; }
+.row .k { font-size:44px; font-weight:700; }
+.row .v { font-family:"JetBrains Mono",monospace; font-size:46px; color:var(--sun); white-space:nowrap; }
+.card { background:var(--panel); border:3px solid var(--line); border-radius:32px; padding:40px 44px; display:flex; flex-direction:column; gap:14px; }
+.card .t { font-size:56px; font-weight:800; line-height:1.1; }
+.card .d { font-size:40px; color:var(--muted); line-height:1.3; font-weight:500; }
+.card .big { font-size:82px; font-weight:900; color:var(--green); font-style:italic; line-height:1; }
+.tag { align-self:flex-start; font-family:"JetBrains Mono",monospace; font-size:28px; padding:8px 20px; border-radius:999px; text-transform:uppercase; letter-spacing:.06em; }
+.tag.ok { background:var(--green); color:#0b2a1b; }
+.tag.miss { background:var(--red); color:#fff; }
+.tag.check { background:#ffd166; color:#2a2210; }
+.alarm { border-color:var(--red); background:#3a0f2c; }
+.foot { position:absolute; left:80px; right:150px; bottom:360px; font-size:30px; color:var(--muted); font-family:"JetBrains Mono",monospace; }
+#handle { position:absolute; left:0; right:0; bottom:250px; text-align:center; font-family:"JetBrains Mono",monospace; font-size:32px; color:var(--muted); opacity:.85; }
+#bar { position:absolute; left:0; top:0; height:12px; background:linear-gradient(90deg,var(--sun),var(--pink)); width:0; }
+/* cover */
+#s0 { align-items:center; text-align:center; justify-content:center; padding:200px 80px 330px; }
+#logo { width:820px; filter:drop-shadow(0 30px 60px rgba(255,63,191,.45)); }
+#s0 .unofficial { font-family:"JetBrains Mono",monospace; font-size:26px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
+#sticker { position:absolute; width:180px; right:60px; top:90px; transform:rotate(10deg); }
+#s8 { align-items:center; text-align:center; justify-content:center; }
+#badge { width:560px; }
+</style></head>
+<body>
+<div id="bg"></div><div id="grid"></div><div id="bar"></div>
+
+<!-- 0 COVER -->
+<section class="scene" id="s0" data-in="0" data-out="5.7">
+  <img id="logo" class="el" data-at="0.05" data-fx="pop" src="../assets/gta6-logo-cutout.png" alt="">
+  <h1 class="el" data-at="0.5" data-fx="up" style="font-size:100px">Chapter 3<br><span class="grad">money math</span></h1>
+  <div class="kicker el" data-at="1.0" data-fx="up">Jewelry stores vs. car deliveries</div>
+  <div class="unofficial el" data-at="1.3" data-fx="fade">Unofficial fan guide · no spoilers</div>
+  <img id="sticker" class="el" data-at="1.1" data-fx="spin" src="../assets/sticker-f.png" alt="">
+</section>
+
+<section class="scene" data-in="5.7" data-out="13.3">
+  <div class="kicker el" data-at="0" data-fx="up">Option 1 · Smash and grab</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Jewelry <span class="grad">stores</span></h2>
+  <div class="card el" data-at="0.4" data-fx="left"><div class="big">$10k–$25k</div><div class="t">per robbery</div><div class="d">Reported by most money guides.</div></div>
+  <div class="card alarm el" data-at="4.45" data-fx="left"><span class="tag miss">Risk</span><div class="t">Guards and alarms</div><div class="d">Bring armor and a getaway car.</div></div>
+</section>
+
+<section class="scene" data-in="13.3" data-out="22.4">
+  <div class="kicker el" data-at="0" data-fx="up">Option 2 · Deliveries</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Randy's <span class="grad">high-end cars</span></h2>
+  <div class="card el" data-at="0.3" data-fx="left"><div class="big">$30k+</div><div class="t">only if it arrives spotless</div></div>
+  <div class="card alarm el" data-at="5.7" data-fx="left"><span class="tag miss">Risk</span><div class="t">Every dent cuts the pay</div><div class="d">Some trackers alert the police.</div></div>
+</section>
+
+<section class="scene" data-in="22.4" data-out="27.1">
+  <div class="kicker el" data-at="0" data-fx="up">Filler between big jobs</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Tracked cars via <span class="grad">Pay 'n' Spray</span></h2>
+  <div class="card el" data-at="0.9" data-fx="left"><div class="big">~$4k</div><div class="t">low risk, steady</div></div>
+</section>
+
+<section class="scene" data-in="27.1" data-out="34.9">
+  <div class="kicker el" data-at="0" data-fx="up">The verdict</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Play to your <span class="grad">strength</span></h2>
+  <div class="card el" data-at="0.2" data-fx="left"><span class="tag ok">Good driver</span><div class="t">Run high-end cars</div></div>
+  <div class="card el" data-at="1.7" data-fx="left"><span class="tag ok">Good shot</span><div class="t">Hit jewelry stores</div></div>
+  <div class="card el" data-at="3.5" data-fx="left"><div class="t">Drop loot at a garage</div><div class="d">Then choose which fence buys it.</div></div>
+</section>
+
+<section class="scene" data-in="34.9" data-out="43.2">
+  <div class="kicker el" data-at="0" data-fx="up" style="color:var(--red)">Before you grind</div>
+  <h2 class="el" data-at="0.15" data-fx="up">Don't <span class="grad">panic-grind</span></h2>
+  <div class="card el" data-at="1.6" data-fx="left"><span class="tag ok">Coming</span><div class="t">A big story payday</div><div class="d">Guides say it lands at the end of the chapter.</div></div>
+  <div class="card el" data-at="3.7" data-fx="left"><div class="t">The best money comes later</div></div>
+  <div class="card alarm el" data-at="6.1" data-fx="left"><span class="tag miss">Skip</span><div class="t">Money glitch videos</div><div class="d">They get patched.</div></div>
+</section>
+
+<section class="scene" id="s8" data-in="43.2" data-out="46.5">
+  <img id="badge" class="el" data-at="0" data-fx="pop" src="../assets/sticker-h.png" alt="">
+  <h2 class="el" data-at="0.4" data-fx="up">Full guide <span class="grad">in bio</span></h2>
+  <div class="kicker el" data-at="0.8" data-fx="up">Chapters 3–5 · no spoilers</div>
+</section>
+
+<div class="foot" id="foot">Community guides, checked 26 Nov 2026. Verify in your game.</div>
+<div id="handle">@LateToVice</div>
+
+<script>
+const DURATION = 46.5;
+const ease = x => 1 - Math.pow(1 - Math.min(Math.max(x,0),1), 3);
+const scenes = [...document.querySelectorAll('.scene')].map(s => ({ s, a:+s.dataset.in, b:+s.dataset.out, els:[...s.querySelectorAll('.el')] }));
+window.DURATION = DURATION;
+window.render = function(t) {
+  document.getElementById('bar').style.width = (t / DURATION * 100) + '%';
+  document.getElementById('foot').style.opacity = (t > 5.7 && t < 43.2) ? 1 : 0;
+  for (const {s,a,b,els} of scenes) {
+    const fadeIn = ease((t - a) / 0.25), fadeOut = 1 - ease((t - (b - 0.3)) / 0.3);
+    const vis = (t >= a && t < b) ? Math.min(fadeIn, b >= DURATION ? 1 : fadeOut) : 0;
+    s.style.opacity = vis;
+    s.style.transform = `translateY(${(1 - fadeIn) * 30}px)`;
+    for (const el of els) {
+      const p = ease((t - a - +el.dataset.at) / 0.45);
+      const fx = el.dataset.fx;
+      let tr = '';
+      if (fx === 'up') tr = `translateY(${(1-p)*60}px)`;
+      else if (fx === 'left') tr = `translateX(${(1-p)*-120}px)`;
+      else if (fx === 'pop') tr = `scale(${0.7 + 0.3*p})`;
+      else if (fx === 'spin') tr = `rotate(${10 - (1-p)*40}deg) scale(${0.6+0.4*p})`;
+      el.style.opacity = p;
+      el.style.transform = tr;
+    }
+  }
+  // slow drift on the cover logo after it lands
+  const lg = document.getElementById('logo');
+  if (t > 5.7 && t < 43.2) lg.style.transform = `scale(${1 + (t-0.5)*0.02})`;
+};
+render(0);
+</script>
+</body></html>
